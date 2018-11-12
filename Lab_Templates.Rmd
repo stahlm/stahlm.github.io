@@ -1,0 +1,77 @@
+---
+title: "Lab Report Template and Guidelines (ENS-215)"
+output:
+  html_document:
+    df_print: paged
+---
+#### *Your Name Here*
+#### *Assignment due date*
+
+* **Important notes** 
+    + Lab assignments (like all other assignments) must be your own work.  Your are encouraged to discuss with your classmates, however you may not copy anyone else's code.  Make sure to ask me if you have any questions or doubts about what is acceptable.
+    + Your code must run exactly as is on anyone's computer.  I need to be able to open your file and run it exactly as is.
+    + A very helpful guide on formatting R Markdown documents for assignments is available at <http://www.stat.cmu.edu/~cshalizi/rmarkdown/>.  You can also find a helpful R Markdown "cheat-sheet" at <https://www.rstudio.com/resources/cheatsheets/>  
+<br/>
+* **Lab report formatting requirements**
+    + Your lab must have a title and a header (see above) 
+    + Your will submit your assignment as a R Notebook file (.Rmd) via our Nexus site  
+    + Your file MUST be named according to the following format `Lab_#_Lastname`  
+    + So for example if I were to submit an assignment for the 2nd lab of the term I name my file name (including the extension) would be `Lab_2_Stahl.Rmd`
+
+### Introduction
+Your introduction text would go here.  This text should provide context and background to the assignment.  Here you should describe what motivates the assignment (e.g. what is the question or problem at hand and why is it important).  You should summarize the approach and techniques used to address the questions tackled in this lab.  You should give a summary of what you found/concluded.  
+
+
+### Main body of the lab
+Here you will weave together your code, comments/text, and outputs (figures,tables,...) into a coherent and logically organized document.  
+
+* **Your lab report content needs to have:**
+    + Code that is well documented with comments.
+    + Readable code (e.g. logically named variables, line breaks and spacing to make code easier to read, Use of headers to break up sections,...).
+    + No unnecessary or extraneous code (e.g. you should not keep "scratch work" or any code that is ultimately not used).
+    + Clearly labeled output (e.g. Use comments and/or headers that clearly identify the output).
+    + Figures must be properly formatted.  This includes (but is not limited to) the use of axis labels, legends (where applicable), reasonable axis scales, reasonably sized data points/lines.
+    + Answers/responses to all of the questions/parts of the lab.
+    + If you rely on outside sources when writing your discussion/responses they need to be cited
+
+<br/>
+
+***Example content is presented below***
+
+#### Part 1: Visualizing temperature data from Albany, NY  
+
+**Load in the required libraries**
+```{r, message=FALSE} 
+
+library(tidyverse)
+library(lubridate)
+
+```
+
+<br/>
+
+**Load in the temperature data**
+```{r, message =FALSE}
+## Load in data
+airtemps <- read_csv('./Data/Albany_Temperature_Data.csv')
+airtemps$MDY <- mdy(airtemps$DATE) # convert dates into appropriate date format
+
+```
+
+<br/>
+**Below are the summary statistics for Albany air temperature**
+```{r}
+summary(airtemps$TAVG)
+```
+You might add some discussion here if required or merited.
+
+<br/>
+**Now I'm going to plot the temperature data for Albany, NY**
+
+```{r}
+ggplot(airtemps,aes(MDY,TAVG)) + geom_point(shape = 21, color ="black", fill = "blue", size = 2, stroke = 1) + xlab("") + ylab("Avg. air temperature (deg F)") + theme_classic()
+
+```
+
+If a response/discussion regarding the above analysis is required or appropriate then you would put it here.  When responding to questions your writing your discussion you should treat it as you would any other lab write-up (i.e. the writing and content should be clear, accurate, and sufficiently detailed).
+
