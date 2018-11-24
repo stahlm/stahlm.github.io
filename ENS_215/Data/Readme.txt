@@ -1,6 +1,6 @@
 This folder contains datasets used in the lectures and labs for ENS-215
 
-* Blue_Hills_MA_Precip_Temp_Data.csv
+* Blue_Hills_MA_Precip_Temp_Data_1.csv
     * Data from NOAA GHCN database.  Daily temperature and precipitation data for met station in Blue Hills, MA. Date is from 1880's to 2018
       * PRCP: daily precip in inches
       * TMAX: daily max temp in deg F
