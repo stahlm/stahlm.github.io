@@ -1,0 +1,453 @@
+---
+title: "R Markdown and basic programming"
+output: html_notebook
+---
+[Jump to: YYYY-MM-DD](#Day_1)   
+
+
+### Goals
+  + Review of RStudio 
+  + Learn how to create an organized workflow in R 
+      + Directories and R Projects
+      + File naming
+  + Learn basics of R Notebooks and markdown
+  + Learn some basic programming concepts
+
+#### Notes: YYYY-MM-DD{#Day_1}
+
+Before we jump in, we are going to look at RStudio and go over the different windows, tabs, and toolbars so that you are familiar with the interface.  We are also going to discuss best practices for creating an organized workflow in R.  It's very important that you properly organize your work so that it is easy to run, share, and identify.   
+
+  + You should create a folder on your computer specifically for this class.  Name this folder `ENS_215`. 
+  + Inside your `ENS_215` folder create subfolders called `Lectures`, `Labs`, and `Resources`
+  + At the start of each new lecture topic I will tell you to create a new **Project**. that will be located in your `Lectures folder`.  You should name your project `L#` so for the second lecture topic of the term your project would be called `L2`.  
+  + You should name the lecture notebooks `L#_Lastname`.  So if we were on the second lecture topic of the term my notebook would be `L2_Stahl`.
+
+In this class we will use **R Notebooks** for our analysis and report writing.  R Notebooks allow use to seemlessly integrate our code, comments, results, and text into a single document that can be shared, re-run, and easily modified.  Your R Notebook can be **Knit** into a nicely formatted HTML document that can be easily viewed in any web browser.
+
+When you type outside of a **code chunk**, what you've typed is simply treated as regular text and is not run as code.  This allows you to write up your reports in your R Notebook.  There are tons of ways to **markdown** your text so that it is nicely formatted.
+
+Some basics of markdown are below, for more info check out these two resources.  
+
+  + [Using R Markdown for Class Reports](http://www.stat.cmu.edu/~cshalizi/rmarkdown/)
+  + [R Markdown Cheat Sheet](https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf)
+
+
+Ok here's some basics.  You should type these examples yourself to test it out.  When you want to **render** what typed, click the **preview** button at the top of your editor window.
+
+# To create a large header start the line with `#` {#H1}
+
+## To create smaller headers start the line with more than one `#`.  Each additional `#` shrinks the header size
+
+#### Even smaller header 
+
+When you want to insert a **line break** in your rendered text you can't just hit enter (enter will insert a line break in your editor but this line break won't show up when you render the notebook as an HTML file).  To create a line break type _two spaces_ and then hit enter  
+
+This will give you a line break.  You can also insert a line break by typing `<br/>` <br/> And it will give you a line break.  
+
+**Bold text** is created like this `**text inside is bold**`  
+
+_Italics_ are created with either `_text inside is in italics_` or `*text inside is in italics*`  
+
+To make code show up verbatim you use put the ` ` ` symbol around the text your want to appear as verbatim.  Note that the symbol is NOT the single quote but is the symbol that appears to the left of the **1** on your keyboard.   
+
+You can insert weblinks by wrapping the link in `<link here>` and it will show the url.  You can also create links using this format `[Text that I would like displayed](link)`.  
+
+I can also create **bulleted lists** using the `+`.
+
+  + Here is a bulleted item
+  
+I can create **numbered lists** like this
+
+1. First item
+2. Second item
+    i) sub-item 
+    ii) another sub-item
+
+**Superscripts** such as X^2^ are done with the `^superscripted text here^`.  
+
+**Subscripts** such as X~i~ are done with `~subscripted text here~`.  
+
+You can even write nicely formatted equations like this `$Equation here$`.  To create nicely formatted euqations you need to look up **LaTeX** syntax.  LaTex is a typesetting system that allows you to generate nicely formatted math expressions.  
+
+We can write things like   $y = \sum_{i=1}^nx^i_2$.  
+
+[You can find a helpful LaTeX cheatsheet here](https://wch.github.io/latexsheet/latexsheet.pdf).  
+
+You can even type code in-line and it will evaluate as R code.  You do this ` ` r insert code here ` ` ` ` .  Here's an example.  Did you know that the square root of 15 = `r 15^0.5`.
+
+Since this is a class on data analysis we'll be adding and running code in our notebooks.  To add code you need to create a **code block**.  
+
+To do this you can hit `Ctrl + Alt + i` (PC) or  `Cmd + Option + i` (Mac) and a code block will appear.  These blocks appear in gray shading and anything you type in here is treated as R code.  
+
+
+Below is a code block.  
+```{r}
+y = 5*20 # assign a value to the variable y
+x = 2*y # assign a value to the variable x
+
+print(x) # print out the value of the variable x
+```
+
+To add comments to the code you type `#` before the comment text.  Comments are not treated as code and are very important to include so that your code is readable by you and others.  
+
+To run a single code block you can click inside the block and hit `Ctrl+Shift+Enter` (PC) or `Cmd+Shift+Enter`(Mac).  
+
+[A cheatsheet that has ton's of helpful shortcuts and commands for working in RStudio can be found here](https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Resources/rstudio-ide.pdf)
+
+<br/>
+
+#### Ok so here's some more code below that you should type in and run.  Remember DO NOT just copy and paste the code.  You learn by examining, typing, running, and evaluating the results yourself.
+
+To install packages we do the following
+```{r}
+# install.packages("tidyverse")
+
+# You can see that I've commented out the install since I already have this package.  If you haven't installed this package yet, then uncomment that code and run the block.  If you reinstall something you already have it's no problem (it won't do any harm).
+```
+
+In order to use the functionality of a given package you need to load it in.  You should generally put a block of code at the very top of your Notebook where you load in all of the necessary packages.  Below I'll load in the tidyverse package
+```{r}
+library(tidyverse) 
+```
+
+We can check what our working directory is by using the command below.  By creating projects R will automatically set our working directory to the project folder (this is a good thing and very handy)
+```{r}
+getwd()
+```
+
+You can use R as a calculator.  Below are some basic operations.  
+```{r}
+2 + 1 #Add
+15 - 4 #Subtract
+9 * 2 #Multiply
+3 ^ 4 #Exponents
+120 / 8 #Divide
+5 %% 2 #Modulus
+4 > 2 #Greater than
+2 < 5 #Less than
+5 <= 5 #Less than or equal
+8 >= 2 #Greater than or equal
+2 == 2 #Equality: notice that it is TWO equal signs!
+5 != 7 #Not Equals
+```
+
+Note that when you run a code block it is sending the code the the **console**.  You can also type code directly into the console and it will be evaluated.  This can be handy for a quick one off calculation, however for running many operations we'll stick to using an R notebook.  
+
+
+Typically we'll be re-using the results from some calculation so we'll want to assign it to a variable.  In R we use `<-` to assign values to objects  So `x <- 10` would mean that the object x is assigned a value of 10.
+
+```{r}
+x <- 10 # assign a variable
+
+# to print out the value of x to the console I can simply type out the variable on its own line of code
+x
+```
+
+```{r}
+y <- (2*x) + 5 # you can use mathematical operations and previously declared variables when assigning a new variable
+
+y
+```
+
+```{r}
+z <- x + y + 0.1234
+z
+```
+
+Variables can take non-numeric values.  The objects below take **strings** (i.e. text) as their values.
+```{r}
+studentName_1 <- "Bob"
+studentName_1
+```
+
+```{r}
+studentName_2 <- "Jess"
+studentName_2
+```
+Notice how I gave the objects descriptive names.  Also notice how I used a consistent naming format.  You should be put thought into how you name objects  This will make your code much easier to read and much faster to write.  
+
+Object names cannot begin with a number, contain spaces, or (most) special characters.  You may use underscores and periods in object names.  Also note that objects are **case sensitive**.  
+
+So if you have an object `a` then typing out `A` would NOT be referring to the object that your names `a`.
+
+Now take a look at your **Environment** tab.  You'll see all of the objects that we've assigned thus far. If you want to see all of the objects in your environment you use the `ls()` function. 
+
+```{r}
+ls() # this prints out the names of all of the objects currently in my environment
+```
+
+To remove an object from your workspace you can use the `rm()` function
+```{r}
+rm(x) 
+```
+
+<br/>
+
+#### Exercise 1[^1]:
+
+1. Create two objects named `number_1` and `number_2` and give them the values of 2.5 and 10, respectively
+2. Create two more objects named `string_1` and `string_2`, give them any character string that you would like.
+3. Now using `number_1`, `number_2`, and the power of math create an object called `number_3` that equals 25
+4. Create two more objects whose value is of your choosing
+5. List the objects in your workspace
+6. Remove `string_2`
+7. Try to add `string_1` and `number_1`. What happens?
+
+
+### Data types and data structures
+Everything in R is an object.  The data assigned to a given object can be categorized by its **data type**.  Data can be organized into different structures and these structures can often accomodate a mix of different data types.  
+
+#### Data types
+The basic data types in R are:
+
+|Example|Type|
+|:----:|:---:|
+|“a” “swc”|	character|
+|2, 15.5|	numeric|
+|2L	|integer|
+|TRUE, FALSE|	logical|
+|1+4i| complex|
+|62 6f 62|	raw|
+
+
+We will almost always be dealing with character, numeric, and logical data types in this class.  
+
+
+In many cases the data you deal with may have missing values or other issues.  Values such as missing data `NA`, not a number `NaN` and infinity `inf` will come up from time to time.  We'll learn techniques for dealing with these throughout the term.  
+
+Infinity can arise as such
+```{r}
+1/0
+```
+
+Not a number can arise as follows
+```{r}
+0/0
+```
+
+NA are the most commonly encountered (as compared to NaN and Inf). Below are a few methods for dealing with them.
+
+```{r, eval=FALSE}
+na.omit() #na.omit - removes them
+na.exclude() #similar to omit, but has different behavior with some functions.
+is.na() #Will tell you if a value is NA
+```
+
+<br/>
+
+#### Data Structures
+The data structures available in base R include:
+
+  + vector
+  + list
+  + matrix
+  + data frame
+  + factors
+  + tables
+
+
+##### Vectors
+Vectors 
+  + Common and basic data structure in R.  
+  + Can be a vector of characters, logical, integer, or numerica data - However a given vector can only contain one data type.  
+
+To create a vector we use the `c()` function
+```{r}
+majors_vec <- c("Environmental Science","Geology","Chemistry")
+num_vec <- c(1, 10, 5034.253, -1.045)
+log_vec <- c(TRUE, FALSE, FALSE, TRUE, TRUE)
+```
+
+You can simply type the variable or use the `print()` function to print out the vector's contents
+```{r}
+majors_vec
+```
+```{r}
+print(log_vec)
+```
+
+We can determine the properties of a vector using some helpful functions
+```{r}
+typeof(majors_vec) # data type
+length(log_vec) # vector length
+class(num_vec) # class
+str(log_vec) # structure of the vector
+```
+
+We commonly need to create vectors of a sequence of numbers or repeated numbers.  There are functions to speed this up.  
+
+Create a series
+```{r}
+series_1 <- 1:10 
+series_2 <- seq(10)
+series_3 <- seq(0, 10, by = 0.05)
+```
+
+
+Repeat values
+```{r}
+n_reps <- 5
+rep_val <- 10
+many_tens <- rep(rep_val,n_reps)
+
+print(many_tens)
+```
+Look at the above code and understand what's going on.
+
+Can you make a vector that repeats the letter "a" 50 times?  
+
+Can you make a vector that repeats the series of integers 1-10, 8 times?
+
+```{r}
+#Your code here
+```
+
+
+You can also perform math operations on vectors
+```{r}
+a <- 1
+b <- 1:10
+c <- a + b
+
+c
+```
+
+```{r}
+x <- 1:10
+y <- 10:1
+z <- x + y
+
+z
+
+```
+
+To access elements in a vector you use `[]`
+```{r}
+x_vec <- seq(0, 100, by = 2)
+
+x_vec[1]
+x_vec[2]
+x_vec[10]
+x_vec[10:20]
+x_vec[seq(2,10,by = 2)]
+```
+
+You can also multiply and divide vectors a single value or by a vector of the same length.  Test this out
+```{r}
+# Your code here 
+```
+
+When you want to combine character vectors we can do the following
+```{r}
+fruits <- c("apple","grapes","bananas")
+vegs <- c("lettuce","brocolli","spinach")
+fruits_and_veg <- c(fruits, vegs)
+
+fruits_and_veg
+
+
+course_num <- c("210", "215" , "100")
+course_dept <- c("GEO", "ENS", "ENS")
+course_code <- paste(course_dept, course_num)
+
+course_code
+```
+What happened above?  How did the results differ and when might you use these two differing methods?
+
+##### Factors  
+Factors are special vectors that represent categorical data.  
+  + Can be ordered (e.g. low, medium, high) or unordered (e.g. male, female)
+  + Useful for assigning groups or categories to data
+
+Unordered factor
+```{r}
+responses <- factor(c("yes","no","no","yes","maybe","yes"))
+responses
+```
+
+Ordered factor
+```{r}
+grades <- factor(c("A","C","B","A","B","B","D","A"), levels = c("F","D","C","B","A"), ordered = TRUE)
+grades
+```
+
+
+##### Data frames
+We are going to be using these all the time in this class and in data analysis in general.  They are similar in structure to a spreadsheet that you might open in Excel.
+
+Data frames are made up of rows and columns.  Each column is a vector and all columns must be of the same length.  Basically anything the you save in as a delimeted text or Excel file `.csv`, `.xls`, or `.xlsx` can be read into R as a data frame.
+
+Date frames have a number of important attributes that you'll interact, in particular **column names**, **row names**, and **dimensions**.
+
+We can load in data to a data frame or create one from scratch.  We'll create one below using the `data.frame()` command
+```{r}
+numbers <- c(1:26, NA)
+lettersNew <- c(NA, letters) #letters is a special object available from base R
+logical <- c(rep(TRUE, 13), NA, rep(FALSE, 13))
+examp_df <- data.frame(lettersNew, numbers, logical, stringsAsFactors = FALSE)
+```
+
+To look at the first few rows and last few rows
+```{r}
+head(examp_df) # first rows
+tail(examp_df) # last rows 
+```
+
+Below are some other useful functions for examining data frames
+```{r}
+names(examp_df) # see column names
+
+
+```
+```{r}
+rownames(examp_df) # see row names
+```
+
+```{r}
+str(examp_df) # show the data frame's structure
+```
+
+```{r}
+dim(examp_df) # get the dimensions
+```
+
+```{r}
+nrow(examp_df) # get the number of rows
+```
+
+```{r}
+ncol(examp_df) # number of columns
+```
+
+```{r}
+summary(examp_df) # summary info 
+```
+
+```{r}
+na.omit(examp_df) # omit rows with NAs 
+```
+
+
+##### Lists 
+Lists are actually a special type of vector
+  + Lists can contain multiple items, of multiple types, and of multiple structures. 
+  + Versatile and often used inside functions or as an output of functions.
+
+
+Lists are made with the `list()` function
+```{r}
+examp_list <- list(
+  letters=c("x","y","z"),
+  animals=c("cat","dog","bird","fish"),
+  numbers=1:100,
+  df=examp_df)
+examp_list
+```
+
+<br/>
+
+These were just some basics to get you started and should hopefully give you a nice foundation for the upcoming topics. 
+Programming and data analysis takes time and practice so mess around and try things out.  Also poke around on some of the links I've shared, in your textbook, as well as by Googling things you want to know.  There is TONS of info out there and worked examples for just about any question you could come up with.
+
+
+[^1]: Some of the material below was borrowed/inspired by the USGS R Curriculum
