@@ -11,3 +11,8 @@ This folder contains datasets used in the lectures and labs for ENS-215
    * Data from NOAA GHCN database.  Daily temperature and precipitation data for met station in Albany, NY.  Date is from 2017-01-01 to 2017-12-31
       * TAVG: Is the daily average temperature in deg F
       
+* Old_faithful.csv
+   * Dataset included in R, which has data for Old Faithful eruption times and waiting times.
+      * eruptions: length of eruption in minutes
+      * waiting: time to next eruption in minutes
+      
