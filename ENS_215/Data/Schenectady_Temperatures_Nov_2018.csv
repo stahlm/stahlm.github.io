@@ -1,7 +1,7 @@
 source: https://www.wunderground.com/history/monthly/us/ny/schenectady/KSCH/date/2018-11,,,
 "Data date coverage: Nov 1-30, 2018",,,
 ,,,
-Nov,Max,Avg,Min
+Day,Max,Avg,Min
 1,53,50,46
 2,59,54,48
 3,50,46,42
