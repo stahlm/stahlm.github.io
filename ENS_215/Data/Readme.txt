@@ -16,3 +16,7 @@ This folder contains datasets used in the lectures and labs for ENS-215
       * eruptions: length of eruption in minutes
       * waiting: time to next eruption in minutes
       
+* Schenectady_Temperatures_Nov_2018.csv
+   * Data from wunderground.com.  Daily min, max, avg air temperature in Schenectady.  Date is from Nov 1-30, 2018
+      
+      
