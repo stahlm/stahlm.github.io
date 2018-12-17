@@ -19,4 +19,12 @@ This folder contains datasets used in the lectures and labs for ENS-215
 * Albany_Temperatures_Nov_2018.csv
    * Data from wunderground.com.  Daily min, max, avg air temperature in Albany.  Date is from Nov 1-30, 2018
       
-      
+*Global_Rivers_Discharge.csv
+   * Dataset with info on largest rivers.Data from numerous sources, accessed via table on Wikipedia (https://en.wikipedia.org/wiki/List_of_rivers_by_discharge)
+   * Columns
+      * Continent
+      * River
+      * Length_km: River length in kilometers
+      * Drainage_area_km2: River drainage area in square kilometers
+      * Discharge_m3_s: River average discharge in m^3/s
+      * Outflow_location: Location into which the river discharges
