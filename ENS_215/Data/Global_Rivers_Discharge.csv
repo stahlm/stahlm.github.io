@@ -1,0 +1,140 @@
+Largest rivers by discharge (source: https://en.wikipedia.org/wiki/List_of_rivers_by_discharge),,,,,,
+No,Continent,River,Length (km),Drainage area (km2),Average discharge (m3/s),Outflow
+,,,,,,
+No,Continent,River,Length_km,Drainage_area_km2,Discharge_m3_s,Outflow_location
+1,S. America,Amazon,6400,7050000,209000,Atlantic Ocean
+2,Africa,Congo,4371,4014500,41200,Atlantic Ocean
+3,S. America,Orinoco,2140,880000,40000,Atlantic Ocean
+4,Asia,Ganges-Brahmaputra-Meghna,5425,1731334,38129,Bay of Bengal
+5,S. America,Madeira,3380,1420000,31200,Amazon River
+6,Asia,Yangtze,6418,1808500,30166,East China Sea
+7,S. America,Negro,2230,691000,28400,Amazon River
+8,S. America,Río de la Plata,290,3100000,22000,Atlantic Ocean
+9,Asia,Brahmaputra,3848,712035,19800,Padma River
+10,Asia,Yenisei,3438,2580000,19600,Kara Sea
+11,S. America,Japurá,2615,267730,18620,Amazon River
+12,S. America,Paraná,4880,2582672,17290,"Río de la Plata, Atlantic Ocean"
+13,Asia,Lena,4472,2490000,16871,Laptev Sea
+14,N. America,Saint Lawrence,3058,1030000,16800,Gulf of Saint Lawrence
+15,N. America,Mississippi,3730,3202230,16792,Gulf of Mexico
+16,S. America,Marañón,1737,358000,16708,Amazon River
+17,Asia,Ganges,2510,907000,16648,Padma River
+18,Asia,Mekong,4023,811000,16000,South China Sea
+19,S. America,Tocantins,2699,920000,13600,Atlantic Ocean
+20,S. America,Tapajos,1992,492481,13540,Amazon River
+21,S. America,Ucayali,2670,337519,13500,Amazon River
+22,Asia,Irrawaddy,2170,411000,13000,Andaman Sea
+23,Asia,Ob' - Irtysh,5410,2990000,12475,Gulf of Ob
+24,Asia,Amur,4352,1855000,11400,Sea of Okhotsk
+25,S. America,Purus,3211,371042,10970,Amazon River
+26,S. America,Beni,1599,283350,10300,Madeira River
+27,N. America,Mackenzie - Peace - Finlay,4241,1790000,10300,Beaufort Sea
+28,Africa,Kwah - Kasai,2272,881890,9873,Congo River
+29,S. America,Xingu,1979,531250,9700,Amazon River
+30,Asia,Pearl - Xi Jiang,2400,453700,9500,South China Sea
+31,S. America,Mamoré,2200,595000,8800,Madeira River
+32,S. America,Putumayo,1813,148000,8760,Amazon River
+33,S. America,Juruá,2410,225828,8420,Amazon River
+34,Africa,Kasai,2153,880200,8346,Congo River
+35,S. America,Guaviare,1497,140000,8200,Orinoco River
+36,Europe,Volga,3692,1380000,8060,Caspian Sea
+37,N. America,Ohio,1579,490601,7957,Mississippi River[note 2]
+38,N. America,Columbia,2000,668000,7500,Pacific Ocean
+39,Asia,Xi,2197,409480,7410,Pearl River
+40,Europe,Danube,2860,817000,7130,Black Sea
+41,Africa,Zambezi,2574,1331000,7070,Indian Ocean
+42,S. America,Magdalena,1540,257438,6987,Atlantic Ocean
+43,S. America,Napo,1075,100518,6976,Amazon River
+44,Asia,Indus,3200,1165000,6600,Arabian Sea
+45,S. America,Meta,1200,93800,6500,Orinoco River
+46,N. America,Yukon,3187,854696,6428,Bering Sea
+47,S. America,Madre de Dios,1220,125500,6370,Beni River
+48,S. America,Araguaia,2627,358125,6216,Tocantins River
+49,Asia,Kapuas,1143,98749,6000,South China Sea
+50,Oceania,Fly,1050,76000,6000,"Gulf of Papua, Coral Sea"
+51,N. America,Niagara,58,684000,5796,Lake Ontario
+52,Africa,Niger,4167,2090000,5589,Atlantic Ocean
+53,S. America,Uruguay,1838,365000,5500,"Atlantic Ocean, Río de la Plata"
+54,Asia,Barito,880,100000,5500,Java Sea
+55,Eurasia,Aldan,2273,729000,5489,Lena River
+56,S. America,Branco,775,195000,5400,Rio Negro
+57,N. America,Detroit,51,1813,5324,Lake Erie
+58,N. America,St. Clair,63,576000,5200,Lake St. Clair
+59,S. America,Atrato,750,38500,4900,Atlantic Ocean
+60,Asia,Salween,2815,320000,4876,Andaman Sea
+61,S. America,Caroní,952,95000,4850,Orinoco River
+62,Oceania,Mamberamo,1175,79774,4580,Pacific Ocean
+63,Asia,Angara,1779,1079000,4530,Yenisey River
+64,S. America,Juruena,1240,190391,4360,Tapajos River
+65,Asia,Kama,1805,507000,4100,Volga River
+66,Africa,Ubangi,2272,772800,4000,Congo River
+67,Asia,Chindwin,1207,114000,4000,Ayeyarwady River
+68,S. America,Teles Pires,1638,141718,3978,Tapajos River
+69,Europe,Pechora,1809,289532,3949,Barents Sea
+70,S. America,Apaporis,1370,54300,3900,Japurá River
+71,Oceania,Sepik,1126,80321,3804,Bismarck Sea
+72,Asia,Kolyma,2129,644000,3800,East Siberian Sea
+73,Asia,Nizhnyaya Tunguska,2989,473000,3680,Yenisei River
+74,Asia,Upper Meghna,1040,82000,3600,Lower Meghna River
+75,Asia,Godavari,1465,312812,3505,Bay of Bengal
+76,S. America,Huallaga,1138,85000,3500,Ucayali River
+77,N. America,Fraser,1375,220000,3475,Pacific Ocean
+79,N. America,Slave,434,616400,3414,Great Slave Lake
+80,Asia,Northern Dvina,744,357052,3332,White Sea
+81,Asia,Khatanga,1636,364000,3320,"Khatanga Gulf, Laptev Sea"
+82,Oceania,Kikori,405,23309,3274,Gulf of Papua
+83,S. America,Parnaíba,1070,220000,3200,Atlantic Ocean
+84,S. America,Jutai,1200,60000,3000,Amazon River
+85,S. America,Caura,723,52000,3000,Orinoco River
+86,Asia,Ghaghara,1080,127950,2990,Ganges River
+87,Asia,Irtysh,4248,1673470,2980,Ob River
+88,Asia,Yamuna,1376,366223,2950,Ganges River
+89,S. America,São Francisco,2830,641000,2943,Atlantic Ocean
+90,S. America,Trombetas,1060,135239,2855,Amazon River
+91,Africa,Nile,6853,3400000,2830,Mediterranean Sea
+92,S. America,Tambo,1000,135000,2800,Ucayali River
+93,Africa,Ruki,1300,173800,2800,Congo River
+94,N. America,Koksoak,137,133400,2800,"Ungava Bay, Arctic Ocean"
+95,S. America,Pastaza,740,41000,2770,Marañón River
+96,S. America,Iriri,1300,130000,2745,Xingu River
+97,S. America,Guapore,1530,303210,2740,Mamoré River
+98,Asia,Zeya,1242,233000,2700,Amur River
+99,S. America,Tigre,940,54200,2700,Marañón River
+100,Africa,Kwango,1100,263500,2700,Kasai River
+101,S. America,Paraguay,2621,365592,2700,Parana River
+102,Asia,Red,1149,143700,2640,Gulf of Tonkin
+103,S. America,Uaupes,1050,50000,2625,Rio Negro
+104,Eurasia,Yellow,5464,752000,2571,East China Sea
+105,Eurasia,Pyasina,818,182000,2550,Kara Sea
+106,Eurasia,Amu Darya,2400,534739,2525,Aral Sea
+107,S. America,Tietê,1150,150000,2500,Paraná River
+108,Africa,Sankuru,1200,156000,2500,Kasai River
+109,Eurasia,Mahakam,980,77100,2500,Makassar Strait
+110,Africa,Sangha,790,213400,2471,Congo River
+111,Eurasia,Songhua / Sungari,1434,557180,2463,Amur River
+112,S. America,Javari,1184,90000,2463,Amazon River
+113,Eurasia,Neva,74,281000,2445,Baltic Sea
+114,N. America,Missouri,3767,1371010,2445,Mississippi River
+115,N. America,Liard,1115,277100,2434,Mackenzie River
+116,S. America,Rio Grande (Paraná River),1360,143000,2400,Paraná River
+118,N. America,Nelson,2575,982900,2370,Hudson Bay
+119,S. America,Cauca,1180,59840,2364,Magdalena River
+120,S. America,Yarí,620,31650,2360,Japurá River
+121,S. America,Urubamba,724,60300,2330,Ucayali River
+122,Europe,Rhine,1233,198735,2330,North Sea
+123,S. America,Apure,1038,121400,2300,Orinoco River
+124,Eurasia,Xiang,856,96400,2288,Yangtze River
+125,Asia,Krishna River,1400,258948,2213,Bay of Bengal
+126,S. America,San Juan,380,15000,2200,Pacific Ocean
+127,Eurasia,Vitim,1978,227000,2200,Lena River
+128,Eurasia,Koshi,729,69300,2166,Ganges River
+129,Eurasia,Yuan,864,89163,2158,Yangtze River
+130,Eurasia,Han,1532,174300,2156,Yangtze River
+131,N. America,St. Marys,120,127700,2135,Lake Huron
+132,Eurasia,Jialing,1119,160000,2120,Yangtze River
+133,Eurasia,Mahanadi,858,141600,2119,Bay of Bengal
+134,N. America,Peace,1923,306000,2110,Slave River
+135,S. America,Essequibo,1014,69300,2104,Atlantic Ocean
+136,S. America,Ventuari,520,40000,2000,Orinoco river
+138,S. America,Vichada,580,25000,2000,Orinoco River
+,,,,,,
