@@ -28,3 +28,11 @@ This folder contains datasets used in the lectures and labs for ENS-215
       * Drainage_area_km2: River drainage area in square kilometers
       * Discharge_m3_s: River average discharge in m^3/s
       * Outflow_location: Location into which the river discharges
+
+* NOAA_State_Precip_LabData.csv
+   * Data obtained from NOAA Climate at a Glance (https://www.ncdc.noaa.gov/cag/statewide/time-series).  Dataset has monthly precipitation data from 1895-2017
+   * Columns
+      * Year: Year in numeric format
+      * Month: Month in numeric format
+      * Precip_inches: Total monthly precipitaton in inches
+      * state_cd: State abbreviation (e.g. NY for New York, MA for Massachusetts,...)
