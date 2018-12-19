@@ -36,3 +36,11 @@ This folder contains datasets used in the lectures and labs for ENS-215
       * Month: Month in numeric format
       * Precip_inches: Total monthly precipitaton in inches
       * state_cd: State abbreviation (e.g. NY for New York, MA for Massachusetts,...)
+ 
+* NOAA_State_Precip_Summary_Table.csv
+   * Summary table created from data in "NOAA_State_Precip_LabData.csv"
+      * Columns
+         * State: State abbreviation
+         * Avg_precip: Average annual precipitation in inches (period of record 1895-2017)
+         * Pre_precip: Average annual precipitation in inches (1895-1959)
+         * Post_precip: Average annual precipitation in inches (1960-2017)
