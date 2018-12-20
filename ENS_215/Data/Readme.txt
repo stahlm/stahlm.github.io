@@ -44,3 +44,9 @@ This folder contains datasets used in the lectures and labs for ENS-215
          * Avg_precip: Average annual precipitation in inches (period of record 1895-2017)
          * Pre_precip: Average annual precipitation in inches (1895-1959)
          * Post_precip: Average annual precipitation in inches (1960-2017)
+
+* Mauna_Loa_CO2.csv
+   * Atmospheric CO2 data at Mauna Loa, obtained from NOAA (https://www.esrl.noaa.gov/gmd/ccgg/trends/) 
+      * Columns
+         * Year: Year in decimal format (e.g. 1998.25)
+         * CO2_ppm: Atmospheric CO2 concentration in ppm (mole fraction)
