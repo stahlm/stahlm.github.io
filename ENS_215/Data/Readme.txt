@@ -50,3 +50,13 @@ This folder contains datasets used in the lectures and labs for ENS-215
       * Columns
          * Year: Year in decimal format (e.g. 1998.25)
          * CO2_ppm: Atmospheric CO2 concentration in ppm (mole fraction)
+
+* Rocky_Mtn_Arsenal_Earthquakes.csv
+   * Data from the 1960's on wastewater injections and earthquakes at the Rocky Mountain Arsenal site.  Data from Table 1 in Bardwell (1966) The Mountain Geologist.
+      * Columns
+         * Year: Year
+         * Month: Month (numeric value)
+         * Inject_vol_mil_gal: Volume of wastewater injected in millions of gallons 
+         * Num_earthquakes: Number of earthquakes
+         
+ 
