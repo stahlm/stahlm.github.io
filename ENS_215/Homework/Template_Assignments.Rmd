@@ -1,0 +1,42 @@
+---
+title: "Assignment title "
+author: Your name here
+date: Date here (YYYY-MM-DD)
+output:
+  html_notebook:
+    df_print: paged
+    theme: spacelab
+    toc: yes
+---
+
+This template is a good starting point for your lab and homework assignments. In the header section the output is currently set to `html_notebook`, which allows you to preview changes as you make them.  The changes will show up everytime you save the file.
+
+When you want to create your file for submission, you will go into the header section and change `html_notebook` to `html_document` (save the file) and then click `knit` which appears in the toolbar.  This will create an `html` file that you will submit along with your `.Rmd` file.  
+
+Make sure that your submitted files follow the naming conventions that we have established for the particular assignment.
+
+## Section 1 Title
+Your text, code, results here.
+
+Below is an example code block where you would add your code.  Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing `Ctrl+Alt+I` (PC) or `Cmd+Option+I` (MAC).
+```{r}
+# below is some example code.  You need to add comments to your code.  Comments are denoted with the # symbol and are not evaluated by R.
+
+a <- 1.5 # assign a value to a
+b <- 2.5 # assign a value to b
+
+c <- a + b # take the sum of a and b
+
+print(c) # display the sum to console
+```
+
+
+## Section 2 Title
+Your text, code, results here.
+
+## Section 3 Title
+Your text, code, results here.
+
+## Additional section titles...
+Your text, code, results here.
+
