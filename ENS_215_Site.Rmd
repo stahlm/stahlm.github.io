@@ -1,0 +1,28 @@
+---
+title: "Exploring Environmental Data (ENS-215)"
+output:
+  html_document:
+    theme: spacelab
+    toc: yes
+    toc_float: yes
+---
+***
+|  [ENS-215](https://stahlm.github.io/ENS_215/Website/ENS_215_Site.html) | [Homework](https://stahlm.github.io/ENS_215/Website/Homework.html) | [Syllabus](https://stahlm.github.io/ENS_215/Website/Syllabus.html) |
+|---|------------|-----------|
+
+## Lectures [^1]
+
+
+
+### Week 1
++ Mon (7-Jan) -- [Course introduction](https://stahlm.github.io/ENS_215/Lectures/L1.html)  
++ Wed (9-Jan) -- [Intro to R](https://stahlm.github.io/ENS_215/Lectures/L1_diving_in.html)
+
+
+***
+
+## Labs
++ Lab 1
+
+
+[^1]: **Note**: The links in the schedules below will take you to the `.html` file--to download the `.Rmd` file, simply enter the link into your browser, but change the `.html` to `.Rmd` (it is caps sensitive) and you can download the R markdown file.
