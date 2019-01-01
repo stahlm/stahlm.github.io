@@ -65,21 +65,8 @@ Your textbooks [_R for Data Science_](https://r4ds.had.co.nz/) and [_YaRrr_](htt
 ### Diving into R
 Let's open the [L1_diving_in notebook](https://stahlm.github.io/ENS_215/Lectures/L1_diving_in.html) and work through it. 
 
-<br/>
-
-## Readings
-* [**R for Data Science (R4DS) Ch: 1**](https://r4ds.had.co.nz/)  
-* [**YaRrr Ch: 1, 2, 4**](https://bookdown.org/ndphillips/YaRrr/)
-
-## Homework
-1. **Download R and RStudio:**
-You will first need to download R and then RStudio.  To download R go to [this link](https://cran.rstudio.com/) and download R.  You will see links for Mac and Windows users (make sure to select the appropriate one for your computer).  Download the program and then install it.
-
-Once you've downloaded and installed R, then you will need to get RStudio.  Go to [this link](https://www.rstudio.com/products/rstudio/download/#download) and download the "Installer for Supported Platform" that corresponds to your computer (i.e. Mac or Windows).  Download and install the software.
 
 
-2. **Sign up for our DataCamp class and complete the first module**
 
-3.  **Get a binder to hold your course notes and bring to all future classes**
 
 
