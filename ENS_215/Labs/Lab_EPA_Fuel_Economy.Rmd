@@ -1,0 +1,168 @@
+---
+title: 'Lab: Getting Started in R'
+author: "ENS-215"
+date: "Winter 2019"
+output:
+  html_document:
+    df_print: paged
+    theme: spacelab
+    toc: yes
+    toc_float: yes
+---
+
+## Overview
+Today's lab will consist of two parts.  First we will make sure that you are properly set up with all of the software and accounts that you need for this class.  Next you will work with some fuel economy data from the Environmental Protection Agency (EPA) to learn more about fuel efficiency in automobiles -- which is an important from an environmental/climate perspective given that vehicles are responsible for 51% of CO~2~ emissions for a typical U.S. household[^1].
+
+## Part 1: Check for proper setup of software and accounts
+I will come around and check that everyone is properly setup for this class.  Before I come by you should:
+
+1. Open RStudio
+2. Open your browser to our class DataCamp page
+3. Open the folder on your computer where all of your ENS-215 material and sub-folders exist
+    i. Your main folder should be called `ENS_215` or something similar (avoid using spaces in your folder names)
+    ii. You should have sub-folders within this main folder with the following names: `Labs`, `Lectures`, `Resources`
+
+If you are having any issues with the software and/or accounts be ready with your questions so we can address them when I get to you.  
+
+
+## Part 2: Analysis of fuel efficiency in automobiles
+Automobiles are a significant contributor to both CO~2~ emissions and air pollution.  Understanding fuel efficiency in vehicles and the key factors that affect the efficiency are important from both an environmental and economic perspective.  Today you will use EPA vehicle fuel economy data to learn more about this issue and explore some interesting questions.  Before beginning you will need to read through the following background reading.
+
+### Background reading
+  + [EPA Fuel Economy Page: _Reduce Climate Change_](https://www.fueleconomy.gov/feg/climate.shtml)
+  + [EPA Fuel Economy Page: _Reduce Oil Dependence Costs_](https://www.fueleconomy.gov/feg/oildep.shtml)
+  + [EPA Fuel Economy Page: _Increase Energy Sustainability_](https://www.fueleconomy.gov/feg/consres.shtml)
+  + [Union of Concerned Scientists: _Half the Oil_](https://www.ucsusa.org/clean-vehicles#.XC0AWlxKiUl)
+    + [I also recommend checking out this interactive feature from the UCS](https://www.ucsusa.org/clean-vehicles/oil-is-changing)
+    
+### Fuel Economy Analysis
+#### Set up for analysis
+We are going to load in the `tidyverse` package.  If you haven't installed it yet, you will first need to do that (it only needs to be installed once and once installed can be loaded in anytime you want).  To install `tidyverse` go to the `Packages` tab and click the `install` button.  In the window that pops up, type `tidyverse` and click `Install`.   
+
+
+
+```{r message = FALSE}
+library(tidyverse)
+```
+
+The data is conveniently part of one of the packages included with tidyverse, so we can easily load in the data, which is called `mpg`.  We'll assign the `mpg` data to a new object that we'll call `fuel_data`
+```{r}
+fuel_data <- mpg
+```
+
+<br/> 
+
+#### Use the `str()` function to examine the structure of the `fuel_data` dataset
+```{r}
+# Your code here
+```
++ What is class of data is `fuel_data`?
++ How many variables are there?
++ How many observations?
++ How many data types are represented in the dataset and what are these data types?
+
+<br/> 
+
+#### Examine the first few rows of the `fuel_data` dataset and print these results to your notebook.
+```{r}
+# Your code here
+```
++ What do the `disp`, `cyl` and `cty` columns represent? (Hint: type `?mpg` into your console to get more info on this dataset)
++ What website was the data obtained from?
+
+<br/> 
+
+#### How many rows and columns are there in the `fuel_data` dataset?
+```{r}
+# Your code here
+```
++ Number of rows?
++ Number of columns?
++ Use the approach that you employed to get the dimensions and assign the value for the number of rows to a variable `n_rows` and number of columns to `n_cols`  
+
+<br/> 
+
+#### Use the `summary()` function to get summary statistics on the `fuel_data` dataset
+```{r}
+# Your code here
+```
++ For highway driving how many miles per gallon does 
+    + The most fuel efficient vehicle get?  
+    + The least fuel efficient vehicle get?
++ What is the average miles per gallon for city driving?
+
+<br/> 
+
+#### Create a new variable to store the ratio of the hwy to cty fuel economy
+To create a new variable you can use the `mutate()` function (which is included in the `dplyr` package that loads in with `tidyverse`).  You can get more info on `mutate()` by typing `?mutate()` to your console or by Googling it.  FYI, we are going to learn a lot more about `dplyr` later in the term`
+
+You can also create a new variable by using the `$` notation to assign it.  For instance `fuel_data$new_variable_name <- expression that defines the variable`
+
+```{r}
+# Your code here
+```
++ Examine this new variable
+  + Is there any vehicle that gets better gas milage in the city as compared to the highway?
+  + Is there any vehicle that has twice as good gas milage on the highway relative to the city?
+  + What is the largest ratio between highway and city gas milage?
+
+<br/> 
+
+#### Examine factors influencing fuel economy: Displacement
+Let's see how the size of a vehicles engine influences the fuel economy
++ Use `ggplot` to create a scatter plot of `hwy` vs `displ`.  Remove the `#` and replace the `...` with the appropriate values.
+
+```{r}
+# ggplot(data = ...) + geom_point(aes(x = ... , y = ...))
+```
++ How does displacement influence the fuel economy?
++ Do any points appear to be outliers from the observed relationship?  Any thoughts on what might explain these outliers?
+
+<br/> 
+
+#### Examine factors influencing fuel economy: Displacement and vehicle class
+Let's add another variable to our analysis to try and further explain what influences fuel economy.  We'll now color the points by their vehicle class.
+```{r}
+# ggplot(data = ...) + geom_point(aes(x = ... , y = ... , color = ... ))
+```
++ What new information did this provide us with?  
+  + Can we say more about factors affecting fuel economy?
+  + Can we explain some of the outliers?
+
+<br/> 
+
+#### Add a new variable to `fuel_data`
+Below I've added a new variable `region` to `fuel_data` using the `mutate()` function.  This step is relatively advanced, so don't worry if it looks well beyond what we've covered so far.  However, I want you to take a look at the code and try to decipher what I did here.  I tried to use variable names that are logical and if you see a function that you don't understand, try looking at the help file and/or Googling it.  
+
+```{r}
+us_makes <- c("chevrolet","dodge","ford","jeep","lincoln","mercury","pontiac") # list of U.S. manufacturers
+fuel_data <- mutate(fuel_data, region = if_else(manufacturer %in% us_makes,"US","Foreign") )
+```
+
++ What is the variable `region` telling us?
++ Can you briefly explain the logic and steps taken to create the variable `region`?
+
+You may find `region` to be another interesting variable to examine in the next section.  
+
+<br/> 
+
+#### Additional analysis of your choosing
+With any remaining time you should perform further exploratory analysis of the `fuel_data` dataset.  You should discuss ideas with your classmates and you can also ask me for guidance (but try to brainstorm some ideas before asking).  I will be moving about the classroom and checking in with everyone, providing guidance and suggestions, and hearing what you've learned about the dataset being analyzed.  
+
+Note that this section of the lab is important and should not be given only a cursory work through.  An important learning goal for this term is for you to develop your own independent research skill.  Thus, all of our labs this term will have a large, independent component where you are expected to apply what you've learned to ask novel and interesting questions and furthermore to try and go beyond what you've learned in class.  
+
+## Submit the lab
+Your lab is due prior to the start of next week's lab.  Once you are finished and satisfied with your work you should `knit` it to an `html` file and submit both your `html` and `Rmd` file to Nexus.  
+
+To `knit` a file you can go to the menu bar at the top of your notebook and click the dropdown that currently says `preview` and select the `knit to html` option.  This will `knit` your document, which runs all of your code and generates a nice report in html format (the file is saved in your current working directory).  
+
+An even easier way to `knit` your file is to go to the header at the top of your document and change `html_notebook` to `html_document` and then save your file.  You will then see that the `Preview` option in the menu bar will have changed to `Knit`.  Click `Knit` and your report will be `knit`.
+
+**Before you leave lab today make sure you know how to knit your document**
+
+**Make sure your file is properly named BEFORE you submit it** The correct naming structure is `LabName_YourLastName`  
+
+**Make sure to replace the `author` and `date` in the header with your info.**
+
+
+[^1]: source: <https://www.fueleconomy.gov/feg/climate.shtml>
