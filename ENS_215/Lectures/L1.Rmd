@@ -64,13 +64,13 @@ The demand in the academic, public, and private sectors for environmental scient
 We will write and run our code within the RStudio Integrated Development Environment (IDE).  RStudio allows us to write, excute (run), and debug code, along with view output and plots, within a single integrated environment.
 
 ### Getting help in R
-There are lots of resources for [getting help in R](https://stahlm.github.io/ENS_215/Website/ENS_215_Site.html#useful_links).  In addition to me and your classmates, there is a massive amount of help available freely online (a quick Google search typically yields an answer to just about any R question).  There are also many websites devoted to teaching R.  
+There are lots of resources for [getting help in R](https://stahlm.github.io/ENS_215/Website/Syllabus.html#useful_links).  In addition to me and your classmates, there is a massive amount of help available freely online (a quick Google search typically yields an answer to just about any R question).  There are also many websites devoted to teaching R.  
 
 Visit Union College's very own [Center for Data Analytics](https://muse.union.edu/cda/)!  It is located in **Wold 010** and hosts a data science help desk, where expert students and faculty who staff the help desk can help answer your questions. The Center for Data Analytics also host regular training workshops and guest speakers.
 
 You can also get help directly in R Studio by typing `?term_of_interest_here` in the R **Console** or by searching in the **Help** bar on the right-hand side of your RStudio window.  
 
-Your textbooks [_R for Data Science_](https://r4ds.had.co.nz/) and [_YaRrr_](https://bookdown.org/ndphillips/YaRrr/) are also amazing resources and freely available online in a nice searchable format.  
+Your textbooks [_R for Data Science_](https://r4ds.had.co.nz/) and [_ModernDive_](https://moderndive.com/) are also amazing resources and freely available online in a nice searchable format.  
 
 [R Cheatsheets](https://www.rstudio.com/resources/cheatsheets/) are also amazing resources that succintly summarize many different aspects of R.  I will hand these out throughout the term, though you can find them freely available here.
 
