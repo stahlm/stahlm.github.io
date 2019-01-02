@@ -21,6 +21,18 @@ output:
 
     
 ## Why learn programming and R?
+
+> *It is pretty clear that almost every field today needs data-savvy researchers. It has become something as basic as driving a car in our intellectual work*  
+  -- Saul Perlmutter (2011 Nobel Laureate in Physics)
+
+Data science is a rapidly growing field and is becoming an integral part of nearly all fields of study, including the Earth and environmental sciences.  In the past few years, programs specifically focused on data analytics for Earth and environmental sciences have been created or expanded at many prominent institutions ([Stanford](https://earth.stanford.edu/academics/data-science), [Berkeley](https://bids.berkeley.edu/research/environment-and-society-data-sciences-21st-century-ds421), [U. Chicago](https://epic.uchicago.edu/education/programs-concentrations/data-science-energy-and-environmental-research) , and [UC Boulder](https://www.colorado.edu/earthlab/about-earth-lab) to name a few).  
+
+The demand in the academic, public, and private sectors for environmental scientists with skills is data analytics has been growing and job and research opportunities are strong.  The articles below provide a nice overview on the rising importance of data science in the environmental fields.
+
+  + <https://earth.stanford.edu/news/21st-century-earth-science-computer-intensive-and-data-driven>
+  + <https://www.earthdatascience.org/blog/earth-data-scientist-demand/>
+  + <https://news.berkeley.edu/2018/11/01/berkeley-inaugurates-division-of-data-science-and-information-connecting-teaching-and-research-from-all-corners-of-campus/>
+
 * **Why learn programming?**
     + Allows you to analyze, model, and interpret data that is often impossible (or exceedingly difficult) to do otherwise
     + Streamlines your workflow, allowing you to conduct analysis in a documented, reproducible, and efficient manner
