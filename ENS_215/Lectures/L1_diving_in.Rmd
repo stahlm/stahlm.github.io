@@ -99,7 +99,7 @@ Let's check how much it rained last year
 filter(annual_precip, year_val == 2017)
 ```
 
-Now let's summarize the data by month.  This way we can see if there are seasonal patterns in rainfall for the area around Boston and how a given month's rainfall varies between years.
+Now let's summarize the data by month.  This way we can see if there are seasonal patterns in rainfall for the area around Boston and how a given month's rainfall varies between years.  To visualize the data we'll create a box plot (also called a box-and-whisker plot).
 ```{r}
 
 # Group the data by year and month
@@ -110,17 +110,20 @@ fig_box <- ggplot(monthly_precip,aes(x=factor(month_val),y=tot_precip)) + geom_b
 fig_box
 ```
 
-Is there much variability in total rainfall between months?  How about within a given month?
+Is there much variability in total rainfall between months?  How about within a given month?  
+
+Note: If you are unfamiliar with box plots, we will discuss them in more detail in upcoming lectures, however for a quick intro to them check out this [website](https://towardsdatascience.com/understanding-boxplots-5e2df7bcbd51) or check out the Wikipedia page on box plots.  
 
 <br/>
 
-Let's create a cool interactive plot using the `plotly` package.
+Ok now, let's create that same box plot, but this time let's make a cool interactive version using the `plotly` package.
 ```{r}
 library(plotly)
 ggplotly(fig_box)
 
 ```
 
+Now let's answer some questions based on the data we've been analyzing.  
 
 How rainy was it in the year you were born?  (Hint: `filter` on the `annual_precip data`)
 ```{r}
