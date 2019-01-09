@@ -153,7 +153,7 @@ At the end of class you should **knit** your Notebook to an html file.  When you
 
 To **knit** the Notebook, you can go up to the header and replace the line directly below the **title:** line with the following:
 
-`output: html_document`
+`output: html_document`  
 `author: "Your Name Here"`  
 `date: "Date here"`  
 
