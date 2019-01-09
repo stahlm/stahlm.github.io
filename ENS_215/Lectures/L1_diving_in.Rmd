@@ -17,8 +17,8 @@ First we'll install the packages that we need to run our analysis.  Once you've 
 
 Note that I've commented out the install function by using the # symbol.  I did this since, I've already installed these packages on my computer.  You'll want to copy these commands (without the `#`) and paste them to your console so that you can run the install functions (if you haven't already installed these packages on your computer).
 ```{r}
-# install.package("tidyverse") 
-# install.package("plotly")
+# install.packages("tidyverse") 
+# install.packages("plotly")
 ```
 
 Next we'll load in the packages that we need to run our analysis.  When you create a new project you'll need to load in the packages that you want to use (however you will not need to reinstall them).  The `library()` function is used to load packages.
