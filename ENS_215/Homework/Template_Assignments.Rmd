@@ -13,7 +13,7 @@ This template is a good starting point for your lab and homework assignments. In
 
 When you want to create your file for submission, you will go into the header section and change `html_notebook` to `html_document` (save the file) and then click `knit` which appears in the toolbar.  This will create an `html` file that you will submit along with your `.Rmd` file.  
 
-Make sure that your submitted files follow the naming conventions that we have established for the particular assignment.
+Make sure that your submitted files follow the naming conventions that we have established for the particular assignment.  
 
 ## Section 1 Title
 Your text, code, results here.
