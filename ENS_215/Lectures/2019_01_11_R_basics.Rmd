@@ -1,11 +1,12 @@
 ---
 title: "R Programming and Markdown Basics"
 author: "ENS-215"
-date: "10-Jan-2019"
+date: "11-Jan-2019"
 output:
   html_document:
     theme: spacelab
     toc: TRUE
+    toc_float: TRUE
 ---
 
 ## What is R Markdown?
@@ -96,14 +97,12 @@ And the list would look like this in my report.
     ii) another sub-item
     
     
-+ **Superscripts** such as X^2^ are done with the `^superscripted text here^`.  
-+ **Subscripts** such as X~i~ are done with `~subscripted text here~`.  
 + **Line breaks** to make a line break show up in your formatted document, you need to put TWO SPACES at the end of the line before and then hit ENTER.  The line break will only show up in your knit/previewed document if you have two spaces `  `  
 
 
 ### Exercise
 
-+ Spend a few minutes testing out the different Markdown formatting options you learned above
++ Spend some time testing out the different Markdown formatting options you learned above
 
 
 --- 
@@ -286,7 +285,6 @@ print(log_vec)
 
 We can determine the properties of a vector using some helpful functions
 ```{r}
-typeof(majors_vec) # data type
 length(log_vec) # vector length
 class(num_vec) # class
 str(log_vec) # structure of the vector
@@ -302,12 +300,17 @@ a_missing <- c(1,2,3,4,NA,5,6,NA,7,8,9) # create a vector that has some missing 
 na.omit(a_missing) #na.omit - removes them
 ```
 
-Let's remove the NAs from `a_missing` and assign the new data to a new object called `a_cleaned`
+
++ Try taking the sum of the `a_missing` by using the `sum()` function.  Do you see any issues?
+
+
+In some cases we will want to remove missing data entries so that we can just examine the entries where we have values.  Let's remove the NAs from `a_missing` and assign the new data to a new object called `a_cleaned`
 ```{r}
 a_cleaned <- na.omit(a_missing) 
 ```
 
-Look at `a_cleaned` in your Environment pane.  Does it look like everything worked?  
++ Look at `a_cleaned`.  Does it look like everything worked?  
++ Now try taking the sum of `a_cleaned`.  
 
 <br/>
 
@@ -355,7 +358,7 @@ Look at the above code and understand what's going on.
 <br/>
 
 You can also perform math operations on vectors.  Try to predict the results before you run the code.
-```{r}
+```{r results='hide'}
 a <- 1
 b <- 1:10
 c <- a + b
@@ -364,7 +367,7 @@ c
 ```
 
 
-```{r}
+```{r results='hide'}
 x <- 1:10
 y <- 10:1
 z <- x + y
@@ -394,6 +397,7 @@ You can also multiply and divide vectors a single value or by a vector of the sa
 ```{r}
 # Your code here 
 ```
++ Make sure you understand what is going on with the examples you tested.
 
 <br/>
 
@@ -433,6 +437,8 @@ responses
 grades <- factor(c("A","C","B","A","B","B","D","A"), levels = c("F","D","C","B","A"), ordered = TRUE)
 grades
 ```
++ Think of some more examples where you might use factors.  Can you think of both ordered and unordered examples?  
++ Did you encounter any variables in your first lab that could be treated as a factor?
 
 <br/>
 
@@ -555,7 +561,7 @@ examp_list
 
 <br/>
 
-### Additional Exercises
+### Exercises
 
 + Create a vector named `vec_seq` that goes from 0 to 99 by 1.  Print the vector results to console using the `print()` function
     
@@ -570,6 +576,7 @@ examp_list
 <br/>
     
 ## Relational and Logical operators
+**Note**: When/if you get to this section in class today, can you please raise your hand to let me know.  
 
 When you are writing code you will frequently need to make use of **relational** and **logical** operators.  We use relational operators to compare values and logical operators to combine/blend these operations together.  These concepts play a very important role in programming and allow us to control the flow of our code.  Let's take a look at **relational operators**
 
@@ -622,7 +629,7 @@ Often we want to test for some comination of conditions.  That's where **logical
 <br/>
 
 Here's how we use the AND operator, which is implemented in R using `&`.  Before running the code, make a prediction about whether the test is TRUE or FALSE.
-```{r}
+```{r results='hide'}
 a <- 5 
 b <- 3
 c <- 10
@@ -638,7 +645,7 @@ Notice that when using AND for a value of TRUE to be returned all of the conditi
 <br/>
 
 We can use the OR operator `|` to see if any of the evaluated conditions are true.  Before running the code, make a prediction about whether the test is TRUE or FALSE.
-```{r}
+```{r results='hide'}
 
 a <- 5 
 b <- 3
@@ -678,7 +685,7 @@ a != b # test if a is NOT equal to b
 ### Apply relational and logical operators to vectors
 We can also apply these operations on an element-by-element basis to a vector.  A vector of logical values (i.e. TRUE or FALSE) is returned.  Predict what the results will be before you run the code.
 
-```{r}
+```{r results='hide'}
 a_vec <- seq(1,10, by = 1.0)
 b_vec <- rep(5,10)
 
@@ -707,4 +714,4 @@ lake_pH[lake_pH < pH_threshold]
 ### Final exercise
 If you have any remaining time, practice some more with the skills/tools you learned today.  
 
-[^1]: Some of the material below was borrowed/inspired by the USGS R Curriculum
+[^1]: Some of the material in the "R Programming basics" section was borrowed/inspired by the USGS R Curriculum
