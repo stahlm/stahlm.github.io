@@ -377,7 +377,7 @@ studentName_2</code></pre>
 <p><br /></p>
 </div>
 <div id="refresher-exercise-11" class="section level5">
-<h5>Refresher Exercise 1<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>:</h5>
+<h5>Refresher Exercise 1[^1]:</h5>
 <ol style="list-style-type: decimal">
 <li>Create two objects named <code>number_1</code> and <code>number_2</code> and give them the values of 2.5 and 10, respectively</li>
 <li>Create two more objects named <code>string_1</code> and <code>string_2</code>, give them any character string that you would like.</li>
@@ -808,132 +808,6 @@ examp_list</code></pre>
 </ul>
 <p><br /></p>
 </div>
-</div>
-<div id="relational-and-logical-operators" class="section level2">
-<h2>Relational and Logical operators</h2>
-<p><strong>Note</strong>: When/if you get to this section in class today, can you please raise your hand to let me know.</p>
-<p>When you are writing code you will frequently need to make use of <strong>relational</strong> and <strong>logical</strong> operators. We use relational operators to compare values and logical operators to combine/blend these operations together. These concepts play a very important role in programming and allow us to control the flow of our code. Let’s take a look at <strong>relational operators</strong></p>
-<div id="relational-operators" class="section level3">
-<h3>Relational operators</h3>
-<p>To test for equality you use TWO EQUALS signs <code>==</code>.</p>
-<pre class="r"><code>a &lt;- 5
-b &lt;- 3
-
-a == b # test if a is equal to b </code></pre>
-<pre><code>## [1] FALSE</code></pre>
-<pre class="r"><code>a == a # test if a is equal to a</code></pre>
-<pre><code>## [1] TRUE</code></pre>
-<p>Notice how R returns a TRUE or FALSE value depending on the truth of the evaluated statement.</p>
-<p><br /></p>
-<p>To test if an objects value is <strong>greater than</strong> <span class="math inline">\(&gt;\)</span> or <strong>greater than or equal to</strong> <span class="math inline">\(\ge\)</span> you do the following. Before you run the code, write down what you anticipate the results to be.</p>
-<pre class="r"><code>a &lt;- 5 
-b &lt;- 3
-c &lt;- 10
-
-a &gt; b # test if a &gt; b</code></pre>
-<pre><code>## [1] TRUE</code></pre>
-<pre class="r"><code>a &gt; c # test if a &gt; c</code></pre>
-<pre><code>## [1] FALSE</code></pre>
-<pre class="r"><code>a &gt; a # test if a &gt; a</code></pre>
-<pre><code>## [1] FALSE</code></pre>
-<pre class="r"><code>a &gt;= a # test if a &gt;= a</code></pre>
-<pre><code>## [1] TRUE</code></pre>
-<p><br /></p>
-<p>Now let’s test if an objects value is <strong>less than</strong> <span class="math inline">\(&lt;\)</span> or <strong>less than or equal to</strong> <span class="math inline">\(\le\)</span>.</p>
-<pre class="r"><code>a &lt;- 5 
-b &lt;- 3
-c &lt;- 10
-
-a &lt; b # test if a &lt; b</code></pre>
-<pre><code>## [1] FALSE</code></pre>
-<pre class="r"><code>a &lt; c # test if a &lt; c</code></pre>
-<pre><code>## [1] TRUE</code></pre>
-<pre class="r"><code>a &lt; a # test if a &lt; a</code></pre>
-<pre><code>## [1] FALSE</code></pre>
-<pre class="r"><code>a &lt;= a # test if a &lt;= a</code></pre>
-<pre><code>## [1] TRUE</code></pre>
-<p><br /></p>
-</div>
-<div id="logical-operators" class="section level3">
-<h3>Logical operators</h3>
-<p>Often we want to test for some comination of conditions. That’s where <strong>logical operators</strong> AND, OR, NOT come into play.</p>
-<p><br /></p>
-<p>Here’s how we use the AND operator, which is implemented in R using <code>&amp;</code>. Before running the code, make a prediction about whether the test is TRUE or FALSE.</p>
-<pre class="r"><code>a &lt;- 5 
-b &lt;- 3
-c &lt;- 10
-
-a &gt; b &amp; a &lt; c # test if a &gt; b and a &lt; c.
-
-c &gt; a &amp; c &lt; b # test if c &gt; a and c &lt; b.</code></pre>
-<p>Notice that when using AND for a value of TRUE to be returned all of the conditions must be TRUE.</p>
-<ul>
-<li>Create your own code block and try out some more tests with the AND operator</li>
-</ul>
-<p><br /></p>
-<p>We can use the OR operator <code>|</code> to see if any of the evaluated conditions are true. Before running the code, make a prediction about whether the test is TRUE or FALSE.</p>
-<pre class="r"><code>a &lt;- 5 
-b &lt;- 3
-c &lt;- 10
-
-a &gt; b | a &lt; c # test if a &gt; b or a &lt; c.
-
-c &gt; a | c &lt; b # test if c &gt; a or c &lt; b.
-
-b &gt; a | b == c # test if b &gt; a or if b is equal to c</code></pre>
-<p>If one or more of the tested conditions is TRUE then OR will return a value of TRUE</p>
-<p>You can string together as many tests as you want. For example something like <code>(a &gt; b) &amp; (a &lt; 2*c) | (a &gt; b-2 + c)</code> is completely acceptable.</p>
-<p>I recommend using parentheses to make your code more readable, especially when the set of tests grows and the code becomes more complex.</p>
-<ul>
-<li>Create your own code block and try out some more tests with the OR operator</li>
-</ul>
-<p><br /></p>
-<p>The NOT operator is implemented in R using <code>!</code>. This changes the truth of an evaluated statement.</p>
-<pre class="r"><code>a &lt;- 5 
-b &lt;- 3
-c &lt;- 10
-
-a &gt; c # test if a &gt; c</code></pre>
-<pre><code>## [1] FALSE</code></pre>
-<pre class="r"><code>!(a &gt; c) # test if a is NOT greater than c (i.e. tests if a &lt;= c)</code></pre>
-<pre><code>## [1] TRUE</code></pre>
-<pre class="r"><code>a != b # test if a is NOT equal to b</code></pre>
-<pre><code>## [1] TRUE</code></pre>
-<p><br /></p>
-</div>
-<div id="apply-relational-and-logical-operators-to-vectors" class="section level3">
-<h3>Apply relational and logical operators to vectors</h3>
-<p>We can also apply these operations on an element-by-element basis to a vector. A vector of logical values (i.e. TRUE or FALSE) is returned. Predict what the results will be before you run the code.</p>
-<pre class="r"><code>a_vec &lt;- seq(1,10, by = 1.0)
-b_vec &lt;- rep(5,10)
-
-a_vec &lt;= 7
-a_vec &gt; b_vec
-a_vec == b_vec</code></pre>
-<p>Vector operations are incredibly useful and we will apply these all the time in our work. Often the save us from writing a ton of code, since we can perform many operations in a single line of code.</p>
-<p><br /></p>
-<p>You can also use relational and logical operators to access parts of vectors (or data frames). For example we might have a vectors of data and we only want to access values that meet some criteria. I’ll give an example below</p>
-<pre class="r"><code>lake_pH &lt;- c(7.2, 7.4, 6.1, 8.2, 8.5, 4.3, 7.2, 5.8, 7.8, 3.9) # a vector that has pH measurements from several lakes</code></pre>
-<p>Imagine we are just interested in the data from lakes that are acidic. We can use relational operation to identify the indices that meet this criteria and then pass those indices to the <code>lake_pH</code> vector and it will return those values that met our criteria.</p>
-<pre class="r"><code>pH_threshold &lt;- 7.0 # threshold below which we will consider a lake acidic
-
-lake_pH[lake_pH &lt; pH_threshold]</code></pre>
-<pre><code>## [1] 6.1 4.3 5.8 3.9</code></pre>
-<ul>
-<li>Make sure you understand what is happening in the code above</li>
-<li>Now create your own example similar to the one I gave above</li>
-</ul>
-</div>
-<div id="final-exercise" class="section level3">
-<h3>Final exercise</h3>
-<p>If you have any remaining time, practice some more with the skills/tools you learned today.</p>
-</div>
-</div>
-<div class="footnotes">
-<hr />
-<ol>
-<li id="fn1"><p>Some of the material in the “R Programming basics” section was borrowed/inspired by the USGS R Curriculum<a href="#fnref1">↩</a></p></li>
-</ol>
 </div>
 
 
