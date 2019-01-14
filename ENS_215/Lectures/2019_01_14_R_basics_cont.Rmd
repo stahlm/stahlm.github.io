@@ -303,9 +303,9 @@ city_temp <- ... # type the temperature here
 
 if(city_temp >= 85){
   print("Wow it's pretty hot out!")
-} else if(city_temp < 85 & city_temp >= 50){
+} else if(city_temp >= 50){
   print("The temperature is nice and comfortable")
-} else if (city_temp < 50 & city_temp >= 32){
+} else if (city_temp >= 32){
   print("It's pretty cold outside")
 } else {
   print("It's freezing out!")
