@@ -351,13 +351,14 @@ lake_pH[lake_pH &lt; pH_threshold]</code></pre>
 <p>You’ve seen this dataset before, but you should refamiliarize yourself with it. In your console type <code>?mpg</code> to get more info on the dataset. Next type <code>View(mpg)</code> in your console and familiarize yourself with the dataset.</p>
 <p>Once you understand what you are working with then run the code block below. In this code block we are going to create a new dataframe that just contains the cars that get good highway gas mileage (hwy &gt;= 30).</p>
 <pre class="r"><code>cars_good_hwy &lt;- mpg[mpg$hwy &gt;= 30, ]</code></pre>
-<p>Remember we can access data in a dataframe by specifying the rows and columns we want (see last week’s lecture for notes/examples on this). In the above code, we used a logical vector to specify the rows we wanted to select and we selected all of the columns (as indicated by the blank after the comma in the brackets). When the value in a logical vector is TRUE then the row is selected and the value is FALSE the row is not selected.</p>
+<p>Remember we can access data in a dataframe by specifying the rows and columns we want (see last week’s lecture for notes/examples on this). In the above code, we used a logical vector to specify the rows we wanted to select and we selected all of the columns (as indicated by the blank after the comma in the brackets). When the value in a logical vector is TRUE then that index is selected and the value is FALSE that index is not selected.</p>
 <ul>
 <li><p>Create a new dataframe that contains data for all of the cars that get good highway gas mileage (hwy &gt;= 30) and are model year 2008.</p></li>
 <li><p>Create a new object that just contains the model names for cars whose class is <code>compact</code></p></li>
 <li><p>Test out some other cases where you select only a subset of the <code>mpg</code> dataset based on a set of criteria.</p></li>
 </ul>
 <pre class="r"><code># Your code here</code></pre>
+<p><br /></p>
 </div>
 </div>
 <div id="conditional-programming" class="section level2">
@@ -376,6 +377,8 @@ lake_pH[lake_pH &lt; pH_threshold]</code></pre>
 <li>Come tell me why you haven’t been able to complete the work and we’ll figure out a solution.</li>
 </ul>
 <p><br /></p>
+<div id="if-statements" class="section level3">
+<h3>IF statements</h3>
 <p>An <strong>If Statement</strong> in R is constructed with the following syntax</p>
 <pre class="r"><code>if(Logical Test Goes Here){
   
@@ -394,6 +397,9 @@ if(city_temp &gt;= 85){
 <li>Try another temperature to get a different response as your original run.</li>
 </ul>
 <p><br /></p>
+</div>
+<div id="ifelse-statements" class="section level3">
+<h3>IF/ELSE statements</h3>
 <p>We can add more conditions to our if statement using <code>else</code></p>
 <pre class="r"><code>city_temp &lt;- ... # type the temperature here
 
@@ -402,12 +408,27 @@ if(city_temp &gt;= 85){
 } else { 
   print(&quot;It's not hot today&quot;)
 }</code></pre>
+<p>Again, pay close attention to the syntax used. Note how the <code>else</code> keyword is on the same line as the closing bracket of the previous part of the control construct.</p>
 <p><br /></p>
 <ul>
 <li>Think of a scenario where you would want to use an if/else statement and create one below.</li>
 </ul>
 <pre class="r"><code># Your code here </code></pre>
 <p><br /></p>
+<p>You can even <strong>nest</strong> if statements within another if statement. For example,</p>
+<pre class="r"><code>city_temp &lt;- ... # type the temperature here
+
+if(city_temp &gt;= 85){
+  if(city_temp &gt; 100){
+    print(&quot;It is very hot&quot;)
+  } else{
+    print(&quot;It is hot&quot;)
+  }
+}</code></pre>
+<p><br /></p>
+</div>
+<div id="ifelseelse-if-statements" class="section level3">
+<h3>IF/ELSE/ELSE IF statements</h3>
 <p>We can add even more conditions using <code>else if</code>. Not how the <code>else</code> statement comes at the very end and catches anything that was not caught in the above tests.</p>
 <pre class="r"><code>city_temp &lt;- ... # type the temperature here
 
@@ -428,18 +449,7 @@ if(city_temp &gt;= 85){
 </ul>
 <pre class="r"><code># Your code here </code></pre>
 <p><br /></p>
-<p>You can even nest if statements within another if statement. For example,</p>
-<pre class="r"><code>city_temp &lt;- ... # type the temperature here
-
-if(city_temp &gt;= 85){
-  if(city_temp &gt; 100){
-    print(&quot;It is very hot&quot;)
-  }
-  else{
-    print(&quot;It is hot&quot;)
-  }
-}</code></pre>
-<p>For instance, maybe you’d like to modify the above example to take in both temperature and humidity data and then check both the temperature and humidity status and output a message warning people when it is hot and humid (heatstroke danger) or cold and damp (hypothermia risk).</p>
+<p>Now you should try putting all of this work together. You’d like to modify the above example to take in both temperature and humidity data and then check both the temperature and humidity status and output a message warning people when it is hot and humid (heatstroke danger) or cold and damp (hypothermia risk).</p>
 <ul>
 <li>Using some combination of if, else, else/if statements create a code block that evaluates health risks associated with weather conditions.
 <ul>
@@ -448,13 +458,21 @@ if(city_temp &gt;= 85){
 <li>For hot and humid weather print “heatstroke risk”</li>
 <li>For hot and dry weather print “it is hot”</li>
 <li>For our purposes, cold is when temperature &lt; 50 and hot &gt;= 50 (degrees F)</li>
-<li>For our purposes, humid is when humidity &gt; 60 and dry &lt;= 60 (relative humidity %)</li>
+<li>For our purposes, humid is when humidity &gt;= 60 and dry &lt; 60 (relative humidity %)</li>
 </ul></li>
 </ul>
 <p>In the above exercise you should get your temperature and humidity data for today’s conditions in a city of your choosing. You can find this data at <a href="https://www.wunderground.com/">weather underground</a>.</p>
 <p>Note that there are many ways you can implement a solution to the problem above</p>
 <pre class="r"><code># Your code here </code></pre>
+<p>You should test your solution to make sure it is working properly for each of possible cases.</p>
 <p>Once you’ve implemented your solution, talk with your neighbors and see how they did it. Were there more efficient ways of implementing the solution?</p>
+<ul>
+<li>If you finish this exercise, then you should make your solution even better, by trying to catch any problems with user input of temperature data.
+<ul>
+<li>Nest your above solution in an if/else structure where you test to see if the user input reasonable temperature values. IF they input a temperature &gt; 150 or &lt; -100, you should print a statment “these temperature values seem incorrect”, ELSE run the solution as normal.</li>
+</ul></li>
+</ul>
+</div>
 <div id="additional-exercises" class="section level3">
 <h3>Additional exercises</h3>
 <ul>

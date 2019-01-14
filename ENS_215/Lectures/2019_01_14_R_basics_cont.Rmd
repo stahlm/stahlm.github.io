@@ -185,7 +185,7 @@ Once you understand what you are working with then run the code block below.  In
 cars_good_hwy <- mpg[mpg$hwy >= 30, ]
 ```
 
-Remember we can access data in a dataframe by specifying the rows and columns we want (see last week's lecture for notes/examples on this).  In the above code, we used a logical vector to specify the rows we wanted to select and we selected all of the columns (as indicated by the blank after the comma in the brackets).  When the value in a logical vector is TRUE then the row is selected and the value is FALSE the row is not selected.  
+Remember we can access data in a dataframe by specifying the rows and columns we want (see last week's lecture for notes/examples on this).  In the above code, we used a logical vector to specify the rows we wanted to select and we selected all of the columns (as indicated by the blank after the comma in the brackets).  When the value in a logical vector is TRUE then that index is selected and the value is FALSE that index is not selected.  
 
 + Create a new dataframe that contains data for all of the cars that get good highway gas mileage (hwy >= 30) and are model year 2008.  
 
@@ -198,7 +198,7 @@ Remember we can access data in a dataframe by specifying the rows and columns we
 ```
 
 
-```{r echo = FALSE}
+```{r echo = FALSE, eval=FALSE}
 # Below are the solutions to the problems stated directly above
 
 # New dataframe for 2008 model year vehicles that get good hwy mileage
@@ -208,6 +208,7 @@ cars_good_hwy_2008 <- cars_good_hwy <- mpg[(mpg$hwy >= 30) & (mpg$year == 2008),
 models_compact <- mpg$model[mpg$class == "compact"]
 ```
 
+<br/>
 
 ## Conditional programming
 We often want to perform an operation only when certain conditions are met.  To do this we rely on **if/else** statements.  For example,
@@ -225,7 +226,8 @@ We often want to perform an operation only when certain conditions are met.  To 
   * Come tell me why you haven't been able to complete the work and we'll figure out a solution.  
   
 <br/>
-  
+
+### IF statements  
 An **If Statement** in R is constructed with the following syntax
 ```{r eval=FALSE}
 
@@ -255,6 +257,7 @@ Pay very close attention to the syntax used.
 
 <br/>
 
+### IF/ELSE statements
 We can add more conditions to our if statement using `else`
 ```{r eval = FALSE}
 city_temp <- ... # type the temperature here
@@ -266,6 +269,8 @@ if(city_temp >= 85){
 }
 ```
 
+Again, pay close attention to the syntax used.  Note how the `else` keyword is on the same line as the closing bracket of the previous part of the control construct.    
+
 <br/>
 
 + Think of a scenario where you would want to use an if/else statement and create one below.
@@ -276,6 +281,22 @@ if(city_temp >= 85){
 
 <br/>
 
+You can even **nest** if statements within another if statement.  For example,
+```{r eval = FALSE}
+city_temp <- ... # type the temperature here
+
+if(city_temp >= 85){
+  if(city_temp > 100){
+    print("It is very hot")
+  } else{
+    print("It is hot")
+  }
+}
+```
+
+<br/>
+
+### IF/ELSE/ELSE IF statements
 We can add even more conditions using `else if`.  Not how the `else` statement comes at the very end and catches anything that was not caught in the above tests.
 ```{r eval = FALSE}
 city_temp <- ... # type the temperature here
@@ -305,22 +326,8 @@ To make your code much more robust and easy to modify, you could assign the temp
 
 <br/>
 
-You can even nest if statements within another if statement.  For example,
-```{r eval = FALSE}
-city_temp <- ... # type the temperature here
 
-if(city_temp >= 85){
-  if(city_temp > 100){
-    print("It is very hot")
-  }
-  else{
-    print("It is hot")
-  }
-}
-```
-
-
-For instance, maybe you'd like to modify the above example to take in both temperature and humidity data and then check both the temperature and humidity status and output a message warning people when it is hot and humid (heatstroke danger) or cold and damp (hypothermia risk).
+Now you should try putting all of this work together.  You'd like to modify the above example to take in both temperature and humidity data and then check both the temperature and humidity status and output a message warning people when it is hot and humid (heatstroke danger) or cold and damp (hypothermia risk).
 
 + Using some combination of if, else, else/if statements create a code block that evaluates health risks associated with weather conditions.  
     + For cold and humid weather print "hypothermia risk"
@@ -328,7 +335,7 @@ For instance, maybe you'd like to modify the above example to take in both tempe
     + For hot and humid weather print "heatstroke risk"
     + For hot and dry weather print "it is hot"
     + For our purposes, cold is when temperature < 50 and hot >= 50 (degrees F)
-    + For our purposes, humid is when humidity > 60 and dry <= 60 (relative humidity %)
+    + For our purposes, humid is when humidity >= 60 and dry < 60 (relative humidity %)
 
 In the above exercise you should get your temperature and humidity data for today's conditions in a city of your choosing.  You can find this data at [weather underground](https://www.wunderground.com/).  
 
@@ -336,8 +343,34 @@ Note that there are many ways you can implement a solution to the problem above
 ```{r}
 # Your code here 
 ```
+You should test your solution to make sure it is working properly for each of possible cases.  
 
 Once you've implemented your solution, talk with your neighbors and see how they did it.  Were there more efficient ways of implementing the solution?  
+
+
+```{r echo = FALSE, eval = FALSE}
+# My solution to the above exercise is below
+city_temp <- 80
+city_humid <- 40
+
+if(city_temp >= 50){
+  
+  if(city_humid >= 60){
+    print("Be advised: heatstroke risk")
+  } else{
+    print("Be advised: it is hot")
+  }
+  
+} else if(city_humid >= 60){
+  print("Be advised: hypothermia risk")
+} else{
+  print("Be advised: it is cold")
+}
+
+
+```
++ If you finish this exercise, then you should make your solution even better, by trying to catch any problems with user input of temperature data.  
+    + Nest your above solution in an if/else structure where you test to see if the user input reasonable temperature values.  IF they input a temperature > 150 or < -100, you should print a statment "these temperature values seem incorrect", ELSE run the solution as normal.  
 
 ### Additional exercises
 + If you have additional time, practice more with the concepts you learned today.  Try implementing more complex/difficult versions of some of the examples you've seen in the above Notebook.
