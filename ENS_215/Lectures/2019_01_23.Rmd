@@ -33,7 +33,7 @@ Today we are going to introduce a few more `dplyr` functions that will help you 
 We'll load in `tidyverse` which contains `dplyr` (as well as many other packages).  We will also load in the `gapminder` library so we can continue to work with the `gapminder` data we've been using in the past few lectures.
 ```{r message = FALSE}
 library(tidyverse)
-library(readr) # we'll use this package later in the lectureto load in files from our class website
+library(readr) # we'll use this package later in the lecture to load in files from our class website
 library(gapminder)
 ```
 
@@ -48,7 +48,7 @@ my_gap <- gapminder
 
 ## `summarize()` refresher
 
-If you got to the `summarize()` section of last lecture, then work through it again as a refresher, otherwise this will be new.  
+If you got to the `summarize()` section of last lecture, then work through this section below as a refresher, otherwise this will be new.  
 
 When analyzing a dataset, we are often interested in generating a table with statistics that summarize that data.  As the name suggests the `summarize()` function helps us do just that.  
 
@@ -156,7 +156,7 @@ You've seen how `group_by` can be powerfully combined with `dplyr` functions, in
 <br/>
 
 ## Exercises with `gapminder` data 
-At this point in the term we've established a pretty solid toolkit for doing programming in R and doing some data wrangling and analysis.  Below are some exercises that will allow you to test out your skills, with a specific focus on the `dplyr` tools that you are now familiar with.  Remember you can use the pipe `%>%` operator to easily string together many operations.   
+At this point in the term we've established a pretty solid toolkit for programming in R and doing some data wrangling and analysis.  Below are some exercises that will allow you to test out your skills, with a specific focus on the `dplyr` tools that you are now familiar with.  Remember you can use the pipe `%>%` operator to easily string together many operations.   
 
 <br/>
 
@@ -164,18 +164,25 @@ At this point in the term we've established a pretty solid toolkit for doing pro
     i) The minimum, maximum and mean per capita GDP  
     ii) The minimum, maximum and mean life expectancy  
     iii) The number of countries in that continent  
+
+```{r}
+# Your code here
+```
+
   
 ```{r eval = FALSE, echo=FALSE}
 
-my_gap %>% filter(year == 2007) %>% group_by(continent) %>% summarise(gdp_percap_min = min(gdpPercap), gdp_percap_max = max(gdpPercap), gdp_percap_mean = mean(gdpPercap), life_min = min(lifeExp), life_max = max(lifeExp), life_mean = mean(lifeExp), num_country = n())
+my_gap %>% filter(year == 2007) %>% 
+  group_by(continent) %>% 
+  summarise(gdp_percap_min = min(gdpPercap), gdp_percap_max = max(gdpPercap), gdp_percap_mean = mean(gdpPercap), life_min = min(lifeExp), life_max = max(lifeExp), life_mean = mean(lifeExp), num_country = n())
 
 ```
 
 <br/>
 
 2. Create a table that reports the following for each **country** in the `my_gap` dataset
-    i) The ratio of the total GDP between the most recent (last recorded year) and the earliest (first recorded year)
-    ii) The ratio of the per capita GDP between the most recent (last recorded year) and the earliest (first recorded year)
+    i) The ratio of the **total** GDP between the most recent (last recorded year) and the earliest (first recorded year)
+    ii) The ratio of the **per capita** GDP between the most recent (last recorded year) and the earliest (first recorded year)
     iii) The change in life expectancy during the period of record (i.e. between the last recorded year and the first recorded year)
 
 Save the table to a new object called `gap_summary_table` and sort this table in descending order by the change in life expectancy.  Did you notice anything interesting?  Think about what might explain the observed changes.
@@ -185,9 +192,18 @@ Next sort this same table in ascending order based on life expectancy.  Do you o
 Once you've done the above, try sorting the table according to the ratio of per capita GDP
 
 **Hint**: Look at your `dplyr` cheatsheet in the "Summary Functions" section for some functions that will be useful for the exercise above
+
+```{r}
+# Your code here
+```
+
     
 ```{r eval=FALSE, echo=FALSE}
-gap_summary_table <- my_gap %>% group_by(country) %>% summarize(continent = first(continent), gdp_percap_ratio = (last(gdp_per_cap))/first(gdp_per_cap),gdp_ratio = (last(tot_gdp))/first(tot_gdp), life_exp_change = last(life_exp) - first(life_exp) ) %>% arrange(desc(life_exp_change))
+my_gap <- mutate(my_gap, tot_gdp = pop*gdpPercap) # add a total gdp variable
+
+gap_summary_table <- my_gap %>% group_by(country) %>% 
+  summarize(continent = first(continent), gdp_percap_ratio = (last(gdpPercap))/first(gdpPercap),gdp_ratio = (last(tot_gdp))/first(tot_gdp), life_exp_change = last(lifeExp) - first(lifeExp) ) %>% 
+  arrange(desc(life_exp_change))
 ```
 
 
@@ -266,7 +282,8 @@ Now use the tools from `dplyr` to do the following:
 
 ```{r eval = FALSE, echo=FALSE}
 
-state_data %>% group_by(Month) %>% summarize(m_avg = mean(Precip_inches), m_min = min(Precip_inches), m_max = max(Precip_inches)) 
+state_data %>% group_by(Month) %>% 
+  summarize(m_avg = mean(Precip_inches), m_min = min(Precip_inches), m_max = max(Precip_inches)) 
 
 ```
   
@@ -329,6 +346,7 @@ t3 %>% group_by(Year) %>% top_n(1, annual_precip) %>% arrange(Year)
     i) Average annual precipitation for each state (i.e. a single value for each state.  For instance NY might have averaged 45 inches of rain annually from 1895-2017, CA might have averaged...)  
     ii) Minimum annual precipitation recorded for each state (i.e. a single value for each state)  
     iii) Maximum annual precipitation recorded for each state (i.e. a single value for each state)  
+    iv) Sort the table by the average annual precipitation (desending order)  
   
 **Hint:** There are many ways to do this, however it might help to make an "intermediate" table of stats that you then operate on to get your final table (this isn't necessary, but might help)  
 
@@ -338,8 +356,10 @@ t3 %>% group_by(Year) %>% top_n(1, annual_precip) %>% arrange(Year)
 
 ```{r eval = FALSE, echo=FALSE}
 
-t5 <- precip_data %>% group_by(state_cd, Year) %>% summarize(tot_annual_precip = sum(Precip_inches)) %>% 
-  group_by(state_cd) %>%  summarize(mean_precip = mean(tot_annual_precip)) %>% arrange(desc(mean_precip))
+t5 <- precip_data %>% group_by(state_cd, Year) %>% 
+  summarize(tot_annual_precip = sum(Precip_inches)) %>% 
+  group_by(state_cd) %>%  
+  summarize(mean_precip = mean(tot_annual_precip)) %>% arrange(desc(mean_precip))
 
 ```
 
@@ -361,7 +381,8 @@ This table will allow us to see how the seasonal distribution of precipitation m
 
 state_data <- mutate(state_data, season = if_else(Month %in% c(3,4,5,6), "season-1", "season-2"))
 
-t3 <-  state_data %>% group_by(Year, season) %>% summarize(precip_seasonal = sum(Precip_inches)) %>%  
+t6 <-  state_data %>% group_by(Year, season) %>% 
+  summarize(precip_seasonal = sum(Precip_inches)) %>%
   group_by(Year) %>% summarize(precip_ratio = first(precip_seasonal)/sum(precip_seasonal) )
 
 ```

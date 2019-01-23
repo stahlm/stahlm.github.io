@@ -278,7 +278,7 @@ div.tocify {
 <h2>Load in the <code>dplyr</code> package and the <code>gapminder</code> package</h2>
 <p>We’ll load in <code>tidyverse</code> which contains <code>dplyr</code> (as well as many other packages). We will also load in the <code>gapminder</code> library so we can continue to work with the <code>gapminder</code> data we’ve been using in the past few lectures.</p>
 <pre class="r"><code>library(tidyverse)
-library(readr) # we'll use this package later in the lectureto load in files from our class website
+library(readr) # we'll use this package later in the lecture to load in files from our class website
 library(gapminder)</code></pre>
 <p><br /></p>
 <p>We’ll create our own copy of the gapminder data that we’ll use in the upcoming sections.</p>
@@ -287,7 +287,7 @@ library(gapminder)</code></pre>
 </div>
 <div id="summarize-refresher" class="section level2">
 <h2><code>summarize()</code> refresher</h2>
-<p>If you got to the <code>summarize()</code> section of last lecture, then work through it again as a refresher, otherwise this will be new.</p>
+<p>If you got to the <code>summarize()</code> section of last lecture, then work through this section below as a refresher, otherwise this will be new.</p>
 <p>When analyzing a dataset, we are often interested in generating a table with statistics that summarize that data. As the name suggests the <code>summarize()</code> function helps us do just that.</p>
 <p>Let’s compute average life expectancies and per capita GDP on our <code>gap_data</code>. Before doing this, let’s filter our data so we are just looking at year 2007.</p>
 <pre class="r"><code>my_gap_2007 &lt;- filter(my_gap, year == 2007)</code></pre>
@@ -367,7 +367,7 @@ library(gapminder)</code></pre>
 </div>
 <div id="exercises-with-gapminder-data" class="section level2">
 <h2>Exercises with <code>gapminder</code> data</h2>
-<p>At this point in the term we’ve established a pretty solid toolkit for doing programming in R and doing some data wrangling and analysis. Below are some exercises that will allow you to test out your skills, with a specific focus on the <code>dplyr</code> tools that you are now familiar with. Remember you can use the pipe <code>%&gt;%</code> operator to easily string together many operations.</p>
+<p>At this point in the term we’ve established a pretty solid toolkit for programming in R and doing some data wrangling and analysis. Below are some exercises that will allow you to test out your skills, with a specific focus on the <code>dplyr</code> tools that you are now familiar with. Remember you can use the pipe <code>%&gt;%</code> operator to easily string together many operations.</p>
 <p><br /></p>
 <ol style="list-style-type: decimal">
 <li>Using only the data for year 2007, create a table that reports the following for each <strong>continent</strong> in the <code>my_gap</code> dataset
@@ -379,12 +379,13 @@ library(gapminder)</code></pre>
 <li>The number of countries in that continent</li>
 </ol></li>
 </ol>
+<pre class="r"><code># Your code here</code></pre>
 <p><br /></p>
 <ol start="2" style="list-style-type: decimal">
 <li>Create a table that reports the following for each <strong>country</strong> in the <code>my_gap</code> dataset
 <ol style="list-style-type: lower-roman">
-<li>The ratio of the total GDP between the most recent (last recorded year) and the earliest (first recorded year)</li>
-<li>The ratio of the per capita GDP between the most recent (last recorded year) and the earliest (first recorded year)</li>
+<li>The ratio of the <strong>total</strong> GDP between the most recent (last recorded year) and the earliest (first recorded year)</li>
+<li>The ratio of the <strong>per capita</strong> GDP between the most recent (last recorded year) and the earliest (first recorded year)</li>
 <li>The change in life expectancy during the period of record (i.e. between the last recorded year and the first recorded year)</li>
 </ol></li>
 </ol>
@@ -392,6 +393,7 @@ library(gapminder)</code></pre>
 <p>Next sort this same table in ascending order based on life expectancy. Do you observe anything interesting?</p>
 <p>Once you’ve done the above, try sorting the table according to the ratio of per capita GDP</p>
 <p><strong>Hint</strong>: Look at your <code>dplyr</code> cheatsheet in the “Summary Functions” section for some functions that will be useful for the exercise above</p>
+<pre class="r"><code># Your code here</code></pre>
 <p><br /></p>
 </div>
 <div id="exercises-revisiting-noaa-precipitation-data-from-lab-2" class="section level2">
@@ -478,7 +480,9 @@ state_data &lt;- precip_data[precip_data$state_cd == state_2_get, ] # get the ro
 </li>
 <li>Minimum annual precipitation recorded for each state (i.e. a single value for each state)<br />
 </li>
-<li>Maximum annual precipitation recorded for each state (i.e. a single value for each state)</li>
+<li>Maximum annual precipitation recorded for each state (i.e. a single value for each state)<br />
+</li>
+<li>Sort the table by the average annual precipitation (desending order)</li>
 </ol></li>
 </ol>
 <p><strong>Hint:</strong> There are many ways to do this, however it might help to make an “intermediate” table of stats that you then operate on to get your final table (this isn’t necessary, but might help)</p>
