@@ -13,7 +13,7 @@ output:
 ## Lectures 
 
 ### Week 4
-+ Mon (28-Jan) -- **Intro to data visualization** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_01_28_Intro_data_viz.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_01_28_Intro_data_vis.Rmd), [Slides](https://stahlm.github.io/ENS_215/Lectures/2019_01_28_slides.html) 
++ Mon (28-Jan) -- **Intro to data visualization** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_01_28_Intro_data_viz.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_01_28_Intro_data_viz.Rmd), [Slides](https://stahlm.github.io/ENS_215/Lectures/2019_01_28_slides.html) 
 
 
 
