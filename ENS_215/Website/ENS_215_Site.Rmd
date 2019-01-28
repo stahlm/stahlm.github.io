@@ -1,0 +1,59 @@
+---
+title: "Exploring Environmental Data (ENS-215)"
+output:
+  html_document:
+    theme: spacelab
+    toc: yes
+    toc_float: yes
+---
+***
+|  [ENS-215](https://stahlm.github.io/ENS_215/Website/ENS_215_Site.html) | [Homework](https://stahlm.github.io/ENS_215/Website/Homework.html) | [Syllabus](https://stahlm.github.io/ENS_215/Website/Syllabus.html) |
+|---|------------|-----------|
+
+## Lectures 
+
+### Week 4
++ Mon (28-Jan) -- **Intro to data visualization** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_01_28_Intro_data_viz.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_01_28_Intro_data_vis.Rmd), [Slides](https://stahlm.github.io/ENS_215/Lectures/2019_01_28_slides.html) 
+
+
+
+***
+
+### Week 3
++ Mon (21-Jan) -- **Data wrangling continued** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_01_21_Data_manipulation_cont.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_01_21_Data_manipulation_cont.Rmd)  
+
++ Wed (23-Jan) -- **Data wrangling `group_by` and `summarize()`** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_01_23.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_01_23.Rmd)
+
++ Fri (25-Jan) -- **`group_by` and `summarize` wrap-up and intro to strings** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_01_25_strings.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_01_25_strings.Rmd)
+
+
+***
+
+### Week 2
++ Mon (14-Jan) -- **Relational and logical operators, if/else/else if** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_01_14_R_basics_cont.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_01_14_R_basics_cont.Rmd)
+
++ Wed (16-Jan) -- **Control flow (for and while loops)** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_01_16_R_basic_loops.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_01_16_R_basic_loops.Rmd), [Slides](https://stahlm.github.io/ENS_215/Lectures/2019_01_16_Slides.html)  
+
++ Fri (18-Jan) --**Data wrangling intro** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_01_18_Data_manipulation.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_01_18_Data_manipulation.Rmd), [Slides](https://stahlm.github.io/ENS_215/Lectures/2019_01_18_Slides.html) 
+
+
+***
+
+### Week 1
++ Mon (7-Jan) -- **Course introduction** [(html)](https://stahlm.github.io/ENS_215/Lectures/L1.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/L1.Rmd), [Slides](https://stahlm.github.io/ENS_215/Lectures/Intro_Survey.html)  
+
++ Wed (9-Jan) -- **Diving into R** [(html)](https://stahlm.github.io/ENS_215/Lectures/L1_diving_in.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/L1_diving_in.Rmd), [Slides](https://stahlm.github.io/ENS_215/Lectures/2019_01_09_Slides.html), [Cheatsheets](https://stahlm.github.io/ENS_215/Resources/Cheatsheets_all.pdf)
+
++ Fri (11-Jan) -- **R and R Markdown basics** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_01_11_R_basics.html), [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_01_11_R_basics.Rmd)
+
+***
+<br/>
+
+## Labs
++ Lab 1 -- **Intro and EPA Fuel Economy Data** [(html)](https://stahlm.github.io/ENS_215/Labs/Lab_EPA_Fuel_Economy.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Labs/Lab_EPA_Fuel_Economy.Rmd)  
+
++ Lab 2 -- **US Precipitation Data** [(html)](https://stahlm.github.io/ENS_215/Labs/Lab_Week_2_US_Precip.html)
+
++ Lab 3 -- **Global Dams and Reservoirs** [(html)](https://stahlm.github.io/ENS_215/Labs/Lab_Global_Dams.html)
+
+
