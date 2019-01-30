@@ -416,8 +416,8 @@ filter(my_gap, year == 2007) %>%
 <br/>
 
 3. Create a single graphic with the following 
-  i) Plot of life expectancy vs. time for the top two and bottom two countries (as determined by their life expectancies in 2007)
-  ii) Color the points by country
+    i) Plot of life expectancy vs. time for the top two and bottom two countries (as determined by their life expectancies in 2007)
+    ii) Color the points by country
   
 Rely on `dplyr` and try to do this in the most elegant way possible (Can you do it in just three lines of code??).
   
@@ -433,7 +433,7 @@ my_gap %>%
 
 <br/>
 
-4. Recreate, with modification, any of the graphics we made in today's class.  For instance you may want to modify the shape or size aesthetic, adjust the alpha, or layer on additional `geom`s.  [You can also explore additional `geom`s that you might want to try out by visiting this site](http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html)
+4. Recreate, with modifications, any of the graphics we made in today's class.  For instance you may want to modify the shape or size aesthetic, adjust the alpha, or layer on additional `geom`s.  [You can also explore additional `geom`s that you might want to try out by visiting this site](http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html)
 
 
 
