@@ -1,7 +1,7 @@
 ---
 title: "Data Visualization: Formatting graphics (continued)"
 author: "ENS-215"
-date: "1-Feb-2019"
+date: "4-Feb-2019"
 output:
   html_document:
     theme: spacelab
