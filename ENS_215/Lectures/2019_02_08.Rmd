@@ -1,0 +1,254 @@
+---
+title: "Combining, reshaping, and tidying data"
+author: "ENS-215"
+date: "6-Feb-2019"
+output:
+  html_notebook:
+    theme: spacelab
+    df_print: paged
+    toc: TRUE
+    toc_float: TRUE
+---
+
+<br/>
+
+In most cases, the dataset that you want to work with will not be in an ideal format/structure for conducting your analysis.  In fact getting data into a suitable format and structure is often one of the more time consuming aspects of data analysis and interpretation.  Furthermore, a single format and structure typically will not suit all of your needs -- a given format/structure might work great for one aspect of your work, but be less than ideal (or completely unsuitable) for another task.  
+
+Thankfully, there are many tools available in R that dramatically simplify the tasks of combining, reshaping/restructuring, reformating, and tidying datasets.  These tools will allow you to prepare your data for the analysis you want to perform and will free up more of your time to focus on the scientific analysis and interpretation.  
+
+Today and in the upcoming classes, we will start to work with tools from the `dplyr` and `tidyr` packages that allow you to effeciently deal with your data.  
+
+While, you've been working with real, research quality datasets in class/lab, these datasets have been relatively neat and clean (In most cases I've taken the original dataset and done some organizing/cleaning to prepare it for the class).  However in most cases you won't have someone prep the data before you get it.  Thus, the skills you will now learn are critical to your work as they will allow you to deal with data "out in the real-world" where things can get a bit more messy.  
+
+
+```{r message=FALSE}
+library(tidyverse)
+library(readr)
+```
+
+
+ 
+***
+
+## Combining data tables
+Often you will have multiple files containing data for the same project/study.  In these cases you will want to combine the mulitple datasets into a single dataset.    
+
+Now, let's learn how we do these types of operations.  
+
+### Combine rows (observations)
+You may have multiple related datasets that have the same variables (columns).  Dealing with a single, combined dataset is much easier, so in this case you want to combine rows (observations).  
+
+You've already seen the product of this type of operation -- the precipitation data used in Lab 2, was originally 50 individual files (one for each US state) that I then combined into a single large dataset.  Working with a single dataset is much easier than if we had worked with 50 individual ones.  This combined dataset had the exact same columns (variables) as each of the individual datasets, though it had many more rows (observations).  
+
+
+#### `bind_rows`
+The `bind_rows` function, takes two datasets that have the same columns (variables) and simply stacks them, one on top of the other, to create a larger dataset.
+
+Let's load in two data files that each contain NOAA precipitation data.  The first file has monthly precip for Massachusetts from 2015-2017 and the other file has the same but for New York.  
+
+```{r message=FALSE, warning=FALSE}
+library(readr)
+precip_MA <- read_csv("https://stahlm.github.io/ENS_215/Data/precip_MA.csv")
+
+precip_NY <- read_csv("https://stahlm.github.io/ENS_215/Data/precip_NY.csv")
+```
+
+Take a look at each dataset to confirm that they have the same variables (columns).  
+
+Ok, now it will be much easier to work with these datasets in R if they are in a single data frame.  We'll do this with `bind_rows`
+
+```{r}
+precip_combined <- bind_rows(precip_MA, precip_NY)
+```
+
+Let's keep `precip_combined` as is now, since we will want to use it later on in today's exercises.  
+
+This stacked the datasets one on top of the other.  Take a look to confirm all looks well.  
+
+You can bind more than two datasets at a time if you want.  Simply add any additional datasets to your `bindrows()` function call.  
+
+`bindrows()` is smart and will bind two datasets even if the columns are not in the same order.  It will intelligently bind the rows from the same column (variable) together.  
+
+Test this out.  Switch the ordering of the columns in one of the data frames (hint `select()` can help you do this) and then bind the two data frames to verify that the binding still works correctly.
+
+```{r}
+# Your code here
+```
+
+```{r echo=FALSE, eval=FALSE, message=FALSE}
+precip_switched <- select(precip_MA, state_cd, everything())
+
+bind_rows(precip_switched, precip_NY)
+```
+
+
+Since `bind_rows()` binds rows from the same column (variable) it can also deal with binding data frames that might only have some columns in common.  Try deleting (or adding) a column to one of the data frames and then bind it to the other data frame.  You'll see that missing data is dealt with by filling with `NA`
+
+```{r}
+# Your code here
+```
+
+```{r echo=FALSE, eval=FALSE, message=FALSE}
+precip_switched <- select(precip_MA, -state_cd)
+
+bind_rows(precip_switched, precip_NY)
+```
+
+<br/>
+
+#### `intersect`
+![Source: Wikipedia.org](https://stahlm.github.io/ENS_215/Lectures/Images/Venn0001.svg){width=250}
+
+
+
+
+#### `setdiff`
+
+#### `union`
+
+
+<br/>
+
+### Combine columns (variables)
+
+#### `bind_cols`
+
+<br/>
+
+### Joins
+
+![_Source: R4DS_](https://stahlm.github.io/ENS_215/Lectures/Images/join-setup.png)
+
+<br/>
+
+![_Source: R4DS_](https://stahlm.github.io/ENS_215/Lectures/Images/join-inner.png)
+
+Let's load in NOAA temperature data that we would like to join with our NOAA precipitation data. 
+```{r warning=FALSE, message=FALSE}
+temperature_data <- read_csv("https://stahlm.github.io/ENS_215/Data/NOAA_State_Temp_Lab_Data.csv")
+```
+
+#### Joins: `inner_join`
+
+![_Source: R4DS_](https://stahlm.github.io/ENS_215/Lectures/Images/join-inner.png)
+
+<br/>
+
+#### Joins: `left_join`
+
+![_Source: R4DS_](https://stahlm.github.io/ENS_215/Lectures/Images/join-left.png)
+
+
+Let's take a look at the first few rows of each dataset.  
+```{r eval = FALSE}
+head(precip_combined)
+head(temperature_data)
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(kableExtra)
+head(precip_combined) %>% 
+  kable() %>% 
+  kable_styling(bootstrap_options = "condensed", position = "center") %>% 
+  column_spec(column = c(1,2,4), background = "yellow") %>% 
+  column_spec(column = c(3), background = "lightgrey") 
+
+head(temperature_data) %>% 
+  kable() %>% 
+  kable_styling(bootstrap_options = "condensed", position = "center") %>% 
+  column_spec(column = c(1,2,4), background = "yellow") %>% 
+  column_spec(column = c(3), background = "lightgrey") 
+
+
+```
+
+Now let's perform a `left_join` to add variables (columns) from `temperature_data` to `precip_combined`.  The `left_join` will only add observations from `temperature_data` that match observations in `precip_combined`.  In this case, the observations are matched according to the `Year`, `Month`, and `state_cd` in each table.   
+```{r}
+climate_data <- left_join(precip_combined, temperature_data)
+```
+
+The first few rows of the joined table looks like this
+```{r echo = FALSE}
+head(climate_data)  %>% 
+  kable() %>% 
+  kable_styling(bootstrap_options = "condensed", position = "center")
+```
+
+The `left_join` is the most commonly used join operation and should be your default choice unless you have a compelling reason to use another join.  However, there are other joins available and we'll introduce these below so that you are aware of them.  
+
+<br/>
+ 
+#### Joins: `right_join`
+ 
+![_Source: R4DS_](https://stahlm.github.io/ENS_215/Lectures/Images/join-right.png)
+ 
+<br/>
+
+#### Joins: `full_join`
+
+![_Source: R4DS_](https://stahlm.github.io/ENS_215/Lectures/Images/join-right.png)
+
+<br/>
+
+
+
+
+***
+
+```{r message=FALSE, warning=FALSE, eval=FALSE}
+precip_data <- read_csv("https://stahlm.github.io/ENS_215/Data/NOAA_State_Precip_LabData.csv")
+temp_data <- read_csv("https://stahlm.github.io/ENS_215/Data/NOAA_State_Temp_Lab_Data.csv")
+
+p_t <- left_join(precip_data,temp_data) %>% filter(state_cd == "CA", Year %in% c(2016,2017)) %>% 
+  gather(key = measurement_type, value = measurement, Precip_inches, Avg_Temp_F)
+
+write_csv(p_t,"../Class_Data/CA_temp_precip_untidy.csv")
+```
+
+
+
+
+```{r message=FALSE, warning=FALSE, eval=FALSE}
+library(readr)
+precip_MA <- read_csv("https://stahlm.github.io/ENS_215/Data/precip_MA.csv")
+
+old_names <- c('1','2','3','4','5','6','7','8','9','10','11','12')
+
+spread(precip_MA, key = Month, value = Precip_inches) %>% rename_at(vars(old_names), ~month.abb) %>% 
+  write_csv("../Class_Data/precip_untidy_MA.csv")
+
+```
+
+
+```{r echo=FALSE, eval=FALSE, warning=FALSE, message=FALSE}
+library(readr)
+precip_data <- read_csv("https://stahlm.github.io/ENS_215/Data/NOAA_State_Precip_LabData.csv")
+
+```
+
+```{r echo=FALSE, eval=FALSE, warning=FALSE, message=FALSE}
+
+precip_MA <- precip_data %>% filter(state_cd %in% c("MA"), Year %in% c(2015, 2016, 2017))
+write_csv(precip_MA, path = "../Class_Data/precip_MA.csv")
+
+precip_NY <- precip_data %>% filter(state_cd %in% c("NY"), Year %in% c(2015, 2016, 2017))
+write_csv(precip_NY, path = "../Class_Data/precip_NY.csv")
+```
+
+```{r eval=FALSE, echo=FALSE, message=FALSE}
+temperature_data <- read_csv("../Class_Data/NOAA_State_Temp.csv")
+temperature_data<- temperature_data %>% separate(Date, into = c("Year", "Month"), sep = 4) %>% 
+  select(-X1, -Anomaly_F) %>% 
+  mutate(Month = as.numeric(str_replace(Month,"^0","")) ) %>%  
+  write_csv("../Class_Data/NOAA_State_Temp_Lab_Data.csv")
+```
+
+
+```{r eval=FALSE, echo=FALSE, message=FALSE}
+BGS_data <- read_csv("../Class_Data/NationalSurveyData_DPHE_BGS_CleaningExercise.csv", skip = 3)
+
+BGS_data <- gather(BGS_data,5:10, key = PARAMETER, value = CONC)
+
+write_csv(BGS_data,"../Class_Data/BGS_DPHE_to_clean.csv")
+
+```

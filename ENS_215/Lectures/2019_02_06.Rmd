@@ -1,0 +1,346 @@
+---
+title: "Reshaping, cleaning and tidying data"
+author: "ENS-215"
+date: "6-Feb-2019"
+output:
+  html_document:
+    theme: spacelab
+    df_print: paged
+    toc: TRUE
+    toc_float: TRUE
+---
+
+<br/>
+
+In most cases, the dataset that you want to work with will not be in an ideal format/structure for conducting your analysis.  In fact getting data into a suitable format and structure is often one of the more time consuming aspects of data analysis and interpretation.  Furthermore, a single format and structure typically will not suit all of your needs -- a given format/structure might work great for one aspect of your work, but be less than ideal (or completely unsuitable) for another task.  
+
+Thankfully, there are many tools available in R that dramatically simplify the tasks of reshaping, cleaning, and tidying datasets.  These tools will allow you to prepare your data for the analysis you want to perform and will free up more of your time to focus on the scientific analysis and interpretation.  
+
+Today and in the upcoming classes, we will start to work with tools from the `dplyr` and `tidyr` packages that allow you to effeciently deal with your data.  
+
+While, you've been working with real, research quality datasets in class/lab, these datasets have been relatively neat and clean (In most cases I've taken the original dataset and done some organizing/cleaning to prepare it for the class).  However in most cases you won't have someone prep the data before you get it.  Thus, the skills you will now learn are critical to your work as they will allow you to deal with data "out in the real-world" where things can get a bit more messy.  
+
+
+```{r message=FALSE}
+library(tidyverse)
+library(readr)
+```
+
+
+## Tidy data
+
+In data science, **tidy** data has a specific meaning, and refers to how the data is organized within a data table.  The definition of tidy data that we will use in this class was nicely laid out by Wickham (author of R4DS):
+
+> A dataset is a collection of values, usually either numbers (if quantitative) or strings AKA text data (if qualitative). Values are organised in two ways. Every value belongs to a variable and an observation. A variable contains all values that measure the same underlying attribute (like height, temperature, duration) across units. An observation contains all values measured on the same unit (like a person, or a day, or a city) across attributes.  
+
+>Tidy data is a standard way of mapping the meaning of a dataset to its structure. A dataset is messy or tidy depending on how rows, columns and tables are matched up with observations, variables and types. In tidy data:  
+
+>1. Each **variable** forms a **column**  
+2. Each **observation** forms a **row**  
+3. Each type of observational unit forms a table.  
+
+![_Source: R4DS_](https://stahlm.github.io/ENS_215/Lectures/Images/tidy-1.png)
+
+<br/>
+
+In general a tidy dataset is much easier to work with and thus we will often convert untidy data into a tidy format (_however there are situations where an untidy dataset is useful_).  
+
+## Reshaping datasets
+
+<br/>
+
+### Reshape with `gather()`
+
+Let's load in monthly precipitation (in inches) for Massachusetts for years 2015-2017.
+
+```{r warning=FALSE, message=FALSE}
+precip_untidy_MA <- read_csv("https://stahlm.github.io/ENS_215/Data/precip_untidy_MA.csv")
+```
+
+
+```{r warning=FALSE, message=FALSE, echo=FALSE}
+library(kableExtra)
+
+precip_untidy_MA %>% 
+  kable() %>% 
+  kable_styling(bootstrap_options = "condensed", position = "center") 
+
+```
+
+
+Take a look at the dataset  
+
++ How many columns are there? 
++ How many variables are there?  
++ How many rows are there?
++ How many observations are there? 
+
+Based on what you found above, is the dataset in tidy format?  Explain what about the structure of the data allows you to know whether it is tidy or not.  
+
+<br/> 
+
+While the above data table is "human readable" it is not in the best format for most computing and data analysis operations due to the fact that it is untidy.  
+
+We learned that in a tidy dataset each variable has its own column and each observation has its own row.  Our current dataset has 14 columns despite having only four variables (Year, Month, State, and precip in inches).  Furthermore our dataset has 3 rows, while having 36 observations (monthly observations for three years).  
+
+Thus to make our dataset tidy, we will need to reshape the data so that we have four columns and 36 rows.  Three of the columns (Year, Month, State) are variables whose values identify the observation, while the fourth column will have the precipitation corresponding to a given observation.  
+
+
+Ok, once you understand why the data isn't tidy, we'll move ahead and make it tidy.  To do this we will use the `gather()` function from the `tidyr` package.  
+
+`gather` takes four arguments:  
+
++ The dataset you would like to gather  
+
++ **key**: This is the name of the new column that combines all column variables from the original dataset (_i.e._ Jan, Feb, Mar,..., Dec).  
+
++ **value**: This is the name of the new column that contains all values (_i.e._ precipitation values) associated with each variable combination (_i.e._ Jan 2015, Feb 2015,..., Dec 2017)  
+
++ The third parameter does not have a name, but is a list of columns that are to be collapsed. The column can be referenced by column number or column name. 
+
+In our case, the **key** will be called `Month`, the **value** will be called `Precip_inches`.  The third argument will be the list of the columns that we want to gather (_i.e._ "Jan", "Feb",..., "Dec")
+
+```{r}
+precip_tidy_MA <- gather(precip_untidy_MA, key = Month, value = Precip_inches, Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)
+```
+
+Take a look at the new data frame.  You'll see that each observation (defined by a unique State, Year, Month combination) has its own row.  Furthermore you'll see that we have one column with precipitation measurements, as opposed to the twelve columns of precip measurements that we had in untidy dataset.  
+
+<br/>
+
+### Reshape with `spread()`
+
+In some cases you will encounter untidy data where there are too few columns in the original dataset, due to the fact that each variable has not been allocated its own column.  Let's load in a dataset that highlights this.  
+
+```{r message=FALSE}
+precip_temp_untidy_CA <- read_csv("https://stahlm.github.io/ENS_215/Data/CA_temp_precip_untidy.csv")
+
+```
+
+
+Take a look at the dataset and confirm that it is not in tidy format.
+```{r}
+precip_temp_untidy_CA
+```
+
+You can see that the `measurement_type` column specifies what kind of measurement is in the `measurement` column.  In our dataset the `measurment` column is holding values for two variables (precipitation and temperature).  Remember that a tidy dataset should have separate columns for each variable.  Thus we need to spread the values in `measurement` into two columns -- one for precipitation and one for temperature.  
+
+The `spread()` function can perform this operation.  Spread takes three arguments:
+
++ The dataset to spread  
++ **key:** The column in the original dataset that contains the names of the variables to spread into the new columns  
++ **value:** The column of the original dataset that contains the values that should be spread into the new columns  
+
+
+Let's spread our data to make it tidy.  Our **key** is the `measurement_type` and our value is the `measurement`
+```{r}
+# Your code here 
+```
+
+
+```{r eval=FALSE, echo=FALSE}
+
+precip_temp_tidy_CA <- spread(precip_temp_untidy_CA, key = measurement_type, value = measurement)
+
+precip_temp_tidy_CA
+```
+
+You can see that our tidy dataset has a single row for each observation (whereas the untidy data had two rows for each observation -- one for the precip and one for the temperature).  
+
+### Exercise
+
+You've learned how to tidy data using `gather()` and `spread()`.  Let's get some more practice with these functions.  To do this let's undo our tidying.  There are situations where you might want untidy data, but the main reason we are doing this untidying here is to test your understanding of how to use `gather()` and `spread()`.  
+
+1. Use `spread()` to untidy  `precip_tidy_MA` 
+```{r eval=FALSE, echo=FALSE}
+
+precip_tidy_MA %>%  spread(key = Month, value = Precip_inches)
+
+```
+
+
+
+2. Use `gather()` to untidy `precip_temp_tidy_CA`
+```{r eval=FALSE, echo=FALSE}
+
+precip_temp_tidy_CA %>% gather(key = Measurement_Type, value = Measurement, Avg_Temp_F, Precip_inches)
+
+```
+
+
+<br/>
+
+## "Cleaning" datasets
+Just as the data that we come across in our work will often be untidy, so to will it often be "unclean".  By unclean, we mean that the data may have missing values or value formats that are not conducive to computing/data analysis.  Let's load in an example dataset containing information about the rivers with the highest flows. 
+
+```{r message=FALSE}
+Rivers_to_clean <- read_csv("https://stahlm.github.io/ENS_215/Data/Rivers_sep_unite.csv")
+```
+
+There are four columns in the dataset:
+
++ Rank: rivers rank according to its flow (discharge)  
++ River: name of the river
++ Length_Drainage_Ratio: the ratio of the rivers length (km) to the area of the watershed (km^2^)
++ Discharge_m3_s: the average flow (discharge) in m^3^/s
+
+Take a look at the data and you'll see that the dataset needs some cleaning.  In particular there is missing data `NA` in the `Discharge_m3_s` column and the `Length_Drainage_Ratio` is not in a very computable format.  
+
+We'll learn a few helpful functions that allow us to quickly and easily clean up data.  
+
+<br/>
+
+### Remove rows with `NA`s using `drop_na()`
+When you have `NA` values you may simply want to remove the rows containing the `NA`s, thus leaving you with a dataset that does not have any missing data.  This is often helpful, however you should always give thought to simply dropping observations that may have `NA`s in some of the columns as this can result in biases or oversight in your analysis.  
+
+However, let's assume our analysis requires us to drop the rows with `NA`s.  To do this we use the `drop_na` function.  If you do not specify the columns to look in, then the `drop_na()` function will drop any rows that have `NA`s.  You can also pass the columns you would like `drop_na` to look in and it will only drop rows where the specified column(s) have `NA`s.  
+
+```{r}
+drop_na(Rivers_to_clean) # drop NAs (look at all columns)
+```
+
+```{r}
+drop_na(Rivers_to_clean, Rank) # drop NAs (look at Rank column)
+```
+
+You can see that the first example drops four rows, whereas the 2^nd^ example, which only looked in the `Rank` column didn't drop any rows, since `Rank` has no `NA` values.  
+
+<br/>
+
+### Deal with `NA`s using `replace_na()` and `fill()`
+Sometimes we will want to replace `NA` values with a specified value.  
+
+The `replace_na()` function allows us to replace missing data with a specified value
+```{r}
+replace_na(Rivers_to_clean, list(Discharge_m3_s = -9999)) # replace the missing discharge data with -9999
+```
+
+You can see that we replace the missing discharge data with another value.  In the `list()` function we can specify a list of columns and the values that we would like to replace `NA`s with in each of the columns.
+
+<br/>
+
+In some cases you may want to replace `NA`s by filling in the missing data with data in an adjacent row.  Since our data is ordered by rank, as a first guess, we could replace the missing discharge data with the value in the row above.  To do this type of operation we use the `fill()` function.  
+
+```{r}
+fill(Rivers_to_clean, Discharge_m3_s, .direction = "up")
+```
+
+You can fill from the row below (i.e. fill upwards) using `.direction = "up"`, or you can fill from the row above (i.e.) fill downwards using `.direction = "down"`.  Note that there is a period `.` before the direction.  
+
+<br/>
+
+### Separate values with `separate()` 
+When you encounter data two values in a single cell you will typically want to separate them.  In the dataset we are working with the `Length_Drainage_Ratio` column has two values (river length and river watershed area) reported in each cell.  Let's separate these data into two separate columns.   To do this we'll use the `separate` function.  
+
+```{r}
+Rivers_to_clean <- separate(Rivers_to_clean, col = Length_Drainage_Ratio, into = c("Length_km", "Area_km2") , sep = "/")
+
+Rivers_to_clean 
+```
+
+You see that the `separate` function takes several arguments in addition to the dataset:  
++ col: column containing the values to separate
++ into: a vector containing the names of the new columns to place the separated values
++ sep: the character that indicates where the separation should be made  
+
+<br/>
+
+### Join values with `unite()`
+In some cases you will have observations with values in two cells that you would like to combine into a single cell.  An example might be a dataset where you have the century in one column and the year in another and you would like to merge the two into a single year column.  To do this we would use the `unite` function.  
+
+| Century 	| Year 	|
+|---------	|------	|
+| 20 	| 01 	|
+| 20 	| 02 	|
+| 20 	| 03 	|
+| 20 	| 04 	|
+| 20 	| 05 	|
+| 20 	| 06 	|
+| 20 	| 07 	|
+| 20 	| 08 	|
+| 20 	| 09 	|
+| 20 	| 10 	|
+
+
+Let's keep working with our River data though.  We can simply undo our separation that we performed earlier, just to highlight how to use the `unite` function.  
+
+```{r}
+unite(Rivers_to_clean, Length_km, Area_km2, col = "Length_Area_Ratio", sep = "/")
+```
+
+
+<br/>
+
+
+### Excercise {.tabset}
+Now you've learned some important concepts regarding clean and tidy data along with some tools/techniques to help you clean and tidy your data and get it ready for analysis.  
+
+#### **Examine the data**
+Let's load in a file that has groundwater geochemistry data from Bangladesh and prepare it for analysis.  
+
+You'll see that this data suffers from some formatting and organizational issues that will make data analysis difficult.  You'll need to clean and tidy this data.  First, load in the data
+
+```{r warning=FALSE, message=FALSE}
+
+Bangladesh_gw <- read_csv("https://stahlm.github.io/ENS_215/Data/BGS_DPHE_to_clean.csv")
+
+```
+
+
+Now take a look at the first few rows of the data
+```{r}
+head(Bangladesh_gw)
+```
+
+You may also find it helpful to view the data by opening up the data viewer in your Environment pane.  
+
++ Is the data tidy?  Why or why not?
++ Do any of the columns appear to have issues with missing data?
++ Do any of the columns appear to have formatting issues?  Describe these issues?  
+
+Once you've examined the data, answered the above questions, and thought carefully about the above issues you can proceed on.  
+
+#### **Clean and tidy the data**
+Based on your assessment above you should have found the following issues
+
++ There are missing values `NA`s in the `CONC` column
++ The data is NOT tidy.  The `CONC` column has values for many variables (e.g. As, Ca, Fe,...)
++ The latitude and longitude data are combined into a single column
++ The division and district data are combined into a single column  
+
+
+These types of issues are very typical of many datasets that you will encounter (in fact this dataset is relatively good shape compared to most datasets).  
+
+Now you need to remedy the above issues so that this data can be analyzed.  You should do the following:  
+
++ Delete the rows with `NA` values
++ Split the latitude and longitude into two columns
++ Split the Division and District into two columns
++ Tidy the data by putting each of the parameter variables (e.g. As, Fe, Ca,...) into their own column that is populated by the concentrations for that parameter.  
+
+
+You will need to use the tools and concepts you learned in todays lecture to create this new, clean and tidy dataset.  
+
+Once you've cleaned and tidyied the data, you should save it to a csv (this is a text file that you can easily open in Excel or a similar program) so that you can share the data with collaborators and the public.    
+
+To save the data you can use the following code
+
+```{r eval = FALSE}
+write_csv(YOUR_DATA_OBJECT_NAME, "Bangladesh_tidy.csv")
+```
+
+
+```{r echo=FALSE, eval=FALSE}
+
+BGS_data %>% 
+  drop_na() %>% 
+  separate(LAT_LONG, into = c("LAT","LONG"), sep = "/") %>% 
+  separate(DIVISION_DISTRICT, into = c("DIVISION","DISTRICT"), sep = "-") %>% 
+  spread(key = PARAMETER, value = CONC)
+
+  
+
+```
+
+
+ 
