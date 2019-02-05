@@ -1,7 +1,7 @@
 SAMPLE_ID,LAT_LONG,WELL_DEPTH_m,DIVISION_DISTRICT,PARAMETER,CONC
 S98_00701,22.8731/90.7844,10.7,Chittagong-Lakshmipur,As_ugL,13
 S98_00718,23.0194/90.8786,12.2,Chittagong-Lakshmipur,As_ugL,256
-S98_00724,22.965/90.9597,12.2,Chittagong-Lakshmipur,As_ugL,38
+S98_00724,22.965/90.9597,12.2,Chittagong-Lakshmipur,As_ugL,NA
 S98_00727,22.9253/90.9744,262.1,Chittagong-Lakshmipur,As_ugL,8
 S98_00733,22.8653/90.9372,7.9,Chittagong-Lakshmipur,As_ugL,6
 S98_00734,22.8525/90.9058,182.9,Chittagong-Lakshmipur,As_ugL,6
