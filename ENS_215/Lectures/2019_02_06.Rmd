@@ -39,11 +39,13 @@ In data science, **tidy** data has a specific meaning, and refers to how the dat
 2. Each **observation** forms a **row**  
 3. Each type of observational unit forms a table.  
 
-![_Source: R4DS_](https://stahlm.github.io/ENS_215/Lectures/Images/tidy-1.png)
+![_Image source: R4DS_](https://stahlm.github.io/ENS_215/Lectures/Images/tidy-1.png)
 
 <br/>
 
-In general a tidy dataset is much easier to work with and thus we will often convert untidy data into a tidy format (_however there are situations where an untidy dataset is useful_).  
+In some cases, untidy data is more "human-readable".  Thus, you may recieve data in untidy formats because it was originally formatted for human eyes to look at.  Other times you will recieve untidy data, simply because the original formatter of the data wasn't thinking about (or didn't need to) these issues.  
+
+When performing data analysis a tidy dataset is almost always much easier to work with and thus we will often convert untidy data into a tidy format (_however there are situations where an untidy dataset is useful_).  
 
 ## Reshaping datasets
 
@@ -88,6 +90,12 @@ Thus to make our dataset tidy, we will need to reshape the data so that we have 
 
 Ok, once you understand why the data isn't tidy, we'll move ahead and make it tidy.  To do this we will use the `gather()` function from the `tidyr` package.  
 
+We can use the `gather` function to take the names of columns and gather them into a new column where the names are values in a variable.  For example, the above dataset has columns with month names, however these names are really values that should be in a variable (column) that has the months.  
+
+Below is a nice illustration from the R4DS text that illustrates what `gather` does.  
+
+![_Image source: R4DS_](https://stahlm.github.io/ENS_215/Lectures/Images/tidy-gather.png)
+
 `gather` takes four arguments:  
 
 + The dataset you would like to gather  
@@ -125,6 +133,10 @@ precip_temp_untidy_CA
 
 You can see that the `measurement_type` column specifies what kind of measurement is in the `measurement` column.  In our dataset the `measurment` column is holding values for two variables (precipitation and temperature).  Remember that a tidy dataset should have separate columns for each variable.  Thus we need to spread the values in `measurement` into two columns -- one for precipitation and one for temperature.  
 
+Below is a nice illustration from the R4DS text that illustrates what `spread` does.  
+
+![_Image source: R4DS_](https://stahlm.github.io/ENS_215/Lectures/Images/tidy-spread.png)
+
 The `spread()` function can perform this operation.  Spread takes three arguments:
 
 + The dataset to spread  
@@ -136,6 +148,8 @@ Let's spread our data to make it tidy.  Our **key** is the `measurement_type` an
 ```{r}
 # Your code here 
 ```
+
+<br/>
 
 
 ```{r eval=FALSE, echo=FALSE}
@@ -177,6 +191,8 @@ Just as the data that we come across in our work will often be untidy, so to wil
 Rivers_to_clean <- read_csv("https://stahlm.github.io/ENS_215/Data/Rivers_sep_unite.csv")
 ```
 
+<br/>
+
 There are four columns in the dataset:
 
 + Rank: rivers rank according to its flow (discharge)  
@@ -199,6 +215,8 @@ However, let's assume our analysis requires us to drop the rows with `NA`s.  To 
 drop_na(Rivers_to_clean) # drop NAs (look at all columns)
 ```
 
+<br/>
+
 ```{r}
 drop_na(Rivers_to_clean, Rank) # drop NAs (look at Rank column)
 ```
@@ -220,6 +238,8 @@ You can see that we replace the missing discharge data with another value.  In t
 <br/>
 
 In some cases you may want to replace `NA`s by filling in the missing data with data in an adjacent row.  Since our data is ordered by rank, as a first guess, we could replace the missing discharge data with the value in the row above.  To do this type of operation we use the `fill()` function.  
+
+<br/>
 
 ```{r}
 fill(Rivers_to_clean, Discharge_m3_s, .direction = "up")
@@ -272,7 +292,7 @@ unite(Rivers_to_clean, Length_km, Area_km2, col = "Length_Area_Ratio", sep = "/"
 <br/>
 
 
-### Excercise {.tabset}
+### Excercise
 Now you've learned some important concepts regarding clean and tidy data along with some tools/techniques to help you clean and tidy your data and get it ready for analysis.  
 
 #### **Examine the data**
@@ -286,6 +306,7 @@ Bangladesh_gw <- read_csv("https://stahlm.github.io/ENS_215/Data/BGS_DPHE_to_cle
 
 ```
 
+<br/>
 
 Now take a look at the first few rows of the data
 ```{r}
@@ -299,6 +320,8 @@ You may also find it helpful to view the data by opening up the data viewer in y
 + Do any of the columns appear to have formatting issues?  Describe these issues?  
 
 Once you've examined the data, answered the above questions, and thought carefully about the above issues you can proceed on.  
+
+<br/>
 
 #### **Clean and tidy the data**
 Based on your assessment above you should have found the following issues
