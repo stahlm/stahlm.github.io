@@ -12,9 +12,20 @@ output:
 
 ## Lectures 
 
-### Week 4
-+ Mon (28-Jan) -- **Intro to data visualization** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_01_28_Intro_data_viz.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_01_28_Intro_data_viz.Rmd), [Slides](https://stahlm.github.io/ENS_215/Lectures/2019_01_28_slides.html) 
+### Week 5
++ Mon (4-Feb) -- **Presentation quality graphics**
+[(html)](https://stahlm.github.io/ENS_215/Lectures/2019_02_04.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_02_04.Rmd), [Article by Kelleher and Wagener (2011)](https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Documents/ems2011%20kelleher%20and%20wagener.pdf) 
 
++ Wed (6-Feb) -- **Reshaping, cleaning and tidying data** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_02_06.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_02_06.Rmd)
+
+***
+### Week 4
++ Mon (28-Jan) -- **Intro to data visualization** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_01_28_Intro_data_viz.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_01_28_Intro_data_viz.Rmd), [Slides](https://stahlm.github.io/ENS_215/Lectures/2019_01_28_slides.html)  
+
++ Wed (30-Jan) -- **Intro to data viz (continued)** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_01_30_Intro_data_viz.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_01_30_Intro_data_viz.Rmd) 
+
++ Fri (1-Feb) -- **Data visualization (additional topics)**
+[(html)](https://stahlm.github.io/ENS_215/Lectures/2019_02_01_Data_viz.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_02_01_Data_viz.Rmd) 
 
 
 ***
@@ -56,4 +67,14 @@ output:
 
 + Lab 3 -- **Global Dams and Reservoirs** [(html)](https://stahlm.github.io/ENS_215/Labs/Lab_Global_Dams.html)
 
++ Lab 4 -- **Groundwater Arsenic in Bangladesh** [(html)](https://stahlm.github.io/ENS_215/Labs/Lab_Bangladesh_Arsenic.html)
 
++ Lab 5 -- **Final project kick-off** [(html)](https://stahlm.github.io/ENS_215/Labs/Lab_Final_Project.html)
+
+<br/>
+
+***
+| | |
+|--|--|
+| _Mason Stahl (2019)_ |  |
+| _Union College_ | |
