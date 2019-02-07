@@ -12,7 +12,7 @@ output:
 
 
 ## Overview
-For your final project you will select an environmental dataset of your choosing, develop a question/hypothesis, and perform data analysis that addresses your question(s) of interest.  This project will culminate in a report and a final presentation where you will present your finding to the class.
+For your final project you will select an environmental dataset of your choosing, develop a question/hypothesis, and perform data analysis that addresses your question(s) of interest.  This project will culminate in a report and a final presentation where you will present your findings to the class.
 
 **Project goals:**
 
