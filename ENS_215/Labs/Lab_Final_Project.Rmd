@@ -1,0 +1,132 @@
+---
+title: "Final Project"
+author: "ENS-215"
+date: "Winter 2019"
+output:
+  html_document:
+    df_print: paged
+    theme: spacelab
+    toc: yes
+    toc_float: yes
+---
+
+
+## Overview
+For your final project you will select an environmental dataset of your choosing, develop a question/hypothesis, and perform data analysis that addresses your question(s) of interest.  This project will culminate in a final presentation where you will present your finding to the class.
+
+**Project goals:**
+
+* Allow you to apply the analytical skills and tools you have learned in this class to answer a new scientific question
+
+* Prepare you for future scientific analysis (e.g. senior thesis, grad school, job after Union) and future scientific presentations
+
+* Allow you to explore questions that you find interesting and to learn how to adapt and discover new approaches that build off of what you have learned this term
+
+This project will give you the opportunity to conduct new and interesting scientific analysis, and as such it will require a concerted and sustained effort on your part.  While this project will be demanding, it should also be a fun and exciting experience where you can explore questions that you find important and interesting.
+
+### Format
+You will submit a report containing your analysis, results, and discussion.  Your report will be in the style of "_science journalism_", like something you might find in [National Geographic](https://www.nationalgeographic.com/), the [science](https://www.nytimes.com/section/science) or [Upshot](https://www.nytimes.com/section/upshot) sections of the New York Times or [fivethirtyeight](https://fivethirtyeight.com/).  Thus, you should present your original research in a format that is engaging and accesible to an educated audience while still presenting the technical detials.  
+
+## Project components/guidelines
+The project has several stages and it is critical that you stay on target throughout in order to ensure that you project goes smoothly and is a rewarding and enjoyable experience.  There will be due-dates along the way to make sure you stay on track.
+
+## Project stages and guidelines 
+
+The project has several stages and it is critical that you stay on target throughout in order to ensure that your project goes smoothly and is a rewarding and enjoyable experience.  There will be due-dates along the way to make sure you stay on track.  
+
+### 1. Project kick-off 
+**Date:** Feb 7^th^  
+
+I will introduce the project and you will get started researching your topic and locating potential datasets.  It is important that you leave this lab meeting with a clear idea about how you want to proceed with your project.  
+
+<br/>
+
+### 2. Project proposal 
+**Due date:** Feb 13^th^ (Note this is a Wednesday)
+
+<br/>
+
+#### Dataset(s) 
++ Identify the dataset(s) that you will use in your project.  **Key first step** is to obtain this data and get it loaded into R.  I can help you find the right dataset for your analysis.  Finding the right data for this project is important and requires balancing a few aspects:
+    + Sufficient complexity to allow you to "flex" the data analytics skills learned in this class
+    + Sufficient richness of data to allow you to answer interesting/meaningful scientific questions
+    + Not too complex that you get bogged down  
+    
++ You may use a single dataset or multiple datasets that you will merge.  This will depend on the question(s) you are asking.  
+
+<br/>
+
+#### Written proposal
+You will submit on Nexus a written proposal in R Notebook format (due Wednesday, Feb 13^th^).  This proposal should have the following components:  
+
+1. **Header:** Your name, date, and **project title**.  The title should be informative and specfic to your project.
+
+2. **Motivation/purpose:** Tell me what the broad topic is that you want to study and why we (me, you, your classmates, society at large) should care about it.  
+For example you might write "_I want to study how the frequency and magnitude of natural disasters are changing as a result of climate change.  This is critical to understand as the human, environmental, and economic toll from natural disasters is significant and may be shifting as the climate changes..._"
+
+3. **Scientific question:** Describe the scientific question that you want to address using your data.  For instance you might say something like "_I will investigate how changes in precipitation and temperature patterns are influencing the frequency and magnitude of forest fires in the US_"  
+
+4. **Data sources:** Describe the data sources you will use.  
+    + Provide a description of each data source
+        + What does the dataset contain
+        + How many rows and columns
+        + Units associated with the values
+    + Explain where you have/will access it from.  Be specific and include the links (URLs).  
+    + State the file formats (e.g. CSV, Excel, ...)  
+    
+<br/>
+
+
+### 3. Feedback in Lab
+**Dates:** Feb 14^th^ and Feb 28^th^  
+
+Two lab meetings will be dedicated to getting feedback after you have started working on the project.  These meetings are critical to ensuring that you are on track and working towards your goals.  
+
+We need to use this time efficiently (there is one of me and many of you) so come ready to go and have your work organized and a list of any questions you may have.  These meetings are a perfect time to get additional input/ideas from me and your classmates.  
+
+<br/>
+
+### 4. Final project and presentation 
+**Due date:** Mar 14^th^
+
+You will submit your final project on Nexus and you will present your project to the class during our final lab meeting.  Your project should be contained in a zipped folder that has your R Notebook used to generate your final project along with all of the datasets used in the project.  A few important logistics:  
+
+  + You should create a new R Project that is in a folder called "Final_Project_YourLastname"
+  + You should ONLY use relative paths when loading data (If you are unfamiliar with this concept don't worry, I will explain it in lab)
+  + All of your code and data should be in your project folder (or a sub-folder within your project folder) 
+  + The final knitted document should "hide" the code and just show the tables/results/discussion.  I will be able to see all of your code in the **.Rmd** file, so I will still know how you did all of your work.
+  + I need to be able to run your code on my computer without any issues
+
+<br/>
+
+The knitted report/document should be nicely formatted, clearly organized, and contain insightful and well-thought out analysis.  Remember that you are writing this report as "scientific journalism" and thus the discussion and analysis should be accessible to your peers while still being rigorous and technical.  
+
+You should properly cite relevant literature/sources in your discussion.  This project is the equivalent of any other term project you might have at Union and thus all **honor code** rules apply.  
+
+<br/>
+
+#### Project guidelines
+
+* You will submit all of the code and data required to generate your analysis.  Just as you have done for our other assignments, the code should be clearly documented and I should be able to directly run the code on my computer without having to make any modifications.
+
+* You must perform a new set of analyses for this project.  You cannot reuse work from a past class or project.  However you are more than welcome to work with data that you may have looked at in the past (or are currently examining) as long as you perform new analysis for this project.
+
+* Each student will do their own project.  It is ok if multiple students work with the same dataset(s), however their work must be their own, independent analysis.
+
+<br/>
+
+#### Ideas for datasets to analyze
+
+* Your senior thesis data!
+* A dataset that we have come across during class
+* [Data.gov](https://www.data.gov/open-gov/) has tons of datasets available across a range of topics 
+* [NYC OpenData](https://opendata.cityofnewyork.us/)  Excellent site with datasets for NYC, many of which are related environment.  
+* [USGS data](https://www.usgs.gov/) (e.g. [NWIS](https://waterdata.usgs.gov/nwis?), [earthquake](https://earthquake.usgs.gov/data/data.php#eq), [rock chemistry](https://mrdata.usgs.gov/), [produced water chemistry database](https://energy.usgs.gov/))
+* [NOAA data](https://www.noaa.gov/) (e.g. temperature, precipitation, drought time-series data)
+* [EPA data](https://www.epa.gov/) (e.g. Air quality data)
+* [Environment Canada](https://www.canada.ca/en/environment-climate-change.html), [British Geological Survey](https://www.bgs.ac.uk/data/home.html), or other foreign scientific agency
+* Data from the [Hudson River Environmental Conditons Observing System (HRECOS)](http://www.hrecos.org/)
+* [USDA data](https://www.usda.gov/topics/data) (crop yields, irrigated acres, fertilizer usage)
+* [UN FAO Aquastat data](http://www.fao.org/nr/water/aquastat/main/index.stm)
+* Many, many more datasets are available, take a look around or ask me
+
