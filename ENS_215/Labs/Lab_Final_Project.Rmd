@@ -27,8 +27,7 @@ This project will give you the opportunity to conduct new and interesting scient
 ### Format
 You will submit a report containing your analysis, results, and discussion.  Your report will be in the style of "_science journalism_", like something you might find in [National Geographic](https://www.nationalgeographic.com/), the [science](https://www.nytimes.com/section/science) or [Upshot](https://www.nytimes.com/section/upshot) sections of the New York Times or [fivethirtyeight](https://fivethirtyeight.com/).  Thus, you should present your original research in a format that is engaging and accesible to an educated audience while still presenting the technical detials.  
 
-## Project components/guidelines
-The project has several stages and it is critical that you stay on target throughout in order to ensure that you project goes smoothly and is a rewarding and enjoyable experience.  There will be due-dates along the way to make sure you stay on track.
+<br/>
 
 ## Project stages and guidelines 
 
