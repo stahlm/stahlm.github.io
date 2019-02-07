@@ -34,6 +34,19 @@ The project has several stages and it is critical that you stay on target throug
 
 The project has several stages and it is critical that you stay on target throughout in order to ensure that your project goes smoothly and is a rewarding and enjoyable experience.  There will be due-dates along the way to make sure you stay on track.  
 
+<br/>
+
+##### **Important dates**
+
+| Project stage 	| Date 	|
+|-------------------------------------	|-------------------	|
+| 1. Project kick-off 	| Feb 7^th^ 	|
+| 2. Project proposal 	| Feb 13^th^ 	|
+| 3. Feedback in lab 	| Feb 14^th^ and 28^th^ 	|
+| 4. Project due and final presentations 	| Mar 14^th^ 	|
+
+<br/>
+
 ### 1. Project kick-off 
 **Date:** Feb 7^th^  
 
