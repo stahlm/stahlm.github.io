@@ -36,7 +36,7 @@ Now navigate to the location where you saved the file and open it in Excel or a 
 Ok, so you've downloaded the data and save it to your computer.  Now you'll want to load it into R so you can start to use the data in your analysis.  
 
 We'll need to use the `read_csv()` function which is in the `readr` package.  Let's load in `tidyverse` which will load in `readr` (along with the many other packages in the tidyverse collection). 
-```{r}
+```{r message=FALSE, warning=FALSE}
 library(tidyverse)
 
 
@@ -45,7 +45,7 @@ library(tidyverse)
 
 Now to load in the data all we need to do is use the `read_csv()` function and point it to the file we want to load in.  Remember we should always use relative paths.  Since your current working directory is your "Lectures" folder we can start the file path at our "Lectures" folder.  You should first check in your console that your working directory is in fact your "Lectures" folder - you do this by typing `getwd()`.  If your working directory is not your "Lectures" folder then you should make sure to open you "Lectures" project (or ask me for help).  
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 CO2_data <- read_csv("./Lectures_Data/Mauna_Loa.csv")
 ```
 Your data should have been loaded into R and saved to the object `CO2_data`.  As you can see R is smart and treats the first row as the column headers (variable names).  Note that the `./` in your file path indicates that you want to begin your path in your current folder.  
@@ -62,7 +62,7 @@ First let's save another csv version of the "Mauna_Loa" data.  You should call t
 
 You can see that now we would like to skip the first 4 rows (the ones with file header).  To do this we simply specify how many rows we would like to skip
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 Mauna_loa <- read_csv("./Lectures_Data/Mauna_Loa_with_header.csv", skip = 4)
 ```
 
@@ -75,7 +75,7 @@ Check the `Mauna_loa` data object to confirm that everything looks good.
 
 Loading in an Excel `xls` or `xlsx` file is essentially the same as loading in a `csv` file.  However, we'll first need to load in the `readxl` package which has the necessary functions.
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 library(readxl)
 ```
 
@@ -87,7 +87,7 @@ Let's first save another copy of the Mauna_Loa data, this time saving it as an `
 
 You can see that in the image above, the top-left corner of my data is cell `C8`.  The bottom-right (which you can't see in the image) is in cell `D679`.  The `read_xlsx()` function will always look in the left uppermost cell (i.e. `A1`) first unless you specify otherwise.  Since our data starts elsewhere we'll need to tell the function where to look, however this is very easy to do by simply specifying the `range`.  
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 Mauna_loa_another_example <- read_xlsx("./Lectures_Data/Mauna_Loa_excel_example.xlsx", range = "C8:D679")
 ```
 

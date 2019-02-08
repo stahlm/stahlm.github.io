@@ -246,21 +246,8 @@ div.tocify {
 <p>Ok, so you’ve downloaded the data and save it to your computer. Now you’ll want to load it into R so you can start to use the data in your analysis.</p>
 <p>We’ll need to use the <code>read_csv()</code> function which is in the <code>readr</code> package. Let’s load in <code>tidyverse</code> which will load in <code>readr</code> (along with the many other packages in the tidyverse collection).</p>
 <pre class="r"><code>library(tidyverse)</code></pre>
-<pre><code>## -- Attaching packages --------------------------------------------------------------------------------- tidyverse 1.2.1 --</code></pre>
-<pre><code>## v ggplot2 3.1.0     v purrr   0.2.5
-## v tibble  1.4.2     v dplyr   0.7.6
-## v tidyr   0.8.1     v stringr 1.3.1
-## v readr   1.1.1     v forcats 0.3.0</code></pre>
-<pre><code>## -- Conflicts ------------------------------------------------------------------------------------ tidyverse_conflicts() --
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()</code></pre>
 <p>Now to load in the data all we need to do is use the <code>read_csv()</code> function and point it to the file we want to load in. Remember we should always use relative paths. Since your current working directory is your “Lectures” folder we can start the file path at our “Lectures” folder. You should first check in your console that your working directory is in fact your “Lectures” folder - you do this by typing <code>getwd()</code>. If your working directory is not your “Lectures” folder then you should make sure to open you “Lectures” project (or ask me for help).</p>
 <pre class="r"><code>CO2_data &lt;- read_csv(&quot;./Lectures_Data/Mauna_Loa.csv&quot;)</code></pre>
-<pre><code>## Parsed with column specification:
-## cols(
-##   Year = col_double(),
-##   CO2_ppm = col_double()
-## )</code></pre>
 <p>Your data should have been loaded into R and saved to the object <code>CO2_data</code>. As you can see R is smart and treats the first row as the column headers (variable names). Note that the <code>./</code> in your file path indicates that you want to begin your path in your current folder.</p>
 <p>So now you know how to load in a csv file!</p>
 <p>However, sometimes things are a bit less neat. For example you may have a file header at the top of your file. This head might have useful data (e.g. info about the data source) but you would like to skip the head when loading your data into R. This is easy to do.</p>
@@ -271,11 +258,6 @@ div.tocify {
 </div>
 <p>You can see that now we would like to skip the first 4 rows (the ones with file header). To do this we simply specify how many rows we would like to skip</p>
 <pre class="r"><code>Mauna_loa &lt;- read_csv(&quot;./Lectures_Data/Mauna_Loa_with_header.csv&quot;, skip = 4)</code></pre>
-<pre><code>## Parsed with column specification:
-## cols(
-##   Year = col_double(),
-##   CO2_ppm = col_double()
-## )</code></pre>
 <p>Check the <code>Mauna_loa</code> data object to confirm that everything looks good.</p>
 <p><br /></p>
 </div>
