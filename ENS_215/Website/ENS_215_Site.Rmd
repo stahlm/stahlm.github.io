@@ -12,11 +12,19 @@ output:
 
 ## Lectures 
 
+### Week 6 
++ Mon (11-Feb) -- **Combining/joining data** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_02_11.html) [(Rmd)](https://stahlm.github.io/ENS_215/Lectures/2019_02_11.Rmd) and **Loading data into R** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_02_08_load_data_into_R.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_02_08_load_data_into_R.Rmd) 
+
+
+***
+
 ### Week 5
 + Mon (4-Feb) -- **Presentation quality graphics**
 [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_02_04.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_02_04.Rmd), [Article by Kelleher and Wagener (2011)](https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Documents/ems2011%20kelleher%20and%20wagener.pdf) 
 
 + Wed (6-Feb) -- **Reshaping, cleaning and tidying data** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_02_06.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_02_06.Rmd)
+
++ Fri (8-Feb) -- **Review (Weeks 1-5)** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_02_08_review_weeks_1_5.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_02_08_review_weeks_1_5.Rmd) 
 
 ***
 ### Week 4
