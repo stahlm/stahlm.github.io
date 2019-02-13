@@ -13,8 +13,9 @@ output:
 ## Lectures 
 
 ### Week 6 
-+ Mon (11-Feb) -- **Combining/joining data** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_02_11.html) [(Rmd)](https://stahlm.github.io/ENS_215/Lectures/2019_02_11.Rmd) and **Loading data into R** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_02_08_load_data_into_R.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_02_08_load_data_into_R.Rmd) 
++ Mon (11-Feb) -- **Combining/joining data** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_02_11.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_02_11.Rmd) and **Loading data into R** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_02_08_load_data_into_R.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_02_08_load_data_into_R.Rmd) 
 
++ Wed (13-Feb) -- **Descriptive statistics and univariate data** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_02_13.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_02_13.Rmd)
 
 ***
 
