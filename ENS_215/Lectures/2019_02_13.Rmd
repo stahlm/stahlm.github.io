@@ -24,7 +24,7 @@ At this point in the term, you've
 + Manipulated, analyzed, visualized, and interpret many large datasets (often containing > 10,000 rows and tens of columns!) 
 
 
-Today and in upcoming lectures you will learn some foundational concepts and technical aspects related to the analysis and statistical components of exploratory data analysis.  These tools and concepts will allow you extract greater information and understanding from your data and to make more rigorous and defensible statements related to your analysis.  
+Today and in upcoming lectures you will learn some foundational concepts and technical aspects related to the interpretation and statistical components of exploratory data analysis.  These tools and concepts will allow you extract greater information and understanding from your data and to make more rigorous and defensible statements related to your analysis.  
 
 We will begin this stage of the class with a refresher/introduction to basic statistics and deeper dive into univariate data.  
 
@@ -134,7 +134,7 @@ FYI, we will learn later in the term, how to make more definitive and rigorous s
 <br/>
 
 ##### Quantiles
-Quantiles are an important way of describing a dataset.  The $f$ quantile, $q(f)$, of a set of data is the **value** in a dataset such that a fraction $f$ of the data are less than or equal to that value (_Cleveland, 1994_).  For example, the 0.25 quantile (also referred to ast the 25^th^ percentile) is the value in a given dataset where 25% of the data are less than that value.  
+Quantiles are an important way of describing a dataset.  The $f$ quantile, $q(f)$, of a set of data is the **value** in a dataset such that a fraction $f$ of the data are less than or equal to that value (_Cleveland, 1994_)[^1].  For example, the 0.25 quantile (also referred to ast the 25^th^ percentile) is the value in a given dataset where 25% of the data are less than that value.  
 
 To compute a quantile $q(f)$ for a given dataset, you first need to compute the percentile ranking of each value in a dataset.  Once the data have been ordered from smallest to largest, the percentile $f_i$ for the i^th^ value, $x_i$ is computed as follows:
 
@@ -142,6 +142,7 @@ To compute a quantile $q(f)$ for a given dataset, you first need to compute the 
 
 $q(f)$ is then the value of $x$ that has corresponds to $f$.  
 
+It is worth noting that there are other methods (_algorithms_) for computing quantiles, they are all generally similar though may differ in some of the finer detail (e.g. how tied values are treated,...)
 <br/>
 
 You are all likely familiar with quantiles as you have dealt with **medians** before.  The **median** of a dataset is the 0.50 quantile (50^th^ percentile).  The median, like the mean, is a measure of location.  However, the **median** is not skewed by outlier values like the **mean**.  
@@ -158,12 +159,12 @@ quantile(ny_precip$Precip_inches, probs = c(0.001, 0.25, 0.50, 0.75, 0.95))
 
 **Exercise**
 
-+ Add a column called `quant` to the `ny_precip` data frame, which has the quantile for each precipitation value in the dataset.  **Note**: you can compute it relatively easily using the equation shown above or you can rely on a function in `dplyr` that will do it for you.  
++ Add a column called `frac` to the `ny_precip` data frame, which has the fraction $f$ (i.e. the percentile ranking) for each precipitation value in the dataset.  **Note**: you can compute it relatively easily using the equation shown above or you can rely on a function in `dplyr` that will do it for you.  
 
 You table should look similar the one below
 ```{r echo=FALSE, eval=TRUE}
 ny_precip %>% 
-  mutate(quant = cume_dist(Precip_inches))
+  mutate(frac = cume_dist(Precip_inches))
  #arrange(Precip_inches) %>%   
  #mutate(quant = (seq(1,nrow(ny_precip)) - 0.5)/nrow(ny_precip))
   
@@ -433,4 +434,4 @@ precip_data %>% group_by(state_cd) %>%
 
 
 
-        
+[^1]: _Visualizing Data_ (William S. Cleveland, 1993)        
