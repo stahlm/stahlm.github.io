@@ -80,6 +80,8 @@ output:
 
 + Lab 5 -- **Final project kick-off** [(html)](https://stahlm.github.io/ENS_215/Labs/Lab_Final_Project.html)
 
++ Lab 6 -- **Project proposal feedback and kick-off of analysis** [(html)](https://stahlm.github.io/ENS_215/Labs/Lab_Final_Project_Second_Meeting.html)
+
 <br/>
 
 ***
