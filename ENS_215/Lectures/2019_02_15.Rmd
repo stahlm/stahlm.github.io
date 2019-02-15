@@ -60,9 +60,9 @@ ny_precip %>%
 
 ```
 
-You can see that the bins (columns) are of equal width and their height corresponds to the number of observations (values) falling within that bin.  For instance, the bin with the most observations is from 2.98-3.26 inches and has 153 observations.  
+You can see that the bins (columns) are of equal width and their height corresponds to the number of observations falling within that bin.  For instance, the bin with the most observations is from 2.98-3.26 inches and has 153 observations.  
 
-Histograms allow you to identify how frequently values of the variable of interest (in the above example monthly precipitation in inches).  By looking at the histogram and comparing bar heights you can determine the relative frequencies in each bin.  
+Histograms allow you to identify how frequently values of the variable of interest are observed (_in the above example monthly precipitation in inches_).  By looking at the histogram and comparing bar heights you can determine the relative frequencies in each bin.  
 
 Looking at the above histogram we can see that while observed monthly precipitation values range from near zero to about 8 inches, the vast majority of observations fall within 2 to 5 inches.  While observations outside of the range 2 to 5 inches do occur, we can see that they are relatively infrequent.
 
@@ -96,7 +96,7 @@ ny_precip %>%
 
 <br/>
 
-You can generate a smoothed version of a histogram, which is refered to as a density curve, using the `geom_density()` function.  The area under the density curve integrates to one.
+You can generate a smoothed version of a histogram, which is refered to as a **density curve**, using the `geom_density()` function.  The area under the density curve integrates to one.
 
 ```{r}
 ny_precip %>% 
@@ -150,7 +150,7 @@ precip_data %>%
 ```
 
 
-### Exercise
+#### Exercise
 
 1. Examine the precipitation distribution between each month for the state of Florida (FL).  You should use a `geom_density_ridges` plot as part of your analysis. You can also generate a summary table with precipitation statistics for each month.
 
@@ -227,11 +227,11 @@ my_gap %>%
 
 
         
-## Quantile plots and cumulative distributions 
+### Quantile plots and cumulative distributions 
 
 Histograms and density curves display the density of observations across the range of values that the variable of interest takes.  At a given value on the x-axis, the higher/taller the curve/bar the greater the frequency of observations at (or around) that value.  
 
-Another way of displaying the a variables distribution is with **quantile plots** or with **cumulative distribution plots**, which are quantile plots where the axes have been flipped.  
+Another way of displaying a variables distribution is with **quantile plots** or with **cumulative distribution plots**, which are quantile plots where the axes have been flipped.  
 
 Note that we can use the `cume_dist()` function to compute the _f-value_ for each observation (i.e. the percentage of observations $\le$ to that observation).  
 
@@ -248,7 +248,7 @@ ny_precip %>%
        caption = "Data source: NOAA")
 ```
 
-The quantile plot is very useful when characterizing and describing the distribution of a variable's values.  The **f-value** corresponding to a given y-value (in this case monthly precipitation) indicates that a proportion $f$ of the observations are less than or equal to the corresponding y-value.  
+The quantile plot is very useful when characterizing and describing the distribution of a variable's values.  The **f-value** corresponding to a given value of the variable (in this case monthly precipitation) indicates that a proportion $f$ of the observations are less than or equal to the corresponding variable value.  
 
 For instance, in the above graphic, an _f-value_ of 0.25 corresponds to 2.5275 inches.  This means that 25% of the observations have a precipitation value less than or equal to 2.5275 inches.  
 
@@ -294,7 +294,7 @@ ny_precip %>%
        caption = "Data source: NOAA")
 ```
 
-### Exercise
+#### Exercise
 
 Create a cumulative distribution plot of **annual** (not monthly) precipitation 
   + You should show the cumulative distribution for "CA","FL","NY","VT","NH" on a single graphic (a curve for each state)
