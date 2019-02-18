@@ -48,12 +48,12 @@ library(ggrepel)
 
 ## Quantile-quantile (Q-Q) plots 
 
-Today's lecture has a lot of information about Q-Q plots, however you can find additional helpful information at the following website from the [US National Institute of Standards and Technology (NIST)](https://www.itl.nist.gov/div898/handbook/eda/section3/eda33o.htm) 
+Today's lecture has a lot of information about Q-Q plots.  If you are interested in some more information you can find additional helpful resources at the following website from the [US National Institute of Standards and Technology (NIST)](https://www.itl.nist.gov/div898/handbook/eda/section3/eda33o.htm) 
 
 <br/>
 
 ### What is a Q-Q plot?
-A quantile-quantile plot (Q-Q plot) takes the quantile data from two different datasets, pairs them based on their _f-value_ and then plots the paired quantile values.  For instance, if you wanted to compare whether daily temperatures in NYC have a similar distribution as daily temperatures in Boston, then to create a Q-Q plot you would do the following:  
+A quantile-quantile plot (Q-Q plot) takes the quantile data from two different datasets, pairs them based on their _f-value_ and then plots the paired quantile values.  A Q-Q plot allows you to compare the distributions between two datasets.  For instance, if you wanted to compare whether daily temperatures in NYC have a similar distribution as daily temperatures in Boston, then to create a Q-Q plot you would do the following:  
 
 + Compute the quantile values for the NYC data (e.g. the 1^st^ percentile, 2^nd^ percentile, ..., 99^th^ percentile temperatures)
 + Compute the quantile values for the Boston data (e.g. the 1^st^ percentile, 2^nd^ percentile, ..., 99^th^ percentile temperatures)
@@ -134,7 +134,7 @@ A Q-Q plot is intended to examine if the data have similar distributions -- it i
 
 To help illustrate this concept, let's examine the example below.  Here we are creating two vectors -- each of which contains 5000 randomly drawn values from a Normal distribution with a mean = 0 and a standard deviation = 1.  Thus `vec_A` and `vec_A` should have very, very similar distributions since they are both drawn from the same theoretical distribution.  
 
-However, if we were to pair the values in `vec_A` and `vec_B` (e.g. 1st value in A with 1st value in B, 2nd value in A with 2nd value in B, ...) there is no reason to believe that they should be correlated.  That is, if the 1^st^ value in A is high, there is no reason to believe that the 1^st^ value in B should also be relatively high.
+However, if we were to pair the values in `vec_A` and `vec_B` (e.g. 1st value in A with 1^st^ value in B, 2^nd^ value in A with 2^nd^ value in B, ...) there is no reason to believe that they should be correlated.  That is, if the 1^st^ value in A is high, there is no reason to believe that the 1^st^ value in B should also be relatively high.
 
 Let's create a scatter plot where we pair A and B to help illustrate this point.
 ```{r echo=FALSE}
@@ -239,7 +239,7 @@ In many situations you will encounter a relationship between distributions that 
 
 If the two distributions differ by something other than a linear transformation, then the Q-Q plot will not form a straight line.  The example below shows a Q-Q plot for two datasets that are drawn from different distributions (Normal and Exponential distributions respectively)
 
-```{r echo=FALSE}
+```{r echo=FALSE, warning=FALSE}
 vec_a <- rnorm(500, mean = 0, sd = 0.5)
 vec_b <- rexp(500, rate = 2)
 
@@ -319,7 +319,7 @@ ggplot() +
        y = "New York Precipitation (inches)")
 ```
 
-+ How do the distributions compare (skewness, range, ...)?
++ How do the distributions compare (skewness, outliers, range, ...)?
 + Do the Q-Q points appear to fall along a line? 
 + Does there appear to be an additive and/or multiplicative shift?
 
@@ -338,7 +338,7 @@ Let's start with a multiplicative shift `shift_mult` = 3.  We'll keep the additi
 
 Look in the `geom_point()` function below and note that we are applying the shifts.  Run the code and see if you get the line to be parallel to the to the 45$^\circ$ line.  If not, then adjust the `shift_mult` and run the code again until you get a value that you are satisfied with.  Once you've got the `shift_mult` settled, then adjust the `shift_add` to get the Q-Q plot to fall as close to the 45$^\circ$ line as possible.
 
-```{r eval=FALSE}
+```{r eval=FALSE, warning=FALSE}
 shift_mult <- 3
 shift_add <- 0
 
@@ -365,15 +365,21 @@ ggplot() +
 
 + In the end what multiplicative and additive shifts did you obtain?  
 
+```{r echo=FALSE, eval=FALSE}
+# shifts that I obtained
+shift_mult <- 1.5 
+shift_add <- -1
+```
+
 <br/>
 
 ### Exercises
 
-1. Choose two new US states and create a Q-Q plot comparing their monthly precipitation distributions.  
+1. Choose two other US states and create a Q-Q plot comparing their monthly precipitation distributions.  
     + How do their distributions compare?
-    + Do they differ by a multiplicative and/or additive shift?  Or are the data from very different distributions (Q-Q plot does not form a line)?
+    + Do they differ by a multiplicative and/or additive shift?  Or are the data from very different distributions (_i.e._ Q-Q plot does not form a line)?  
     
-2. Choose a US state of interest and create a Q-Q plot comparing the distribution of monthly precipitation between two time periods.  This type of exercise is useful if you are interested in assessing a shift in climate.  
+2. Choose a US state of interest and create a Q-Q plot comparing the distribution of monthly precipitation between two time periods.  How do the distributions between the two time periods compare?  Note that this type of exercise is useful if you are interested in assessing a shift in climate.  
 
     
 3. Load in the British Geological Survey arsenic data from Bangladesh and create a Q-Q plot comparing the distribution of groundwater arsenic between the Dhaka and Khulna divisions.  When creating your Q-Q plot, you will want to convert the axes to log scale using `scale_x_log10` and `scale_y_log10` (this will make the graphic easier to read).  Also make sure to add a 45$^\circ$ line to aid in the interpretation of the Q-Q plot.  
