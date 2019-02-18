@@ -12,10 +12,19 @@ output:
 
 ## Lectures 
 
+### Week 7 
++ Mon (11-Feb) -- **Comparing distributions: Q-Q plots** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_02_18.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_02_18.Rmd) 
+
+
+
+***
+
 ### Week 6 
 + Mon (11-Feb) -- **Combining/joining data** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_02_11.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_02_11.Rmd) and **Loading data into R** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_02_08_load_data_into_R.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_02_08_load_data_into_R.Rmd) 
 
 + Wed (13-Feb) -- **Descriptive statistics and univariate data** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_02_13.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_02_13.Rmd)
+
++ Fri (15-Feb) -- **Visualizing and interpreting data distributions** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_02_15.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_02_15.Rmd) and **Graphical display of data distributions: Examples** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_02_15_distributions_examples.html)
 
 ***
 
