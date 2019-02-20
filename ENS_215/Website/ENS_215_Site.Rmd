@@ -15,7 +15,7 @@ output:
 ### Week 7 
 + Mon (18-Feb) -- **Comparing distributions: Q-Q plots** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_02_18.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_02_18.Rmd) 
 
-+ Wed (20-Feb) -- **Theoretical Q-Q plots** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_02_20.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_02_20.Rmd) 
++ Wed (20-Feb) -- **Final project data wrangling** 
 
 
 ***
