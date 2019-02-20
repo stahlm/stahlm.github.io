@@ -12,13 +12,12 @@ output:
 
 
 
-
+<br/>
 
 Let's load in the packages we'll use today.  
 ```{r message=FALSE, warning=FALSE}
 library(tidyverse)
 library(stats)
-library(gridExtra)
 ```
 
 
@@ -32,7 +31,8 @@ There are many theoretical distributions that you could compare a dataset agains
 
 
 
-```{r echo=FALSE, warning=FALSE}
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+library(gridExtra)
 
 q_vec <- seq(-10,10, by = 10^-2)
 
