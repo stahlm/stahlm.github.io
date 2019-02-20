@@ -24,11 +24,11 @@ library(gridExtra)
 
 
 ## Theoretical Q-Q plots
-In the lesson earlier this week, we learned how to use Q-Q plots to compare distributions between two sets of observations (e.g. monthly precipitation in NY and precipitation in RI).  We refer to those Q-Q plots as **empirical Q-Q plots**.  
+In the lesson earlier this week, we learned how to use Q-Q plots to compare distributions between two sets of observations (e.g. monthly precipitation in NY and monthly precipitation in RI).  We refer to those Q-Q plots as **empirical Q-Q plots**.  
 
-We can also use Q-Q plots to compare the distribution of a dataset against a theoretical distribution.  For example we could compare the monthly precipitation in NY against a Normal distribution -- this would allows us to examine if the observed data (precip) is normally distributed and if it is not then how does it deviate from the theoretical distribution.  This type of Q-Q plot is referred as a **theoretical Q-Q plot**.  
+We can also use Q-Q plots to compare the distribution of a dataset against a theoretical distribution.  For example we could compare the monthly precipitation in NY against a normal distribution -- this would allows us to examine if the observed data (precip) is normally distributed (_or if it is not then how does it deviate from the theoretical distribution_).  This type of Q-Q plot is referred as a **theoretical Q-Q plot**.  
 
-There are many theoretical distributions that you could compare a dataset against.  A couple of the more common theoretical distributions that you will encounter are the **Normal distribution** (informally referred to as the bell curve) and the **Exponential distribution** (and the related Gamma and Weibull distributions).  Below are example density plots for a few common theoretical distributions.  
+There are many theoretical distributions that you could compare a dataset against.  A couple of the more common theoretical distributions that you will encounter are the **normal distribution** (informally referred to as the bell curve) and the **exponential distribution** (and the related gamma and Weibull distributions).  Below are example density plots for a few common theoretical distributions.  
 
 
 
@@ -102,7 +102,7 @@ You may be wondering why you would want to compare a dataset (observations) agai
   + Allow us to generate synthetic data.  For example we might want to create a much larger dataset of statistically reasonable precipitation data for the state of NY.  If we can fit the data to a theoretical distribution then we can generate the synthetic data from this distribution.  
   
 
-If you find that your observed data fits a theoretical distribution, then the possibilities described above are generally available to you.  However, it is often the case that observed data will not 
+If you find that your observed data fits a theoretical distribution, then the possibilities described above are generally available to you. 
 
 
 <br/>
@@ -132,7 +132,7 @@ precip_state %>%
 
 The data look like they could potentially be Normally distributed, though we should investigate this further.  
 
-Let's create a theoretical Q-Q plot.  In this plot we will compare the distribution of the precipitation data for our state of interest againt the theoretical quantiles for a standard **Normal distribution**.  
+Let's create a theoretical Q-Q plot.  In this plot we will compare the distribution of the precipitation data for our state of interest againt the theoretical quantiles for a standard **normal distribution**.  
 ```{r message=FALSE}
 f_step = 0.001 # variable that specifies the steps to use when computing quantiles 
 f_vals <- seq(0 + f_step, 1- f_step, by = f_step) # vector with f-values
@@ -150,12 +150,13 @@ ggplot() +
 
 In a theoretical Q-Q plot, we are looking to see if the points form a straight line.  We are NOT looking to see if the line has a slope of 1 as we did when comparing distributions between two observed datasets in our **empirical Q-Q plots** that we made in the previous class.  
 
-If the data points in our **theoretical Q-Q plot** form a straight line, then we can conclude that the observed data has an underlying distribution that is from the same family (_e.g._ Normal, Exponential, ...) as the theoretical distribution under comparison.  
+If the data points in our **theoretical Q-Q plot** form a straight line, then we can conclude that the observed data has an underlying distribution that is from the same family (_e.g._ normal, exponential, ...) as the theoretical distribution under comparison.  
 
+<br/>
 
 In the example above we created a Q-Q plot by calculating the observed and theoretical quantiles and then plotting them using `geom_point()`.  The `ggplot2` package has a function `geom_qq()` that makes this process even simpler.  
 
-Using `geom_qq()` you pass the variable with your observed data (in the example below `Precip_inches`) and you specify the theoretical distribution to compare it against (in the example below we specified the Normal distribution using `distribution = qnorm`).  If you don't specify the distribution, the default is the Normal distribution.  
+Using `geom_qq()` you pass the variable with your observed data (in the example below `Precip_inches`) and you specify the theoretical distribution to compare it against (in the example below we specified the Normal distribution using `distribution = qnorm`).  If you don't specify the distribution, the default is the normal distribution.  
 ```{r}
 ggplot(precip_state, aes(sample = Precip_inches)) + 
   geom_qq(distribution = qnorm) +
@@ -167,13 +168,33 @@ ggplot(precip_state, aes(sample = Precip_inches)) +
 
 The `geom_qq_line()` function fits a line to the data in our Q-Q plot.  By default the `geom_qq_line()` line is fit to the 0.25 and 0.75 quantile (_i.e._ the 25^th^ and 75^th^ percentile points).  
 
-+ Based on your Q-Q plot, does it seem as if the precipitation data is Normally distributed?  If not, where are the deviations from the Normal distribution most pronounced?  
+<br/>
+
+#### Exercise 
+
++ Based on your Q-Q plot above, does it seem as if the precipitation data is Normally distributed?  If not, where are the deviations from the Normal distribution most pronounced?  
 + Do you think the data might be better represented by one of the other theoretical distributions we've introduced (_i.e._ Weibull or exponential)?
 + Repeat the excercise above (_i.e._ the creation of a density curve and a theoretical Q-Q plot) with a few other states of your choosing.  
     + Do any of the states you selected seem to have monthly precipitation data that is Normally distributed?
 
 ```{r}
 # Your code here 
+```
+
++ Create a theoretical Q-Q plot to assess if the annual precipitation totals for NY are normally distributed
+```{r}
+# Your code here
+```
+
+```{r echo=FALSE, eval=FALSE, message=FALSE}
+precip_state %>% 
+  group_by(Year) %>% 
+  summarize(annual_precip = sum(Precip_inches)) %>% 
+  ggplot(aes(sample = annual_precip)) + 
+  geom_qq() +
+  geom_qq_line(color = "blue") + 
+  theme_classic() +
+  labs(y = "Annual Precipitation (inches)")
 ```
 
 
@@ -183,9 +204,9 @@ The `geom_qq_line()` function fits a line to the data in our Q-Q plot.  By defau
 
 ### Q-Q Plot: Log-normal distribution
 
-In the section above we create theoretical Q-Q plots that compared the distribution of the observed dataset against a **Normal distribution**.  As you know there are many theoretical distributions that exist and while the **Normal distribution** is commonly encountered in nature, there are many situations/processes that are described by other theoretical distributions (or by none).  
+In the section above we create theoretical Q-Q plots that compared the distribution of the observed dataset against a **normal distribution**.  As you know there are many theoretical distributions that exist and while the **normal distribution** is commonly encountered in nature, there are many situations/processes that are described by other theoretical distributions (or by none).  
 
-Related to the **Normal distribution** is the **log-normal distribution**.  The log-normal is a distribution whose logarithm is normally distributed.  Thus, if you have data that is from a log-normal distribution, then taking the log of that data will make the data normally distributed.  
+Related to the **normal distribution** is the **log-normal distribution**.  The log-normal is a distribution whose logarithm is normally distributed.  Thus, if you have data that is from a log-normal distribution, then taking the log of that data will make the data normally distributed.  
 
 Just as the normal distribution is common in nature, we frequently encounter log-normal distributions too.  Some examples of log normally distributed data include:
 
@@ -201,7 +222,7 @@ Log-normal distributions outside of the environmental sciences are also common a
 + Length of words spoken in conversation
 + Length of sentences
 + Incomes
-+ Age of onset of certain diseases (_.e.g_ Alzheimers)
++ Age of onset of certain diseases (_e.g._ Alzheimers)
 + Survival times after diagnosis of certain diseases
 + Size of cities
 
@@ -277,7 +298,7 @@ bangladesh_gathered %>%
 
 You can load in the data below 
 ```{r message=FALSE}
-flow <- read_csv("../Class_Data/USGS_gage_01335754.csv") %>% 
+flow <- read_csv("https://stahlm.github.io/ENS_215/Data/USGS_gage_01335754.csv") %>% 
   drop_na()
 ```
 
@@ -293,6 +314,8 @@ flow %>% ggplot(aes(sample = log10(flow_cfs))) +
   facet_wrap(~ Month) +
   theme_classic()
 ```
+
+<br/>
 
 3. Using a Q-Q plot, test to see if the annual maximum flows (i.e. the maximum flow recorded in each year) are log-normally distributed.  Discuss your observations with your neighbor (in particular focus on the goodness of the fit or areas of deviation from the log-normal distribution)
 
@@ -333,7 +356,7 @@ Let's take a look and see if wind speeds measured at a particular site follow a 
 
 First we'll load in the data
 ```{r message=FALSE}
-met_data <- read_csv("../Class_Data/HRECOS_Lock_8_windspeed_2016.csv")
+met_data <- read_csv("https://stahlm.github.io/ENS_215/Data/HRECOS_Lock_8_windspeed_2016.csv")
 
 ```
 
