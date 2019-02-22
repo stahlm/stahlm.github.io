@@ -1,7 +1,7 @@
 ---
 title: "Theoretical Q-Q plots"
 author: "ENS-215"
-date: "20-Feb-2019"
+date: "22-Feb-2019"
 output:
   html_document:
     df_print: paged
