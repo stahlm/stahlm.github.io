@@ -1,0 +1,482 @@
+---
+title: "Working with dates"
+author: "ENS-215"
+date: "25-Feb-2019"
+output:
+  html_document:
+    theme: spacelab
+    df_print: paged
+    toc: TRUE
+    toc_float: TRUE
+---
+
+<br/>
+
+When working with data you will commonly need to deal with dates.  We've already dealt with dates in this class, however for the most part the I've done some preliminary data manipulation to get the dates into an easy format for you to deal with (e.g. separate columns of year, month, and day).  
+
+While this approach made the data easier to deal with for learning purposes, it also imposed some limitations.  Furthermore, most datasets you encounter will not have had this preliminary manipulation done.  
+
+Given the importance of dates in data analysis, we will learn some techniques for handling dates in R.  One of the challenges posed by dates is that you will often encounter them in a wide variety of formats, including those that mix both text and numbers.  For instance consider the many ways that you could represent February 20^th^, 2019  
+
++ Feb 20th, 2019
++ 20-Feb-2019
++ 2019_02_20
++ 20190220
++ 2/20/2019
++ 20/2/2019
++ 2019/20/2
++ 2019/2/20
++ 2019/02/20
+
+
+The above list is by no means exhaustive, furthermore we could add the time of day to the date as well, which would add additional formats to the above list.  
+
+To allow for dates to be properly interpreted by R, we need to convert the date from its initial format into an R **date** object.  R has built in functionality to do this, though the package `lubridate` provides additional functionality and ease of handling for dates in R.  
+
+<br/>
+
+## Creating date/time objects
+
+Let's first load in the package `lubridate` and also `tidyverse`.  You will already have `lubridate` on your computer since it is included in the `tidyverse` packages.  However, `library(tidyverse)` only loads in the core tidyverse packages, so you'll still need to type `library(lubridate)` to load in `lubridate.
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+library(lubridate)
+```
+
+<br/>
+
+### Dates from strings
+
+Date/time info can be stored as a **date**, **time** within a day (e.g. 15:45 EST) or **date-time** which has both the date and time information.  
+
+When creating dates or date-times, you will typically be starting from one of the following
+
++ Strings containing the dates/times
++ Numeric components (e.g. numeric columns of year, month, day)
++ Existing date/time object  
+
+<br/>
+
+Let's first take a look at dealing with dates in string format
+```{r}
+dates_string <- c("2019-2-20", "2019-2-21", "2019-2-22")
+```
+
+<br/>
+
+Let's check the class of `date_string`  
+```{r}
+class(dates_string)
+```
+
+<br/>
+
+You can see that is it a character at the moment. To get this into a date format we'll rely on the `ymd()` function in `lubridate`.  The `ymd()` function converts text in year-month-day format into a date object
+```{r}
+dates_object <- ymd(dates_string)
+
+class(dates_object)
+```
+
+You can see that R now recognizes the data as a date object (the date has been converted from character to a Date object)
+
+Note that the `lubridate` is smart and will easily convert dates that use other separators (e.g. `/` or `.` instead of `-`)
+```{r}
+dates_string <- c("2019/2/20", "2019/2/21", "2019/2/22")
+class(dates_string)
+```
+
+```{r}
+dates_object <- ymd(dates_string)
+class(dates_object)
+```
+
+<br/>
+
+
++ Create a vector with dates as strings, though use periods `.` to separate the years.months.days.  Also "pad" the months and days with zeros so that they are always two digits long (e.g. `02` for February instead of `2`).  Then use the `ymd()` function to convert your character vector to a vector of dates
+```{r}
+# Your code here
+```
+
+<br/>
+
+So we've seen that we can convert dates in year-month-day format using the `ymd()` function.  Lubridate has additional functions to parse other date configurations
+
+| Function 	| Date format 	|
+|----------	|----------------	|
+| `ymd()` 	| year/month/day 	|
+| `ydm()` 	| year/day/month 	|
+| `mdy()` 	| month/day/year 	|
+| `myd()` 	| month/year/day 	|
+| `dmy()` 	| day/month/year 	|
+| `dym()` 	| day/year/month 	|
+
+<br/>
+
+These lubridate functions are smart and will properly parse date strings that present the date in different styles -- the key thing to ensure is that you specify the function that corresponds to the ordering of the date components.
+
+```{r}
+ymd("2018 Mar 31")
+mdy("July 4th 2016")
+dmy("10-Feb-2020")
+```
+
+<br/>
+
++ Test out some more of the lubridate functions on dates of varying styles.  Try to test out a bunch of different styles to convince yourself of the flexibility of the lubridate functions.
+```{r}
+# Your code here
+```
+
+
+<br/>
+
+When your data is in date-time format (_i.e._ has the date and time specified) then to parse the data into an R date-time format you simply append `_hms` to the applicable lubridate funcition.  Let's illustrate this with an example.  
+```{r}
+my_datetimes_string <- c("2019/02/22 10:30:00", "2019/10/15 13:45:10")
+my_datetimes_string
+```
+
+```{r}
+my_datetimes <- ymd_hms(my_datetimes_string)
+my_datetimes
+
+```
+
+<br/>
+
+You can see that the strings were properly parsed into dates, though note that the time-zone defaults to "UTC".  You can specify the time-zone of interest as follows
+```{r}
+my_datetimes <- ymd_hms(my_datetimes_string, tz = "EST")
+my_datetimes
+```
+ 
+<br/>
+
+Let's also take a quick look at the class of the `my_datetimes` object
+```{r}
+class(my_datetimes)
+```
+ 
+We can see that the class is "POSIXct", which is the R class for date-time objects  
+
+You can also create date-time objects with `_h`, `_hm` where the date-time objects would have hours or hours and minutes specified respectively 
+```{r}
+
+ymd_h("2019 Feb 3rd 15", tz = "EST")
+ymd_hm("2019 Feb 3rd 10:45", tz = "EST")
+```
+
+<br/>
+
+### From a dates individual components
+You will commonly come across data that has date information stored across columns - where each column holds part of the date (or date-time) information.  For examply you may have three columns with the year in one column, the month in another, and the day in yet another column.  While there are certain cases, when this is helpful, oftentimes you would like to have a single column that contains all of the date information - this is particularly useful when creating time-series graphics.  
+
+The `lubridate` package has the functions `make_date()` and `make_datetime()`, which does this operation.  
+
+<br/>
+
+First, let's load in USGS daily streamflow data for the Hudson River (USGS gage 01335754 above Lock 1 near Waterford, NY).  This data that has the date information stored across columns.
+
+```{r message=FALSE}
+flow <- read_csv("https://stahlm.github.io/ENS_215/Data/USGS_gage_01335754.csv") %>% 
+  drop_na()
+```
+
+<br/>
+
+Take a look at the dataset and you'll see that there is a `Year`, `Month`, and `Day` column.  Let's create a new column called `Dates` that has all of the date information (stored as a date object) in a single column.  We'll use `make_date()` to do this.
+
+```{r}
+flow <- flow %>% 
+  mutate(Date = make_date(Year, Month, Day))
+```
+
+Now we've got the date information in a single column.  If you also had hour, minute, and seconds information then you could have used the `make_datetime()` function.  
+
+<br/>
+
+Since we now have a single column that contains all of the date information we can get rid of the `Year`, `Month`, and `Day` columns as they are now redundant 
+```{r}
+flow <- flow %>% 
+  select(Date, flow_cfs)
+```
+
+Now we have a more compact dataframe that still contains all of the original information
+```{r}
+head(flow)
+```
+
+
+Having a single column with the date information is incredibly useful as we can not create a time-series plot of the daily streamflow data   
+
+FYI, you can get the current date or current date-time by using the `today()` and `now()` functions from the lubridate package.
+
+```{r}
+today()
+now()
+```
+
+<br/>
+
+#### Exercises
+1. Create a line plot of the daily streamflow data
+    i. Create a version where the y-axis is in linear (default) scale
+    ii. Create a version where the y-axis in in log~10~ scale
+```{r echo=FALSE, eval=FALSE}
+flow %>% 
+  ggplot(aes(x = Date, y = flow_cfs)) +
+  geom_line() +
+  theme_classic()
+```
+
+```{r echo=FALSE, eval=FALSE}
+flow %>% 
+  ggplot(aes(x = Date, y = flow_cfs)) +
+  geom_line() +
+  scale_y_log10() +
+  theme_classic()
+```
+
+
+<br/>
+
+### Extracting components from date-time objects
+There are many situations where you will need to extract the individual components from a date.  The `lubridate` package has a number of functions that perform these operations.  
+
+
+
+To demonstrate this, let's create a date-time object and then extract its components
+
+First we'll create the date-time object using the current date and time
+```{r}
+datetime_test <- ymd_hms(now(), tz = "EST")
+datetime_test
+```
+
+<br/>
+
+Now let's extract the components.  The functions `year()`, `month()` will extract the year and month respectively.  When extracting days we can use a number of functions -- `mday()` will get the day of the month, `yday()` will get the day of the year (_i.e._ days from the Jan 1^st^), `wday()` will get the day of the week.  
+
+Let's test out these functions on our `datetime_test` object
+```{r}
+year(datetime_test) # get the year
+month(datetime_test) # get the month
+mday(datetime_test) # get the day of month
+yday(datetime_test) # get the day of year
+wday(datetime_test) # get the day of week
+hour(datetime_test) # get the hour
+minute(datetime_test) # get the minute
+second(datetime_test) # get the second
+
+decimal_date(datetime_test) # get the date in decimal year format.  For instance if you are halfway through 2019 then the date would be 2019.50
+```
+
+<br/>
+
+For months and days, you can have the functions output the results as a text string containing the abbreviation for the month or day.  To do this we simply specify `label = TRUE` in the `wday()` or `month()` function
+```{r}
+month(datetime_test, label = TRUE)
+wday(datetime_test, label = TRUE)
+```
+
+
+<br/>
+
+Extracting the date-time components is often extremely helpful.  For instance if you want to filter a dataset by year and you can use the `year()` function to get the year values from a single date variable (column) without the need to create a column with the year information.  
+
+For example, consider the `flow` data that we've loaded in today.  We have a single column with all of the date information.  To filter the dataframe by year we can use the `year()` function in our filter statement.
+```{r}
+flow %>% 
+  filter(year(Date) == 2017)
+```
+
+<br/>
+
+#### Exercises
+1. Use the  `make_datetime()` function to create a single column `DateTime` in the `flow` dataset that has all of the date and time info stored as a date-time object. You can set the values to 12, 00, and 00 respectively for hours, minutes, and seconds.
+
+```{r}
+flow<- flow %>% 
+  mutate(DateTime = make_datetime(year(Date), month(Date), mday(Date), 12, 00, 00))
+```
+
+
+2. Create a string that prints "Today is Fri, Feb 22 and the time is 15:30".  Though have the string print out the information corresponding to the present date and time.  You will need to use the `paste()` to concatenate strings (we learned this earlier in the term).
+
+```{r echo=FALSE, eval=FALSE}
+current_datetime <- now()
+
+paste("Today is ", wday(current_datetime, label = TRUE), ", " 
+      , month(current_datetime, label = TRUE), " ", mday(current_datetime), " and the time is ",
+      hour(current_datetime),":", str_pad(minute(current_datetime), width = 2, side = "left", pad = "0"), sep = "")
+```
+
+
+3. Using the `flow` data create a summary table with the mean flow for each month (_i.e_ twelve rows, one for each month)
+```{r eval = FALSE, echo=FALSE}
+flow %>% 
+  group_by(month(Date, label = TRUE)) %>% 
+  summarize(mean_flow = mean(flow_cfs))
+
+```
+
+4. Using the `flow` data, create time-series plots of flow vs. time for each year from 2010 onwards.  You should use `facet_wrap()` to create all of the plots at once.  On the x-axis you should have the day of the year.
+    + Do you see any years where there seem to have been extremely high flows?  Any idea what might have caused these high flows in the Hudson River?
+```{r echo=FALSE, eval=FALSE}
+flow %>% 
+  filter(year(Date) >= 2010) %>% 
+  ggplot(aes(x = yday(Date), y = flow_cfs)) +
+  geom_line() +
+  theme_bw() +
+  labs(x = "Day",
+       y = "Flow (cfs)") +
+  facet_wrap(~ year(Date)) 
+
+```
+
+<br/>
+
+### Math with dates
+There are many situations where you will need to perform mathematical operations (e.g. addition, subtraction, division,...) on dates.  Using the base R functionality along with the `lubridate` package you can carry out these types of operations.  
+
+Before moving forward it is helpful to be aware of the three ways **time spans** are represented in R.  The definitions of the three ways time spans are represented are nicely defined in [R4DS](https://r4ds.had.co.nz/) and are reproduced below
+
+> + **durations**,  which represent an exact number of seconds.
++ **periods**, which represent human units like weeks and months.
++ **intervals**, which represent a starting and ending point. 
+
+
+#### Durations
+**Durations** are stored as seconds, since this is the only unit of time with a consistent length.  For instance, you could not use units of years to store durations as years can have different lengths (e.g. a leap-year vs. a regular year).  
+
+Durations are important to use when you are representing physical processes.  For instance, imagine that you have temperature sensor in the ocean and it is powered by a battery.  If the battery life remaining was reported in years, there would be some ambiguity (as years can have different lengths), whereas reporting the life remaining in seconds leaves no ambiguity.  
+
+You can create **durations** using `lubridate` by using functions such as `dyears()` and `dweeks()`.   The syntax is straightforward -- simply append `d` to the time duration of interest to create the function.  When creating durations, the lubridate functions operate with the following settings (60 seconds in a minute, 60 minutes in an hour, 24 hours in a day, 365 day in a year).  
+
+<br/>
+
+Let's create some durations to highlight how they work
+```{r}
+dyears(1) # duration of 1 year
+dyears(2) # duration of 2 years
+
+dweeks(75) # duration of 75 weeks
+
+ddays(10) # duration of 10 days
+
+dminutes(15) # duration of 15 minutes
+```
+
+<br/>
+
+You can add, multiply, and divide durations
+```{r}
+dyears(1) + dweeks(10) + ddays(25)
+
+5 * dyears(1)
+
+dyears(20)/10
+```
+
+<br/>
+
+You can also add or subtraction durations from dates
+```{r}
+right_now <- now() # date-time now
+right_now
+
+right_now - dyears(10) # date-time 10 duration years prior to now
+```
+
+<br/>
+
+You'll notice that the result is not today's date, ten years ago.  This is because durations are not calendar ("human") units, but are instead an exact number of seconds (_i.e._ 31536000 seconds for a year duration).  Thus using durations may results in results that are unexpected.  
+
+Our result above is the date and time that is exactly 10*(3,153,600 seconds) before the moment the code was run.  
+
+Durations are useful for determining the time elapsed between two date-times.  For example you might want to know exactly how much time has elapsed since Union College was established.  First let's subtract the current date-time from the date when Union College was established (we'll assume the time of establishment was 12 noon)
+
+```{r}
+Union_time <- now() - ymd_hm("1795, Feb 25th 12:00")
+Union_time
+```
+Subtracting two dates gives you a `difftime` object in R and this object records time spans using seconds, minutes, hours, days, or weeks (depending on the situation) and thus can create ambiguity.  To remove ambiguity we can convert the difftime object to a duration (which always uses seconds) using the `as.duration()` function
+```{r}
+as.duration(Union_time)
+```
+
+<br/>
+
+#### Periods
+While **durations** are very useful when dealing with physical processes where you care about the true time elapsed, there are many situations where we are interested in dealing with calendar ("human") times.  
+
+In these situations we can use **periods** in lubridate.  Periods do not have a fixed length in seconds (whereas durations do), and instead they work with "human" time-spans such as calendar days, months, years.  
+
+The functions for **periods** is similar to those for **durations** with the only difference being we drop the `d` at the start of the function name.  Thus, for example the functions `years()`, `months()`, and `days()` represent periods of years, months, and days respectively.
+
+Let's demonstrate how periods in lubridate work.
+```{r}
+right_now - years(10)
+```
+You can see that subtracting a period of 10 years from the `right_now` date-time, gives us a result that is exactly 10 calendar years prior to today (_i.e._ the exact same time and date, but 10 years earlier).  
+
+<br/>
+
+Just like with durations you can add, subtract, multiply, and divide periods.
+
+```{r}
+months(2) + days(5) # addition
+5 * (months(2) + days(5)) # addition and multiplication
+```
+
+<br/>
+
+### Formatting date output
+In many cases you will want to output a date-time object as a character string -- for instance to annotate a graphic or include in the text of a report.  To do this you can you the `as.character()` function to convert the date-time object to a character.  You can specify the format of the output character using the `format = ` argument in the function and specifying one of the many format options listed below.
+
+
+
+| Format codes 	| Description 	| Example 	|
+|--------------	|-----------------------------------------------	|--------------------------	|
+| `%a` 	| Weekday name (abbreviated) 	| Sun, Tue, Tue 	|
+| `%A` 	| Full weekday name 	| Sunday, Tuesday, Tuesday 	|
+| `%m` 	| Month as decimal number 	| 06, 07, 08 	|
+| `%b` 	| Month name (abbreviated) 	| Jun, Jul, Aug 	|
+| `%B` 	| Full month name 	| June, July, August 	|
+| `%c` 	| Date and time, locale-specific 	| Tue Aug 12 18:01:59 2014 	|
+| `%d` 	| Day of the month as decimal number 	| 23, 30, 12 	|
+| `%H` 	| Hours as decimal number (00 to 23) 	| 03, 14, 18 	|
+| `%I` 	| Hours as decimal number (01 to 12) 	| 03, 02, 06 	|
+| `%p` 	| AM/PM indicator in the locale 	| AM, PM, PM 	|
+| `%j` 	| Day of year as decimal number 	| 174, 211, 224 	|
+| `%M` 	| Minute as decimal number (00 to 59) 	| 45, 23, 01 	|
+| `%S` 	| Second as decimal number 	| 23, 00, 59 	|
+| `%U` 	| Week of the year starting on the first Sunday 	| 25, 30, 32 	|
+| `%W` 	| Week of the year starting on the first Monday 	| 24, 30, 32 	|
+| `%w` 	| Weekday as decimal number (Sunday = 0) 	| 0, 2, 2 	|
+| `%x` 	| Date (locale-specific) 	| 8/12/2014 	|
+| `%X` 	| Time (locale-specific) 	| 2:23:00 PM, 6:01:59 PM 	|
+| `%Y` 	| 4-digit year 	| 2013, 2013, 2014 	|
+| `%y` 	| 2-digit year 	| 13, 13, 14 	|
+| `%Z` 	| Abbreviated time zone 	| EST, MST 	|
+| `%z` 	| Time zone 	| -0500, -0700 	|
+
+
+
+<br/>
+
+Let's test this out.
+```{r}
+right_now <- now()
+
+as.character(right_now, format = "%c") # Date and time, locale-specific
+as.character(right_now, format = "%B") # Full month name
+as.character(right_now, format = "%A %B %d") # Full weekday name, full month name, day of month
+```
+
+
++ Try out some additional format options
++ There are lot's of additional features/functionality in the `lubridate` package.  Look at your `lubridate` cheat sheet and practice with some additional functions that seem useful to you but we didn't cover today.  A nice place to start might be the intervals functionality.
