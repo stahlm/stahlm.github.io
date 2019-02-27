@@ -15,7 +15,7 @@ output:
 ### Week 8 
 + Mon (25-Feb) -- **Working with dates** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_02_25.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_02_25.Rmd) 
 
-+ Wed (27-Feb) -- **Working with dates** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_02_27_bivariate.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_02_27_bivariate.Rmd) 
++ Wed (27-Feb) -- **Bivariate data and introduction to data modeling** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_02_27_bivariate.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_02_27_bivariate.Rmd) 
 
 
 ***
