@@ -30,7 +30,6 @@ Let's load in the packages that we'll use today
 ```{r warning=FALSE, message=FALSE}
 library(tidyverse)
 library(lubridate)
-#library(moderndive)
 library(ggExtra)
 ```
 
@@ -271,6 +270,7 @@ Based on the graphic above:
   + Do you seen any long-term trends in the data?  
 
 Now remake the above graphic, but this time include all of the years post 1958.  
+
   + What do you observe?  
   
 
