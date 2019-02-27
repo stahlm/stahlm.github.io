@@ -12,10 +12,20 @@ output:
 
 ## Lectures 
 
+### Week 8 
++ Mon (25-Feb) -- **Working with dates** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_02_25.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_02_25.Rmd) 
+
++ Wed (27-Feb) -- **Working with dates** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_02_27_bivariate.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_02_27_bivariate.Rmd) 
+
+
+***
+
 ### Week 7 
 + Mon (18-Feb) -- **Comparing distributions: Q-Q plots** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_02_18.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_02_18.Rmd) 
 
 + Wed (20-Feb) -- **Final project data wrangling** 
+
++ Fri (22-Feb) -- **Theoretical Q-Q plots**  [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_02_20.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_02_20.Rmd) 
 
 
 ***
