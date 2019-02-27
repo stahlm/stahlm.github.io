@@ -1,0 +1,383 @@
+---
+title: "Bivariate data and introduction to data modeling"
+author: "ENS-215"
+date: "27-Feb-2019"
+output:
+  html_document:
+    theme: spacelab
+    df_print: paged
+    toc: TRUE
+    toc_float: TRUE
+---
+
+<br/>
+
+## Bivariate data: concepts/intro
+**Bivariate data** is data that has observations with two quantitative variables associated with each observation.  For example is we have a dataset where the temperature and precipitation are measured for each observation (_e.g._ US state) then we have a bivariate dataset.  This differs from univariate data where we only have one quantitative variable for each observation (_e.g._ just precipitation).  
+
+In many cases (_as you have already seen_) you will have datasets with many more than two quantitative variables for each observation (_e.g._ the BGS Groundwater Chemistry Dataset for Bangladesh).  In this case our dataset is multivariate, however we when we consider two quantitative variables at a time (_e.g._ arsenic and iron) then we are nonetheless performing **bivariate analysis**.  
+
+While we've been dealing with **bivariate data** and performing **bivariate analysis** for much of the term, we haven't yet explicitly  covered a number of the more technical details and concepts.  In today's lecture we will:
+
++ Refresh our memory on some basics of bivariate analysis
++ Introduce some additional ways of visualizing bivariate data
++ Begin learning about fitting data (data models)
+
+
+<br/>
+
+Let's load in the packages that we'll use today
+```{r warning=FALSE, message=FALSE}
+library(tidyverse)
+library(lubridate)
+#library(moderndive)
+library(ggExtra)
+```
+
+<br/>
+
+
+### Scatter plots: additional concepts
+Scatter plots, which we've been using throughout the term, are a commonly used to visualize bivariate data.  While at this point in the term you are very familiar with this type of graphic, there are a few additional concepts and techniques that are worth pointing in our discussion of bivariate data.  In particular, when using a scatter plot to display bivariate data you should consider whether one of the variables is **dependent** on the other.  When there is a **dependent** variable it is generally plotted in the y-axis, while the independent variable is on the x-axis.  For instance imagine you had a dataset of recording the heights and ages of trees.  Conceptually, the height of the tree depends on the tree's age -- as the tree gets older it has had more time to grow and will increase in height -- while the age does not depend on the height.  Thus you would plot age on the x-axis and height on the y-axis.  In cases, where there is not a clear dependence then the choice of what axis to plot each variable on will depend on preference, aesthetics, and the goal of the figure. 
+
+
+<br/>
+
+Let's load in the BGS Bangladesh groundwater chemistry data to use in the analysis to follow.  
+```{r warning=FALSE, message=FALSE}
+bangladesh_gw <- read_csv("https://stahlm.github.io/ENS_215/Data/NationalSurveyData_DPHE_BGS_LabData.csv") %>% 
+  drop_na()
+```
+
+<br/>
+
+Let's investigate if how well depth relates to the latitude of the location where the well is situated.  We are interested in this because it could potentially provide information that we can use to make inferences about the geology.  Typically well are installed at a depth where water can be extracted at sufficient quantity and quality.  If there geology allows for sufficient quantites of water to be extracted at shallow depth, then you would prefer to install a shallow well (all other things being equal) since it is cheaper to install shallow wells.  
+
+Since there is not a clear dependent variable in this case, we could put either variable on either axis.  However, conceptually it is easier to interpret this plot with latitude on the y-axis, since latitude varies as you move north to south and people tend to conceptualize north to south as the vertical direction on a page.  
+```{r}
+fig_1 <- bangladesh_gw %>% 
+  ggplot(aes(x = WELL_DEPTH_m, y = LAT_DEG)) +
+  geom_point(alpha = 0.3) +
+  theme_classic()
+
+fig_1
+```
+
++ Do you observe any patterns in well depths as you move from north to south in Bangladesh?  What might these patterns suggest?  
+
+<br/>
+
+When there are many points (especially many overlapping ones) **marginal plots** can be very helpful in providing additional information.  Below we'll generate marginal histograms that display the distributions of each of the variables.  
+
+_Note: sometimes the marginal plots don't show up in your notebook (you won't have any issues when you knit however).  If this happens, type `fig_2` in your console and the graphic will appear in your plotting pane._    
+
+To create marginal plots, we can use the `ggMarginal` function from the `ggExtra` package.  I've specified `type = "histogram"` below.  You can also specify `type = "density"` or `type = boxplot`.  Note, that we pass `fig_1` (our scatter plot) to the `ggMarginal()` function -- this tells the function to add the marginal plots to our `fig_1`.
+```{r}
+fig_2 <- ggMarginal(fig_1, type = "histogram", fill = "gray")
+fig_2
+```
+
++ Over what depths are most of the wells?
++ Are most of the wells confined to a narrow band of latitudes or are they relatively well distributed from north to south?
++ Remake the graphic above, but this time have marginal plots as density curves or boxplots.
+
+
+```{r echo=FALSE, eval=FALSE}
+fig_3 <- ggMarginal(fig_1, type = "density", fill = "gray")
+fig_3
+```
+
+<br/>
+
+Another way to show the density of points in each region of the graph is to use the `geom_hex()` function.  This function breaks up the plot area containing data into hexagonal subregions.  The subregions are color-coded according to the density of points in that area.  This achieves something similar to creating a scatter plot where the points are semi-transparent (using the alpha setting in `geom_point()`) -- though `geom_hex()` can help to reduce the "noise" in the graphic by reducing the number of points displayed.
+```{r}
+bangladesh_gw %>% 
+  ggplot(aes(x = WELL_DEPTH_m, y = LAT_DEG)) +
+  geom_hex() +
+  theme_classic()
+```
+
+<br/>
+
+### Time-series plots
+
+A common type of bivariate data is time-series data, where a numeric variable is recorded over time.  We've dealt with time-series data many times throughout the term, though we'll go into some additional tools/concepts below.  
+
+First let's load in some streamflow data from the USGS streamgage at Schoharie Creek (01351500).
+```{r message=FALSE}
+flow <- read_csv("https://stahlm.github.io/ENS_215/Data/USGS_flow_01351500.csv") %>% 
+  drop_na() %>% 
+  filter(Year >= 1940 & Year <= 2016) %>%  # select years 1940 through 2016
+  mutate(Date = make_date(Year, Month, Day)) # create a Date column that has the dates as an R date object
+
+```
+
+
+<br/>
+
+Let's create a standard time-series plot of the streamflow data, where time is on the x-axis and flow is on the y-axis.  A time-series plot of streamflow is referred to as a **hydrograph**.
+```{r}
+flow %>% 
+  ggplot(aes(x = Date, y = flow_cfs)) +
+  geom_line() +
+  theme_classic() +
+  labs(title = "USGS Gage 01351500", 
+       y = "Flow (cfs)",
+       x = "")
+```
+
+<br/>
+
+Since streamflows span a large range of values, we it can often be helpful to display the data with a log~10~ scale y-axis.
+```{r}
+flow %>% 
+  ggplot(aes(x = Date, y = flow_cfs)) +
+  geom_line() +
+  theme_classic() +
+  scale_y_log10() +
+  labs(title = "USGS Gage 01351500", 
+       y = "Flow (cfs)",
+       x = "")
+```
+
+Ok, so these are typical time-series, plots which you are relatively familiar with from our work throughout the term.  Now let's take a look at a few other ways of visualizing time-series data.  
+
+<br/>
+
+#### Raster plots
+Raster plots take time-series data convert and plot year on one axis and the day of the year (or month) on the other axis.  The pixels in the plot have the variable value (in this case flow) mapped to the fill.  These plots are called **raster** plots, as a **raster graphic** is simply a rectangular image where the pixels are colored according to some variable.  Digital images like the ones you take on your phone are called raster graphics.  
+
+Raster plots are an excellent way of displaying streamflow data.  When streamflow data is presented in this way we call it a **raster hydrograph**.  
+
+Let's use the `geom_tile()` function to create a raster hydrograph for the streamflow data at Schoharie Creek.  We'll plot the day of the year on the x-axis, the year on the y-axis, and we will fill the pixels with a color corresponding the the log~10~(flow).  We are using the log~10~(flow) to prevent the color mapping from being heavily skewed to the highest values (recall that streamflow is often log-normally distributed).
+```{r}
+flow %>% 
+  ggplot(aes(x = yday(Date), y = Year, fill = log10(flow_cfs))) +
+  scale_fill_gradient2(low = "red", mid = "green", high = "blue", midpoint = median(log10(flow$flow_cfs))) +
+  geom_tile() +
+  theme_classic() +
+  labs(title = "Schoharie Creek Flows",
+       subtitle = "USGS Gage 01351500", 
+       y = "Year",
+       x = "Day of year",
+       fill = "log(flow)")
+```
+
+With a raster hydrograph it is much easier to identify seasonal patterns as each year is stacked (in rows) on top of one another and their seasons line up in the vertical direction -- thus we can easily see seasonal patterns that are present across years.  Furthermore, we can easily identify long-term trends by seeing how the intensity of the colors change as you look up and down the figure.  
+
+Another benefit of raster hydrographs is that we can observe if there are shifts in flow timing.  For instance, if over time, high flows began to occur later in the year then we would see the blue part of the image shift to the right as the years increases.  
+
+With a raster hydrograph you can also more easily identify anomolous (e.g. particularly wet or dry years) much easier than in a standard hydrograph.  On the raster hydrograph employing the color-scheme above these years will appear as a more red row (dry years) or more blue row (wet year).  
+
+<br/>
+
+Based in the raster hydrograph for Schoharie Creek:
+  
+  + Compare your raster hydrograph to the standard hydrograph -- do you seen any benefits to the raster version?
+  + Is there any seasonal signal in the flow (higher flow vs. lower flow periods)?  If so, what part of the year has higher flows and what part lower flows?
+  + Do any years stand out as particularly high flow or particularly low flow?
+  + Do there appear to be any long-term trends in the data?
+
+
+<br/>
+
+You can also use a raster plot to visualize other types of data.  In a similar vein, monthly precipitation data lends itself to being nicely represented in raster format.  
+
+Let's load in the NOAA precipitation data that we've used in the past.  
+```{r message=FALSE, warning=FALSE}
+precip_data <- read_csv("https://stahlm.github.io/ENS_215/Data/NOAA_State_Precip_LabData.csv")
+```
+
+Take a quick look and refamiliarize yourself with the data.  
+
+Now, let's create a raster graphic of monthly precipitation for California.  We'll filter the data so that we have years 1960 onwards (otherwise we'll have too many years and the graphic will be difficult to read).  
+
+Also note that in the code below we are filling the pixels according to the percentile ranking of each precipitation observation.  This prevents the color-scale from being skewed by outlier data.  We could also fill the pixels according to the precipitation in inches (as opposed to the ranking) though a bit more tweaking of the color scheme would be required.  
+
+Take a look at the code below and make sure you understand what we are doing.  Also note, that we've put year on the x-axis and month on the y-axis (you are free to switch them as neither orientation is more correct). 
+```{r}
+precip_data %>% 
+  filter(state_cd == "CA", Year >= 1960) %>% 
+  ggplot(aes(y = factor(Month), x = Year)) +
+  geom_tile(aes(fill = percent_rank(Precip_inches)), color = "black") +
+  scale_fill_gradient2(low = "red", mid = "white", high = "blue", midpoint = 0.5) +
+  coord_equal() +
+  theme_classic() +
+  labs(y = "Month")
+```
+
++ Do the precipitation data in CA display any seasonality?  If so describe the seasonality.
++ Do you see any long-term trends in precipitation.  For instance does it appear to be getting wetter or drier in CA?
++ Remake the graphic above for another state of interest.  Examine the data and respond to the same questions above.  
+
+
+<br/>
+
+#### Seasonal plot
+In many time-series data there are seasonal patterns (e.g. temperature, precipitation, streamflow,...).  Displaying the data as a standard time-series plot where many years of data are shown as a single line can sometimes make it difficult to clearly identify and characterize these seasonal patterns.  
+
+Let's load in some data of atmospheric CO~2~ concentrations that have been recorded at Mauna Loa, Hawaii since the late-1950s.  The dataset has monthly average concentrations.
+```{r message=FALSE, warning=FALSE}
+mauna_loa <- read_csv("https://stahlm.github.io/ENS_215/Data/Mauna_Loa_CO2.csv", skip = 2)
+
+```
+
+Below I'm plotting a time-series of the monthly data.  This graphic may look familiar to you -- the data here is famous and often appears in discussions of climate change.  
+```{r echo=FALSE}
+mauna_loa %>% 
+  ggplot(aes(x = make_date(Year, Month, 15), y = CO2_ppm)) + 
+  geom_line(size = 1) +
+  theme_bw() +
+  labs(title = expression("Atmospheric CO"[2]),
+       subtitle = "Measured at Mauna Loa, Hawaii",
+       x = "",
+       y = expression("CO"[2]* " (ppm)"),
+       caption = "Data source: NOAA/ESRL")
+```
+
++ Do you observe any long-term trends?
++ Does there appear to be a seasonal signal in the data?  
+
+<br/>
+
+You mostl likely noticed above, that there is a both a long-term trend and a seasonal oscillation in CO~2~ concentrations.  Since the x-axis spans many decades it is difficult to identify what these seasonal trends are (e.g. does CO~2~ peak annually in summer? spring? fall? winter?).  
+
+<br/>
+
+To more easily visualize the seasonal patterns we can create a **seasonal plot**.  In this graphic we will have month (e.g. Jan through Dec) on the x-axis and CO~2~ concentration on the y-axis.  Each year is plotted as its own line.  We color code the lines by year to allow for them to be visually differentiated.  
+
+
+In the plot below we are just plotting years 2010 onwards.
+```{r}
+mauna_loa %>% 
+  filter(Year >= 2010) %>% 
+  ggplot(aes(x = Month, y = CO2_ppm, group = Year, color = Year)) +
+  geom_line() +
+  scale_color_gradient(low = "blue", high = "red") +
+  theme_classic() +
+  labs(title = expression("Atmospheric CO"[2]),
+       subtitle = "Measured at Mauna Loa, Hawaii",
+       x = "Month",
+       y = expression("CO"[2]* " (ppm)"),
+       caption = "Data source: NOAA/ESRL") +
+  scale_x_continuous(breaks = seq(1:12))
+```
+
+You can see how much easier it is to identify the seasonal trends in this graphic as opposed to the standard time-series plot.  You can also identify longer-term trends in the data.  
+
+Based on the graphic above: 
+
+  + Describe the seasonal patterns in CO~2~ concentrations.  Any ideas what might be responsible for these patterns?  Discuss with you neighbors.
+  + Do you seen any long-term trends in the data?  
+
+Now remake the above graphic, but this time include all of the years post 1958.  
+  + What do you observe?  
+  
+
+### Exercises
+
++ Create a monthly mean flow raster plot of the streamflow data in the `flow` data frame (similar to the graphic you made for precipitation)
++ Create a seasonal plot for the monthly mean flow using the `flow` data.  Try making the graphic with all of the years.  Also try making the graphic with just a subset of years.  
+
+<br/>
+
+## Date modeling: Basic regression
+A scientists and engineers (or anyone else who deals with data) we seek to better understand the processes recorded by our data.  Throughout the term, we have been exploring, summarizing, and visualizing data to help gain insight into the topic of interest and to understand the relationship between variables in our datasets.  
+
+Now we are at the point where we can advance into data modeling.  The ModernDive text, does a great job at describing the concept of data modeling:
+
+> The fundamental premise of data modeling is to make explicit the relationship between:  
+
+>  + an outcome variable $y$, also called a dependent variable and
+   + an explanatory/predictor variable $x$, also called an independent variable or covariate.  
+
+>Another way to state this is using mathematical terminology: we will model the outcome variable  
+$y$ as a function of the explanatory/predictor variable $x$. Why do we have two different labels, explanatory and predictor, for the variable $x$? That’s because roughly speaking data modeling can be used for two purposes:
+
+
+1. **Modeling for prediction:**  When we model for prediction we are interested in predicting the outcome of $y$ based on the information contained in the predictor variable(s).  Here we care less about understanding the fundamental relationship between $x$ and $y$ and more about making predictions of $y$ based on information from $x$.  For example, imagine you are a public health official in Bangladesh and you would like to be able to predict arsenic concentrations in wells based on the depth of the well -- this will help you identify at risk wells.  Here you don't really care about the fundamental reasons why arsenic might vary with depth, though you care very much about making accurate predictions of groundwater arsenic based on the depth of the well.  
+
+2. **Modeling for explanation:** When modeling for explanation you want to describe and understand the conceptual/fundamental implications of the relationship between the outcome variable $y$ and the explanatory variable $x$.  Imagine the scenario in Bangladesh, however in this situation you are a hydrologist and would like to understand the scientific reasons why arsenic concentrations depend on depth.  Here you would like to interpret the significance of the relationship and what it might imply with regards to the physical/chemical processes driving arsenic release.  
+
+There are many techniques and approaches to data modeling, though in today's lecture we will focus on **linear regression**
+
+
+<br/>
+
+### Linear regression
+Linear regression is one of the most commonly-used data models and is relatively easy to understand.  We will focus on _simple linear regression_ which is when we have a single numeric explanatory variable $x$ that we will use to explain/predict the outcome of the numeric dependent variable $y$.  
+
+A linear model is of the following form:
+
+$y = \beta_0 + \beta_1*x$
+
+
+Where $\beta_0$ represents the intercept and $\beta_1$ is the slope. 
+
+A linear regression finds the slope and intercept parameters that generate the best predictions (_i.e._ result in the minimum possible difference between the observed values of $y$ and the predicted values of $\hat{y}$).  
+
+
+Let's use the BGS Bangladesh groundwater chemistry data to test out linear regressions.  
+
+Right now you are a hydrologist and you are interested in the understanding how phosphate PO~4~ concentrations affect arsenic concentrations in the groundwaters of Bangladesh.  You know theory suggests that phosphate can actually desorb (knock-off of solid minerals and put into the water) arsenic from the solid aquifer material and thus lead to increases in the concentration of arsenic in the groundwater.  You would like to conduct a regression to better understand if there is in fact a relationship between phosphate and arsenic concentrations in the groundwater and what this might imply scientifically.  
+
+Let's first generate a scatter plot to see how the two variables relate to one another.  Let's focus on just shallow wells from the Dhaka division in our analysis.  
+```{r}
+Dhaka_gw <- bangladesh_gw %>% 
+  filter(DIVISION == "Dhaka", WELL_DEPTH_m < 40)
+
+Dhaka_gw %>% 
+  ggplot(aes(x = P__mgL, y = As_ugL)) +
+  geom_point(alpha = 0.5) + 
+  theme_classic() 
+```
+
+So it looks like there might be a relationship between the two variables.  Let's fit a regression line to the data and plot the fitted line on our graphic.  
+
+To plot a regression line we can use the `geom_smooth()` function and specify that we want the fitted line to be a **linear model**.  We specify this by setting `method = "lm"` in the `geom_smooth()` function call. 
+
+```{r}
+Dhaka_gw %>% 
+  ggplot(aes(x = P__mgL, y = As_ugL)) +
+  geom_point(alpha = 0.5) + 
+  geom_smooth(method = "lm") +
+  theme_classic() 
+
+```
+
+You can see that there is a positive relationship between phosphate and arsenic in the groundwater.  Thus, higher concentrations of phosphate generally indicate higher concentrations of arsenic.  As hydrologists we are interested in understanding the fundamental relationship between phosphate and arsenic -- in this case the positive relationship (i.e. the positive slope of the linear fit) is consistent with geochemical theory.  
+
+Note that our linear model is indicated by the blue line.  The gray band around the line is the _standard error_, which is a measure of the uncertianty of the model fit.  You can remove the standard error by specifying `se = FALSE` in the `geom_smooth()` function call.  
+
+Now that we've created a graphic showing the linear regression fit to our data, we would like to actually know the slope and intercept of our model fit.  To get this information we can use the `lm()` function to perform a linear regression.  The `lm()` function does the exact same thing that `geom_smooth(method = "lm")` does, except the `lm()` function allows us to save the model output as opposed to simply plotting the results.  
+
+Using `lm()` to perform a linear regression is relatively straightforward -- the sytax is as follows:
+
+  > `lm(data = your_dataframe, formula = y ~ x)`
+  
+Where, `y` is the dependent variable, `x` is the explanatory/predictive variable and `your_dataframe` is the data frame that contains your `x` and `y` data.  
+
+Let's compute the linear regression to determine the relationship between arsenic and phosphorus.  In mathematical terms we are solving for the slope ($\beta_1$) and intercept ($\beta_0$) of the following equation:    
+
+$Arsenic = \beta_0 + \beta_1 * phosphorus$
+
+```{r}
+lm(data = Dhaka_gw, formula = As_ugL ~ P__mgL)
+```
+
+You can see from out linear regression that the intercept $\beta_0$ = 41.44 and the slope $\beta_1$ = 66.14  
+
+Thus the equation is:
+
+$Arsenic = 41.44 + 66.14 * phosphorus$
+
+This means that for every increase of 1 mg/L phosphorus, there is a 66.14 ug/L increase in arsenic.  As hydrologists this is useful from a _modeling for explanation_ perspective as it can help provide insight into the fundamental understanding of arsenic mobilization.  The linear model is also useful from a _modeling for prediction_ perspective as it can help us to predict arsenic concentrations if we know the phosphorus concentration and it can also help us to predict how arsenic concentrations will change with any changes in phosphorus.  
+
+
+### Exercises
+
++ Examine the relationship between other pairs of variables in the `bangladesh_gw` dataset.  
+    + Create scatter plots and add a linear fit to the graphic.  
+    + Examine the slope and intercept of your fit and think about and discuss what they imply.  
+    
++ Test out the concepts we learned in today's lecture on any of today's datasets.  This could include the additional concepts in scatter plots, time-series analysis, or additional work with linear regressions.  
