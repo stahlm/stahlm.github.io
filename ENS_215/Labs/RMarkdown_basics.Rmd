@@ -1,0 +1,102 @@
+---
+title: "R Markdown formatting tips"
+author: "ENS-215"
+date: "28-Feb-2019"
+output:
+  html_document:
+    theme: spacelab
+    df_print: paged
+    toc: TRUE
+    toc_float: TRUE
+---
+
+<br/>
+
+You have already learned how to do basic formatting of R Markdown document, however Chapter 27 in [R4DS](https://r4ds.had.co.nz/) goes into greater detail on how this topic.  You can also take a look at the **.Rmd** files that I post with each lecture as this allows you to see my code and exactly how I format my R Markdown documents.
+
+Below are just a few basics that you will likely use when formatting your final project.  Make sure to look at the **.Rmd** version of this file so that you can see exactly how the code is implemented.  
+
+<br/>
+
+
+### Suppress messages
+When loading in libraries in your final project you can specify `message = FALSE` so that the messages that print when you typically load in a library are not displayed in your knit html document.  This makes you document look nicer.
+
+Chunk options are specified right at the top of your code chunk -- directly within the `{r}` portion.  Thus to when specifying `message = FALSE` the top of your code chunk would look like:
+
+> `{r message = FALSE}`
+
+
+Below, I've loaded in `tidyverse` and suppressed the messages.
+```{r message = FALSE}
+library(tidyverse)
+```
+
+<br/>
+
+### Suppress warnings
+Sometimes when you run code you will get warnings that inform you of something to be aware of (e.g. points not shown in plots or values dropped).  It is good to be aware of these warnings and make sure that they are not actually a problem with respect to your analysis.  However, oftentimes the warning, while useful to be aware of, is not actually a problem and thus you do not want to see it in your final knit document.  To suppress warning when your code is knit yo use the `warning = FALSE` chunk option.  
+
+> `{r warning = FALSE}`
+
+```{r warning = FALSE}
+
+```
+
+
+<br/>
+
+
+### Hide code though run and display results
+`echo = FALSE` hides the code in your knit document, however the code is still run.  
+
+> `{r echo = FALSE}`
+
+```{r echo = FALSE}
+
+```
+
+<br/>
+
+
+### Multiple chunk options
+
+You can combine multiple **chunk options**  
+
+> `{r message = FALSE, echo = FALSE}`
+
+```{r message = FALSE, echo = FALSE}
+
+```
+
+
+
+<br/>
+
+
+### Additional chunk options
+There are a number of other chunk options available.  The table below shows these options (_adapted from R4DS_)
+
+| Option 	| Run code 	| Show code 	| Output 	| Plots 	| Messages 	| Warnings 	|
+|-------------------	|----------	|-----------	|--------	|-------	|----------	|----------	|
+| `eval = FALSE` 	| N 	| Y 	| N 	| N 	| N 	| N 	|
+| `include = FALSE` 	| Y 	| N 	| N 	| N 	| N 	| N 	|
+| `echo = FALSE` 	| Y 	| N 	| Y 	| Y 	| Y 	| Y 	|
+| `results = "hide"` 	| Y 	| Y 	| N 	| Y 	| Y 	| Y 	|
+| `fig.show = "hide"` 	| Y 	| Y 	| Y 	| N 	| Y 	| Y 	|
+| `message = FALSE` 	| Y 	| Y 	| Y 	| Y 	| N 	| Y 	|
+| `warning = FALSE` 	| Y 	| Y 	| Y 	| Y 	| Y 	| N 	|
+
+
+
+<br/>
+
+### Display tables and figures later in a document
+If you want to generate a table or figure -- but want to have it displayed later in the document, you can save the figure or table to an R object
+
+> `fig_1 <- ggplot(...) + ...`
+
+> `table_1 <- code that generates your table`
+
+
+Then later on in the document you can display the figure or table by simply typing `fig_1` or `table_1` in your code chunk  
