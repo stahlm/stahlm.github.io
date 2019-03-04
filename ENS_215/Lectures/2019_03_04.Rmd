@@ -14,7 +14,6 @@ output:
 
 
 
-
 ## Data modeling: Basic regression
 As scientists and engineers (or anyone else who deals with data) we seek to better understand the processes recorded by our data.  Throughout the term, we have been exploring, summarizing, and visualizing data to help gain insight into the topic of interest and to understand the relationship between variables in our datasets.  
 
