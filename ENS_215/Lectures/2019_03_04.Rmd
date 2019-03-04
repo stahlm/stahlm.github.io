@@ -16,9 +16,9 @@ output:
 
 
 ## Data modeling: Basic regression
-A scientists and engineers (or anyone else who deals with data) we seek to better understand the processes recorded by our data.  Throughout the term, we have been exploring, summarizing, and visualizing data to help gain insight into the topic of interest and to understand the relationship between variables in our datasets.  
+As scientists and engineers (or anyone else who deals with data) we seek to better understand the processes recorded by our data.  Throughout the term, we have been exploring, summarizing, and visualizing data to help gain insight into the topic of interest and to understand the relationship between variables in our datasets.  
 
-Now we are at the point where we can advance into data modeling.  The ModernDive text, does a great job at describing the concept of data modeling:
+Now we are at the point where we can advance into data modeling.  The ModernDive text (_excerpt below_), does a great job at describing the concept of data modeling:
 
 > The fundamental premise of data modeling is to make explicit the relationship between:  
 
@@ -33,7 +33,7 @@ $y$ as a function of the explanatory/predictor variable $x$. Why do we have two 
 
 2. **Modeling for explanation:** When modeling for explanation you want to describe and understand the conceptual/fundamental implications of the relationship between the outcome variable $y$ and the explanatory variable $x$.  Imagine the scenario in Bangladesh, however in this situation you are a hydrologist and would like to understand the scientific reasons why arsenic concentrations depend on depth.  Here you would like to interpret the significance of the relationship and what it might imply with regards to the physical/chemical processes driving arsenic release.  
 
-There are many techniques and approaches to data modeling, though in today's lecture we will focus on **linear regression**
+There are many techniques and approaches to data modeling, though in today's lecture we will focus first on **linear regression** and then move onto non-parametric regression.
 
 
 <br/>
@@ -71,7 +71,7 @@ bangladesh_gw <- read_csv("https://stahlm.github.io/ENS_215/Data/NationalSurveyD
 
 <br/>
 
-Right now you are a hydrologist and you are interested in the understanding how phosphate PO~4~ concentrations affect arsenic concentrations in the groundwaters of Bangladesh.  You know theory suggests that phosphate can actually desorb (knock-off of solid minerals and put into the water) arsenic from the solid aquifer material and thus lead to increases in the concentration of arsenic in the groundwater.  You would like to conduct a regression to better understand if there is in fact a relationship between phosphate and arsenic concentrations in the groundwater and what this might imply scientifically.  
+Right now you are a hydrologist and you are interested in the understanding how phosphate PO~4~ concentrations affect arsenic concentrations in the groundwaters of Bangladesh.  You know theory suggests that phosphate can desorb (knock-off of solid minerals and put into the water) arsenic from the solid aquifer material and thus lead to increases in the concentration of arsenic in the groundwater.  You would like to conduct a regression to better understand if there is in fact a relationship between phosphate and arsenic concentrations in the groundwater and what this might imply scientifically.  
 
 Let's first generate a scatter plot to see how the two variables relate to one another.  Let's focus on just shallow wells from the Dhaka division in our analysis.  
 ```{r}
@@ -104,6 +104,8 @@ Note that our linear model is indicated by the blue line.  The gray band around 
 
 Now that we've created a graphic showing the linear regression fit to our data, we would like to actually know the slope and intercept of our model fit.  To get this information we can use the `lm()` function to perform a linear regression.  The `lm()` function does the exact same thing that `geom_smooth(method = "lm")` does, except the `lm()` function allows us to save the model output as opposed to simply plotting the results.  
 
+<br/>
+
 Using `lm()` to perform a linear regression is relatively straightforward -- the sytax is as follows:
 
   > `lm(data = your_dataframe, formula = y ~ x)`
@@ -118,11 +120,11 @@ $Arsenic = \beta_0 + \beta_1 * phosphorus$
 lm(data = Dhaka_gw, formula = As_ugL ~ P__mgL)
 ```
 
-```{r echo = FALSE}
+```{r echo=FALSE, message=FALSE}
 lm_1 <- lm(data = Dhaka_gw, formula = As_ugL ~ P__mgL)
 ```
 
-
+<br/>
 
 You can see from out linear regression that the intercept $\beta_0$ = `r round(lm_1$coefficients[1],2)` and the slope $\beta_1$ = `r round(lm_1$coefficients[2],2)`
 
@@ -137,11 +139,11 @@ This means that for every increase of 1 mg/L phosphorus, there is a `r round(lm_
 #### Exercises
 
 + Examine the relationship between several other pairs of variables in the `bangladesh_gw` dataset.  
-    + Create scatter plots and add a linear fit to the graphic.  
+    + Create scatter plots and add a linear fit to the graphic.  In some cases you may find it helpful to perform a linear fit to the log of both variables.
     + Examine the slope and intercept of your fit and think about and discuss what they imply.  
    
     
-***
+
 
 <br/>
 
@@ -203,6 +205,7 @@ Below is a graphic showing a linear model fit to teaching score data, where the 
 
 ![Image source: _ModernDive_](https://stahlm.github.io/ENS_215/Lectures/Images/numxplot5-1.png)
 
+<br/>
 
 Let's explore the residuals for our linear model model fit to the Mauna Loa data.  We can use the `get_regression_points()` function from the `moderndive` package to obtain a data frame with both the observed and modeled results, along with the residuals.
 ```{r}
@@ -281,4 +284,3 @@ loess_mauna_loa_residuals %>%
 ```
 
 From the boxplot of the monthly residuals we have clearly characterized the seasonal patterns in the data.  We can see that each year CO~2~ peaks around May and reaches a minimum around Sept-Oct.  This peak in CO~2~ is due to decreased primary production during the winter months (in the northern hemisphere) which allows CO~2~ to accumulate in the atmosphere.  At the onset of spring, increased primary production helps to draw down CO~2~ and this drawdown continues until the onset of fall in Sept-Oct.  
-
