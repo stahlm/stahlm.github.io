@@ -13,6 +13,75 @@ output:
 |---|------------|-----------|
 
 
+### Week 9
+#### Readings
+* [**R for Data Science (R4DS) Ch: 19**](https://r4ds.had.co.nz) (Optional reading)
+
+#### Assignments 
+1. DataCamp **_Working with Geospatial Data in R_** chapters **1** ("Basic mapping with ggplot2 and ggmap") and **2** ("Point and polygon data")
+    + Assigned: 4-Mar
+    + Due: 13-Mar
+
+
+***
+
+### Week 8
+#### Readings
+* [**R for Data Science (R4DS) Ch: 27 and 28**](https://r4ds.had.co.nz)
+* [**Finish reading ModernDive Ch: 6**](https://moderndive.com/)
+
+#### Assignments 
+1. DataCamp **_Modeling with Data in the Tidyverse_** chapters **3** ("Modeling with Multiple Regression
+") and **4** ("Model Assessment and Selection")
+    + Assigned: 25-Feb
+    + Due: 4-Mar
+
+
+***
+
+### Week 7
+#### Readings
+* [**ModernDive Ch: 6**](https://moderndive.com/)
+
+#### Assignments 
+1. DataCamp **_Modeling with Data in the Tidyverse_** chapters **1** ("Introduction to Modeling") and **2** ("Modeling with Basic Regression")
+    + Assigned: 15-Feb
+    + Due: 25-Feb
+
+***
+
+### Week 6
+#### Readings
+* [**Tidyverse style guide, Chapters 1, 2, 4**](https://style.tidyverse.org/)
+    + Excellent guide to proper usage of style, formatting, and syntax in R.  Read this with care and where applicable you should begin implementing these style tips in your code.  Note that "style" is more than just cosmetic -- good style makes your code human readable and makes sharing and editing code significantly more efficient and less prone to error.  
+
+#### Assignments 
+1. Final project proposal
+    + Assigned: 7-Feb
+    + Due: 13-Feb  
+    
+You should Knit your proposal to an `.html` file and submit it on Nexus.  
+
+***
+
+### Week 5
+#### Readings
+* [**ModernDive Ch: 4**](https://moderndive.com/)
+* [**R for Data Science (R4DS) Ch: 12**](https://r4ds.had.co.nz/) (the R4DS reading is optional, though strongly recommended) 
+
+#### Assignments 
+1. DataCamp **_Working with Data in the Tidyverse_** chapters **1** ("Explore your data") and **2** ("Tame your data
+")
+    + Assigned: 1-Feb
+    + Due: 6-Feb
+  
+2. DataCamp **_Working with Data in the Tidyverse_** chapters **3** ("Tidy your data") and **4** ("Transform your data")
+    + Assigned: 1-Feb
+    + Due: 8-Feb
+
+***
+
+
 ### Week 4
 #### Readings
 * [**ModernDive Ch: 3**](https://moderndive.com/)
@@ -22,8 +91,8 @@ output:
 1. DataCamp **_Data Visualization with ggplot2 (Part 1)_** chapters **1** ("Introduction") and **2** ("Data")
     + Assigned: 25-Jan
     + Due: 30-Jan
-    
-2. DataCamp **_Data Visualization with ggplot2 (Part 1)_** chapters **3** ("Aesthetics") and **3** ("Geometries")
+  
+2. DataCamp **_Data Visualization with ggplot2 (Part 1)_** chapters **3** ("Aesthetics") and **4** ("Geometries")
     + Assigned: 25-Jan
     + Due: 1-Feb
 
