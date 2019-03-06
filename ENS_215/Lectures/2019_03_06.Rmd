@@ -19,16 +19,18 @@ library(tidyverse)
 
 <br/>
 
-You have been using functions in R since the very first day of this class.  The functions you have been using have been functions from base R or from one of many packages that we've been using.  Functions are great as they allow you to automate tasks that you commonly need to do.  Think about one of the most basic functions `mean()` -- this allows you to take the mean of a vector without having to compute the sum and then divide that sum by the number of values in the dataset.  More complex functions such as `lm()`, which computes a linear model, allow you to perform operations that take many lines of code in just a single function call.  
+You have been using **functions** in R since the very first day of this class.  These functions  have been functions from base R or from one of many packages that we've used.  Functions are great as they allow you to automate tasks that you commonly need to do.  
 
-While, base R and the thousands of available R packages provide a wide variety of functions, many times you will find yourself needing a function that does not exist.  You can write your own R functions to automate tasks that frequently find yourself performing.  Writing a function is a much, much better approach than simply copying and pasting code to repeat tasks.  The benefits of function writing over the copy-and-paste approach is nicely summarized in the R4DS (excerpt below):
+Think about one of the most basic functions `mean()` -- this allows you to take the mean of a dataset without having to compute the sum and then divide that sum by the number of values in the dataset.  More complex functions such as `lm()`, which computes a linear model, allow you to perform operations that take many lines of code in just a single function call.  
+
+While, base R and the thousands of available R packages provide a wide variety of functions, many times you will find yourself needing a function that does not exist.  You can write your own R functions to automate tasks that you frequently find yourself performing.  Writing a function is a much, much better approach than simply copying and pasting code to repeat tasks.  The benefits of function writing over the copy-and-paste approach is nicely summarized in the R4DS (excerpt below):
 
 > 1. You can give a function an evocative name that makes your code easier to understand.
 2. As requirements change, you only need to update code in one place, instead of many.
 3. You eliminate the chance of making incidental mistakes when you copy and paste (i.e. updating a variable name in one place, but not in another).
 
 
-So if you find yourself copying and pasting code to perform the same task repeatedly, you should stop and write function.  
+So if you find yourself copying and pasting code to perform the same task repeatedly, you should stop and write a function.  
 
 <br/>
 
@@ -52,7 +54,7 @@ function_name <- function(argument_1, argument_2) {
 
 ```
 
-You can see that on the first line of the code above, the function `function_name` is defined.  By assigning `function(argument_1, argument_2)` to `function_name` we are declaring a new function called `function_name`, which takes two arguments `argument_1` and `argument_2`.  
+You can see that on the first line of the code above, the function `function_name` is defined.  By assigning `function(argument_1, argument_2)` to `function_name` we are declaring a new function called `function_name`, which takes two arguments `argument_1` and `argument_2`.  Note that you can write functions that have as many (of as few) arguments as you want/need.  
 
 Inside the curly brackets `{}` is the **body** of the function -- this is the code that is executed when the function is called.  
 
@@ -86,7 +88,7 @@ cube_it(cube_me = 5)
 
 Referring to the arguments by name when you have only one argument is not really necessary, however when you have mulitiple arguments this can be very helpful.  Oftentimes you may not recall the position of the arguments in the function definition and thus you do not want to rely on positional matching as you may mismatch arguments.  
 
-Let's highlight this point with a basic example using a function that takes one number and raises it to a specified power:
+Let's highlight this point with a basic example where we create a function that takes one number and raises it to a specified power:
 
 ```{r}
 pow_it <- function(base_val, exp_val){
@@ -103,6 +105,13 @@ Let's raise two to the third power $2^3$
 ```{r}
 pow_it(base_val = 2, exp_val = 3)
 ```
+
+Since we are naming the arguments, the position does not matter -- the name takes precedence.  
+```{r}
+pow_it(exp_val = 3, base_val = 2)
+```
+
+<br/>
 
 We could have also called the function and relied on positional matching 
 ```{r}
@@ -133,9 +142,9 @@ F_to_C <- function(deg_F){
 
 
 ```{r echo=FALSE, eval=FALSE}
-F_to_C(75)
+F_to_C(75) # pass a single value to our function
 
-F_to_C(c(10,20,30,40))
+F_to_C(c(10,20,30,40)) # pass a vector to our function
 ```
 
 
@@ -162,11 +171,11 @@ We can specify default values for arguments when we declare a function.  Let's r
 
 ```{r}
 pow_it <- function(base_val, exp_val = 1){
-  base_val^exp_val
+  base_val^exp_val 
 }
 ```
 
-In the function declaration above, we've supplied `exp_val` to a default value of 1.  If the user supplies a value for `exp_val` in their function call, then the user supplied value will be used, otherwise the default value will be applied.  Let's illustrate this below.  
+In the function declaration above, we've supplied `exp_val` a default value of 1.  If the user supplies a value for `exp_val` in their function call, then the user supplied value will be used, otherwise the default value will be applied.  Let's illustrate this below.  
 
 ```{r}
 pow_it(base_val = 3)
