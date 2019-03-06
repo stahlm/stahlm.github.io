@@ -16,7 +16,7 @@ output:
 ### Week 9 
 + Mon (4-Mar) -- **Introduction to data modeling** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_03_04.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_03_04.Rmd) 
 
-
++ Wed (6-Mar) -- **Writing functions** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_03_06.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_03_06.Rmd) 
 
 ***
 
