@@ -114,7 +114,9 @@ output:
 
 + Lab 7 -- **Projects** 
 
-+ Lab 8 -- **Projects and project formatting**[(html)](https://stahlm.github.io/ENS_215/Labs/RMarkdown_basics.html) [(Rmd)](https://stahlm.github.io/ENS_215/Labs/RMarkdown_basics.html)  
++ Lab 8 -- **Projects and project formatting** [(html)](https://stahlm.github.io/ENS_215/Labs/RMarkdown_basics.html) [(Rmd)](https://stahlm.github.io/ENS_215/Labs/RMarkdown_basics.html)  
+
++ Lab 9 -- **Projects: final stage** [(html)](https://stahlm.github.io/ENS_215/Labs/Lab_week_9.html)
 
 <br/>
 
