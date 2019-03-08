@@ -18,6 +18,8 @@ output:
 
 + Wed (6-Mar) -- **Writing functions** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_03_06.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_03_06.Rmd) 
 
++ Fri (8-Mar) -- **Writing functions** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_03_08.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_03_08.Rmd), [Reproducible science article](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Documents/Perkel_2019.pdf)
+
 ***
 
 ### Week 8 
