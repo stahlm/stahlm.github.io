@@ -13,12 +13,17 @@ output:
 
 ## Lectures 
 
+### Week 10
++ Mon (11-Mar) -- **Making maps in R** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_03_11.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_03_11.Rmd) 
+
+***
+
 ### Week 9 
 + Mon (4-Mar) -- **Introduction to data modeling** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_03_04.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_03_04.Rmd) 
 
 + Wed (6-Mar) -- **Writing functions** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_03_06.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_03_06.Rmd) 
 
-+ Fri (8-Mar) -- **Writing functions** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_03_08.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_03_08.Rmd), [Reproducible science article](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Documents/Perkel_2019.pdf)
++ Fri (8-Mar) -- **Interactive graphics** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_03_08.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_03_08.Rmd), [Reproducible science article](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Documents/Perkel_2019.pdf)
 
 ***
 
