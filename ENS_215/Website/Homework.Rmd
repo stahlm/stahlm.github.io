@@ -13,6 +13,14 @@ output:
 |---|------------|-----------|
 
 
+### Week 10
+#### Extra credit assignment (optional) 
+1. DataCamp **_Working with Geospatial Data in R_** chapters **3** ("Raster data and color") and **4** ("Data import and projections")
+    + Assigned: 11-Mar
+    + Due: 18-Mar
+
+***
+
 ### Week 9
 #### Readings
 * [**R for Data Science (R4DS) Ch: 19**](https://r4ds.had.co.nz) (Optional reading)
