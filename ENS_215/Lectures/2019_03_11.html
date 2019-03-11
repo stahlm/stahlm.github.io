@@ -229,14 +229,15 @@ div.tocify {
 
 
 <p><br /></p>
-<p>In the environmental sciences (and in most other fields) data often has a spatial component. Thus, you will commonly want to or need to generate maps to explore, analyze, and present your data.</p>
-<p>R has a wide-range of packages/functionality for performing spatial analysis and making maps. In today’s lesson we will learn some of the basics of map making in R. Note that spatial analysis and map making fields unto their own and a whole course could easily be dedicated to this topic in R alone. Nonetheless, using some of the basic map making functionality in R, you can learn how to make presentation-quality maps quickly and (relatively) easily. For those interested in pursuing this topic further there are many excellent resources freely available. The freely available book <a href="https://geocompr.robinlovelace.net/">Geocomputation with R</a> is a great place to learn about this topic in greater detail.</p>
-<p>Creating maps in R, also provides a huge advantage over many other map making tools – all of your operations are clearly documented in your code and a map can be perfectly reproduced by simply re-running the code. In many other map making software, many of the operations you perform are “point-and-click”, thus there is often no easy way to reproduce your exact map from scratch and there is little record of how you did what you did.</p>
-<p>Let’s first load in the <code>tidyverse</code> package, since we will use some of the data wrangling packages to handle our data and we will create our maps using the <code>ggplot2</code> package.</p>
-<pre class="r"><code>library(tidyverse)</code></pre>
+<p>In the environmental sciences (and in most other fields) data often has a spatial component. Thus, you will commonly need to generate maps to explore, analyze, and present your data.</p>
+<p>R has a wide-range of packages/functionality for performing spatial analysis and making maps. In today’s lesson we will learn some of the basics of map making in R. Using R you can create high-quality maps, just like those you might create in other geographic information systems (GIS) software (<em>e.g.</em> ArcGIS, QGIS, Google Earth). Creating maps in R, also provides a huge advantage over many other map making tools – all of your operations are clearly documented in your code and a map can be perfectly reproduced by simply re-running the code. In many other map making software, many of the operations you perform are “point-and-click”, thus there is often no easy way to reproduce your exact map from scratch and there is little record of how you did what you did.</p>
+<p>Note that spatial analysis and map making are fields unto their own and whole courses could easily be dedicated to this topic in R alone. Nonetheless, using some of the basic map making functionality in R, you can learn how to make presentation-quality maps quickly and (relatively) easily. For those interested in pursuing this topic beyond what we will cover this week, there are many excellent resources freely available. The book <a href="https://geocompr.robinlovelace.net/">Geocomputation with R</a> is a great place to learn about this topic in greater detail.</p>
 <p><br /></p>
 <div id="spatial-data-in-ggplot2" class="section level2">
 <h2>Spatial data in ggplot2</h2>
+<p>Let’s first load in the <code>tidyverse</code> package, since we will use some of the data wrangling packages to handle our data and we will create our maps using the <code>ggplot2</code> package.</p>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<p><br /></p>
 <p>Before we go ahead and make our first map, let’s quickly go over some of the most common types of spatial data that you will encounter in your work:</p>
 <ul>
 <li><strong>Point</strong>: individual points such as groundwater well locations</li>
@@ -259,6 +260,7 @@ div.tocify {
   </script>
 </div>
 <p>You can see that we have a data frame containing the spatial data for the boundaries of the US states. We can <code>lat</code> and <code>long</code> columns contain the spatial coordinates. The <code>group</code> column specifies how the points should be grouped when drawing polygon boundaries (e.g. all of the Alabama data should be connected to one another). The <code>region</code> column has identifying information about each <code>group</code>, which in this case provides the name of state represented by each group.</p>
+<p><br /></p>
 <p>We can now generate a map of the US states using <code>ggplot()</code>. We need to use the <code>geom_polygon()</code> geometry as this will plot polygons (which is how we would like to represent the state boundaries).</p>
 <pre class="r"><code>map_us &lt;- map_data_usa %&gt;% 
   ggplot() + 
@@ -310,14 +312,9 @@ map_us</code></pre>
 <p>Thus far we’ve learned how to generate a basemap that displays a region/area of interest. Typically we want to add additional layers to a map that present a spatial dataset on top of the basemap. For instance we might want to add a layer with line data representing rivers of interest, or maybe we would like to add points that represent sampling sites.</p>
 <p>Adding additional layers simply requires us to plot an additional <code>geom</code> on top of our basemap – since we are working with <code>ggplot()</code> this is essentially identical to how we have added <code>geom</code>s to plots in the past.</p>
 <p>Let’s work through an example, where we add points to represent the US state capitals. First we’ll load in a csv file that has the coordinates of each US state’s capital (the file also has a locations that we’ll filter out).</p>
-<pre class="r"><code>state_cap_locs &lt;- read_csv(&quot;https://stahlm.github.io/ENS_215/Data/us_capitals_locs.csv&quot;, skip = 2)</code></pre>
-<pre><code>## Parsed with column specification:
-## cols(
-##   state_cd = col_character(),
-##   lat_deg = col_double(),
-##   long_deg = col_double()
-## )</code></pre>
-<pre class="r"><code>state_cap_locs &lt;- state_cap_locs %&gt;% 
+<pre class="r"><code>state_cap_locs &lt;- read_csv(&quot;https://stahlm.github.io/ENS_215/Data/us_capitals_locs.csv&quot;, skip = 2)
+
+state_cap_locs &lt;- state_cap_locs %&gt;% 
   filter(state_cd %in% state.abb) %&gt;% # remove locations that aren't US state list (e.g. Puerto Rico, Guam, ...)
   filter(state_cd != &quot;AK&quot;, state_cd != &quot;HI&quot;) # remove capitals of Alaska and Hawaii (our basemap only has the lower 48 states)</code></pre>
 <p>Take a look at the <code>state_cap_locs</code> data. You’ll see that it is simply a three column data frame with the state abbreviation and lat/long for each capital.</p>
@@ -334,6 +331,7 @@ map_us</code></pre>
 <h3>Plotting sub-regions of interest</h3>
 <p>Since the <code>map_data()</code> function converted the basemap data we are using into a data frame, we can take advantage of all of the data manipulation/wrangling techniques that work on data frames (e.g. filtering).</p>
 <p>Let’s highlight some of the possiblities with an example. We will create a map of the US, however we will only map the states in the Northeast.</p>
+<p>First let’s load in the map data for the lower 48 states.</p>
 <pre class="r"><code>map_data_usa &lt;- map_data(&quot;state&quot;) # get data frame with the spatial data for borders of lower 48 states
 
 head(map_data_usa)</code></pre>
@@ -347,6 +345,7 @@ head(map_data_usa)</code></pre>
 <pre class="r"><code>map_data_ne &lt;- map_data_usa %&gt;% 
   filter(region %in% c(&quot;massachusetts&quot;, &quot;new york&quot;, &quot;connecticut&quot;, &quot;rhode island&quot;, &quot;maine&quot;,
                        &quot;vermont&quot;,&quot;new hampshire&quot;))</code></pre>
+<p><br /></p>
 <p>We can now use the same approach we’ve been using to generate our map, which in this case will only have the Northeast states.</p>
 <pre class="r"><code>map_data_ne %&gt;% 
   ggplot() + 
