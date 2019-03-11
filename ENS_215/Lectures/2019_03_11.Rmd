@@ -296,3 +296,63 @@ earthquake_map <- map_world_data %>%
 
 earthquake_map
 ```
+
+<br/>
+
+### Exercise: choropleth map of temperature changes in the US
+Create a choropleth map that shows the change in temperature for each US state.  You should use the NOAA data and the change in temperature for each state should be computed as the difference between the state's mean temperature pre-1960  and post-1960.  
+
+
+```{r echo=FALSE, message=FALSE}
+state_mean_temps_pre <- state_temps %>% 
+  filter(Year <= 1960) %>% 
+  group_by(state_cd) %>% 
+  summarize(mean_temp_pre = mean(Avg_Temp_F))
+
+```
+
+
+```{r echo=FALSE, message=FALSE}
+state_mean_temps_post <- state_temps %>% 
+  filter(Year > 1960) %>% 
+  group_by(state_cd) %>% 
+  summarize(mean_temp_post = mean(Avg_Temp_F))
+
+```
+
+
+
+```{r echo=FALSE, message=FALSE}
+state_mean_temps_change <- left_join(state_mean_temps_post, state_mean_temps_pre) %>% 
+  mutate(temp_change = mean_temp_post - mean_temp_pre)
+
+```
+
+```{r echo=FALSE, message=FALSE}
+state_mean_temps_change <- left_join(state_mean_temps_change, state_name_table) 
+```
+
+```{r echo=FALSE, message=FALSE}
+state_mean_temps_change <- state_mean_temps_change %>% 
+  rename(region = state_name)
+```
+
+
+```{r echo=FALSE, message=FALSE}
+map_data_usa_temps_change <- left_join(map_data_usa, state_mean_temps_change)
+```
+
+Below is what my map looks like
+```{r echo=FALSE}
+map_data_usa_temps_change %>% 
+  ggplot() + 
+  geom_polygon(aes(long, lat, group = group, fill = temp_change), color = "black") +
+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0) +
+  coord_map(projection = "bonne", lat0 = 50) +
+  labs(title = "Changes in mean temperature",
+       subtitle = "Difference between post and pre-1960 means",
+       caption = "Data source: NOAA",
+       fill = "Temp. increase (deg. F)") +
+  theme_void() 
+```
+
