@@ -17,10 +17,10 @@ In the last lesson we learned about some basic concepts related to spatial data 
 As we saw the `ggplot2` package allows you to create high-quality maps (there is much more functionality than we were able to cover in one class) and you could easily do much of your map making work in `ggplot2`.  However, there are many other packages/tools available for creating maps in R and it is worthwhile to be introduced to two highly useful and widely used packages -- `leaflet` and `tmap`.  The `leaflet` and `tmap` packages, allow you to create both interactive (`leaflet` and `tmap`) and static maps (`tmap`) and will expand the map making tools at your disposal.  
 
 Again, I strongly recommend those of you who are interested to map making (and spatial analysis more broadly) to consult the excellent and freely available textbook [Geocomputation with R](https://geocompr.robinlovelace.net/).  
-
+<br/> 
 
 ## Interactive maps with `leaflet`
-Leaflet is a very popular, open-source library for creating interactive maps.  You've almost certainly interacted Leaflet maps before as they are widely used by The US National Parks Service, The New York Times and The Washington Post, along with a host of other popular sites.  You can easily generate Leaflet maps in R using the `leaflet` package.  
+Leaflet is a very popular, open-source library for creating interactive maps.  You've almost certainly interacted Leaflet maps before as they are widely used by The US National Parks Service, The New York Times and The Washington Post, along with a host of other popular sites.  You can easily generate Leaflet maps in R using the `leaflet` package.  These interactive maps will be nicely embedded in your knit html documents, thus allowing you to easily share them.
 
 Let's first load in the `leaflet` package, which we will use to make interactive maps.  We'll also load in the `tidyverse` package, since we will use some of its data wrangling/handling packages.  
 ```{r}
@@ -58,6 +58,7 @@ Try out a few other map tiles of interest.  Note: some provider tiles do not kni
 
 <br/>
 
+
 ### Adding layers/geometries to Leaflet maps
 So far we've just generated a basemap, however we almost always want to display additional layers of data on top of the basemap.  We can easily use data from a range of data formats (e.g. data frames, `sp` and `sf` objects, GeoJSON) display a range of geometries (e.g. point markers, polygons, lines, ...).  
 
@@ -90,6 +91,8 @@ Also note that just like graphics generated with `ggplot2`, we can similarly ass
 ```{r}
 map_cap
 ```
+
+<br/> 
 
 There are a number of other marker features that you can adjust, including the marker icon used and marker size.  For additional information and examples, check out the [Leaflet for R](http://rstudio.github.io/leaflet/) website.
 
@@ -126,7 +129,7 @@ library(geojsonio)
 
 Now we will use the `geojson_read()` function to load in the **.geojson** file that has the state boundaries.  You can see that we've set the `what` argument equal to `"sp"`.  This tells the `geojson_read()` function to convert the GeoJSON file into a **Spatial data-structure** that can be easily computed on, manipultate, and plotted in many R packages including Leaflet.
 ```{r}
-state_borders <- geojson_read("../Class_Data/gz_2010_us_040_00_5m.geojson", what = "sp")
+state_borders <- geojson_read("https://stahlm.github.io/ENS_215/Data/gz_2010_us_040_00_5m.geojson", what = "sp")
 
 # geojson state boundaries from http://eric.clst.org/tech/usgeojson/
 ```
@@ -138,7 +141,7 @@ map_cap %>%
   addPolygons(data = state_borders)
 ```
 
-
+<br/> 
 
 ### Controlling map layers
 Oftentimes you will want to give yourself (or other users) the ability to interactively toggle map layers on and off and to change the basemap between different map tiles.  You can easily do this with the  `addLayersControl()` function in leaflet.  
@@ -170,64 +173,131 @@ leaflet(state_cap_locs) %>%
 The `tmap` package is a widely used package for creating both static and interactive maps in R.  The `tmap` package have a wide range of functionality and flexibility and allows for the display of more spatial classes than `ggplot2` -- thus allowing for certain types of maps that are difficult to create with `ggplot2`.  A nice feature of the `tmap` package is that it is based on the "grammar of graphics" and thus the syntax is very similar to `ggplot2`.  This makes learning `tmap` relatively easy for those who already have experience with `ggplot2` (_i.e._ you).  
 
 
-Let's load in the `tmap` package, along with the `spData` package which has provides some nice spatial datasets that we can use to create example maps.  We will also load in the `sf` package, which provides functionality in R for Simple Features data types.
+Let's load in the `tmap` package, along with the `spData` package which has provides some nice spatial datasets that we can use to create example maps.  We will also load in the `sf` package, which provides functionality in R for **simple features** (sf) data types.  Simple features are a standard for storing storing spatial data.  Simple featurs are widely used in the field of spatial analysis and given that they are spatial data frames, they are well suited to use in R.  You can learn more about simple features and R [here](https://github.com/r-spatial/sf).
 ```{r message=FALSE, warning=FALSE}
 library(tmap)
 library(spData)
 library(sf)
 ```
 
-https://github.com/r-spatial/sf
+<br/> 
+
+We will use the `tmap` package to create a world map based on the `world` country polygons simple features dataset from the `spData` package.   
 
 ```{r}
-library(tmap)
-tm_shape(world) +
+world_map_data <- world # save the world data from the spData package to our own R object
+```
+Type `View(world_map_data)` in your console.  You will see that the `world_map_data` simple features object looks like a typical data frame, except that it has a `geom` column which stores the spatial data associated with the other variables.  
+
+Now let's create a choropleth map of life expectancy using `tmap` and the `world_map_data` dataset. 
+```{r}
+tm_shape(world_map_data) +
     tm_polygons("lifeExp")
 ```
 
+With the `tm_shape()` function we define the spatial dataset to be used.  Then we plot the spatial data by adding geometry layers (just like we do in `ggplot2`).  Here we've added polygons using the `tm_polygon()` function and we specified the variable ("lifeExp") from the spatial dataset that will be used to color the polygons.  
 
+There are other geometries (e.g. border, fill, lines, dots,...) that you can layer on top of your map.  
+
+Let's step back for a moment and demonstrate how we can build up a map from it's basic components.
 ```{r}
-tmap_mode("plot")
+map_1 <- tm_shape(world) +
+  tm_fill()
+
+map_2 <- tm_shape(world) +
+  tm_fill("lifeExp") 
+
+map_3 <- tm_shape(world) +
+  tm_fill("lifeExp") +
+  tm_borders("black") 
+
+tmap_arrange(map_1, map_2, map_3) # arrange the three maps
+```
+
+You can see from the above code, that we have control of each of the individual geometries -- in this example fill `tm_fill()` and borders `tm_borders()`.  We can also set the aesthetics of each of the geometries.  Note that we set the aesthetic with a character string specifying the variable to use (e.g. `"lifeExp"`).  
+
+<br/>
+
+
+Just like in `ggplot2` you can facet map graphics, thus allowing you to quickly and easily create sets of maps.
+```{r}
 tm_shape(world) +
-  tm_fill() +
+  tm_fill("continent") +
   tm_borders() +
-  tm_facets(by = "continent", free.coords = T)
+  tm_facets(by = "continent", free.coords = TRUE)
 ```
 
+<br/> 
 
-https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Data/Rivers.zip
+There are tons of formatting options for `tmap` graphics, which allow you to customize your map and to generate research quality graphics.  
+
+Let's make a map of Alaska to demonstrate a few of these options.  We'll use the `alaska` simple features dataset that is in the `spData` package.  
+
 ```{r}
-shape_river <- st_read("../Class_Data/Rivers/ne_50m_rivers_lake_centerlines.shp", stringsAsFactors = FALSE)
+alaska_data <- alaska # assign alaska data to our own R object
+
+tm_shape(alaska_data) +
+  tm_fill("grey") +   # add the fill
+  tm_borders("black", lwd = 2) +  # add the borders and set border line width
+  tm_compass(position = c("left", "top")) +  # add a compass
+  tm_scale_bar(breaks = c(0, 250, 500), size = 1) +    # add a scale bar
+  tm_layout(bg.color = "lightblue", title = "Alaska")  # set the background color and title
+```
+
+Above we adjusted a number of different features and stylistic settings.  This example highlights just a few of the many options.  To learn more about the features/options available, check out chapter 8 of [Geocomputation with R](https://geocompr.robinlovelace.net/).
+
+
+<br/>
+
+#### Loading in and mapping external datasets in `tmap`
+Oftentimes we will have a dataset that we want to load into R and display on our map.  We've seen some examples already, where we loaded in files and plotted them on maps in `ggplot2` and `leaflet`.  When we were loading in point data it was very easy to map them in `ggplot2` and `leaflet` as both of those packages accept tibbles (data frames).  It is easy to load in and display data in `tmap` as well, however we first need to convert it to a compatible format (e.g. simple features).  
+
+The `st_read()` function allows us to read in shapefiles, which are one of the most common spatial data storage formats, and conver them to simple feature objects that be be visualized with `tmap`.  
+
+Paste the link below in your web browser and it will initiate the download of a zipfile containing a shapefile of global rivers.  Once the download is complete, you should unzip the data to a folder in your "Lectures" directory.  If you unzip the file to a folder called "Rivers" that lives within your "Lectures" folder then the code below should run on your computer.  If you named the folder something else, then you will need to update the path below accordingly.  
+
+https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Data/Rivers.zip  
+
+<br/>
+
+The `st_read()` function will read in the river shapefile and convert it to a simple feature object.  
+```{r}
+shape_river <- st_read("./Rivers/ne_50m_rivers_lake_centerlines.shp", stringsAsFactors = FALSE)
 
 ```
 
-
+Now that the river data in a format compatible with `tmap` we can plot this layer.  We will first generate our world map with the `world` polygon data we used earlier and then we will layer on an additional shape `shape_river`, which we will specify to be represented as lines using the `tm_lines()` function.  
 ```{r}
-tmap_mode("plot")
-tm_shape(world) +
+map_world_rivers <- tm_shape(world) +
   tm_fill() +
   tm_borders() +
   tm_style("natural") +
   tm_shape(shape_river) +
   tm_lines(col = "blue") 
   
-  
+map_world_rivers  
+```
+
+Now we have a world map where which has a layer showing the world's major rivers.  
+
+<br/> 
+
+#### Making interactive maps in `tmap`
+Making interactive maps with `tmap` is very straightforward and requires just a single additional line of code.  The  `tmap_mode()` function allows you to set the viewing mode to "view", which is the interactive mode, or to "plot" which is the static mode.  Note that once you set a particular mode, that mode applies to all subsequently generated maps until you switch to another mode.    
+
+```{r}
+tmap_mode("view") # set viewing mode to interactive
+map_world_rivers 
+
+tmap_mode("plot") # set viewing mode to static, so that any maps made later will be in static plot mode
 ```
 
 
+These interactive maps will be nicely embedded in your knit html documents, thus allowing you to easily share them.  
+
+You can learn more about the interactive features available in `tmap` [here](https://geocompr.robinlovelace.net/adv-map.html#interactive-maps) 
 
 
-```{r eval=T}
-tmap_mode("view")
-tm_shape(world) +
-  tm_fill() +
-  tm_borders() +
-  tm_style("natural") +
-  tm_shape(shape_river) +
-  tm_lines(col = "blue") +
-  tm_view(basemaps = "Esri.WorldPhysical")
-
-```
+In any remaining time, try applying the tools/techniques you learned today to make different versions of the maps above or maps for your final project.  
 
 
-https://www.azavea.com/blog/2017/08/30/spatial-analysis-pipelines-in-r-with-simple-features/
