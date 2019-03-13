@@ -16,6 +16,9 @@ output:
 ### Week 10
 + Mon (11-Mar) -- **Making maps in R** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_03_11.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_03_11.Rmd) 
 
++ Wed (13-Mar) -- **Making maps in R: Continued** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_03_13.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_03_13.Rmd) 
+
+
 ***
 
 ### Week 9 
