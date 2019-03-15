@@ -18,6 +18,7 @@ output:
 
 + Wed (13-Mar) -- **Making maps in R: Continued** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_03_13.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_03_13.Rmd) 
 
++ Fri (15-Mar) -- **Term wrap-up and useful resources** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_03_15.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_03_15.Rmd) 
 
 ***
 
