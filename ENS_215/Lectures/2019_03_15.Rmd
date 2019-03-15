@@ -1,0 +1,53 @@
+---
+title: "Term wrap-up and useful resources"
+author: "ENS-215"
+date: "15-Mar-2019"
+output:
+  html_document:
+    df_print: paged
+    theme: spacelab
+    toc: yes
+    toc_float: yes
+---
+
+<br/> 
+
+## Course survey and feedback
+[Please fill out the survey linked here (_all responses are anonymous_)](https://goo.gl/forms/p2yXuBdOpb7OM9c32)
+
+<br/>
+
+## Learning more
+
++ [Our class (ENS-215) website](https://stahlm.github.io/ENS_215/Website/ENS_215_Site.html): All of the content will remain up and available to you.
++ [_ModernDive_](https://moderndive.com/): For those of you interested in learning more about statistics and data modeling the later chapters in the book are a great starting point.
++ [_R for Data Science_](https://r4ds.had.co.nz/): As you already know this book is a comprehensive resource for using R in data science applications.  
++ [_An Introduction to Statistical Learning_](http://www-bcf.usc.edu/~gareth/ISL/): An excellent and freely available textbook that introduces machine learning concepts and applications.  This book is a bit advanced (aimed at upper level undergraduates and graduate students) but is still reasonably accessible.
+    + Two of the authors (Prof. Hastie and Tibshirani of Stanford) have made 15 hrs of video lectures that go along with the book.  The lectures are excellent and actually pretty entertaining too (they have great banter with each other).  [You can access the lectures here](https://www.r-bloggers.com/in-depth-introduction-to-machine-learning-in-15-hours-of-expert-videos/).
++ [_Geocomputation with R_](https://geocompr.robinlovelace.net/): Excellent and freely available text on geographic data analysis, visualization, and modeling.  The book implements these concepts and techniques with R.  The chapter on making maps in R is likely to be of particular interest to many of you.  
++ [DataCamp](https://www.datacamp.com/): There are many additional interactive classes available here covering a wide-range of topics (e.g. machine learning, geographic/spatial analysis, statistics) and their implementation in R.  Your free access lasts for six months, so you will still have access for some time after the term ends.  
+
+
+<br/>
+
+## Other useful resources
++ [RStudio Cloud](https://rstudio.cloud/): Allows you to run RStudio right in your web browser.
++ [Compendium of hydrology resources in R](https://github.com/ropensci/hydrology)
++ [USGS Office of Water Information](https://owi.usgs.gov/datascience/): Links to USGS water data resources, USGS data science tools and training, and USGS data visualizations. 
++ [Towards Data Science](https://towardsdatascience.com/): Site with news and articles related to data science, statistics, R, machine learning, and data visualization.
++ [R cheatsheets](https://stahlm.github.io/ENS_215/Resources/Cheatsheets_all.pdf): PDF copies of the cheatsheets handed out in class.
+
+
+<br/>
+
+## Data resources
+
++ [USGS National Water Information Service](https://nwis.waterdata.usgs.gov/nwis): Web interface that provides access to USGS water data (e.g. flows, water levels, chemical and biological conditions) for nearly 2 million sites across the US and US territories.  You can also directly query and download data right in R using [USGS R packages](https://owi.usgs.gov/R/training-curriculum/usgs-packages/).  
++ [NOAA Climate Data](https://www.ncdc.noaa.gov/climate-information): Climate datasets for the US and the world.
++ [Natural Earth Data](https://www.naturalearthdata.com/): Site with freely available geospatial dataset (e.g. country borders, river shapefiles, land surface elevation data).
++ [US Census Data](https://data.census.gov/cedsci/search): Access to US census data (e.g. population, income, demographics,..)
++ [Data.gov](https://www.data.gov/open-gov/): Has tons of datasets from US government agencies.  Data is available across a wide range of topics.
++ [USDA data](https://www.usda.gov/topics/data): Data from the US Department of Agriculture (crop yields, irrigated acres, fertilizer usage)
++ [UN FAO Aquastat Data](http://www.fao.org/nr/water/aquastat/main/index.stm): UN data on water resources.
++ [NYC Open Data](https://opendata.cityofnewyork.us/): Excellent site with datasets for NYC, many of which are related environment.
+
