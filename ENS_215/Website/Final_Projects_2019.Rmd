@@ -1,0 +1,38 @@
+---
+title: "Exploring Environmental Data (ENS-215)"
+output:
+  html_document:
+    theme: spacelab
+    toc: yes
+    toc_float: yes
+---
+***
+|  [ENS-215](https://stahlm.github.io/ENS_215/Website/ENS_215_Site.html) | [Homework](https://stahlm.github.io/ENS_215/Website/Homework.html) | [Syllabus](https://stahlm.github.io/ENS_215/Website/Syllabus.html) |
+|---|------------|-----------|
+
+<br/>
+
+## Final Projects (Winter 2019)
+
++ [Increases in Fecal Bacterial Indicators with High Precipitation Levels in the Mohawk River](https://stahlm.github.io/ENS_215/Final_Projects_2019/Madalyn Borek_718591_assignsubmission_file_Borek_Final_Project.html) (Madalyn Borek)
++ [Calibrating hydroclimate proxies in a southern Portuguese speleothem](https://stahlm.github.io/ENS_215/Final_Projects_2019/Alaina Chormann_718594_assignsubmission_file_Final_R_project__finalversion.html) (Alaina Chormann)
++ [How Ocean Acidity and Dissolved CO~2~ have Changed in Response to Changes in Atmospheric CO~2~ Levels](https://stahlm.github.io/ENS_215/Final_Projects_2019/Beck Deyoung_718589_assignsubmission_file_Final_Project_DeYoung.html) (Beck DeYoung)
++ [Characterizing Spatial Patterns in Runoff and Precipitation for the Contiguous United States](https://stahlm.github.io/ENS_215/Final_Projects_2019/Jaclyn Gehring_718595_assignsubmission_file_COPY_FINAL_GEHRING.html)(Jaclyn Gehring)
++ [The Socioeconomic Impacts of Natural Disasters on the United States](https://stahlm.github.io/ENS_215/Final_Projects_2019/Kelci Gilot_718586_assignsubmission_file_final_data.html) (Kelci Gilot)
++ [Characterization of Six Rivers in Upstate New York Focusing on the Hydrologic Controls on Water Quality](https://stahlm.github.io/ENS_215/Final_Projects_2019/Connor Horan_718590_assignsubmission_file_Final_Presentation.html) (Connor Horan)
++ [The evolution of forest area in the world from 1992 to 2016](https://stahlm.github.io/ENS_215/Final_Projects_2019/Jocelyn Mazuel_718593_assignsubmission_file_Final_Project_Notebook.html) (Jocelyn Mazuel)
++ [Water and Energy: What’s Nex(t)us?](https://stahlm.github.io/ENS_215/Final_Projects_2019/Blake Newcomer_718585_assignsubmission_file_ENS_FINAL_PRJ_NEWC.html) (Blake Newcomer)
++ [The Impact of Brazil’s Deforestation CO~2~ Emission and Atmospheric Levels](https://stahlm.github.io/ENS_215/Final_Projects_2019/Carlos Piedad_718588_assignsubmission_file_Final_Project_Piedad.html) (Carlos Piedad)
++ [Acid Rain and Its Impact on the Adirondacks](https://stahlm.github.io/ENS_215/Final_Projects_2019/Whitney Schwab_718592_assignsubmission_file_Data_Analysis.html) (Whitney Schwab)
++ [NYC Energy Star Scores](https://stahlm.github.io/ENS_215/Final_Projects_2019/Michael Solazzo_718584_assignsubmission_file_Fina_Project_Proposal_Solazzo.html) (Michael Solazzo)
++ [The effect of land use and disturbance to the global carbon cycle](https://stahlm.github.io/ENS_215/Final_Projects_2019/Jack Wassik_718583_assignsubmission_file_Final_Project_Wassik.html) (Jack Wassik)
++ [Concentration of Lead and Copper in NYC Tap Water](https://stahlm.github.io/ENS_215/Final_Projects_2019/Terry Ye_718587_assignsubmission_file_Project_Ye.html) (Terry Ye)
+
+
+<br/>
+
+***
+| | |
+|--|--|
+| _Mason Stahl (2019)_ |  |
+| _Union College_ | |

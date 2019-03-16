@@ -20,6 +20,8 @@ output:
 
 + Fri (15-Mar) -- **Term wrap-up and useful resources** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_03_15.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_03_15.Rmd) 
 
++ [Final Projects: View all of the final project presentations here](https://stahlm.github.io/ENS_215/Website/Final_Projects_2019.html)
+
 ***
 
 ### Week 9 
