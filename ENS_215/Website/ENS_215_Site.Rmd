@@ -1,3 +1,4 @@
+
 ---
 title: "Exploring Environmental Data (ENS-215)"
 output:
@@ -6,6 +7,17 @@ output:
     toc: yes
     toc_float: yes
 ---
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-137229217-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-137229217-1');
+</script>
+
 ***
 |  [ENS-215](https://stahlm.github.io/ENS_215/Website/ENS_215_Site.html) | [Homework](https://stahlm.github.io/ENS_215/Website/Homework.html) | [Syllabus](https://stahlm.github.io/ENS_215/Website/Syllabus.html) |
 |---|------------|-----------|
