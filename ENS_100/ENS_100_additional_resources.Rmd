@@ -1,0 +1,29 @@
+---
+title: 'ENS-100'
+subtitle: "Additional readings and resources of interest"
+output:
+  html_document:
+    df_print: paged
+    theme: spacelab
+    toc: yes
+    toc_float: yes
+---
+
+<br/>
+
+## Ecology
++ [A Biologist’s Manifesto for Preserving Life on Earth](https://eowilsonfoundation.org/e-o-wilson-writes-article-for-sierra-club-magazine-on-why-we-need-the-half-earth-solution/)
+
+
+## Populations
++ [Overpopulated and Underfed: Countries Near a Breaking Point (NY Times article)](https://www.nytimes.com/interactive/2017/06/15/sunday-review/overpopulated-and-underfed-countries-near-a-breaking-point.html)
++ [Remember the Population Bomb? It’s Still Ticking (NY Times article)](https://www.nytimes.com/2017/06/15/opinion/sunday/remember-the-population-bomb-its-still-ticking.html)
++ [World population simulator:](https://www.ined.fr/en/everything_about_population/population-games/tomorrow-population/) allows you to run a global population simulator in your web browser.  Gives you the ability to adjust population parameters to see how the trajectory of the global population responds.
+
+
+
+***
+| | |
+|--|--|
+| _Mason Stahl (2019)_ |  |
+| _Union College_ | |
