@@ -25,101 +25,12 @@ output:
 
 ## Lectures 
 
-### Week 10
-+ Mon (11-Mar) -- **Making maps in R** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_03_11.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_03_11.Rmd) 
-
-+ Wed (13-Mar) -- **Making maps in R: Continued** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_03_13.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_03_13.Rmd) 
-
-+ Fri (15-Mar) -- **Term wrap-up and useful resources** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_03_15.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_03_15.Rmd) 
-
-+ [Final Projects: View all of the final project presentations here](https://stahlm.github.io/ENS_215/Website/Final_Projects_2019.html)
-
-***
-
-### Week 9 
-+ Mon (4-Mar) -- **Introduction to data modeling** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_03_04.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_03_04.Rmd) 
-
-+ Wed (6-Mar) -- **Writing functions** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_03_06.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_03_06.Rmd) 
-
-+ Fri (8-Mar) -- **Interactive graphics** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_03_08.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_03_08.Rmd), [Reproducible science article](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Documents/Perkel_2019.pdf)
-
-***
-
-### Week 8 
-+ Mon (25-Feb) -- **Working with dates** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_02_25.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_02_25.Rmd) 
-
-+ Wed (27-Feb) -- **Bivariate data and introduction to data modeling** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_02_27_bivariate.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_02_27_bivariate.Rmd) 
-
-+ Fri (1-Mar) -- **Guest lecture (Athena Nghiem): Research on groundwater geochemistry using R** 
-
-
-***
-
-### Week 7 
-+ Mon (18-Feb) -- **Comparing distributions: Q-Q plots** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_02_18.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_02_18.Rmd) 
-
-+ Wed (20-Feb) -- **Final project data wrangling** 
-
-+ Fri (22-Feb) -- **Theoretical Q-Q plots**  [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_02_20.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_02_20.Rmd) 
-
-
-***
-
-### Week 6 
-+ Mon (11-Feb) -- **Combining/joining data** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_02_11.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_02_11.Rmd) and **Loading data into R** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_02_08_load_data_into_R.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_02_08_load_data_into_R.Rmd) 
-
-+ Wed (13-Feb) -- **Descriptive statistics and univariate data** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_02_13.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_02_13.Rmd)
-
-+ Fri (15-Feb) -- **Visualizing and interpreting data distributions** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_02_15.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_02_15.Rmd) and **Graphical display of data distributions: Examples** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_02_15_distributions_examples.html)
-
-***
-
-### Week 5
-+ Mon (4-Feb) -- **Presentation quality graphics**
-[(html)](https://stahlm.github.io/ENS_215/Lectures/2019_02_04.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_02_04.Rmd), [Article by Kelleher and Wagener (2011)](https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Documents/ems2011%20kelleher%20and%20wagener.pdf) 
-
-+ Wed (6-Feb) -- **Reshaping, cleaning and tidying data** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_02_06.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_02_06.Rmd)
-
-+ Fri (8-Feb) -- **Review (Weeks 1-5)** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_02_08_review_weeks_1_5.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_02_08_review_weeks_1_5.Rmd) 
-
-***
-### Week 4
-+ Mon (28-Jan) -- **Intro to data visualization** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_01_28_Intro_data_viz.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_01_28_Intro_data_viz.Rmd), [Slides](https://stahlm.github.io/ENS_215/Lectures/2019_01_28_slides.html)  
-
-+ Wed (30-Jan) -- **Intro to data viz (continued)** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_01_30_Intro_data_viz.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_01_30_Intro_data_viz.Rmd) 
-
-+ Fri (1-Feb) -- **Data visualization (additional topics)**
-[(html)](https://stahlm.github.io/ENS_215/Lectures/2019_02_01_Data_viz.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_02_01_Data_viz.Rmd) 
-
-
-***
-
-### Week 3
-+ Mon (21-Jan) -- **Data wrangling continued** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_01_21_Data_manipulation_cont.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_01_21_Data_manipulation_cont.Rmd)  
-
-+ Wed (23-Jan) -- **Data wrangling `group_by` and `summarize()`** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_01_23.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_01_23.Rmd)
-
-+ Fri (25-Jan) -- **`group_by` and `summarize` wrap-up and intro to strings** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_01_25_strings.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_01_25_strings.Rmd)
-
-
-***
-
-### Week 2
-+ Mon (14-Jan) -- **Relational and logical operators, if/else/else if** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_01_14_R_basics_cont.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_01_14_R_basics_cont.Rmd)
-
-+ Wed (16-Jan) -- **Control flow (for and while loops)** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_01_16_R_basic_loops.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_01_16_R_basic_loops.Rmd), [Slides](https://stahlm.github.io/ENS_215/Lectures/2019_01_16_Slides.html)  
-
-+ Fri (18-Jan) --**Data wrangling intro** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_01_18_Data_manipulation.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_01_18_Data_manipulation.Rmd), [Slides](https://stahlm.github.io/ENS_215/Lectures/2019_01_18_Slides.html) 
-
-
 ***
 
 ### Week 1
 + Mon (7-Jan) -- **Course introduction** [(html)](https://stahlm.github.io/ENS_215/Lectures/L1.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/L1.Rmd), [Slides](https://stahlm.github.io/ENS_215/Lectures/Intro_Survey.html)  
 
-+ Wed (9-Jan) -- **Diving into R** [(html)](https://stahlm.github.io/ENS_215/Lectures/L1_diving_in.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/L1_diving_in.Rmd), [Slides](https://stahlm.github.io/ENS_215/Lectures/2019_01_09_Slides.html), [Cheatsheets](https://stahlm.github.io/ENS_215/Resources/Cheatsheets_all.pdf)
 
-+ Fri (11-Jan) -- **R and R Markdown basics** [(html)](https://stahlm.github.io/ENS_215/Lectures/2019_01_11_R_basics.html), [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2019_01_11_R_basics.Rmd)
 
 ***
 <br/>
@@ -127,21 +38,6 @@ output:
 ## Labs
 + Lab 1 -- **Intro and EPA Fuel Economy Data** [(html)](https://stahlm.github.io/ENS_215/Labs/Lab_EPA_Fuel_Economy.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Labs/Lab_EPA_Fuel_Economy.Rmd)  
 
-+ Lab 2 -- **US Precipitation Data** [(html)](https://stahlm.github.io/ENS_215/Labs/Lab_Week_2_US_Precip.html)
-
-+ Lab 3 -- **Global Dams and Reservoirs** [(html)](https://stahlm.github.io/ENS_215/Labs/Lab_Global_Dams.html)
-
-+ Lab 4 -- **Groundwater Arsenic in Bangladesh** [(html)](https://stahlm.github.io/ENS_215/Labs/Lab_Bangladesh_Arsenic.html)
-
-+ Lab 5 -- **Final project kick-off** [(html)](https://stahlm.github.io/ENS_215/Labs/Lab_Final_Project.html)
-
-+ Lab 6 -- **Project proposal feedback and kick-off of analysis** [(html)](https://stahlm.github.io/ENS_215/Labs/Lab_Final_Project_Second_Meeting.html)
-
-+ Lab 7 -- **Projects** 
-
-+ Lab 8 -- **Projects and project formatting** [(html)](https://stahlm.github.io/ENS_215/Labs/RMarkdown_basics.html) [(Rmd)](https://stahlm.github.io/ENS_215/Labs/RMarkdown_basics.html)  
-
-+ Lab 9 -- **Projects: final stage** [(html)](https://stahlm.github.io/ENS_215/Labs/Lab_week_9.html)
 
 <br/>
 

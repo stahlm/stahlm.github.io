@@ -7,7 +7,7 @@ output:
     toc_float: yes
 ---
 ***
-|  [ENS-215](https://stahlm.github.io/ENS_215/Website/ENS_215_Site.html) | [Homework](https://stahlm.github.io/ENS_215/Website/Homework.html) | [Syllabus](https://stahlm.github.io/ENS_215/Website/Syllabus.html) |
+|  [ENS-215](https://stahlm.github.io/ENS_215/Winter_2020/Home.html) | [Homework](https://stahlm.github.io/ENS_215/Winter_2020/HW.html) | [Syllabus](https://stahlm.github.io/ENS_215/Winter_2020/Website/Syllabus.html) |
 |---|------------|-----------|
 
 # Course Information
