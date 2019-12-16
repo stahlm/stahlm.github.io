@@ -1,5 +1,6 @@
 ---
 title: "Exploring Environmental Data (ENS-215)"
+date: "Winter 2020"
 output:
   html_document:
     theme: spacelab
@@ -7,16 +8,16 @@ output:
     toc_float: yes
 ---
 ***
-|  [ENS-215](https://stahlm.github.io/ENS_215/Winter_2020/Home.html) | [Homework](https://stahlm.github.io/ENS_215/Winter_2020/HW.html) | [Syllabus](https://stahlm.github.io/ENS_215/Winter_2020/Website/Syllabus.html) |
+|  [ENS-215](https://stahlm.github.io/ENS_215/Winter_2020/Home.html) | [Homework](https://stahlm.github.io/ENS_215/Winter_2020/HW.html) | [Syllabus](https://stahlm.github.io/ENS_215/Winter_2020/Syllabus.html) |
 |---|------------|-----------|
 
 # Course Information
-**Term:** Winter 2019  
+**Term:** Winter 2020  
 **Location:** Olin 307 (_Class_) and Olin 332 (_Lab_)  
 **Meeting times:** 
 
   + **Class:** M/W/F, 10:30-11:35 AM
-  + **Lab:** Th, 1:55-4:45 PM  
+  + **Lab:** M, 1:55-4:45 PM  
   
 **Professor:** [Mason Stahl](https://sites.google.com/union.edu/masonstahl/home)  (stahlm@union.edu)  
 **Office hours:** Olin 102A -- Mondays 11:35-12:35 and Thursday 10-11 AM  

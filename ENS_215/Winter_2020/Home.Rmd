@@ -1,6 +1,6 @@
-
 ---
 title: "Exploring Environmental Data (ENS-215)"
+date: "Winter 2020"
 output:
   html_document:
     theme: spacelab
@@ -19,7 +19,7 @@ output:
 </script>
 
 ***
-|  [ENS-215](https://stahlm.github.io/ENS_215/Winter_2020/Home.html) | [Homework](https://stahlm.github.io/ENS_215/Winter_2020/HW.html) | [Syllabus](https://stahlm.github.io/ENS_215/Winter_2020/Website/Syllabus.html) |
+|  [ENS-215](https://stahlm.github.io/ENS_215/Winter_2020/Home.html) | [Homework](https://stahlm.github.io/ENS_215/Winter_2020/HW.html) | [Syllabus](https://stahlm.github.io/ENS_215/Winter_2020/Syllabus.html) |
 |---|------------|-----------|
 
 
@@ -44,5 +44,5 @@ output:
 ***
 | | |
 |--|--|
-| _Mason Stahl (2019)_ |  |
+| _Mason Stahl (2020)_ |  |
 | _Union College_ | |
