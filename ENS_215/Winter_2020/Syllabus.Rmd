@@ -45,9 +45,9 @@ The two texts that we will primarily rely on are listed below.  Both are freely 
  
  
 ## Course sites
- + [**This website**](https://stahlm.github.io/ENS_215/Website/ENS_215_Site.html): The site you are on now will be updated throughout the term.  In particular the schedule will have material added on a weekly basis.
+ + [**This website**](https://stahlm.github.io/ENS_215/Winter_2020/Home.html): The site you are on now will be updated throughout the term.  In particular the schedule will have material added on a weekly basis.
  + [**Nexus:**](https://nexus.union.edu)  You will submit all of your assignments through our Nexus class site 
- + [**DataCamp:**](https://www.datacamp.com/enterprise/environmental-data-analysis) The online assignments/tutorials can be found on our DataCamp class site
+ + [**DataCamp:**](https://www.datacamp.com/enterprise/exploring-environmental-data-ens-215) The online assignments/tutorials can be found on our DataCamp class site
 
 ## Assignment templates and guidelines
 + **Template for lab and homework assignments: ** [**(html)**](https://stahlm.github.io/ENS_215/Homework/Template_Assignments.html) [ **(Rmd)**](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Homework/Template_Assignments.Rmd)
@@ -126,7 +126,7 @@ Intermediate points are allowed, and follow a linear scale in between each point
 I want and expect the class to be an engaging and enjoyable environment for all students.  We should all work together in a positive and respectful manner and every student should feel comfortable contributing to class discussions and asking questions.  All students must comply with the Union College honor code.  This includes but is not limited to issues of cheating and plagiarism.  If you have any doubts about whether you are in compliance with the honor code you should ask me for guidance prior to submitting the material in question.
 
 ## Computer use
-We will use computers in all of our class and lab meetings.  If you have a personal laptop you can use it or you can use the computers in the classroom.  **Using your computer for anything not related to the class is unacceptable and will adversely impact your participation grade**.  Among other things, this means that you should not check email, Facebook, Twitter, news, or any other content not directly related to the coursework during class/lab meetings.  Your undivided attention and focus is important to your success in this class.
+We will use computers in all of our class and lab meetings.  If you have a personal laptop you can use it or you can use the computers in the classroom.  **Using your computer for anything not related to the class is unacceptable and will adversely impact your participation grade**.  Among other things, this means that you should not check email, Instagram, Twitter, news, or any other content not directly related to the coursework during class/lab meetings.  Your undivided attention and focus is important to your success in this class.
 
 ## Class attendance and participation
 **You are expected to attend every class and to arrive on time**.  I will have a sign-in sheet that you will need to sign as you enter class.  Missing class or arriving late will significantly impact your class participation grade.  This course is very hands-on and you will learn by doing, so missing class will make it very difficult to succeed.  Furthermore, this class is very interactive and you will learn from and teach your classmates so attendance is important to supporting the best learning environment for all.  While some people like to wear headphones when coding, this is not allowed during class or lab as it interferes with participation/collaboration.  If you have to miss class for a legitimate reason let me know ahead of time.  
