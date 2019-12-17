@@ -53,20 +53,16 @@ The two texts that we will primarily rely on are listed below.  Both are freely 
 + **Template for lab and homework assignments: ** [**(html)**](https://stahlm.github.io/ENS_215/Homework/Template_Assignments.html) [ **(Rmd)**](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Homework/Template_Assignments.Rmd)
 + [**Lab report guidelines**](https://stahlm.github.io/ENS_215/Labs/Lab_Guidelines.html)
  
-## Useful links
+## Useful links/resources
  + [**Google**](https://www.google.com): This may seem pretty obvious, but Googling your R question almost always yields a helpful result/example.  
- + [**r-statistics.co**](http://r-statistics.co/):  Great resource with easy to follow R tutorials and examples.  
- + [**STDHA.com**](http://www.sthda.com/english/): Excellent resource for help with R.   
  + [**stackoverflow.com**](https://stackoverflow.com/): Website where people post questions related to programming.  This is an extensive resource with a huge database of questions and answers related to R.  Generally it is best to Google your question and often stackoverflow will be one of the first hits. 
  + [**YouTube**](https://www.youtube.com/): Lots of instructional videos in R are available on Youtube.
- + [**YaRrr! The Pirates Guide to R**](https://bookdown.org/ndphillips/YaRrr/): Another introductory textbook that presents the material concisely.  This book is freely available online. 
-
-## Useful Resources 
 + [**RStudio Cloud**](https://rstudio.cloud):  A free service from the developers of RStudio, which allows you to run RStudio right in your browser.  You will install R and RStudio on your personal computer for this class, however this is an additional way to run R on any computer that has an internet connection without the need to install software. However RStudio Cloud is still in early development stages so you should not rely on this over your installed version of R and RStudio.  
 + [**R Cheatsheets**](https://www.rstudio.com/resources/cheatsheets/): Very helpful 1-2 page summary sheets that clearly show you how to code in R.  There are a number of different cheat sheets ranging from a basic R tutorial to creating plots in R.
 + [**R Webinars**](https://resources.rstudio.com/webinars): These instructional web videos cover a range of topics in R.
++ [**STDHA.com**](http://www.sthda.com/english/): Excellent resource for help with R.   
 + [**USGS R Training Materials**](https://owi.usgs.gov/R/training-curriculum/intro-curriculum/): Excellent R tutorial with some cool examples USGS data from the USGS.
-+ [**National Institutes of Standards and technology (NIST) Engineering Statistics Handbook**](https://www.itl.nist.gov/div898/handbook/index.htm): Excellent resource on statistics and exploratory data analysis, however it may be a bit challenging for those without a background in statistics.
++ [**Fundamentals of Data Visualization**](https://serialmentor.com/dataviz/): Excellent resource for learning how to visually display data in an attractive and informative way.  FYI, this entire book was produced in R Markdown!
 + [**R Style Guide**](http://adv-r.had.co.nz/Style.html): Advice on how to write code that is neatly organized and easy to read.
 + [**Guide to Using R Markdown for Class Reports**](https://stahlm.github.io/ENS_215/Resources/R_Markdown_for_Reports.html): Very helpful guide on how to create reports using R Markdown.
 
