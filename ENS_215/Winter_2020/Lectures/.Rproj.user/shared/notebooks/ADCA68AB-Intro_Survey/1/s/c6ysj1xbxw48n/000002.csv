@@ -1,0 +1,10 @@
+"0","library(tidyverse)
+"
+"2","package ‘tidyverse’ was built under R version 3.5.3"
+"2","package ‘tibble’ was built under R version 3.5.3"
+"2","package ‘dplyr’ was built under R version 3.5.3"
+"0","library(readxl)"
+"0","library(ggthemes)"
+"0","Heard_of <- read_xlsx(""../../Data/Class_survey.xlsx"", sheet = ""Heard_of"")"
+"2","Error: `path` does not exist: â€˜../../Data/Class_survey.xlsxâ€™
+"
