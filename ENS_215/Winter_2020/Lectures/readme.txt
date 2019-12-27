@@ -1,0 +1,1 @@
+This folder contains lecture html and Rmd files for ENS-215 (Winter 2020)
