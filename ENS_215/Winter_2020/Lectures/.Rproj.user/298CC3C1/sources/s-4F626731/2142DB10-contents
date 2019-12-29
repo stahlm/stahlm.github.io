@@ -1,0 +1,8 @@
+
+library(tidyverse)
+
+data <- carData::Anscombe
+
+data %>% ggplot(aes(x = education, y = income)) +
+  geom_point()
+  
