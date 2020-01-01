@@ -28,25 +28,25 @@ You will first need to download R and then RStudio.  To download R go to [this l
 
 Once you've downloaded and installed R, then you will need to get RStudio.  Go to [this link](https://www.rstudio.com/products/rstudio/download/#download) and download the "Installer for Supported Platform" that corresponds to your computer (i.e. Mac or Windows).  Download and install the software.
 
-  + Assigned: 7-Jan
-  + Due: 9-Jan  
+  + Assigned: 6-Jan
+  + Due: 8-Jan  
 
 **2. Accept the invite to our DataCamp class and complete "_Introduction to R_"**  
 
-  + Assigned: 7-Jan
-  + Due: 14-Jan
+  + Assigned: 6-Jan
+  + Due: 13-Jan
 
 **3. Sign up for RStudio Cloud**  
 
 You will recieve an invitation to join our RStudio Cloud group.  You should accept this invitation and create an account if you haven't done so already.  
 
-  + Assigned: 7-Jan
-  + Due: 9-Jan
+  + Assigned: 6-Jan
+  + Due: 8-Jan
   
 **4.  Get a binder to hold your course notes and bring to all future classes**  
 
-  + Assigned: 7-Jan
-  + Due: 14-Jan
+  + Assigned: 6-Jan
+  + Due: 13-Jan
 
 
 **5. (Optional) Complete Chapter 1 "Orientation" in the DataCamp "_Working with the RStudio IDE (Part 1)_"**
