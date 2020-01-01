@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1577887209569.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "AA2B5B0A",
+    "lastKnownWriteTime" : 1577887845,
+    "last_content_update" : 1577887845968,
+    "path" : "~/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2020/Labs/Lab_EPA_Fuel_Economy.Rmd",
+    "project_path" : "Labs/Lab_EPA_Fuel_Economy.Rmd",
+    "properties" : {
+        "cursorPosition" : "47,34",
+        "scrollLine" : "41"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

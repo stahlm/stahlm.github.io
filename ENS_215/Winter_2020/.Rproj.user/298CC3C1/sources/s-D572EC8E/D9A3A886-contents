@@ -1,0 +1,48 @@
+---
+title: "Exploring Environmental Data (ENS-215)"
+date: "Winter 2020"
+output:
+  html_document:
+    theme: spacelab
+    toc: yes
+    toc_float: yes
+---
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-137229217-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-137229217-1');
+</script>
+
+***
+|  [ENS-215](https://stahlm.github.io/ENS_215/Winter_2020/Home.html) | [Homework](https://stahlm.github.io/ENS_215/Winter_2020/HW.html) | [Syllabus](https://stahlm.github.io/ENS_215/Winter_2020/Syllabus.html) |
+|---|------------|-----------|
+
+
+## Lectures 
+
+***
+
+### Week 1
++ Mon (6-Jan) -- **Course introduction** [(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/L1.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/L1.Rmd), [Slides]()  
+
+
+
+***
+<br/>
+
+## Labs
++ Lab 1 -- **Intro and EPA Fuel Economy Data** [(html)](https://stahlm.github.io/ENS_215/Winter_2020/Labs/Lab_EPA_Fuel_Economy.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Labs/Lab_EPA_Fuel_Economy.Rmd)  
+
+
+<br/>
+
+***
+| | |
+|--|--|
+| _Mason Stahl (2020)_ |  |
+| _Union College_ | |

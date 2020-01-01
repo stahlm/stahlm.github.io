@@ -1,5 +1,7 @@
 ---
 title: "Topic 1. Introduction to *Environmental Data Analysis*"
+author: "ENS-215"
+date: "Winter 2012"
 output:
   html_document:
     theme: spacelab
@@ -51,7 +53,7 @@ The demand in the academic, public, and private sectors for environmental scient
 We will write and run our code within the RStudio Integrated Development Environment (IDE).  RStudio allows us to write, excute (run), and debug code, along with view output and plots, within a single integrated environment.
 
 ### Getting help in R
-There are lots of resources for [getting help in R](https://stahlm.github.io/ENS_215/Website/Syllabus.html#useful_links).  In addition to me and your classmates, there is a massive amount of help available freely online (a quick Google search typically yields an answer to just about any R question).  There are also many websites devoted to teaching R.  
+There are lots of resources for [getting help in R](https://stahlm.github.io/ENS_215/Winter_2020/Syllabus.html#useful_linksresources).  In addition to me and your classmates, there is a massive amount of help available freely online (a quick Google search typically yields an answer to just about any R question).  There are also many websites devoted to teaching R.  
 
 Visit Union College's very own [Center for Data Analytics](https://muse.union.edu/cda/)!  It is located in **Wold 010** and hosts a data science help desk, where expert students and faculty who staff the help desk can help answer your questions. The Center for Data Analytics also host regular training workshops and guest speakers.
 
@@ -64,7 +66,7 @@ Your textbooks [_R for Data Science_](https://r4ds.had.co.nz/) and [_ModernDive_
 
 ## Syllabus and course logistics
 * **Course logistics**
-    + You will find all course related materials (e.g. schedule/syllabus, assignments, notes, course policies,...) at our [class webpage](https://stahlm.github.io/ENS_215/Website/ENS_215_Site.html)
+    + You will find all course related materials (e.g. schedule/syllabus, assignments, notes, course policies,...) at our [class webpage](https://stahlm.github.io/ENS_215/Winter_2020/Home.html)
     + Assignments will be submitted through Nexus.  You MUST use the specified naming convention for the files you submit.
     + Attendence and on-time arrival is critical and your grade will be affected by unexcused absenses and late arrivals!  You will quickly fall behind if you miss class or arrive late.
     + We will use computers during class and lab, however you should ONLY use your computer for class related activities.  This means that you should close unrelated material prior to the start of class and that your should not check email, news, Instagram, Twitter,... during class.
@@ -77,7 +79,7 @@ Your textbooks [_R for Data Science_](https://r4ds.had.co.nz/) and [_ModernDive_
 
 
 ### Diving into R
-Let's open the [L1_diving_in notebook](https://stahlm.github.io/ENS_215/Lectures/L1_diving_in.html) and work through it. 
+Let's open the [L1_diving_in notebook](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_01_06_L1_diving_in.html) and work through it. 
 
 
 
