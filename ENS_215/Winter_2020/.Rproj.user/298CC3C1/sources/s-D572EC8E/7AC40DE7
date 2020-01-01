@@ -5,15 +5,15 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "613784710",
+    "hash" : "0",
     "id" : "7AC40DE7",
-    "lastKnownWriteTime" : 1577887742,
-    "last_content_update" : 1577887742506,
+    "lastKnownWriteTime" : 1577888353,
+    "last_content_update" : 1577888353852,
     "path" : "~/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_01_06_L1.Rmd",
     "project_path" : "Lectures/2020_01_06_L1.Rmd",
     "properties" : {
-        "cursorPosition" : "81,104",
-        "scrollLine" : "72"
+        "cursorPosition" : "3,18",
+        "scrollLine" : "0"
     },
     "relative_order" : 5,
     "source_on_save" : false,
