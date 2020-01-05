@@ -90,8 +90,8 @@ Each student will produce a report/presentation based on their analysis of an en
 | Assignment  |  Weight 
 |---|------------|
 |Homework and online tutorials| 32.5%|
-|Lab| 32.5%|
-|Final project| 25%|
+|Lab| 25%|
+|Final project| 32.5%|
 |Class participation| 10%|
 | | |
 

@@ -5,15 +5,15 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "0",
+    "hash" : "3850644378",
     "id" : "970A5997",
-    "lastKnownWriteTime" : 1577893950,
-    "last_content_update" : 1577893950172,
+    "lastKnownWriteTime" : 1578244579,
+    "last_content_update" : 1578244579918,
     "path" : "~/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2020/Syllabus.Rmd",
     "project_path" : "Syllabus.Rmd",
     "properties" : {
-        "cursorPosition" : "19,25",
-        "scrollLine" : "0"
+        "cursorPosition" : "93,19",
+        "scrollLine" : "83"
     },
     "relative_order" : 3,
     "source_on_save" : false,
