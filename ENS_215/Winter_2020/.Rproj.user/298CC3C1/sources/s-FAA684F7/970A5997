@@ -13,9 +13,9 @@
     "project_path" : "Syllabus.Rmd",
     "properties" : {
         "cursorPosition" : "73,902",
-        "scrollLine" : "70"
+        "scrollLine" : "0"
     },
-    "relative_order" : 3,
+    "relative_order" : 4,
     "source_on_save" : false,
     "source_window" : "",
     "type" : "r_markdown"
