@@ -1,0 +1,10 @@
+"0","map_data_usa <- map_data(""state"") # load in US states map data from the maps package and convert it to a compatible format for plotting in with ggplot()"
+"2","
+Attaching package: ‘maps’
+
+"
+"2","The following object is masked from ‘package:purrr’:
+
+    map
+
+"

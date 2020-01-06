@@ -1,0 +1,53 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+```{r}
+library(tidyverse)
+library(readxl)
+```
+
+
+
+```{r}
+map_data_usa <- map_data("state") # load in US states map data from the maps package and convert it to a compatible format for plotting in with ggplot()
+```
+
+```{r}
+map_us <- map_data_usa %>% 
+  ggplot() + 
+  geom_polygon(aes(long, lat, group = group), color = "black", fill = "gray")  + coord_map(projection = "bonne", lat0 = 50)
+
+map_us
+```
+
+
+```{r}
+States <- read_xlsx("../Data/Class_survey_2020.xlsx", sheet = "Home_state")
+```
+
+
+```{r}
+map_data_usa <- left_join(map_data_usa, States)
+```
+
+```{r}
+map_data_usa <- map_data("state")
+
+States <- read_xlsx("../Data/Class_survey_2020.xlsx", sheet = "Home_state")
+
+map_data_usa <- left_join(map_data_usa, States)
+
+map_data_usa %>% 
+  ggplot() + 
+  geom_polygon(aes(long, lat, group = group, fill = count), color = "black") +
+  scale_fill_gradient(low = "blue", high = "red") +
+  coord_map(projection = "bonne", lat0 = 50) +
+  theme_void() 
+```
+
