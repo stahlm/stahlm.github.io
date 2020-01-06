@@ -35,6 +35,7 @@ Once you've downloaded and installed R, then you will need to get RStudio.  Go t
 
   + Assigned: 6-Jan
   + Due: 13-Jan
+  + **Note:** You should accept the DataCamp invitation immediately 
 
 **3. Sign up for RStudio Cloud**  
 

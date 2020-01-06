@@ -63,18 +63,15 @@ The two texts that we will primarily rely on are listed below.  Both are freely 
 + [**STDHA.com**](http://www.sthda.com/english/): Excellent resource for help with R.   
 + [**USGS R Training Materials**](https://owi.usgs.gov/R/training-curriculum/intro-curriculum/): Excellent R tutorial with some cool examples USGS data from the USGS.
 + [**Fundamentals of Data Visualization**](https://serialmentor.com/dataviz/): Excellent resource for learning how to visually display data in an attractive and informative way.  FYI, this entire book was produced in R Markdown!
-+ [**R Style Guide**](http://adv-r.had.co.nz/Style.html): Advice on how to write code that is neatly organized and easy to read.
++ [**R Style Guide**](https://style.tidyverse.org/): Advice on how to write code that is neatly organized and easy to read.
 + [**Guide to Using R Markdown for Class Reports**](https://stahlm.github.io/ENS_215/Resources/R_Markdown_for_Reports.html): Very helpful guide on how to create reports using R Markdown.
 
 ***
  
  
 # Assignments
-## Online tutorials
-These tutorials are required and are a very helpful and important part of teaching you how to code in the short timeframe of one term.  The tutorials help to make learning to code a much more enjoyable and efficient process and also serve as an excellent refresher once you've learned coding.  I have set up class groups on the sites where the tutorials are hosted and I will be able to track your progress.  Successful completion of the tutorial will result in a 100% grade for that assignment.  If the tutorial is not fully completed then you will receive a score equal to the percent that you completed.
-
-## Homework
-There will typically be a homework assignment for every class topic.  If you come to class and work diligently you should be able to complete the homework.  As the homework builds off of the in-class material, coming to class is necessary.  Your homework will be submitted as R Notebooks which consist of your code, annotations/comments, and results all neatly wrapped into a single file.  You will need to add annotations/comments to your code describing what you did and any figures will need to have a caption and axis labels.  **Homework must be submitted to Nexus before the start of the class in which it is due**.
+## Online tutorials/homework
+These tutorials/homework are required and are a very helpful and important part of teaching you how to code in the short timeframe of one term.  The tutorials help to make learning to code a much more enjoyable and efficient process and also serve as an excellent refresher once you've learned coding.  There will typically be a homework assignment for every class topic.  If you come to class and work diligently you should be able to complete the homework.  As the homework builds off of the in-class material, coming to class is necessary.  I have set up a class group on the site where the tutorials are hosted and I will be able to monitor and track your progress.  Successful completion of the tutorial will result in a 100% grade for that assignment.  If the tutorial is not fully completed then you will receive a score equal to the percent that you completed at the time the assignment was due.  Note that the there is an option to take hints during the tutorials.  Taking hints does affect your final score (however a single hint typically has a minimal effect) so use them sparingly.    
 
 ## Labs
 In lab you will be given a dataset from the Earth and environmental sciences with the goal of exploring and discovering interesting features and illuminating important scientific concepts.  You will be given background information and the data you will need to successfully complete the lab, though successful completion of the lab will require independent and creative exploratory analysis.  The goal of the lab assignments is to apply the tools and concepts learned in class towards asking and answering interesting scientific questions.  These labs are intended to improve your skills in data analysis, learn about concepts from Earth and environmental sciences, and importantly to develop skills as a creative and independent researcher.  These skills will serve you will in future classes, grad school, and jobs.  
