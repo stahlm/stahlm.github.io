@@ -1,6 +1,0 @@
-"0","map_data_usa %>% "
-"0","  ggplot() + "
-"0","  geom_polygon(aes(long, lat, group = group, fill = count), color = ""black"") +"
-"0","  scale_fill_gradient(low = ""blue"", high = ""red"") +"
-"0","  coord_map(projection = ""bonne"", lat0 = 50) +"
-"0","  theme_void() "

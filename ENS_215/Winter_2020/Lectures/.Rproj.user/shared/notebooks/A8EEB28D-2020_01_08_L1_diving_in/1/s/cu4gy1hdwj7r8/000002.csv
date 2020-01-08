@@ -1,0 +1,15 @@
+"0","## Load in data"
+"0","met_data <- read_csv('http://stahlm.github.io/ENS_215/Data/Blue_Hills_MA_Precip_Temp_Data_1.csv')"
+"2","Parsed with column specification:
+cols(
+  STATION = col_character(),
+  NAME = col_character(),
+  DATE = col_character(),
+  PRCP = col_double(),
+  TMAX = col_integer(),
+  TMIN = col_integer(),
+  TOBS = col_character()
+)
+"
+"0","met_data <- mutate(met_data,DATE = parse_date_time(DATE,""mdy"")) # convert date into computable format"
+"0","met_data <- select(met_data,-c(TOBS)) # remove the TOBS column, since we won't use it"

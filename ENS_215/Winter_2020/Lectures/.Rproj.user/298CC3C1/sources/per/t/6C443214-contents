@@ -22,7 +22,7 @@ Note that I've commented out the install function by using the # symbol.  I did 
 ```
 
 Next we'll load in the packages that we need to run our analysis.  When you create a new project you'll need to load in the packages that you want to use (however you will not need to reinstall them).  The `library()` function is used to load packages.
-```{r message=FALSE}
+```{r message=FALSE, library = F}
 library(tidyverse)
 library(lubridate)
 ```

@@ -1,0 +1,1 @@
+"0","ggplot(annual_precip) + geom_line(aes(x = year_val, y = tot_precip),color = ""blue"") + geom_point(aes(x = year_val, y = tot_precip),color = ""black"") "
