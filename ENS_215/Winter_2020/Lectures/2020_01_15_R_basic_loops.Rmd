@@ -1,7 +1,7 @@
 ---
 title: "R Programming Basics (Loops)"
 author: "ENS-215"
-date: "16-Jan-2019"
+date: "15-Jan-2020"
 output:
   html_document:
     theme: spacelab
@@ -19,10 +19,11 @@ Remember to consult your R cheatsheets (in today's lecture, the **Base R cheatsh
 
 ## For loops
 Let's load in the tidyverse package, just in case you want to use some of its functionality
-```{r message = FALSE}
+```{r message = FALSE, warning=F}
 library(tidyverse)
 ```
 
+<br/>
 
 Ok, now let's try out an example a basic example, so that you learn the structure of for loops.
 ```{r}
@@ -40,6 +41,8 @@ Ok, now let's try looping over a list of some majors available at Union. Here's 
 ```{r}
 majors_union <- c("Environmental Science","Geology","English","Chemistry","Math","History","Computer Science")
 ```
+
+<br/>
 
 Now we would like to print this list out.
 ```{r}

@@ -26,7 +26,7 @@ Also now that you've learned some Markdown syntax, you are able to add some fanc
 When you are writing code you will frequently need to make use of **relational** and **logical** operators.  We use relational operators to compare values and logical operators to combine/blend these operations together.  These concepts play a very important role in programming and allow us to control the flow of our code.  Let's take a look at **relational operators**
 
 ### Relational operators
-```{r message = FALSE}
+```{r message = FALSE, warning=F}
 library(tidyverse)
 ```
 

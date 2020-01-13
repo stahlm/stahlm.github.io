@@ -29,6 +29,7 @@ output:
 
 ### Week 2
 + Mon (13-Jan) -- **Relational and logical operators, if/else/else if** 
+[(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_01_13_R_basics_cont.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_01_13_R_basics_cont.Rmd)
 ```{r echo = F, eval = F}
 [(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_01_13_R_basics_cont.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_01_13_R_basics_cont.Rmd)
 ```
@@ -52,6 +53,7 @@ output:
 + Lab 1 -- **Computer setup and logistics**
 
 + Lab 2 -- **Intro and EPA Fuel Economy Data** 
+[(html)](https://stahlm.github.io/ENS_215/Winter_2020/Labs/Lab_EPA_Fuel_Economy.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Labs/Lab_EPA_Fuel_Economy.Rmd)  
 
 ```{r echo=F,eval=F}
 [(html)](https://stahlm.github.io/ENS_215/Winter_2020/Labs/Lab_EPA_Fuel_Economy.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Labs/Lab_EPA_Fuel_Economy.Rmd)  
