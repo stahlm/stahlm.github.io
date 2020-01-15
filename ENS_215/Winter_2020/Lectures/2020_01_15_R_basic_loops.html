@@ -226,6 +226,7 @@ div.tocify {
 </div>
 
 
+<p><br /></p>
 <p>We learned about if/else/else if statements in an earlier lecture. Now we are going to learn about loops, which are another type of <strong>control structure</strong>.</p>
 <p>Loops allow us work through items in an object and apply operations to these items, without having to repeat our code. For instance we may have a list of names and we would like to print them one-by-one to our computer screen. We could write out a <code>print()</code> statment for each item in the list. In a case like this we can use a <strong>loop</strong>.</p>
 <p>Remember to consult your R cheatsheets (in today’s lecture, the <strong>Base R cheatsheet</strong> is particularly helpful)</p>
@@ -235,7 +236,7 @@ div.tocify {
 <p>Let’s load in the tidyverse package, just in case you want to use some of its functionality</p>
 <pre class="r"><code>library(tidyverse)</code></pre>
 <p><br /></p>
-<p>Ok, now let’s try out an example a basic example, so that you learn the structure of for loops.</p>
+<p>Ok, now let’s try out a basic example, so that you learn the structure of for loops.</p>
 <pre class="r"><code>for(i in 1:10){
   print(i)
 }</code></pre>
@@ -271,7 +272,7 @@ div.tocify {
 <li>Create a new code block and modify the above code to also print out the <code>i_major</code> variable. Do you see what is happening to <code>i_major</code> on each interation of the loop? Note how we use <code>i_major</code> to access the i<sup>th</sup> index of <code>majors_union</code> on each loop iteration.</li>
 </ul>
 <p><br /></p>
-<p>You can also loop through a list without using an index variable.</p>
+<p>You can also loop through a list using the elements of <code>majors_union</code> as the variables over which we loop.</p>
 <pre class="r"><code>for(i_major in majors_union){
   print(i_major)
 }</code></pre>
