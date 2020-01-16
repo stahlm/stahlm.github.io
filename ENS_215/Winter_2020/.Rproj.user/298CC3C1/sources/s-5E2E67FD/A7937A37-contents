@@ -296,7 +296,7 @@ if(city_temp >= 85){
 
 <br/>
 
-### IF/ELSE/ELSE IF statements
+### IF/ELSE IF/ELSE statements
 We can add even more conditions using `else if`.  Not how the `else` statement comes at the very end and catches anything that was not caught in the above tests.
 ```{r eval = FALSE}
 city_temp <- ... # type the temperature here

@@ -15,6 +15,26 @@ output:
 
 ***
 
+
+### Week 3
+#### Readings
+* [**ModernDive Ch: 5**](https://moderndive.com/)
+* [**R for Data Science (R4DS) Ch: 5**](https://r4ds.had.co.nz/) (the R4DS reading is optional, though I stronly recommend it as it is very helpful) 
+
+#### Assignments
+1. DataCamp **_Introduction to the Tidyverse_** chapters **1** ("Data wrangling") and **2** ("Data visualization")
+
+    + Assigned: 17-Jan
+    + Due: 22-Jan
+
+2. DataCamp **_Introduction to the Tidyverse_** chapter **3** ("Grouping and summarizing")
+
+    + Assigned: 17-Jan
+    + Due: 24-Jan
+  
+***
+
+
 ### Week 2
 
 #### Assignments

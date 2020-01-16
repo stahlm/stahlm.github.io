@@ -34,8 +34,9 @@ output:
 + Wed (15-Jan) -- **Control flow (for and while loops)**
 [(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_01_15_R_basic_loops.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_01_15_R_basic_loops.Rmd)
 
++ Fri (17-Jan) --**Data wrangling intro**
 ```{r echo = F, eval = F}
-[(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_01_15_R_basic_loops.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_01_15_R_basic_loops.Rmd)
+[(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_01_17_Data_manipulation.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_01_17_Data_manipulation.Rmd)
 ```
 
 
