@@ -5,14 +5,14 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "0",
+    "hash" : "914416374",
     "id" : "8DB0ED33",
-    "lastKnownWriteTime" : 1579198965,
-    "last_content_update" : 1579198965060,
+    "lastKnownWriteTime" : 1579203175,
+    "last_content_update" : 1579203429390,
     "path" : "~/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_01_17_Data_manipulation.Rmd",
     "project_path" : "Lectures/2020_01_17_Data_manipulation.Rmd",
     "properties" : {
-        "cursorPosition" : "0,0",
+        "cursorPosition" : "15,73",
         "scrollLine" : "0"
     },
     "relative_order" : 8,

@@ -15,7 +15,7 @@ Let's now jump into some data manipulation using the functionality in the `dplyr
 
 You'll see how with `dplyr` data manipulation operations that may have required long, complex, and difficult to decipher code can often be reduced to a single line that is easy to code and easy to read!  
 
-As you work through the code, pay close attention and make sure that you understand what is happening in each line of code.  Check help files, ask your neighbor, Google questions, and of course ask me if you have any questions or don't fully understand something.  
+As you work through the code, pay close attention and make sure that you understand what is happening in each line of code.  Check help files, ask your neighbor, and of course ask me if you have any questions or don't fully understand something.  
 
 Note: The **dplyr** cheatsheet will be very helpful when working through today's lesson  
 
