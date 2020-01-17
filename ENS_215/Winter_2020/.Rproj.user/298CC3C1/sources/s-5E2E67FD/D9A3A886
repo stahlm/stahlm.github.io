@@ -5,15 +5,15 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "2614268740",
+    "hash" : "0",
     "id" : "D9A3A886",
-    "lastKnownWriteTime" : 1579202105,
-    "last_content_update" : 1579202105573,
+    "lastKnownWriteTime" : 1579266924,
+    "last_content_update" : 1579266924883,
     "path" : "~/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2020/Home.Rmd",
     "project_path" : "Home.Rmd",
     "properties" : {
-        "cursorPosition" : "38,233",
-        "scrollLine" : "31"
+        "cursorPosition" : "38,0",
+        "scrollLine" : "28"
     },
     "relative_order" : 3,
     "source_on_save" : false,
