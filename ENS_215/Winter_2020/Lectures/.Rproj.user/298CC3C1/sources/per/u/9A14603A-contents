@@ -9,8 +9,11 @@ vec_numeric <- c(1,2,3,4,5,6,7,8)
 
 vec_strings <- c("pine","oak","maple","birch","fir")
 
-vec_logic <- c(TRUE, TRUE, FALSE, TRUE)
+vec_logic <- c(TRUE, TRUE, FALSE, TRUE) # create vector with
 ```
+
+It is evident that the cars with the great
+
 
 ```{r}
 class(vec_numeric)

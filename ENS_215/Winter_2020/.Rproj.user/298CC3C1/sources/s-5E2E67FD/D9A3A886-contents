@@ -25,6 +25,12 @@ output:
 
 ## Lectures 
 
+### Week 3
++ Mon (20-Jan) -- **Data wrangling continued** 
+```{r echo = F, eval = F}
+[(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_01_20_Data_manipulation_cont.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_01_20_Data_manipulation_cont.Rmd)  
+```
+
 ***
 
 ### Week 2
@@ -37,9 +43,7 @@ output:
 + Fri (17-Jan) --**Data wrangling intro**
 [(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_01_17_Data_manipulation.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_01_17_Data_manipulation.Rmd)
 
-```{r echo = F, eval = F}
-[(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_01_17_Data_manipulation.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_01_17_Data_manipulation.Rmd)
-```
+
 
 
 ***
@@ -62,8 +66,9 @@ output:
 + Lab 2 -- **Intro and EPA Fuel Economy Data** 
 [(html)](https://stahlm.github.io/ENS_215/Winter_2020/Labs/Lab_EPA_Fuel_Economy.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Labs/Lab_EPA_Fuel_Economy.Rmd)  
 
+
 ```{r echo=F,eval=F}
-[(html)](https://stahlm.github.io/ENS_215/Winter_2020/Labs/Lab_EPA_Fuel_Economy.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Labs/Lab_EPA_Fuel_Economy.Rmd)  
++ Lab 3 -- **Global Dams and Reservoirs** [(html)](https://stahlm.github.io/ENS_215/Winter_2020/Labs/Lab_Global_Dams.html)
 ```
 
 
