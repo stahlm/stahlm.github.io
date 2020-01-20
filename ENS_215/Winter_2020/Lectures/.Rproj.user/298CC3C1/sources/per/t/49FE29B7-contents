@@ -359,6 +359,12 @@ Create a few more summary tables using your `my_gap` data (note you may want to 
 
 Did you learn anything interesting?  If so, feel free to share what you found with the class.  
 
+<br/>
 
+## Exercises
+If you finish early, spend some time exploring the gapminder dataset while applying the new `dplyr` tools you've learned.  Formulate some questions and use what you've learned to try and answer/explore them.  
 
+```{r}
+# your code here
+```
 
