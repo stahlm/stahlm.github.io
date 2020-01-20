@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1579546631503.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "3C654022",
+    "lastKnownWriteTime" : 3419473789575321445,
+    "last_content_update" : 1579546631503,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "525F086E",
+        "caption" : "dams_data",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=dams_data&cache_key=525F086E",
+        "displayedObservations" : 14216,
+        "environment" : "",
+        "object" : "dams_data",
+        "preview" : 0,
+        "totalObservations" : 14216,
+        "variables" : 22
+    },
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

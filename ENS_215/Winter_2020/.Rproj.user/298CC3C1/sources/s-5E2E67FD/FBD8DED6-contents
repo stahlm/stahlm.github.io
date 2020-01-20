@@ -59,9 +59,9 @@ You will also need to look at the [readme](https://raw.githubusercontent.com/sta
 
 Once you've loaded in the data, make sure the data looks ok and familiarize yourself with the different columns.  You can examine/get familiar with the dataset in many ways (e.g. `head()`, `summary()`, `View()`,...).  Remember that `View()` should be run in your CONSOLE not your notebook.  
 
-After looking at the data you may find it helpful to reorder the columns.  You can easily move columns of interest to the front of the dataset using the `mutate()` function.  You can do this by specifying the columns you want up front and then using the `everything()` function to specify that you would like to put all the remaining columns after the ones you've moved up front.  For instance,  
+After looking at the data you may find it helpful to reorder the columns.  You can easily move columns of interest to the front of the dataset using the `select()` function.  You can do this by specifying the columns you want up front and then using the `everything()` function to specify that you would like to put all the remaining columns after the ones you've moved up front.  For instance,  
 
-`mutate(Dataset, column to move up front, another column to move up front, everything())`  
+`select(Dataset, column to move up front, another column to move up front, everything())`  
 
 <br/>
 
