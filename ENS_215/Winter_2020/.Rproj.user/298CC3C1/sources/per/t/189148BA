@@ -1,21 +1,21 @@
 {
     "collab_server" : "",
     "contents" : "",
-    "created" : 1579364089521.000,
+    "created" : 1579457894345.000,
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "1778205333",
-    "id" : "49FE29B7",
-    "lastKnownWriteTime" : 1579364753,
-    "last_content_update" : 1579364753136,
+    "hash" : "2233950173",
+    "id" : "189148BA",
+    "lastKnownWriteTime" : 1579458039,
+    "last_content_update" : 1579531043294,
     "path" : "~/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_01_20_Data_manipulation_cont.Rmd",
-    "project_path" : "2020_01_20_Data_manipulation_cont.Rmd",
+    "project_path" : "Lectures/2020_01_20_Data_manipulation_cont.Rmd",
     "properties" : {
-        "cursorPosition" : "245,78",
-        "scrollLine" : "241"
+        "cursorPosition" : "35,19",
+        "scrollLine" : "18"
     },
-    "relative_order" : 3,
+    "relative_order" : 7,
     "source_on_save" : false,
     "source_window" : "",
     "type" : "r_markdown"
