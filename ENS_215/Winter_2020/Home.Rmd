@@ -27,6 +27,8 @@ output:
 
 ### Week 3
 + Mon (20-Jan) -- **Data wrangling continued** 
+[(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_01_20_Data_manipulation_cont.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_01_20_Data_manipulation_cont.Rmd)  
+
 ```{r echo = F, eval = F}
 [(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_01_20_Data_manipulation_cont.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_01_20_Data_manipulation_cont.Rmd)  
 ```
