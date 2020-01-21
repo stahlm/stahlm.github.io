@@ -25,12 +25,15 @@ output:
 
 ## Lectures 
 
+
 ### Week 3
 + Mon (20-Jan) -- **Data wrangling continued** 
 [(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_01_20_Data_manipulation_cont.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_01_20_Data_manipulation_cont.Rmd)  
 
++ Wed (22-Jan) -- **Data wrangling `group_by` and `summarize()`**
+
 ```{r echo = F, eval = F}
-[(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_01_20_Data_manipulation_cont.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_01_20_Data_manipulation_cont.Rmd)  
+[(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_01_22.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_01_22.Rmd)  
 ```
 
 ***

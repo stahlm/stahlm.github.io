@@ -1,0 +1,9 @@
+"0","precip_data <- read_csv(""https://stahlm.github.io/ENS_215/Data/NOAA_State_Precip_LabData.csv"")"
+"2","Parsed with column specification:
+cols(
+  Year = col_integer(),
+  Month = col_integer(),
+  Precip_inches = col_double(),
+  state_cd = col_character()
+)
+"

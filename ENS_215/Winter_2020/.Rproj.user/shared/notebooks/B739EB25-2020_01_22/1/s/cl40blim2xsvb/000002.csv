@@ -1,0 +1,6 @@
+"0","library(tidyverse)"
+"2","package ‘tidyverse’ was built under R version 3.5.3"
+"2","package ‘tibble’ was built under R version 3.5.3"
+"2","package ‘dplyr’ was built under R version 3.5.3"
+"0","library(readr) # we'll use this package later in the lecture to load in files from our class website"
+"0","library(gapminder)"
