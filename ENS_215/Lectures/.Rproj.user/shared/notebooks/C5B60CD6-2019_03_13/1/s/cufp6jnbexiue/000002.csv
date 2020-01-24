@@ -1,0 +1,1 @@
+"0","world_map_data <- world # save the world data from the spData package to our own R object"
