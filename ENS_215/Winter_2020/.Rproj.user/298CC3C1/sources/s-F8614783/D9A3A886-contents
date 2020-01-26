@@ -25,6 +25,14 @@ output:
 
 ## Lectures 
 
+### Week 4
++ Mon (27-Jan) -- **Intro to data visualization**
+```{r echo = F, eval = F}
+[(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_01_27_Intro_data_viz.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_01_27_Intro_data_viz.Rmd), [Slides](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_01_27_slides.html)  
+```
+
+
+***
 
 ### Week 3
 + Mon (20-Jan) -- **Data wrangling continued** 
@@ -36,9 +44,7 @@ output:
 + Fri (24-Jan) -- **Intro to strings** 
 [(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_01_24_strings.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_01_24_strings.Rmd)  
 
-```{r echo = F, eval = F}
-[(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_01_24_strings.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_01_24_strings.Rmd) 
-```
+
 
 ***
 

@@ -10,6 +10,8 @@ output:
     toc_float: TRUE
 ---
 
+<br/>
+
 You've seen thus far, that in addition to numbers, we often deal with characters (text) in our datasets of interest.  We often want to search or perform some kind of manipulation of the character values in our dataset.  R has a host of tools/functions for dealing with operations on character data (FYI, in computer science a set of characters is called a **string**) and there is a great package called `stringr` that provides many additional and easy to implement functions for handling **strings**.  We will primarily rely on the `stringr` package, which simplifies string operations, much like `dplyr` does for data manipulation/wrangling operations[^1].  
 
 <br/>
