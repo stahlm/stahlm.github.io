@@ -27,6 +27,8 @@ output:
 
 ### Week 4
 + Mon (27-Jan) -- **Intro to data visualization**
+[(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_01_27_Intro_data_viz.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_01_27_Intro_data_viz.Rmd), [Slides](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_01_27_slides.html) 
+
 ```{r echo = F, eval = F}
 [(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_01_27_Intro_data_viz.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_01_27_Intro_data_viz.Rmd), [Slides](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_01_27_slides.html)  
 ```

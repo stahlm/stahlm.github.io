@@ -51,7 +51,9 @@ Before jumping into the `ggplot2` package, let's become familiar with some of th
 
 <br/>
 
-[You can see a bunch of great examples of plot/graphic types (which are all available in R) here](https://www.r-graph-gallery.com/)  
+[Check out this excellent site that provides guidance on the best type of graphic to use based on the kind of data you have](https://www.data-to-viz.com/)  
+
+[You can see a bunch of great examples of plot/graphic types (which are all available in R) here](https://www.r-graph-gallery.com/)    
 
 <br/>
 
