@@ -370,7 +370,7 @@ Make sure you are familiar with the expectations and evaluation criteria present
 
 + [Evaluation rubric](https://stahlm.github.io/ENS_215/Website/Syllabus.html#evaluation_rubric)
 + Template for lab and homework assignments: [(html)](https://stahlm.github.io/ENS_215/Homework/Template_Assignments.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Homework/Template_Assignments.Rmd)
-+ [Lab report guidelines](https://stahlm.github.io/ENS_215/Labs/Lab_Guidelines.html)
++ [Lab report guidelines](https://stahlm.github.io/ENS_215/Winter_2020/Syllabus.html#evaluation_rubric)
 
 <br/>
 
