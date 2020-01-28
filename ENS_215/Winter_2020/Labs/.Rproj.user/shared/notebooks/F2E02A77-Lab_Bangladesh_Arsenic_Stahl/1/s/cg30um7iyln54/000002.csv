@@ -1,0 +1,29 @@
+"0","```r
+# As vs. depth
+bangladesh_gw %>% filter(WELL_DEPTH_m < 100) %>%  ggplot() + geom_point(aes(x = As_ugL, y = WELL_DEPTH_m)) + scale_y_reverse() + facet_wrap(~DIVISION) 
+
+# Sr vs. depth
+bangladesh_gw %>% filter(WELL_DEPTH_m < 100) %>%  ggplot() + geom_point(aes(x = Sr_mgL, y = WELL_DEPTH_m)) + scale_y_reverse() + facet_wrap(~DIVISION) 
+
+# As vs. district
+bangladesh_gw %>% 
+  ggplot(aes(x = reorder(DIVISION,As_ugL, FUN = median), y = As_ugL)) + geom_boxplot() + scale_y_log10() + geom_jitter(alpha = 0.15) 
+
+# As vs. depth category
+bangladesh_gw %>% 
+  ggplot(aes(x = depth_cat, y = As_ugL)) + scale_y_log10() + geom_jitter(alpha = 0.15) 
+
+# Depth vs. As category
+bangladesh_gw %>% 
+  ggplot(aes(x = As_cat, y = WELL_DEPTH_m)) + geom_jitter(alpha = 0.15)  + scale_y_reverse()
+
+# As vs. district
+bangladesh_gw %>% 
+  ggplot(aes(x = reorder(DIVISION,As_ugL, FUN = median), y = As_ugL)) + geom_violin() + scale_y_log10() 
+
+
+# Well depth vs. district
+bangladesh_gw %>% 
+  ggplot(aes(x = reorder(DIVISION,WELL_DEPTH_m, FUN = median), y = WELL_DEPTH_m)) + geom_violin() + scale_y_log10() 
+
+```"

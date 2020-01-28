@@ -1,0 +1,4 @@
+"0","```r
+bd_table <- bangladesh_gw %>% group_by(WELL_TYPE) %>% summarise(mean_as = mean(As_ugL), med_As = median(As_ugL))
+
+```"

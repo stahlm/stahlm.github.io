@@ -1,0 +1,14 @@
+"0","```r
+
+## As vs SO4
+bangladesh_gw %>% ggplot() + geom_point(aes(x = SO4_mgL, y = As_ugL)) + scale_y_log10() + scale_x_log10() 
+
+
+bangladesh_gw %>% ggplot() + geom_point(aes(x = Fe_mgL, y = As_ugL), alpha = 0.5) + scale_y_log10() + scale_x_log10()
+
+# As vs Sr
+bangladesh_gw %>% ggplot() + geom_point(aes(x = Sr_mgL, y = As_ugL), alpha = 0.5) + scale_y_log10() + scale_x_log10()
+
+
+
+```"

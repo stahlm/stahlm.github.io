@@ -1,0 +1,9 @@
+"0","```r
+
+tmap_mode(\"view\")
+
+tm_basemap(leaflet::providers$Esri.WorldGrayCanvas, group = \"CartoDB basemap\") + 
+  tm_shape(DT_sf) +
+  tm_symbols(col = \"As_cat\", scale = 0.5)
+  
+```"

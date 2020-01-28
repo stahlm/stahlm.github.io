@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1580154987225.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4066974273",
+    "id" : "54B06AF3",
+    "lastKnownWriteTime" : 1552351798,
+    "last_content_update" : 1580154993506,
+    "path" : "~/Teaching_UnionCollege/Environmental_Data_Analysis/Labs/Lab_Bangladesh_Arsenic_Stahl.Rmd",
+    "project_path" : null,
+    "properties" : {
+        "chunk_output_type" : "inline"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

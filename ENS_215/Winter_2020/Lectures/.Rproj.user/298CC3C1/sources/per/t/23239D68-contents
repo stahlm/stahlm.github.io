@@ -14,7 +14,21 @@ output:
 |---|------------|-----------|
 
 ***
+### Week 4
+#### Readings
+* [**ModernDive Ch: 2**](https://moderndive.com/)
+* [**R for Data Science (R4DS) Ch: 3**](https://r4ds.had.co.nz/) (the R4DS reading is optional, though strongly recommended) 
 
+#### Assignments 
+1. DataCamp **_Data Visualization with ggplot2 (Part 1)_** chapters **1** ("Introduction") and **2** ("Data")
+    + Assigned: 24-Jan
+    + Due: 29-Jan
+  
+2. DataCamp **_Data Visualization with ggplot2 (Part 1)_** chapters **3** ("Aesthetics") and **4** ("Geometries")
+    + Assigned: 24-Jan
+    + Due: 31-Jan
+
+***
 
 ### Week 3
 #### Readings

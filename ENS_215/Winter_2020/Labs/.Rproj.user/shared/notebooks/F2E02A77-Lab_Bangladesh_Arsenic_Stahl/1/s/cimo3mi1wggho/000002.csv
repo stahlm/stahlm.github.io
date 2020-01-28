@@ -1,0 +1,29 @@
+"0","```r
+library(sf)
+```"
+"1","package ‘sf’ was built under R version 3.5.2Linking to GEOS 3.6.1, GDAL 2.2.3, PROJ 4.9.3
+"
+"0","```r
+library(raster)
+```"
+"1","package ‘raster’ was built under R version 3.5.2Loading required package: sp
+"
+"0","```r
+library(spData)
+```"
+"1","package ‘spData’ was built under R version 3.5.2To access larger datasets in this package, install the spDataLarge package
+with: `install.packages('spDataLarge',
+repos='https://nowosad.github.io/drat/', type='source')`
+"
+"0","```r
+library(tmap)
+```"
+"1","package ã¤¼ã¸±tmapã¤¼ã¸² was built under R version 3.5.2
+"
+"0","```r
+DT_sf = st_as_sf(bangladesh_gw, coords = c(\"LONG_DEG\", \"LAT_DEG\"), 
+                 crs = 4326)
+```"
+"1","Error in st_as_sf(bangladesh_gw, coords = c(\"LONG_DEG\", \"LAT_DEG\"), crs = 4326) : 
+  object 'bangladesh_gw' not found
+"

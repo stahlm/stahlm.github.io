@@ -1,0 +1,4 @@
+"0","```r
+library(GGally)
+ggpairs(bangladesh_gw[,15:20])
+```"
