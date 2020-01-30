@@ -1,0 +1,5 @@
+"0","life_exp_table %>% ggplot(aes(x = life_1952, y = life_2007, color = continent)) +"
+"0","  geom_point() +"
+"0","  geom_abline(slope = 1, intercept = 0, color = ""red"") + "
+"0","  theme_bw() +"
+"0","  facet_wrap(~ continent) "

@@ -1,0 +1,4 @@
+"0","life_exp_table %>% "
+"0","  ggplot(aes(x = life_1952, y = life_2007)) + "
+"0","  geom_point() +"
+"0","  theme_bw()"

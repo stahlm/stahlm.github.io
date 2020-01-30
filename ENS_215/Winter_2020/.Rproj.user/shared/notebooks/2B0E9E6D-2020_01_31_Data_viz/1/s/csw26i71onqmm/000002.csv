@@ -1,0 +1,5 @@
+"0","As_fig <- bangladesh_gw %>% "
+"0","  ggplot(aes(x = As_ugL, y = WELL_DEPTH_m)) + "
+"0","  geom_point() +"
+"0","  theme_bw()"
+"0","As_fig"

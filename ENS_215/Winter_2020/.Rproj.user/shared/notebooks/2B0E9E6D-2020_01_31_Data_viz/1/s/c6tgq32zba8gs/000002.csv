@@ -1,0 +1,7 @@
+"0","As_fig <- As_fig + "
+"0","  labs(title = ""Groundwater arsenic in Bangladesh"", "
+"0","              subtitle = ""Arsenic vs. depth"","
+"0","              x = ""As (ug/L)"","
+"0","              y = ""Depth (m)"","
+"0","              caption = ""Data source: BGS"")"
+"0","As_fig"

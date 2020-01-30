@@ -1,0 +1,4 @@
+"0","fig_americas <- gap_americas %>% "
+"0","  ggplot(aes(x = gdpPercap, y = lifeExp)) + "
+"0","  geom_point() + "
+"0","  geom_vline(xintercept = 10000, color = ""blue"")"

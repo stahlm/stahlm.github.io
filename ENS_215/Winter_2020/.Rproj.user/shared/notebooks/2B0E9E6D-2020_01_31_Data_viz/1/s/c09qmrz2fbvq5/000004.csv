@@ -1,0 +1,4 @@
+"0","my_gap %>% "
+"0","  filter(continent == ""Americas"", year == 2007) %>% "
+"0","  ggplot(aes(x = lifeExp, y = reorder(country,lifeExp) )) + "
+"0","  geom_point()"
