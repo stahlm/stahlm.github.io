@@ -1,0 +1,3 @@
+"0","```r
+ggplot(dams_summary, aes(x = Continent, y = num_dams, fill= Continent)) + geom_col() + labs(title = \"Number of Dams per Continent\", y= \"Dams Quantity\")
+```"

@@ -1,0 +1,10 @@
+"0","```r
+library(ggplot2)
+dams_data %>% ggplot(aes(x= Reservoir_capacity_million_m3,
+                         y= Dam_height_m,
+                         color = Continent )) +
+                       geom_jitter() +
+                       scale_x_log10() +
+                       scale_y_log10() +
+                      labs(title= \"Reservoir Capacity vs Dam Height\", x= \"Reservoir Capacity (Million m3)\", y = \"Dam Height (m)\")
+```"

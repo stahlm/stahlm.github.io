@@ -1,0 +1,5 @@
+"0","```r
+ggplot(dams_data, aes(x= Continent, 
+                      y = Reservoir_capacity_million_m3)) + 
+                      geom_boxplot() + scale_y_log10() + labs(title= \"Reservoir capacity by Continent\", y=\"Reservoir capacity (million m3)\")
+```"

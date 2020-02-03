@@ -1,0 +1,17 @@
+"0","```r
+library (tidyverse)
+library(ggplot2)
+dams_data <- read_csv(\"http://stahlm.github.io/ENS_215/Data/Dams_FAO_SelectCols_LabData.csv\")
+```"
+"1","Parsed with column specification:
+cols(
+  .default = col_double(),
+  Country = [31mcol_character()[39m,
+  Dam_name = [31mcol_character()[39m,
+  ISO_code = [31mcol_character()[39m,
+  River = [31mcol_character()[39m,
+  Major_basin = [31mcol_character()[39m,
+  Continent = [31mcol_character()[39m
+)
+See spec(...) for full column specifications.
+"

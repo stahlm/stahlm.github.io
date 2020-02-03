@@ -1,0 +1,7 @@
+"0","```r
+dams_per_country <- dams_data %>% group_by(Country) %>% 
+  summarise(continent = first(Continent), na.rm = TRUE, mean_height_m = mean(Dam_height_m, na.rm = TRUE), 
+            mean_area_km2 = mean(Reservoir_area_km2, na.rm = TRUE), 
+            mean_capacity_million_m3 = mean(Reservoir_capacity_million_m3, na.rm = TRUE),
+            num_dams = n())
+```"

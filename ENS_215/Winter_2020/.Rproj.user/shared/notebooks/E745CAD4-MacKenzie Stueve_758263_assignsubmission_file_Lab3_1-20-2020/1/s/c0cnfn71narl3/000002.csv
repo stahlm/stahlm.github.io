@@ -1,0 +1,6 @@
+"0","```r
+dams_data %>% ggplot(aes(x= Reservoir_area_km2, 
+                         y= Reservoir_capacity_million_m3, 
+                         color = Continent )) + geom_point() +
+                          labs(title= \"Reservior Area vs Reservoir Capacity\", x= \"Reservoir Area (km2)\", y = \"Reservoir Capacity (million m3)\")
+```"

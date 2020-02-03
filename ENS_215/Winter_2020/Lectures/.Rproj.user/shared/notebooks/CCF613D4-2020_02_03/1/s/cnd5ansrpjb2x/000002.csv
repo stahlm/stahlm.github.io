@@ -1,0 +1,3 @@
+"0","ggplot(life_exp_table, aes(x = life_1952, y = life_2007)) + "
+"0","  geom_point() +"
+"0","  coord_equal(ratio = 1)"

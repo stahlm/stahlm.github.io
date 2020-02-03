@@ -1,0 +1,6 @@
+"0","life_exp_table <- my_gap %>% "
+"0","  filter(year %in% c(1952,2007)) %>% "
+"0","  group_by(country) %>% "
+"0","  arrange(country, year) %>% "
+"0","  summarize(continent = first(continent), life_1952 = first(lifeExp), life_2007 = last(lifeExp))"
+"0","life_exp_table"

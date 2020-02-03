@@ -1,0 +1,3 @@
+"0","```r
+count_usage <- count_usage %>% group_by(Continent) %>% mutate(tot_dams = sum(n_irrigation, n_water_supply, n_flood_control, n_hydroelectricity, n_navigation, n_recreation, n_pollution_control, n_livestock_rearing))
+```"

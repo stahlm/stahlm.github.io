@@ -1,0 +1,4 @@
+"0","fig_life +"
+"0","  scale_x_log10(labels = trans_format('log10', math_format(10^.x)) )"
+"2","Scale for 'x' is already present. Adding another scale for 'x', which will replace the existing scale.
+"
