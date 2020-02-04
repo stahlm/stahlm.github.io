@@ -28,8 +28,12 @@ output:
 ### Week 5
 + Mon (3-Feb) -- **Presentation quality graphics**
 [(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_02_03.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_02_03.Rmd), [(Slides)](https://stahlm.github.io/ENS_215/Documents/Data_vis_slides.pdf), [Article by Kelleher and Wagener (2011)](https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Documents/ems2011%20kelleher%20and%20wagener.pdf) 
+
++ Wed (5-Feb) -- **Reshaping, cleaning and tidying data** [(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_02_05.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_02_05.Rmd)
+
+
 ```{r eval = F, echo = F}
-[(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_02_03.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_02_03.Rmd), [(Slides)](https://stahlm.github.io/ENS_215/Documents/Data_vis_slides.pdf), [Article by Kelleher and Wagener (2011)](https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Documents/ems2011%20kelleher%20and%20wagener.pdf) 
+[(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_02_05.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_02_05.Rmd)
 ```
 
 
