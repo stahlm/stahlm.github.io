@@ -10,6 +10,11 @@ output:
     toc_float: TRUE
 ---
 
+```{r echo=FALSE}
+knitr::opts_chunk$set(comment=NA, warning = F)
+
+```
+
 <br/>
 
 In most cases, the dataset that you want to work with will not be in an ideal format/structure for conducting your analysis.  In fact getting data into a suitable format and structure is often one of the more time consuming aspects of data analysis and interpretation.  Furthermore, a single format and structure typically will not suit all of your needs -- a given format/structure might work great for one aspect of your work, but be less than ideal (or completely unsuitable) for another task.  
@@ -90,17 +95,17 @@ We learned that in a tidy dataset each variable has its own column and each obse
 Thus to make our dataset tidy, we will need to reshape the data so that we have four columns and 36 rows.  Three of the columns (Year, Month, State) are variables whose values identify the observation, while the fourth column will have the precipitation corresponding to a given observation.  
 
 
-Ok, once you understand why the data isn't tidy, we'll move ahead and make it tidy.  To do this we will use the `gather()` function from the `tidyr` package.  
+Ok, once you understand why the data isn't tidy, we'll move ahead and make it tidy.  To do this we will use the `pivot_longer()` function from the `tidyr` package.  
 
-We can use the `gather` function to take the names of columns and gather them into a new column where the names are values in a variable.  For example, the above dataset has columns with month names, however these names are really values that should be in a variable (column) that has the months.  
+We can use the `pivot_longer` function to take the names of columns and gather them into a new column where the names are values in a variable.  For example, the above dataset has columns with month names, however these names are really values that should be in a variable (column) that has the months.  
 
-Below is a nice illustration from the R4DS text that illustrates what `gather` does.  
+Below is a nice illustration from the R4DS text that illustrates what `pivot_longer` does.  
 
 ![_Image source: R4DS_](https://stahlm.github.io/ENS_215/Lectures/Images/tidy-gather.png)
 
 `pivot_longer()` takes four arguments:  
 
-+ The dataset you would like to gather  
++ The dataset you would like to operate on  
 
 + **names_to**: This is the name of the new column that combines all column names from the original dataset (_i.e._ Jan, Feb, Mar,..., Dec) and stores them as data in this new column .  
 
@@ -144,7 +149,7 @@ Below is a nice illustration from the R4DS text that illustrates what `pivot_wid
 
 ![_Image source: R4DS_](https://stahlm.github.io/ENS_215/Lectures/Images/tidy-spread.png)
 
-The `pivot_wider()` function can perform this operation.  Spread takes three arguments:
+The `pivot_wider()` function can perform this operation.  `pivot_wider` takes three arguments:
 
 + The dataset to pivot wider  
 + **names_from:** The column in the original dataset that contains the names of the variables to spread into the new columns  
@@ -439,8 +444,10 @@ flow_table <- streamflows %>%
 flow_table 
   
 ```
-    
-    ii) The other version of the table will have the exact same data, however it should be organized as follows
+  
+  <br/> 
+  
+  ii) The other version of the table will have the exact same data, however it should be organized as follows
 
 ```{r echo = F}
 flow_table %>% 
@@ -478,7 +485,7 @@ streamflows_wide <- streamflows %>%
 ```
 
 
-```{r}
+```{r eval = F, echo = F}
 streamflows_wide %>% 
   ggplot(aes(x = `01335754`, y = `01357500`)) +
   geom_point(alpha = 0.2) +
@@ -493,5 +500,34 @@ streamflows_wide %>%
   
 ```
 
+<br/>
 
+4. Look back at the above streamflow data and discuss with your neighbor the general patterns, trends, features in the data.  How does streamflow in the Mohawk compare to that of the Hudson?  Are there notable seasonal features in streamflow?  Do you observe any notable events in the streamflow record?...  Perform any additional analysis that you think may help you answer this question.  
+
+
+
+
+```{r  eval = F, echo=F}
+streamflows <- read_csv("https://stahlm.github.io/ENS_215/Data/Hud_Mow_streamflow_data.csv") %>% 
+  filter(flow_cfs >= 0,
+         lubridate::year(dateTime) >= 1950) %>% 
+  mutate(Month = lubridate::month(dateTime),
+         Year = lubridate::year(dateTime)) %>% 
+  select(dateTime, Year, Month, site_no, flow_cfs)
+
+
+streamflows %>% 
+  filter(site_no == "01357500") %>% 
+  group_by(Year, Month) %>% 
+  summarize(flow_stat = mean(flow_cfs, na.rm = T)) %>% 
+  ungroup() %>% 
+  mutate(Year = 1 + Year - min(Year)) %>% 
+  
+  ggplot(aes(x = Year, y = flow_stat)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  theme_bw() +
+  facet_wrap(~ Month, scales = "free_y")
+  
+```
 

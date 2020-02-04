@@ -1,4 +1,0 @@
-"0","flow_table <- streamflows %>% "
-"0","  group_by(site_no, Year) %>% "
-"0","  summarize(flow_mean = round(mean(flow_cfs, na.rm = T))) "
-"0","flow_table "

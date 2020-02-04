@@ -1,0 +1,28 @@
+"0","streamflows <- read_csv(""https://stahlm.github.io/ENS_215/Data/Hud_Mow_streamflow_data.csv"") %>% "
+"0","  filter(flow_cfs >= 0,"
+"0","         lubridate::year(dateTime) >= 1950) %>% "
+"0","  mutate(Month = lubridate::month(dateTime),"
+"0","         Year = lubridate::year(dateTime)) %>% "
+"0","  select(dateTime, Year, Month, site_no, flow_cfs)"
+"2","Parsed with column specification:
+cols(
+  agency_cd = [31mcol_character()[39m,
+  site_no = [31mcol_character()[39m,
+  dateTime = [34mcol_datetime(format = """")[39m,
+  flow_cfs = [32mcol_double()[39m,
+  X_00060_00003_cd = [31mcol_character()[39m,
+  tz_cd = [31mcol_character()[39m
+)
+"
+"0","streamflows %>% "
+"0","  filter(site_no == ""01357500"") %>% "
+"0","  group_by(Year, Month) %>% "
+"0","  summarize(flow_stat = mean(flow_cfs, na.rm = T)) %>% "
+"0","  ungroup() %>% "
+"0","  mutate(Year = 1 + Year - min(Year)) %>% "
+"0","  "
+"0","  ggplot(aes(x = Year, y = flow_stat)) +"
+"0","  geom_point() +"
+"0","  geom_smooth(method = ""lm"") +"
+"0","  theme_bw() +"
+"0","  facet_wrap(~ Month, scales = ""free_y"")"

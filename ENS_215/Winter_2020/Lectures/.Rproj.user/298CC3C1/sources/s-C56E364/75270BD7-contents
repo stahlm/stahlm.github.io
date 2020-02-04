@@ -1,0 +1,100 @@
+---
+author: "Athena Nghiem"
+date: "Feb 2020"
+output:
+  html_document:
+    df_print: paged
+    theme: spacelab
+    toc: yes
+    toc_float: yes
+---
+
+```{r, message=F, echo=F}
+library("dplyr")
+library("ggplot2")
+library("plotly")
+```
+
+
+###Supplemental information
+
+####Spectroscopic classification reveals active sediment redox transformations and resulting groundwater arsenic contamination
+
+Nghiem et al.
+
+```{r, echo=F, warning=F}
+wqd1=read.csv("wqd.csv")
+
+bgs_color_scheme_As = c("#003deeff",
+                        "#2498ffff",
+                        "#4cbeffff",
+                        "#89ddffff",
+                        "#67ff4dff",
+                        "#ffb578ff",
+                        "#ffb675ff",
+                        "#ff9813ff",
+                        "#ff1200ff",
+                        "#d80000ff")
+
+wqd1$Category_As_many=factor(wqd1$Category_As_many, level=c("<1 ppb As", "1-5", "5-10","10-20", "20-50","50-75", "75-100", "100-200", "200-300", ">300 ppb As"))
+
+wqd1$Depth_m=-1*wqd1$Depth__m
+
+wqd1_bg = wqd1 %>% filter(Country=="Bangladesh")
+
+bg_3d_gr=wqd1_bg %>% filter(cluspred=="green-red") %>% 
+  plot_ly(x=~Long, y=~Lat, z=~Depth_m, type="scatter3d", mode="markers", color=~Category_As_many, colors=bgs_color_scheme_As) 
+
+bg_3d_blue=wqd1_bg %>% filter(cluspred=="blue") %>% 
+  plot_ly(x=~Long, y=~Lat, z=~Depth_m, type="scatter3d", mode="markers", color=~Category_As_many, colors=bgs_color_scheme_As)
+
+bg_3d_black=wqd1_bg %>% filter(cluspred=="black") %>% 
+  plot_ly(x=~Long, y=~Lat, z=~Depth_m, type="scatter3d", mode="markers", color=~Category_As_many, colors=bgs_color_scheme_As)
+
+wqd1_vn = wqd1 %>% filter(Country=="Vietnam")
+
+vn_3d_gr=wqd1_vn %>% filter(cluspred=="green-red") %>% filter(Lat>=18) %>% 
+  plot_ly(x=~Long, y=~Lat, z=~Depth_m, type="scatter3d", mode="markers", color=~Category_As_many, colors=bgs_color_scheme_As)
+
+vn_3d_blue=wqd1_vn %>% filter(cluspred=="blue") %>% filter(Lat>=18) %>% 
+  plot_ly(x=~Long, y=~Lat, z=~Depth_m, type="scatter3d", mode="markers", color=~Category_As_many, colors=bgs_color_scheme_As)
+
+vn_3d_black=wqd1_vn %>% filter(cluspred=="black") %>% filter(Lat>=18, Depth__m<=25, Depth__m>=20) %>% 
+  plot_ly(x=~Long, y=~Lat, z=~Depth_m, type="scatter3d", mode="markers", color=~Category_As_many, colors=bgs_color_scheme_As)
+```
+
+
+###Bangladesh
+
+Bangladesh, orange Pleistocene & orange transition (cluster 1 & 2)
+```{r, echo=F, warning=F}
+bg_3d_gr
+```
+
+Bangladesh, gray transition (cluster 3)
+```{r, echo=F, warning=F}
+bg_3d_blue
+```
+
+Bangladesh, gray Holocene (cluster 4)
+```{r, echo=F, warning=F}
+bg_3d_black
+```
+
+###Red River Delta, Vietnam
+
+Red River Delta, VN, orange Pleistocene & orange transition (cluster 1 & 2)
+```{r, echo=F, warning=F}
+vn_3d_gr
+```
+
+Red River Delta, VN, gray transition (cluster 3)
+```{r, echo=F, warning=F}
+vn_3d_blue
+```
+
+Red River Delta, VN, gray Holocene (cluster 4)
+```{r, echo=F, warning=F}
+vn_3d_black
+```
+
