@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1580785844987.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "6720AD5B",
+    "lastKnownWriteTime" : 3415249577738792771,
+    "last_content_update" : 1580785844987,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "EC343DA7",
+        "caption" : "Bangladesh_gw",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=Bangladesh_gw&cache_key=EC343DA7",
+        "displayedObservations" : "21204",
+        "environment" : "",
+        "object" : "Bangladesh_gw",
+        "preview" : "0",
+        "totalObservations" : "21204",
+        "variables" : "6"
+    },
+    "relative_order" : 9,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

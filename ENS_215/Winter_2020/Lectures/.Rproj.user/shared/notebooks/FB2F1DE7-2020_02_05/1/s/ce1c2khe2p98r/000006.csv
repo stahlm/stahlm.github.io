@@ -1,0 +1,6 @@
+"0","Bangladesh_gw %>% "
+"0","  ggplot(aes(x = CONC, y = WELL_DEPTH_m)) +"
+"0","  geom_point() +"
+"0","  scale_y_reverse() +"
+"0","  theme_classic() +"
+"0","  facet_wrap(~PARAMETER, scales = ""free_x"") "

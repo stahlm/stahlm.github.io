@@ -1,0 +1,2 @@
+"0","precip_temp_tidy_CA %>% "
+"0","  gather(key = Measurement_Type, value = Measurement, Avg_Temp_F, Precip_inches)"

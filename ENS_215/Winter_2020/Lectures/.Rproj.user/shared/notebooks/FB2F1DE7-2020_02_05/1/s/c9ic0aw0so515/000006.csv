@@ -1,0 +1,2 @@
+"0","precip_temp_tidy_CA %>% "
+"0","  pivot_longer(cols = c(Avg_Temp_F, Precip_inches), names_to = ""Measurement_type"", values_to = ""Measurement"")"

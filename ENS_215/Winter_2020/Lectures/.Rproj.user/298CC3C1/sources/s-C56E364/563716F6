@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1580771993941.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "563716F6",
+    "lastKnownWriteTime" : 8458452139692261378,
+    "last_content_update" : 1580771993941,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "7ED0C96B",
+        "caption" : "sf_trees",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=sf_trees&cache_key=7ED0C96B",
+        "displayedObservations" : 192987,
+        "environment" : "",
+        "object" : "sf_trees",
+        "preview" : 0,
+        "totalObservations" : 192987,
+        "variables" : 12
+    },
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}
