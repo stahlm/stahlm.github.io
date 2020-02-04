@@ -1,0 +1,17 @@
+"0","# We'll select only data from year 2000 onward, add a column with the month, remove any missing data which is recorded as a negative number"
+"0","streamflows <- read_csv(""https://stahlm.github.io/ENS_215/Data/Hud_Mow_streamflow_data.csv"") %>% "
+"0","  filter(flow_cfs >= 0,"
+"0","         lubridate::year(dateTime) >= 2000) %>% "
+"0","  mutate(Month = lubridate::month(dateTime),"
+"0","         Year = lubridate::year(dateTime)) %>% "
+"0","  select(dateTime, Year, Month, site_no, flow_cfs)"
+"2","Parsed with column specification:
+cols(
+  agency_cd = [31mcol_character()[39m,
+  site_no = [31mcol_character()[39m,
+  dateTime = [34mcol_datetime(format = """")[39m,
+  flow_cfs = [32mcol_double()[39m,
+  X_00060_00003_cd = [31mcol_character()[39m,
+  tz_cd = [31mcol_character()[39m
+)
+"

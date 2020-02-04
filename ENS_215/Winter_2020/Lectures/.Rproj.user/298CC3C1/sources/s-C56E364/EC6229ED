@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1580826511103.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "EC6229ED",
+    "lastKnownWriteTime" : 4710590887728799596,
+    "last_content_update" : 1580826511103,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "3F6B046",
+        "caption" : "streamflows_wide",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=streamflows_wide&cache_key=3F6B046",
+        "displayedObservations" : 51192,
+        "environment" : "",
+        "object" : "streamflows_wide",
+        "preview" : 0,
+        "totalObservations" : 51192,
+        "variables" : 7
+    },
+    "relative_order" : 12,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

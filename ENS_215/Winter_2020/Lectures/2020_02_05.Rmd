@@ -21,11 +21,11 @@ Today and in the upcoming classes, we will start to work with tools from the `dp
 While, you've been working with real, research quality datasets in class/lab, these datasets have been relatively neat and clean (In most cases I've taken the original dataset and done some organizing/cleaning to prepare it for the class).  However in most cases you won't have someone prep the data before you get it.  Thus, the skills you will now learn are critical to your work as they will allow you to deal with data "out in the real-world" where things can get a bit more messy.  
 
 
-```{r message=FALSE}
+```{r message=FALSE, warning=F}
 library(tidyverse)
-#library(readr)
 ```
 
+<br/>
 
 ## Tidy data
 
@@ -46,6 +46,8 @@ In data science, **tidy** data has a specific meaning, and refers to how the dat
 In some cases, untidy data is more "human-readable".  Thus, you may recieve data in untidy formats because it was originally formatted for human eyes to look at.  Other times you will recieve untidy data, simply because the original formatter of the data wasn't thinking about (or didn't need to) these issues.  
 
 When performing data analysis a tidy dataset is almost always much easier to work with and thus we will often convert untidy data into a tidy format (_however there are situations where an untidy dataset is useful_).  
+
+<br/>
 
 ## Reshaping datasets
 
@@ -320,6 +322,8 @@ Bangladesh_gw <- read_csv("https://stahlm.github.io/ENS_215/Data/BGS_DPHE_to_cle
 
 ```
 
+
+
 <br/>
 
 Now take a look at the first few rows of the data
@@ -396,3 +400,98 @@ BGS_data <-  Bangladesh_gw %>%
 write_csv(BGS_data, "Bangladesh_tidy.csv")
 ```
  
+
+<br/> 
+
+### Exercise
+
+Let's load in some USGS streamflow data for three nearby sites:  
+  + Mohawk River at Cohoes (site number: 01357500)
+  + Hudson River at Waterford (site number: 01335754)
+  + Otsquago Creek at Fort Plain (site number: 01349000)
+
+  
+```{r}
+# We'll select only data from year 2000 onward, add a column with the month, remove any missing data which is recorded as a negative number
+
+streamflows <- read_csv("https://stahlm.github.io/ENS_215/Data/Hud_Mow_streamflow_data.csv") %>% 
+  filter(flow_cfs >= 0,
+         lubridate::year(dateTime) >= 2000) %>% 
+  mutate(Month = lubridate::month(dateTime),
+         Year = lubridate::year(dateTime)) %>% 
+  select(dateTime, Year, Month, site_no, flow_cfs)
+```
+
+<br/>
+
+Take a look at the data to understand how it is structured.  Is the data **tidy**?  
+
+We would now like to explore this data to better understand streamflows in the nearby watersheds.  Note that you will likely need to use the `pivot` functions some or all of the exercises below.  
+
+1) Create two versions of a summary table that has the mean flow for each site and each year
+    i) The first table should be structured as follows (see below)
+
+```{r echo = F}
+flow_table <- streamflows %>% 
+  group_by(site_no, Year) %>% 
+  summarize(flow_mean = round(mean(flow_cfs, na.rm = T))) 
+
+flow_table 
+  
+```
+    
+    ii) The other version of the table will have the exact same data, however it should be organized as follows
+
+```{r echo = F}
+flow_table %>% 
+  mutate(flow_mean = round(flow_mean)) %>% 
+  pivot_wider(names_from = Year, values_from = flow_mean) %>% 
+  kableExtra::kable() %>% 
+  kableExtra::kable_styling(bootstrap_options = c("striped", "hover", "condensed"), full_width = F)
+```
+
+<br/>
+
+2. Create a graphic that has the time-series (e.g. flow_cfs vs. dateTime) for each of the sites.  Have each sites data on its own panel.  Think about the visualization guidelines that we've discussed and try to make this graphic as clear and easy to interpret as possible
+
+```{r echo = F, eval = F}
+streamflows %>% 
+  ggplot(aes(x = dateTime, y = flow_cfs)) +
+  geom_line() +
+  scale_y_log10(labels = scales::trans_format('log10', scales::math_format(10^.x)) ) +
+  theme_bw() +
+  labs(y = "Flow (cfs)",
+       x = "") +
+  facet_wrap(~site_no, ncol = 1)
+```
+
+<br/>
+
+3. Let's see how well correlated flows are in the Hudson and Mohawk Rivers.  To do this let's create a scatter plot of the Mohawk (site 01357500) and Hudson (site 01335754) flow.  This means that the flow data needs to be compared for the same days (e.g. a point on the plot would represent a given day and the observed flow in both of the rivers ).  
+
+Think about and add the appropriate features and formatting to make this graphic easily interpretable and conform the the visualization guidelines we've discussed.  
+
+
+```{r echo = F}
+streamflows_wide <- streamflows %>% 
+  pivot_wider(names_from = site_no, values_from = flow_cfs) 
+```
+
+
+```{r}
+streamflows_wide %>% 
+  ggplot(aes(x = `01335754`, y = `01357500`)) +
+  geom_point(alpha = 0.2) +
+  geom_abline(slope = 1, intercept = 0, color = "blue", size = 1.5) +
+  xlim(0,80000) +
+  ylim(0,80000) +
+  coord_equal(ratio = 1) +
+  labs(x = "Mohawk flows (cfs)",
+       y = "Hudson flows (cfs)",
+       caption = "Mohawk (01357500), Hudson (01335754)") +
+  theme_bw()
+  
+```
+
+
+
