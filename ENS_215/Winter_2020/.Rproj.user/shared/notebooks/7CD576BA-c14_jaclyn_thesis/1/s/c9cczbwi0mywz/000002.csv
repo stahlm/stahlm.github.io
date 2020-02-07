@@ -1,0 +1,40 @@
+"0","```r
+download_sites <- function(i) {
+    state_sites <- tryCatch(
+        {
+            print(i)
+          # search criteria using defined parameters / characteristics
+            state_sites <- whatNWISdata(stateCd=i,
+                                        siteType=site_type,
+                                        parameterCd = param_list,
+                                        WellDepthMax = well_max_depth) %>% 
+              # get NWIS site information for sites that meet specified criteria
+              select(site_no)
+            
+        },
+        
+        # error handling (if a download error occurs then skip the state that generates the error)
+        error=function(cond) {
+            message(paste(\"Data for the following state does not exist:\", i))
+            message(\"Here's the original error message:\")
+            message(cond)
+            # Choose a return value in case of error
+            state_sites <- data.frame()
+        },
+        
+        # error handling (if a download warning occurs then skip the state that generates the error)
+        warning=function(cond) {
+            message(paste(\"The following state caused a warning:\", i))
+            message(\"Here's the original warning message:\")
+            message(cond)
+            # Choose a return value in case of warning
+            state_sites <- data.frame()
+        },
+        finally={
+            message(paste(\"Processed state:\", i))
+        }
+    )
+    # Return the list of sites for all states
+    return(state_sites)
+}
+```"

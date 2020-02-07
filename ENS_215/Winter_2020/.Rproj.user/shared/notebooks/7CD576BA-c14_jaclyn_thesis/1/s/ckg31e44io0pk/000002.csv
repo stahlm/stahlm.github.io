@@ -1,0 +1,7 @@
+"0","```r
+NWIS_gw_data %>% 
+  group_by(state_abb) %>% 
+  summarize(prcnt_young = round(100*sum(age_young == \"Young\")/n(), 2),
+            n_samples = n()) %>% 
+  arrange(desc(prcnt_young))
+```"

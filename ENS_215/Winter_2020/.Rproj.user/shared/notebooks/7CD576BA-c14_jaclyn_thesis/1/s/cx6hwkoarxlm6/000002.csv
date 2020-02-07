@@ -1,0 +1,7 @@
+"0","```r
+# create a frame with the list of state codes and abbreviations
+state_codes <- state.fips
+state_codes <- state_codes %>% 
+  rename(state_cd = fips, state_abb = abb) %>% 
+  select(state_cd, state_abb)
+```"

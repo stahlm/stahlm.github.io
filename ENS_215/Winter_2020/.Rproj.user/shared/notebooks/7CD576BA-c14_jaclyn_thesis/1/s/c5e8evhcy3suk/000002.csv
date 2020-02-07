@@ -1,0 +1,5 @@
+"0","```r
+NWIS_gw_data <- NWIS_gw_data %>% 
+  mutate(age_yrs = -8033*log(result_va_49933/100)) %>% 
+  mutate(age_young = if_else(age_yrs < 12000,\"Young\",\"Old\"))
+```"

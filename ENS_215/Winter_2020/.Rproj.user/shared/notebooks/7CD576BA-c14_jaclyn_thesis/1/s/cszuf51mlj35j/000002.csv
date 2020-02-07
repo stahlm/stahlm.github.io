@@ -1,0 +1,6 @@
+"0","```r
+all_gw_data_attributes <- all_gw_data_attributes %>% 
+  select(site_no, state_cd, county_cd, district_cd, dec_lat_va, dec_long_va, well_depth_va, hole_depth_va, alt_va, huc_cd, aqfr_cd)
+# append attributes to the groundwater data
+us_gw_data <- left_join(all_gw_data, all_gw_data_attributes, by = \"site_no\")
+```"

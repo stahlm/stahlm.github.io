@@ -1,0 +1,8 @@
+"0","```r
+NWIS_gw_data %>% 
+  ggplot(aes(x = -8033*log(result_va_49933/100), y = well_depth_va)) +
+  geom_point() +
+  scale_y_reverse() + 
+  facet_wrap(~ state_abb, ncol = 5) +
+  theme_bw()
+```"

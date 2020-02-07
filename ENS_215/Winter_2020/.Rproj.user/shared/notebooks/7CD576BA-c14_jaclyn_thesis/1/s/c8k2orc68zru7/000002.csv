@@ -1,0 +1,5 @@
+"0","```r
+NWIS_gw_data %>% 
+  ggplot(aes(x = state_abb, y = (result_va_49933))) +
+  geom_boxplot()
+```"

@@ -1,0 +1,414 @@
+---
+title: "Flashback Friday: Review of weeks 1-5"
+author: "ENS-215"
+date: "7-Feb-2020"
+output:
+  html_document:
+    theme: spacelab
+    df_print: paged
+    toc: TRUE
+    toc_float: TRUE
+---
+
+<br/>
+
+At this point in the term, you've learned quite a bit of material and its good to stop and look back at what we've covered.  In today's lecture we will refresh our memory of the concepts and tools that we've seen up to now.  In the sections below you'll work through excercises that cover many of these key topics.  
+
+Let's load in the libraries we'll use in this lesson
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+```
+
+
+<br/>
+
+## R basics
+At the beginning of the term we learned some of the basics of programming in R.  You are continually using many of these concepts so they should be relatively fresh.  However, below are some questions/exercises that should help to reinforce these concepts.  
+
+1. Name the common **data types** used in R  
+
+2. Name the common **data structures** used in R 
+
+3. Create a vector called `by_fives` that goes from 0 to 50 in increments of 5
+    i) Divide every element of this vector by 2 and save it to a new vector
+    ii) Multiply (_element-wise_) `by_fives` by your new vector created in the above step.  
+    
+4. Create a vector of factors, with a collection of values "Low", "Med", "High", "Very High".  Have at least 7 values in your vector.
+    i) You should make you factor have ordered levels.  
+    
+5. Load in the data frame using the code below
+    i) Examine the first few rows of the data frame using the `head()` function and get a quick summary using the `summary()` function.  Also examine the structure using the `str()` function
+    ii) Access all rows in the 4^th^ column using bracket `[]` notation
+    iii) Access the 3^rd^ column using the `$` notation.  
+    iv) Select all the rows where the year is 1963 or the number of earthquakes was less than 6.  Note that you should only use base R (do not use dplyr functions).  
+
+    
+```{r message=FALSE}
+earthquake_data <- read_csv("https://stahlm.github.io/ENS_215/Data/Rocky_Mtn_Arsenal_Earthquakes.csv", skip = 2)
+```
+
+6. Create a vector that goes from 1 to 10.  Append this vector to a vector where the value 20 is repeated 5 times and save this new vector to an object `new_vec`.  Test the following conditions (element-wise) on your `new_vec` vector
+    i) If the elements are GREATER THAN 15
+    ii) If the elements are LESS THAN OR EQUAL TO 10
+    iii) If the elements are LESS THAN 5 or if they are GREATER THAN 10
+    iv) If the elements are GREATER THAN 2 and LESS THAN 6
+
+<br/>
+
+
+## Markdown basics
+We learned to use Markdown to nicely format our R Notebooks.  The following exercises will refresh your memory on some of these formatting options.  You can refer to the Notebooks posted on our [class website](https://stahlm.github.io/ENS_215/Winter_2020/Home.html) and/or your **R Markdown Cheatsheet**.
+
+1. Create a few section and sub-section headers using `#`s  
+2. Create **bold** and _italic_ font
+3. Create superscript (e.g. X^2.75^) and subscript (e.g. X~i+1~) text
+4. Make a bulleted list
+5. Make a numbered list that has items 
+    i) and sub-items
+6. Insert a web-link to our class site
+7. Insert a footnote in your text
+8. Insert the image from this link (https://stahlm.github.io/ENS_215/Lectures/Images/1000px-Anscombes_quartet_3.png)
+
+
+
+<br/>
+
+
+## Conditional programming
+As you've learned conditional programming allows us execute code when specified conditions are met.  We learned how to do this using `if`, `if/else`, and `if/else-if/else` statements.  
+
+1. Create an if statement that checks to see if a number you have guessed between 1 and 100 is larger or smaller than a randomly generated number between 1 and 100.  The code below gives you a start.  You will need to complete the code and add your if statement.  You if statement should print out a message informing you of the result.  
+
+```{r eval=FALSE}
+rand_number <- runif(1, min = 0, max = 100) # generate a random number between 1 and 100
+my_guess <-    # your guess goes here
+
+```
+
+<br/>
+
+2. Create an `if/else-if/else` statement that tells you how well you guessed
+    + When your guess is off by 50 or more then print "Your guess is way off"
+    + When your guess differs by more than 20 but less than 50 print "You guess is OK"
+    + When your guess differs by more than 10 but less than 20 print "Good guess"
+    + When your guess differs by less than 10 print "Excellent guess"
+
+Create your `if/else-if/else` statement in a well-thought out and efficient manner.  Think about the styling of your code and the quality of your implementation.  
+
+```{r eval=FALSE, echo = FALSE}
+rand_number <- runif(1, min = 0, max = 100) # generate a random number between 1 and 100
+my_guess <-   50 # your guess goes here
+
+diff_guess <- abs(my_guess - rand_number)
+
+print(paste("The random number = ", rand_number))
+print(paste("Your guess = ", my_guess))
+print(paste("The difference between your guess and the random number = ", diff_guess))
+
+if(diff_guess >= 50){
+  print("Your guess is way off")
+} else if(diff_guess >= 20){
+  print("You guess is OK") 
+} else if(diff_guess >= 10){
+  print("Good guess")
+} else {
+  print("Excellent guess")
+}
+
+```
+
+<br/>
+
+
+## Loops
+We learned that we can repeat a section of code when specified conditions are met by using loops.  This allows us to perform repeated operations without having to copy and paste code (which is a very bad practice and very inefficient).  
+
+Let's load in a some daily streamflow on the Hudson River (measured near Waterford, NY) for years 2013-2016.  Note that the dataset is complete (i.e. there are no missing days and no missing data)
+```{r message=FALSE, warning=FALSE}
+Hudson_flow <- read_csv("https://stahlm.github.io/ENS_215/Data/Hudson_01335754_review_class.csv")
+
+```
+
+<br/>
+
+1. Create a for loop to find the length (in days) of the longest period of consecutive days where the flow was less than 2,500 cfs.  FYI, I've determined that the answer is 30 days (let me know if you get something different).
+
+Note: Take some time to think about how to do this.  Also write you code in an intelligent manner so that it is flexible (i.e. would run without modification if you were to load in different but identically formatted dataset).
+
+```{r}
+# Your code here
+```
+
+```{r eval=FALSE, echo=FALSE}
+flow_thresh <- 2500 # flow threshold (cfs)
+consec_counter <- 0
+max_per_length <- 0
+
+for(i_row in 1:nrow(Hudson_flow)){
+  
+  if(Hudson_flow[i_row,"Flow"] <= flow_thresh){
+    consec_counter <- consec_counter + 1
+  } else{
+    max_per_length <- max(max_per_length, consec_counter)
+    consec_counter <- 0
+  }
+  
+  if(i_row == nrow(Hudson_flow)){
+    max_per_length <- max(max_per_length, consec_counter)
+  }
+}
+
+print(paste("The longest period where flow was <", flow_thresh, "cfs was",max_per_length, "days"))
+```
+
+
+<br/>
+
+2. Create a `while` loop that loops through the `Hudson_flow` data until it reaches the maximum flow recorded in the dataset at which point the loop stops.  You should add a `print()` statement after the loop that reports the date of the maximum flow.  FYI, I get the following answer
+
+```{r echo=FALSE}
+
+max_flow <- max(Hudson_flow$Flow)
+current_flow <- Hudson_flow$Flow[1]
+current_row <- 1
+
+while(current_flow < max_flow){
+  
+  current_row <- current_row + 1
+  current_flow <- Hudson_flow$Flow[current_row]
+  
+}
+
+print(paste("Max flow occurs on ", Hudson_flow$Year[current_row],"-", Hudson_flow$Month[current_row], "-", Hudson_flow$Day[current_row], sep = ""))
+```
+
+
+<br/>
+
+3. Create a for loop that determines the minimum flow value.  Do not use the `min()` function -- thus, you need to develop your own algorithm/approach to finding the maximum value in a vector.  Check that you've done the task correctly by using the `min()` function in your console to confirm that you got the right answer.  
+
+```{r echo = F}
+
+counter_var <- 1 
+
+for (i_obs in Hudson_flow$Flow) {
+  
+  if (counter_var == 1) {
+    minimum_flow <- i_obs
+  } else if(i_obs < minimum_flow) {
+    
+    minimum_flow <- i_obs
+  
+  } else {
+    minimum_flow <- minimum_flow
+    
+  }
+  
+  counter_var <- counter_var + 1
+}
+
+
+```
+
+
+
+## Data wrangling
+
+### Basics
+
+We learned tons of ways to wrangle data using the `dplyr` package.  Let's refresh our skills with these tools (you'll likely be pretty fresh with these concepts since have been using them heavily).  
+
+To practice your skills you should use the `Hudson_flow` data.  Don't overwrite your `Hudson_flow` dataset when making modifications.  If you happen to do this by accident, you can simply reload in the data.   
+
+1. Use `filter()` to select only the rows with flows > 7500 cfs
+2. Use `filter()` to select only the rows with: 2,500 < flows < 12,000 cfs 
+3. Use `filter()` to select only the rows with months Nov, Dec, Jan, Feb (you should use `%in%` in your filter operation)
+4. Sort the data in ascending order by the flows.  Also try sorting the data in descending order by the flows.
+5. Select only the row with data for year 2014 and then sort this data in ascending order by flows.  You should use the pipe operator `%>%` to allow you to do this in a single line of code
+6. Remove the day column using the `select()` function
+
+<br/>
+
+### Additional `dplyr`
+Let's practice some of additional (and more advanced) data wrangling skills
+
+1. Add a new column (variable) to `Hudson_flow` with a categorical variable that categorizes flow into "Low flow" and "High flow" based on the following conditions
+    + if flow < 7,000 cfs then "Low flow"
+    + if flow >= 7,000 cfs then "High flow"  
+    
+You will want to use  `mutate()` and `if_else()` to accomplish the above.  Make sure to reassign the `Hudson_flow` object so that you carry this variable with you in the later analysis
+
+2. Use `group_by()` and `summarize()` to accomplish the following tasks
+    i) Create a table that reports the minimum, mean, and maximum flow by month
+    ii) Create a table that reports the minimum, mean, and maximum flow by month for each year
+
+```{r echo=FALSE, eval=FALSE}
+
+Hudson_flow <- Hudson_flow %>%  
+  mutate(flow_cat = if_else(Flow >= 7000, "High flow", "Low flow"))
+
+Hudson_flow %>% 
+  group_by(Month) %>% 
+  summarize_at(vars(Flow), funs(min, mean, max))
+
+Hudson_flow %>% 
+  group_by(Year, Month) %>% 
+  summarize_at(vars(Flow), funs(min, mean, max))
+
+```
+
+
+
+
+<br/>
+
+## Data visualization
+This topics is very recent so not much need to refresh your memory, but should still do some excercises to reinforce the concepts.  
+
+Let's generate some graphics using the tools we've learned in the `ggplot2` package.  We'll use the `Hudson_flow` data in the exercises below.  
+
+1. Create a  graphic with flow vs. month, where flow is the y variable and month the x.  You should use `geom_jitter()` (Hint: you may want to convert your x variable to a factor).
+    i) Add a `geom_point` layer with the mean flow for each month (i.e. twelve points).  Make these points blue squares.
+    ii) Use the `theme_classic()`
+    iii) Add axis labels, a title, and a caption
+    iV) Set the alpha of the points to 0.5
+    v) Comma formatting for the y-axis (e.g. 10,000)
+    vi) Make the tick labels on the x-axis, the abbreviation for each month (e.g. Jan, Feb, Mar,...)
+    vii) Make any other modifications that you think improve the graphic
+    viii) Save the figure as a png file and check to see that you can view the file
+    ix) Make the same figure as above, though set the y axis to log scale.  Don't simply copy and paste your above code -- do this in an efficient and reproducible manner.  
+
+Note: You will need to load in the `scales` package for the comma formatting  
+```{r message=FALSE, warning=FALSE}
+library(scales)
+```
+
+
+```{r eval=FALSE, echo=FALSE}
+hudson_summary <- Hudson_flow %>% 
+  group_by(Month) %>% 
+  summarise(month_mean = mean(Flow))
+
+fig_hudson <- ggplot(Hudson_flow, aes(x = factor(Month), y = Flow)) + 
+  geom_jitter(alpha = 0.3, width = 0.25) +
+  geom_point(data = hudson_summary, 
+             aes(x = factor(Month), y = month_mean), fill = "blue", shape = 22, size = 3) +
+  
+  labs(x = "",
+       y = "Flow (cfs)",
+       title = "Hudson River flow above Lock 1",
+       subtitle = "Daily data for years 2013-2016",
+       caption = "USGS Gage 01335754"
+       ) +
+  theme_classic() +
+  scale_y_continuous(labels = comma_format()) +
+  scale_x_discrete(breaks = 1:12,
+                   labels = month.abb)
+
+fig_hudson
+
+fig_hudson + scale_y_log10(breaks = c(1000,2000,5000,10000,30000))
+
+ggsave(filename = "./Fig_Hudson.png", plot = fig_hudson)
+```
+
+
+<br/>
+
+## Clean and tidy data
+We just did this last class so we won't review this topic in-depth today, though you should look back at the past few lectures if you need a refresher.  
+
+
+## Exercise/challenge
+We've been using some Hudson River streamflow data in today's class, though the dataset you loaded in earlier had data only for 2013-2016.  
+
+Let's load in data for the same streamgage on the Hudson River, but this time we'll load data going back to 1887.  
+
+```{r warning= FALSE, message=FALSE}
+library(lubridate)
+
+Hudson_flow <- read_csv("https://stahlm.github.io/ENS_215/Data/Hudson_River_Streamflow.csv") %>% 
+  filter(site_no == "01335754") %>% 
+  rename(flow_cfs = X_00060_00003)
+```
+
+<br/>
+
+Let's now clean up the data up a bit and add a few columns:
+    i) Add a column with just the year values (hint: use the `lubridate` package)
+    ii) Add a column with the month values
+    iii) Add a column with the day values
+    iv) Keep just the newly created columns, the flow_cfs column, and the site_no column
+
+
+```{r echo = F}
+# 1
+Hudson_flow <- Hudson_flow %>% mutate(Year = year(dateTime), 
+                                      Month = month(dateTime), Day = day(dateTime)) %>% 
+  select(site_no, Year, Month, Day, flow_cfs)  
+
+```
+
+<br/>
+
+Now that you've prepared the data I want you to answer/examine some questions related to the data
+
+1) Have mean annual flows changed over time?  How about median annual flows?
+2) What were the top 10 maximum annual flows on record and what years where these?  Make a table with this data
+3) Looking at just the data from year 1970 onward Has there been an increase on the average montly flows for Jan? Feb? Mar?...  A graphic is an ideal way of exploring this.  
+
+
+Discuss what you observe with your neighbor and also call me over to see you results and we can discuss further.  
+
+
+```{r echo=F, eval=F}
+# Part 1
+Hudson_table <- Hudson_flow %>% 
+  group_by(Year) %>% 
+  summarize(flow_mean = mean(flow_cfs, na.rm = T),
+            flow_median = median(flow_cfs, na.rm = T)) 
+
+Hudson_table %>%   
+  ggplot(aes(x = Year, y = flow_mean)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  theme_classic()
+
+
+Hudson_table %>%   
+  ggplot(aes(x = Year, y = flow_median)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  theme_classic()
+```
+
+
+```{r echo=F, eval=F}
+# Part 2
+
+Hudson_flow %>% 
+  group_by(Year) %>% 
+  summarize(flow_max = max(flow_cfs, na.rm = T)) %>% 
+  top_n(n = 10, wt = flow_max) %>% 
+  arrange(-flow_max)
+```
+
+
+```{r echo=F, eval=F}
+# Part 3
+
+Hudson_flow %>%
+  filter(Year >= 1970) %>% 
+  group_by(Year, Month) %>% 
+  summarize(flow_mean = mean(flow_cfs, na.rm = T)) %>% 
+  ggplot(aes(x = Year, y = flow_mean)) +
+  geom_point() +
+  scale_y_log10() +
+  theme_bw() +
+  facet_wrap(~ Month)
+  
+```
+
+
+

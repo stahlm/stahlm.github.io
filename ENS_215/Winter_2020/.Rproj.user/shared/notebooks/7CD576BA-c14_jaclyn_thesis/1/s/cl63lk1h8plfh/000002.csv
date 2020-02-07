@@ -1,0 +1,33 @@
+"0","```r
+# list of unique sites
+unique_sites <- unique(all_sites)
+# interval for loop sequence
+by_step <- 500
+# loop through the list of sites (meeting the search criteria) incrementely
+for (i in seq(1, nrow(unique_sites), by = by_step)){
+  # loop by 500 for all of the sites until it reaches the end of the site list; then, go until the end of the list
+  i_end <- i+by_step-1
+  if(i_end > nrow(unique_sites)) {
+    i_end <- nrow(unique_sites)
+  }
+  # read in the NWIS water quality data for each site
+  gw_data <- readNWISqw(siteNumbers = unique_sites$site_no[i:i_end],
+                      parameterCd = param_list,
+                      reshape = TRUE)
+  # append each site's water quality data and attributes to the dataset (if the site / site attributes were the first, add them to the new dataset)
+  if (i == 1) {
+    all_gw_data <- gw_data
+    all_gw_data_attributes <- attr(gw_data, \"siteInfo\")
+  } else {
+    all_gw_data <- bind_rows(all_gw_data, gw_data)
+    all_gw_data_attributes <- bind_rows(all_gw_data_attributes, attr(gw_data, \"siteInfo\"))
+  }
+# display loop progress (sequence)  
+print(i)
+}
+```"
+"1","[1] 1
+[1] 501
+[1] 1001
+[1] 1501
+"

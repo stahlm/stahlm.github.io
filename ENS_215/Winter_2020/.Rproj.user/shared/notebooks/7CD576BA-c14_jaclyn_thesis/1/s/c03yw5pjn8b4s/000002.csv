@@ -1,0 +1,6 @@
+"0","```r
+# convert state codes in the dataset from characters to integers
+us_gw_data$state_cd <- as.numeric(as.character(us_gw_data$state_cd))
+# merge the groundwater data with the state information dataset
+NWIS_gw_data <- left_join(us_gw_data, state_codes, by = \"state_cd\")
+```"

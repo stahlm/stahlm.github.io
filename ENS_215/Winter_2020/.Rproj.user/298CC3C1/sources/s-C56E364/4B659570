@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1581023641698.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "4B659570",
+    "lastKnownWriteTime" : 0,
+    "last_content_update" : 1581023641698,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "C4EE3F66",
+        "caption" : "Hudson_flow",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=Hudson_flow&cache_key=C4EE3F66",
+        "displayedObservations" : 66200,
+        "environment" : "",
+        "object" : "Hudson_flow",
+        "preview" : 0,
+        "totalObservations" : 66200,
+        "variables" : 6
+    },
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

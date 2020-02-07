@@ -1,0 +1,257 @@
+---
+title: "Generate Data"
+output: html_notebook
+---
+
+# Generating NWIS Data
+
++ The following is a script to generate the NWIS dataset from the web portal.
+
+## Start Code
+```{r}
+library(dataRetrieval)
+library(tidyverse)
+library(maps)
+```
+
+```{r}
+# List of parameters / characteristics to be included in the query
+
+#USGS parameter codes to use in data retrevial search
+param_list = c("49933","82172")
+#49933,82172
+# Type of site (e.g. groundwater, stream,...) to use in search
+site_type = "GW"
+
+# Maximum well depth in feet (applies to groundwater searches)
+well_max_depth = 150
+
+# List of states to include in search query
+state_list <- c("AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SC","TN","TX","UT","VT","VA","WA","WV","WI","WY")
+
+```
+
+## Define a function to download NWIS site list and handle errors for states that do not have data
+```{r}
+download_sites <- function(i) {
+    state_sites <- tryCatch(
+        {
+            print(i)
+          # search criteria using defined parameters / characteristics
+            state_sites <- whatNWISdata(stateCd=i,
+                                        siteType=site_type,
+                                        parameterCd = param_list,
+                                        WellDepthMax = well_max_depth) %>% 
+              # get NWIS site information for sites that meet specified criteria
+              select(site_no)
+            
+        },
+        
+        # error handling (if a download error occurs then skip the state that generates the error)
+        error=function(cond) {
+            message(paste("Data for the following state does not exist:", i))
+            message("Here's the original error message:")
+            message(cond)
+            # Choose a return value in case of error
+            state_sites <- data.frame()
+        },
+        
+        # error handling (if a download warning occurs then skip the state that generates the error)
+        warning=function(cond) {
+            message(paste("The following state caused a warning:", i))
+            message("Here's the original warning message:")
+            message(cond)
+            # Choose a return value in case of warning
+            state_sites <- data.frame()
+        },
+        finally={
+            message(paste("Processed state:", i))
+        }
+    )
+    # Return the list of sites for all states
+    return(state_sites)
+}
+```
+
+### Find sites meeting search critera (get site list)
+```{r}
+all_sites <- data.frame()
+
+# loop over all of states in state_list and call the function download_sites to get the site info for sites meeting the search criteria
+for(i in state_list){
+  # call download_sites function
+ state_sites <- download_sites(i)
+ 
+ # if there are sites meeting search criteria for the currently evaluated state then add these sites to the list containing all sites meeting the search criteria
+ if(dim(state_sites)[1] > 0){
+   all_sites <- bind_rows(all_sites,state_sites)
+ }
+}
+
+# list of unique site numbers
+site_no_list = unique(all_sites$site_no)
+```
+
+## Read the NWIS data for each unique site
+
++ Note: Data was acquired using the `readNWISqw()` function and a loop to step through ~7,396 sites incremently (by 500 sites at a time) due to the prolonged run time if all of the sites were run using `readNWISqw()` function with parameters alone.
+
+```{r}
+# list of unique sites
+unique_sites <- unique(all_sites)
+# interval for loop sequence
+by_step <- 500
+
+# loop through the list of sites (meeting the search criteria) incrementely
+for (i in seq(1, nrow(unique_sites), by = by_step)){
+  # loop by 500 for all of the sites until it reaches the end of the site list; then, go until the end of the list
+  i_end <- i+by_step-1
+  if(i_end > nrow(unique_sites)) {
+    i_end <- nrow(unique_sites)
+  }
+  # read in the NWIS water quality data for each site
+  gw_data <- readNWISqw(siteNumbers = unique_sites$site_no[i:i_end],
+                      parameterCd = param_list,
+                      reshape = TRUE)
+  # append each site's water quality data and attributes to the dataset (if the site / site attributes were the first, add them to the new dataset)
+  if (i == 1) {
+    all_gw_data <- gw_data
+    all_gw_data_attributes <- attr(gw_data, "siteInfo")
+  } else {
+    all_gw_data <- bind_rows(all_gw_data, gw_data)
+    all_gw_data_attributes <- bind_rows(all_gw_data_attributes, attr(gw_data, "siteInfo"))
+  }
+# display loop progress (sequence)  
+print(i)
+}
+```
+
+## Select and append attributes
+```{r}
+all_gw_data_attributes <- all_gw_data_attributes %>% 
+  select(site_no, state_cd, county_cd, district_cd, dec_lat_va, dec_long_va, well_depth_va, hole_depth_va, alt_va, huc_cd, aqfr_cd)
+# append attributes to the groundwater data
+us_gw_data <- left_join(all_gw_data, all_gw_data_attributes, by = "site_no")
+```
+
+## Append state abbreviations using the numerical state codes (state.fips)
+
+```{r}
+# state.fips contains numerical codes / abbreviations for the contiguous US
+# add Alaska and Hawaii (in case we utilize these sample sites)
+AK_HI_state_cd <- data.frame(
+  state_cd = c(2, 15),
+  state_abb = c("AK", "HI")
+)
+```
+
+```{r}
+# create a frame with the list of state codes and abbreviations
+state_codes <- state.fips
+state_codes <- state_codes %>% 
+  rename(state_cd = fips, state_abb = abb) %>% 
+  select(state_cd, state_abb)
+```
+
+```{r}
+# merge the AK and HI codes / abbs to the list of 48 states
+state_codes <- rbind(state_codes, AK_HI_state_cd)
+```
+
+```{r}
+# convert state codes in the dataset from characters to integers
+us_gw_data$state_cd <- as.numeric(as.character(us_gw_data$state_cd))
+
+# merge the groundwater data with the state information dataset
+NWIS_gw_data <- left_join(us_gw_data, state_codes, by = "state_cd")
+```
+
+## Write raw data into a CSV
+
+```{r}
+write_csv(NWIS_gw_data, "../Data/NWIS_data.csv") # save this data as a csv file in the Data folder
+```
+
+```{r}
+NWIS_gw_data <- distinct(NWIS_gw_data)
+```
+
+
+
+```{r}
+NWIS_gw_data <- NWIS_gw_data %>% 
+  mutate(result_va_49933 = if_else(is.na(result_va_49933), result_va_82172, result_va_49933))
+```
+
+
+```{r}
+NWIS_gw_data <- NWIS_gw_data %>% 
+  mutate(age_yrs = -8033*log(result_va_49933/100)) %>% 
+  mutate(age_young = if_else(age_yrs < 12000,"Young","Old"))
+```
+
+
+```{r fig.width= 10}
+NWIS_gw_data %>% 
+  ggplot(aes(x = state_abb, y = (result_va_49933))) +
+  geom_boxplot()
+```
+
+```{r fig.width= 12}
+NWIS_gw_data %>% 
+  ggplot(aes(x = reorder(state_abb, -8033*log(result_va_49933/100), FUN = median) , y = -8033*log(result_va_49933/100))) +
+  geom_boxplot(outlier.shape = NA) +
+  geom_jitter(alpha = 0.25, height = 0, width = 0.25, aes(color = state_abb)) +
+  theme(legend.position = "none")
+```
+-8033 ln (Fm)
+
+```{r fig.height= 20}
+NWIS_gw_data %>% 
+  ggplot(aes(x = -8033*log(result_va_49933/100), y = well_depth_va)) +
+  geom_point() +
+  scale_y_reverse() + 
+  facet_wrap(~ state_abb, ncol = 5) +
+  theme_bw()
+```
+
+```{r}
+NWIS_gw_data %>% 
+  ggplot(aes(x = well_depth_va, y = age_yrs)) +
+  geom_point()
+```
+
+
+```{r}
+NWIS_gw_data %>% 
+  ggplot(aes(x = well_depth_va, y = age_young)) +
+  geom_jitter(width = 0)
+```
+
+
+```{r echo=FALSE}
+map_world_data <- map_data("state")
+```
+
+
+```{r echo=FALSE}
+earthquake_map <- map_world_data %>% 
+  ggplot() +
+  geom_polygon(aes(long, lat, group = group), fill = "lightgray", color = "black") +
+  geom_point(data = NWIS_gw_data, aes(dec_long_va, dec_lat_va, fill = age_young),
+             shape = 21, stroke = 1.5) + 
+  scale_color_gradient(low = "blue", high = "red") +
+  theme_void() +
+  coord_quickmap()
+
+earthquake_map
+```
+
+```{r}
+NWIS_gw_data %>% 
+  group_by(state_abb) %>% 
+  summarize(prcnt_young = round(100*sum(age_young == "Young")/n(), 2),
+            n_samples = n()) %>% 
+  arrange(desc(prcnt_young))
+```
+

@@ -1,0 +1,12 @@
+"0","```r
+# List of parameters / characteristics to be included in the query
+#USGS parameter codes to use in data retrevial search
+param_list = c(\"49933\",\"82172\")
+#49933,82172
+# Type of site (e.g. groundwater, stream,...) to use in search
+site_type = \"GW\"
+# Maximum well depth in feet (applies to groundwater searches)
+well_max_depth = 150
+# List of states to include in search query
+state_list <- c(\"AL\",\"AK\",\"AZ\",\"AR\",\"CA\",\"CO\",\"CT\",\"DE\",\"FL\",\"GA\",\"HI\",\"ID\",\"IL\",\"IN\",\"IA\",\"KS\",\"KY\",\"LA\",\"ME\",\"MD\",\"MA\",\"MI\",\"MN\",\"MS\",\"MO\",\"MT\",\"NE\",\"NV\",\"NH\",\"NJ\",\"NM\",\"NY\",\"NC\",\"ND\",\"OH\",\"OK\",\"OR\",\"PA\",\"RI\",\"SC\",\"SC\",\"TN\",\"TX\",\"UT\",\"VT\",\"VA\",\"WA\",\"WV\",\"WI\",\"WY\")
+```"

@@ -1,0 +1,7 @@
+"0","```r
+NWIS_gw_data %>% 
+  ggplot(aes(x = reorder(state_abb, -8033*log(result_va_49933/100), FUN = median) , y = -8033*log(result_va_49933/100))) +
+  geom_boxplot(outlier.shape = NA) +
+  geom_jitter(alpha = 0.25, height = 0, width = 0.25, aes(color = state_abb)) +
+  theme(legend.position = \"none\")
+```"

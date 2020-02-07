@@ -1,0 +1,4 @@
+"0","```r
+# merge the AK and HI codes / abbs to the list of 48 states
+state_codes <- rbind(state_codes, AK_HI_state_cd)
+```"

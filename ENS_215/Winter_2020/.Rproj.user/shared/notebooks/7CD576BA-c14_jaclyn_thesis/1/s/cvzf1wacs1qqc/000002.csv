@@ -1,0 +1,4 @@
+"0","```r
+NWIS_gw_data <- NWIS_gw_data %>% 
+  mutate(result_va_49933 = if_else(is.na(result_va_49933), result_va_82172, result_va_49933))
+```"

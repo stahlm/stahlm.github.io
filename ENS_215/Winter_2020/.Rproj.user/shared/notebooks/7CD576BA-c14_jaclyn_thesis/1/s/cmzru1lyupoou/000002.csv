@@ -1,0 +1,8 @@
+"0","```r
+# state.fips contains numerical codes / abbreviations for the contiguous US
+# add Alaska and Hawaii (in case we utilize these sample sites)
+AK_HI_state_cd <- data.frame(
+  state_cd = c(2, 15),
+  state_abb = c(\"AK\", \"HI\")
+)
+```"
