@@ -1,0 +1,4 @@
+"0","ny_precip %>% "
+"0","  ggplot(aes(group = state_cd, y = Precip_inches)) + "
+"0","  geom_boxplot(fill = ""lightblue"") + "
+"0","  theme_classic()"

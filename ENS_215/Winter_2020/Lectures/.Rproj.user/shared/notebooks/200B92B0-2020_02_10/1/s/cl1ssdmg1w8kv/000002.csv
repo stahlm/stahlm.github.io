@@ -1,0 +1,1 @@
+"0","temperature_data <- filter(temperature_data, !(Year == 2016 & state_cd == ""NY"")) # remove datas for NY in year 2016"

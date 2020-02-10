@@ -1,0 +1,8 @@
+"0","shape_right <- tibble(x = rgamma(5*10^5, shape = 2, rate = 10))"
+"0","shape_right %>% ggplot(aes(x)) +"
+"0","  geom_density(fill = ""gray"") +"
+"0","  theme_classic() +"
+"0","  labs(title = ""Right-skewed"","
+"0","       x = """","
+"0","       y = """""
+"0","       )"

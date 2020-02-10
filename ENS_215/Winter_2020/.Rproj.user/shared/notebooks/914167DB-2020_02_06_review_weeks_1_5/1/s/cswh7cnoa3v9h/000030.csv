@@ -1,3 +1,0 @@
-"0","fig_hudson + scale_y_log10(breaks = c(1000,2000,5000,10000,30000))"
-"2","Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.
-"

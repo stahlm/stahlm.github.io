@@ -1,0 +1,111 @@
+"0","library(kableExtra)"
+"0","head(precip_combined) %>% "
+"0","  kable() %>% "
+"0","  kable_styling(bootstrap_options = ""condensed"", position = ""center"") %>% "
+"0","  column_spec(column = c(1,2,4), background = ""yellow"") %>% "
+"0","  column_spec(column = c(3), background = ""lightgrey"") "
+"1","<table class=""table table-condensed"" style=""margin-left: auto; margin-right: auto;"">
+ <thead>
+  <tr>
+   <th style=""text-align:right;""> Year </th>
+   <th style=""text-align:right;""> Month </th>
+   <th style=""text-align:right;""> Precip_inches </th>
+   <th style=""text-align:left;""> state_cd </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style=""text-align:right;background-color: yellow;""> 2015 </td>
+   <td style=""text-align:right;background-color: yellow;""> 1 </td>
+   <td style=""text-align:right;background-color: lightgrey;""> 4.03 </td>
+   <td style=""text-align:left;background-color: yellow;""> MA </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;background-color: yellow;""> 2015 </td>
+   <td style=""text-align:right;background-color: yellow;""> 2 </td>
+   <td style=""text-align:right;background-color: lightgrey;""> 2.99 </td>
+   <td style=""text-align:left;background-color: yellow;""> MA </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;background-color: yellow;""> 2015 </td>
+   <td style=""text-align:right;background-color: yellow;""> 3 </td>
+   <td style=""text-align:right;background-color: lightgrey;""> 2.84 </td>
+   <td style=""text-align:left;background-color: yellow;""> MA </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;background-color: yellow;""> 2015 </td>
+   <td style=""text-align:right;background-color: yellow;""> 4 </td>
+   <td style=""text-align:right;background-color: lightgrey;""> 2.55 </td>
+   <td style=""text-align:left;background-color: yellow;""> MA </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;background-color: yellow;""> 2015 </td>
+   <td style=""text-align:right;background-color: yellow;""> 5 </td>
+   <td style=""text-align:right;background-color: lightgrey;""> 0.96 </td>
+   <td style=""text-align:left;background-color: yellow;""> MA </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;background-color: yellow;""> 2015 </td>
+   <td style=""text-align:right;background-color: yellow;""> 6 </td>
+   <td style=""text-align:right;background-color: lightgrey;""> 6.57 </td>
+   <td style=""text-align:left;background-color: yellow;""> MA </td>
+  </tr>
+</tbody>
+</table>"
+"1","
+"
+"0","head(temperature_data) %>% "
+"0","  kable() %>% "
+"0","  kable_styling(bootstrap_options = ""condensed"", position = ""center"") %>% "
+"0","  column_spec(column = c(1,2,4), background = ""yellow"") %>% "
+"0","  column_spec(column = c(3), background = ""lightgrey"") "
+"1","<table class=""table table-condensed"" style=""margin-left: auto; margin-right: auto;"">
+ <thead>
+  <tr>
+   <th style=""text-align:right;""> Year </th>
+   <th style=""text-align:right;""> Month </th>
+   <th style=""text-align:right;""> Avg_Temp_F </th>
+   <th style=""text-align:left;""> state_cd </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style=""text-align:right;background-color: yellow;""> 1895 </td>
+   <td style=""text-align:right;background-color: yellow;""> 1 </td>
+   <td style=""text-align:right;background-color: lightgrey;""> 43.1 </td>
+   <td style=""text-align:left;background-color: yellow;""> AL </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;background-color: yellow;""> 1895 </td>
+   <td style=""text-align:right;background-color: yellow;""> 2 </td>
+   <td style=""text-align:right;background-color: lightgrey;""> 37.4 </td>
+   <td style=""text-align:left;background-color: yellow;""> AL </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;background-color: yellow;""> 1895 </td>
+   <td style=""text-align:right;background-color: yellow;""> 3 </td>
+   <td style=""text-align:right;background-color: lightgrey;""> 54.5 </td>
+   <td style=""text-align:left;background-color: yellow;""> AL </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;background-color: yellow;""> 1895 </td>
+   <td style=""text-align:right;background-color: yellow;""> 4 </td>
+   <td style=""text-align:right;background-color: lightgrey;""> 63.4 </td>
+   <td style=""text-align:left;background-color: yellow;""> AL </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;background-color: yellow;""> 1895 </td>
+   <td style=""text-align:right;background-color: yellow;""> 5 </td>
+   <td style=""text-align:right;background-color: lightgrey;""> 69.5 </td>
+   <td style=""text-align:left;background-color: yellow;""> AL </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;background-color: yellow;""> 1895 </td>
+   <td style=""text-align:right;background-color: yellow;""> 6 </td>
+   <td style=""text-align:right;background-color: lightgrey;""> 77.5 </td>
+   <td style=""text-align:left;background-color: yellow;""> AL </td>
+  </tr>
+</tbody>
+</table>"
+"1","
+"

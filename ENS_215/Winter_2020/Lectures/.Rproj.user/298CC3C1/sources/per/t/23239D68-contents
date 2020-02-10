@@ -13,6 +13,37 @@ output:
 |  [ENS-215](https://stahlm.github.io/ENS_215/Winter_2020/Home.html) | [Homework](https://stahlm.github.io/ENS_215/Winter_2020/HW.html) | [Syllabus](https://stahlm.github.io/ENS_215/Winter_2020/Syllabus.html) |
 |---|------------|-----------|
 
+
+***
+### Week 6
+#### Readings
+* [**Tidyverse style guide, Chapters 1, 2, 4, 5**](https://style.tidyverse.org/)
+    + Excellent guide to proper usage of style, formatting, and syntax in R.  Read this with care and where applicable you should begin implementing these style tips in your code.  Note that "style" is more than just cosmetic -- good style makes your code human readable and makes sharing and editing code significantly more efficient and less prone to error.  
+
+#### Assignments 
+1. Final project proposal
+    + Assigned: 3-Feb
+    + Due: 9-Feb  
+    
+You should Knit your proposal to an `.html` file and submit it on Nexus.  
+
+
+***
+### Week 5
+#### Readings
+* [**ModernDive Ch: 4**](https://moderndive.com/)
+* [**R for Data Science (R4DS) Ch: 12**](https://r4ds.had.co.nz/) (the R4DS reading is optional, though strongly recommended) 
+
+#### Assignments 
+1. DataCamp **_Cleaning Data in R_** chapters **1** ("Introduction and exploring raw data") and **2** ("Tidying data")
+    + Assigned: 31-Jan
+    + Due: 5-Feb
+    
+2. DataCamp **_Cleaning Data in R_** chapters **3** ("Preparing data for analysis") and **4** ("Putting it all together")
+    + Assigned: 31-Jan
+    + Due: 7-Feb
+
+
 ***
 ### Week 4
 #### Readings

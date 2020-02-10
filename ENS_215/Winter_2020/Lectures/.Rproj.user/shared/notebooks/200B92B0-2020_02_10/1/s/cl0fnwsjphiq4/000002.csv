@@ -1,0 +1,2 @@
+"0","bind_example <- bind_cols(years_USGS, months_days_USGS)"
+"0","head(bind_example)"

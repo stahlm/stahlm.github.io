@@ -1,0 +1,5 @@
+"0","var_example <- tibble(A = rnorm(200, 5, 0.10), B = rnorm(200, 5, 0.75)) %>% "
+"0","  gather(`A`,`B`, key = ""Group"", value = ""Measurement"")"
+"0","var_example %>% ggplot(aes(x = Group, y = Measurement, fill = Group)) + "
+"0","  geom_jitter(height = 0, width = 0.2, shape = 21, size = 2) +"
+"0","  theme_classic()"

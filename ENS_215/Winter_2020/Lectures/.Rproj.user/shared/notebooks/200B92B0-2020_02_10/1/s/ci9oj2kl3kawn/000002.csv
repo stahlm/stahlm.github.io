@@ -1,0 +1,60 @@
+"0","head(climate_data)  %>% "
+"0","  kable() %>% "
+"0","  kable_styling(bootstrap_options = ""condensed"", position = ""center"")"
+"1","<table class=""table table-condensed"" style=""margin-left: auto; margin-right: auto;"">
+ <thead>
+  <tr>
+   <th style=""text-align:right;""> Year </th>
+   <th style=""text-align:right;""> Month </th>
+   <th style=""text-align:right;""> Precip_inches </th>
+   <th style=""text-align:left;""> state_cd </th>
+   <th style=""text-align:right;""> Avg_Temp_F </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style=""text-align:right;""> 2015 </td>
+   <td style=""text-align:right;""> 1 </td>
+   <td style=""text-align:right;""> 4.03 </td>
+   <td style=""text-align:left;""> MA </td>
+   <td style=""text-align:right;""> 21.8 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;""> 2015 </td>
+   <td style=""text-align:right;""> 2 </td>
+   <td style=""text-align:right;""> 2.99 </td>
+   <td style=""text-align:left;""> MA </td>
+   <td style=""text-align:right;""> 14.6 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;""> 2015 </td>
+   <td style=""text-align:right;""> 3 </td>
+   <td style=""text-align:right;""> 2.84 </td>
+   <td style=""text-align:left;""> MA </td>
+   <td style=""text-align:right;""> 29.3 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;""> 2015 </td>
+   <td style=""text-align:right;""> 4 </td>
+   <td style=""text-align:right;""> 2.55 </td>
+   <td style=""text-align:left;""> MA </td>
+   <td style=""text-align:right;""> 45.5 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;""> 2015 </td>
+   <td style=""text-align:right;""> 5 </td>
+   <td style=""text-align:right;""> 0.96 </td>
+   <td style=""text-align:left;""> MA </td>
+   <td style=""text-align:right;""> 61.8 </td>
+  </tr>
+  <tr>
+   <td style=""text-align:right;""> 2015 </td>
+   <td style=""text-align:right;""> 6 </td>
+   <td style=""text-align:right;""> 6.57 </td>
+   <td style=""text-align:left;""> MA </td>
+   <td style=""text-align:right;""> 63.6 </td>
+  </tr>
+</tbody>
+</table>"
+"1","
+"

@@ -1,0 +1,16 @@
+"0","library(gapminder) "
+"0","my_gap <- gapminder"
+"0","dams_data <- read_csv(""https://stahlm.github.io/ENS_215/Data/Dams_FAO_SelectCols_LabData.csv"")"
+"2","Parsed with column specification:
+cols(
+  .default = col_double(),
+  Country = [31mcol_character()[39m,
+  Dam_name = [31mcol_character()[39m,
+  ISO_code = [31mcol_character()[39m,
+  River = [31mcol_character()[39m,
+  Major_basin = [31mcol_character()[39m,
+  Continent = [31mcol_character()[39m
+)
+"
+"2","See spec(...) for full column specifications.
+"

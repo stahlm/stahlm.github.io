@@ -1,0 +1,4 @@
+"0","ny_precip %>% "
+"0","  ggplot(aes(x = time_period, y = Precip_inches)) + "
+"0","  geom_boxplot(fill = ""lightblue"", notch = TRUE) + "
+"0","  theme_classic()"

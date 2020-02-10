@@ -1,0 +1,4 @@
+"0","dams_data <- rename(dams_data, country = Country)"
+"0","my_gap <- filter(my_gap, year == 2007) %>% "
+"0","  select(-lifeExp, -continent, -year)"
+"0","dams_enhanced <- left_join(dams_data, my_gap)"

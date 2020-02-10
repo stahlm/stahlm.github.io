@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1581180176181.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "D309DF90",
+    "lastKnownWriteTime" : 5292976843906638626,
+    "last_content_update" : 1581180176181,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "79EAFC1E",
+        "caption" : "dams_enhanced",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=dams_enhanced&cache_key=79EAFC1E",
+        "displayedObservations" : 14216,
+        "environment" : "",
+        "object" : "dams_enhanced",
+        "preview" : 0,
+        "totalObservations" : 14216,
+        "variables" : 24
+    },
+    "relative_order" : 10,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

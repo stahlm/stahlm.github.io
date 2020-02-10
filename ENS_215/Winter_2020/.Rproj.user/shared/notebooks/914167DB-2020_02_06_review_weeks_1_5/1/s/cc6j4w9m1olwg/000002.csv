@@ -1,1 +1,0 @@
-"0","earthquake_data <- read_csv(""https://stahlm.github.io/ENS_215/Data/Rocky_Mtn_Arsenal_Earthquakes.csv"", skip = 2)"

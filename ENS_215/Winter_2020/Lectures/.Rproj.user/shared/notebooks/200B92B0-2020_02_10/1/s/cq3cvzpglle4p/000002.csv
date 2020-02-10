@@ -1,0 +1,2 @@
+"0","precip_MA <- read_csv(""https://stahlm.github.io/ENS_215/Data/precip_MA.csv"")"
+"0","precip_NY <- read_csv(""https://stahlm.github.io/ENS_215/Data/precip_NY.csv"")"
