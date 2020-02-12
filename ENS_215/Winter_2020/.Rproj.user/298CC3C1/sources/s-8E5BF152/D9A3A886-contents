@@ -29,7 +29,7 @@ output:
 + Mon (10-Feb) -- **Combining/joining data**
 [(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_02_10.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_02_10.Rmd)
 
-+ Wed (12-Feb) -- **Descriptive statistics and univariate data** and **Loading data into R**
++ Wed (12-Feb) -- **Descriptive statistics and univariate data** [(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_02_12.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_02_12.Rmd) and **Loading data into R** [(html)](https://stahlm.github.io/ENS_215/Lectures/2020_02_12_load_data_into_R.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Lectures/2020_02_12_load_data_into_R.Rmd)
 
 ```{r eval = F, echo = F}
 [(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_02_12.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_02_12.Rmd)
