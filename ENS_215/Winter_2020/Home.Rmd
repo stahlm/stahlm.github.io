@@ -31,7 +31,9 @@ output:
 
 + Wed (12-Feb) -- **Descriptive statistics and univariate data** [(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_02_12.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_02_12.Rmd) and **Loading data into R** [(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_02_12_load_data_into_R.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_02_12_load_data_into_R.Rmd)
 
-+ Fri (15-Feb) -- **Visualizing and interpreting data distributions** 
++ Fri (14-Feb) -- **Visualizing and interpreting data distributions** 
+[(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_02_14.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_02_14.Rmd) and **Graphical display of data distributions: Examples** [(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_02_14_distributions_examples.html)
+
 ```{r eval = F, echo = F}
 [(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_02_14.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_02_14.Rmd) and **Graphical display of data distributions: Examples** [(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_02_14_distributions_examples.html)
 ```
