@@ -1,0 +1,4 @@
+"0","# packages for code used to generate content in this lecture"
+"0","library(ggExtra)"
+"0","library(gridExtra)"
+"0","library(ggrepel)"

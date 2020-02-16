@@ -1,0 +1,7 @@
+"0","vec_a <- rnorm(5000, mean = 0, sd = 1)"
+"0","vec_b <- rnorm(5000, mean = 0, sd = 1)"
+"0","p <- ggplot() +"
+"0","     geom_point(aes(x = vec_a, y = vec_b), alpha = 0.15) +"
+"0","     theme_classic() +"
+"0","     coord_equal() "
+"0","grid.arrange(ggMarginal(p, type=""density"", fill = ""grey"") , ncol = 1)"

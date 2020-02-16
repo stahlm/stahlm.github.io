@@ -1,0 +1,2 @@
+"0","precip_NY_RI <- precip_data %>% "
+"0","  filter(state_cd %in% c(""NY"", ""RI""))"

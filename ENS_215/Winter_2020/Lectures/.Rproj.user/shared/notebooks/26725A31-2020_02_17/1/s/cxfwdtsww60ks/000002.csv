@@ -1,0 +1,15 @@
+"0","precip_NY_RI %>% "
+"0","  group_by(state_cd) %>% "
+"0","  summarise_at(vars(Precip_inches), funs(mean, sd, p25 = quantile(.,probs = 0.25), p50 = median, p75= quantile(.,probs = 0.75)))"
+"2","funs() is soft deprecated as of dplyr 0.8.0
+Please use a list of either functions or lambdas: 
+
+  # Simple named list: 
+  list(mean = mean, median = median)
+
+  # Auto named with `tibble::lst()`: 
+  tibble::lst(mean, median)
+
+  # Using lambdas
+  list(~ mean(., trim = .2), ~ median(., na.rm = TRUE))
+[90mThis warning is displayed once per session.[39m"
