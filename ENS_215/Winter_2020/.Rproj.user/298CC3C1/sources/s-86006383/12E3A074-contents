@@ -1,0 +1,407 @@
+---
+title: "Theoretical Q-Q plots"
+author: "ENS-215"
+date: "19-Feb-2020"
+output:
+  html_document:
+    df_print: paged
+    theme: spacelab
+    toc: yes
+    toc_float: yes
+---
+
+
+
+<br/>
+
+Let's load in the packages we'll use today.  
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+library(stats)
+```
+
+
+
+## Theoretical Q-Q plots
+In the lesson earlier this week, we learned how to use Q-Q plots to compare distributions between two sets of observations (e.g. monthly precipitation in NY and monthly precipitation in RI).  We refer to those Q-Q plots as **empirical Q-Q plots**.  
+
+We can also use Q-Q plots to compare the distribution of a dataset against a theoretical distribution.  For example we could compare the monthly precipitation in NY against a normal distribution -- this would allows us to examine if the observed data (precip) is normally distributed (_or if it is not then how does it deviate from the theoretical distribution_).  This type of Q-Q plot is referred as a **theoretical Q-Q plot**.  
+
+There are many theoretical distributions that you could compare a dataset against.  A couple of the more common theoretical distributions that you will encounter are the **normal distribution** (informally referred to as the bell curve) and the **exponential distribution** (and the related gamma and Weibull distributions).  Below are example density plots for a few common theoretical distributions.  
+
+
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+#library(gridExtra)
+library(patchwork)
+
+q_vec <- seq(-10,10, by = 10^-2)
+
+dist_weib <- tibble(x = q_vec, y = dweibull(q_vec, shape = 2, scale = 1), dist = "Weibull")
+dist_norm <- tibble(x = q_vec, y = dnorm(q_vec, mean = 0, sd = 1), dist = "Normal")
+dist_exp <- tibble(x = q_vec, y = dexp(q_vec, rate = 1), dist = "Exponential")
+
+#dists <- bind_rows(dist_norm, dist_exp)
+#
+#ggplot(dists, aes(x = x, y = y)) + 
+#  geom_area(fill = "grey") +
+#  facet_wrap(~dist, ncol = 2) +
+#  theme_classic() 
+
+p1 <- dist_norm %>% 
+  ggplot(aes(x = x, y = y)) +
+  geom_area(fill = "grey", color = "black") +
+  theme_classic() +
+  theme(axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.text.x = element_blank(),
+        axis.ticks.x = element_blank()) +
+  labs(title = "Normal",
+       x = "",
+       y = "") +
+  xlim(-6,6)
+
+p2 <- dist_exp %>% 
+  ggplot(aes(x = x, y = y)) +
+  geom_area(fill = "grey", color = "black") +
+  theme_classic() +
+  theme(axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.text.x = element_blank(),
+        axis.ticks.x = element_blank()) +
+  labs(title = "Exponential",
+       x = "",
+       y = "") + 
+  xlim(0,10)
+
+
+p3 <- dist_weib %>% 
+  ggplot(aes(x = x, y = y)) +
+  geom_area(fill = "grey", color = "black") +
+  theme_classic() +
+  theme(axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.text.x = element_blank(),
+        axis.ticks.x = element_blank()) +
+  labs(title = "Weibull",
+       x = "",
+       y = "") + 
+  xlim(0,5)
+
+
+#grid.arrange(p1, p2, p3, ncol = 3)
+
+p1 + p2 + p3
+
+```
+
+<br/>
+
+You may be wondering why you would want to compare a dataset (observations) agaist a theoretical distribution.  There are many reasons/situations where it is useful to know if observed data fits a theoretical distribution: 
+
+  + Knowing the theoretical distribution can oftentimes help us to understand the underlying processes responsible for generating the observed data
+  + Theoretical distributions are very easy to parameterize.  This allows us to reduce the complexity of our data.  For example, if our data is normally distributed, then we can describe it with two parameters -- the mean and standard deviation
+  + Knowing that a dataset follows a theoretical distribution can allow us to make certain statistical inferences about the data and its statistics (e.g. allow us to compute confidence intervals on the sample mean).
+  + Allow us to generate synthetic data.  For example we might want to create a much larger dataset of statistically reasonable precipitation data for the state of NY.  If we can fit the data to a theoretical distribution then we can generate the synthetic data from this distribution.  
+  
+
+If you find that your observed data fits a theoretical distribution, then the possibilities described above are generally available to you. 
+
+
+<br/>
+
+### Constructing Theoretical Q-Q Plots
+
+Let's load in some data that we will use to create a **theoretical Q-Q plot**.  We'll load in the NOAA monthly precipitation data that we've used in the the past.
+
+```{r warning=FALSE, message=FALSE}
+precip_data <- read_csv("https://stahlm.github.io/ENS_215/Data/NOAA_State_Precip_LabData.csv")
+```
+
+
+Let's create a data frame with just the monthly precipitation data for New York
+```{r}
+precip_state <- precip_data %>% 
+  filter(state_cd %in% c("NY"))
+```
+
+We can create a density plot to see the shape of the data distribution
+```{r}
+precip_state %>% 
+  ggplot(aes(x = Precip_inches)) +
+  geom_density(fill = "bisque") + 
+  theme_classic()
+```
+
+The data look like they could potentially be Normally distributed, though we should investigate this further.  
+
+Let's create a theoretical Q-Q plot.  In this plot we will compare the distribution of the precipitation data for our state of interest againt the theoretical quantiles for a standard **normal distribution**.  
+```{r message=FALSE}
+f_step = 0.001 # variable that specifies the steps to use when computing quantiles 
+f_vals <- seq(0 + f_step, 1- f_step, by = f_step) # vector with f-values
+
+theor_dist_quants <- qnorm(f_vals, mean = 0, sd =1) # generate a vector with the quantile values for a Normal distribution
+
+obs_dist_quants <- quantile(precip_state$Precip_inches, probs = f_vals) # generate a vector with the quantile values for the observed precipitation data
+
+ggplot() +
+  geom_point(aes(x = theor_dist_quants, y = obs_dist_quants)) +
+  stat_smooth(aes(x = theor_dist_quants, y = obs_dist_quants), method="lm", se=FALSE) +
+  theme_classic() 
+  
+```
+
+In a theoretical Q-Q plot, we are looking to see if the points form a straight line.  We are NOT looking to see if the line has a slope of 1 as we did when comparing distributions between two observed datasets in our **empirical Q-Q plots** that we made in the previous class.  
+
+If the data points in our **theoretical Q-Q plot** form a straight line, then we can conclude that the observed data has an underlying distribution that is from the same family (_e.g._ normal, exponential, ...) as the theoretical distribution under comparison.  
+
+<br/>
+
+In the example above we created a Q-Q plot by calculating the observed and theoretical quantiles and then plotting them using `geom_point()`.  The `ggplot2` package has a function `geom_qq()` that makes this process even simpler.  
+
+Using `geom_qq()` you pass the variable with your observed data (in the example below `Precip_inches`) and you specify the theoretical distribution to compare it against (in the example below we specified the Normal distribution using `distribution = qnorm`).  If you don't specify the distribution, the default is the normal distribution.  
+```{r}
+ggplot(precip_state, aes(sample = Precip_inches)) + 
+  geom_qq(distribution = qnorm) +
+  geom_qq_line(color = "blue") +
+  labs(y = "Monthly Precipitation (inches)") +
+  theme_classic()
+```
+
+
+The `geom_qq_line()` function fits a line to the data in our Q-Q plot.  By default the `geom_qq_line()` line is fit to the 0.25 and 0.75 quantile (_i.e._ the 25^th^ and 75^th^ percentile points).  
+
+<br/>
+
+#### Exercise 
+
++ Based on your Q-Q plot above, does it seem as if the precipitation data is Normally distributed?  If not, where are the deviations from the Normal distribution most pronounced?  
++ Do you think the data might be better represented by one of the other theoretical distributions we've introduced (_i.e._ Weibull or exponential)?
++ Repeat the excercise above (_i.e._ the creation of a density curve and a theoretical Q-Q plot) with a few other states of your choosing.  
+    + Do any of the states you selected seem to have monthly precipitation data that is Normally distributed?
+
+```{r}
+# Your code here 
+```
+
++ Create a theoretical Q-Q plot to assess if the annual precipitation totals for NY are normally distributed
+```{r}
+# Your code here
+```
+
+```{r echo=FALSE, eval=FALSE, message=FALSE}
+precip_state %>% 
+  group_by(Year) %>% 
+  summarize(annual_precip = sum(Precip_inches)) %>% 
+  ggplot(aes(sample = annual_precip)) + 
+  geom_qq() +
+  geom_qq_line(color = "blue") + 
+  theme_classic() +
+  labs(y = "Annual Precipitation (inches)")
+```
+
+
+<br/>
+
+
+
+### Q-Q Plot: Log-normal distribution
+
+In the section above we create theoretical Q-Q plots that compared the distribution of the observed dataset against a **normal distribution**.  As you know there are many theoretical distributions that exist and while the **normal distribution** is commonly encountered in nature, there are many situations/processes that are described by other theoretical distributions (or by none).  
+
+Related to the **normal distribution** is the **log-normal distribution**.  The log-normal is a distribution whose logarithm is normally distributed.  Thus, if you have data that is from a log-normal distribution, then taking the log of that data will make the data normally distributed.  
+
+Just as the normal distribution is common in nature, we frequently encounter log-normal distributions too.  Some examples of log normally distributed data include:
+
++ Daily streamflow
++ Concentrations of certain contaminants in groundwater
++ Annual maximums of daily rainfall
++ Annual maximums of daily streamflow
++ Concentrations of certain elements in rocks
++ Particle size distributions
+
+Log-normal distributions outside of the environmental sciences are also common and some examples are:
+
++ Length of words spoken in conversation
++ Length of sentences
++ Incomes
++ Age of onset of certain diseases (_e.g._ Alzheimers)
++ Survival times after diagnosis of certain diseases
++ Size of cities
+
+
+Since groundwater contaminants in some cases follow a log-normal distribution, let's load in BGS data groundwater chemistry data for Bangladesh and explore this further.  
+```{r message = FALSE}
+bangladesh_gw <- read_csv("https://stahlm.github.io/ENS_215/Data/NationalSurveyData_DPHE_BGS_LabData.csv")
+```
+
+<br/>
+
+There are many parameters in the BGS dataset that we could analyse, but for our initial look let's examine how groundwater concentrations of the element barium (Ba) are distributed.  First let's create a density plot to get an idea of the shape of the distribution.  
+
+```{r warning=FALSE}
+bangladesh_gw %>% 
+  ggplot(aes(x = Ba_mgL)) + 
+  geom_density(fill = "bisque") +
+  theme_classic()
+```
+
+So the data definitely do not look normally distributed.  In particular the data is heavily skewed to the right (_i.e._ there are extreme, very large positive outliers) .  Let's check out the distribution of the log-transformed data.  
+```{r warning=FALSE}
+bangladesh_gw %>% 
+  ggplot(aes(x = log10(Ba_mgL))) + 
+  geom_density(fill = "bisque") +
+  theme_classic()
+```
+
+After taking the log of the Ba concentrations the data looks normally distributed -- thus it seems as if concentrations of barium may be log-normally distributed.  
+
+We should create a Q-Q plot to further investigate this.  Note that we will simply create a Normal Q-Q plot, however we will take the `log10()` of the barium data.  Thus we will test to see if the `log10(Ba_mgL)` is normally distributed, which is exactly equivalent to testing if the barium data log-normally distributed.  
+
+```{r warning=FALSE}
+bangladesh_gw %>% 
+  ggplot(aes(sample = log10(Ba_mgL))) +
+  geom_qq() +
+  geom_qq_line(color = "blue") +
+  theme_classic()
+```
+
+Based on the Q-Q plot, it appears that the barium data has a distribution that is reasonably close to a log-normal distribution.  
+
+### Exercise 
+1) Create Q-Q plots for all of the chemical parameters in the BGS dataset.  
+    i. You should first `gather` the data so that you have a column with the parameter names and a single column with the concentrations.  This will make your data untidy, but it will allow you to use `facet_wrap()` to create all of the plots at once.  FYI, you may find the `colnames()` function helpful when trying to get a list of the column names in the original dataset.
+    ii. You Q-Q plots should test to see if the data is log-normally distributed
+    iii. You should add lines using `geom_qq_line()` to help you assess the fit
+    iv. Once you've created the graphic, look at each chemical parameter's graphic and assess whether it is log-normally distributed.  Consider where deviations from the theoretical distribution occur and think about which parameters are and are not log-normally distributed.
+  
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+bangladesh_gathered <- bangladesh_gw %>% 
+  gather(key = Parameter, value = Concentration, colnames(bangladesh_gw)[12:31])
+```
+
+
+```{r eval = FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+bangladesh_gathered %>% 
+  ggplot(aes(sample = log10(Concentration))) + 
+  geom_qq() +
+  geom_qq_line(color = "blue", size = 1) +
+  theme_classic() +
+  facet_wrap(~ Parameter, ncol = 7)
+```
+
+<br/>
+
+
+2) Daily streamflows are often log-normally distributed.  We'll use USGS daily streamflow data for the Hudson River (USGS gage 01335754 above Lock 1 near Waterford, NY). 
+      i. Create a density curve to see if the data might be log-normally distributed
+      ii. Create a Q-Q plot to more carefully assess if this streamflow data follows a log-normal distribution.  Make sure to add a line to the graphic to help assess the fit.
+      iii. Create a set of Q-Q plots (one for each month) to see if the daily streamflow data for each month is log-normally distributed.
+      iv. Discuss the results with your neighbors.  In particular discuss where the deviations may occur (e.g. at the high or low flows) and which months are more (or less) log-normally distributed than others.  
+
+You can load in the data below 
+```{r message=FALSE}
+flow <- read_csv("https://stahlm.github.io/ENS_215/Data/USGS_gage_01335754.csv") %>% 
+  drop_na()
+```
+
+```{r}
+# Your code here 
+```
+
+
+```{r echo=FALSE, eval=FALSE}
+flow %>% ggplot(aes(sample = log10(flow_cfs))) +
+  geom_qq() +
+  geom_qq_line(color = "blue", size = 1) +
+  facet_wrap(~ Month) +
+  theme_classic()
+```
+
+<br/>
+
+3. Using a Q-Q plot, test to see if the annual maximum flows (i.e. the maximum flow recorded in each year) are log-normally distributed.  Discuss your observations with your neighbor (in particular focus on the goodness of the fit or areas of deviation from the log-normal distribution)
+
+```{r echo=FALSE, eval=FALSE}
+flow %>% 
+  group_by(Year) %>% 
+  summarise(annual_max = max(flow_cfs)) %>% 
+  ggplot(aes(sample = log10(annual_max))) +
+  geom_qq() +
+  geom_qq_line(color = "blue", size = 1) +
+  theme_classic()
+
+```
+
+
+<br/>
+
+### Weibull distribution
+So far we've created theoretical Q-Q plots to compare observed data against **normal** and **log-normal** distributions.  Another theoretical distribution that comes up in science and engineering is the **Weibull distribution**.  The Weibull distribution's density function is:
+
+$f(x;\lambda,k)= \frac{k}{\lambda} (\frac{x}{\lambda})^{k-1}*e^{(-x/\lambda)^k},\; \; x \ge0$  
+
+$f(x;\lambda,k)= 0, \; \; x <0$
+
+Where $k >0$ is the shape parameter and $\lambda > 0$ is the scale parameter.  
+
+The following processes generate data that often fits a Weibull distribution:
+
++ Wind speeds
++ Annual maximum rainfall or streamflow
++ Survival of biological organism and mechanical devices
++ Sizes of insurance claims
+
+
+<br/>
+
+Let's take a look and see if wind speeds measured at a particular site follow a Weibull distribution.  We'll use data from the [Hudson River Environmental Conditions Observing System (HRECOS)](http://www.hrecos.org/).  This data is collected at 15-minute intervals at Lock 8 on the Mohawk River -- today we will look at the data for 2016.  
+
+First we'll load in the data
+```{r message=FALSE}
+met_data <- read_csv("https://stahlm.github.io/ENS_215/Data/HRECOS_Lock_8_windspeed_2016.csv")
+
+```
+
+Take a look at the data.  You'll see we have a column of wind speed observations, where the wind speeds are in units of $\frac{m}{s}$.  You also have a column indicating the month that the observation occurred in.
+
+Let's first generate a density plot to get a visualization of the distribution.
+```{r}
+ggplot(met_data, aes(x = Wind_m_s)) +
+  geom_density(fill = "bisque") +
+  theme_classic()
+  
+```
+
++ Generate a density curve for the log of the wind speed data.  Does the log-transform make the data look normally distributed?  Why or why not?
+
+```{r echo=FALSE, eval=FALSE}
+
+ggplot(met_data, aes(x = log10(Wind_m_s))) +
+  geom_density(fill = "bisque") +
+  theme_classic()
+  
+```
+
+Ok, you've probably seen that the data doesn't appear to be normally or log-normally distributed.  Since Weibull distributions are commonly applied to characterize wind speeds in meteorology, let's see how well our data fits a Weibull distribution.
+
+
+When we create a Q-Q plot to compare observed data to a Weibull distribution, we will need to specify that we want `geom_qq()` to use a Weibull distribution as the default setting is a normal distribution.  Furthermore, you saw above the the Weibull distribution has several parameters that you need to specify -- namely the shape and scale parameters.  We will keep the scale parameter equal to 1 (which is the default) and we will set the shape parameter to 1.75 (I found this yielded the best fit).
+
+```{r}
+shape_fact <- 1.75 # Weibull shape parameter
+
+ggplot(met_data, aes(sample = Wind_m_s)) + 
+  geom_qq(distribution = qweibull, dparams = list(shape = shape_fact)) +
+  geom_qq_line(distribution = qweibull, dparams = list(shape = shape_fact)) +
+  theme_classic()
+```
+
++ Does the wind speed data at Lock 8 along the Mohawk River appear to follow a Weibull distribution?  
+
+<br/>
+
+### Exercise
+
+1. Create a set of Q-Q plots (one for each month) to see if the wind speed data for each month follows the same Weibull distribution as the one determined for all the data above. 
+    i. Do the distributions seem to differ between months?

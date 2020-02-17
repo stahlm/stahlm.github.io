@@ -27,9 +27,16 @@ output:
 
 ### Week 7 
 + Mon (17-Feb) -- **Comparing distributions: Q-Q plots**
+[(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_02_17.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_02_17.Rmd)
+
+
 
 ```{r eval = F, echo = F}
 [(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_02_17.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_02_17.Rmd)
+
+
+
++ Fri (19-Feb) -- **Theoretical Q-Q plots**  [(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_02_19.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_02_19.Rmd) 
 ```
 
 
