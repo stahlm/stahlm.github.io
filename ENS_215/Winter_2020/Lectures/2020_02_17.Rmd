@@ -134,6 +134,12 @@ A Q-Q plot is intended to examine if the data have similar distributions -- it i
 
 To help illustrate this concept, let's examine the example below.  Here we are creating two vectors -- each of which contains 5000 randomly drawn values from a Normal distribution with a mean = 0 and a standard deviation = 1.  Thus `vec_a` and `vec_b` should have very, very similar distributions since they are both drawn from the same theoretical distribution.  
 
+```{r}
+vec_a <- rnorm(5000, mean = 0, sd = 1)
+vec_b <- rnorm(5000, mean = 0, sd = 1)
+```
+
+
 However, if we were to pair the values in `vec_a` and `vec_b` (e.g. 1st value in a with 1^st^ value in b, 2^nd^ value in a with 2^nd^ value in b, ...) there is no reason to believe that they should be correlated.  That is, if the 1^st^ value in a is high, there is no reason to believe that the 1^st^ value in b should also be relatively high.
 
 Let's create a scatter plot where we pair a and b to help illustrate this point.
