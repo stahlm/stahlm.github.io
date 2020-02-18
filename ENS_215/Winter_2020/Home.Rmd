@@ -29,7 +29,7 @@ output:
 + Mon (17-Feb) -- **Comparing distributions: Q-Q plots**
 [(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_02_17.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_02_17.Rmd)
 
-+ Fri (22-Feb) -- **Theoretical Q-Q plots**  
++ Wed (19-Feb) -- **Theoretical Q-Q plots**  
 
 
 
