@@ -190,7 +190,8 @@ The `geom_qq_line()` function fits a line to the data in our Q-Q plot.  By defau
 ```
 
 ```{r echo=FALSE, eval=FALSE, message=FALSE}
-precip_state %>% 
+precip_data %>% 
+  filter(state_cd == "NY") %>% 
   group_by(Year) %>% 
   summarize(annual_precip = sum(Precip_inches)) %>% 
   ggplot(aes(sample = annual_precip)) + 

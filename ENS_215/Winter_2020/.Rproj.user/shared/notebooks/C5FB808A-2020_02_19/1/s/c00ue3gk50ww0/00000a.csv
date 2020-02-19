@@ -1,0 +1,5 @@
+"0","ggplot(precip_state, aes(sample = Precip_inches)) + "
+"0","  geom_qq(distribution = qnorm) +"
+"0","  geom_qq_line(color = ""blue"") +"
+"0","  labs(y = ""Monthly Precipitation (inches)"") +"
+"0","  theme_classic()"

@@ -30,7 +30,7 @@ output:
 [(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_02_17.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_02_17.Rmd)
 
 + Wed (19-Feb) -- **Theoretical Q-Q plots**  
-
+[(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_02_19.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_02_19.Rmd) 
 
 
 ```{r eval = F, echo = F}

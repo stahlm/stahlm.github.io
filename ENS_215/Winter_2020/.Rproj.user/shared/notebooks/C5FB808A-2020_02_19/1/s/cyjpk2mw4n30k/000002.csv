@@ -1,0 +1,5 @@
+"0","shape_fact <- 1.75 # Weibull shape parameter"
+"0","ggplot(met_data, aes(sample = Wind_m_s)) + "
+"0","  geom_qq(distribution = qweibull, dparams = list(shape = shape_fact)) +"
+"0","  geom_qq_line(distribution = qweibull, dparams = list(shape = shape_fact)) +"
+"0","  theme_classic()"

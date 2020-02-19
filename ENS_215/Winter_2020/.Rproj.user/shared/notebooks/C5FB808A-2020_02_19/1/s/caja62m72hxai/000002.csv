@@ -1,0 +1,2 @@
+"0","flow <- read_csv(""https://stahlm.github.io/ENS_215/Data/USGS_gage_01335754.csv"") %>% "
+"0","  drop_na()"

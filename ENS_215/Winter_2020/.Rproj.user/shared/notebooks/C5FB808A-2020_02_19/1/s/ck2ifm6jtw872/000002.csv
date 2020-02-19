@@ -1,0 +1,6 @@
+"0","bangladesh_gathered %>% "
+"0","  ggplot(aes(sample = log10(Concentration))) + "
+"0","  geom_qq() +"
+"0","  geom_qq_line(color = ""blue"", size = 1) +"
+"0","  theme_classic() +"
+"0","  facet_wrap(~ Parameter, ncol = 7)"

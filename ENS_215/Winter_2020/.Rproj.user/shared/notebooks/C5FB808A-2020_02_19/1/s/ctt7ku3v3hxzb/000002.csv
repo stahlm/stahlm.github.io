@@ -1,0 +1,7 @@
+"0","flow %>% "
+"0","  group_by(Year) %>% "
+"0","  summarise(annual_max = max(flow_cfs)) %>% "
+"0","  ggplot(aes(sample = log10(annual_max))) +"
+"0","  geom_qq() +"
+"0","  geom_qq_line(color = ""blue"", size = 1) +"
+"0","  theme_classic()"

@@ -1,0 +1,1 @@
+"0","met_data <- read_csv(""https://stahlm.github.io/ENS_215/Data/HRECOS_Lock_8_windspeed_2016.csv"")"
