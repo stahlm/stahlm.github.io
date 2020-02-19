@@ -271,7 +271,7 @@ Based on the Q-Q plot, it appears that the barium data has a distribution that i
 
 ### Exercise 
 1) Create Q-Q plots for all of the chemical parameters in the BGS dataset.  
-    i. You should first `gather` the data so that you have a column with the parameter names and a single column with the concentrations.  This will make your data untidy, but it will allow you to use `facet_wrap()` to create all of the plots at once.  FYI, you may find the `colnames()` function helpful when trying to get a list of the column names in the original dataset.
+    i. You should first `pivot_longer` the data so that you have a column with the parameter names and a single column with the concentrations.  This will make your data untidy, but it will allow you to use `facet_wrap()` to create all of the plots at once.  FYI, you may find the `colnames()` function helpful when trying to get a list of the column names in the original dataset.
     ii. You Q-Q plots should test to see if the data is log-normally distributed
     iii. You should add lines using `geom_qq_line()` to help you assess the fit
     iv. Once you've created the graphic, look at each chemical parameter's graphic and assess whether it is log-normally distributed.  Consider where deviations from the theoretical distribution occur and think about which parameters are and are not log-normally distributed.
