@@ -359,7 +359,7 @@ ggplot() +
 <ol style="list-style-type: decimal">
 <li>Create Q-Q plots for all of the chemical parameters in the BGS dataset.
 <ol style="list-style-type: lower-roman">
-<li>You should first <code>gather</code> the data so that you have a column with the parameter names and a single column with the concentrations. This will make your data untidy, but it will allow you to use <code>facet_wrap()</code> to create all of the plots at once. FYI, you may find the <code>colnames()</code> function helpful when trying to get a list of the column names in the original dataset.</li>
+<li>You should first <code>pivot_longer</code> the data so that you have a column with the parameter names and a single column with the concentrations. This will make your data untidy, but it will allow you to use <code>facet_wrap()</code> to create all of the plots at once. FYI, you may find the <code>colnames()</code> function helpful when trying to get a list of the column names in the original dataset.</li>
 <li>You Q-Q plots should test to see if the data is log-normally distributed</li>
 <li>You should add lines using <code>geom_qq_line()</code> to help you assess the fit</li>
 <li>Once you’ve created the graphic, look at each chemical parameter’s graphic and assess whether it is log-normally distributed. Consider where deviations from the theoretical distribution occur and think about which parameters are and are not log-normally distributed.</li>
