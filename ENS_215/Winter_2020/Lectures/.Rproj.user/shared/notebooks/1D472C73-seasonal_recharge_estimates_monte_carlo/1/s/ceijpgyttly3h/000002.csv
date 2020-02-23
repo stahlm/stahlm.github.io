@@ -1,0 +1,9 @@
+"0","```r
+season_recharge_summary %>% 
+  filter(recharge_prop_season_01_mean >= 0,
+         recharge_prop_season_01_mean <= 1) %>% 
+  ggplot(aes(x = recharge_prop_season_01_sd)) + 
+  xlim(0,1) +
+  geom_histogram(binwidth = 0.025) +
+  theme_classic()
+```"

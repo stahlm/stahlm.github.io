@@ -1,0 +1,5 @@
+"0","```r
+d2H_seasonal_diff_threshold <- 7.5
+d_excess_threshold <- 0
+season_cutoff <- 0.40
+```"

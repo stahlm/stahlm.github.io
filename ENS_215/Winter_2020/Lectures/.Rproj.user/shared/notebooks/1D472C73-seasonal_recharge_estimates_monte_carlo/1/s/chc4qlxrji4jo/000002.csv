@@ -1,0 +1,12 @@
+"0","```r
+select_applicable_samples <- function(data_in) {
+  data_in %>% 
+    filter(d_excess__permil >= d_excess_threshold,
+           abs(d2H_precip_season_2__permil - d2H_precip_season_1__permil)
+           >= d2H_seasonal_diff_threshold,
+           recharge_prop_season_1 >= 0,
+           recharge_prop_season_1 <= 1,
+           !is.na(recharge_efficiency_ratio_1_2)
+           )
+}
+```"

@@ -1,0 +1,24 @@
+"0","```r
+all_data <- all_data %>% 
+  mutate(recharge_efficiency_5_cats = case_when(recharge_efficiency_ratio_1_2 >= 3  ~ \"Winter\",
+                                                
+                                                recharge_efficiency_ratio_1_2 < 3 &
+                                                recharge_efficiency_ratio_1_2 >= 3/2 
+                                                ~ \"Slightly Winter\",
+                                                
+                                                recharge_efficiency_ratio_1_2 < 3/2 &
+                                                recharge_efficiency_ratio_1_2 >= 2/3 ~ \"No Bias\",
+                                                
+                                                recharge_efficiency_ratio_1_2 < 2/3 &
+                                                recharge_efficiency_ratio_1_2 >= 1/3 
+                                                ~ \"Slightly Summer\",
+                                                
+                                                recharge_efficiency_ratio_1_2 < 1/3 ~ \"Summer\"
+                                                
+                                                )
+           )
+all_data <- all_data %>% 
+  mutate(recharge_efficiency_5_cats = factor(recharge_efficiency_5_cats, 
+                                            levels = c(\"Summer\", \"Slightly Summer\",
+                                                       \"No Bias\", \"Slightly Winter\", \"Winter\") ))
+```"

@@ -1,0 +1,19 @@
+"0","```r
+selected_sites <- selected_sites %>% 
+  select(site_ID,
+         study_ID,
+         sample_dt,
+         well_depth__m,
+         elevation__m,
+         latitude,
+         longitude,
+         state_abb,
+         HUC02_code,
+         d2H__permil,
+         d2H_precip_season_1__permil,
+         d2H_precip_season_2__permil,
+         d2H_precip_annual__permil,
+         recharge_season_5_cats,
+         recharge_efficiency_5_cats
+         )
+```"

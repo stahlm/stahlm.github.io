@@ -1,0 +1,5 @@
+"0","```r
+selected_sites <- selected_sites %>% 
+  mutate(recharge_prop_season_01 = (d2H__permil - d2H_precip_season_2_realization__permil)/
+           (d2H_precip_season_1_realization__permil - d2H_precip_season_2_realization__permil) )
+```"

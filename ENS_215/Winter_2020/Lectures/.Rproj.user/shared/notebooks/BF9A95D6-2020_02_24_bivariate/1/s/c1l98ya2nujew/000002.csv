@@ -1,0 +1,4 @@
+"0","flow <- read_csv(""https://stahlm.github.io/ENS_215/Data/USGS_flow_01351500.csv"") %>% "
+"0","  drop_na() %>% "
+"0","  filter(Year >= 1940 & Year <= 2016) %>%  # select years 1940 through 2016"
+"0","  mutate(Date = make_date(Year, Month, Day)) # create a Date column that has the dates as an R date object"

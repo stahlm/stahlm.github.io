@@ -1,0 +1,17 @@
+"0","```r
+season_recharge_summary %>%
+  filter(recharge_prop_season_01_mean >= 0,
+         recharge_prop_season_01_mean <= 1) %>% 
+  ggplot(aes(x = HUC02_code, y = recharge_prop_season_01_mean, fill = recharge_prop_season_01_sd)) +
+  #geom_boxplot(fill = NA) +
+  geom_jitter(height = 0, width = 0.25, shape = 21) +
+  scale_fill_gradient2(low = \"blue\", mid = \"yellow\", high = \"red\", midpoint = 0.5,
+                       limits = c(0,1), oob = scales::squish 
+                       ) +
+  
+#  scale_fill_gradientn(colors =  rev(RColorBrewer::brewer.pal(n = 5, name = \"RdBu\")),
+#                       limits = c(0,1), oob = scales::squish, values = c(0,0.1,0.2,0.3,0.5,0.75,1)
+#                       ) 
+  theme_classic() +
+  coord_flip()
+```"

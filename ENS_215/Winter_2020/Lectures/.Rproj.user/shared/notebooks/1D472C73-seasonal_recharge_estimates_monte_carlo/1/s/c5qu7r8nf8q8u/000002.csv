@@ -1,0 +1,4 @@
+"0","```r
+selected_sites$d2H_precip_season_1_std__permil <- std_precip_H_season_01
+selected_sites$d2H_precip_season_2_std__permil <- std_precip_H_season_02
+```"

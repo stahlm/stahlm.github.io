@@ -1,0 +1,12 @@
+"0","```r
+season_recharge_summary <- selected_sites %>% 
+  group_by(site_ID, sample_dt) %>% 
+  summarize(recharge_prop_season_01_mean = mean(recharge_prop_season_01, na.rm = T),
+            recharge_prop_season_01_median = median(recharge_prop_season_01, na.rm = T),
+            recharge_prop_season_01_sd = sd(recharge_prop_season_01, na.rm = T),
+            recharge_prop_season_01_CI_lower = quantile(recharge_prop_season_01, probs = 0.25, na.rm = T),
+            recharge_prop_season_01_CI_upper = quantile(recharge_prop_season_01, probs = 0.75, na.rm = T),
+            HUC02_code = first(HUC02_code)
+            ) %>% 
+  mutate(CI_range = recharge_prop_season_01_CI_upper - recharge_prop_season_01_CI_lower)
+```"

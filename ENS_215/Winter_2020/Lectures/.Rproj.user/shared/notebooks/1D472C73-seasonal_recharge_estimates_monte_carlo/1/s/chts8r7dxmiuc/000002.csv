@@ -1,0 +1,5 @@
+"0","```r
+coords2use <- data.frame(x = selected_sites$longitude, y = selected_sites$latitude)
+std_precip_H_season_01 <- raster::extract(raster_precip_H_std_season_01, coords2use)
+std_precip_H_season_02 <- raster::extract(raster_precip_H_std_season_02, coords2use)
+```"

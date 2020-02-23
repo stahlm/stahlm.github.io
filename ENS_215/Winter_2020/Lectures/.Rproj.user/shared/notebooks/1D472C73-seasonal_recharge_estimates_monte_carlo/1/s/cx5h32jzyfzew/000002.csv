@@ -1,0 +1,24 @@
+"0","```r
+all_data <- all_data %>% 
+  mutate(d_excess__permil = d2H__permil - 8*d18O__permil) %>% 
+  mutate(recharge_season_5_cats = case_when(recharge_prop_season_1 >= 1 - season_cutoff/2 
+                                     ~ \"Winter\",
+                                     
+                                     recharge_prop_season_1 < 1 - season_cutoff/2 &
+                                     recharge_prop_season_1 > 1 - season_cutoff 
+                                     ~ \"Slightly Winter\",
+                                     
+                                     recharge_prop_season_1 < season_cutoff &
+                                     recharge_prop_season_1 > season_cutoff/2 
+                                     ~ \"Slightly Summer\",
+                                     
+                                     recharge_prop_season_1 <= season_cutoff/2 
+                                     ~ \"Summer\",
+                                     
+                                     recharge_prop_season_1 < 1 - season_cutoff &
+                                     recharge_prop_season_1 > season_cutoff ~ \"No dominant\"))
+all_data <- all_data %>% 
+  mutate(recharge_season_5_cats = factor(recharge_season_5_cats, 
+                                            levels = c(\"Summer\", \"Slightly Summer\",
+                                                       \"No dominant\", \"Slightly Winter\", \"Winter\") ))
+```"

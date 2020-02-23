@@ -25,6 +25,17 @@ output:
 
 ## Lectures 
 
+### Week 8 
++ Mon (24-Feb) -- **Bivariate data and time-series analysis**
+
+```{r eval = F, echo = F}
+[(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_02_24_bivariate.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_02_24_bivariate.Rmd)
+
+```
+
+
+***
+
 ### Week 7 
 + Mon (17-Feb) -- **Comparing distributions: Q-Q plots**
 [(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_02_17.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_02_17.Rmd)
@@ -33,14 +44,6 @@ output:
 
 + Fri (21-Feb) -- **Final projects -- check-in and next steps**
 
-
-```{r eval = F, echo = F}
-[(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_02_17.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_02_17.Rmd)
-
-
-
-+ Fri (19-Feb) -- **Theoretical Q-Q plots**  [(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_02_19.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_02_19.Rmd) 
-```
 
 
 ***
@@ -152,6 +155,7 @@ output:
 + Lab 6 -- **Project proposal feedback and kick-off of analysis**
 [(html)](https://stahlm.github.io/ENS_215/Winter_2020/Labs/Lab_Final_Project_Second_Meeting.html)
 
++ Lab 7 -- **Projects** 
 ```{r echo=F,eval=F}
 [(html)](https://stahlm.github.io/ENS_215/Winter_2020/Labs/Lab_Final_Project_Second_Meeting.html)
 ```

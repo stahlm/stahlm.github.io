@@ -1,0 +1,16 @@
+"0","```r
+load(\"./Output/Isotope_data_processed/Isotope_dataset_processed.RData\")
+all_data <- all_data %>% 
+  mutate(d_excess__permil = d2H__permil - 8*d18O__permil) %>% 
+  mutate(recharge_season = case_when(recharge_prop_season_1 >= 1 - season_cutoff 
+                                     ~ \"Winter\",
+                                     recharge_prop_season_1 <= season_cutoff 
+                                     ~ \"Summer\",
+                                     recharge_prop_season_1 < 1 - season_cutoff &
+                                     recharge_prop_season_1 > season_cutoff ~ \"No dominant\")) %>% 
+  mutate(HUC02_code = as.factor(HUC02_code)) 
+all_data <- all_data %>% 
+  mutate(sample_dt = ymd(sample_dt)) %>% 
+  filter(!is.na(HUC02_code)) %>% 
+  filter(sample_dt > ymd(\"1950-01-01\"))
+```"

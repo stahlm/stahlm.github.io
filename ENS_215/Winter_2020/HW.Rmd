@@ -14,6 +14,20 @@ output:
 |---|------------|-----------|
 
 
+
+### Week 8
+#### Readings
+* [**ModernDive Ch: 6**](https://moderndive.com/)
+* [**R for Data Science (R4DS) Ch: 27 and 28**](https://r4ds.had.co.nz)
+
+#### Assignments 
+1. DataCamp **_Modeling with Data in the Tidyverse_** chapters **3** ("Modeling with Multiple Regression
+") and **4** ("Model Assessment and Selection")
+    + Assigned: 24-Feb
+    + Due: 2-Mar
+
+
+
 ***
 ### Week 7
 #### Readings

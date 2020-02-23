@@ -1,0 +1,4 @@
+"0","```r
+df_all_isotope_realizations_season_02$std <-
+  apply(df_all_isotope_realizations_season_02[,3:ncol(df_all_isotope_realizations_season_02)],1,sd)
+```"

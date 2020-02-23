@@ -1,0 +1,11 @@
+"0","```r
+selected_sites <- selected_sites %>% 
+  group_by(row_num) %>% 
+  mutate(d2H_precip_season_1_realization__permil = rnorm(mean = d2H_precip_season_1__permil, 
+                                                         sd = d2H_precip_season_1_std__permil,
+                                                         n = 1)) %>% 
+  
+  mutate(d2H_precip_season_2_realization__permil = rnorm(mean = d2H_precip_season_2__permil, 
+                                                         sd = d2H_precip_season_2_std__permil,
+                                                         n = 1))   
+```"
