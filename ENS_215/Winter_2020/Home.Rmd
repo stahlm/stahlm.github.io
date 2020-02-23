@@ -31,6 +31,18 @@ output:
 ```{r eval = F, echo = F}
 [(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_02_24_bivariate.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_02_24_bivariate.Rmd)
 
+# Week 8
+## Wed - Data modeling
+## Fri - Making maps
+
+# Week 9
+## Mon - Making maps (continued)
+## Wed - interactive graphics
+## Fri - Writing functions
+
+# Week 10
+## Mon - Additional mapping
+## Wed - 
 ```
 
 
