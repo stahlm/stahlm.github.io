@@ -26,7 +26,7 @@ output:
 ## Lectures 
 
 ### Week 8 
-+ Mon (24-Feb) -- **Bivariate data and time-series analysis**
++ Mon (24-Feb) -- **Bivariate data and time-series analysis** [(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_02_24_bivariate.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_02_24_bivariate.Rmd)
 
 ```{r eval = F, echo = F}
 [(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_02_24_bivariate.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_02_24_bivariate.Rmd)
