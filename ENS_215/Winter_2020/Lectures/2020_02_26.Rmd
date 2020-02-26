@@ -52,7 +52,9 @@ precip_data %>%
 
 We can see the monthly precipitation for California from 1980-2017, however it is very difficult to see what the seasonal patterns are (e.g. wet vs. dry seasons) and also if there have been long-term trends in a given month (e.g. is February getting wetter?).  A cycle plot allows us to answer these types of questions.  
 
-In a cycle plot we will plot a time-series of each months data (e.g. All of the January data ordered from earliest to most recent year, all of the Feb data ordered from earliest to most recent year,... ).  Below is a cycle plot of the California monthly precipitation data from 1980 onward.  
+In a cycle plot we will plot a time-series of each months data (e.g. All of the January data ordered from earliest to most recent year, all of the Feb data ordered from earliest to most recent year,... ).  
+
+Below is a cycle plot of the California monthly precipitation data from 1980 onward.  Thus the first panel (labeled "1") has the monthly precipitation for all of the Januaries on record, with the left-most point being Jan 1980, the next point Jan 1981,..., the last point Jan 2017.  
 
 ```{r fig.height= 3.5, fig.width= 7.5}
 precip_data %>% 
