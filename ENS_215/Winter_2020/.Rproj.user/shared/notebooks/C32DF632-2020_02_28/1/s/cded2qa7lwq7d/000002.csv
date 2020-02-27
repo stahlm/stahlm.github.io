@@ -1,0 +1,4 @@
+"0","map_us + "
+"0","  geom_point(data = state_cap_locs, aes(x = long_deg, y = lat_deg), color = ""blue"") +"
+"0","  coord_map(projection = ""bonne"", lat0 = 50) +"
+"0","  theme_minimal()"
