@@ -1,0 +1,3 @@
+"0","earthquakes <- read_csv(""https://stahlm.github.io/ENS_215/Data/4.5_month_earthquakes_USGS_2020.csv"")"
+"2","Error in open.connection(con, ""rb"") : HTTP error 404.
+"
