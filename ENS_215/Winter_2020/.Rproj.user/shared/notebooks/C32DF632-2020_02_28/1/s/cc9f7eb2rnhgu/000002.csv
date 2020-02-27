@@ -1,0 +1,1 @@
+"0","map_data_usa_temps_change <- left_join(map_data_usa, state_mean_temps_change)"

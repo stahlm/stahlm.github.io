@@ -291,7 +291,8 @@ I've uploaded a csv file with the earthquake data.  I obtained this data from th
 
 Let's first load in this earthquake data.
 ```{r warning=FALSE, message=FALSE}
-earthquakes <- read_csv("https://stahlm.github.io/ENS_215/Data/4.5_month_earthquakes_USGS_2020.csv")
+earthquakes <- read_csv("https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Data/4.5_month_earthquakes_USGS_2020.csv")
+
 head(earthquakes)
 ```
 
@@ -300,7 +301,7 @@ Ok, now you have the earthquake data you need.  You should now go ahead a plot a
 <br/>
 
 Here's what my map looks like
-```{r echo=FALSE}
+```{r echo=FALSE, warning= FALSE}
 map_world_data <- map_data("world")
 ```
 
@@ -313,7 +314,7 @@ earthquake_map <- map_world_data %>%
              shape = 21, fill = "NA", stroke = 1.5) + 
   scale_color_gradient(low = "blue", high = "red") +
   labs(title = "Earthquakes > 4.5 magnitude in the past 30 days",
-       subtitle = "Date window: 8-Feb to 10-Mar-2019",
+       subtitle = "Date window: 28-Jan to 27-Feb-2020",
        caption = "Data source: USGS") +
   theme_void() +
   coord_quickmap()
@@ -322,6 +323,12 @@ earthquake_map
 ```
 
 <br/>
+
+
+```{r}
+readxl::read_xlsx()
+```
+
 
 ### Exercise: choropleth map of temperature changes in the US
 Create a choropleth map that shows the change in temperature for each US state.  You should use the NOAA data and the change in temperature for each state should be computed as the difference between the state's mean temperature pre-1960  and post-1960.  
