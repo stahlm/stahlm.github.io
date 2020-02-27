@@ -28,6 +28,7 @@ Let's first load in the `tidyverse` package, since we will use some of the data 
 ```{r message=FALSE, warning=FALSE}
 library(tidyverse)
 library(patchwork)
+library(readxl)
 ```
 
 <br/>
@@ -391,6 +392,6 @@ map_data_usa_temps_change %>%
 
 ## Additional map
 ```{r}
-COVID_data <- read(file = "https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Data/COVID-19_data_2020_02_27.xlsx", skip = 2)
+COVID_data <- read_xlsx("https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Data/COVID-19_data_2020_02_27.xlsx")
 ```
 

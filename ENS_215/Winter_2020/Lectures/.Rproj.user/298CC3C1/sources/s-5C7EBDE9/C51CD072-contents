@@ -392,6 +392,6 @@ map_data_usa_temps_change %>%
 
 ## Additional map
 ```{r}
-COVID_data <- read_xlsx(path = "https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Data/COVID-19_data_2020_02_27.xlsx")
+COVID_data <- read_xlsx("https://stahlm.github.io/ENS_215/Data/COVID-19_data_2020_02_27.xlsx")
 ```
 
