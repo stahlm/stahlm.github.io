@@ -1,0 +1,3 @@
+"0","map_cap <- leaflet(data = state_cap_locs) %>% "
+"0","  addProviderTiles(providers$Esri.NatGeoWorldMap) %>% "
+"0","  addMarkers(lng = ~long_deg, lat = ~lat_deg, label = ~state_cd)"

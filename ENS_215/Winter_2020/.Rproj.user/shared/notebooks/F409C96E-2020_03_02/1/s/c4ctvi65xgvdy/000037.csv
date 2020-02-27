@@ -1,0 +1,8 @@
+"0","world_map_data %>% "
+"0","  filter(gdpPercap > 10000) %>% "
+"0","  tm_shape(projection=""eck4"") +"
+"0","  tm_borders() +"
+"0","  tm_grid(projection=""longlat"", labels.size = 0.5, n.x = 20, alpha = 0.5) +"
+"0","  tm_fill(col = ""lightblue"") +"
+"0","  tm_shape(world_map_data) +"
+"0","  tm_borders() "

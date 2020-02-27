@@ -1,0 +1,8 @@
+"0","tmap_mode(""view"") # set viewing mode to interactive"
+"2","tmap mode set to interactive viewing
+"
+"0","map_world_rivers "
+"2","The shape shape_river contains empty units."
+"0","tmap_mode(""plot"") # set viewing mode to static, so that any maps made later will be in static plot mode"
+"2","tmap mode set to plotting
+"
