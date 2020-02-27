@@ -1,19 +1,19 @@
 {
     "collab_server" : "",
     "contents" : "",
-    "created" : 1579531738692.000,
+    "created" : 1577887175468.000,
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "1177767618",
-    "id" : "23239D68",
-    "lastKnownWriteTime" : 1581027751,
-    "last_content_update" : 1581027751,
+    "hash" : "2613238697",
+    "id" : "7D16FE9D",
+    "lastKnownWriteTime" : 1582496408,
+    "last_content_update" : 1582496408755,
     "path" : "~/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2020/HW.Rmd",
-    "project_path" : null,
+    "project_path" : "HW.Rmd",
     "properties" : {
-        "cursorPosition" : "6,12",
-        "scrollLine" : "0"
+        "cursorPosition" : "28,228",
+        "scrollLine" : "12"
     },
     "relative_order" : 4,
     "source_on_save" : false,

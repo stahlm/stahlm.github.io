@@ -1,7 +1,7 @@
 ---
 title: "Maps in R"
 author: "ENS-215"
-date: "11-Mar-2019"
+date: "28-Feb-2020"
 output:
   html_document:
     df_print: paged
@@ -25,8 +25,9 @@ Note that spatial analysis and map making are fields unto their own and whole co
 ## Spatial data in ggplot2
 
 Let's first load in the `tidyverse` package, since we will use some of the data wrangling packages to handle our data and we will create our maps using the `ggplot2` package.  
-```{r message=FALSE}
+```{r message=FALSE, warning=FALSE}
 library(tidyverse)
+library(patchwork)
 ```
 
 <br/>
@@ -59,7 +60,7 @@ map_us <- map_data_usa %>%
 map_us
 ```
 
-Look at that, you've create a map of the US!  
+Look at that, you've created a map of the US!  
 
 In addition to `"state"` data, the `maps` package has additional spatial data including: 
 
@@ -73,7 +74,7 @@ In addition to `"state"` data, the `maps` package has additional spatial data in
 
 <br/>
 
-Furthermore, you can specify all of the same features and aesthetics that you are used to when using `ggplot()` and the `geom_` functions.  For instance, you can map variables to the fill, or you can specify the fill to be a specific color for all polygons.  You can change themes, you can add addition `geoms` (we'll do this later today).  Also since the map data in data frame format you can do all of the data wrangling operations you are used to (e.g. filter the data) before passing it to `ggplot()`.  
+Furthermore, you can specify all of the same features and aesthetics that you are used to when using `ggplot()` and the `geom_` functions.  For instance, you can map variables to the fill, or you can specify the fill to be a specific color for all polygons.  You can change themes, you can add addition `geoms` (we'll do this later today).  Also since the map data is in data frame format you can do all of the data wrangling operations you are used to (e.g. filter the data) before passing it to `ggplot()`.  
 
 <br/>
 
@@ -89,7 +90,8 @@ map_exer <- map_data_exer %>%
   ggplot() + 
   geom_polygon(aes(long, lat, group = group, fill = factor(group)), color = "black") + 
   scale_color_discrete() +
-  theme(legend.position = "none")
+  theme(legend.position = "none") +
+  coord_quickmap()
   
 map_exer
 ```
@@ -115,8 +117,18 @@ To specify a particular projection, you can use the `coord_map()` function from 
 
 Below are two examples, demonstrating two common projections -- the Bonne and conic projections.  
 ```{r}
-map_us + coord_map(projection = "bonne", lat0 = 50)
-map_us + coord_map(projection = "conic", lat0 = 30)
+map_us_bonne <- map_us + 
+  coord_map(projection = "bonne", lat0 = 50) +
+  theme_bw() +
+  labs(title = "Bonne projection")
+
+map_us_conic <- map_us + 
+  coord_map(projection = "conic", lat0 = 30) +
+  theme_bw() +
+  labs(title = "Conic projection")
+
+
+map_us_bonne + map_us_conic  # making use of the patchwork package to nicely arrange the two maps
 ```
 
 
@@ -193,7 +205,7 @@ First we will load in the NOAA monthly temperature data for the each US state fr
 state_temps <- read_csv("https://stahlm.github.io/ENS_215/Data/NOAA_State_Temp_Lab_Data.csv")
 ```
 
-Take a quick look at this dataset to refamiliarize yourself with it.  You'll see that we will need to generate a summary of this data frame to get the average temperature for each US state.  
+Take a quick look at this dataset to familiarize yourself with it.  You'll see that we will need to generate a summary of this data frame to get the average temperature for each US state.  
 
 Let's go ahead and generate this summary table.
 ```{r}
@@ -210,7 +222,8 @@ Ok, now that we have the summary data, we need to merge the average temperature 
 
 Let's create a data frame that has both the state names and state abbreviations as well at the region of the US that the state is located in.
 ```{r}
-state_name_table = tibble(state_name = tolower(state.name), state_cd = state.abb, us_region = state.region)
+state_name_table = tibble(state_name = tolower(state.name), 
+                          state_cd = state.abb, us_region = state.region)
 ```
 
 
@@ -224,7 +237,8 @@ You can see that `state_mean_temps` now have the state name information in one o
 
 Before we carry out the join we need to rename the column with the state name information so that `state_mean_temps` and `map_data_usa` both have the same column name for this information.  
 ```{r}
-state_mean_temps <- state_mean_temps %>% rename(region = state_name)
+state_mean_temps <- state_mean_temps %>% 
+  rename(region = state_name)
 ```
 
 
@@ -245,7 +259,7 @@ map_data_usa_temps %>%
   ggplot() + 
   geom_polygon(aes(long, lat, group = group, fill = mean_temp), color = "black") +
   scale_fill_gradient(low = "blue", high = "red") +
-  coord_quickmap() +
+  coord_map(projection = "bonne", lat0 = 50) +
   theme_void() 
 ```
 
@@ -267,6 +281,9 @@ map_data_usa_temps %>%
 
 <br/>
 
+
+
+
 ### Exercise: map of recent earthquakes
 For the following exercise you will apply the tools/techniques you learned today to create a world map showing all of the earthquakes above magnitude 4.5 that occured in the past 30 days.  
 
@@ -274,7 +291,8 @@ I've uploaded a csv file with the earthquake data.  I obtained this data from th
 
 Let's first load in this earthquake data.
 ```{r warning=FALSE, message=FALSE}
-earthquakes <- read_csv("https://stahlm.github.io/ENS_215/Data/4.5_month_earthquakes_USGS.csv")
+earthquakes <- read_csv("https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Data/4.5_month_earthquakes_USGS_2020.csv")
+
 head(earthquakes)
 ```
 
@@ -283,7 +301,7 @@ Ok, now you have the earthquake data you need.  You should now go ahead a plot a
 <br/>
 
 Here's what my map looks like
-```{r echo=FALSE}
+```{r echo=FALSE, warning= FALSE}
 map_world_data <- map_data("world")
 ```
 
@@ -296,7 +314,7 @@ earthquake_map <- map_world_data %>%
              shape = 21, fill = "NA", stroke = 1.5) + 
   scale_color_gradient(low = "blue", high = "red") +
   labs(title = "Earthquakes > 4.5 magnitude in the past 30 days",
-       subtitle = "Date window: 8-Feb to 10-Mar-2019",
+       subtitle = "Date window: 28-Jan to 27-Feb-2020",
        caption = "Data source: USGS") +
   theme_void() +
   coord_quickmap()
@@ -305,6 +323,12 @@ earthquake_map
 ```
 
 <br/>
+
+
+```{r}
+readxl::read_xlsx()
+```
+
 
 ### Exercise: choropleth map of temperature changes in the US
 Create a choropleth map that shows the change in temperature for each US state.  You should use the NOAA data and the change in temperature for each state should be computed as the difference between the state's mean temperature pre-1960  and post-1960.  
@@ -361,5 +385,12 @@ map_data_usa_temps_change %>%
        caption = "Data source: NOAA",
        fill = "Temp. increase (deg. F)") +
   theme_void() 
+```
+
+
+
+## Additional map
+```{r}
+COVID_data <- read(file = "https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Data/COVID-19_data_2020_02_27.xlsx", skip = 2)
 ```
 

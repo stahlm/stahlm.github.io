@@ -1,0 +1,9 @@
+"0","COVID_data <- read.csv(file = ""https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Data/COVID-19_data_2020_02_27.xlsx"", skip = 2)"
+"2","line 1 appears to contain an embedded nul"
+"2","line 2 appears to contain embedded nulls"
+"2","line 3 appears to contain embedded nulls"
+"2","line 4 appears to contain embedded nulls"
+"2","embedded nul(s) found in input"
+"2","Error in read.table(file = file, header = header, sep = sep, quote = quote,  : 
+  duplicate 'row.names' are not allowed
+"
