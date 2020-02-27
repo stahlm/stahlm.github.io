@@ -1,0 +1,15 @@
+"0","COVID_data <- read_csv(""https://stahlm.github.io/ENS_215/Data/COVID-19_data_2020_02_27.csv"", skip = 2) %>% "
+"0","  select(Country, Cases, Deaths) %>% "
+"0","  rename(region = Country)"
+"2","Missing column names filled in: 'X4' [4], 'X5' [5], 'X6' [6], 'X7' [7]"
+"2","Parsed with column specification:
+cols(
+  Country = [31mcol_character()[39m,
+  Cases = [32mcol_number()[39m,
+  Deaths = [32mcol_number()[39m,
+  X4 = [33mcol_logical()[39m,
+  X5 = [33mcol_logical()[39m,
+  X6 = [33mcol_logical()[39m,
+  X7 = [33mcol_logical()[39m
+)
+"

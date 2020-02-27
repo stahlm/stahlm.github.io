@@ -1,3 +1,0 @@
-"0","COVID_data <- read_xlsx(""https://stahlm.github.io/ENS_215/Data/COVID-19_data_2020_02_27.xlsx"")"
-"2","Error: `path` does not exist: ‘https://stahlm.github.io/ENS_215/Data/COVID-19_data_2020_02_27.xlsx’
-"
