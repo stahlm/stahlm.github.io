@@ -1,0 +1,14 @@
+"0","gw_levels <- read_table2(""C:/Users/stahlm/Desktop/gw_ny/NY.txt"", "
+"0","                         comment = ""#"", "
+"0","                         col_names = c(""Agency"",""Site_ID"",""Param_code"",""Stat_code"",""Date"",""Water_level__ft"",""Level_code""))"
+"2","Parsed with column specification:
+cols(
+  Agency = [31mcol_character()[39m,
+  Site_ID = [32mcol_double()[39m,
+  Param_code = [32mcol_double()[39m,
+  Stat_code = [31mcol_character()[39m,
+  Date = [31mcol_character()[39m,
+  Water_level__ft = [32mcol_double()[39m,
+  Level_code = [31mcol_character()[39m
+)
+"

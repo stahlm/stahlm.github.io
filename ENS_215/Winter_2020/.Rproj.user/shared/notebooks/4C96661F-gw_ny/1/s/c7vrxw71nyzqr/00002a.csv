@@ -1,0 +1,8 @@
+"0","gw_levels_monthly %>% "
+"0","  filter(Site_ID == ""405125073420702"") %>% "
+"0","  ggplot(aes(x = Year, y = gw_level_mean)) +"
+"0","  geom_point() +"
+"0","  geom_smooth(method = ""lm"") + "
+"0","  facet_wrap(~Month, ncol = 12) +"
+"0","  theme_classic() +"
+"0","  theme(axis.text.x = element_blank()) "

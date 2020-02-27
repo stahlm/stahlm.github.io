@@ -28,6 +28,7 @@ Let's first load in the `tidyverse` package, since we will use some of the data 
 ```{r message=FALSE, warning=FALSE}
 library(tidyverse)
 library(patchwork)
+library(readxl)
 ```
 
 <br/>
@@ -325,9 +326,6 @@ earthquake_map
 <br/>
 
 
-```{r}
-readxl::read_xlsx()
-```
 
 
 ### Exercise: choropleth map of temperature changes in the US
@@ -389,8 +387,62 @@ map_data_usa_temps_change %>%
 
 
 
-## Additional map
-```{r}
-COVID_data <- read(file = "https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Data/COVID-19_data_2020_02_27.xlsx", skip = 2)
+## Mapping the COVID-19 outbreak
+
+You've likely been following the COVID-19 outbreak -- in case you are interested here is some code to generate maps of the outbreak data as of 27-Feb-2020.  
+
+The data was obtained from the [NYTimes](https://www.nytimes.com/interactive/2020/world/coronavirus-maps.html) with the original data sources coming from: 
+
++  The Center for Systems Science and Engineering at Johns Hopkins University 
++  National Health Commission of the People's Republic of China
++  Additional local governments
+
+```{r warning=FALSE, message = FALSE}
+COVID_data <- read_csv("https://stahlm.github.io/ENS_215/Data/COVID-19_data_2020_02_27.csv", skip = 2) %>% 
+  select(Country, Cases, Deaths) %>% 
+  rename(region = Country)  
 ```
+
+```{r warning=FALSE, message=FALSE}
+COVID_map_data <- left_join(map_world_data, COVID_data)
+```
+
+```{r}
+covid_map_cases <- COVID_map_data %>% 
+  ggplot() +
+  geom_polygon(aes(long, lat, group = group, fill = log2(Cases)), color = "black") +
+  scale_color_gradient(low = "blue", high = "red") +
+  labs(title = "COVID-19 Cases",
+       subtitle = "Data up to 27-Feb-2020") +
+  scale_fill_gradient(low = "blue", high = "red",
+                      breaks = c(0,4,8,12,16),
+                      labels = 2^c(0,4,8,12,16)) +
+  theme_void() +
+  labs(fill = "Cases") +
+  coord_quickmap()
+
+covid_map_cases
+
+
+```
+
+
+```{r}
+covid_map_deaths <- COVID_map_data %>% 
+  ggplot() +
+  geom_polygon(aes(long, lat, group = group, fill = log2(Deaths)), color = "black") +
+  scale_color_gradient(low = "blue", high = "red") +
+  labs(title = "COVID-19 Deaths",
+       subtitle = "Data up to 27-Feb-2020") +
+  scale_fill_gradient(low = "blue", high = "red",
+                      breaks = c(0,4,8,10,12),
+                      labels = 2^c(0,4,8,10,12)) +
+  theme_void() +
+  labs(fill = "Deaths") +
+  coord_quickmap()
+
+covid_map_deaths
+```
+
+
 

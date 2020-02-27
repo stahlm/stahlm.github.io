@@ -1,0 +1,6 @@
+"0","gw_levels %>% "
+"0","  group_by(Site_ID) %>% "
+"0","  summarise(date_first = min(Date),"
+"0","            date_last = max(Date),"
+"0","            n_measurements = n()) %>% "
+"0","  arrange(-n_measurements)"

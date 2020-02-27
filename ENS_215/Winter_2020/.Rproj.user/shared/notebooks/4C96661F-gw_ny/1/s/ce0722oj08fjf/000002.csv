@@ -1,0 +1,4 @@
+"0","gw_levels_monthly <- gw_levels %>% "
+"0","  group_by(Site_ID, Year, Month) %>% "
+"0","  summarize(gw_level_mean = mean(Water_level__ft, na.rm = T)) %>% "
+"0","  mutate(Date = ymd(paste(Year,Month,15)))"

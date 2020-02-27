@@ -1,0 +1,24 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1582840356134.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2578002614",
+    "id" : "8BFECE6C",
+    "lastKnownWriteTime" : 1582843168,
+    "last_content_update" : 1582843168379,
+    "path" : "~/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2020/Lectures/gw_ny.Rmd",
+    "project_path" : "Lectures/gw_ny.Rmd",
+    "properties" : {
+        "chunk_output_type" : "inline",
+        "cursorPosition" : "43,15",
+        "scrollLine" : "38",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

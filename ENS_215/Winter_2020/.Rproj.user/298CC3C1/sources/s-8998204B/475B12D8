@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1582840686861.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "475B12D8",
+    "lastKnownWriteTime" : 2484628534807494656,
+    "last_content_update" : 1582840686861,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "C376C281",
+        "caption" : "gw_levels_monthly",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=gw_levels_monthly&cache_key=C376C281",
+        "displayedObservations" : "6820",
+        "environment" : "",
+        "object" : "gw_levels_monthly",
+        "preview" : "0",
+        "totalObservations" : "6820",
+        "variables" : "4"
+    },
+    "relative_order" : 9,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

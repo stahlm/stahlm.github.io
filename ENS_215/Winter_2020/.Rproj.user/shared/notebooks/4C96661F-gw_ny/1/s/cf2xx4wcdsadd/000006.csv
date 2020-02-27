@@ -1,0 +1,6 @@
+"0","gw_levels %>% "
+"0","  ggplot(aes(x = Date, y = Water_level__ft)) +"
+"0","  #geom_point() +"
+"0","  geom_line() +"
+"0","  facet_wrap(~Site_ID, scales = ""free_y"") +"
+"0","  theme_bw()"

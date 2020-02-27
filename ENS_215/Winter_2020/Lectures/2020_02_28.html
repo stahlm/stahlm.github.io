@@ -467,16 +467,6 @@ head(earthquakes)</code></pre>
 <pre class="r"><code>COVID_data &lt;- read_csv(&quot;https://stahlm.github.io/ENS_215/Data/COVID-19_data_2020_02_27.csv&quot;, skip = 2) %&gt;% 
   select(Country, Cases, Deaths) %&gt;% 
   rename(region = Country)  </code></pre>
-<pre><code>## Parsed with column specification:
-## cols(
-##   Country = col_character(),
-##   Cases = col_number(),
-##   Deaths = col_number(),
-##   X4 = col_logical(),
-##   X5 = col_logical(),
-##   X6 = col_logical(),
-##   X7 = col_logical()
-## )</code></pre>
 <pre class="r"><code>COVID_map_data &lt;- left_join(map_world_data, COVID_data)</code></pre>
 <pre class="r"><code>covid_map_cases &lt;- COVID_map_data %&gt;% 
   ggplot() +

@@ -1,0 +1,116 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r}
+library(tidyverse)
+library(lubridate)
+
+```
+
+
+```{r}
+gw_levels <- read_table2("C:/Users/stahlm/Desktop/gw_ny/NY.txt", 
+                         comment = "#", 
+                         col_names = c("Agency","Site_ID","Param_code","Stat_code","Date","Water_level__ft","Level_code"))
+```
+
+```{r}
+gw_levels <- gw_levels %>% 
+  mutate(Date = mdy(Date)) %>% 
+  mutate(Year = year(Date),
+         Month = month(Date),
+         Day = day(Date),
+         Site_ID = as.character(Site_ID)
+         )
+```
+
+
+```{r}
+gw_levels %>% 
+  group_by(Site_ID) %>% 
+  summarise(date_first = min(Date),
+            date_last = max(Date),
+            n_measurements = n()) %>% 
+  arrange(-n_measurements)
+```
+
+```{r}
+gw_levels %>% 
+  ggplot(aes(x = Date, y = Water_level__ft)) +
+  #geom_point() +
+  geom_line() +
+  facet_wrap(~Site_ID, scales = "free_y") +
+  theme_bw()
+  
+```
+
+
+
+```{r}
+gw_levels %>% 
+  filter(Site_ID == "405125073420702") %>% 
+  group_by(Year, Month) %>% 
+  summarise(min_level = min(Water_level__ft),
+            n = n())
+```
+
+```{r}
+
+```
+
+
+
+```{r}
+gw_levels_monthly <- gw_levels %>% 
+  group_by(Site_ID, Year, Month) %>% 
+  summarize(gw_level_mean = mean(Water_level__ft, na.rm = T)) %>% 
+  mutate(Date = ymd(paste(Year,Month,15)))
+```
+
+
+
+```{r}
+gw_levels_monthly %>% 
+  group_by(Site_ID) %>% 
+  summarize(n = n()) %>% 
+  arrange(-n)
+```
+
+
+```{r}
+gw_levels_monthly %>% 
+  filter(Site_ID == "405125073420702") %>% 
+  ggplot(aes(x = Date, y = gw_level_mean)) +
+  geom_point() +
+  geom_line()
+```
+
+
+
+```{r fig.height= 3.5, fig.width= 7.5}
+gw_levels_monthly %>% 
+  filter(Site_ID == "405125073420702") %>% 
+  ggplot(aes(x = Year, y = gw_level_mean)) +
+  geom_point() +
+  geom_smooth(method = "lm") + 
+  facet_wrap(~Month, ncol = 12) +
+  theme_classic() +
+  theme(axis.text.x = element_blank()) 
+```
+
+
+
+```{r}
+gw_levels_monthly %>% 
+  filter(Site_ID == "405125073420702") %>% 
+  mutate(plot_date = ymd(paste(2020,Month,15))) %>% 
+  ggplot(aes(x = plot_date, y =  gw_level_mean, color = Year, group = Year)) +
+  scale_color_gradient(low = "blue", high = "red") +
+  geom_point() +
+  geom_line()
+  
+```
+
