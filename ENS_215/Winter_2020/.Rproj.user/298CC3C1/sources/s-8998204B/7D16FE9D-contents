@@ -21,7 +21,7 @@ output:
 * [**R for Data Science (R4DS) Ch: 19**](https://r4ds.had.co.nz) (Optional reading)
 
 #### Assignments 
-1. DataCamp **_Working with Geospatial Data in R_** chapters **1** ("Basic mapping with ggplot2 and ggmap") and **2** ("Point and polygon data")
+1. DataCamp **_Visualizing Geospatial Data in R_** chapters **1** ("Basic mapping with ggplot2 and ggmap") and **2** ("Point and polygon data")
     + Assigned: 2-Mar
     + Due: 11-Mar
 
