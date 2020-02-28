@@ -1,0 +1,10 @@
+"0","library(ggridges)"
+"2","
+Attaching package: ‘ggridges’
+
+"
+"2","The following object is masked from ‘package:ggplot2’:
+
+    scale_discrete_manual
+
+"

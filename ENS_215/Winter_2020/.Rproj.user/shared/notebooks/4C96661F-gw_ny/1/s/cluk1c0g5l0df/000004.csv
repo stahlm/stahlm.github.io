@@ -1,7 +1,0 @@
-"0","gw_levels <- gw_levels %>% "
-"0","  mutate(Date = mdy(Date)) %>% "
-"0","  mutate(Year = year(Date),"
-"0","         Month = month(Date),"
-"0","         Day = day(Date),"
-"0","         Site_ID = as.character(Site_ID)"
-"0","         )"
