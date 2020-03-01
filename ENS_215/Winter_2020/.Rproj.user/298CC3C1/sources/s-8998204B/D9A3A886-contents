@@ -25,17 +25,11 @@ output:
 
 ## Lectures 
 
-### Week 8 
-+ Mon (24-Feb) -- **Bivariate data and time-series analysis** [(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_02_24_bivariate.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_02_24_bivariate.Rmd)
-
-+ Wed (26-Feb) -- **Introduction to data modeling**
-[(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_02_26.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_02_26.Rmd)
-
-+ Fri (28-Feb) -- **Introduction to making maps in R**
-[(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_02_28.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_02_28.Rmd)
+### Week 9 
++ Mon (2-Mar) -- **Making maps in R (continued)**
 
 ```{r eval = F, echo = F}
-[(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_02_28.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_02_28.Rmd)
+[(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_03_02.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_03_02.Rmd)
 
 # Week 8
 ## Wed - Data modeling
@@ -50,6 +44,18 @@ output:
 ## Mon - Additional mapping
 ## Wed - 
 ```
+
+***
+
+### Week 8 
++ Mon (24-Feb) -- **Bivariate data and time-series analysis** [(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_02_24_bivariate.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_02_24_bivariate.Rmd)
+
++ Wed (26-Feb) -- **Introduction to data modeling**
+[(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_02_26.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_02_26.Rmd)
+
++ Fri (28-Feb) -- **Introduction to making maps in R**
+[(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_02_28.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_02_28.Rmd)
+
 
 
 ***

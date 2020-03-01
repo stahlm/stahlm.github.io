@@ -1,0 +1,36 @@
+"0","```r
+summary(Pb_data)
+```"
+"1","    School          Type_of_Organization    County          School_District    School_City        School_Zip_Code
+ Length:4682        Length:4682          Length:4682        Length:4682        Length:4682        Min.   : 6390  
+ Class :character   Class :character     Class :character   Class :character   Class :character   1st Qu.:11106  
+ Mode  :character   Mode  :character     Mode  :character   Mode  :character   Mode  :character   Median :11741  
+                                                                                                  Mean   :12132  
+                                                                                                  3rd Qu.:13316  
+                                                                                                  Max.   :14905  
+                                                                                                  NA's   :20     
+ School_Street      Number_of_Outlets_LT_15_ppb Number_of_Outlets_GT_15_ppb Any_Buildings_with_Lead_Free_Plumbing
+ Length:4682        Min.   :  0.00              Min.   :  0.000             Length:4682                          
+ Class :character   1st Qu.: 38.00              1st Qu.:  0.000             Class :character                     
+ Mode  :character   Median : 70.00              Median :  0.000             Mode  :character                     
+                    Mean   : 80.01              Mean   :  4.831                                                  
+                    3rd Qu.:110.00              3rd Qu.:  3.000                                                  
+                    Max.   :677.00              Max.   :290.000                                                  
+                    NA's   :56                  NA's   :62                                                       
+ Out_of_Service        Latitude       Longitude      Median_HH_income County_population  County_White    
+ Length:4682        Min.   :40.51   Min.   :-79.32   Min.   : 13731   Min.   :   4836   Min.   :   4664  
+ Class :character   1st Qu.:40.74   1st Qu.:-75.90   1st Qu.: 43391   1st Qu.: 200600   1st Qu.: 151209  
+ Mode  :character   Median :41.04   Median :-73.94   Median : 55101   Median : 949113   Median : 542034  
+                    Mean   :41.69   Mean   :-74.81   Mean   : 62662   Mean   :1030638   Mean   : 478837  
+                    3rd Qu.:42.89   3rd Qu.:-73.81   3rd Qu.: 77720   3rd Qu.:1493350   3rd Qu.: 761493  
+                    Max.   :44.73   Max.   :-73.12   Max.   :233409   Max.   :2504700   Max.   :1068728  
+                                                     NA's   :44                                          
+ County_Black_AfAm  County_Asian    County_Hispanic_Latino
+ Min.   :    33    Min.   :    24   Min.   :    51        
+ 1st Qu.:  9982    1st Qu.:  4917   1st Qu.:  8827        
+ Median :107448    Median : 47335   Median :195355        
+ Mean   :194307    Mean   :100891   Mean   :230602        
+ 3rd Qu.:395881    3rd Qu.:101558   3rd Qu.:496285        
+ Max.   :799066    Max.   :508334   Max.   :741413        
+                                                          
+"

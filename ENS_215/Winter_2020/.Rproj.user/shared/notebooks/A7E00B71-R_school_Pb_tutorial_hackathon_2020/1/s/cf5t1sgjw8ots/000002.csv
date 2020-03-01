@@ -1,0 +1,7 @@
+"0","```r
+Pb_data %>% 
+  #filter(County %in% c(\"Schenectady\", \"Albany\", \"Montgomery\", \"Rensselaer\", \"Kings\", \"Bronx\")) %>% 
+  ggplot(aes(x = Median_HH_income, y = Percent_Outlets_GT_15_ppb)) +
+  geom_point() +
+  theme(axis.text.x = element_text(angle = 60, hjust = 1)) 
+```"

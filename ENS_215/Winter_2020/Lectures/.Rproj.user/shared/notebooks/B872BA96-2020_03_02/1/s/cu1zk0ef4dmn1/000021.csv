@@ -1,0 +1,5 @@
+"0","NY_map <- NY_counties %>% "
+"0","  tm_shape() +"
+"0","  tm_polygons(col = ""lightgrey"", border.col = ""black"") +"
+"0","  tm_scale_bar(breaks = c(0, 50, 100), size = 1, position = c(""LEFT"", ""BOTTOM""))     # add a scale bar"
+"0","NY_map"

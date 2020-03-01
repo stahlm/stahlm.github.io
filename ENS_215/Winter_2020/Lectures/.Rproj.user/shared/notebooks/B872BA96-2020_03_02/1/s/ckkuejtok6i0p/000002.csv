@@ -1,0 +1,6 @@
+"0","Water_Schenectady <- area_water(state = ""NY"", county = ""Schenectady"")  # download the data"
+"2","Using FIPS code '36' for state 'NY'
+"
+"2","Using FIPS code '093' for 'Schenectady County'
+"
+"0","Water_Schenectady <- st_as_sf(Water_Schenectady) # convert to an sf object"

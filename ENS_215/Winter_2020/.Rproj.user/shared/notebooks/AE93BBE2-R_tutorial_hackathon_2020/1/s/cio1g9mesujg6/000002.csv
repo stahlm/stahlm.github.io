@@ -1,0 +1,7 @@
+"0","```r
+Pb_data <- Pb_data %>% 
+  mutate(Percent_White = 100*County_White/County_population,
+         Percent_AfAm = 100*County_Black_AfAm/County_population,
+         Percent_Asian = 100*County_Asian/County_population,
+         Percent_Latino = 100*County_Hispanic_Latino/County_population)
+```"

@@ -1,0 +1,4 @@
+"0","```r
+Pb_data <- Pb_data %>% 
+  mutate(Total_Outlets = Number_of_Outlets_LT_15_ppb + Number_of_Outlets_GT_15_ppb)
+```"

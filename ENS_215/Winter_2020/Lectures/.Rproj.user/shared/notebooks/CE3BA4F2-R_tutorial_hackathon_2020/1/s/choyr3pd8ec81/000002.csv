@@ -1,0 +1,6 @@
+"0","```r
+#ri <- counties(\"NY\")
+ri20 <- counties(\"NY\", cb = TRUE, resolution = \"20m\")
+plot(ri20)
+plot(ri20, border = \"red\", add = TRUE)
+```"

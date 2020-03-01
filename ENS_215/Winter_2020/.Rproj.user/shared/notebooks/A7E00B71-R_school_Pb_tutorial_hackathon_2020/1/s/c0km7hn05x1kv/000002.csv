@@ -1,0 +1,1 @@
+"0","ggplot(data = DATASET) + GEOM_FUNCTION(mapping = aes(MAPPINGS) )"

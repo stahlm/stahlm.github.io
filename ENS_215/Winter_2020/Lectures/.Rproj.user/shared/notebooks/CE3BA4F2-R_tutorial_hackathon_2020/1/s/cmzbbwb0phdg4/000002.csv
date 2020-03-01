@@ -1,0 +1,6 @@
+"0","```r
+Pb_data %>% 
+  ggplot(aes(x = Percent_Outlets_GT_15_ppb)) +
+  geom_histogram() +
+  theme_bw()
+```"

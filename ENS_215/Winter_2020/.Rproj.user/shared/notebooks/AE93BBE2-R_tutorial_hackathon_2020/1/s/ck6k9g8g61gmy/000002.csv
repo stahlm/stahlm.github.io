@@ -1,0 +1,4 @@
+"0","```r
+Pb_data <- Pb_data %>% 
+  mutate(Percent_Outlets_GT_15_ppb = 100*(Number_of_Outlets_GT_15_ppb/Total_Outlets))
+```"

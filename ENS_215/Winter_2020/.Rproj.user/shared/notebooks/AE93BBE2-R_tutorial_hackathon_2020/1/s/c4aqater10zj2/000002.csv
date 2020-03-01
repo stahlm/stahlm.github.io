@@ -1,0 +1,9 @@
+"0","```r
+leaflet(a) %>%
+  addPolygons(color = \"#444444\", weight = 1, smoothFactor = 0.5, popup = ~ paste(County, round(Percent_Outlets_GT_15_ppb,2)),
+    opacity = 1.0, fillOpacity = 0.5,
+    fillColor = ~colorQuantile(\"YlOrRd\", Percent_Outlets_GT_15_ppb)(Percent_Outlets_GT_15_ppb),
+    highlightOptions = highlightOptions(color = \"white\", weight = 2,
+      bringToFront = TRUE)) %>% 
+  addTiles()
+```"
