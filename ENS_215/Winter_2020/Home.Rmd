@@ -43,7 +43,7 @@ output:
 
 # Week 10
 ## Mon - Additional mapping
-## Wed - 
+## Wed - Wrap-up and next steps in your learning
 ```
 
 ***
@@ -189,8 +189,10 @@ output:
 
 
 + Lab 9 -- **Projects: final stage** 
-```{r echo=F,eval=F}
 [(html)](https://stahlm.github.io/ENS_215/Labs/Lab_week_9.html)
+
+```{r echo=F,eval=F}
+
 ```
 
 <br/>

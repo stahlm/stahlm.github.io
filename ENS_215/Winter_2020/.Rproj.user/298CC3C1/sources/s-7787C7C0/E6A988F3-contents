@@ -1,0 +1,165 @@
+---
+title: "shell isotopes"
+date: "16-Apr-2019"
+output:
+  html_document:
+    theme: spacelab
+    df_print: paged
+    toc: TRUE
+    toc_float: TRUE
+---
+
+
+```{r message=FALSE}
+library(tidyverse)
+library(readxl)
+library(plotly)
+```
+
+
+load in data 
+```{r message=FALSE, warning=FALSE}
+shell_data <- read_xlsx("../Class_Data/R data for Mason.xlsx")
+```
+
+
+
+```{r}
+fig_1 <- shell_data %>% 
+  ggplot(aes(x = factor(`site number`), y = `muscle d15n`)) +
+  geom_boxplot() +
+  geom_jitter(alpha = 0.25, height = 0) +
+  coord_flip() +
+  theme_classic() 
+
+ggplotly(fig_1)
+```
+
+
+
+## Anova with all site
+```{r}
+shell_data_clean <- shell_data %>% 
+  filter(!is.na(`muscle d15n`))
+```
+
+```{r}
+anova(lm(`muscle d15n` ~ `site number`, shell_data_clean))
+```
+
+## Anova pairwise
+
+
+```{r}
+pairwise.t.test(shell_data_clean$`muscle d15n`, shell_data_clean$`site number`, p.adjust.method = "bonferroni")
+```
+
+## Anova (mantle)
+
+Create a box-plot
+```{r}
+fig_2 <- shell_data %>% 
+  ggplot(aes(factor(`site number`), y = `mantle d15 n`)) +
+  geom_boxplot() +
+  geom_jitter(alpha = 0.25, height = 0) +
+  coord_flip() +
+  theme_classic() 
+
+ggplotly(fig_2)
+  
+```
+
+
+remove N/A's 
+```{r}
+shell_data_clean <- shell_data %>% 
+  filter(!is.na(`mantle d15 n`))
+```
+
+
+Anova test
+```{r}
+anova(lm(`mantle d15 n` ~ `site number`, shell_data_clean))
+```
+
+
+```{r}
+pairwise.t.test(shell_data_clean$`mantle d15 n`, shell_data_clean$`site number`, p.adjust.method = "bonferroni")
+```
+
+
+### Anova analysis for one species (Mercenaria mercenaria)
+```{r}
+shell_data_clean <- shell_data %>% 
+  filter(!is.na(`mantle d15 n`)) %>% 
+  filter(species == "Mercenaria mercenaria")
+```
+
+
+
+Create a box-plot (just one species)
+```{r}
+fig_3 <- shell_data_clean %>% 
+  ggplot(aes(factor(`site number`), y = `mantle d15 n`)) +
+  geom_boxplot() +
+  coord_flip() +
+  theme_classic() 
+
+ggplotly(fig_3)
+  
+```
+
+
+Anova test
+```{r}
+anova(lm(`mantle d15 n` ~ `site number`, shell_data_clean))
+```
+
+
+```{r}
+pairwise.t.test(shell_data_clean$`mantle d15 n`, shell_data_clean$`site number`, p.adjust.method = "bonferroni")
+```
+
+
+
+### Anova by species 
+
+```{r}
+fig_1 <- shell_data %>% 
+  ggplot(aes(x = species, y = `mantle d15 n`)) +
+  geom_boxplot() +
+  geom_jitter(alpha = 0.25, height = 0) +
+  coord_flip() +
+  theme_classic() 
+
+ggplotly(fig_1)
+```
+
+
+
+
+
+```{r}
+shell_data_clean <- shell_data %>% 
+  filter(!is.na(`mantle d15 n`)) %>% 
+  filter(species != "Atrina sp.")
+```
+
+
+
+```{r}
+anova(lm(`mantle d15 n` ~ species, shell_data_clean))
+```
+
+
+```{r}
+pairwise.t.test(shell_data_clean$`mantle d15 n`, shell_data_clean$species, p.adjust.method = "bonferroni")
+```
+
+
+```{r}
+shell_data_clean %>% 
+  group_by(species) %>% 
+  summarize(num_samples = n())
+```
+

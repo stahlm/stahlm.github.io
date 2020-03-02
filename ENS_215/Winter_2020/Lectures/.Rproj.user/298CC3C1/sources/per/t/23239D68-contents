@@ -14,7 +14,48 @@ output:
 |---|------------|-----------|
 
 
+
+### Week 9
+#### Readings
+* [**Geocomputation with R (Ch: 8)**](https://geocompr.robinlovelace.net/adv-map.html) (Optional reading)
+* [**R for Data Science (R4DS) Ch: 19**](https://r4ds.had.co.nz) (Optional reading)
+
+#### Assignments 
+1. DataCamp **_Visualizing Geospatial Data in R_** chapters **1** ("Basic mapping with ggplot2 and ggmap") and **2** ("Point and polygon data")
+    + Assigned: 2-Mar
+    + Due: 11-Mar
+
+
 ***
+
+
+### Week 8
+#### Readings
+* [**ModernDive Ch: 6**](https://moderndive.com/)
+* [**R for Data Science (R4DS) Ch: 27 and 28**](https://r4ds.had.co.nz)
+
+#### Assignments 
+1. DataCamp **_Modeling with Data in the Tidyverse_** chapters **3** ("Modeling with Multiple Regression
+") and **4** ("Model Assessment and Selection")
+    + Assigned: 24-Feb
+    + Due: 2-Mar
+    
+2. If you haven't done so yet, complete the survey I emailed out last week.  As a reminder, the survey is anonymous and is part of a project to develop and improve computing curriculums outside of computer science departments.  
+
+
+
+***
+### Week 7
+#### Readings
+* [**ModernDive Ch: 5**](https://moderndive.com/)
+
+#### Assignments 
+1. DataCamp **_Modeling with Data in the Tidyverse_** chapters **1** ("Introduction to Modeling") and **2** ("Modeling with Basic Regression")
+    + Assigned: 14-Feb
+    + Due: 24-Feb
+
+***
+
 ### Week 6
 #### Readings
 * [**Tidyverse style guide, Chapters 1, 2, 4, 5**](https://style.tidyverse.org/)
