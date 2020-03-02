@@ -1,0 +1,4 @@
+"0","NY_roads <- st_intersection(State_roads, State_counties)"
+"2","although coordinates are longitude/latitude, st_intersection assumes that they are planar
+"
+"2","attribute variables are assumed to be spatially constant throughout all geometries"

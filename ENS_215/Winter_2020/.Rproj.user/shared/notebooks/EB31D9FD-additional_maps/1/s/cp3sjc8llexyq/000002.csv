@@ -1,0 +1,1 @@
+"0","elev_raster <- raster::mask(elev_raster, State_counties)"

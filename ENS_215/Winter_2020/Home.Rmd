@@ -27,6 +27,7 @@ output:
 
 ### Week 9 
 + Mon (2-Mar) -- **Making maps in R (continued)**
+[(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_03_02.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_03_02.Rmd)
 
 ```{r eval = F, echo = F}
 [(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_03_02.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_03_02.Rmd)
@@ -185,8 +186,11 @@ output:
 ```
 
 + Lab 8 -- **Project formatting** [(html)](https://stahlm.github.io/ENS_215/Winter_2020/Labs/RMarkdown_basics.html)
+
+
++ Lab 9 -- **Projects: final stage** 
 ```{r echo=F,eval=F}
-[(html)](https://stahlm.github.io/ENS_215/Winter_2020/Labs/RMarkdown_basics.html)
+[(html)](https://stahlm.github.io/ENS_215/Labs/Lab_week_9.html)
 ```
 
 <br/>

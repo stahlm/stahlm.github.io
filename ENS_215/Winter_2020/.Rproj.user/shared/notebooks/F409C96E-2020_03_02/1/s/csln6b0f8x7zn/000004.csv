@@ -1,4 +1,0 @@
-"0","tm_shape(world_map_data) +"
-"0","  tm_fill(""continent"") +"
-"0","  tm_borders() +"
-"0","  tm_facets(by = ""continent"", free.coords = TRUE)"

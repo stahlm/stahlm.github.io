@@ -168,11 +168,12 @@ leaflet(state_cap_locs) %>%
 <br/>
 
 
-### Making maps with the `tmap` package
+## Making maps with the `tmap` package
 The `tmap` package is a widely used package for creating both static and interactive maps in R.  The `tmap` package have a wide range of functionality and flexibility and allows for the display of more spatial classes than `ggplot2` -- thus allowing for certain types of maps that are difficult to create with `ggplot2`.  A nice feature of the `tmap` package is that it is based on the "grammar of graphics" and thus the syntax is very similar to `ggplot2`.  This makes learning `tmap` relatively easy for those who already have experience with `ggplot2` (_i.e._ you).  
 
 
 Let's load in the `tmap` package, along with the `spData` package which has provides some nice spatial datasets that we can use to create example maps.  We will also load in the `sf` package, which provides functionality in R for **simple features** (sf) data types.  Simple features are a standard for storing storing spatial data.  Simple featurs are widely used in the field of spatial analysis and given that they are spatial data frames, they are well suited to use in R.  You can learn more about simple features and R [here](https://github.com/r-spatial/sf).
+
 ```{r message=FALSE, warning=FALSE}
 library(tmap)
 library(spData)
@@ -319,6 +320,104 @@ These interactive maps will be nicely embedded in your knit html documents, thus
 You can learn more about the interactive features available in `tmap` [here](https://geocompr.robinlovelace.net/adv-map.html#interactive-maps) 
 
 
-In any remaining time, try applying the tools/techniques you learned today to make different versions of the maps above or maps for your final project.  
+
+## Obtaining spatial data directly in R
+You've seen that some packages come preloaded with a handful of spatial data frames (e.g. the world map polygons from the `spData` package that was used last class).  You've also seen that you can load geospatial data into R that was obtained elsewhere and then saved to your computer (e.g. downloaded to your computer from NASA, USGS, US Forest Service,...).  
+
+Now we are going to see that there are some R packages that allow you to directly query sites such as the US Census Bureau and download geospatial data directly in your code!  This is amazing in that it allows you to among other thing:
+
++ Acquire data from the web using R code, which prevents you from having to find the site, click through options, save the data to a folder, and then load it into R  
++ Makes your map easily reproducible - anyone can see the exacty query and dataset you obtained
++ Makes your map easily adaptable - with the change of a few bits of code you can select additional/new data  
++ Many other benefits related to reproducible science, ease of analysis,...
+
+There are a number of packages that allow you to query different geospatial data repositories, but today we'll look at the `TIGRIS` package, which allows you to query US Census Bureau geographic data (e.g. state boundaries, county boundaries, roads, waterbodies,...), many of which are useful across a range of environmental science and policy research questions.  
+
+You'll first need to install the `tigris` package and then load it in.  We are also going to use the `sf` package below (this package provides functionality for a range of useful spatial operations).  
+```{r warning= F, message= F}
+library(tigris)
+```
+
+
+<br/>
+
+Let's get the county borders for New York state.  To do this we will use the `counties()` function.  
+```{r message=FALSE, warning=FALSE, results='hide'}
+NY_counties <- counties(state = "NY", cb = TRUE) # cb = TRUE specifies to download a lower resolution file (faster download)
+```
+
+The data is downloaded as a shapefile.  To plot in in `tmap` or `ggplot` we will need to conver the shapefile to a simple features spatial data frame.  To do this we will use the function `st_as_sf()` from the `sf` package
+```{r}
+NY_counties <- st_as_sf(NY_counties) # convert to an sf object
+```
+
+
+```{r message=FALSE, warning=FALSE}
+NY_map <- NY_counties %>% 
+  tm_shape() +
+  tm_polygons(col = "lightgrey", border.col = "black") +
+  tm_scale_bar(breaks = c(0, 50, 100), size = 1, position = c("LEFT", "BOTTOM"))     # add a scale bar
+
+NY_map
+```
+
+<br/>
+
+Let's also create a map of just Schenectady county.  
+
+```{r message=FALSE, warning=FALSE}
+Schenectady_map <- NY_counties %>% 
+  filter(NAME == "Schenectady") %>% 
+  tm_shape() +
+  tm_polygons(col = "lightgrey", border.col = "black") +
+  tm_scale_bar(breaks = c(0, 5, 10), size = 1, position = c("RIGHT", "BOTTOM"))     # add a scale bar
+
+Schenectady_map
+```
+
+
+That's pretty cool -- we were able to download the county borders for NY and create a map in a few lines of code.  This could easily be modified to create a map of other state(s).  Let's check out the function `area_water()` from `tigris` that allows us to download waterbodies (e.g. lakes, ponds, wetlands, large rivers).  Note that you can download linear water features (streams, canals, ditches,...) using the `linear_water()` function.  
+
+<br/>
+
+```{r message=FALSE, warning=FALSE, results='hide'}
+Water_Schenectady <- area_water(state = "NY", county = "Schenectady")  # download the data
+
+Water_Schenectady <- st_as_sf(Water_Schenectady) # convert to an sf object
+```
+
+<br/>
+
+Now let's add the water features to the Schenectady map
+```{r}
+Schenectady_map <- Schenectady_map +
+  tm_shape(Water_Schenectady) +
+  tm_polygons(col = "blue", border.alpha = 0)
+
+Schenectady_map
+```
+
+<br/>
+
+Let's also add linear water features using the `linear_water()` function
+```{r message=FALSE, warning=FALSE, results='hide'}
+Linear_water_Schenectady <- linear_water(state = "NY", county = "Schenectady")  # download the data
+
+Linear_water_Schenectady <- st_as_sf(Linear_water_Schenectady) # convert to an sf object
+```
+
+```{r}
+Schenectady_map + 
+  tm_shape(Linear_water_Schenectady) +
+  tm_lines(col = "blue") +
+  tm_compass(position = c("right", "top")) +  # add a compass
+  tm_layout(title = "Schenectady hydrography",
+            frame = F)
+```
+
+
+<br/>
+
+As you can see you can relatively easily make fairly complex maps with your understanding of R and often a few lines of code.  Furthermore, you can now integrate spatial analysis directly into your overall analysis workflow!  We just scratched the surface today, however these basics alone should provide you with much of what you might need (with respect to maps) for your final projects.  We will cover a few additional topics on spatial analysis in the last weeks of class.  
 
 

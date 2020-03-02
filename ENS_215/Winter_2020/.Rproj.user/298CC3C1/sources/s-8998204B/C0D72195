@@ -12,10 +12,10 @@
     "path" : "~/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Website/ENS_215_Site.Rmd",
     "project_path" : null,
     "properties" : {
-        "cursorPosition" : "50,39",
-        "scrollLine" : "0"
+        "cursorPosition" : "143,0",
+        "scrollLine" : "126"
     },
-    "relative_order" : 10,
+    "relative_order" : 2,
     "source_on_save" : false,
     "source_window" : "",
     "type" : "r_markdown"

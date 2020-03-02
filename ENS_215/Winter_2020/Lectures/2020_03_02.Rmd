@@ -173,6 +173,7 @@ The `tmap` package is a widely used package for creating both static and interac
 
 
 Let's load in the `tmap` package, along with the `spData` package which has provides some nice spatial datasets that we can use to create example maps.  We will also load in the `sf` package, which provides functionality in R for **simple features** (sf) data types.  Simple features are a standard for storing storing spatial data.  Simple featurs are widely used in the field of spatial analysis and given that they are spatial data frames, they are well suited to use in R.  You can learn more about simple features and R [here](https://github.com/r-spatial/sf).
+
 ```{r message=FALSE, warning=FALSE}
 library(tmap)
 library(spData)
@@ -332,10 +333,9 @@ Now we are going to see that there are some R packages that allow you to directl
 
 There are a number of packages that allow you to query different geospatial data repositories, but today we'll look at the `TIGRIS` package, which allows you to query US Census Bureau geographic data (e.g. state boundaries, county boundaries, roads, waterbodies,...), many of which are useful across a range of environmental science and policy research questions.  
 
-You'll first need to install the `tigris` package and then load it in.  We are also going to use the `sf` package below (this package provides functionality for a range of useful spatial operations).  You will likely also need to install the `sf` package 
+You'll first need to install the `tigris` package and then load it in.  We are also going to use the `sf` package below (this package provides functionality for a range of useful spatial operations).  
 ```{r warning= F, message= F}
 library(tigris)
-library(sf)
 ```
 
 

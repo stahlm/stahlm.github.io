@@ -1,0 +1,9 @@
+"0","lakes110 <- rnaturalearth::ne_download(scale = 50, type = 'MSR_50M', category = 'raster')"
+"2","trying URL 'http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/50m/raster/MSR_50M.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 17984241 bytes (17.2 MB)
+"
+"2","downloaded 17.2 MB
+
+"

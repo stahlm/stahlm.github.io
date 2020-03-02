@@ -1,8 +1,0 @@
-"0","map_1 <- tm_shape(world_map_data) +"
-"0","  tm_fill()"
-"0","map_2 <- tm_shape(world_map_data) +"
-"0","  tm_fill(""lifeExp"") "
-"0","map_3 <- tm_shape(world_map_data) +"
-"0","  tm_fill(""lifeExp"") +"
-"0","  tm_borders(""black"") "
-"0","tmap_arrange(map_1, map_2, map_3) # arrange the three maps"
