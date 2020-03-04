@@ -1,0 +1,8 @@
+"0","elmat %>%"
+"0","  sphere_shade(texture = ""bw"") %>%"
+"0","  #add_water(detect_water(elmat), color = ""blue"") %>%"
+"0","  add_shadow(ray_shade(elmat, zscale = 3), 0.5) %>%"
+"0","  add_shadow(ambient_shade(elmat), 0) %>%"
+"0","  plot_3d(elmat, zscale = 3, fov = 0, theta = 0, zoom = 0.75, phi = 45, windowsize = c(1000, 800))"
+"0","Sys.sleep(0.2)"
+"0","render_snapshot(clear=TRUE)"

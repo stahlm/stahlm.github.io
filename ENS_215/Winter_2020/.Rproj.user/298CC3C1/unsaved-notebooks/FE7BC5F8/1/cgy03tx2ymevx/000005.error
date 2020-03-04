@@ -1,0 +1,1 @@
+{"frames":[],"message":"Error in get_usgs_elevation_data(bbox, size = image_size$size, file = elev_file,  : \n  could not find function \"get_usgs_elevation_data\"\n"}

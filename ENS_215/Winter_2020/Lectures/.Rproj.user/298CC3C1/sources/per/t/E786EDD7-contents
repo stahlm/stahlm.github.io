@@ -143,7 +143,7 @@ bangladesh_gw <- read_csv("https://stahlm.github.io/ENS_215/Data/NationalSurveyD
 
 For this example we will directly create our graphic using the `plot_ly()` function as opposed to creating a `ggplot2` graphic and then converting it to a plotly object.  
 
-Note that when mapping a variable to an aesthetic you use `~=` in `plot_ly()`.  The figure below will plot each of the groundwater samples in 3-dimensions, where the x and y coordinates are the longitute and latitude and the z coordinate is the well's depth.  This will allow us to "see" into the subsurface and view all of the samples.  We are also color coloring the well by it's log~10~ arsenic concentration.  
+Note that when mapping a variable to an aesthetic you use `= ~` in `plot_ly()`.  The figure below will plot each of the groundwater samples in 3-dimensions, where the x and y coordinates are the longitute and latitude and the z coordinate is the well's depth.  This will allow us to "see" into the subsurface and view all of the samples.  We are also color coloring the well by it's log~10~ arsenic concentration.  
 ```{r}
 color_ramp <- colorRamp(c("blue", "yellow", "red"))
 
@@ -163,6 +163,8 @@ Take a minute or two to explore the 3D graphic.
 
 
 ## Interactive time-series with `dygraph`
+It is often very helpful to add interactivity to time-series data.  Often we would like to zoom in on a particular time period within a longer times-series.  
+
 The [dygraphs](https://rstudio.github.io/dygraphs/index.html) package provides excellent funtionality for creating interactive time-series graphics.  
 
 Let's first load in the `dygraphs` package and the `xts` package, which we will also use along with dygraphs (you will probably need to first install these packages).  
