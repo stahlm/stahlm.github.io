@@ -7,14 +7,14 @@
     "folds" : "",
     "hash" : "0",
     "id" : "EE796F83",
-    "lastKnownWriteTime" : 1583442064,
-    "last_content_update" : 1583442064555,
+    "lastKnownWriteTime" : 1583445085,
+    "last_content_update" : 1583445085715,
     "path" : "~/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_03_06_raster.Rmd",
     "project_path" : "2020_03_06_raster.Rmd",
     "properties" : {
         "chunk_output_type" : "inline",
-        "cursorPosition" : "28,6",
-        "scrollLine" : "17",
+        "cursorPosition" : "90,19",
+        "scrollLine" : "77",
         "tempName" : "Untitled1"
     },
     "relative_order" : 4,

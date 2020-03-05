@@ -1,0 +1,5 @@
+"0","tm_shape(raster_npp_july) +"
+"0","  tm_raster() +"
+"0","  tm_shape(world_borders) +"
+"0","  tm_borders() +"
+"0","  tm_layout(legend.position = c(""LEFT"",""BOTTOM""))"

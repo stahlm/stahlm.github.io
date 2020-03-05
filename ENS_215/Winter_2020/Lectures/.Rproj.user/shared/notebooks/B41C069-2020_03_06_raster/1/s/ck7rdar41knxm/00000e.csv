@@ -1,1 +1,2 @@
 "0","raster_npp_july <- raster::raster(""./Spatial_data/MODIS_NPP_2016_07.TIFF"")"
+"0","raster_npp_jan <- raster::raster(""./Spatial_data/MODIS_NPP_2016_01.TIFF"")"

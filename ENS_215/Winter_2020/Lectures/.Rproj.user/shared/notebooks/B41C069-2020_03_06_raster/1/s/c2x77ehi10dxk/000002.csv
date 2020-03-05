@@ -1,0 +1,3 @@
+"0","country_npp_july <- raster::extract(raster_npp_july, world_borders, fun = mean, na.rm = TRUE, weights = TRUE,"
+"0","                     sp = TRUE)"
+"2","""fun"" was changed to ""mean""; other functions cannot be used when ""weights=TRUE"""

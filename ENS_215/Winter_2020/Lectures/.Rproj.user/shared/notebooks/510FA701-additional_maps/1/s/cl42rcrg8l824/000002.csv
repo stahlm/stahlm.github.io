@@ -1,0 +1,8 @@
+"0","```r
+tm_shape(elev_raster, projection = \"+proj=utm +zone=18 +datum=WGS84\") +
+  tm_raster(palette = terrain.colors(5)) +
+tm_shape(State_counties) +
+  tm_borders() +
+  tm_shape(NY_roads) +
+  tm_lines(col = \"white\",lwd = 2.5) 
+```"

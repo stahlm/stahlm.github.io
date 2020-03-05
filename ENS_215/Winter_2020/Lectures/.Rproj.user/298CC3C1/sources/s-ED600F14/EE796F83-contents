@@ -13,25 +13,82 @@ library(sf)
 https://neo.sci.gsfc.nasa.gov/view.php?datasetId=MOD17A2_M_PSN
 
 ```{r}
-load(url(("https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Winter_2020/Lectures/Spatial_data/MODIS_NPP_2016_07.tif")))
+#load(url(("https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Winter_2020/Lectures/Spatial_data/MODIS_NPP_2016_07.TIFF")))
 ```
+
+
 
 
 ```{r}
 raster_npp_july <- raster::raster("./Spatial_data/MODIS_NPP_2016_07.TIFF")
+raster_npp_jan <- raster::raster("./Spatial_data/MODIS_NPP_2016_01.TIFF")
 ```
 
 ```{r}
 raster_npp_july
+raster_npp_jan
 ```
 
 
 ```{r}
-r
+raster_npp_jan[raster_npp_jan > 50] <- NA
+raster_npp_july[raster_npp_july > 50] <-NA
 ```
 
 
 ```{r}
+raster::maxValue(raster_npp_jan)
+```
+
+
+```{r}
+raster::plot(raster_npp_jan)
 raster::plot(raster_npp_july)
 ```
+
+```{r}
+world_borders <- spData::world
+```
+
+
+
+```{r}
+tm_shape(raster_npp_july) +
+  tm_raster() +
+  tm_shape(world_borders) +
+  tm_borders() +
+  tm_layout(legend.position = c("LEFT","BOTTOM"))
+```
+
+
+```{r}
+country_npp_july <- raster::extract(raster_npp_july, world_borders, fun = mean, na.rm = TRUE, weights = TRUE,
+                     sp = TRUE)
+```
+
+
+
+```{r}
+raster_npp_diff_july_jan <- raster_npp_july < raster_npp_jan
+```
+
+```{r}
+raster::plot(raster_npp_diff_july_jan)
+```
+
+
+```{r}
+country_npp_july <- st_as_sf(country_npp_july)
+```
+
+
+```{r}
+km2_to_m2 <- 1000*1000
+
+country_npp_july %>% 
+  group_by(name_long) %>% 
+  summarize(tot_npp = MODIS_NPP_2016_07*area_km2*km2_to_m2) %>% 
+  arrange(-tot_npp)
+```
+
 

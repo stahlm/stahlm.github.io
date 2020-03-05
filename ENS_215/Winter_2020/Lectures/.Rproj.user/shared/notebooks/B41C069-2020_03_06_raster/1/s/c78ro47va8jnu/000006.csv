@@ -1,0 +1,20 @@
+"0","km2_to_m2 <- 1000*1000"
+"0","country_npp_july %>% "
+"0","  group_by(name_long) %>% "
+"0","  summarize(tot_npp = MODIS_NPP_2016_07*area_km2*km2_to_m2) %>% "
+"0","  arrange(-tot_npp)"
+"1","Simple feature collection with 177 features and 2 fields"
+"1","
+"
+"1","geometry type:  MULTIPOLYGON
+"
+"1","dimension:      XY
+"
+"1","bbox:           "
+"1","xmin: -180 ymin: -90 xmax: 180 ymax: 83.64513"
+"1","
+"
+"1","epsg (SRID):    4326
+"
+"1","proj4string:    +proj=longlat +datum=WGS84 +no_defs
+"
