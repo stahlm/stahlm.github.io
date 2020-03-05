@@ -1,0 +1,37 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+ 
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+library(tmap)
+library(sf)
+```
+
+https://neo.sci.gsfc.nasa.gov/view.php?datasetId=MOD17A2_M_PSN
+
+```{r}
+load(url(("https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Winter_2020/Lectures/Spatial_data/MODIS_NPP_2016_07.tif")))
+```
+
+
+```{r}
+raster_npp_july <- raster::raster("./Spatial_data/MODIS_NPP_2016_07.TIFF")
+```
+
+```{r}
+raster_npp_july
+```
+
+
+```{r}
+r
+```
+
+
+```{r}
+raster::plot(raster_npp_july)
+```
+

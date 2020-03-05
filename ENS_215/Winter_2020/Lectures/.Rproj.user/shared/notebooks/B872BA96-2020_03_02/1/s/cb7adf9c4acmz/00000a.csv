@@ -1,6 +1,0 @@
-"0","Schenectady_map <- NY_counties %>% "
-"0","  filter(NAME == ""Schenectady"") %>% "
-"0","  tm_shape() +"
-"0","  tm_polygons(col = ""lightgrey"", border.col = ""black"") +"
-"0","  tm_scale_bar(breaks = c(0, 5, 10), size = 1, position = c(""RIGHT"", ""BOTTOM""))     # add a scale bar"
-"0","Schenectady_map"
