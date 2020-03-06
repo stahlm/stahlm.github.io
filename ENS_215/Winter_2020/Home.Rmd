@@ -32,6 +32,9 @@ output:
 + Wed (4-Mar) -- **Interactive graphics**
 [(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_03_04.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_03_04.Rmd)
 
++ Wed (6-Mar) -- **Additional spatial analysis: intro to rasters**
+[(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_03_06_raster.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_03_06_raster.Rmd)
+
 
 ```{r eval = F, echo = F}
 

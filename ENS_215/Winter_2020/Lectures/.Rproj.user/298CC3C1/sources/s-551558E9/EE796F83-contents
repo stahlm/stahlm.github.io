@@ -89,7 +89,7 @@ We often encounter geographic raster data in the environmental sciences -- in pa
 
 Let's load in a raster of the world's topography (elevation).  FYI, this raster reports elevation in units of meters. 
 ```{r}
-raster_world_elev <- raster::raster("./Spatial_data/World_elev.TIFF")
+raster_world_elev <- raster("./Spatial_data/World_elev.TIFF")
 
 # Data was obtained from: https://neo.sci.gsfc.nasa.gov/view.php?datasetId=SRTM_RAMP2_TOPO
 ```
@@ -145,7 +145,7 @@ You can see that we have fixed the issue.
 
 <br/>
 
-### Excercise
+### Exercise
 + Load in the world topographic data and save it to a new object.  
     + Reassign the missing data (which represents ocean grid-cells) with the value of 0 (thus setting mean sea level to 0).  
     + Plot the data.  
@@ -177,7 +177,8 @@ Let's convert our elevation data from units of meters into feet (1 m = 3.28084 f
 raster_world_elev__ft <- raster_world_elev * 3.28084
 ```
 
-Before proceeding, check that this operation worked as you intended (note: it should in fact have done what you expected)
++ Before proceeding, check that this operation worked as you intended (note: it should in fact have done what you expected)  
+
 ```{r echo=FALSE, eval=FALSE}
 
 raster::cellStats(raster_world_elev__ft, stat = mean)
@@ -230,10 +231,10 @@ We also often need to compute values based on several rasters.  For instance we 
 
 Let's work with an example involving just two rasters.  Here we will load in a raster of the average daytime temperatures for March and a raster of the average nighttime temperatures for March (units are degrees C).  
 ```{r}
-raster_day_temps <- raster::raster("./Spatial_data/Day_temp_2001_march.tif")
+raster_day_temps <- raster("./Spatial_data/Day_temp_2001_march.tif")
 raster_day_temps[raster_day_temps == 99999] <- NA
 
-raster_night_temps <- raster::raster("./Spatial_data/Night_temp_2001_march.TIFF")
+raster_night_temps <- raster("./Spatial_data/Night_temp_2001_march.TIFF")
 raster_night_temps[raster_night_temps == 99999] <- NA
 
 # Data from: https://neo.sci.gsfc.nasa.gov/view.php?datasetId=MOD_LSTD_CLIM_M
@@ -315,7 +316,7 @@ raster::plot(raster_temps_diff_reclass,
 
 
 ### Mask and crop rasters
-You will often want to clip (crop) as raster to a specified area.  For instance you might want to take the global elevation raster that we've been using and clip it to just the United States.  To clip (crop) a raster you will need to specify bounds to clip to.  
+You will often want to clip (crop) a raster to a specified area.  For instance you might want to take the global elevation raster that we've been using and clip it to just the United States.  To clip (crop) a raster you will need to specify bounds to clip to.  
 
 We generally do this by first masking the raster (using `mask()`).  This keeping values for only the raster cells that fall within the polygon defined by the shape we would like to ultimately crop to -- all cells that fall outside the polygon are set to NA.  Then we `crop()` the raster so that is extent is within the bounding box of the desired region (_i.e._ rectangle that bounds the polygon we are cropping to).  
 
@@ -413,10 +414,11 @@ raster_high_elev[raster_high_elev >= 1500] <- 1
 ```
 
 
-Here's what my map looks like
+Here's what my map looks like  
+
 ```{r echo=FALSE}
 tm_shape(raster_high_elev) +
-  tm_raster(palette = "darkgreen") +
+  tm_raster(palette = "darkgreen", title = "Elev. > 1500 m") +
 
 tm_shape(borders_data) +
   tm_borders() +
@@ -425,7 +427,9 @@ tm_shape(borders_data) +
 ```
 
 
+<br/>
 
+As a last exercise use a raster(s) from today's lecture to perform analysis of your own choosing.  Let me know if you want to try something but aren't sure how to move forward.  I can also point you to additional data.  
 
 
  
