@@ -32,9 +32,12 @@ output:
 + Wed (4-Mar) -- **Interactive graphics**
 [(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_03_04.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_03_04.Rmd)
 
+
 ```{r eval = F, echo = F}
 
-[(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_03_04.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_03_04.Rmd)
+[(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_03_06_raster.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_03_06_raster.Rmd)
+
+[(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_03_06.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_03_06.Rmd)
 
 # Week 8 
 ## Wed - Data modeling
