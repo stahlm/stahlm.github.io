@@ -1,0 +1,1 @@
+"0","elev_img <- raster::raster(""./Spatial_data/schenectady-elevation.TIFF"")"

@@ -1,22 +1,247 @@
 ---
-title: "R Notebook"
+title: "Spatial analysis continued: Introduction to rasters"
 output: html_notebook
 ---
- 
 
+
+Let's load in the packages that we will use today
 ```{r message=FALSE, warning=FALSE}
 library(tidyverse)
 library(tmap)
 library(sf)
+
+library(raster) # You will probably need to install this package
 ```
 
+
+
+
+In the past few lectures you've learned some basics of spatial analysis in R.  In particular you've learned how to perform basic mathemetical operations and data wrangling operations on geospatial data object, make basic maps, and access spatial data directly from calls to the US Census geographic database (using `tigris`).  
+
+You've already dealt with several types of spatial data:  
+
+> Point data (e.g. location of state capitals)  
+Line data  (e.g. geologic faults, streams, roads,..)
+Polygon data (e.g. country borders)
+
+Today you'll be introduced to raster data.  You are already somewhat familiar with the concept of raster data as we made [raster hydrographs](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_02_24_bivariate.html#time-series_plots) earlier, though these rasters were not geographic rasters.  The rasters we will deal with today are geographic raster.  A geographic raster is simply gridded data and typically consisted of a matrix of equally spaced cells with each cell containing the value(s) of a measurement(s).  
+
+A great example of raster data would be global elevation data.  In this case you the world would be divided into grid cells (e.g. 1 degree latitude by 1 degree longitude) and for each grid cell an elevation value would be reported. 
+
+
+
+```{r echo=FALSE, results='hide'}
+source("get_usgs_elevation_data.R")
+source("define_image_size.R")
+```
+
+
+
+```{r echo=FALSE, results='hide'}
+# define bounding box with longitude/latitude coordinates
+bbox <- list(
+  p1 = list(long = -73.997889, lat = 42.768403), # bottom-left
+  p2 = list(long = -73.873456, lat = 42.862791)   # top-right
+)
+```
+
+
+```{r echo=FALSE, results='hide'}
+image_size <- define_image_size(bbox, major_dim = 600)
+```
+
+
+```{r echo=FALSE, results='hide', message=FALSE}
+# download elevation data
+elev_file <- file.path("./Spatial_data", "schenectady-elevation.TIFF")
+get_usgs_elevation_data(bbox, size = image_size$size, file = elev_file,
+                        sr_bbox = 4326, sr_image = 4326)
+```
+
+
+```{r echo=FALSE, results='hide', message=FALSE}
+elev_img <- raster::raster("./Spatial_data/schenectady-elevation.TIFF")
+```
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+elev_img %>% 
+  tm_shape() +
+  tm_raster(style = "cont", palette = terrain.colors(10)) +
+  tm_layout(legend.outside = T,
+            main.title = "Schenectady elevation map") 
+```
+
+<br/>
+
+
+We often encounter geographic raster data in the environmental sciences -- in particular, the availability of satellite data (remote sensing) makes rasters widespread in this field of study.  
+
+
 https://neo.sci.gsfc.nasa.gov/view.php?datasetId=MOD17A2_M_PSN
+
+Let's load in a raster of the world's topography (elevation).  FYI, this raster reports elevation in units of meters. 
+```{r}
+raster_world_elev <- raster::raster("./Spatial_data/World_elev.tif")
+
+# Data was obtained from: https://neo.sci.gsfc.nasa.gov/view.php?datasetId=SRTM_RAMP2_TOPO
+```
+
+
+We can examine the details of the raster by simply typing the object name
+```{r}
+raster_world_elev
+```
+
+<br/>
+
+This gives you a summary of the raster's attributes.  We see the dimensions (number of rows, columns, cells).  In this case we can see that the raster has 259,200 cells.  Thus there are 259,200 grid cells with elevation data.  We see that the resolution (i.e. the dimensions of each grid cell) is 0.5 degree lat and 0.5 degree long.  We also see the spatial extent of th raster and coordinate reference system info.  The summary above also reports the min and max values.  It is good to check that these values make sense -- in this case they do not look amiss.  
+
+We can take a quick look at the data by using the `plot()` function from the `raster` package 
+```{r}
+raster::plot(raster_world_elev)
+```
+
+<br/>
+
+You can see that this doesn't look quiet right.  The issue here is that missing data is stored as a numeric value (in this case a very large one) and it is messing up the mapping of the values to a color scale.  Let's diagnose what exactly what is going on, that way we can identify a potential solution to the issue.
+
+Statistics on the raster values should allow us to determine the value that is being used as a placeholder for missing data.  We can get stats using the `cellStats()` function.  Note that the function takes the dataset as the first argument and the stat of interest as the second argument.  
+
+```{r}
+cellStats(raster_world_elev,
+          stat = max)
+```
+
+
+
+Ok, so we see that missing data is stored as 99999.  This is a fairly common practice, but it could introduce errors in our analysis.  Since the raster is topographic data, the creator of the data (NASA) decided to assign the value of 99999 for any pixel in the ocean.  
+
+Let's replace the 99999 with NA so that we don't end up introducing any errors in our upcoming analysis.  To do this we simply need to think back to the base R from the first weeks of class.  Below we'll perform this reassignment
+
+```{r}
+raster_world_elev[raster_world_elev == 99999] <- NA
+```
+
+Discuss with your neighbor what this code is doing.  Make sure you understand what is going on.
+
+
+Now let's plot the data again.  
+```{r}
+raster::plot(raster_world_elev)
+```
+
+You can see that we have fixed the issue.
+
+
+### Excercise
++ Load in the world topographic data and save it to a new object.  Reassign the missing data (which represents ocean grid-cells) with the value of 0 (thus setting mean sea level to 0).  Plot the data.  Then compute the mean and maximum elevations of the Earth's topographic data.  
+```{r echo=FALSE ,eval=FALSE}
+raster_world_elev_with_ocean <- raster::raster("./Spatial_data/World_elev.tif")
+
+raster_world_elev_with_ocean[raster_world_elev_with_ocean == 99999] <- 0
+
+raster::plot(raster_world_elev_with_ocean)
+```
+
+```{r echo=FALSE ,eval=FALSE}
+raster::cellStats(raster_world_elev_with_ocean, stat = max)
+
+raster::cellStats(raster_world_elev_with_ocean, stat = mean)
+```
+
+
+<br/>
+
+
+## Basic raster operations
+We will often need to perform mathematical operations on rasters.  For instance you may want to convert the units from meters to feet (multiplication) or you might want to perform some other mathematical operation (e.g. take the log of the values).  Any valid mathematical operation(s) can be performed on the raster.  
+
+Let's convert our elevation data from units of meters into feet (1 m = 3.28084 ft).  We will simply multiply each value in the raster by factor that represents the conversion from meters to feet.    
+```{r}
+raster_world_elev__ft <- raster_world_elev * 3.28084
+```
+
+Before proceeding, check that this operation worked as you intended (note: it should in fact have done what you expected)
+```{r echo=FALSE, eval=FALSE}
+
+raster::cellStats(raster_world_elev__ft, stat = mean)
+raster::plot(raster_world_elev__ft)
+```
+
+<br/>
+
+
+As you might know, the pressure in the Earth's atmosphere decreases with elevation.  So at sea-level we might experience 1 atmosphere of pressure, while on the top of Mt. Everest we would experience a much lower pressure of ~0.34 atmospheres.  
+
+Since atmospheric pressure is a function of elevation, using our elevation raster we could generate a map of the likely atmospheric pressure experienced at each point on Earth.  
+
+The elevation-pressure relationship can be approximated by the following equation
+
+> $p_{0}*exp(- \displaystyle \frac{g*h*M}{T_{0}*R_{0}})$
+
+In the equation above, $h$ is the elevation in meters.  The parameters are described (and defined) in the code block below:  
+```{r}
+coeff_p0 <- 1 # Sea level standard atmospheric pressure (Atmospheres)
+coeff_T0 <- 288.16 # Sea level standard temperature(K)
+coeff_g <- 9.80665 # 	Earth-surface gravitational acceleration (m/s^2)
+coeff_M <- 0.02896968 # Molar mass of dry air (kg/mol)
+coeff_R0 <- 8.314462618 #	Universal gas constant (J/(mol*K))
+```
+
+
+Now let's calculate the atmospheric pressure using our elevation raster.  
+```{r}
+raster_atmos_pressure <- coeff_p0 * exp( -(coeff_g * raster_world_elev * coeff_M)/(coeff_T0 * coeff_R0) )
+```
+
+Plotting the raster, we can see that it works!  Pretty cool, we were able to calculate the atmospheric pressure everywhere on the Earth's surface using our elevation raster!  This is just one example, but as you can see any mathematical operations that you might need to perform can be done on a raster.  
+```{r}
+raster::plot(raster_atmos_pressure)
+```
+
+<br/>
+
+We also often need to compute values based on several rasters.  For instance we may have rasters of average monthly precipitation across the US.  In this case we would have 12 rasters (one for each month) and we might want to determine that average annual precipitation for each grid cell (i.e. the sum of each cell's monthly values).  In this case we would simply need to sum the twelve rasters, which would simply be done as
+
+> `raster_1 + raster_2 + ... + raster_12`
+
+Let's work with an example involving just two rasters.  Here we will load in a raster of the average daytime temperatures for March and a raster of the average nighttime temperatures for March (units are degrees C).  
+```{r}
+raster_day_temps <- raster::raster("./Spatial_data/Day_temp_2001_march.tif")
+raster_day_temps[raster_day_temps == 99999] <- NA
+
+raster_night_temps <- raster::raster("./Spatial_data/Night_temp_2001_march.TIFF")
+raster_night_temps[raster_night_temps == 99999] <- NA
+```
+
+
+As an environmental scientist you might be interested in knowing the daily temperature range in March experienced at all locations on Earth as this would have many implications including: ecological/habitat suitability implications; energy requirements (e.g. heating and cooling demand); provide an indication of soil moisture (wetter areas would experience less fluctuation between day and night),... 
+
+Go ahead and calculate the difference between day and night temperature and save this to a new raster called `raster_temps_diff`
+```{r}
+raster_temps_diff <- raster_day_temps - raster_night_temps
+```
+
+
+Here's what your results should look like
+```{r echo=FALSE}
+raster::plot(raster_temps_diff)
+```
+
+
+```{r}
+#https://neo.sci.gsfc.nasa.gov/view.php?datasetId=MOD_LSTD_CLIM_M
+```
+
 
 ```{r}
 #load(url(("https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Winter_2020/Lectures/Spatial_data/MODIS_NPP_2016_07.TIFF")))
 ```
 
 
+```{r}
+#load(url("https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Winter_2020/Lectures/testa.RData"))
+```
 
 
 ```{r}
@@ -62,8 +287,8 @@ tm_shape(raster_npp_july) +
 
 
 ```{r}
-country_npp_july <- raster::extract(raster_npp_july, world_borders, fun = mean, na.rm = TRUE, weights = TRUE,
-                     sp = TRUE)
+country_npp_july <- raster::extract(raster_npp_july, world_borders, 
+                                    fun = mean, na.rm = TRUE, weights = TRUE, sp = TRUE)
 ```
 
 

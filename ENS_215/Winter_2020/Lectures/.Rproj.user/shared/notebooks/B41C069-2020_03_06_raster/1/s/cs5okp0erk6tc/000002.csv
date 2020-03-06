@@ -1,0 +1,4 @@
+"0","# download elevation data"
+"0","elev_file <- file.path(""./Spatial_data"", ""schenectady-elevation.TIFF"")"
+"0","get_usgs_elevation_data(bbox, size = image_size$size, file = elev_file,"
+"0","                        sr_bbox = 4326, sr_image = 4326)"

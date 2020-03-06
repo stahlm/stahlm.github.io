@@ -1,0 +1,4 @@
+"0","raster_day_temps <- raster::raster(""./Spatial_data/Day_temp_2001_march.tif"")"
+"0","raster_day_temps[raster_day_temps == 99999] <- NA"
+"0","raster_night_temps <- raster::raster(""./Spatial_data/Night_temp_2001_march.TIFF"")"
+"0","raster_night_temps[raster_night_temps == 99999] <- NA"

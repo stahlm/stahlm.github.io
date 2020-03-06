@@ -1,2 +1,0 @@
-"0","raster_npp_jan[raster_npp_jan > 50] <- NA"
-"0","raster_npp_july[raster_npp_july > 50] <-NA"
