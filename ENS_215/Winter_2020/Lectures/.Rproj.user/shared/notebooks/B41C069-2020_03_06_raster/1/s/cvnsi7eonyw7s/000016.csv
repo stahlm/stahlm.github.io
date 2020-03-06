@@ -1,0 +1,6 @@
+"0","tm_shape(raster_high_elev) +"
+"0","  tm_raster(palette = ""darkgreen"") +"
+"0","tm_shape(borders_data) +"
+"0","  tm_borders() +"
+"0","  tm_layout(legend.position = c(""LEFT"", ""center""),"
+"0","            main.title = ""High elevation (>1500 m) regions of the world"")"

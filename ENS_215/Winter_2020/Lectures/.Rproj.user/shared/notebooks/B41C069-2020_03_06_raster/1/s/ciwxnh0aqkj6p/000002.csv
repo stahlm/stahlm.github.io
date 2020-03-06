@@ -1,0 +1,6 @@
+"0","raster::cellStats(raster_world_elev__ft, stat = mean)"
+"1","[1]"
+"1"," 3574.42"
+"1","
+"
+"0","raster::plot(raster_world_elev__ft)"

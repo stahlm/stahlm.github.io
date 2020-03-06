@@ -1,1 +1,2 @@
-"0","raster_world_elev <- raster::raster(""./Spatial_data/World_elev.tif"")"
+"0","raster_world_elev <- raster::raster(""./Spatial_data/World_elev.TIFF"")"
+"0","# Data was obtained from: https://neo.sci.gsfc.nasa.gov/view.php?datasetId=SRTM_RAMP2_TOPO"
