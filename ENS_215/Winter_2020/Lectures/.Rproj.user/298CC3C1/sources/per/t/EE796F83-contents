@@ -23,7 +23,7 @@ library(raster)
 
 <br/>
 
-> **Important:** Before proceeding you will need to [download this zipfile]() from our class site.  This folder has the necessary data for today's lecture.  You should then unzip the folder to a sub-folder in your "Lectures" directory.  Make sure to call this sub-folder "Spatial_data".  
+> **Important:** Before proceeding you will need to [download this zipfile](https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Winter_2020/Lectures/Spatial_data.zip) from our class site.  This folder has the necessary data for today's lecture.  You should then unzip the folder to a sub-folder in your "Lectures" directory.  Make sure to call this sub-folder "Spatial_data".  
 
 ## Raster basics 
 
