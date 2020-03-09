@@ -25,20 +25,13 @@ output:
 
 ## Lectures 
 
-### Week 9 
-+ Mon (2-Mar) -- **Making maps in R (continued)**
-[(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_03_02.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_03_02.Rmd)
-
-+ Wed (4-Mar) -- **Interactive graphics**
-[(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_03_04.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_03_04.Rmd)
-
-+ Wed (6-Mar) -- **Additional spatial analysis: intro to rasters**
-[(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_03_06_raster.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_03_06_raster.Rmd)
-
+### Week 10
++ Mon (9-Mar) -- **Writing functions in R**
+[(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_03_09.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_03_09.Rmd)
 
 ```{r eval = F, echo = F}
 
-[(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_03_06_raster.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_03_06_raster.Rmd)
+[(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_03_09.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_03_09.Rmd)
 
 [(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_03_06.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_03_06.Rmd)
 
@@ -55,6 +48,19 @@ output:
 ## Mon - Additional mapping
 ## Wed - Wrap-up and next steps in your learning
 ```
+
+
+### Week 9 
++ Mon (2-Mar) -- **Making maps in R (continued)**
+[(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_03_02.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_03_02.Rmd)
+
++ Wed (4-Mar) -- **Interactive graphics**
+[(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_03_04.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_03_04.Rmd)
+
++ Wed (6-Mar) -- **Additional spatial analysis: intro to rasters**
+[(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_03_06_raster.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2020/Lectures/2020_03_06_raster.Rmd)
+
+
 
 ***
 

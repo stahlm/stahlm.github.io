@@ -1,21 +1,21 @@
 {
     "collab_server" : "",
     "contents" : "",
-    "created" : 1582586391999.000,
+    "created" : 1582489555401.000,
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
     "hash" : "3086835323",
-    "id" : "9D05F5B8",
+    "id" : "B7FA8E0A",
     "lastKnownWriteTime" : 1582641180,
-    "last_content_update" : 1582817692066,
+    "last_content_update" : 1582641180,
     "path" : "~/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2020/Lectures/2020_02_26.Rmd",
-    "project_path" : "Lectures/2020_02_26.Rmd",
+    "project_path" : "2020_02_26.Rmd",
     "properties" : {
-        "cursorPosition" : "158,27",
+        "cursorPosition" : "3,19",
         "scrollLine" : "0"
     },
-    "relative_order" : 10,
+    "relative_order" : 6,
     "source_on_save" : false,
     "source_window" : "",
     "type" : "r_markdown"

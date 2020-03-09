@@ -1,7 +1,7 @@
 ---
 title: "Writing functions in R"
 author: "ENS-215"
-date: "6-Mar-2019"
+date: "9-Mar-2020"
 output:
   html_document:
     df_print: paged
@@ -13,8 +13,9 @@ output:
 <br/>
 
 
-```{r message=FALSE}
+```{r message=FALSE, warning=FALSE}
 library(tidyverse)
+library(patchwork) # we'll use this for some figures in this class
 ```
 
 <br/>
@@ -62,9 +63,15 @@ In R, a function will **return**(_i.e._ output) the result of the last line in t
 
 <br/>
 
-To illustrate how we create a function in R, let's create a very simple function that takes a number as input and then returns the cube of that number. 
+To illustrate how we create a function in R, let's create a very simple function that takes a number as input and then returns the cube of that number.  
+
+It is very good practice to include a description of the function, its inputs, and its outputs.
 ```{r}
 cube_it <- function(cube_me){
+  # Function computes the cube of the input
+  # inputs: cube_me is the value to cube
+  # output: the cube of cube_me
+  
   cube_me^3 # take the cube of the input cube_me
 }
 ```
@@ -92,6 +99,10 @@ Let's highlight this point with a basic example where we create a function that 
 
 ```{r}
 pow_it <- function(base_val, exp_val){
+  # Raises an input value to a specified power
+  # inputs: base_val is the value to be raised to a power; exp_val is the exponent value
+  # output: base_val raised to the exp_val
+  
   base_val^exp_val
 }
 ```
@@ -217,7 +228,7 @@ add_something(my_number = 5)
 To illustrate that R first looks inside the function and then stops if it finds the variable, let's create a variable `add_number` outside of our function.  This variable will like in our **Global Environment** (see the Environment pane in the top right of your RStudio window).  
 
 ```{r}
-add_number <- 5
+add_number <- 4
 add_something(my_number = 5)
 ```
 You see that `add_something()` still uses the locally defined value for `add_number` when executing the function.  
@@ -278,6 +289,10 @@ Since the last statement evaluated in `get_stats_bad()` is the mean, then that i
 Let's define a new function `get_stats_good()` that returns all of the computed statistics
 ```{r}
 get_stats_good <- function(input_data){
+  # Computes basic statistics on a univariate dataset
+  # inputs: input_data is a vector of values
+  # outputs: list containing the min, max, and mean of the input_data
+  
   stat_min <- min(input_data)
   stat_max <- max(input_data)
   stat_mean <- mean(input_data)
@@ -375,5 +390,78 @@ Below is an example of what your output should look like
 ```{r}
 state_climate_summary(state_temps, "MA")
 ```
+
+
+<br/>
+
+2. Create a function that take in NOAA state-wide temperature data and generates for a single, user specified state the following  
+    i. Map of the state
+    ii. Box plot of temperatures by month
+    iii. Figure with a plot of time-series plot of the annual average temperatures 
+
+
+```{r echo = F, warning=FALSE, message=FALSE}
+state_climate_summary_map <- function(climate_data, state_abbrev){
+  
+  state_names_table <- tibble(state_name = tolower(state.name), state_abb = state.abb)
+  state_names_table <- state_names_table %>% 
+    filter(state_abb == state_abbrev)
+  
+  state_name_current <- state_names_table$state_name
+  
+  table_months <- climate_data %>% 
+    filter(state_cd == state_abbrev) %>% 
+    group_by(Month) %>% 
+    summarise(month_mean = mean(Avg_Temp_F), month_max = max(Avg_Temp_F), month_min = min(Avg_Temp_F) )
+  
+  table_annual <- climate_data %>% 
+    filter(state_cd == state_abbrev) %>%
+    group_by(Year) %>% 
+    summarise(annual_mean = mean(Avg_Temp_F)) 
+  
+  
+  fig_annual <- table_annual %>% 
+    ggplot(aes(x = Year, y = annual_mean)) +
+    geom_line() +
+    geom_point() +
+    geom_smooth(method = "lm") +
+    labs(title = paste("Annual mean temperature:",state_abbrev),
+         x = "",
+         y = "Annual Mean Temp (F)",
+         caption = "Data source: NOAA") +
+    theme_classic()
+  
+  fig_monthly <- climate_data %>% 
+    mutate(Month = as.factor(Month)) %>% 
+    ggplot(aes(x = Month, y = Avg_Temp_F)) +
+    geom_boxplot() +
+    labs(title = paste("Monthly temperatures:",state_abbrev),
+         x = "",
+         y = "Temp (F)",
+         caption = "Data source: NOAA") +
+    theme_classic()
+  
+  map_data_state <- map_data("state") %>% 
+    filter(region == state_name_current)
+  
+  fig_map <- map_data_state %>% 
+    ggplot() +
+    geom_polygon(aes(long, lat, group = group), color = "black", fill = "gray") +
+    coord_map(projection = "bonne", lat0 = 50) +
+    theme_void()
+
+  combined_fig <- fig_map / (fig_monthly / fig_annual)
+  return(combined_fig)
+  
+  #list(table_months, table_annual, fig_annual)
+  
+}
+```
+
+
+```{r fig.height= 6, warning=FALSE, message=FALSE}
+state_climate_summary_map(state_temps, "MA")
+```
+
 
 
