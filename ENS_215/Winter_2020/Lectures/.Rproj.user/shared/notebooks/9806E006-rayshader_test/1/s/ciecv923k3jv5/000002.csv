@@ -1,0 +1,2 @@
+"0","raster_elev_NY <- raster::mask(raster_elev,"
+"0","                                    NY_border)"

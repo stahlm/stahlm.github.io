@@ -1,0 +1,2 @@
+"0","raster_elev <- raster::raster(""./Spatial_data/World_elev_highres.TIFF"")"
+"0","raster_elev[raster_elev == 99999] <- NA"

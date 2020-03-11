@@ -1,0 +1,2 @@
+"0","raster_elev_NY <- raster::crop(raster_elev_NY,"
+"0","                                    NY_border)"

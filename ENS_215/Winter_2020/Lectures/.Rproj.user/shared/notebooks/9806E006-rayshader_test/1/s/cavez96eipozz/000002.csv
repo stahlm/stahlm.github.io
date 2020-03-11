@@ -1,0 +1,4 @@
+"0","elmat <- matrix("
+"0","  raster::extract(raster_elev_NY, raster::extent(raster_elev_NY), buffer = 1000), "
+"0","  nrow = ncol(raster_elev_NY), ncol = nrow(raster_elev_NY)"
+"0",")"

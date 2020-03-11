@@ -1,0 +1,6 @@
+"0","library(rayshader)"
+"0","library(sf)"
+"0","library(tigris)"
+"0","library(tidyverse)"
+"0","library(tmap)"
+"2","package ‘tmap’ was built under R version 3.5.3"

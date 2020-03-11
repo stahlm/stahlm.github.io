@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1583930606646.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "3C2660B0",
+    "lastKnownWriteTime" : 3415249577738792771,
+    "last_content_update" : 1583930606646,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "F0C575FE",
+        "caption" : "NY_border",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=NY_border&cache_key=F0C575FE",
+        "displayedObservations" : "177",
+        "environment" : "",
+        "object" : "NY_border",
+        "preview" : "0",
+        "totalObservations" : "177",
+        "variables" : "11"
+    },
+    "relative_order" : 9,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

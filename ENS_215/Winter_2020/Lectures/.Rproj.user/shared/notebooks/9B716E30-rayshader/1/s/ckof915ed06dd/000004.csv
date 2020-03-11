@@ -1,0 +1,8 @@
+"0","#elev_file <- ""C:/Users/stahlm/Documents/Research_Projects/Groundwater_Isotopes/Output/RF_model/RF_model_GW_isotopes_H.gri"""
+"0","elev_img <- raster::raster(elev_file)"
+"2","Error in .local(.Object, ...) : 
+
+"
+"2","Error in .rasterObjectFromFile(x, band = band, objecttype = ""RasterLayer"",  : 
+  Cannot create a RasterLayer object from this file.
+"

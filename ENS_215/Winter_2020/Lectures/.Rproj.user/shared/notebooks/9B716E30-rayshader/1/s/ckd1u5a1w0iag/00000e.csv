@@ -1,8 +1,0 @@
-"0","filename_movie = tempfile()"
-"0","elmat %>% "
-"0","  sphere_shade(texture=""imhof1"") %>%"
-"0","  add_water(detect_water(elmat), color = ""blue"") %>%"
-"0","  plot_3d(elmat, zscale=3, waterlinecolor=""white"", waterlinealpha=0.5)"
-"0","  render_movie(filename = filename_movie)"
-"2","
-"
