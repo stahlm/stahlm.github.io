@@ -1,0 +1,7 @@
+"0","```r
+tmap_mode(\"view\") +
+  tm_shape(watersheds_combined) +
+  tm_polygons(col = \"site\") 
+```"
+"1","tmap mode set to interactive viewing
+"

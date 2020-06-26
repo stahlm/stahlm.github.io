@@ -1,0 +1,142 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r}
+library(tidyverse)
+library(spData)
+library(tmap)
+library(sf)
+library(raster)
+```
+
+```{r}
+ny_data <- us_states %>% 
+  filter(NAME == "New York")
+
+
+bedrock_geology <- st_read("../Data/Spatial_data/Geologic_data/bedrock_hudson_mohawk/HudsonMohawk_Bedrock.shp", stringsAsFactors = FALSE, quiet = T) # 
+
+quat <- bedrock_geology %>% 
+  filter(MATERIAL == "Q")
+
+surficial_geology <-  st_read("../Data/Spatial_data/Geologic_data/surficial_hudson_mohawk/HudsonMohawk_Surficial.shp", stringsAsFactors = FALSE, quiet = T) #
+```
+
+
+```{r}
+population_data <- raster("../Data/Spatial_data/population_data/gpw_v4_population_count_rev11_2015_2pt5_min.tif")
+```
+
+
+```{r}
+# Watershed shape files
+shape_mohawk_watershed <- st_read("../Data/Spatial_data/Mohawk_Shapefile/area-of-interest.shp", stringsAsFactors = FALSE, quiet = T)
+shape_hudson_watershed <- st_read("../Data/Spatial_data/Hud_Shapefile/area-of-interest.shp", stringsAsFactors = FALSE, quiet = T)
+shape_cc_watershed <- st_read("../Data/Spatial_data/CC_Shapefile/area-of-interest.shp", stringsAsFactors = FALSE, quiet = T)
+shape_wc_watershed <- st_read("../Data/Spatial_data/WC_Shapefile/area-of-interest.shp", stringsAsFactors = FALSE, quiet = T)
+shape_oc_watershed <- st_read("../Data/Spatial_data/OC_Shapefile/area-of-interest.shp", stringsAsFactors = FALSE, quiet = T)
+shape_nc_watershed <- st_read("../Data/Spatial_data/NC_Shapefile/area-of-interest.shp", stringsAsFactors = FALSE, quiet = T)
+
+# Sampling locations
+site_locs <- read_csv("../Data/Spatial_data/Site_Lat_Long.csv")
+
+site_locs <- st_as_sf(site_locs, coords = c("Long", "Lat"))
+```
+
+
+```{r}
+surf_int <- st_intersection(surficial_geology,st_transform(st_union(st_union(shape_nc_watershed, shape_cc_watershed), shape_oc_watershed), st_crs(surficial_geology)))
+```
+
+
+```{r}
+tmap_mode("view") +
+tm_shape(ny_data) +
+  tmap_options(max.categories = 87) +
+  tm_polygons() +
+  
+    tm_shape(shape_hudson_watershed) +
+  tm_fill(col = "darkgray") +
+  tm_borders(col = "black", lwd = 2) +
+  
+  tm_shape(shape_mohawk_watershed) +
+  tm_fill(col = "gray") +
+  tm_borders(col = "black", lwd = 2) +
+  
+  tm_shape(shape_cc_watershed) +
+  tm_fill(col = "orange") +
+  tm_borders(col = "white", lwd = 1) +
+  
+  tm_shape(shape_nc_watershed) +
+  tm_fill(col = "chocolate") +
+  tm_borders(col = "white", lwd = 1) +
+  
+  tm_shape(shape_oc_watershed) +
+  tm_fill(col = "bisque") +
+  tm_borders(col = "white", lwd = 1) +
+  
+  tm_shape(shape_wc_watershed) +
+  tm_fill(col = "darkolivegreen") +
+  tm_borders(col = "white", lwd = 1) +
+  
+  tm_shape(site_locs) +
+  tm_symbols(size = 0.1, col = "black", border.col = "black") +
+  tm_text("Site_abb", just = c("center","top"), ymod = -0.2, fontface = "bold") +
+  
+  tm_shape(surf_int) +
+  tm_polygons(col = "MATERIAL", alpha = 0.5)
+```
+
+
+```{r}
+watersheds_combined <- rbind(mutate(shape_hudson_watershed, site = "H"),
+                             mutate(shape_mohawk_watershed, site = "M"),
+                             mutate(shape_cc_watershed, site = "CC"), 
+                             mutate(shape_nc_watershed, site = "NC"),
+                             mutate(shape_oc_watershed, site = "OC"),
+                             mutate(shape_wc_watershed, site = "WC")
+)
+```
+
+```{r}
+tmap_mode("view") +
+  tm_shape(watersheds_combined) +
+  tm_polygons(col = "site") 
+```
+
+```{r}
+pop_hud <- extract(population_data, watersheds_combined, fun = sum, sp = TRUE)
+
+pop_hud@data$gpw_v4_population_count_rev11_2015_2pt5_min/(st_area(watersheds_combined)/10^6)
+
+
+```
+
+
+```{r}
+surf_int <- st_intersection(watersheds_combined, st_transform(surficial_geology, st_crs(watersheds_combined)))
+```
+
+
+```{r}
+surf_summary <- surf_int %>% group_by(site, MATERIAL) %>% 
+  summarise(tot_area = sum(AREA))
+
+surf_summary<- surf_summary %>% 
+  group_by(site) %>% 
+  mutate(tot_area = tot_area/sum(tot_area) * 100)
+  
+```
+
+
+
+```{r}
+surf_summary %>% 
+  ggplot(aes(x = MATERIAL, y = tot_area, fill = MATERIAL)) +
+  geom_col() +
+  facet_wrap(~site, nrow = 3)
+```
+

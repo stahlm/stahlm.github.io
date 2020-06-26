@@ -1,0 +1,9 @@
+"0","```r
+watersheds_combined <- rbind(mutate(shape_hudson_watershed, site = \"H\"),
+                             mutate(shape_mohawk_watershed, site = \"M\"),
+                             mutate(shape_cc_watershed, site = \"CC\"), 
+                             mutate(shape_nc_watershed, site = \"NC\"),
+                             mutate(shape_oc_watershed, site = \"OC\"),
+                             mutate(shape_wc_watershed, site = \"WC\")
+)
+```"

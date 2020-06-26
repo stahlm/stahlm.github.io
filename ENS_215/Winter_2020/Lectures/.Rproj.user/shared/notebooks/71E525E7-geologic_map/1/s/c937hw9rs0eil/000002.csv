@@ -1,0 +1,7 @@
+"0","```r
+pop_hud <- extract(population_data, watersheds_combined, fun = sum, sp = TRUE)
+pop_hud@data$gpw_v4_population_count_rev11_2015_2pt5_min/(st_area(watersheds_combined)/10^6)
+```"
+"1","Units: [1/m^2]
+[1] 29.852091 66.927912 21.842463  9.644935 11.022491 22.497925
+"

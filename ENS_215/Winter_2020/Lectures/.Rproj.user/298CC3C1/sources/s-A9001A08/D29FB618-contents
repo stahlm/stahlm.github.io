@@ -1,8 +1,0 @@
----
-title: "R Notebook"
-output: html_notebook
----
-
-<video width="320" height="240" controls>
-  <source src="./test_elevation_movie" type="video/mp4">
-</video>

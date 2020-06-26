@@ -1,0 +1,53 @@
+"0","table_1 <- readxl::read_xlsx(""./grading_rubric.xlsx"") "
+"0","table_1 %>% "
+"0","  kable() %>% "
+"0","  kable_styling(bootstrap_options = ""striped"", full_width = F) %>% "
+"0","  row_spec(0, bold = T) %>%"
+"0","  column_spec(1, width = ""8em"") %>% "
+"0","  column_spec(2, width = ""12em"") %>% "
+"0","  column_spec(3, width = ""12em"") %>% "
+"0","  column_spec(4, width = ""12em"")"
+"1","<table class=""table table-striped"" style=""width: auto !important; margin-left: auto; margin-right: auto;"">
+ <thead>
+  <tr>
+   <th style=""text-align:left;font-weight: bold;""> Topic </th>
+   <th style=""text-align:left;font-weight: bold;""> Excellent: 3 </th>
+   <th style=""text-align:left;font-weight: bold;""> Good: 2 </th>
+   <th style=""text-align:left;font-weight: bold;""> Needs work: 1 </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style=""text-align:left;width: 8em; ""> Code style and strategy </td>
+   <td style=""text-align:left;width: 12em; ""> Above and beyond what was expected/required.  Code is very organized, well structured, and well commented. </td>
+   <td style=""text-align:left;width: 12em; ""> Code runs reasonably well but may have a few errors, acceptable level of commenting, and reasonably organized and structured. </td>
+   <td style=""text-align:left;width: 12em; ""> Many errors in style/structure and limited effort to make the code human readable </td>
+  </tr>
+  <tr>
+   <td style=""text-align:left;width: 8em; ""> Presentation of results </td>
+   <td style=""text-align:left;width: 12em; ""> Figures and tables are above and beyond what is expected.  Clear and easy to read.  Well chosen graphs that clearly illustrate the intended point/concept. </td>
+   <td style=""text-align:left;width: 12em; ""> Well made figures and tables with some minor issues (e.g. labels, symbol sizes, design not ideal) </td>
+   <td style=""text-align:left;width: 12em; ""> Results poorly conveyed.  Poor formatting and/or choose of method for conveying results. </td>
+  </tr>
+  <tr>
+   <td style=""text-align:left;width: 8em; ""> Achievement, mastery, creativity </td>
+   <td style=""text-align:left;width: 12em; ""> Above and beyond what is expected.  Excellent use of tools/concepts and sophisticated application of concepts from this course.  Creative approach to problem solving and analysis. </td>
+   <td style=""text-align:left;width: 12em; ""> Good application of tools/concepts learned in this class.  Competent approach, though not necessarily very creative. </td>
+   <td style=""text-align:left;width: 12em; ""> Student did not display mastery of the concepts/tools learned in this class.  Worked lacked sufficient depth. </td>
+  </tr>
+  <tr>
+   <td style=""text-align:left;width: 8em; ""> Discussion </td>
+   <td style=""text-align:left;width: 12em; ""> High quality discussion and interpretation of the results.  Clear understanding of the scientific concepts under examination in the assignment. </td>
+   <td style=""text-align:left;width: 12em; ""> Good discussion and demonstrates reasonable understanding of the scientific concepts. </td>
+   <td style=""text-align:left;width: 12em; ""> Limited discussion that does not demonstrate a good understanding of the concepts being examined in the assignment. </td>
+  </tr>
+  <tr>
+   <td style=""text-align:left;width: 8em; ""> Ease of access for instructor </td>
+   <td style=""text-align:left;width: 12em; ""> Code runs on my computer with no problems.   Assignment is named according to specified naming convention.  Proper headers (e.g. name, date). </td>
+   <td style=""text-align:left;width: 12em; ""> Satisfactory </td>
+   <td style=""text-align:left;width: 12em; ""> No effort made to make code easy to run and assignment easy to interpret. </td>
+  </tr>
+</tbody>
+</table>"
+"1","
+"

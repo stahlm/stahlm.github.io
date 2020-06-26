@@ -1,0 +1,8 @@
+"0","```r
+ny_data <- us_states %>% 
+  filter(NAME == \"New York\")
+bedrock_geology <- st_read(\"../Data/Spatial_data/Geologic_data/bedrock_hudson_mohawk/HudsonMohawk_Bedrock.shp\", stringsAsFactors = FALSE, quiet = T) # 
+quat <- bedrock_geology %>% 
+  filter(MATERIAL == \"Q\")
+surficial_geology <-  st_read(\"../Data/Spatial_data/Geologic_data/surficial_hudson_mohawk/HudsonMohawk_Surficial.shp\", stringsAsFactors = FALSE, quiet = T) #
+```"

@@ -1,0 +1,22 @@
+"0","```r
+# Watershed shape files
+shape_mohawk_watershed <- st_read(\"../Data/Spatial_data/Mohawk_Shapefile/area-of-interest.shp\", stringsAsFactors = FALSE, quiet = T)
+shape_hudson_watershed <- st_read(\"../Data/Spatial_data/Hud_Shapefile/area-of-interest.shp\", stringsAsFactors = FALSE, quiet = T)
+shape_cc_watershed <- st_read(\"../Data/Spatial_data/CC_Shapefile/area-of-interest.shp\", stringsAsFactors = FALSE, quiet = T)
+shape_wc_watershed <- st_read(\"../Data/Spatial_data/WC_Shapefile/area-of-interest.shp\", stringsAsFactors = FALSE, quiet = T)
+shape_oc_watershed <- st_read(\"../Data/Spatial_data/OC_Shapefile/area-of-interest.shp\", stringsAsFactors = FALSE, quiet = T)
+shape_nc_watershed <- st_read(\"../Data/Spatial_data/NC_Shapefile/area-of-interest.shp\", stringsAsFactors = FALSE, quiet = T)
+# Sampling locations
+site_locs <- read_csv(\"../Data/Spatial_data/Site_Lat_Long.csv\")
+```"
+"1","Parsed with column specification:
+cols(
+  Site = col_character(),
+  Site_abb = col_character(),
+  Long = col_double(),
+  Lat = col_double()
+)
+"
+"0","```r
+site_locs <- st_as_sf(site_locs, coords = c(\"Long\", \"Lat\"))
+```"

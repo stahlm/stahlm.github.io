@@ -1,0 +1,7 @@
+"0","```r
+surf_int <- st_intersection(surficial_geology,st_transform(st_union(st_union(shape_nc_watershed, shape_cc_watershed), shape_oc_watershed), st_crs(surficial_geology)))
+```"
+"1","although coordinates are longitude/latitude, st_union assumes that they are planar
+attribute variables are assumed to be spatially constant throughout all geometriesalthough coordinates are longitude/latitude, st_union assumes that they are planar
+attribute variables are assumed to be spatially constant throughout all geometriesattribute variables are assumed to be spatially constant throughout all geometries
+"

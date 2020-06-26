@@ -1,0 +1,40 @@
+"0","```r
+tmap_mode(\"view\") +
+tm_shape(ny_data) +
+  tmap_options(max.categories = 87) +
+  tm_polygons() +
+  
+    tm_shape(shape_hudson_watershed) +
+  tm_fill(col = \"darkgray\") +
+  tm_borders(col = \"black\", lwd = 2) +
+  
+  tm_shape(shape_mohawk_watershed) +
+  tm_fill(col = \"gray\") +
+  tm_borders(col = \"black\", lwd = 2) +
+  
+  tm_shape(shape_cc_watershed) +
+  tm_fill(col = \"orange\") +
+  tm_borders(col = \"white\", lwd = 1) +
+  
+  tm_shape(shape_nc_watershed) +
+  tm_fill(col = \"chocolate\") +
+  tm_borders(col = \"white\", lwd = 1) +
+  
+  tm_shape(shape_oc_watershed) +
+  tm_fill(col = \"bisque\") +
+  tm_borders(col = \"white\", lwd = 1) +
+  
+  tm_shape(shape_wc_watershed) +
+  tm_fill(col = \"darkolivegreen\") +
+  tm_borders(col = \"white\", lwd = 1) +
+  
+  tm_shape(site_locs) +
+  tm_symbols(size = 0.1, col = \"black\", border.col = \"black\") +
+  tm_text(\"Site_abb\", just = c(\"center\",\"top\"), ymod = -0.2, fontface = \"bold\") +
+  
+  tm_shape(surf_int) +
+  tm_polygons(col = \"MATERIAL\", alpha = 0.5)
+```"
+"1","tmap mode set to interactive viewing
+Currect projection of shape site_locs unknown. Long-lat (WGS84) is assumed.In interactive mode, the just argument should be one element
+"

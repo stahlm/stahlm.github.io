@@ -1,0 +1,6 @@
+"0","```r
+surf_summary %>% 
+  ggplot(aes(x = MATERIAL, y = tot_area, fill = MATERIAL)) +
+  geom_col() +
+  facet_wrap(~site, nrow = 3)
+```"

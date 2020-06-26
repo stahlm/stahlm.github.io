@@ -1,0 +1,8 @@
+"0","```r
+surf_summary <- surf_int %>% group_by(site, MATERIAL) %>% 
+  summarise(tot_area = sum(AREA))
+surf_summary<- surf_summary %>% 
+  group_by(site) %>% 
+  mutate(tot_area = tot_area/sum(tot_area) * 100)
+  
+```"
