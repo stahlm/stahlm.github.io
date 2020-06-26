@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1582900802783.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "688178439",
+    "id" : "38AF68DF",
+    "lastKnownWriteTime" : 1577398395,
+    "last_content_update" : 1582900807794,
+    "path" : "~/Data_Analytics_Center/Hackathon/Hackathon_2020/R_school_Pb_tutorial_hackathon_2020.Rmd",
+    "project_path" : null,
+    "properties" : {
+        "cursorPosition" : "0,0",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 12,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}
