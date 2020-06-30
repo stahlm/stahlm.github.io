@@ -1,0 +1,2 @@
+"0","map_world_data <- map_data(""world"") # get world borders"
+"0","earthquakes <- read_csv(""https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Data/4.5_month_earthquakes_USGS_2020.csv"") # get dataset of recent earthquakes"

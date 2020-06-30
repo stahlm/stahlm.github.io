@@ -1,0 +1,6 @@
+"0","map_data_usa %>% "
+"0","  ggplot() + "
+"0","  geom_polygon(aes(long, lat, group = group), color = ""black"", fill = ""gray"") +"
+"0","  coord_map(projection = ""bonne"", lat0 = 50) +"
+"0","  theme_bw() +"
+"0","  labs(title = ""Map of the US"")"

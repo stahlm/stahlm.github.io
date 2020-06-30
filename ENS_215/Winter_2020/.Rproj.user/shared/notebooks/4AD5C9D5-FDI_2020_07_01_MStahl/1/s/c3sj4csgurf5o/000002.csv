@@ -1,0 +1,11 @@
+"0","state_cap_locs <- read_csv(""https://stahlm.github.io/ENS_215/Data/us_capitals_locs.csv"", skip = 2)"
+"2","Parsed with column specification:
+cols(
+  state_cd = [31mcol_character()[39m,
+  lat_deg = [32mcol_double()[39m,
+  long_deg = [32mcol_double()[39m
+)
+"
+"0","state_cap_locs <- state_cap_locs %>% "
+"0","  filter(state_cd %in% state.abb)  # remove locations that aren't US state list (e.g. Puerto Rico, Guam, ...)"
+"0","  "

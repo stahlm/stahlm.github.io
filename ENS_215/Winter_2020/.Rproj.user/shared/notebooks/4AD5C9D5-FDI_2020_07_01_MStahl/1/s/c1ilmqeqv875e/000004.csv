@@ -1,0 +1,2 @@
+"0","NY_counties <- counties(state = ""NY"", cb = TRUE) # cb = TRUE specifies to download a lower resolution file (faster download)"
+"0","NY_counties <- st_as_sf(NY_counties) # convert to an sf object"

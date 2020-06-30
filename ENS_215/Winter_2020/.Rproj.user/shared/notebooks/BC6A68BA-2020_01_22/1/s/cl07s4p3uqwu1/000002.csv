@@ -1,0 +1,2 @@
+"0","my_gap_2007 <- filter(my_gap, year == 2007)"
+"0","my_gap_2007 %>% group_by(continent) %>% top_n(3, gdpPercap) %>%  arrange(continent, desc(gdpPercap))"

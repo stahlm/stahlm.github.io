@@ -1,0 +1,2 @@
+"0","my_gap <- mutate(my_gap, tot_gdp = pop*gdpPercap)"
+"0","view(my_gap)"

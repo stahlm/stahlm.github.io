@@ -1,0 +1,1 @@
+"0","my_gap_2007 %>% group_by(continent) %>% summarise(min_gdp_percap = min(gdpPercap), mean_gdp_percap = mean(gdpPercap), max_gdp_percap = max(gdpPercap), min_life = min(lifeExp), mean_life = mean(lifeExp), max_life = max(lifeExp), num_country = n())"

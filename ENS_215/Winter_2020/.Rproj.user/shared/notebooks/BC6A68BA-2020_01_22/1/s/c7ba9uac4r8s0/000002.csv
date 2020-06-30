@@ -1,0 +1,1 @@
+"0","filter(my_gap_2007, continent == ""Asia"") %>%  summarise(avg_pop = mean(pop), avg_GDP = mean(gdpPercap))"

@@ -1,0 +1,79 @@
+---
+title: "2020_01_22"
+output: Intro to Data Manipulation
+---
+
+```{r}
+library(tidyverse)
+library(readr)
+library(gapminder)
+```
+
+```{r}
+my_gap <- gapminder
+```
+
+```{r}
+my_gap_2007 <- filter(my_gap, year == 2007)
+view(my_gap_2007)
+```
+
+```{r}
+summarise(my_gap_2007, avg_life = mean(lifeExp), avg_gdp_per_cap = mean(gdpPercap))
+```
+
+```{r}
+filter(my_gap_2007, continent == "Asia") %>%  summarise(avg_pop = mean(pop), avg_GDP = mean(gdpPercap))
+```
+
+```{r}
+my_gap_2007 <- group_by(my_gap_2007, continent)
+```
+
+```{r}
+summarize(my_gap_2007, min_life = min(lifeExp), mean_life = mean(lifeExp), max_life = max(lifeExp))
+```
+
+```{r}
+my_gap <- group_by(my_gap, continent, year)
+```
+
+```{r}
+summarize(my_gap, min_life = min(lifeExp), mean_life = mean(lifeExp), max_life = max(lifeExp))
+```
+
+```{r}
+summarize(my_gap_2007, continent_pop = sum(pop))
+```
+
+```{r}
+my_gap <- ungroup(my_gap)
+```
+
+
+```{r}
+my_gap %>% group_by(year) %>% top_n(3, gdpPercap)
+```
+
+```{r}
+my_gap %>% group_by(year) %>% top_n(3, gdpPercap) %>% arrange(year)
+```
+
+```{r}
+my_gap_2007 <- filter(my_gap, year == 2007)
+my_gap_2007 %>% group_by(continent) %>% top_n(3, gdpPercap) %>%  arrange(continent, desc(gdpPercap))
+```
+
+```{r}
+my_gap_2007 %>% group_by(continent) %>% summarise(min_gdp_percap = min(gdpPercap), mean_gdp_percap = mean(gdpPercap), max_gdp_percap = max(gdpPercap), min_life = min(lifeExp), mean_life = mean(lifeExp), max_life = max(lifeExp), num_country = n())
+```
+
+```{r}
+my_gap <- mutate(my_gap, tot_gdp = pop*gdpPercap)
+view(my_gap)
+```
+
+```{r}
+gap_summary_table <- my_gap %>% group_by(country) %>% summarize(continent = first(continent), gdp_percap_ratio = (last(gdpPercap))/first(gdpPercap), gdp_ratio = (last(tot_gdp))/first(tot_gdp), life_exp_change = last(lifeExp) - first(lifeExp)) %>% arrange(desc(life_exp_change))
+```
+

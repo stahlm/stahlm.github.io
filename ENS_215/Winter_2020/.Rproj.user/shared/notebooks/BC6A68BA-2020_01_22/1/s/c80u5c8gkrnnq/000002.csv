@@ -1,0 +1,1 @@
+"0","gap_summary_table <- my_gap %>% group_by(country) %>% summarize(continent = first(continent), gdp_percap_ratio = (last(gdpPercap))/first(gdpPercap), gdp_ratio = (last(tot_gdp))/first(tot_gdp), life_exp_change = last(lifeExp) - first(lifeExp)) %>% arrange(desc(life_exp_change))"

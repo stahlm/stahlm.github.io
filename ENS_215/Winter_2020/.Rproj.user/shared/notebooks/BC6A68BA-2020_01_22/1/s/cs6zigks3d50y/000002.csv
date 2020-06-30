@@ -1,0 +1,2 @@
+"0","summarize(my_gap_2007, continent_pop = sum(pop))"
+"2","integer overflow - use sum(as.numeric(.))"
