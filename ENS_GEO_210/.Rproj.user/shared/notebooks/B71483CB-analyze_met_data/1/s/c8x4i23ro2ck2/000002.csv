@@ -1,0 +1,4 @@
+"0","```r
+data_met <- readxl::read_xlsx(\"./data/Met_data_steuben/Met_station_KMESTEUB5.xlsx\", 
+                              sheet = \"KMESTEUB5\", skip = 7)
+```"

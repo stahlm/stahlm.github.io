@@ -1,0 +1,9 @@
+"0","```r
+ts_temps <- cbind(ts_temp, ts_dewpoint)
+dygraph(ts_temps, ylab = \"Temperature [F]\", group = \"met\") %>% 
+  #dySeries(\"Temperature__F\", label = \"Steuben, ME\") %>% 
+  dySeries(\"Temperature__F\", label = \"Temperature\") %>% 
+  dySeries(\"DewPoint__F\", label = \"Dew Point\") %>% 
+  dyRangeSelector(height = 50) %>% 
+  dyOptions(drawGrid = T)
+```"

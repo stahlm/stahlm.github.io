@@ -1,0 +1,372 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(rgee)
+library(tidyverse)
+## It is necessary just once
+#ee_install()
+
+# Initialize Earth Engine!
+ee_Initialize()
+```
+
+
+
+```{r}
+createTimeBand <-function(img) {
+  year <- ee$Date(img$get('system:time_start'))$get('year')$subtract(1991L)
+  ee$Image(year)$byte()$addBands(img)
+}
+```
+
+
+```{r}
+collection <- ee$
+  ImageCollection('NOAA/DMSP-OLS/NIGHTTIME_LIGHTS')$
+  select('stable_lights')$
+  map(createTimeBand)
+```
+
+
+```{r}
+col_reduce <- collection$reduce(ee$Reducer$linearFit())
+col_reduce <- col_reduce$addBands(
+  col_reduce$select('scale'))
+ee_print(col_reduce)
+```
+
+
+
+
+```{r}
+Map$setCenter(9.08203, 47.39835, 3)
+Map$addLayer(
+  eeObject = col_reduce,
+  visParams = list(
+    bands = c("scale", "offset", "scale"),
+    min = 0,
+    max = c(0.18, 20, -0.18)
+  ),
+  name = "stable lights trend"
+)
+```
+
+
+```{r}
+library(sf)
+library(tidyverse)
+```
+
+
+
+
+```{r}
+nc <- st_read(system.file("shape/nc.shp", package = "sf"), quiet = TRUE)
+```
+
+
+```{r}
+terraclimate <- ee$ImageCollection("IDAHO_EPSCOR/TERRACLIMATE")$
+  filterDate("2001-01-01", "2002-01-01")$
+  map(function(x) x$reproject("EPSG:4326")$select("pr"))
+```
+
+
+```{r}
+ee_nc_rain <- ee_extract(x = terraclimate, y = nc, sf = FALSE)
+colnames(ee_nc_rain) <- sprintf("%02d", 1:12)
+ee_nc_rain$name <- nc$NAME
+```
+
+
+```{r}
+ee_nc_rain %>%
+  pivot_longer(-name, names_to = "month", values_to = "pr") %>%
+  ggplot(aes(x = month, y = pr, group = name, color = pr)) +
+  geom_line(alpha = 0.4) +
+  xlab("Month") +
+  ylab("Precipitation (mm)") +
+  theme_minimal()
+```
+
+## water
+
+```{r}
+library(rgee)
+# ee_reattach() # reattach ee as a reserved word
+
+ee_Initialize()
+
+dataset <- ee$Image("JRC/GSW1_1/GlobalSurfaceWater")
+occurrence <- dataset$select("occurrence")
+occurrenceVis <- list(
+  min = 0.0,
+  max = 100.0,
+  palette = c("ffffff", "ffbbbb", "0000ff")
+)
+
+Map$setCenter(59.414, 45.182, 6)
+Map$addLayer(occurrence, occurrenceVis, "Occurrence")
+```
+
+
+
+
+```{r}
+dataset <- ee$FeatureCollection("USGS/WBD/2017/HUC02")
+styleParams <- list(
+  fillColor = "000070",
+  color = "0000be",
+  width = 3.0
+)
+
+regions <- do.call(dataset$style, styleParams)
+Map$setCenter(-96.8, 40.43, 4)
+Map$addLayer(regions, {}, "USGS/WBD/2017/HUC02")
+
+dataset <- ee$FeatureCollection("USGS/WBD/2017/HUC04")
+styleParams <- list(
+  fillColor = "5885E3",
+  color = "0000be",
+  width = 3.0
+)
+
+subregions <- do.call(dataset$style, styleParams)
+Map$setCenter(-110.904, 36.677, 7)
+Map$addLayer(subregions, {}, "USGS/WBD/2017/HUC04")
+
+dataset <- ee$FeatureCollection("USGS/WBD/2017/HUC06")
+styleParams <- list(
+  fillColor = "588593",
+  color = "587193",
+  width = 3.0
+)
+
+basins <- do.call(dataset$style, styleParams)
+Map$setCenter(-96.8, 40.43, 7)
+Map$addLayer(basins, {}, "USGS/WBD/2017/HUC06")
+
+
+dataset <- ee$FeatureCollection("USGS/WBD/2017/HUC08")
+styleParams <- list(
+  fillColor = "2E8593",
+  color = "587193",
+  width = 2.0
+)
+
+subbasins <- do.call(dataset$style, styleParams)
+Map$setCenter(-96.8, 40.43, 8)
+Map$addLayer(subbasins, {}, "USGS/WBD/2017/HUC08")
+
+dataset <- ee$FeatureCollection("USGS/WBD/2017/HUC10")
+styleParams <- list(
+  fillColor = "2E85BB",
+  color = "2E5D7E",
+  width = 1.0
+)
+
+watersheds <- do.call(dataset$style, styleParams)
+Map$setCenter(-96.8, 40.43, 9)
+Map$addLayer(watersheds, {}, "USGS/WBD/2017/HUC10")
+
+
+dataset <- ee$FeatureCollection("USGS/WBD/2017/HUC12")
+styleParams <- list(
+  fillColor = "2E85BB",
+  color = "2E5D7E",
+  width = 0.1
+)
+
+subwatersheds <- do.call(dataset$style, styleParams)
+Map$setCenter(-96.8, 40.43, 10)
+Map$addLayer(subwatersheds, {}, "USGS/WBD/2017/HUC12")
+```
+
+
+
+```{r}
+data_legend <- readxl::read_xlsx("C:/Users/stahlm/Desktop/legend.xlsx")
+```
+
+```{r}
+data_legend %>% 
+  mutate(row_num = row_number()) %>% 
+  ggplot(aes(x = row_num/row_num, y = row_num, label = desc,
+             color = color)) +
+  geom_text(aes(fontface = 2)) +
+  theme_void() +
+  theme(legend.position = "none")
+```
+
+
+```{r}
+dataset <- ee$Image("CSP/ERGo/1_0/Global/SRTM_landforms")
+landforms <- dataset$select("constant")
+landformsVis <- list(
+  min = 11.0,
+  max = 42.0,
+  palette = c(
+    "141414", "383838", "808080", "EBEB8F", "F7D311", "AA0000", "D89382",
+    "DDC9C9", "DCCDCE", "1C6330", "68AA63", "B5C98E", "E1F0E5", "a975ba",
+    "6f198c"
+  )
+)
+
+Map$setCenter(-105.58, 40.5498, 11)
+Map$addLayer(landforms, landformsVis, "Landforms", legend = T)
+```
+
+
+
+```{r}
+# Load 2012 MODIS land cover and select the IGBP classification.
+cover <- ee$Image("MODIS/051/MCD12Q1/2012_01_01")$select("Land_Cover_Type_1")
+
+# Define a palette for the 18 distinct land cover classes.
+igbpPalette <- list(
+  "aec3d4", # water
+  "152106", "225129", "369b47", "30eb5b", "387242", # forest
+  "6a2325", "c3aa69", "b76031", "d9903d", "91af40", # shrub, grass
+  "111149", # wetlands
+  "cdb33b", # croplands
+  "cc0013", # urban
+  "33280d", # crop mosaic
+  "d7cdcc", # snow and ice
+  "f7e084", # barren
+  "6f6f6f" # tundra
+)
+
+# Specify the min and max labels and the color palette matching the labels.
+Map$setCenter(-99.229, 40.413, 5)
+Map$addLayer(
+  cover,
+  list(min = 0, max = 17, palette = igbpPalette),
+  "IGBP classification"
+)
+```
+
+
+```{r}
+cover <- ee$Image("MODIS/051/MCD12Q1/2012_01_01")$select("Land_Cover_Type_1")
+
+# Define an SLD style of discrete intervals to apply to the image.
+sld_intervals <- paste0(
+  "<RasterSymbolizer>",
+  ' <ColorMap  type="intervals" extended="false" >',
+  '<ColorMapEntry color="#aec3d4" quantity="0" label="Water"/>',
+  '<ColorMapEntry color="#152106" quantity="1" label="Evergreen Needleleaf Forest"/>',
+  '<ColorMapEntry color="#225129" quantity="2" label="Evergreen Broadleaf Forest"/>',
+  '<ColorMapEntry color="#369b47" quantity="3" label="Deciduous Needleleaf Forest"/>',
+  '<ColorMapEntry color="#30eb5b" quantity="4" label="Deciduous Broadleaf Forest"/>',
+  '<ColorMapEntry color="#387242" quantity="5" label="Mixed Deciduous Forest"/>',
+  '<ColorMapEntry color="#6a2325" quantity="6" label="Closed Shrubland"/>',
+  '<ColorMapEntry color="#c3aa69" quantity="7" label="Open Shrubland"/>',
+  '<ColorMapEntry color="#b76031" quantity="8" label="Woody Savanna"/>',
+  '<ColorMapEntry color="#d9903d" quantity="9" label="Savanna"/>',
+  '<ColorMapEntry color="#91af40" quantity="10" label="Grassland"/>',
+  '<ColorMapEntry color="#111149" quantity="11" label="Permanent Wetland"/>',
+  '<ColorMapEntry color="#cdb33b" quantity="12" label="Cropland"/>',
+  '<ColorMapEntry color="#cc0013" quantity="13" label="Urban"/>',
+  '<ColorMapEntry color="#33280d" quantity="14" label="Crop, Natural Veg. Mosaic"/>',
+  '<ColorMapEntry color="#d7cdcc" quantity="15" label="Permanent Snow, Ice"/>',
+  '<ColorMapEntry color="#f7e084" quantity="16" label="Barren, Desert"/>',
+  '<ColorMapEntry color="#6f6f6f" quantity="17" label="Tundra"/>',
+  "</ColorMap>",
+  "</RasterSymbolizer>"
+)
+
+Map$setCenter(0, 0, 1)
+Map$addLayer(cover$sldStyle(sld_intervals), name = "IGBP classification styled", legend = T)
+```
+
+
+
+
+```{r}
+# Center-pivot Irrigation Detector.
+#
+# Finds circles that are 500m in radius.
+Map$setCenter(-106.06, 37.71, 12)
+
+# A nice NDVI palette.
+palette <- c(
+  "FFFFFF", "CE7E45", "DF923D", "F1B555", "FCD163", "99B718",
+  "74A901", "66A000", "529400", "3E8601", "207401", "056201",
+  "004C00", "023B01", "012E01", "011D01", "011301"
+)
+
+# Just display the image with the palette.
+image <- ee$Image("LANDSAT/LC08/C01/T1_TOA/LC08_034034_20170608")
+ndvi <- image$normalizedDifference(c("B5", "B4"))
+vizParams <- list(min = 0, max = 1, palette = palette)
+Map$addLayer(ndvi, vizParams, "Landsat NDVI")
+
+# Find the difference between convolution with circles and squares.
+# This difference, in theory, will be strongest at the center of
+# circles in the image. This region is filled with circular farms
+# with radii on the order of 500m.
+farmSize <- 500 # Radius of a farm, in meters.
+circleKernel <- ee$Kernel$circle(farmSize, "meters")
+squareKernel <- ee$Kernel$square(farmSize, "meters")
+circles <- ndvi$convolve(circleKernel)
+squares <- ndvi$convolve(squareKernel)
+diff <- circles$subtract(squares)
+
+# Scale by 100 and find the best fitting pixel in each neighborhood.
+diff <- diff$abs()$multiply(100)$toByte()
+max <- diff$focal_max(radius = farmSize * 1.8, units = "meters")
+# If a pixel isn't the local max, set it to 0.
+local <- diff$where(diff$neq(max), 0)
+thresh <- local$gt(2)
+
+# Here, we highlight the maximum differences as "Kernel Peaks"
+# and draw them in red.
+peaks <- thresh$focal_max(kernel = circleKernel)
+Map$addLayer(peaks$updateMask(peaks), list(palette = "FF3737"), "Kernel Peaks")
+
+# Detect the edges of the features.  Discard the edges with lower intensity.
+canny <- ee$Algorithms$CannyEdgeDetector(ndvi, 0)
+canny <- canny$gt(0.3)
+
+# Create a "ring" kernel from two circular kernels.
+inner <- ee$Kernel$circle(farmSize - 20, "meters", FALSE, -1)
+outer <- ee$Kernel$circle(farmSize + 20, "meters", FALSE, 1)
+ring <- outer$add(inner, TRUE)
+
+# Highlight the places where the feature edges best match the circle kernel.
+centers <- canny$convolve(ring)$gt(0.5)$focal_max(kernel = circleKernel)
+Map$addLayer(
+  centers$updateMask(centers),
+  list(palette = "4285FF"),
+  "Ring centers"
+)
+```
+
+
+
+
+```{r}
+# This function gets NDVI from Landsat 5 imagery.
+getNDVI <- function(image) {
+  image$normalizedDifference(c("B4", "B3"))
+}
+
+image1 <- ee$Image("LANDSAT/LT05/C01/T1_TOA/LT05_044035_20100611")
+
+# Compute NDVI from the scene.
+ndvi1 <- getNDVI(image1)
+
+ndviParams <- list(palette = c(
+  "#d73027", "#f46d43", "#fdae61",
+  "#fee08b", "#d9ef8b", "#a6d96a",
+  "#66bd63", "#1a9850"
+))
+
+Map$centerObject(image1, zoom = 10)
+Map$addLayer(ndvi1, ndviParams, "NDVI")
+```
+
+

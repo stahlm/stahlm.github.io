@@ -1,0 +1,5 @@
+"0","```r
+data_met <- data_met %>% 
+  select(-Date, -Time) %>% 
+  select(DateTime, everything())
+```"

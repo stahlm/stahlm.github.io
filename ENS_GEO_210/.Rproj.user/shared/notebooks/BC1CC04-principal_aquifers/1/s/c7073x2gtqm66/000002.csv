@@ -1,0 +1,2 @@
+"0","knitr::opts_chunk$set(warning=FALSE, message=FALSE, echo = F, "
+"0","                      fig.width = 8.5, fig.height = 3.5)"

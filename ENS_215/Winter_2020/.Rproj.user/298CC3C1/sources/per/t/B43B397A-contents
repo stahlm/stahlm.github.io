@@ -1,0 +1,62 @@
+---
+title: "Lab 2 Global Dams Data"
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+
+dams_data <- read_csv("https://stahlm.github.io/ENS_215/Data/Dams_FAO_SelectCols_LabData.csv")
+```
+```{r}
+view(dams_data)
+summary(dams_data)
+```
+```{r}
+head(dams_data)
+```
+```{r}
+fig_resv <- ggplot(dams_data, aes(x = Reservoir_area_km2, y = Reservoir_capacity_million_m3, color = Continent)) +
+  geom_point() +
+  theme_classic() +
+  scale_x_log10() +
+  facet_wrap(~ Continent)
+
+fig_resv
+```
+```{r}
+fig_height <- ggplot(dams_data, aes(x = Dam_height_m, y = Reservoir_capacity_million_m3, color = Continent)) + 
+  geom_point() + 
+  theme_classic() +
+  scale_x_log10()
+   
+fig_height
+```
+```{r}
+dam_avg_table <- dams_data %>% 
+  group_by(Continent) %>% 
+summarize(avg_height = mean(Dam_height_m, na.rm = TRUE), avg_area = mean(Reservoir_area_km2, na.rm = TRUE), avg_storage = mean(Reservoir_capacity_million_m3, na.rm = TRUE)) 
+dam_avg_table
+```
+
+```{r}
+dams_data %>% 
+  ggplot(aes(x = Continent, y = Reservoir_capacity_million_m3)) +
+  geom_boxplot() + 
+  scale_y_log10()
+```
+```{r}
+fig_tot_num_dams <- dams_data %>% 
+  group_by(Year_completed) %>% 
+  mutate(tot_num_dams = sum(Year_completed))
+fig_tot_num_dams
+  
+```
+
+```{r}
+dams_data %>% 
+  ggplot(aes(x = Year_completed, y = tot_num_dams)) +
+  geom_line() +
+  geom_point()
+```
+

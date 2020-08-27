@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1598562076267.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "906E66BD",
+    "lastKnownWriteTime" : 3415249577738792771,
+    "last_content_update" : 1598562076267,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "54891663",
+        "caption" : "shape_alluvial_aquifers",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=shape_alluvial_aquifers&cache_key=54891663",
+        "displayedObservations" : 2389,
+        "environment" : "",
+        "object" : "shape_alluvial_aquifers",
+        "preview" : 0,
+        "totalObservations" : 2389,
+        "variables" : 8
+    },
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

@@ -1,0 +1,694 @@
+Identification_Information:
+  Citation:
+    Citation_Information:
+      Originator: U.S. Geological Survey
+      Publication_Date: 200209
+      Title: Aquifers of Alluvial and Glacial Origin
+      Publication_Information:
+        Publication_Place: Reston, VA
+        Publisher: U.S. Geological Survey
+      Online_Linkage: <http://nationalatlas.gov/atlasftp.html>
+  Description:
+    Abstract: 
+      This data set represents the extent of the alluvial and glacial aquifers 
+      north of the southern-most line of glaciation.  Aquifers are shown in the 
+      States of Maine, Vermont, New Hampshire, Connecticut, Massachusetts, Rhode 
+      Island, New Jersey, New York, Pennsylvania, Ohio, Indiana, Michigan, 
+      Wisconsin, Illinois, Minnesota, Iowa, Missouri, Kansas, Nebraska, South 
+      Dakota, North Dakota, and Montana.
+
+      These data delineate the areal extent of the alluvial and glacial aquifers 
+      as defined in The Ground Water Atlas of The United States (GWA).
+    Purpose: 
+      These data are intended for use in publications, at a scale of 1:2,500,000 
+      or smaller.  Due to the small scale, the primary intended use is for 
+      regional and national data display and analysis, rather than specific 
+      local data analysis.
+    Supplemental_Information:
+      This data set was constructed by combining data created for or from the 
+      regional GWA chapters.  Minor aquifers that are important local sources of 
+      water were mapped in some regions, so the regional maps in the GWA may 
+      show more detail than this data set.  The juxtaposition of regionally 
+      mapped aquifers has led to some instances where an aquifer outcrop or 
+      shallow subcrop is bounded by a State line.  This is a result of the 
+      regional mapping and national categorization methods used and is not meant 
+      to imply a hydrogeologic change coincident with a State boundary.
+
+      The aquifer outcrop and shallow subcrop boundaries represent broad, 
+      regional categories and should not be interpreted as site-specific. 
+      Comments regarding the names of aquifers or the hydrogeologic 
+      interpretation of the aquifers can be directed to the U.S. Geological 
+      Survey, Water Resources Division, Office of Ground Water, Roy Sonenshein, 
+      sunshine@usgs.gov, 305-717-5824.
+
+      These data were developed in conjunction with the publication of the GWA. 
+      For documentation purposes, areas are referred to by their corresponding 
+      GWA chapter letter, or by State.  This list shows the relationship between 
+      State names and GWA chapters:
+
+      > HA 730-B      Segment 1-California, Nevada
+      > HA 730-C      Segment 2-Colorado, Utah, New Mexico, Arizona 
+      > HA 730-D      Segment 3-Kansas, Missouri, Nebraska
+      > HA 730-E      Segment 4-Texas, Oklahoma 
+      > HA 730-F      Segment 5-Arkansas, Louisiana, Mississippi 
+      > HA 730-G      Segment 6-Alabama, Florida, Georgia, South Carolina 
+      > HA 730-H      Segment 7-Idaho, Oregon, Washington
+      > HA 730-I      Segment 8-Montana, North Dakota, South Dakota, Wyoming
+      > HA 730-J      Segment 9-Iowa, Michigan, Minnesota, Wisconsin
+      > HA 730-K      Segment 10-Illinois, Indiana, Kentucky, Ohio, Tennessee
+      > HA 730-L      Segment 11-Delaware, Maryland, New Jersey, North Carolina, 
+      >                          Pennsylvania, Virginia, West Virginia
+      > HA 730-M      Segment 12-Connecticut, Maine, Massachusetts, New 
+      >                          Hampshire, New York, Rhode Island, Vermont
+      >
+      Refer to: <http://capp.water.usgs.gov/gwa/gwa.html> for a graphic 
+      depiction of the GWA chapter regions, as well as more information about 
+      the GWA.
+
+      Although these spatial data can stand alone, it may be helpful to refer to 
+      the printed GWA chapters when using the data.  Note that the coastline was 
+      drawn from the National Atlas shoreline files and may not match the 
+      coastline shown in the GWA.
+
+      Any use of trade, product, or firm names is for descriptive purposes only 
+      and does not imply endorsement by the U.S. Government.
+
+      Although this Federal Geographic Data Committee-compliant metadata file is 
+      intended to document the data set in nonproprietary form, as well as in 
+      Arc/INFO format, this metadata file may include some Arc/INFO-specific 
+      terminology.
+
+  Time_Period_of_Content:
+    Time_Period_Information:
+      Range_of_Dates/Times:
+        Beginning_Date: 1992
+        Ending_Date: 1997
+    Currentness_Reference: Publication dates of source materials
+  Status:
+    Progress: Complete
+    Maintenance_and_Update_Frequency: As needed
+  Spatial_Domain:
+    Bounding_Coordinates:
+      West_Bounding_Coordinate: -112.876108
+      East_Bounding_Coordinate: -66.162582
+      North_Bounding_Coordinate: 50.122610
+      South_Bounding_Coordinate: 35.164778
+  Keywords:
+    Theme:
+      Theme_Keyword_Thesaurus: None
+      Theme_Keyword: Aquifer
+      Theme_Keyword: Alluvial
+      Theme_Keyword: Hydrogeology
+      Theme_Keyword: Geohydrology
+      Theme_Keyword: Groundwater
+    Place:
+      Place_Keyword_Thesaurus: None
+      Place_Keyword: United States
+      Place_Keyword: Midwest
+      Place_Keyword: Northeast
+      Place_Keyword: Maine
+      Place_Keyword: Vermont
+      Place_Keyword: New Hampshire
+      Place_Keyword: Connecticut
+      Place_Keyword: Rhode Island
+      Place_Keyword: New York
+      Place_Keyword: New Jersey
+      Place_Keyword: Pennsylvania
+      Place_Keyword: Ohio
+      Place_Keyword: Indiana
+      Place_Keyword: Michigan
+      Place_Keyword: Illinois
+      Place_Keyword: Wisconsin
+      Place_Keyword: Iowa
+      Place_Keyword: Missouri
+      Place_Keyword: Kansas
+      Place_Keyword: Nebraska
+      Place_Keyword: South Dakota
+      Place_Keyword: North Dakota
+      Place_Keyword: Montana
+      Place_Keyword: Minnesota
+  Access_Constraints: None
+  Use_Constraints:
+    None.  Acknowledgement of the U.S. Geological Survey and (or) the National 
+    Atlas of the United States would be appreciated in products derived from 
+    these data.
+  Point_of_Contact:
+    Contact_Information:
+      Contact_Person_Primary:
+        Contact_Person: Norm Grannemann
+        Contact_Organization: U.S. Geological Survey
+      Contact_Position: GWRP Coordinator
+      Contact_Address:
+        Address_Type: Mailing and physical address
+        Address: 6520 Mercantile Way
+        City: Lansing
+        State_or_Province: MI
+        Postal_Code: 48911
+        Country: USA
+      Contact_Voice_Telephone: 517-887-8936
+      Contact_Facsimile_Telephone: 517-887-8937
+      Contact_Electronic_Mail_Address: nggranne@usgs.gov
+  Native_Data_Set_Environment: 
+    Microsoft Windows 2000 Version 5.0 (Build 2195) Service Pack 2; ESRI 
+    ArcCatalog 8.1.0.642
+  Browse_Graphic:
+    Browse_Graphic_File_Name:
+      <http://capp.water.usgs.gov/aquiferBasics/sandgravel.html>
+    Browse_Graphic_File_Description:
+      Map showing the extent of sand and gravel aquifers of alluvial and 
+      glacial origin.
+    Browse_Graphic_File_Type: GIF
+  Cross_Reference:
+    Citation_Information:
+      Originator: James A. Miller (comp.)
+      Publication_Date: 19980701
+      Title: Principal Aquifers of the 48 Contiguous United States 
+      Edition: Version 1.0
+      Publication_Information:
+        Publication_Place: Madison, Wisconsin, USA
+        Publisher: U.S. Geological Survey
+      Online_Linkage: <http://nationalatlas.gov/atlasftp.html>
+
+Data_Quality_Information:
+  Attribute_Accuracy:
+    Attribute_Accuracy_Report:
+      The source data was checked using standard USGS review procedures.
+      Attributes were checked by plotting the coverage and reselecting for the 
+      different values.
+  Logical_Consistency_Report: 
+    Polygon and chain-node topology are present.  Every polygon has a label.
+  Completeness_Report:
+    This data set represents the extent of the alluvial and glacial aquifers 
+    north of the southern-most line of glaciation.  Aquifers are shown in the 
+    States of Maine, Vermont, New Hampshire, Connecticut, Massachusetts, Rhode 
+    Island, New Jersey, New York, Pennsylvania, Ohio, Indiana, Michigan, 
+    Wisconsin, Illinois, Minnesota, Iowa, Missouri, Kansas, Nebraska, South 
+    Dakota, North Dakota, and Montana.
+
+    The extent is based on the best available printed sources on the subject of 
+    aquifer extents.  There is the potential that better data are available at 
+    the local level.
+  Lineage:
+    Source_Information:
+      Source_Citation:
+        Citation_Information:
+          Originator: U.S. Geological Survey
+          Publication_Date: 1998
+          Title: Figure 19: Stream-valley aquifer
+          Series_Information:
+            Series_Name: Hydrologic Investigations Atlas
+            Issue_Identification: HA 730-D
+          Publication_Information:
+            Publication_Place: Reston, VA
+            Publisher: U.S. Geological Survey
+      Source_Scale_Denominator: 7500000
+      Type_of_Source_Media: Digital file
+      Source_Time_Period_of_Content:
+        Time_Period_Information:
+          Single_Date/Time:
+            Calendar_Date: 1998
+        Source_Currentness_Reference: Publication date
+      Source_Citation_Abbreviation: GWA HA 730-D19
+      Source_Contribution: Spatial and attribute information.
+    Source_Information:
+      Source_Citation:
+        Citation_Information:
+          Originator: U.S. Geological Survey
+          Publication_Date: 1998
+          Title: 
+            Figure 4: Coarse-grained glacial deposits, and stream-valley 
+            alluvium
+          Series_Information:
+            Series_Name: Hydrologic Investigations Atlas
+            Issue_Identification: HA 730-D
+          Publication_Information:
+            Publication_Place: Reston, VA
+            Publisher: U.S. Geological Survey
+      Source_Scale_Denominator: 4000000
+      Type_of_Source_Media: Digital file
+      Source_Time_Period_of_Content:
+        Time_Period_Information:
+          Single_Date/Time:
+            Calendar_Date: 1998
+        Source_Currentness_Reference: Publication date
+      Source_Citation_Abbreviation: GWA HA 730-D4
+      Source_Contribution: Spatial and attribute information.
+    Source_Information:
+      Source_Citation:
+        Citation_Information:
+          Originator: U.S. Geological Survey
+          Publication_Date: 1996
+          Title: 
+            Figure 6: Coarse-grained glacial deposits, stream-valley alluvium, 
+            or basin fill
+          Series_Information:
+            Series_Name: Hydrologic Investigations Atlas
+            Issue_Identification: HA 730-I
+          Publication_Information:
+            Publication_Place: Reston, VA
+            Publisher: U.S. Geological Survey
+      Source_Scale_Denominator: 4000000
+      Type_of_Source_Media: Digital file
+      Source_Time_Period_of_Content:
+        Time_Period_Information:
+          Single_Date/Time:
+            Calendar_Date: 1996
+        Source_Currentness_Reference: Publication date
+      Source_Citation_Abbreviation: GWA HA 730-I6
+      Source_Contribution: Spatial and attribute information.
+    Source_Information:
+      Source_Citation:
+        Citation_Information:
+          Originator: U.S. Geological Survey
+          Publication_Date: 1992
+          Title: 
+            Figure 6: Glacial outwash, coarse-grained glacial-lake sediment, and 
+            coarse- and fine-grained alluvium
+          Series_Information:
+            Series_Name: Hydrologic Investigations Atlas
+            Issue_Identification: HA 730-J
+          Publication_Information:
+            Publication_Place: Reston, VA
+            Publisher: U.S. Geological Survey
+      Source_Scale_Denominator: 2500000
+      Type_of_Source_Media: Digital file
+      Source_Time_Period_of_Content:
+        Time_Period_Information:
+          Single_Date/Time:
+            Calendar_Date: 1992
+        Source_Currentness_Reference: Publication date
+      Source_Citation_Abbreviation: GWA HA 730-J6
+      Source_Contribution: Spatial and attribute information.
+    Source_Information:
+      Source_Citation:
+        Citation_Information:
+          Originator: U.S. Geological Survey
+          Publication_Date: 1995
+          Title: Figure 4: Surficial aquifer system
+          Series_Information:
+            Series_Name: Hydrologic Investigations Atlas
+            Issue_Identification: HA 730-K
+          Publication_Information:
+            Publication_Place: Reston, VA
+            Publisher: U.S. Geological Survey
+      Source_Scale_Denominator: 2500000
+      Type_of_Source_Media: Digital file
+      Source_Time_Period_of_Content:
+        Time_Period_Information:
+          Single_Date/Time:
+            Calendar_Date: 1995
+        Source_Currentness_Reference: Publication date
+      Source_Citation_Abbreviation: GWA HA 730-K4
+      Source_Contribution: Spatial and attribute information.
+    Source_Information:
+      Source_Citation:
+        Citation_Information:
+          Originator: U.S. Geological Survey
+          Publication_Date: 1997
+          Title: 
+            Figure 6: Sand and gravel aquifers at or near land surface and 
+            alluvium along streams and rivers
+          Series_Information:
+            Series_Name: Hydrologic Investigations Atlas
+            Issue_Identification: HA 730-L
+          Publication_Information:
+            Publication_Place: Reston, VA
+            Publisher: U.S. Geological Survey
+      Source_Scale_Denominator: 2500000
+      Type_of_Source_Media: Digital file
+      Source_Time_Period_of_Content:
+        Time_Period_Information:
+          Single_Date/Time:
+            Calendar_Date: 1997
+        Source_Currentness_Reference: Publication date
+      Source_Citation_Abbreviation: GWA HA 730-L6
+      Source_Contribution: Spatial and attribute information.
+    Source_Information:
+      Source_Citation:
+        Citation_Information:
+          Originator: U.S. Geological Survey
+          Publication_Date: 1995
+          Title: 
+            Figure 6: Coarse-grained stratified outwash and ice-contact deposits
+          Series_Information:
+            Series_Name: Hydrologic Investigations Atlas
+            Issue_Identification: HA 730-M
+          Publication_Information:
+            Publication_Place: Reston, VA
+            Publisher: U.S. Geological Survey
+      Source_Scale_Denominator: 2500000
+      Type_of_Source_Media: Digital file
+      Source_Time_Period_of_Content:
+        Time_Period_Information:
+          Single_Date/Time:
+            Calendar_Date: 1995
+        Source_Currentness_Reference: Publication date
+      Source_Citation_Abbreviation: GWA HA 730-M6
+      Source_Contribution: Spatial and attribute information.
+    Source_Information:
+      Source_Citation:
+        Citation_Information:
+          Originator: U.S. Geological Survey
+          Publication_Date: 1995
+          Title: Figure 9: Surficial Aquifer System
+          Series_Information:
+            Series_Name: Hydrologic Investigations Atlas
+            Issue_Identification: HA 730-M
+          Publication_Information:
+            Publication_Place: Reston, VA
+            Publisher: U.S. Geological Survey
+      Source_Scale_Denominator: 2500000
+      Type_of_Source_Media: Digital file
+      Source_Time_Period_of_Content:
+        Time_Period_Information:
+          Single_Date/Time:
+            Calendar_Date: 1995
+        Source_Currentness_Reference: Publication date
+      Source_Citation_Abbreviation: GWA HA 730-M9
+      Source_Contribution: Spatial and attribute information.
+    Source_Information:
+      Source_Citation:
+        Citation_Information:
+          Originator: U.S. Geological Survey
+          Publication_Date: 199911
+          Title: Hydrography Features of the United States
+          Publication_Information:
+            Publication_Place: Reston, VA
+            Publisher: U.S. Geological Survey
+      Source_Scale_Denominator: 2000000
+      Type_of_Source_Media: Online
+      Source_Time_Period_of_Content:
+        Time_Period_Information:
+          Range_of_Dates/Times:
+            Beginning_Date: 1995
+            Ending_Date: 1999
+        Source_Currentness_Reference: Ground condition
+      Source_Citation_Abbreviation: ATLAS-HY
+      Source_Contribution: Spatial information.
+    Source_Information:
+      Source_Citation:
+        Citation_Information:
+          Originator: John C. Reed, Jr.
+          Originator: Charles A. Bush
+          Publication_Date: 2001
+          Title: Generalized Geologic Map of the Conterminous United States
+          Publication_Information:
+            Publication_Place: Denver, CO
+            Publisher: U.S. Geological Survey
+      Source_Scale_Denominator: 7500000
+      Type_of_Source_Media: Online
+      Source_Time_Period_of_Content:
+        Time_Period_Information:
+          Range_of_Dates/Times:
+            Beginning_Date: 19980301
+            Ending_Date: 19990601
+        Source_Currentness_Reference: Ground condition
+      Source_Citation_Abbreviation: ATLAS-GEO
+      Source_Contribution: Spatial information.
+
+    Process_Step:
+      Process_Description:
+        Alluvial and glacial aquifer data were taken from digital files created 
+        in Adobe Illustrator from the individual Ground Water Atlas chapters.  
+        The individual chapter Illustrator files were edgematched and combined 
+        into one file.  Where polygons ended at a salt or freshwater shoreline, 
+        USGS 2 million-scale digital data were used for the shoreline.  The 
+        limit of glaciation was determined from ATLAS-GEO.  Where more than 
+        one line exists in an area, the southernmost line was used.  The 
+        final Illustrator file was exported into a DXF file. 
+
+        The remaining steps were completed using ArcGis 8.1 Workstation.  The 
+        DXF file was converted to a coverage.  Using the TRANSFORM command, the 
+        coverage containing the digitized aquifer extent lines was rubbersheeted 
+        to the coverage containing registration tics, it was then projected from 
+        geographic coordinates to the Albers Equal-Area Conic projection.  An 
+        RMS error of less than 0.004 was accepted.  If the RMS error was greater 
+        than 0.004 the location and values of the latitude/longitude points were 
+        verified.
+
+        The coverage was cleaned, the topology was built, and labels were added.
+
+        Attributes were added for the aquifer name (AQ_NAME), aquifer code 
+        (AQ_CODE), rock name (ROCK_NAME), and rock type (ROCK_TYPE).  
+
+        The following items were verified:
+        >--Transformation RMS error (below 0.004)
+        >--Arcs match the scanned film (no gaps between the plot and the 
+        >  compilation)
+        >--Arc and polygon topology exists
+        >--Coverage has a coordinate system defined
+        >--Attributes aq_name and aq_code have been added and populated 
+        >  correctly
+        >--Necessary files exist to redo any step
+      Source_Used_Citation_Abbreviation: ATLAS-GEO	
+      Source_Used_Citation_Abbreviation: GWA HA 730-D19
+      Source_Used_Citation_Abbreviation: GWA HA 730-D4
+      Source_Used_Citation_Abbreviation: GWA HA 730-I6
+      Source_Used_Citation_Abbreviation: GWA HA 730-J6
+      Source_Used_Citation_Abbreviation: GWA HA 730-K4
+      Source_Used_Citation_Abbreviation: GWA HA 730-L6
+      Source_Used_Citation_Abbreviation: GWA HA 730-M6
+      Source_Used_Citation_Abbreviation: GWA HA 730-M9
+      Source_Used_Citation_Abbreviation: ATLAS-HY
+      Process_Date: 200108
+    Process_Step:
+      Process_Description:
+        This step was done on an NT workstation.  After plotting the file at 
+        1:2,000,000, the lines were checked against the documented sources.  If 
+        needed, the lines were corrected to better represent the source data, by 
+        either reshaping the arc, digitizing new lines or polygons, or deleting 
+        polygons.  The file was converted to NAD83 in geographic coordinates, 
+        and saved in shapefile format.
+      Process_Date: 200204
+Spatial_Data_Organization_Information:
+  Direct_Spatial_Reference_Method: Vector
+  Point_and_Vector_Object_Information:
+    SDTS_Terms_Description:
+      SDTS_Point_and_Vector_Object_Type: GT-polygon composed of chains
+      Point_and_Vector_Object_Count: 2390
+Spatial_Reference_Information:
+  Horizontal_Coordinate_System_Definition: 
+    Geographic: 
+      Latitude_Resolution: 0.000278  
+      Longitude_Resolution: 0.000278  
+      Geographic_Coordinate_Units: Decimal degrees 
+    Geodetic_Model: 
+      Horizontal_Datum_Name: North American Datum of 1983 
+      Ellipsoid_Name: GRS1980
+      Semi-major_Axis: 6378137.0 
+      Denominator_of_Flattening_Ratio: 298.257222
+Entity_and_Attribute_Information:
+  Detailed_Description:
+    Entity_Type:
+      Entity_Type_Label: 
+        Alluvial and glacial aquifer (described by ALVAQFP025.PAT or 
+        alvaqfp025.dbf)
+      Entity_Type_Definition: 
+        A formation, group of formations, or part of a formation that contains 
+        sufficient saturated permeable material to yield significant quantities 
+        of water to wells and springs, and that is of alluvial and glacial 
+        origin.
+      Entity_Type_Definition_Source: U.S. Geological Survey
+    Attribute:
+      Attribute_Label: Shape
+      Attribute_Definition: The representation of the entity in the data.
+      Attribute_Definition_Source: U.S. Geological Survey
+      Attribute_Domain_Values:
+        Enumerated_Domain:
+          Enumerated_Domain_Value: Polygon
+          Enumerated_Domain_Value_Definition: 2-dimensional element.
+          Enumerated_Domain_Value_Definition_Source: ESRI GIS software
+    Attribute:
+      Attribute_Label: Area
+      Attribute_Definition: The size of the shape in coverage units.
+      Attribute_Definition_Source: U.S. Geological Survey
+      Attribute_Domain_Values:
+        Range_Domain:
+          Range_Domain_Minimum: 0.000
+          Range_Domain_Maximum: 29.030
+    Attribute:
+      Attribute_Label: Perimeter
+      Attribute_Definition: The perimeter of the shape in coverage units.
+      Attribute_Definition_Source: U.S. Geological Survey
+      Attribute_Domain_Values:
+       Range_Domain:
+          Range_Domain_Minimum: 0.037
+          Range_Domain_Maximum: 893.867
+    Attribute:
+      Attribute_Label: ALVAQFP025# or Alvaqfp025
+      Attribute_Definition: Internal feature number.
+      Attribute_Definition_Source: U.S. Geological Survey
+      Attribute_Domain_Values:
+        Range_Domain:
+          Range_Domain_Minimum: 2
+          Range_Domain_Maximum: 2390
+    Attribute:
+      Attribute_Label: ALVAQFP025-ID (Included in Export format file only.)
+      Attribute_Definition: User-assigned feature number.
+      Attribute_Definition_Source: U.S. Geological Survey
+      Attribute_Domain_Values:
+        Range_Domain:
+          Range_Domain_Minimum: 0
+          Range_Domain_Maximum: 2388
+    Attribute:
+      Attribute_Label: Rock_type
+      Attribute_Definition: The code number relating to the rock_name.
+      Attribute_Definition_Source: U.S. Geological Survey
+      Attribute_Domain_Values:
+        Enumerated_Domain:
+          Enumerated_Domain_Value: 100
+          Enumerated_Domain_Value_Definition: 
+            Number for unconsolidated sand and gravel aquifers.
+          Enumerated_Domain_Value_Definition_Source: U.S. Geological Survey
+      Attribute_Domain_Values:
+        Enumerated_Domain:
+          Enumerated_Domain_Value: 999
+          Enumerated_Domain_Value_Definition: Number for other rocks.
+          Enumerated_Domain_Value_Definition_Source: U.S. Geological Survey
+    Attribute:
+      Attribute_Label: Rock_name
+      Attribute_Definition: 
+        The name of the permeable geologic material that composes the aquifer.
+      Attribute_Definition_Source: U.S. Geological Survey
+      Attribute_Domain_Values:
+        Enumerated_Domain:
+          Enumerated_Domain_Value: Unconsolidated sand and gravel aquifers
+          Enumerated_Domain_Value_Definition: 
+            Formations composed of loose sand and gravel.
+          Enumerated_Domain_Value_Definition_Source: U.S. Geological Survey
+      Attribute_Domain_Values:
+        Enumerated_Domain:
+          Enumerated_Domain_Value: <blank>
+          Enumerated_Domain_Value_Definition: Other rocks.
+          Enumerated_Domain_Value_Definition_Source: U.S. Geological Survey
+    Attribute:
+      Attribute_Label: Aq_name
+      Attribute_Definition: The aquifer unit name.  
+      Attribute_Definition_Source: U.S. Geological Survey
+      Attribute_Domain_Values:
+        Enumerated_Domain:
+          Enumerated_Domain_Value: Aquifers of Alluvial and Glacial Origin
+          Enumerated_Domain_Value_Definition: 
+            Aquifers composed of loose sand and gravel.
+          Enumerated_Domain_Value_Definition_Source: U.S. Geological Survey
+      Attribute_Domain_Values:
+        Enumerated_Domain:
+          Enumerated_Domain_Value: <blank>
+          Enumerated_Domain_Value_Definition: Other aquifers.
+          Enumerated_Domain_Value_Definition_Source: U.S. Geological Survey
+    Attribute:
+      Attribute_Label: Aq_code
+      Attribute_Definition: 
+        The code number relating to the aquifer unit name.
+      Attribute_Definition_Source: U.S. Geological Survey
+      Attribute_Domain_Values:
+        Enumerated_Domain:
+          Enumerated_Domain_Value: 113
+          Enumerated_Domain_Value_Definition: 
+            Aquifers of Alluvial and Glacial Origin.
+          Enumerated_Domain_Value_Definition_Source: U.S. Geological Survey 
+        Enumerated_Domain:
+          Enumerated_Domain_Value: 999
+          Enumerated_Domain_Value_Definition: 
+            Aquifer absent, used for a non-aquifer island inside an aquifer 
+            polygon.
+          Enumerated_Domain_Value_Definition_Source: U.S. Geological Survey
+Distribution_Information:
+  Distributor:
+    Contact_Information:
+      Contact_Organization_Primary:
+        Contact_Organization: 
+          Earth Science Information Center, U.S. Geological Survey
+      Contact_Address:
+        Address_Type: Mailing address
+        Address: 507 National Center
+        City: Reston
+        State_or_Province: VA
+        Postal_Code: 20192
+      Contact_Voice_Telephone: 1-888-ASK-USGS (1-888-275-8747)
+      Contact_Voice_Telephone: 703-648-5920 
+      Contact_Instructions: 
+        In addition to the address above there are other ESIC offices throughout 
+        the country.  A full list of these offices is at
+        <http://mapping.usgs.gov/esic/esic_index.html>.
+  Distribution_Liability:  
+    Although these data have been processed successfully on a computer system at 
+    the U.S. Geological Survey, no warranty expressed or implied is made by the 
+    U.S. Geological Survey regarding the utility of the data on any other 
+    system, nor shall the act of distribution constitute any such warranty.  No 
+    responsibility is assumed by the U.S. Geological Survey in the use of these 
+    data.
+
+  Standard_Order_Process:
+    Digital_Form:
+      Digital_Transfer_Information:
+        Format_Name: ARCE
+      Digital_Transfer_Option:
+        Online_Option:
+          Computer_Contact_Information:
+            Network_Address:
+              Network_Resource_Name: <http://nationalatlas.gov/atlasftp.html>
+      Digital_Transfer_Option:
+        Offline_Option:
+          Offline_Media: CD-ROM
+          Recording_Format: tar
+    Digital_Form:
+      Digital_Transfer_Information:
+        Format_Name: ESRI Shapefile
+      Digital_Transfer_Option:
+        Online_Option:
+          Computer_Contact_Information:
+            Network_Address:
+              Network_Resource_Name: <http://nationalatlas.gov/atlasftp.html>
+      Digital_Transfer_Option:
+        Offline_Option:
+          Offline_Media: CD-ROM
+          Recording_Format: tar
+    Digital_Form:
+      Digital_Transfer_Information:
+        Format_Name: SDTS
+      Digital_Transfer_Option:
+        Online_Option:
+          Computer_Contact_Information:
+            Network_Address:
+              Network_Resource_Name: <http://nationalatlas.gov/atlasftp.html>
+      Digital_Transfer_Option:
+        Offline_Option:
+          Offline_Media: CD-ROM
+          Recording_Format: tar
+
+    Fees: 
+      There is no charge for the online option.  For National Atlas files 
+      ordered on CD-ROM there is a base price of $45.00 per disc, a handling fee 
+      of $5.00, and a per-file charge based on file size.  The charge for files 
+      less than 10 megabytes in size is $1.00.  The charge for files that range 
+      in size from 10 to 150 megabytes is $7.50.  The charge for files of 150 
+      megabytes or larger is $15.00.  The charge is $1.00 for the Aquifers of 
+      Alluvial and Glacial Origin data set.
+    Ordering_Instructions: 
+      To order files on CD-ROM, please see 
+      <http://nationalatlas.gov/atlasftp.html#q12>.
+
+Metadata_Reference_Information:
+  Metadata_Date: 20030117
+  Metadata_Contact:
+    Contact_Information:
+      Contact_Organization_Primary:
+        Contact_Organization: U.S. Geological Survey
+        Contact_Person: Chief, Cartography and Publishing Programs
+      Contact_Address:
+        Address_Type: Mailing and physical address
+        Address: 505 Science Drive
+        City: Madison
+        State_or_Province: WI
+        Postal_Code: 53711
+        Country: USA
+      Contact_Voice_Telephone: 608-238-9333
+      Contact_Facsimile_Telephone: 608-238-9334
+  Metadata_Standard_Name: FGDC Content Standards for Digital Geospatial Metadata
+  Metadata_Standard_Version: FGDC-STD-001-1998
+  Metadata_Security_Information: 
+    Metadata_Security_Classification_System: None
+    Metadata_Security_Classification: Unclassified
+    Metadata_Security_Handling_Description: None
+

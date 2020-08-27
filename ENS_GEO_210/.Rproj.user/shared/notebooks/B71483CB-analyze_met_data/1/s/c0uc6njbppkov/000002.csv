@@ -1,0 +1,7 @@
+"0","```r
+ts_temp <- xts(data_met[,\"Temperature__F\"], order.by = data_met$DateTime)
+ts_dewpoint <- xts(data_met[,\"DewPoint__F\"], order.by = data_met$DateTime)
+ts_humidity <- xts(data_met[,\"RelativeHumidity__percent\"], order.by = data_met$DateTime)
+ts_atmpressure <- xts(data_met[,\"AtmPressure__inHg\"], order.by = data_met$DateTime)
+ts_windspeed <- xts(data_met[,\"WindSpeed__mph\"], order.by = data_met$DateTime)
+```"
