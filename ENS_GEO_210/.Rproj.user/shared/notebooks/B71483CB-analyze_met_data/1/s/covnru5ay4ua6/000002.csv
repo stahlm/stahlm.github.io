@@ -1,4 +1,0 @@
-"0","```r
-dygraph(ts_temps, ylab = \"Temperature [F]\", group = \"met\")
-dygraph(ts_humidity, ylab = \"Relative Humidity [%]\", group = \"met\")
-```"

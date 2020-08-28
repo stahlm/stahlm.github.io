@@ -1,0 +1,4 @@
+"0","dygraph(ts_met, ylab = ""Precipitation [inches]"", group = ""streamflow"") %>% "
+"0","  dySeries(""prcp__inches"", label = ""Precipitation"", stepPlot = T) %>% "
+"0","  dyRangeSelector(height = 40) %>% "
+"0","  dyOptions(drawGrid = T)"

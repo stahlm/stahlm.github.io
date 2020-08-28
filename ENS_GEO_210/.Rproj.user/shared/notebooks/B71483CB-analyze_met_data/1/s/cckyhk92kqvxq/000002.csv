@@ -1,6 +1,0 @@
-"0","```r
-dygraph(ts_humidity, ylab = \"Relative Humidity [%]\", group = \"met\") %>% 
-  dySeries(\"RelativeHumidity__percent\", label = \"Rel. Humidity\") %>% 
-  dyRangeSelector(height = 50) %>% 
-  dyOptions(drawGrid = T)
-```"
