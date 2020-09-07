@@ -59,7 +59,7 @@ ggplot(surface, aes(Var1, Var2, z = value)) +
 
 ## Three dimensional object
 
-Below is a 3D rendering of a volcano.  Any point on a surface has three spatial dimensions associated with it, namely it's **x** (longitude), **y** (latitude), and **z** (elevation).  
+Below is a 3D rendering of a volcano.  Any point on a surface has three spatial dimensions associated with it, namely the **x** (longitude), **y** (latitude), and **z** (elevation).  
 
 ```{r eval = T}
 
@@ -96,7 +96,7 @@ rgl::rgl.close()
 
 <br/>
 
-## A volcano represented in two dimensions
+## Three dimesional object represented in two dimensions
 It is often useful/practical to represent three spatial dimensions on a flat (2 dimensional) surface (e.g., a sheet of paper).  We can do this in a number of ways, one of which is to represent the third spatial dimension (elevation) as color.  In the 2D image below we represent the x,y spatial dimensions on the x,y spatial dimensions of the image and we represent the elevation using color.  
 
 ```{r}
