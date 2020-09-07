@@ -1,0 +1,6 @@
+"0","```r
+bbox <- list(
+  p1 = list(long = -71.529806, lat = 44.161809), # bottom-left
+  p2 = list(long = -71.105251, lat = 44.381610)   # top-right
+)
+```"

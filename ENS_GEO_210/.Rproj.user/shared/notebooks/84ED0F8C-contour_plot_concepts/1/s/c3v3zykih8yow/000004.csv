@@ -1,0 +1,7 @@
+"0","volcano %>%"
+"0","  sphere_shade(texture = ""desert"") %>%"
+"0","  add_shadow(ray_shade(volcano,zscale=3),0.3) %>%"
+"0","  #add_overlay(generate_contour_overlay(volcano_elev, linewidth = 0.5))  %>%"
+"0","  plot_3d(volcano, zscale=3, fov=30)"
+"0","rgl::rglwidget()"
+"0","rgl::rgl.close()"

@@ -1,0 +1,6 @@
+"0","fig_1 <- mat_coords %>% "
+"0","  ggplot(aes(x = x, y = y, fill = well_drawdown_1)) +"
+"0","  geom_raster() +"
+"0","  scale_fill_viridis_c() +"
+"0","  labs(fill = ""water level (m)"")"
+"0","fig_1"

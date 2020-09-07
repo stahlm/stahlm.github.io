@@ -1,0 +1,8 @@
+"0","```r
+# download elevation data
+elev_file <- file.path(\"./Data\", \"sf-elevation.tif\")
+get_usgs_elevation_data(bbox, size = image_size$size, file = elev_file,
+                        sr_bbox = 4326, sr_image = 4326)
+```"
+"1","image saved to file: ./Data/sf-elevation.tif
+"

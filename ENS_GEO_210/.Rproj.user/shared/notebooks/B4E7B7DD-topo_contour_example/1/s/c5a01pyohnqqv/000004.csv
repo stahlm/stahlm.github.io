@@ -1,0 +1,8 @@
+"0","elmat %>%"
+"0"," height_shade() %>%"
+"0"," add_shadow(ray_shade(elmat,zscale=50),0.3) %>%"
+"0"," add_overlay(generate_contour_overlay(elmat))  %>%"
+"0"," #add_overlay(generate_contour_overlay(elmat, linewidth=2, nlevels=10,"
+"0"," #                                    height = nrow(elmat)*2, color=""black"","
+"0"," #                                    width  = ncol(elmat)*2), alphalayer=0.5) %>%"
+"0"," plot_map()"

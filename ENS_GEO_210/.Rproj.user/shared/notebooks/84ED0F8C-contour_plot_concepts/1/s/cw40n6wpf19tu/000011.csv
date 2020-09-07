@@ -1,0 +1,3 @@
+"0","persp3D(z = volcano, contour = list(side = c(""zmax"", ""z"")), zlim= c(90, 300),"
+"0","        col = hcl.colors(100, ""terrain""),"
+"0","        phi = 30, theta = 20, d = 10, box = FALSE)"

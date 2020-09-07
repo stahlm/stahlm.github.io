@@ -1,0 +1,1 @@
+"0","raster::crs(elev_img) <- ""+proj=longlat +ellps=WGS84 +datum=WGS84"""

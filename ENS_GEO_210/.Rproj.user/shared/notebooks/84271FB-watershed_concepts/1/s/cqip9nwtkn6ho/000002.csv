@@ -1,0 +1,2 @@
+"0","extent_latlong = sp::SpatialPoints(rbind(bottom_left, top_right), "
+"0","                 proj4string=sp::CRS(""+proj=longlat +ellps=WGS84 +datum=WGS84""))"

@@ -1,0 +1,107 @@
+---
+title: "R Notebook"
+output: html_document
+---
+https://wcmbishop.github.io/rayshader-demo/
+
+```{r}
+library(rayshader)
+```
+
+```{r}
+source("get_usgs_elevation_data.R")
+source("define_image_size.R")
+```
+
+
+42.768403, -73.997889
+42.862791, -73.873456
+```{r}
+# define bounding box with longitude/latitude coordinates (Schenectady)
+bbox <- list(
+  p1 = list(long = -73.997889, lat = 42.768403), # bottom-left
+  p2 = list(long = -73.873456, lat = 42.862791)   # top-right
+)
+```
+
+
+44.161809, -71.529806
+44.381610, -71.105251
+```{r}
+bbox <- list(
+  p1 = list(long = -71.529806, lat = 44.161809), # bottom-left
+  p2 = list(long = -71.105251, lat = 44.381610)   # top-right
+)
+```
+
+
+```{r}
+image_size <- define_image_size(bbox, major_dim = 600)
+```
+
+
+```{r}
+# download elevation data
+elev_file <- file.path("./Data", "sf1-elevation.tif")
+get_usgs_elevation_data(bbox, size = image_size$size, file = elev_file,
+                        sr_bbox = 4326, sr_image = 4326)
+```
+
+
+```{r}
+#elev_file <- "C:/Users/stahlm/Documents/Research_Projects/Groundwater_Isotopes/Output/RF_model/RF_model_GW_isotopes_H.gri"
+elev_img <- raster::raster(elev_file)
+```
+
+```{r}
+raster::plot(elev_img)
+```
+
+
+```{r}
+raster::contour(elev_img)
+```
+
+
+```{r}
+elmat <- matrix(
+  raster::extract(elev_img, raster::extent(elev_img), buffer = 1000), 
+  nrow = ncol(elev_img), ncol = nrow(elev_img)
+)
+```
+
+
+
+```{r}
+elmat %>%
+  sphere_shade(sunangle = 315, texture = "bw") %>%
+  plot_map()
+```
+
+
+
+```{r}
+elmat %>%
+  sphere_shade(texture = "desert") %>%
+  #add_water(detect_water(elmat), color = "blue") %>%
+  add_shadow(ray_shade(elmat, zscale = 3), 0.5) %>%
+  add_shadow(ambient_shade(elmat), 0) %>%
+  plot_3d(elmat, zscale = 10, fov = 0, theta = 135, zoom = 0.75, phi = 45, windowsize = c(1000, 800))
+Sys.sleep(0.2)
+#render_depth(focus = 0.6, focallength = 10, clear = TRUE)
+render_snapshot(clear=TRUE)
+```
+
+
+```{r}
+filename_movie = "./test_elevation_movie"
+
+elmat %>% 
+  sphere_shade(texture="desert") %>%
+  add_water(detect_water(elmat), color = "blue") %>%
+  plot_3d(elmat, zscale=10, waterlinecolor="white", waterlinealpha=0.5)
+  render_movie(filename = filename_movie)
+  
+```
+
+

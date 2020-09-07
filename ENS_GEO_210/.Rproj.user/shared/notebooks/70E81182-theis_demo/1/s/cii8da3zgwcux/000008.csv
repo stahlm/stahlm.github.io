@@ -1,0 +1,4 @@
+"0","mat_coords <- tibble(x = x_mat, y = y_mat, "
+"0","                     w1_dist = ((well_1_loc[1] - x)^2 + (well_1_loc[2] - y)^2)^0.5,"
+"0","                     w2_dist = ((well_2_loc[1] - x)^2 + (well_2_loc[2] - y)^2)^0.5,"
+"0","                     w3_dist = ((well_3_loc[1] - x)^2 + (well_3_loc[2] - y)^2)^0.5)"

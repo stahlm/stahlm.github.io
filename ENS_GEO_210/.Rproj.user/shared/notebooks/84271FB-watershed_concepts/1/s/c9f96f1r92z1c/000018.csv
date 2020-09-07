@@ -1,0 +1,7 @@
+"0","elmat %>%"
+"0","  sphere_shade(sunangle = 315, texture = ""bw"") %>%"
+"0","  add_overlay(generate_polygon_overlay(shape_watershed,  linecolor = ""blue"","
+"0","                                   extent = raster::extent(elev_img), heightmap = elmat),"
+"0","              alphalayer=0.7)  %>%"
+"0","  #add_water(detect_water(elmat),color=""imhof3"") %>%"
+"0","  plot_map()"

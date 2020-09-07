@@ -1,0 +1,4 @@
+"0","shape_watershed = sf::st_crop(shape_watershed, attr(elev_img,""extent""))"
+"2","although coordinates are longitude/latitude, st_intersection assumes that they are planar
+"
+"2","attribute variables are assumed to be spatially constant throughout all geometries"

@@ -1,0 +1,110 @@
+"0","```r
+filename_movie = tempfile()
+elmat %>% 
+  sphere_shade(texture=\"desert\") %>%
+  add_water(detect_water(elmat), color = \"blue\") %>%
+  plot_3d(elmat, zscale=10, waterlinecolor=\"white\", waterlinealpha=0.5)
+  render_movie(filename = filename_movie)
+```"
+"1","RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR dataRGL: PNG Pixmap Saver Error: an error occured'rgl.snapshot' failedRGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR dataRGL: PNG Pixmap Saver Error: an error occured'rgl.snapshot' failedRGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR dataRGL: PNG Pixmap Saver Error: an error occured'rgl.snapshot' failedRGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR dataRGL: PNG Pixmap Saver Error: an error occured'rgl.snapshot' failedRGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR dataRGL: PNG Pixmap Saver Error: an error occured'rgl.snapshot' failedRGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR dataRGL: PNG Pixmap Saver Error: an error occured'rgl.snapshot' failedRGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR dataRGL: PNG Pixmap Saver Error: an error occured'rgl.snapshot' failedRGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR dataRGL: PNG Pixmap Saver Error: an error occured'rgl.snapshot' failedRGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Warning: Image width is zero in IHDRRGL: PNG Pixmap Saver Warning: Image height is zero in IHDRRGL: PNG Pixmap Saver Error: Invalid IHDR datalibpng error: Invalid IHDR data
+RGL: PNG Pixmap Saver Error: an error occured'rgl.snapshot' failedError: FFMPEG error in 'avformat_open_input': Invalid data found when processing input
+"

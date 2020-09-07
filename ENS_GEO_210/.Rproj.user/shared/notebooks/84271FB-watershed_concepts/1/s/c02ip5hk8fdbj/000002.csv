@@ -1,0 +1,2 @@
+"0","bottom_left <- c(y = bbox$p1[[1]],x= bbox$p1[[2]])"
+"0","top_right <- c(y = bbox$p2[[1]], x= bbox$p2[[2]])"

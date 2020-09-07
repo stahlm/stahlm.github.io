@@ -1,0 +1,2 @@
+"0","raster_elev_LK <- raster::mask(elev_img,"
+"0","                                    shape_watershed)"

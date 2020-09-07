@@ -1,0 +1,5 @@
+"0","tm_shape(elev_img) +"
+"0","  tm_raster(style = ""cont"") +"
+"0","  "
+"0","tm_shape(shape_watershed) +"
+"0","  tm_borders(col = ""black"")"

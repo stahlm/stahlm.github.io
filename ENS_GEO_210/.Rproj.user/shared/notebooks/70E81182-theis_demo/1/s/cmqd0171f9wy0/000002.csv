@@ -1,0 +1,6 @@
+"0","theis <- function(Q,Trans,S,r,t){"
+"0","  u <- ((r^2)*S)/(4*Trans*t)"
+"0","  drawdown <- (Q/(4*pi*Trans))*expint(u)"
+"0","  "
+"0","  drawdown"
+"0","}"

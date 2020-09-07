@@ -1,0 +1,2 @@
+"0","raster::contour(elev_img, levels = seq(50,150, by = 10), "
+"0","                add = F)"

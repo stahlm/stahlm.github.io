@@ -1,0 +1,3 @@
+"0","attr(elmat, ""extent"") = extent_latlong"
+"0","attr(elmat, ""crs"") = raster::crs(elev_img)"
+"0","attr(elmat, ""rayshader_data"") = TRUE"

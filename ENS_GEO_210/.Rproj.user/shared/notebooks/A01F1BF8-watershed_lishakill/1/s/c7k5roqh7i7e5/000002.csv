@@ -1,0 +1,8 @@
+"0","tmap_mode(mode = ""view"") "
+"2","tmap mode set to interactive viewing
+"
+"0","map_lishakill <- shape_watershed %>% "
+"0","  tm_shape() +"
+"0","  tm_borders(""red"") +"
+"0","  tm_basemap(c(""Esri.NatGeoWorldMap"",""Esri.WorldImagery"",""OpenStreetMap"") ) "
+"0","map_lishakill"

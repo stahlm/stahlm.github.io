@@ -1,0 +1,44 @@
+"0","elmat %>%"
+"2","Warning messages:
+"
+"2","1: "
+"2","In readChar(file, size, TRUE) :"
+"2"," truncating string with embedded nuls
+"
+"2","2: "
+"2","In readChar(file, size, TRUE) :"
+"2"," truncating string with embedded nuls
+"
+"2","3: "
+"2","In readChar(file, size, TRUE) :"
+"2"," truncating string with embedded nuls
+"
+"2","4: "
+"2","In readChar(file, size, TRUE) :"
+"2"," truncating string with embedded nuls
+"
+"2","5: "
+"2","In readChar(file, size, TRUE) :"
+"2"," truncating string with embedded nuls
+"
+"2","6: "
+"2","In readChar(file, size, TRUE) :"
+"2"," truncating string with embedded nuls
+"
+"2","7: "
+"2","In readChar(file, size, TRUE) :"
+"2"," truncating string with embedded nuls
+"
+"0","  sphere_shade(texture = ""imhof4"") %>%"
+"0","  #add_water(detect_water(elmat), color = ""blue"") %>%"
+"0","  add_shadow(ray_shade(elmat, zscale = 3), 0.5) %>%"
+"0","  add_shadow(ambient_shade(elmat), 0) %>%"
+"0","  add_overlay(generate_polygon_overlay(shape_watershed,  "
+"0","                                       linecolor = ""blue"","
+"0","                                       extent = raster::extent(elev_img), heightmap = elmat),   "
+"0","              alphalayer=0.7)  %>%"
+"0","  "
+"0","  plot_3d(elmat, zscale = 1, fov = 0, theta = -30, zoom = 0.75, phi = 45, windowsize = c(1000, 800))"
+"0","Sys.sleep(0.2)"
+"0","#render_depth(focus = 0.6, focallength = 10, clear = TRUE)"
+"0","render_snapshot(clear=TRUE)"

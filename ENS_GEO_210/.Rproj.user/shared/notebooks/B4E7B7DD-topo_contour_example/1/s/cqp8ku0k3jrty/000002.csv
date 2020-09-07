@@ -1,0 +1,7 @@
+"0","elev_img <- raster::raster(elev_file)"
+"2","Error in .local(.Object, ...) : 
+
+"
+"2","Error in .rasterObjectFromFile(x, band = band, objecttype = ""RasterLayer"",  : 
+  Cannot create a RasterLayer object from this file.
+"

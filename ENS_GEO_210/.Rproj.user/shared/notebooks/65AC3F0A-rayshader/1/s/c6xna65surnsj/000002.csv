@@ -1,0 +1,5 @@
+"0","```r
+elmat %>%
+  sphere_shade(sunangle = 315, texture = \"bw\") %>%
+  plot_map()
+```"

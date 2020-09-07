@@ -1,0 +1,5 @@
+"0","mat_coords <- mat_coords %>% "
+"0","  mutate(well_drawdown_1 = 100 - theis(Q = Q_well, Trans = High_T, S = Low_S, r = w1_dist, t = 60*60*24),"
+"0","         well_drawdown_2 = 100 - theis(Q = Q_well, Trans = High_T, S = Low_S, r = w2_dist, t = 60*60*24),"
+"0","         well_drawdown_3 = 100 - theis(Q = Q_well, Trans = High_T, S = Low_S, r = w3_dist, t = 60*60*24)"
+"0","         )"

@@ -1,0 +1,9 @@
+"0","map_1 <- ggplot() + "
+"0","  geom_stars(data = stars_elev) + "
+"0","  coord_equal() +"
+"0","  scale_fill_gradientn(colours = terrain.colors(10)) +"
+"0","  geom_sf(data = shape_watershed, fill = NA, color = ""red"") +"
+"0","  labs(fill = ""Elevation (m)"")"
+"2","Coordinate system already present. Adding new coordinate system, which will replace the existing one.
+"
+"0","map_1"

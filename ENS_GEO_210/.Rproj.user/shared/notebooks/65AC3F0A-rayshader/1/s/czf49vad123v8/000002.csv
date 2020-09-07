@@ -1,0 +1,7 @@
+"0","```r
+# define bounding box with longitude/latitude coordinates
+bbox <- list(
+  p1 = list(long = -73.997889, lat = 42.768403), # bottom-left
+  p2 = list(long = -73.873456, lat = 42.862791)   # top-right
+)
+```"

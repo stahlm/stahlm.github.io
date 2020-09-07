@@ -1,0 +1,5 @@
+"0","surface <- reshape2::melt(volcano)"
+"0","plot_volcano_3D <- ggplot(surface, aes(Var1, Var2, z = value)) +"
+"0","  geom_raster(aes(Var1, Var2, fill = value)) +"
+"0","  scale_fill_gradientn(colours = terrain.colors(20)) "
+"0","  "

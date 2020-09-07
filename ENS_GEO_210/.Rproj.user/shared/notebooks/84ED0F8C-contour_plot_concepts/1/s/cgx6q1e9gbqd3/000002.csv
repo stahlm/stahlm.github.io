@@ -1,0 +1,5 @@
+"0","rayshader::plot_gg(plot_volcano_3D , max_error = 0.005,"
+"0","                   multicore=TRUE,"
+"0","                   width=7,height=7,scale=600)"
+"0","rgl::rglwidget()"
+"0","rgl::rgl.close()"

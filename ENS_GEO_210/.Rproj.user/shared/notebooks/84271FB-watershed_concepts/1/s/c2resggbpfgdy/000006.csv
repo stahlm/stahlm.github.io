@@ -1,0 +1,23 @@
+"0","shape_watershed <- st_read(""../data/lisha_kill_watershed/area-of-interest.shp"", stringsAsFactors = FALSE)"
+"1","Reading layer `"
+"1","area-of-interest"
+"1","' from data source `"
+"1","C:\Users\stahlm\Documents\Teaching_UnionCollege\Environmental_Data_Analysis\stahlm.github.io\ENS_GEO_210\data\lisha_kill_watershed\area-of-interest.shp"
+"1","' using driver `"
+"1","ESRI Shapefile"
+"1","'"
+"1","
+"
+"1","Simple feature collection with 1 feature and 1 field"
+"1","
+"
+"1","geometry type:  POLYGON
+"
+"1","dimension:      XY
+"
+"1","bbox:           "
+"1","xmin: -73.94079 ymin: 42.71558 xmax: -73.82933 ymax: 42.80073"
+"1","
+"
+"1","geographic CRS: WGS 84
+"

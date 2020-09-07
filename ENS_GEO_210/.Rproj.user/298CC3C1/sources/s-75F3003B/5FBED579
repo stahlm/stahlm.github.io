@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1598561044778.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "5FBED579",
+    "lastKnownWriteTime" : 1596739357,
+    "last_content_update" : 1596739357,
+    "path" : "~/Research_Projects/Watertable_variations/waterlevel_analysis_v3.Rmd",
+    "project_path" : null,
+    "properties" : {
+        "cursorPosition" : "21,14",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}
