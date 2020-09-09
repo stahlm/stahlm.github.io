@@ -46,7 +46,8 @@ map_principal <- us_states %>%
   tm_shape(projection = 2163) +
   tm_borders("black") +
   tm_shape(shape_aquifers) +
-  tm_fill(col = "ROCK_NAME", alpha = 0.5, legend.show = F) +
+  tm_fill(col = "ROCK_NAME", alpha = 0.5, legend.show = F,
+          popup.vars = c("Aquifer" = "AQ_NAME", "Rock type" = "ROCK_NAME")) +
   tm_basemap(c("Esri.WorldImagery", "Esri.NatGeoWorldMap","OpenStreetMap") ) 
 
 map_principal

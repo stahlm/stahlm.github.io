@@ -1,0 +1,2 @@
+"0","stars_elev <- stars::read_stars(""../data/lishakill-elevation-lowres.tif"")"
+"0","#sat_vis <- read_stars(img_vis, RasterIO = list(nBufXSize = 600, nBufYSize = 600))"

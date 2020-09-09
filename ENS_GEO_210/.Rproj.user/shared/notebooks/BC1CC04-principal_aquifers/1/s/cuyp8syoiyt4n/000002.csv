@@ -1,0 +1,14 @@
+"0","tmap_mode(mode = ""view"") "
+"2","tmap mode set to interactive viewing
+"
+"0","map_principal <- us_states %>% "
+"0","  tm_shape(projection = 2163) +"
+"0","  tm_borders(""black"") +"
+"0","  tm_shape(shape_aquifers) +"
+"0","  tm_fill(col = ""ROCK_NAME"", alpha = 0.5, legend.show = F) +"
+"0","  tm_basemap(c(""Esri.WorldImagery"", ""Esri.NatGeoWorldMap"",""OpenStreetMap"") ) "
+"0","map_principal"
+"2","Currect projection of shape shape_aquifers unknown. Long-lat (WGS84) is assumed."
+"0","tmap_mode(mode = ""plot"") "
+"2","tmap mode set to plotting
+"

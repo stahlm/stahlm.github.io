@@ -1,0 +1,2 @@
+"0","raster_elev <- raster::aggregate(raster_elev, fact = 3)"
+"0","raster::writeRaster(raster_elev, ""../data/lishakill-elevation-lowres.tif"", overwrite = T)"

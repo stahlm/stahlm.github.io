@@ -1,0 +1,2 @@
+"0","elev_file <- file.path(""../data"", ""lishakill-elevation.tif"")"
+"0","raster_elev <- raster::raster(elev_file)"
