@@ -12,6 +12,8 @@ output:
 Supporting material related to our class is found below.  Additionnal material/resources will be added as the term progresses.  
 
 ## [US aquifer maps](https://stahlm.github.io/ENS_GEO_210/material/principal_aquifers.html)  
+## [Watershed delineation](https://stahlm.github.io/ENS_GEO_210/material/watershed_lishakill.html)
+## [Hydrologic measurements]
 
 ```{r eval = F, echo=FALSE}
 + [US aquifer maps](https://stahlm.github.io/ENS_GEO_210/material/principal_aquifers.html)  

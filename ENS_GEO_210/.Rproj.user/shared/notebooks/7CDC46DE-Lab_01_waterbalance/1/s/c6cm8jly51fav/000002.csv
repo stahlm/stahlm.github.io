@@ -1,0 +1,7 @@
+"0","data_precip <- data_precip %>% "
+"0","  mutate(TotalPrecipAmt = if_else(TotalPrecipAmt == ""T"", 0,as.numeric(TotalPrecipAmt))) %>% "
+"0","  rename(Precip__inches = TotalPrecipAmt)"
+"2","Problem with `mutate()` input `TotalPrecipAmt`.
+[31mx[39m NAs introduced by coercion
+[34mi[39m Input `TotalPrecipAmt` is `if_else(TotalPrecipAmt == ""T"", 0, as.numeric(TotalPrecipAmt))`."
+"2","NAs introduced by coercion"

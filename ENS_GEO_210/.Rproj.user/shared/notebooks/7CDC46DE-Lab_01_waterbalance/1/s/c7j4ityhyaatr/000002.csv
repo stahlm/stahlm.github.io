@@ -1,0 +1,5 @@
+"0","data_precip <- data_precip %>% "
+"0","  group_by(ObservationDate) %>% "
+"0","  summarize(Precip__inches = mean(Precip__inches, na.rm = T))"
+"2","`summarise()` ungrouping output (override with `.groups` argument)
+"

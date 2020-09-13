@@ -1,0 +1,2 @@
+"0","data_precip <- data_precip %>% "
+"0","  select(Date = ObservationDate, Precip__inches)"

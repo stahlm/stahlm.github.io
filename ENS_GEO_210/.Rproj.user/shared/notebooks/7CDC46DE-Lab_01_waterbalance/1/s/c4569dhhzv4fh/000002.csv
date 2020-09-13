@@ -1,0 +1,5 @@
+"0","dygraph(data_all_ts[,1], "
+"0","        ylab = ""Streamflow [cfs]"", group = ""hydro"") %>% "
+"0","  dySeries(""streamflow__cfs"", label = ""Streamflow"", stepPlot = F) %>% "
+"0","  dyRangeSelector(height = 40) %>% "
+"0","  dyOptions(drawGrid = T)"
