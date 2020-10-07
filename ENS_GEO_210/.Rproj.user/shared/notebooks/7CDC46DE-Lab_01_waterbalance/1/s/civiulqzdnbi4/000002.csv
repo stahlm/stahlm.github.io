@@ -1,4 +1,0 @@
-"0","data_streamflow <- data_streamflow %>% "
-"0","  select(Date, streamflow__cfs)"
-"0","data_gw <- data_gw %>% "
-"0","  select(Date, depth_to_wt__ft)"

@@ -1,4 +1,0 @@
-"0","# Download daily USGS 01348000 EAST CANADA CREEK AT EAST CREEK NY"
-"0","data_streamflow <- dataRetrieval::readNWISdv(siteNumbers = ""01348000"", "
-"0","                                        parameterCd  =""00060"","
-"0","                                        startDate = date_start, endDate = date_end)"

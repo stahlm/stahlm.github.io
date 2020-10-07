@@ -1,7 +1,0 @@
-"0","data_all <- data_streamflow %>% "
-"0","  left_join(data_gw) %>% "
-"0","  left_join(data_precip)"
-"2","Joining, by = ""Date""
-"
-"2","Joining, by = ""Date""
-"

@@ -1,5 +1,0 @@
-"0","dygraph(data_all_ts[,3], "
-"0","        ylab = ""Precip [inches]"", group = ""hydro"") %>% "
-"0","  dySeries(""Precip__inches"", label = ""Precipitation"", stepPlot = T) %>% "
-"0","  dyRangeSelector(height = 40) %>% "
-"0","  dyOptions(drawGrid = T)"

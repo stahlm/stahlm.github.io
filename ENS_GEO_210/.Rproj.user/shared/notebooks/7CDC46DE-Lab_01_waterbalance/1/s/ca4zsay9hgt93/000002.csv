@@ -1,3 +1,0 @@
-"0","data_gw <- dataRetrieval::readNWISdv(siteNumbers = ""430930074290301"", "
-"0","                                        parameterCd  =""72019"","
-"0","                                        startDate = date_start, endDate = date_end)"

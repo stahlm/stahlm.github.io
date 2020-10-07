@@ -14,6 +14,9 @@ Supporting material related to our class is found below.  Additionnal material/r
 ## [US aquifer maps](https://stahlm.github.io/ENS_GEO_210/material/principal_aquifers.html)  
 ## [Watershed delineation](https://stahlm.github.io/ENS_GEO_210/material/watershed_lishakill.html)
 ## [Hydrologic measurements](https://stahlm.github.io/ENS_GEO_210/material/waterbalance.html)
+## [Contour maps](https://stahlm.github.io/ENS_GEO_210/material/contour_plot_concepts.html)
+
+
 
 ```{r eval = F, echo=FALSE}
 + [US aquifer maps](https://stahlm.github.io/ENS_GEO_210/material/principal_aquifers.html)  

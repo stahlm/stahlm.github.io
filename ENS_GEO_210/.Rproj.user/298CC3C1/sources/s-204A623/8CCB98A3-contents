@@ -1,0 +1,68 @@
+pacman::p_load("rvest", "tidyverse", "glue", "RSelenium", "lubridate")
+
+
+
+test_url <- "https://www.wunderground.com/history/daily/KMESTEUB5/date/2020-6-1"
+test_html <- read_html(test_url)
+test_table <- test_html %>% html_node("lib-city-history-observation")
+
+# Find what versions are compatible
+binman::list_versions("chromedriver")
+
+# Open webdriver
+rD <- rsDriver(browser="chrome", chromever = "84.0.4147.30", port = 4568L)
+
+#rD <- rsDriver(browser="chrome", port = 4568L)
+
+remDr <- rD[["client"]]
+
+
+# Create list of dates to loop over
+first_date <- as.Date("2020/06/01")
+days_since <- as.integer(Sys.Date() - first_date)
+dates <- as.list(seq(first_date, by = "day", length.out = days_since))
+
+date <- first_date
+
+for (date in dates){
+  
+    url <- glue("https://www.wunderground.com/history/daily/KMESTEUB5/date/{date}")
+    
+    remDr$navigate(url) # Navigate to webpage
+    Sys.sleep(3) # give the page time to fully load
+    html <- remDr$getPageSource()[[1]]
+    
+    daily_obs <- read_html(html) %>%
+      html_nodes("table") %>% # Find all nodes with class "table"
+      .[[3]] %>% # We are only interested in the 3rd one
+      html_table(fill=T) %>%
+      mutate(date = as.Date(date)) # Add the date
+    
+    if (date == first_date) obs <- daily_obs
+    else obs <- bind_rows(obs, daily_obs)
+}
+
+remDr$close()  # Close webdriver
+
+write_csv(obs, "Daily_Observations.csv")
+
+
+for (date in dates){
+  url2 <- glue("https://www.wunderground.com/dashboard/pws/KMESTEUB5/table/{date}/{date}/daily")
+  
+  remDr$navigate(url2) # Navigate to webpage
+  Sys.sleep(3) # give the page time to fully load
+  html2 <- remDr$getPageSource()[[1]]
+  daily_obs2 <- read_html(html2) %>%
+    html_nodes("table") %>% # Find all nodes with class "table"
+    .[[4]] %>% # We are only interested in the 4th one
+    html_table(fill=T) %>%
+    mutate(date = as.Date(date)) # Add the date
+  
+  if (date == first_date) obs2 <- daily_obs2[-1,]
+  else obs2 <- bind_rows(obs2, daily_obs2[-1,])
+}
+
+remDr$close()  # Close webdriver
+
+write_csv(obs2, "KMESTEUB5_Daily_Observations.csv")

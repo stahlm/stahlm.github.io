@@ -1,5 +1,0 @@
-"0","dygraph(data_all_ts[,2], "
-"0","        ylab = ""Depth to groundwater [ft]"", group = ""hydro"") %>% "
-"0","  dySeries(""depth_to_wt__ft"", label = ""Groundwater level"", stepPlot = F) %>% "
-"0","  dyRangeSelector(height = 40) %>% "
-"0","  dyOptions(drawGrid = T)"

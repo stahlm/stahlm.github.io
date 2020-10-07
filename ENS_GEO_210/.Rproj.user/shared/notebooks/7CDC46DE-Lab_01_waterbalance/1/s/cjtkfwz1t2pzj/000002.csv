@@ -1,1 +1,0 @@
-"0","data_all_ts <- xts::xts(data_all[,2:4], order.by = data_all$Date)"
