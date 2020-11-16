@@ -33,11 +33,16 @@
 "1","'"
 "1","
 "
-"2","Error in (function (srcref)  : unimplemented type (29) in 'eval'
+"1","Simple feature collection with 2389 features and 7 fields"
+"1","
 "
-"2","Error: no more error handlers available (recursive errors?); invoking 'abort' restart
+"1","geometry type:  POLYGON
 "
-"2","type 29 is unimplemented in 'type2char'"
-"2","Error in stopifnot(sf_column_name %in% all_sfc_names) : 
-  INTEGER() can only be applied to a 'integer', not a 'unknown type #29'
+"1","dimension:      XY
+"
+"1","bbox:           "
+"1","xmin: -112.7554 ymin: 37.6572 xmax: -67.04454 ymax: 49.00164"
+"1","
+"
+"1","CRS:            NA
 "
