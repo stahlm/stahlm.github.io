@@ -1,0 +1,34 @@
+---
+title: "Groundwater and the U.S. Supreme Court"
+description: |
+  An overview of Supreme Court cases related to groundwater or where groundwater plays an important role.
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+Original action, original jurisdiction, and special master
+
+## Mississippi v. Tennessee
+<aside>
+Granted  
+Argued  
+Decided
+</aside>
+
+
+## Florida v. Georgia
+
+## Texas v. New Mexico and Colorado
+
+## County of Maui v. Hawai'i Wildlife Fund
+
+## Kansas v. Colorado
+
+## Kansas v. Nebraska and Colorado
+
+
+
+

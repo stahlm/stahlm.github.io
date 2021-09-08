@@ -1,0 +1,22 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r}
+library(rayshader)
+```
+
+```{r}
+source(get_usgs_elevation_data)
+```
+
+
+```{r}
+# download elevation data
+elev_file <- file.path("data", "sf-elevation.tif")
+get_usgs_elevation_data(bbox, size = image_size$size, file = elev_file,
+                        sr_bbox = 4326, sr_image = 4326)
+```
+

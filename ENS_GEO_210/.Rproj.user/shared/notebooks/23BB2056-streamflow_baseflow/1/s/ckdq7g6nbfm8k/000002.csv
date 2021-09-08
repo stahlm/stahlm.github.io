@@ -1,3 +1,4 @@
+"0","# Download precipitation data from Albany Airport (GHCND:USW00014735)"
 "0","with_units <- ncdc(datasetid='GHCND', stationid='GHCND:USW00014735', datatypeid='PRCP', "
 "0","                   startdate = date_start, enddate = date_end, "
 "0","                   limit=500, add_units = TRUE)"

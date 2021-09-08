@@ -1,0 +1,26 @@
+{
+    "id": "ADA03916",
+    "path": null,
+    "project_path": null,
+    "type": "r_markdown",
+    "hash": "2849216144",
+    "contents": "",
+    "dirty": true,
+    "created": 1602095701976.0,
+    "source_on_save": false,
+    "relative_order": 16,
+    "properties": {
+        "chunk_output_type": "inline",
+        "cursorPosition": "6,0",
+        "scrollLine": "0",
+        "tempName": "Untitled1"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 2481051765037560417,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1602095747800,
+    "read_only": false,
+    "read_only_alternatives": []
+}

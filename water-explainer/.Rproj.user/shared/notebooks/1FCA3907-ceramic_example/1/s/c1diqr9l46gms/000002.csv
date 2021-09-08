@@ -1,0 +1,10 @@
+"0","```r
+#raster::plot(dem)
+loc_coords <- c(-67.879102,44.454892)
+dem <- cc_elevation(loc_coords, zoom = 12, buffer = 10000)
+```"
+"1","Preparing to download: 9 tiles at zoom = 12 from 
+https://api.mapbox.com/v4/mapbox.terrain-rgb/
+"
+"1","Discarded ellps unknown in CRS definition: +proj=merc +lon_0=0 +k=1 +x_0=0 +y_0=0 +R=6378137 +units=m +no_defsDiscarded datum unknown in CRS definitionDiscarded ellps unknown in CRS definition: +proj=merc +lon_0=0 +k=1 +x_0=0 +y_0=0 +R=6378137 +units=m +no_defsDiscarded datum unknown in CRS definition
+"

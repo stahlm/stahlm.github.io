@@ -1,0 +1,17 @@
+"0","if (country == ""US"") {"
+"0","  Water_features <- area_water(state = state2use, county = county2use)  # download the data"
+"0",""
+"0","Water_features <- st_as_sf(Water_features) # convert to an sf object"
+"0",""
+"0","Linear_water <- linear_water(state = state2use, county = county2use)  # download the data"
+"0",""
+"0","Linear_water <- st_as_sf(Linear_water) # convert to an sf object"
+"0","}"
+"2","Using FIPS code '36' for state 'NY'
+"
+"2","Using FIPS code '093' for 'Schenectady County'
+"
+"2","Using FIPS code '36' for state 'NY'
+"
+"2","Using FIPS code '093' for 'Schenectady County'
+"

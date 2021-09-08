@@ -1,0 +1,20 @@
+"0","```r
+# raster::plot(dem)
+terrain_palette <- terrain.colors(n = 6)
+terrain_palette[1] <- \"#0000FF\"
+tpal2 <- RColorBrewer::brewer.pal(n = 6, name = \"Greys\")
+tm_shape(dem) +
+  tm_raster(midpoint = NA, style = \"cont\",
+            breaks = c(0,2,5,10,20,50,100),
+            palette = \"Greys\"
+            #style = \"cont\"
+            ) +
+  tm_shape(dem_lines) +
+  tm_borders(lwd =  1, col = \"black\") +
+tm_shape(dem2) +
+  tm_raster(palette = c(\"blue\")) +
+  tm_layout(legend.outside = T)
+```"
+"1","stars object downsampled to 999 by 1000 cells. See tm_shape manual (argument raster.downsample)
+stars object downsampled to 999 by 1000 cells. See tm_shape manual (argument raster.downsample)
+"

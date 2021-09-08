@@ -1,0 +1,142 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+
+
+
+Sys.setenv(MAPBOX_API_KEY = "pk.eyJ1Ijoic3RhaGxtIiwiYSI6ImNrZnJiMDMxbDA0aGsyenFlajhvMzZ4bXUifQ.I7l7fJBAHCQWRwyYozq4ZQ")
+
+```
+
+```{r}
+
+library(sf)
+library(spData)
+library(tmap)
+library(ceramic)
+
+library(ceramic)
+roi <- raster::extent(100, 160, -50, 10)
+im <- cc_location(roi)
+#> Preparing to download: 16 tiles at zoom = 4 from 
+#> https://api.mapbox.com/v4/mapbox.satellite/
+
+raster::plotRGB(im)
+```
+
+
+
+
+
+
+
+
+```{r}
+pt <- cbind(-73.939, 42.8142)
+nz_z12 <- cc_location(pt, zoom = 12, type = "elevation-tiles-prod")
+```
+
+
+
+
+```{r}
+raster::plot(nz_z12)
+```
+
+
+```{r}
+library(ceramic); library(quadmesh)
+library(raster); library(rgl);
+library(reproj); library(htmlwidgets)
+clear3d()
+
+
+#pt <- cbind(-73.939, 42.8142)
+
+## longlat extent
+#ex0 <- c(147.15, 147.45, -42.9, -42.6)
+ex0 <- c(-67.879102-0.15, -67.879102+0.15, 
+         44.454892-0.15, 44.454892+0.15)
+ex <- extent(ex0)
+
+## local LAEA projection, based on the centre of the extent
+prj <- sprintf("+proj=laea +lon_0=%s +lat_0=%s +datum=WGS84", as.character(mean(ex0[1:2])) ,as.character(mean(ex0[3:4])) )
+## Mapbox elevation
+dem <- cc_elevation(ex, zoom = 8)
+## Mapbox satellite imagery
+im <- cc_location(ex, zoom = 13)
+
+## quadmesh with texture for rgl, in local projection
+qm <- reproj::reproj(quadmesh(dem, texture = im), prj)
+
+## plot with rgl, set the aspect ratio and backround
+shade3d(qm, lit = FALSE);
+aspect3d(1, 1, .1)
+bg3d(grey(0.8))
+```
+
+
+
+
+
+```{r}
+#raster::plot(dem)
+loc_coords <- c(-67.879102,44.454892)
+dem <- cc_elevation(loc_coords, zoom = 12, buffer = 10000)
+
+
+```
+
+
+
+```{r}
+dem_lines <- stars::st_contour(stars::st_as_stars(dem) , breaks = c(-10,2))
+```
+
+```{r}
+dem2 <- dem
+dem2[dem2 > 2] <- NA
+dem2[dem2 <= 2] <- 0
+```
+
+
+
+```{r}
+# raster::plot(dem)
+
+terrain_palette <- terrain.colors(n = 6)
+terrain_palette[1] <- "#0000FF"
+
+tpal2 <- RColorBrewer::brewer.pal(n = 6, name = "Greys")
+
+tm_shape(dem) +
+  tm_raster(midpoint = NA, style = "cont",
+            breaks = c(0,2,5,10,20,50,100),
+            palette = "Greys"
+            #style = "cont"
+            ) +
+  tm_shape(dem_lines) +
+  tm_borders(lwd =  1, col = "black") +
+tm_shape(dem2) +
+  tm_raster(palette = c("blue")) +
+  tm_layout(legend.outside = T)
+```
+
+
+
+
+
+
+
+
+```{r}
+ im <- cc_location(loc = loc_coords, buffer = 10000, zoom = 12)
+ 
+
+
+ raster::plotRGB(im)
+```
+

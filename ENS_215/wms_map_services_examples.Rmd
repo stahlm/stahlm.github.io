@@ -1,0 +1,72 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(leaflet)
+library(leaflet.extras)
+```
+
+
+https://viewer.nationalmap.gov/services/
+
+```{r}
+leaflet() %>% addTiles() %>% setView(-93.65, 42.0285, zoom = 4) %>%
+  addWMSTiles(
+    "https://rmgsc.cr.usgs.gov/arcgis/services/contUS/MapServer/WmsServer?",
+    layers = "2",
+    options = WMSTileOptions(format = "image/png", transparent = T),
+    attribution = "Weather data © 2012 IEM Nexrad"
+  ) %>% 
+  
+  leaflet.extras::addWMSLegend(
+    uri = paste0(
+      "https://rmgsc.cr.usgs.gov/arcgis/services/contUS/MapServer/WmsServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=2"
+    )
+  )
+```
+
+
+
+
+
+
+```{r}
+leaflet() %>% addTiles() %>% setView(-93.65, 42.0285, zoom = 4) %>%
+  addWMSTiles(
+    "https://www.mrlc.gov/geoserver/mrlc_display/NLCD_2016_Tree_Canopy_L48/ows?SERVICE=WMS&",
+    layers = "NLCD_2016_Tree_Canopy_L48",
+    options = WMSTileOptions(format = "image/png", transparent = T),
+    attribution = "Weather data © 2012 IEM Nexrad"
+  ) 
+
+```
+
+
+
+
+
+
+GOES Northern Hemisphere Shortwave Infrared Composite
+
+13
+
+```{r}
+leaflet() %>% addTiles() %>% setView(-93.65, 42.0285, zoom = 4) %>%
+  addWMSTiles(
+    "https://nowcoast.noaa.gov/arcgis/services/nowcoast/sat_meteo_imagery_time/MapServer/WmsServer?",
+    layers = "18",
+    options = WMSTileOptions(format = "image/png", transparent = T),
+    attribution = "Weather data © 2012 IEM Nexrad"
+  ) %>% 
+  
+  leaflet.extras::addWMSLegend(
+    uri = paste0(
+      "https://nowcoast.noaa.gov/arcgis/services/nowcoast/sat_meteo_imagery_time/MapServer/WmsServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=18"
+    )
+  )
+
+```
+
+

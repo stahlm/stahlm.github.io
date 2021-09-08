@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1584025933899.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "1AEC244E",
+    "lastKnownWriteTime" : 1563979056,
+    "last_content_update" : 1563979056,
+    "path" : "C:/Users/stahlm/Google Drive/Carbon_Cycling_Mohawk_Hudson_Project/Data_analysis_and_paper_draft/geologic_map.Rmd",
+    "project_path" : null,
+    "properties" : {
+        "chunk_output_type" : "inline",
+        "cursorPosition" : "26,0",
+        "scrollLine" : "13"
+    },
+    "relative_order" : 9,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

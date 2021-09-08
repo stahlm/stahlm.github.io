@@ -1,0 +1,5 @@
+"0","```r
+dem_lines <- stars::st_contour(stars::st_as_stars(dem) , breaks = c(-10,2))
+```"
+"1","range of breaks does not cover range of cell values
+"

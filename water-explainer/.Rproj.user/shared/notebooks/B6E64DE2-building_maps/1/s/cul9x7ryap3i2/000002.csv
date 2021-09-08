@@ -1,0 +1,5 @@
+"0","#fname <- str_replace(loc2use, pattern = "", "", replacement = ""_"")"
+"0",""
+"0","ggsave(paste(loc_name,""_white_background.png"", sep = """"), "
+"0","       width = 6, height = 6,"
+"0","       dpi = 1200)"

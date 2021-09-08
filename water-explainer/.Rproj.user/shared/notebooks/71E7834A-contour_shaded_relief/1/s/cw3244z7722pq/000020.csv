@@ -1,0 +1,5 @@
+"0","ggplot(dem_cropped, aes(x, y, z = layer)) +"
+"0","     geom_contour_fill() +"
+"0","     geom_contour_tanaka() +"
+"0","     scale_fill_gradient(low = ""white"", high = ""black"")"
+"0",""

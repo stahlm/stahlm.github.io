@@ -1,0 +1,1 @@
+"0","dem_cropped_df <- raster::as.data.frame(dem_cropped, centroids = T, xy = T)"

@@ -1,0 +1,24 @@
+{
+    "id": "E664EE1C",
+    "path": "~/Research_Projects/Fog_Maine/analyze_met_data.Rmd",
+    "project_path": null,
+    "type": "r_markdown",
+    "hash": "1224477568",
+    "contents": "",
+    "dirty": false,
+    "created": 1598559641632.0,
+    "source_on_save": false,
+    "relative_order": 7,
+    "properties": {
+        "cursorPosition": "187,3",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1598574920,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1598574920333,
+    "read_only": false,
+    "read_only_alternatives": []
+}

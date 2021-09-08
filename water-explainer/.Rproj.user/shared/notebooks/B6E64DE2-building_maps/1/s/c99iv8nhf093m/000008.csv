@@ -1,0 +1,7 @@
+"0","map_2 + theme_pomological_fancy(""Homemade Apple"", 16) +"
+"0","    theme(axis.title.x=element_blank(),"
+"0","        axis.text.x=element_blank(),"
+"0","        axis.ticks.x=element_blank()) +"
+"0","  theme(axis.title.y=element_blank(),"
+"0","        axis.text.y=element_blank(),"
+"0","        axis.ticks.y=element_blank())"

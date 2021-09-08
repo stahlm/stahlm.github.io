@@ -1,0 +1,189 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(sf)
+library(rgee)
+
+ee_Initialize()
+```
+
+
+
+
+
+```{r}
+collection <- ee$ImageCollection("LANDSAT/LC08/C01/T1")
+
+point <- ee$Geometry$Point(-122.262, 37.8719)
+start <- ee$Date("2014-06-01")
+finish <- ee$Date("2014-10-01")
+
+filteredCollection <- ee$ImageCollection("LANDSAT/LC08/C01/T1")$
+  filterBounds(point)$
+  filterDate(start, finish)$
+  sort("CLOUD_COVER", TRUE)
+
+first <- filteredCollection$first()
+
+# Define visualization parameters in an object literal.
+vizParams <- list(
+  bands = c("B5", "B4", "B3"),
+  min = 5000,
+  max = 15000,
+  gamma = 1.3
+)
+
+Map$addLayer(first, vizParams, "Landsat 8 image") 
+
+# Load a feature collection.
+featureCollection <- ee$FeatureCollection("TIGER/2016/States")
+
+# Filter the collection.
+filteredFC <- featureCollection$filter(ee$Filter$eq("NAME", "California"))
+
+# Display the collection.
+Map$addLayer(
+  eeObject = filteredFC,
+  visParams = list(palette = "blue"),
+  name = "California"
+) +Map$addLayer(first, vizParams, "Landsat 8 image")
+  
+
+```
+
+
+
+
+```{r}
+dataset <- ee$ImageCollection("WORLDCLIM/V1/MONTHLY")
+
+worldclim <- dataset$select("tavg")
+worldclim_vis <- list(
+  min = -400,
+  max = 300,
+  palette = c('blue', 'purple', 'cyan', 'green', 'yellow', 'red')
+)
+
+Map$setCenter(-111.313, 39.724, 6)
+Map$addLayer(
+  worldclim,
+  worldclim_vis,
+  "ALOS Topographic Diversity"
+)
+```
+
+
+
+
+```{r}
+# Define study area (local -> earth engine)
+# Communal Reserve Amarakaeri - Peru
+rlist <- list(xmin = -71.13, xmax = -70.95,ymin = -12.89, ymax = -12.73)
+ROI <- c(rlist$xmin, rlist$ymin,
+         rlist$xmax, rlist$ymin,
+         rlist$xmax, rlist$ymax,
+         rlist$xmin, rlist$ymax,
+         rlist$xmin, rlist$ymin)
+ee_ROI <- matrix(ROI, ncol = 2, byrow = TRUE) %>%
+  list() %>%
+  st_polygon() %>%
+  st_sfc() %>%
+  st_set_crs(4326) %>%
+  sf_as_ee()
+
+
+# Get the mean annual NDVI for 2011
+cloudMaskL457 <- function(image) {
+  qa <- image$select("pixel_qa")
+  cloud <- qa$bitwiseAnd(32L)$
+    And(qa$bitwiseAnd(128L))$
+    Or(qa$bitwiseAnd(8L))
+  mask2 <- image$mask()$reduce(ee$Reducer$min())
+  image <- image$updateMask(cloud$Not())$updateMask(mask2)
+  image$normalizedDifference(list("B4", "B3"))
+}
+
+ic_l5 <- ee$ImageCollection("LANDSAT/LT05/C01/T1_SR")$
+  filterBounds(ee$FeatureCollection(ee_ROI))$
+  filterDate("2011-01-01", "2011-12-31")$
+  map(cloudMaskL457)
+
+# Create simple composite
+mean_l5 <- ic_l5$mean()$rename("NDVI")
+mean_l5 <- mean_l5$reproject(crs = "EPSG:4326", scale = 500)
+mean_l5_Amarakaeri <- mean_l5$clip(ee_ROI)
+
+# Move results from Earth Engine to Drive
+assetid <- paste0(ee_get_assethome(), '/l5_Amarakaeri')
+task_img <- ee_image_to_asset(
+  image = mean_l5_Amarakaeri,
+  assetId = assetid,
+  overwrite = TRUE,
+  scale = 500,
+  region = ee_ROI
+)
+
+task_img$start()
+ee_monitoring(task_img)
+
+ee_l5 <- ee$Image(assetid)
+Map$centerObject(ee_l5)
+Map$addLayer(ee_l5)
+```
+
+
+```{r}
+d2H <- raster::raster('C:/Users/stahlm/Documents/Research_Projects/Groundwater_Isotopes/Output/RF_model/RF_model_GW_isotopes_H.gri')
+
+raster::crs(d2H) <- "+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0" 
+```
+
+```{r}
+raster::writeRaster(d2H, "./testd2h.tif",format="GTiff", overwrite = T)
+```
+
+
+```{r}
+getwd()
+```
+
+
+
+```{r}
+assetId <- sprintf("%s/%s",ee_get_assethome(),'/d2H')
+assetid <- paste0(ee_get_assethome(), '/RF_model_GW_isotopes_H')
+
+ee_raster_02 <- raster_as_ee(
+  x = d2H,
+  assetId = assetId,
+  overwrite = TRUE,
+  bucket = "rgee_dev"
+)
+```
+
+
+
+
+```{r}
+ee_Initialize(gcs = TRUE)
+
+# Get the filename of a image
+d2H <- raster::raster('C:/Users/stahlm/Documents/Research_Projects/Groundwater_Isotopes/Output/RF_model/RF_model_GW_isotopes_H.gri')
+
+#assetId <- sprintf("%s/%s",ee_get_assethome(),'stars_l7')
+assetid <- paste0(ee_get_assethome(), '/RF_model_GW_isotopes_H')
+
+# # Method 2
+ee_raster_02 <- raster_as_ee(
+  x = d2H,
+  assetId = assetId,
+  overwrite = TRUE,
+  bucket = "rgee_dev"
+)
+```
+
+

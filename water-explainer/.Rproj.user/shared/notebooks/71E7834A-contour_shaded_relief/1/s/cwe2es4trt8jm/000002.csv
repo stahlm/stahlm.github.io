@@ -1,0 +1,2 @@
+"0","country_border <- country_borders %>% "
+"0","  filter(NAME == ""Israel"")"

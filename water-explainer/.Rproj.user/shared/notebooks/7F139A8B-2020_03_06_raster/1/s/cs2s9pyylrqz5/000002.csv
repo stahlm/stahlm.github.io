@@ -1,0 +1,9 @@
+"0","```r
+coeff_p0 <- 1 # Sea level standard atmospheric pressure (Atmospheres)
+#coeff_L <- 	0.00976 # Temperature lapse rate, = g/cp for dry air (K/m)
+#coeff_cp <- 1004.68506  # Constant-pressure specific heat (J/(kgÂ·K))
+coeff_T0 <- 288.16 # Sea level standard temperature(K)
+coeff_g <- 9.80665 # 	Earth-surface gravitational acceleration (m/s^2)
+coeff_M <- 0.02896968 # Molar mass of dry air (kg/mol)
+coeff_R0 <- 8.314462618 #	Universal gas constant (J/(mol*K))
+```"

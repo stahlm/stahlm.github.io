@@ -1,0 +1,3 @@
+"0","```r
+raster_atmos_pressure <- coeff_p0 * exp( -(coeff_g * raster_world_elev * coeff_M)/(coeff_T0 * coeff_R0) )
+```"

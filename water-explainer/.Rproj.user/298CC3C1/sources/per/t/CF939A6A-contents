@@ -1,0 +1,23 @@
+---
+title: "US Water Quality Guidelines"
+description: |
+  An overview of water quality guidelines in the US.
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+### National Primary Drinking Water Regulations (NPDWRs)
+The goal of primary standards is to protect public health by limiting the levels of contaminants in drinking water.  The NPDWRs set maximum contaminant levels (MCLs)^[The highest level of a contaminant that is allowed in drinking water] which are **legally enforceable** along with maximum contaminant level goals (MCLGs) which are public health targets that are not legally enforceable.  The NPDWRs apply to public water systems (PWS)^[A water supply system that provides water for human consumption through pipes or other constructed conveyances to at least 15 service connections or serves an average of at least 25 people for at least 60 days a year. A public water system may be publicly or privately owned.].  
+
+
+
+
+
+
+
+### National Secondary Drinking Water Regulations (NSDWRs)
+

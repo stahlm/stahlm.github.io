@@ -1,0 +1,7 @@
+"0","ggplot(dem_cropped_df, aes(x, y, z = layer)) +"
+"0","  geom_relief(sun.angle = 60, shadow = F) +"
+"0","  geom_sf(data = country_border$geometry, color = NA,"
+"0","          inherit.aes = F, fill = NA) +"
+"0","  coord_sf() +"
+"0","  theme_void() +"
+"0","  theme(legend.position = ""none"")"

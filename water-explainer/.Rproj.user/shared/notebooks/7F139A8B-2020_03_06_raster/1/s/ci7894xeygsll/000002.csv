@@ -1,0 +1,4 @@
+"0","```r
+raster_elev_southaf <- raster::crop(raster_elev_southaf,
+                                    borders_data_southaf)
+```"

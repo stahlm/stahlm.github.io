@@ -1,0 +1,67 @@
+{
+  "articles": [
+    {
+      "path": "about.html",
+      "title": "About this site",
+      "description": "Some additional details about the website",
+      "author": [],
+      "contents": "\r\n\r\n\r\n\r\n",
+      "last_modified": "2020-12-17T16:09:51-05:00"
+    },
+    {
+      "path": "about2.html",
+      "title": "About this site",
+      "description": "Some additional details about the website",
+      "author": [],
+      "contents": "\r\n\r\n\r\n\r\n",
+      "last_modified": "2020-12-17T16:09:52-05:00"
+    },
+    {
+      "path": "gw-supreme-court.html",
+      "title": "Groundwater and the U.S. Supreme Court",
+      "description": "An overview of Supreme Court cases related to groundwater or where groundwater plays an important role.\n",
+      "author": [],
+      "contents": "\r\nMississippi v. Tennessee\r\n\r\nGranted\r\nArgued\r\nDecided\r\nFlorida v. Georgia\r\nTexas v. New Mexico and Colorado\r\nCounty of Maui v. Hawai’i Wildlife Fund\r\nKansas v. Colorado\r\nKansas v. Nebraska and Colorado\r\n\r\n\r\n\r\n",
+      "last_modified": "2020-12-17T16:09:54-05:00"
+    },
+    {
+      "path": "index.html",
+      "title": "Water explainer",
+      "description": "Welcome to the website. I hope you enjoy it!\n",
+      "author": [],
+      "contents": "\r\n\r\n\r\n\r\n",
+      "last_modified": "2020-12-17T16:09:55-05:00"
+    },
+    {
+      "path": "test-page.html",
+      "title": "Untitled",
+      "description": "A new article created using the Distill format.\n",
+      "author": [
+        {
+          "name": "Nora Jones",
+          "url": "https://example.com/norajones"
+        }
+      ],
+      "date": "`r Sys.Date()`",
+      "contents": "\r\nDistill is a publication format for scientific and technical writing, native to the web.\r\nLearn more about using Distill for R Markdown at https://rstudio.github.io/distill.\r\n\r\n\r\n\r\n",
+      "last_modified": "2020-12-17T16:09:56-05:00"
+    },
+    {
+      "path": "us-water-law.html",
+      "title": "US Water Law",
+      "description": "An overview of legislation related to water resources in the United States.\n",
+      "author": [],
+      "contents": "\r\nRegulators\r\nLaws and regulations\r\nSafe Drinking Water Act (SDWA)\r\nClean Water Act (CWA)\r\nBeaches Environmental Assessment and Coastal Health (BEACH) Act\r\nNational Pollutant Discharge Elmination System (NPDES)\r\nComprehensive Environmental Response, Compensation, and Liability Act (CERCLA)\r\nCompliance and enforcement\r\nGround Water Rule\r\nRegulations\r\nRegulations 1.\r\n\r\nRegulations explain the technical, operational, and legal details necessary to implement laws. Regulations are mandatory requirements that can apply to individuals, businesses, state or local governments, non-profit institutions, or others↩︎\r\n",
+      "last_modified": "2020-12-17T16:09:57-05:00"
+    },
+    {
+      "path": "us-water-quality-guidelines.html",
+      "title": "US Water Quality Guidelines",
+      "description": "An overview of water quality guidelines in the US.\n",
+      "author": [],
+      "contents": "\r\nNational Primary Drinking Water Regulations (NPDWRs)\r\nThe goal of primary standards is to protect public health by limiting the levels of contaminants in drinking water. The NPDWRs set maximum contaminant levels (MCLs)1 which are legally enforceable along with maximum contaminant level goals (MCLGs) which are public health targets that are not legally enforceable. The NPDWRs apply to public water systems (PWS)2.\r\nNational Secondary Drinking Water Regulations (NSDWRs)\r\n\r\nThe highest level of a contaminant that is allowed in drinking water↩︎\r\nA water supply system that provides water for human consumption through pipes or other constructed conveyances to at least 15 service connections or serves an average of at least 25 people for at least 60 days a year. A public water system may be publicly or privately owned.↩︎\r\n",
+      "last_modified": "2020-12-17T16:09:59-05:00"
+    }
+  ],
+  "collections": []
+}

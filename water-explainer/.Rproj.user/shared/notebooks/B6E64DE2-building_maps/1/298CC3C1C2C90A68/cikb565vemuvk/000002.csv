@@ -1,0 +1,20 @@
+"0","streets <- bb_values %>%"
+"0","  opq()%>%"
+"0","  add_osm_feature(key = ""highway"", "
+"0","                  value = c(""motorway"", ""primary"", "
+"0","                            ""secondary"", ""tertiary"")) %>%"
+"0","  osmdata_sf()"
+"2","Request failed [504]. Retrying in 1.1 seconds...
+"
+"0","streets"
+"2","Object of class 'osmdata' with:
+                 $bbox : 42.763577,-73.9834749,42.843668,-73.893042
+        $overpass_call : The call submitted to the overpass API
+                 $meta : metadata including timestamp and version numbers
+           $osm_points : 'sf' Simple Features Collection with 3724 points
+            $osm_lines : 'sf' Simple Features Collection with 397 linestrings
+         $osm_polygons : 'sf' Simple Features Collection with 0 polygons
+       $osm_multilines : NULL
+    $osm_multipolygons : NULL
+
+"

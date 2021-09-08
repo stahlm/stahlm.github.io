@@ -1,0 +1,4 @@
+"0","```r
+pt <- cbind(-73.939, 42.8142)
+nz_z12 <- cc_location(pt, zoom = 12, type = \"elevation-tiles-prod\")
+```"

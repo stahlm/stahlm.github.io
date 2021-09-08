@@ -1,0 +1,7 @@
+"0","```r
+tm_shape(raster_world_elev) +
+  tm_raster() +
+tm_shape(borders_data) +
+  tm_borders() +
+  tm_layout(legend.position = c(\"LEFT\", \"center\"))
+```"

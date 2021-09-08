@@ -1,0 +1,7 @@
+"0","ggplot(dem_cropped_df, aes(x, y, fill = cut(layer, breaks = n_breaks))) +"
+"0","  geom_raster() +"
+"0","  coord_quickmap() +"
+"0","  scale_fill_manual(values = terrain.colors(n = n_breaks)) +"
+"0","  theme_pomological_fancy() +"
+"0","  theme(legend.position = ""none"") +"
+"0","  labs(x = ""Longitude"", y = ""Latitude"")"

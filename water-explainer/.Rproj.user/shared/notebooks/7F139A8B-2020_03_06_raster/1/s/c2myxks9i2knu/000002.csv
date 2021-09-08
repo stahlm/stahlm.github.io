@@ -1,0 +1,6 @@
+"0","```r
+borders_data <-  spData::world # borders of all countries
+# Get just South Africa's borders
+borders_data_southaf <- borders_data %>% 
+  filter(name_long == \"South Africa\")
+```"

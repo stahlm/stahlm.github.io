@@ -1,0 +1,215 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r}
+library(tidyverse)
+library(lubridate)
+
+```
+
+
+```{r}
+gw_levels <- read_table2("C:/Users/stahlm/Desktop/gw_ny/NY.txt", 
+                         comment = "#", 
+                         col_names = c("Agency","Site_ID","Param_code","Stat_code","Date","Water_level__ft","Level_code"))
+```
+
+```{r}
+gw_levels <- gw_levels %>% 
+  mutate(Date = mdy(Date)) %>% 
+  mutate(Year = year(Date),
+         Month = month(Date),
+         Day = day(Date),
+         Site_ID = as.character(Site_ID)
+         )
+```
+
+
+```{r}
+gw_levels %>% 
+  group_by(Site_ID) %>% 
+  summarise(date_first = min(Date),
+            date_last = max(Date),
+            n_measurements = n()) %>% 
+  arrange(-n_measurements)
+```
+
+```{r fig.height= 8}
+gw_levels %>% 
+  ggplot(aes(x = Date, y = Water_level__ft)) +
+  #geom_point() +
+  geom_line() +
+  facet_wrap(~Site_ID, scales = "free_y", ncol = 3) +
+  theme_bw()
+  
+```
+
+
+```{r}
+a <- gw_levels %>% 
+  group_by(Site_ID, Year) %>% 
+  filter(length(unique(Month)) > 11) %>% 
+  group_by(Site_ID, Year, Month) %>% 
+  summarize(mean_gw = mean(Water_level__ft),
+            min_gw = min(Water_level__ft),
+            max_gw = max(Water_level__ft),
+            n = n()) %>% 
+  
+  ggplot(aes(x = Month, y = mean_gw, group = Year, color = Year)) +
+  geom_point() +
+  geom_line() +
+  scale_color_gradient(low = "red", high = "blue") +
+  theme_bw() +
+  theme(legend.position = "none") +
+  facet_wrap(~ Site_ID, scales = "free_y")
+
+a
+```
+
+```{r}
+library(ggridges)
+```
+
+
+```{r}
+a <- gw_levels %>% 
+  group_by(Site_ID, Year) %>% 
+  filter(length(unique(Month)) > 11) %>% 
+  group_by(Site_ID, Year, Month) %>% 
+  summarize(mean_gw = mean(Water_level__ft),
+            min_gw = min(Water_level__ft),
+            max_gw = max(Water_level__ft),
+            n = n()) %>% 
+  mutate(month_rank = percent_rank(mean_gw)) %>% 
+  filter(month_rank == 0) %>% 
+  ggplot() +
+  ggridges::geom_density_ridges2(aes(x = Month, y = Site_ID), stat = "binline") 
+  
+  #ggplot(aes(x = Month, y = Site_ID, fill = month_rank)) +
+  #scale_fill_gradient2(low = "red", mid = "green", high = "blue", midpoint = 0.5) +
+  #geom_raster()
+
+a
+```
+
+
+
+```{r}
+a <- gw_levels %>% 
+  group_by(Site_ID, Year) %>% 
+  filter(length(unique(Month)) > 11) %>% 
+  group_by(Site_ID, Year, Month) %>% 
+  summarize(mean_gw = mean(Water_level__ft),
+            min_gw = min(Water_level__ft),
+            max_gw = max(Water_level__ft),
+            n = n()) %>% 
+  mutate(month_rank = percent_rank(mean_gw)) %>% 
+  group_by(Site_ID, Month) %>% 
+  summarise(min_count = sum(month_rank == 0)) %>% 
+  group_by(Site_ID) %>% 
+  mutate(min_prop = min_count/sum(min_count)) %>% 
+  
+  ggplot(aes(x = Month, y = Site_ID, fill = min_prop)) +
+  scale_fill_gradient() +
+  geom_raster()
+
+a
+  
+```
+
+
+
+```{r}
+gw_levels %>% 
+  filter(Site_ID == "405125073420702") %>% 
+  group_by(Year, Month) %>% 
+  summarise(min_level = min(Water_level__ft),
+            n = n())
+```
+
+```{r}
+
+```
+
+
+
+```{r}
+gw_levels_monthly <- gw_levels %>% 
+  group_by(Site_ID, Year, Month) %>% 
+  summarize(gw_level_mean = mean(Water_level__ft, na.rm = T)) %>% 
+  mutate(Date = ymd(paste(Year,Month,15)))
+```
+
+
+
+```{r}
+gw_levels_monthly %>% 
+  group_by(Site_ID) %>% 
+  summarize(n = n()) %>% 
+  arrange(-n)
+```
+
+
+```{r}
+gw_levels_monthly %>% 
+  filter(Site_ID == "405125073420702") %>% 
+  ggplot(aes(x = Date, y = gw_level_mean)) +
+  geom_point() +
+  geom_line()
+```
+
+
+
+```{r fig.height= 3.5, fig.width= 7.5}
+gw_levels_monthly %>% 
+  filter(Site_ID == "405125073420702") %>% 
+  ggplot(aes(x = Year, y = gw_level_mean)) +
+  geom_point() +
+  geom_smooth(method = "lm") + 
+  facet_wrap(~Month, ncol = 12) +
+  theme_classic() +
+  theme(axis.text.x = element_blank()) 
+```
+
+
+
+```{r}
+gw_levels_monthly %>% 
+  filter(Site_ID == "405125073420702") %>% 
+  mutate(plot_date = ymd(paste(2020,Month,15))) %>% 
+  ggplot(aes(x = plot_date, y =  gw_level_mean, color = Year, group = Year)) +
+  scale_color_gradient(low = "blue", high = "red") +
+  geom_point() +
+  geom_line()
+  
+```
+
+
+
+
+***
+
+```{r}
+flow <- read_csv("https://stahlm.github.io/ENS_215/Data/USGS_flow_01351500.csv") %>% 
+  drop_na() %>% 
+  filter(Year >= 1940 & Year <= 2016) %>%  # select years 1940 through 2016
+  mutate(Date = make_date(Year, Month, Day)) # create a Date column that has the dates as an R date object
+```
+
+```{r}
+flow_monthly <- flow %>% 
+  group_by(Year, Month) %>% 
+  summarize(flow_cfs = max(flow_cfs))
+```
+
+```{r}
+flow_ts <- ts(flow_monthly$flow_cfs, start = 1940, freq = 12)
+```
+
+```{r}
+spectrum(flow_ts)
+```
+

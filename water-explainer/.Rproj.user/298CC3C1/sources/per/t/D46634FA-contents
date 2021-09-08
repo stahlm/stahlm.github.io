@@ -1,0 +1,25 @@
+---
+name: "water-explainer"
+title: "Water explainer"
+description: |
+  Water explainer
+output_dir: "docs"
+navbar:
+  right:
+    - text: "Home"
+      href: index.html
+    - text: "About"
+      href: about.html
+    - text: "Test"
+      menu: 
+        - text: "US Water Law"
+          href: us-water-law.html
+        - text: "Groundwater and the Supreme Court"
+          href: gw-supreme-court.html
+        - text: "US Water Quality Guidelines"
+          href: us-water-quality-guidelines.html
+        - text: "---"
+    - icon: fab fa-github
+      href: https://github.com/rstudio/distill
+output: distill::distill_article
+---

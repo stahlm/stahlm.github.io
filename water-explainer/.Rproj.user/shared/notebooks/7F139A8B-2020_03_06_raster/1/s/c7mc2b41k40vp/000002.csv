@@ -1,0 +1,4 @@
+"0","```r
+raster::plot(raster_temps_diff_reclass,
+             col = terrain.colors(4))
+```"

@@ -1,0 +1,6 @@
+"0","```r
+cellStats(raster_world_elev,
+          stat = max)
+```"
+"1","[1] 99999
+"

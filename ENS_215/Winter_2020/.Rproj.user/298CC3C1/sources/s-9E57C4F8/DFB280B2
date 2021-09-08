@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1582840577945.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "DFB280B2",
+    "lastKnownWriteTime" : 7308604914264011873,
+    "last_content_update" : 1582840577945,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "D1B30497",
+        "caption" : "gw_levels",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=gw_levels&cache_key=D1B30497",
+        "displayedObservations" : 29183,
+        "environment" : "",
+        "object" : "gw_levels",
+        "preview" : 0,
+        "totalObservations" : 29183,
+        "variables" : 7
+    },
+    "relative_order" : 9,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

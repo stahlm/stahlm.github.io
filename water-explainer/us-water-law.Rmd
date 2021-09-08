@@ -1,0 +1,45 @@
+---
+title: "US Water Law"
+description: |
+  An overview of legislation related to water resources in the United States.
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Regulators
+
+## Laws and regulations
+
+### Safe Drinking Water Act (SDWA)
+### Clean Water Act (CWA)
+#### Beaches Environmental Assessment and Coastal Health (BEACH) Act 
+
+### National Pollutant Discharge Elmination System (NPDES)
+
+
+### Comprehensive Environmental Response, Compensation, and Liability Act (CERCLA)  
+Compliance and enforcement 
+
+### Ground Water Rule
+
+[Regulations](https://www.epa.gov/laws-regulations/regulations)
+
+
+**Regulations** ^[Regulations explain the technical, operational, and legal details necessary to implement laws. Regulations are mandatory requirements that can apply to individuals, businesses, state or local governments, non-profit institutions, or others].  
+
+
+
+
+
+
+
+
+
+
+
+
+
+

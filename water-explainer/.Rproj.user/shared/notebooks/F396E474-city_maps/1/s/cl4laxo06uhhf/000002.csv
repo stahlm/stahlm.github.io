@@ -1,0 +1,14 @@
+"0","# download from OSM coastline line for your bounding box"
+"0","coastline_data <- opq(bb_values) %>% "
+"0","  add_osm_feature(key = 'natural', value = 'coastline') %>% "
+"0","  osmdata_sf()"
+"0",""
+"0","# create the LINESTRING sf (i.e. the coastline) and the POLYGONS sf (i.e. the"
+"0","# islands)"
+"0","coastline <- coastline_data$osm_lines"
+"0","islands <- coastline_data$osm_polygons"
+"0",""
+"0","background_data <- tmaptools::read_osm(sf::st_bbox(coastline))"
+"2","Error in st_bbox.default(coastline) : 
+  no st_bbox method available for object of class NULL
+"

@@ -1,0 +1,96 @@
+---
+title: "R Notebook"
+output: html_document
+---
+
+
+```{r}
+library(rayshader)
+library(sf)
+library(tigris)
+library(tidyverse)
+library(tmap)
+```
+
+
+
+```{r}
+raster_elev <- raster::raster("./Spatial_data/World_elev_highres.TIFF")
+raster_elev[raster_elev == 99999] <- NA
+```
+
+
+
+```{r}
+raster::plot(raster_elev)
+```
+
+
+```{r}
+NY_border <- spData::world 
+```
+
+```{r}
+NY_border <- NY_border %>% 
+  filter(name_long == "Australia")
+```
+
+
+
+
+```{r}
+NY_border %>% 
+  tm_shape() +
+  tm_borders()
+```
+
+```{r}
+raster_elev_NY <- raster::mask(raster_elev,
+                                    NY_border)
+```
+
+
+```{r}
+raster_elev_NY <- raster::crop(raster_elev_NY,
+                                    NY_border)
+```
+
+```{r}
+raster::plot(raster_elev_NY)
+```
+
+```{r}
+elmat <- matrix(
+  raster::extract(raster_elev_NY, raster::extent(raster_elev_NY), buffer = 1000), 
+  nrow = ncol(raster_elev_NY), ncol = nrow(raster_elev_NY)
+)
+```
+
+
+
+```{r}
+elmat %>%
+  sphere_shade(texture = "desert") %>%
+  add_water(detect_water(elmat), color = "blue") %>%
+  add_shadow(ray_shade(elmat, zscale = 3), 0.5) %>%
+  add_shadow(ambient_shade(elmat), 0) %>%
+  plot_3d(elmat, zscale = 100, fov = 0, theta = 0, zoom = 0.75, phi = 60, windowsize = c(1000, 800))
+Sys.sleep(0.2)
+#render_depth(focus = 0.6, focallength = 10, clear = TRUE)
+render_snapshot(clear=TRUE)
+```
+
+```{r}
+filename_movie = "./test_elevation_movie"
+
+elmat %>% 
+  sphere_shade(texture="desert") %>%
+  #add_water(detect_water(elmat), color = "blue") %>%
+  plot_3d(elmat, zscale = 100, fov = 0, zoom = 0.75, phi = 60, windowsize = c(1000, 800))
+  render_movie(filename = filename_movie)
+```
+
+
+<video width="320" height="240" controls>
+  <source src="./test_elevation_movie" type="video/mp4">
+</video>

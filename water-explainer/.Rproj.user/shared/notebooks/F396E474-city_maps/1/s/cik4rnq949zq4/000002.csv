@@ -1,0 +1,3 @@
+"0","fname <- str_replace(loc2use, pattern = "", "", replacement = ""_"")"
+"0",""
+"0","ggsave(paste(fname,"".png"", sep = """"), width = 6, height = 6)"

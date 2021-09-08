@@ -1,0 +1,24 @@
+library(tidyverse)
+library(tmap)
+library(sf)
+library(raster)
+source("define_image_size.R")
+source("get_usgs_elevation_data.R")
+source("define_image_size.R")
+# define bounding box with longitude/latitude coordinates
+bbox <- list(
+p1 = list(long = -73.997889, lat = 42.768403), # bottom-left
+p2 = list(long = -73.873456, lat = 42.862791)   # top-right
+)
+image_size <- define_image_size(bbox, major_dim = 600)
+# download elevation data
+elev_file <- file.path("./Spatial_data", "schenectady-elevation.TIFF")
+get_usgs_elevation_data(bbox, size = image_size$size, file = elev_file,
+sr_bbox = 4326, sr_image = 4326)
+elev_img <- raster::raster("./Spatial_data/schenectady-elevation.TIFF")
+elev_img <- raster::raster("./Spatial_data/schenectady-elevation.TIFF")
+elev_img %>%
+tm_shape() +
+tm_raster(style = "cont", palette = terrain.colors(10)) +
+tm_layout(legend.outside = T,
+main.title = "Schenectady elevation map")

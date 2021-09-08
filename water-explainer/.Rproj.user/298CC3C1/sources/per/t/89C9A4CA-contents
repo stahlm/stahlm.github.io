@@ -1,0 +1,84 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(osmdata)
+library(tigris)
+library(sf)
+library(tmap)
+library(osmplotr)
+library(tmaptools)
+library(OpenStreetMap)
+library(metR)
+
+library(ceramic)
+Sys.setenv(MAPBOX_API_KEY = "pk.eyJ1Ijoic3RhaGxtIiwiYSI6ImNrZnJiMDMxbDA0aGsyenFlajhvMzZ4bXUifQ.I7l7fJBAHCQWRwyYozq4ZQ")
+
+```
+
+
+
+
+```{r}
+loc2use <- "Schenectady, NY"
+country <- "US"
+
+
+```
+
+
+```{r}
+bb_values <- getbb(loc2use)
+
+bb_values
+```
+
+
+
+
+```{r}
+loc_coords <- c(mean(bb_values[1,]),mean(bb_values[2,]))
+dem <- cc_elevation(loc_coords, zoom = 12, buffer = 10000)
+```
+
+
+```{r}
+country_borders <- rnaturalearth::ne_download(scale = 110, type = 'countries') %>% 
+  st_as_sf()
+```
+```{r}
+country_border <- country_borders %>% 
+  filter(NAME == "Israel")
+```
+
+```{r}
+dem_national <- cc_location(loc = raster::extent(country_border), type = "elevation-tiles-prod" )
+```
+
+
+```{r}
+dem_cropped <- raster::projectRaster(dem, crs = raster::crs(streets$osm_lines),
+                                     method = 'bilinear')
+```
+
+```{r}
+raster::plot(dem_cropped)
+```
+```{r}
+dem_cropped <- raster::as.data.frame(dem_cropped, centroids = T, xy = T)
+```
+
+https://eliocamp.github.io/metR/articles/Visualization-tools.html#geom-contour-tanaka
+```{r}
+ggplot(dem_cropped, aes(x, y, z = layer)) +
+     geom_contour_fill() +
+     geom_contour_tanaka() +
+     scale_fill_gradient(low = "white", high = "black")
+
+```
+
+
+

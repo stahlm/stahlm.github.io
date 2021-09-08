@@ -1,0 +1,115 @@
+---
+title: "Term wrap-up and useful resources"
+author: "ENS-215"
+date: "11-Mar-2020"
+output:
+  html_document:
+    df_print: paged
+    theme: spacelab
+    toc: no
+    toc_float: no
+---
+
+<br/> 
+
+## Course survey and feedback
+####[Please fill out the survey linked here (_all responses are anonymous_)](https://forms.gle/zeqEfKN5WJEireGa7)
+
+<br/>
+
+
+## Learning more
+### At Union
+We now have a [Data Analytics minor at Union College](https://muse.union.edu/cda/analytics-minor/)!  If you are interested in learning more in this area, adding the minor is a great idea.  
+
+In addition to the classes listed for the minor, there are many other courses at Union that can help you on your way to learning more data analytics, statistics, programming/computing skills.  
+
+I'm happy to offer advice on academic and career paths in these areas (especially as they apply to the environmental fields) and you can also ask other faculty including my colleagues who are also part of the [Center for Data Analytics](https://muse.union.edu/cda/faculty/) 
+
+You can also come into the Center for Data Analytics here at Union for events (talks, hackathons,...) and drop-in hours (in Wold 010) where you can get help with data analytics projects.  
+
+
+### On your own
++ [Our class (ENS-215) website](https://stahlm.github.io/ENS_215/Winter_2020/Home.html): All of the content will remain up and available to you.
++ [_ModernDive_](https://moderndive.com/): For those of you interested in learning more about statistics and data modeling the later chapters in the book are a great starting point.
++ [_R for Data Science_](https://r4ds.had.co.nz/): As you already know this book is a comprehensive resource for using R in data science applications.  
++ [Hands-On Machine Learning with R](https://bradleyboehmke.github.io/HOML/): An excellent and free textbook on data modeling and machine learing in R.  This textbook is very accessible and introduces you to many of the most common methods in machine learning.  
++ [_An Introduction to Statistical Learning_](http://www-bcf.usc.edu/~gareth/ISL/): An excellent and freely available textbook that introduces machine learning concepts and applications.  This book is a bit advanced (aimed at upper level undergraduates and graduate students) but is still reasonably accessible.
+    + Two of the authors (Prof. Hastie and Tibshirani of Stanford) have made 15 hrs of video lectures that go along with the book.  The lectures are excellent and actually pretty entertaining too (they have great banter with each other).  [You can access the lectures here](https://www.r-bloggers.com/in-depth-introduction-to-machine-learning-in-15-hours-of-expert-videos/).  
++ [_Geocomputation with R_](https://geocompr.robinlovelace.net/): Excellent and freely available text on geographic data analysis, visualization, and modeling.  The book implements these concepts and techniques with R.  The chapter on making maps in R is likely to be of particular interest to many of you.  
++ [DataCamp](https://www.datacamp.com/): There are many additional interactive classes available here covering a wide-range of topics (e.g. machine learning, geographic/spatial analysis, statistics) and their implementation in R.  Your free access lasts for six months, so you will still have access for some time after the term ends.  
+
+
+
+<br/>
+
+
+## Other useful resources
++ [RStudio Cloud](https://rstudio.cloud/): Allows you to run RStudio right in your web browser.
++ [Compendium of hydrology resources in R](https://github.com/ropensci/hydrology)
++ [USGS Office of Water Information](https://owi.usgs.gov/datascience/): Links to USGS water data resources, USGS data science tools and training, and USGS data visualizations. 
++ [Towards Data Science](https://towardsdatascience.com/): Site with news and articles related to data science, statistics, R, machine learning, and data visualization.
++ [R cheatsheets](https://stahlm.github.io/ENS_215/Resources/Cheatsheets_all.pdf): PDF copies of the cheatsheets handed out in class.
++ [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/): Very good (freely available) textbook on formatting and creating a range of R Markdown documents.  
+
+
+<br/>
+
+
+## Data resources
++ [USGS National Water Information Service](https://nwis.waterdata.usgs.gov/nwis): Web interface that provides access to USGS water data (e.g. flows, water levels, chemical and biological conditions) for nearly 2 million sites across the US and US territories.  You can also directly query and download data right in R using [USGS R packages](https://owi.usgs.gov/R/training-curriculum/usgs-packages/).  
++ [NOAA Climate Data](https://www.ncdc.noaa.gov/climate-information): Climate datasets for the US and the world.
++ [Natural Earth Data](https://www.naturalearthdata.com/): Site with freely available geospatial dataset (e.g. country borders, river shapefiles, land surface elevation data).
++ [US Census Data](https://data.census.gov/cedsci/search): Access to US census data (e.g. population, income, demographics,..)
++ [Data.gov](https://www.data.gov/open-gov/): Has tons of datasets from US government agencies.  Data is available across a wide range of topics.
++ [USDA data](https://www.usda.gov/topics/data): Data from the US Department of Agriculture (crop yields, irrigated acres, fertilizer usage)
++ [UN FAO Aquastat Data](http://www.fao.org/nr/water/aquastat/main/index.stm): UN data on water resources.
++ [UN Statistics Division: Environmental Data](https://unstats.un.org/unsd/envstats/qindicators.cshtml): Excellent resource with environmental data for a wide range of topics (e.g. Biodiversity, energy and minerals, forests, water resources,...)
++ [NYC Open Data](https://opendata.cityofnewyork.us/): Excellent site with datasets for NYC, many of which are related environment.  
++ [NASA Earth Observations](https://neo.sci.gsfc.nasa.gov/): NASA website with information and links to the data from NASA earth observation satellites and other global earth science datasets.  
++ [Tidy Tuesday](https://github.com/rfordatascience/tidytuesday): A weekly project where an interesting dataset(s) is posted along with a coding challenge
+
+<br/>
+
+## Some useful R packages that we used (and some that we didn't)
+### Data wrangling and data visualization
++ [Tidyverse](https://www.tidyverse.org/): A collection of many incredibly useful R packages including dplyr and ggplot.  
++ [plotly](https://plot.ly/r/): Create interactive graphics, including easy conversion of ggplot graphics to interactive format.
++ [dygraph](https://rstudio.github.io/dygraphs/): Create interactive time-series graphics.
++ [patchwork](https://patchwork.data-imaginist.com/index.html): Combine individual figures into panel graphics.
++ [ggextra](https://github.com/daattali/ggExtra): Functions to enhance ggplot graphics.  Notably allows you to create marginal distributions.  
++ [ggthemes](https://jrnold.github.io/ggthemes/reference/index.html): Additional themes for ggplot graphics. 
++ [scales](https://scales.r-lib.org/): Functions to adjust scales and axis labels on ggplot graphics.
++ [ggridges](https://cran.r-project.org/web/packages/ggridges/vignettes/introduction.html): Functions to create ridgeline distribution plots. 
+
+### Spatial analysis
++ [tmap](https://github.com/mtennekes/tmap): Functions to create high quality maps (both static and dynamic)
++ [leaflet](https://rstudio.github.io/leaflet/): Functions to create interactive maps.
++ [raster](https://rspatial.org/raster/pkg/index.html): Functions for reading, writing, and analyzing raster data.
++ [sf](https://r-spatial.github.io/sf/index.html): Provides functionality for handling simple features data in R.
+
+### Data acquisition 
++ [tigris](https://github.com/walkerke/tigris): Acquire geographic data (e.g. rivers, lakes, roads, county borders,...) directly from the US Census Bureau.  
++ [tidycensus](https://walkerke.github.io/tidycensus/index.html): Acquire census data (e.g. demographics, income,...) directly fron the US Census Bureau.  
++ [dataRetrevial](https://github.com/USGS-R/dataRetrieval): Acquire data directly from the USGS Nation Water Information System (e.g. water quality, streamflow, groundwater levels)
++ [stationaRy](https://github.com/rich-iannone/stationaRy): Acquire hourly meteorological data from one of thousands of global stations (data is from NOAA). 
++ [gapminder](https://cran.r-project.org/web/packages/gapminder/README.html): Get data from the gapminder dataset on global development.  
++ [rnaturalearth](https://cran.r-project.org/web/packages/rnaturalearth/README.html): Acquire geospatial data (e.g. country borders, topographic data,...) from Natural Earth repository.
++ [FedData](https://github.com/ropensci/FedData): Functions to Automate Downloading Geospatial Data Available from Several Federated Data Sources.  
+
+### Statistics and data modeling 
++ [moderndive](https://moderndive.github.io/moderndive/): Functions for easy to implement regression models.
++ [mblm](https://cran.r-project.org/web/packages/mblm/index.html): Functions for performing robust regressions (i.e. Theil-Sen regression). 
++ [infer](https://infer.netlify.com/index.html): An R package for tidyverse-friendly statistical inference
+
+### Other
++ [countrycode](https://github.com/vincentarelbundock/countrycode): Functions to standardize country names, convert them into one of eleven coding schemes, convert between coding schemes, and assign region descriptors.
++ [kableExtra](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html): Functions to build common complex tables and manipulate table styles.  Allows you to make very nicely formatted tables in RMarkdown.  
+
+
+
+
+
+
+
+

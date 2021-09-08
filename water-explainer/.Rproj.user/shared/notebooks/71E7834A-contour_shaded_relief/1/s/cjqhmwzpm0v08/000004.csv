@@ -1,0 +1,2 @@
+"0","dem_cropped <- raster::projectRaster(dem, crs = raster::crs(streets$osm_lines),"
+"0","                                     method = 'bilinear')"

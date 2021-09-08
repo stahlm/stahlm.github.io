@@ -1,0 +1,26 @@
+{
+    "id": "BA0DCF1C",
+    "path": "~/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/water-explainer/contour_shaded_relief_v2.Rmd",
+    "project_path": "contour_shaded_relief_v2.Rmd",
+    "type": "r_markdown",
+    "hash": "2491442322",
+    "contents": "",
+    "dirty": false,
+    "created": 1608519315967.0,
+    "source_on_save": false,
+    "relative_order": 12,
+    "properties": {
+        "tempName": "Untitled1",
+        "chunk_output_type": "inline",
+        "cursorPosition": "92,22",
+        "scrollLine": "91"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1608775346,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1608775346526,
+    "read_only": false,
+    "read_only_alternatives": []
+}

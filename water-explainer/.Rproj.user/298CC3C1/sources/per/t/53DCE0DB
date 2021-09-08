@@ -1,0 +1,25 @@
+{
+    "id": "53DCE0DB",
+    "path": null,
+    "project_path": null,
+    "type": "object_explorer",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1608594892528.0,
+    "source_on_save": false,
+    "relative_order": 16,
+    "properties": {
+        "id": "da80239362ed454e8a37cdcc8dd6ce82",
+        "name": "land",
+        "title": "land"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 32088581144248437,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1608594892528,
+    "read_only": false,
+    "read_only_alternatives": []
+}

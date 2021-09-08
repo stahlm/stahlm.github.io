@@ -1,0 +1,3 @@
+"0","ggsave(paste(loc_name,""_black_background.png"", sep = """"), "
+"0","       width = 6, height = 6,"
+"0","       dpi = 1200)"

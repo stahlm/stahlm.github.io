@@ -1,0 +1,11 @@
+"0","```r
+raster_world_elev
+```"
+"1","class       : RasterLayer 
+dimensions  : 720, 1440, 1036800  (nrow, ncol, ncell)
+resolution  : 0.25, 0.25  (x, y)
+extent      : -180, 180, -90, 90  (xmin, xmax, ymin, ymax)
+coord. ref. : +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0 
+data source : C:\Users\stahlm\Documents\Teaching_UnionCollege\Environmental_Data_Analysis\stahlm.github.io\ENS_215\Winter_2020\Lectures\Spatial_data\World_elev.TIFF 
+names       : World_elev 
+"

@@ -1,0 +1,1 @@
+"0","dem_cropped <- raster::crop(dem_cropped, country_border)"
