@@ -49,5 +49,12 @@ Once you've downloaded and installed R, then you will need to get RStudio.  Go t
   + Due: 12-Jan
 
 
+<br/>  
 
 ***
+
+
+_Mason Stahl (2022)_  
+_Union College_ 
+
+![](C:/Users/stahlm/Documents/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2022/Images/logo_ens_215.png){width=100px}

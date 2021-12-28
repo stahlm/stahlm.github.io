@@ -8,17 +8,17 @@ output:
     toc_float: yes
 ---
 
+
+
+```{r eval = F, echo = F}
 <style>
 #TOC {
-  background: path("C:/Users/stahlm/Documents/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2022/Images/logo_ens_215.png");
+  background: url("https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2022/Images/logo_ens_215.png");
   background-size: contain;
-  padding-top: 80px !important;
+  padding-top: 280px !important;
   background-repeat: no-repeat;
 }
 </style>
-
-```{r}
-
 ```
 
 
