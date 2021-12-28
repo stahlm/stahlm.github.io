@@ -1,0 +1,11 @@
+"0","```r
+# a <- monthly_climate_sm_df %>% 
+#     group_by(pixel_id) %>%
+#   mutate(pet_anom = pet_tc__mm - mean(pet_tc__mm),
+#          precip_anom = precip_tc__mm - mean(precip_tc__mm),
+#          sm_anom = sm_mean - mean(sm_mean),
+#          ) %>%
+#   ungroup() %>% 
+#   
+#   rename(hemi = hemisphere)
+```"

@@ -1,0 +1,20 @@
+"0","```r
+fig_obj <- sm_dataframe_long %>% 
+  mutate(cluster_id = as.factor(cluster_id)) %>% 
+  
+  mutate(Month = week_num*(12/52)) %>% 
+  ggplot(aes(x = Month, y = sm_anomaly)) +
+  
+  scale_x_continuous(breaks = seq(0,12)) +
+  
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank()
+        ) +
+  
+  
+  facet_wrap(~ cluster_id, nrow = 1)
+  
+ggsave(fig_obj,
+       filename = \"./figures/manuscript/SMAP_hydrograph_by_cluster_template.svg\", dpi = 72, width = 14, height = 3)  
+```"

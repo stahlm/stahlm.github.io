@@ -1,0 +1,5 @@
+"0","```r
+raster_sm_clusters <- raster::projectRaster(raster_sm_clusters,raster_sm, method = 'ngb')
+```"
+"1","input and ouput crs are the same
+"

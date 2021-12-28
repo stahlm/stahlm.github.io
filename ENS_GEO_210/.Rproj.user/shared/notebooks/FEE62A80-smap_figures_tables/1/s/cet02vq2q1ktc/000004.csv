@@ -1,0 +1,6 @@
+"0","```r
+tmap_save(fig_obj, filename = \"./figures/manuscript/SMAP_clusters_map.png\",
+          dpi = 900)
+# 
+ tmap_save(fig_obj, filename = \"./figures/manuscript/SMAP_clusters_map.svg\", dpi = 900)
+```"

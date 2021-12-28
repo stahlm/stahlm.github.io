@@ -1,0 +1,22 @@
+"0","```r
+monthly_climate_sm_df %>% 
+  group_by(pixel_id) %>% 
+  summarize(sm_mean = mean(sm_mean),
+            modeled_sm = mean(modeled_sm),
+            smap_sat = mean(smap_sat),
+            modeled_sat = mean(modeled_sat),
+            cluster_id = first(cluster_id)
+            ) %>% 
+  
+  filter(cluster_id == 5) %>% 
+  
+  ggplot(aes(x = sm_mean, y = modeled_sm)) +
+  
+  #ggplot(aes(x = smap_sat, y = modeled_sat)) +
+  geom_point(alpha = 0.025) +
+  geom_abline(slope = 1, intercept = 0, color = \"blue\") +
+  
+  coord_equal()
+```"
+"1","`summarise()` ungrouping output (override with `.groups` argument)
+"

@@ -1,0 +1,5 @@
+"0","```r
+monthly_climate_sm_df <- monthly_climate_sm_df %>% 
+  mutate(smap_sat = (sm_mean - wcpF4_2)/(wcpf2 - wcpF4_2)) %>% 
+  mutate(modeled_sat = precip_tc__mm/(precip_tc__mm + pet_from_srad))
+```"

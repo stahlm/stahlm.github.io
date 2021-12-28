@@ -1,0 +1,13 @@
+"0","```r
+monthly_climate_sm_df <- monthly_climate_sm_df %>% 
+    mutate(pet_from_srad = srad_tc__Wm2*0.8) %>% 
+    mutate(modeled_sm = ((precip_tc__mm/(precip_tc__mm + pet_from_srad))*(wcpf2- wcpF4_2)) + wcpF4_2  ) %>% 
+  
+    group_by(pixel_id) %>% 
+    mutate(modeled_sm_anomaly = modeled_sm - mean(modeled_sm),
+           smap_sm_anomaly = sm_mean - mean(sm_mean)
+           ) %>% 
+    
+    ungroup()
+    
+```"

@@ -1,0 +1,4 @@
+"0","```r
+sm_dataframe_long <- sm_dataframe_long %>% 
+  mutate(hemisphere = if_else(lat >= 0, \"N\", \"S\"))
+```"

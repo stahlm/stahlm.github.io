@@ -1,0 +1,4 @@
+"0","```r
+sm_dataframe_long <- sm_dataframe_long %>% 
+  mutate(weeks_with_data = sum(!is.na(soil_moisture)) ) 
+```"

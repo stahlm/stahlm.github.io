@@ -1,0 +1,5 @@
+"0","```r
+coastlines <- st_simplify(coastlines, dTolerance = 0.2)
+```"
+"1","st_simplify does not correctly simplify longitude/latitude data, dTolerance needs to be in decimal degrees
+"

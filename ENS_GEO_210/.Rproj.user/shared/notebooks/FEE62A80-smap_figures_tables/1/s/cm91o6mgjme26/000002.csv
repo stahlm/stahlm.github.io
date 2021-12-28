@@ -1,0 +1,5 @@
+"0","```r
+raster_sm <- raster::stack(paste(\"./data/smap/soil_moisture_weekly_masked/\",
+                                 file_list, 
+                                 sep = \"\") )
+```"

@@ -1,0 +1,17 @@
+"0","```r
+  
+  
+  ## Map of correct/incorrect
+  map_correct_incorrect <- 
+    tm_shape(raster_predictions_correct$correct_cluster_prediction, projection = proj2use) +
+    tm_raster(palette = c(\"red\",\"lightblue\"), style = \"cat\", title = \"\") +
+    tm_shape(coastlines) +
+    tm_lines() +
+    tm_layout(legend.position = c(\"left\",\"bottom\"), frame = T, bg.color = \"white\") +
+    tm_graticules(lines = FALSE) 
+  
+  map_correct_incorrect
+  
+  tmap_save(tm = map_correct_incorrect, filename = \"./figures/manuscript/map_cluster_correct_incorrect.png\",
+            dpi = 900, width = 8)
+```"

@@ -1,0 +1,44 @@
+"0","```r
+library(tidyverse)
+library(sf)
+library(tmap)
+library(terra)
+```"
+"1","package ã¤¼ã¸±terraã¤¼ã¸² was built under R version 4.0.5terra version 1.2.5
+
+Attaching package: ã¤¼ã¸±terraã¤¼ã¸²
+
+The following object is masked from ã¤¼ã¸±package:dplyrã¤¼ã¸²:
+
+    near
+
+The following objects are masked from ã¤¼ã¸±package:tidyrã¤¼ã¸²:
+
+    expand, pack, separate
+"
+"0","```r
+library(randomForest)
+```"
+"1","package ã¤¼ã¸±randomForestã¤¼ã¸² was built under R version 4.0.3randomForest 4.6-14
+Type rfNews() to see new features/changes/bug fixes.
+
+Attaching package: ã¤¼ã¸±randomForestã¤¼ã¸²
+
+The following object is masked from ã¤¼ã¸±package:dplyrã¤¼ã¸²:
+
+    combine
+
+The following object is masked from ã¤¼ã¸±package:ggplot2ã¤¼ã¸²:
+
+    margin
+"
+"0","```r
+library(patchwork)
+```"
+"1","package ã¤¼ã¸±patchworkã¤¼ã¸² was built under R version 4.0.3
+Attaching package: ã¤¼ã¸±patchworkã¤¼ã¸²
+
+The following object is masked from ã¤¼ã¸±package:terraã¤¼ã¸²:
+
+    area
+"

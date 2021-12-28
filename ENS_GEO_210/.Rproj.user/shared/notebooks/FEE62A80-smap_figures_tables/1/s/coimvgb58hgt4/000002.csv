@@ -1,0 +1,31 @@
+"0","```r
+sm_cluster_dataframe %>% 
+  filter(!is.na(anomalies_cluster_raster)) %>% 
+  mutate(cluster_id = as.factor(anomalies_cluster_raster)) %>% 
+  group_by(cluster_id) %>% 
+  summarize(cluster_percent = n()) %>% 
+  ungroup() %>% 
+  
+  mutate(cluster_percent = 100*cluster_percent/sum(cluster_percent)) %>% 
+  
+  
+  ggplot(aes(x = cluster_id, y = cluster_percent, fill = cluster_id)) +
+  geom_col(color = \"black\") +
+  
+  scale_fill_manual(values = pal2use) +
+  
+  theme_bw() +
+  theme(legend.position = \"none\", 
+        axis.text = element_text(size = 10, face = \"bold\"),
+        axis.title = element_text(size = 12),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank()
+        ) +
+  labs(x = \"Cluster\", y = \"Percent\")
+```"
+"1","`summarise()` ungrouping output (override with `.groups` argument)
+"
+"0","```r
+  
+ggsave(filename = \"./figures/manuscript/SMAP_cluster_barchart.png\", dpi = 300, width = 3, height = 2)  
+```"

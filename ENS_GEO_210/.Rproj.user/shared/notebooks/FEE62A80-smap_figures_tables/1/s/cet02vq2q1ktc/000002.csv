@@ -1,0 +1,17 @@
+"0","```r
+#proj2use <- \"+proj=robin +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs\"
+#proj2use <- \"+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0\"
+proj2use <- \"+proj=cea +lon_0=0 +x_0=0 +y_0=0 +lat_ts=45 +ellps=WGS84 +datum=WGS84 +units=m +no_defs\"
+#\"+proj=eck4\"
+fig_obj <- tm_shape(raster_sm_clusters, projection = proj2use) +
+  tm_raster(palette = pal2use, style = \"cat\", title = \"Cluster\") +
+  tm_shape(coastlines) +
+  tm_lines() +
+  tm_layout(legend.position = c(\"left\",\"bottom\"), frame = T, bg.color = \"white\") +
+  #tm_grid(lines = FALSE) 
+  tm_graticules(lines = F)
+
+fig_obj
+```"
+"1","legend.postion is used for plot mode. Use view.legend.position in tm_view to set the legend position in view mode.
+"

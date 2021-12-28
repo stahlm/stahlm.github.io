@@ -1,0 +1,18 @@
+"0","```r
+ # Create maps of results
+
+  
+  ## Map of predicted and observed 
+  map_pred_obs <- raster::dropLayer(prediction_all_sites_raster, \"correct_cluster_prediction\") %>% 
+    tm_shape(projection = proj2use) +
+    tm_raster(palette = \"Accent\", style = \"cat\") +
+  
+    tm_shape(coastlines) +
+    tm_lines() +
+  
+    tm_layout(legend.position = c(\"left\",\"bottom\"), frame = T, bg.color = \"white\") +
+    tm_grid(lines = FALSE) 
+  
+  map_pred_obs
+  
+```"

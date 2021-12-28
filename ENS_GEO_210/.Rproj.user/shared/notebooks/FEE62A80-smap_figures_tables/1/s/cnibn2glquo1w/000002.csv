@@ -1,0 +1,5 @@
+"0","```r
+sm_dataframe_long <- sm_dataframe_long %>% 
+  rename(cluster_id = anomalies_cluster_raster) %>% 
+  filter(!is.na(cluster_id))
+```"

@@ -1,0 +1,4 @@
+"0","```r
+#coastlines <- st_read(\"./data/coastlines/glntlbnds.shp\", stringsAsFactors = FALSE)
+
+```"

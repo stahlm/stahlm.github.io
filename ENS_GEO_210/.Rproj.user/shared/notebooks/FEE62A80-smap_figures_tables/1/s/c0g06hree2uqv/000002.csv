@@ -1,0 +1,53 @@
+"0","```r
+# fig_obj <- monthly_climate_sm_df %>% 
+#     group_by(pixel_id) %>%
+#   mutate(pet_anom = pet_tc__mm - mean(pet_tc__mm),
+#          precip_anom = precip_tc__mm - mean(precip_tc__mm),
+#          sm_anom = sm_mean - mean(sm_mean),
+#          ) %>%
+#   ungroup() %>% 
+#   
+#   ggplot() + 
+# 
+#   #geom_smooth(data = a, aes(x = Month, y = sm_anom, color = hemi)) +
+#   
+#   stat_summary_bin(data = a, aes(y = sm_anom,x = Month, color = hemi), 
+#                    fun.y= function(z) { quantile(z,0.50) }, 
+#                    geom = \"line\",fill = NA,
+#                    size = 1) +
+#   
+#   stat_summary_bin(data = a, aes(y = sm_anom,x = Month, color = hemi), 
+#                    fun.y= function(z) { quantile(z,0.75) }, 
+#                    geom = \"line\",fill = NA,
+#                    size = 0.5, linetype = \"dashed\") +
+#   
+#   stat_summary_bin(data = a, aes(y = sm_anom,x = Month, color = hemi),
+#                    fun.y= function(z) { quantile(z,0.25) }, 
+#                    geom = \"line\",fill = NA,
+#                    size = 0.5, linetype = \"dashed\") +
+#   
+#   scale_x_continuous(breaks = seq(0,12)) +
+#   scale_color_manual(values = c(\"black\", \"darkgrey\")) +
+#   
+#   theme_bw() +
+#   theme(panel.grid.minor = element_blank(),
+#         panel.grid.major = element_blank(),
+#         axis.text = element_text(size = 10, face = \"bold\"), legend.position = \"none\"
+#         ) +
+#   
+# 
+#   
+#   facet_grid(hemisphere ~ cluster_id) 
+# 
+# fig_obj 
+# 
+# ggsave(plot = fig_obj, filename = \"./figures/manuscript/smap_monthly_timeseries_cluster_hemisphere_v2.png\",
+#        dpi = 300,
+#        width = 14,
+#        height = 4.5)
+# 
+# ggsave(plot = fig_obj, filename = \"./figures/manuscript/smap_monthly_timeseries_cluster_hemisphere_v2.svg\",
+#        dpi = 300,
+#        width = 14,
+#        height = 4.5)
+```"

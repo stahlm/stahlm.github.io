@@ -1,0 +1,18 @@
+"0","```r
+
+  
+  
+  ## Map showing correct/incorrect predictions 
+  
+  map_correct_incorrect <- tm_shape(raster_predictions_correct) +
+    tm_raster(palette = c(\"red\",\"lightblue\"), style = \"cat\") +
+  
+    tm_shape(World) +
+    tm_borders() +
+  
+    tm_layout(legend.position = c(\"left\",\"bottom\"))  
+    
+
+  
+map_correct_incorrect
+```"

@@ -1,0 +1,15 @@
+"0","```r
+  
+  
+  ## Map of observed
+  map_obs <- 
+    tm_shape(prediction_all_sites_raster$cluster_id_observed, projection = proj2use) +
+    tm_raster(palette = pal2use, style = \"cat\", title = \"\") +
+    tm_shape(coastlines) +
+    tm_lines() +
+    tm_layout(legend.position = c(\"left\",\"bottom\"), frame = T, bg.color = \"white\") +
+    tm_graticules(lines = FALSE) 
+  
+  map_obs
+  tmap_save(tm = map_obs, filename = \"./figures/manuscript/map_cluster_observed.png\", dpi = 900, width = 4)
+```"

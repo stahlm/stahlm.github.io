@@ -1,0 +1,62 @@
+"0","```r
+
+  
+  # Load in the random forest model
+  #rf_file_path <- paste(\"./output/rf_models/\", i_classifier, sep = \"\")
+  
+  rf_classifier <- readRDS(file_name)
+  
+  
+  # Make predictions with the RF model for the validation (test) data
+  validation <- validation %>% 
+  select(cluster_id, everything())
+
+  predict_validation <- predict(rf_classifier,validation[,2:ncol(validation)])
+  
+  
+  
+  # Create a data frame with predictions and observed values for the training and test locations
+  predictions_training <- tibble(cluster_id_predicted = rf_classifier$predicted,
+                                 cluster_id_observed = training$cluster_id,
+                                 x = training_locations$x, 
+                                 y = training_locations$y)
+
+  predictions_test <- tibble(cluster_id_predicted = predict_validation, 
+                             cluster_id_observed = validation$cluster_id,
+                             x = validation_locations$x,
+                             y = validation_locations$y)
+  
+  
+  predictions_all_locations <- bind_rows(predictions_training, 
+                                       predictions_test)
+  
+  
+  # Create a column with a flag for correct (1) or incorrect (0) prediction
+  predictions_all_locations <- predictions_all_locations %>% 
+    mutate(correct_cluster_prediction = if_else(as.numeric(cluster_id_observed) == as.numeric(cluster_id_predicted), 1, 0) )
+  
+  
+  predictions_all_locations <- predictions_all_locations %>% 
+    select(x,
+           y,
+           cluster_id_predicted, 
+           cluster_id_observed, 
+           correct_cluster_prediction)
+  
+  
+  # Create a raster with the predictions and observations
+  prediction_all_sites_raster <- raster::rasterFromXYZ(predictions_all_locations) 
+```"
+"1","data length [903457] is not a sub-multiple or multiple of the number of rows [301371]
+"
+"0","```r
+  raster::crs(prediction_all_sites_raster) <- \"+proj=cea +lat_ts=30 +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs\"
+  
+  
+  raster_predictions_correct <- prediction_all_sites_raster$correct_cluster_prediction
+  raster_predictions_correct[raster_predictions_correct > 1] <- NA
+  
+  
+  
+ 
+```"

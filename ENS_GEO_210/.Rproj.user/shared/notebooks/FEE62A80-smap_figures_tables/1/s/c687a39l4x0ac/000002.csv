@@ -1,0 +1,23 @@
+"0","```r
+monthly_climate_sm_df <- read_csv(\"./output/water_balance_model_inputs.csv\")
+```"
+"1","
+-- Column specification ---------------------------------------------------------------------------------------------------------
+cols(
+  lat = col_double(),
+  long = col_double(),
+  y = col_double(),
+  x = col_double(),
+  pixel_id = col_double(),
+  cluster_id = col_double(),
+  Month = col_double(),
+  sm_mean = col_double(),
+  wcpf2 = col_double(),
+  wcpF4_2 = col_double(),
+  precip_wc__mm = col_double(),
+  precip_tc__mm = col_double(),
+  srad_wc__kJm2day = col_double(),
+  srad_tc__Wm2 = col_double(),
+  pet_tc__mm = col_double()
+)
+"

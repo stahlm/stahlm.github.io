@@ -1,0 +1,10 @@
+"0","```r
+training <- df_list[[1]]
+training_locations <- df_list[[2]]
+
+validation <- df_list[[3]]
+validation_locations <- df_list[[4]]
+
+
+rm(df_list)
+```"

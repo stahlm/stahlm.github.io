@@ -1,0 +1,16 @@
+"0","```r
+ # Create maps of results
+
+  
+  ## Map of predicted 
+  map_pred <- 
+    tm_shape(prediction_all_sites_raster$cluster_id_predicted, projection = proj2use) +
+    tm_raster(palette = pal2use, style = \"cat\", title = \"\") +
+    tm_shape(coastlines) +
+    tm_lines() +
+    tm_layout(legend.position = c(\"left\",\"bottom\"), frame = T, bg.color = \"white\") +
+    tm_graticules(lines = FALSE) 
+  
+  map_pred
+  tmap_save(tm = map_pred, filename = \"./figures/manuscript/map_cluster_predicted.png\", dpi = 900, width = 4)
+```"

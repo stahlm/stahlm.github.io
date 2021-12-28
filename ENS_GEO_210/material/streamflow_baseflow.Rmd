@@ -28,13 +28,7 @@ date_start <- "2005-01-01"
 date_end <- "2005-12-31"
 ```
 
-72518014735
 
-72510094746
-72519014771
-```{r}
-a <- lcd(station = "72519014771", year = 2020)
-```
 
 ```{r}
 # Download precipitation data from Albany Airport (GHCND:USW00014735)
