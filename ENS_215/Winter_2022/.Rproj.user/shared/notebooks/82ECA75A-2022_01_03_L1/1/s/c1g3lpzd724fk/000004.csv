@@ -1,0 +1,11 @@
+"0","df_temperatures <- read_csv(""../../Data/NOAA_State_Temp_Lab_Data.csv"") "
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m-----------------------------------------------------------------------------------------------------[39m
+cols(
+  Year = [32mcol_double()[39m,
+  Month = [32mcol_double()[39m,
+  Avg_Temp_F = [32mcol_double()[39m,
+  state_cd = [31mcol_character()[39m
+)
+
+"

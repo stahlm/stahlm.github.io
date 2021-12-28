@@ -1,0 +1,7 @@
+"0","spData::world %>% "
+"0","  tm_shape() +"
+"0","  tm_polygons() +"
+"0","  "
+"0","  tm_shape( df_stations) +"
+"0","  tm_dots()"
+"2","Currect projection of shape df_stations unknown. Long-lat (WGS84) is assumed."

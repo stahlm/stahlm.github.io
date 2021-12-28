@@ -8,6 +8,21 @@ output:
     toc_float: yes
 ---
 
+<style>
+#TOC {
+  background: path("C:/Users/stahlm/Documents/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2022/Images/logo_ens_215.png");
+  background-size: contain;
+  padding-top: 80px !important;
+  background-repeat: no-repeat;
+}
+</style>
+
+```{r}
+
+```
+
+
+
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-137229217-1"></script>
 <script>
@@ -54,7 +69,8 @@ output:
 <br/>
 
 ***
-| | |
-|--|--|
-| _Mason Stahl (2022)_ |  |
-| _Union College_ | |
+
+_Mason Stahl (2022)_  
+_Union College_ 
+
+![](C:/Users/stahlm/Documents/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2022/Images/logo_ens_215.png){width=100px}

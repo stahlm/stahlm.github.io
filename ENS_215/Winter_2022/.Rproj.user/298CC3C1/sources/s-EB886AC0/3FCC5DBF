@@ -1,0 +1,32 @@
+{
+    "id": "3FCC5DBF",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1640717238046.0,
+    "source_on_save": false,
+    "relative_order": 8,
+    "properties": {
+        "expression": "lga_met_data",
+        "caption": "lga_met_data",
+        "totalObservations": "8784",
+        "displayedObservations": "8784",
+        "variables": "10",
+        "cacheKey": "D77978F8",
+        "object": "lga_met_data",
+        "environment": "",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=lga_met_data&cache_key=D77978F8&max_cols=50",
+        "preview": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 18296217089015877,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1640717238046,
+    "read_only": false,
+    "read_only_alternatives": []
+}

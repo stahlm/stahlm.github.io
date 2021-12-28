@@ -1,0 +1,76 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r}
+library(tidyverse)
+library(stationaRy)
+library(sf)
+library(tmap)
+library(spData)
+
+library(AOI)
+library(climateR)
+
+library(raster)
+library(rasterVis)
+```
+
+
+```{r}
+spData::world
+```
+
+
+
+```{r}
+df_stations <- get_station_metadata() 
+```
+
+```{r}
+df_stations <- df_stations %>% 
+  filter(!is.na(lat), !is.na(lon)) %>% 
+  st_as_sf(coords = c("lon", "lat"))
+```
+
+```{r}
+spData::world %>% 
+  tm_shape() +
+  tm_polygons() +
+  
+  tm_shape( df_stations) +
+  tm_dots()
+```
+
+
+```{r}
+df_stations %>% 
+  ggplot() +
+  geom_sf() +
+  geom_sf(data = spData::world)
+```
+
+```{r}
+henri = getGridMET(aoi_get(state = c("NY", "NJ","CT","MA")), 
+                  param = "prcp", 
+                  startDate = "2021-08-16", endDate = "2021-08-24")
+#> Spherical geometry (s2) switched off
+#> Spherical geometry (s2) switched on
+
+rasterVis::levelplot(henri$gridmet_prcp, par.settings = BTCTheme, main = "Hurricane Henri")
+```
+```{r}
+r = raster::stack(henri)
+```
+
+
+```{r}
+r %>% 
+  tm_shape() +
+  tm_raster(style = "cont") +
+  tm_shape(spData::us_states) +
+  tm_borders()
+```
+

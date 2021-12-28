@@ -1,0 +1,3 @@
+"0","df_stations <- df_stations %>% "
+"0","  filter(!is.na(lat), !is.na(lon)) %>% "
+"0","  st_as_sf(coords = c(""lon"", ""lat""))"
