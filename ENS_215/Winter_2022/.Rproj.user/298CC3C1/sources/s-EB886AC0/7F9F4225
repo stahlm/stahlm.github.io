@@ -10,15 +10,15 @@
     "source_on_save": false,
     "relative_order": 9,
     "properties": {
-        "cursorPosition": "48,105",
-        "scrollLine": "37"
+        "cursorPosition": "0,0",
+        "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1640722813,
+    "lastKnownWriteTime": 1640793158,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1640722814088,
+    "last_content_update": 1640793158763,
     "read_only": false,
     "read_only_alternatives": []
 }
