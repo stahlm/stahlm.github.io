@@ -1,7 +1,0 @@
-"0","df_stations %>% "
-"0","  ggplot() +"
-"0","  geom_sf() +"
-"0","  geom_sf(data = spData::world)"
-"2","Error in st_transform.sfc(st_geometry(x), crs, ...) : 
-  cannot transform sfc object with missing crs
-"

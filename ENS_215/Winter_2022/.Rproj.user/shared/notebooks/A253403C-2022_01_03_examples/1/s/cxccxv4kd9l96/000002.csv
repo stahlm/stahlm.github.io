@@ -1,0 +1,7 @@
+"0","AOI = AOI::geocode('Death valley National Park', pt = TRUE)"
+"0",""
+"0","#AOI = AOI::geocode('Union College', pt = TRUE)"
+"0",""
+"0","ts  = getGridMET(AOI, param = c(""tmax"",""tmin"", ""prcp""),"
+"0","                 startDate = ""2021-01-01"", "
+"0","                 endDate = ""2021-12-30"")"

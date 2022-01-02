@@ -1,0 +1,9 @@
+"0",""
+"0","tmap_mode(""plot"") "
+"2","tmap mode set to plotting
+"
+"0","r_inches %>% "
+"0","  tm_shape() +"
+"0","  tm_raster(style = ""cont"") +"
+"0","  tm_shape(spData::us_states) +"
+"0","  tm_borders()"
