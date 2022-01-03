@@ -1,7 +1,0 @@
-"0","henri = getGridMET(aoi_get(state = c(""NY"", ""NJ"",""CT"",""MA"")), "
-"0","                  param = ""prcp"", "
-"0","                  startDate = ""2021-08-16"", endDate = ""2021-08-24"")"
-"0","#> Spherical geometry (s2) switched off"
-"0","#> Spherical geometry (s2) switched on"
-"0",""
-"0","rasterVis::levelplot(henri$gridmet_prcp, par.settings = BTCTheme, main = ""Hurricane Henri"")"

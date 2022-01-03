@@ -1,0 +1,32 @@
+{
+    "id": "CC87E2E9",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1641236683419.0,
+    "source_on_save": false,
+    "relative_order": 8,
+    "properties": {
+        "expression": "sf_states",
+        "caption": "sf_states",
+        "totalObservations": "8",
+        "displayedObservations": "8",
+        "variables": "2",
+        "cacheKey": "17F26C49",
+        "object": "sf_states",
+        "environment": "",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=sf_states&cache_key=17F26C49&max_cols=50",
+        "preview": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 22518311674839107,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1641236683419,
+    "read_only": false,
+    "read_only_alternatives": []
+}

@@ -1,0 +1,32 @@
+{
+    "id": "FC5D5BE6",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1641236450042.0,
+    "source_on_save": false,
+    "relative_order": 7,
+    "properties": {
+        "expression": "AOI",
+        "caption": "AOI",
+        "totalObservations": 1,
+        "displayedObservations": 1,
+        "variables": 2,
+        "cacheKey": "EEC6818E",
+        "object": "AOI",
+        "environment": "",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=AOI&cache_key=EEC6818E&max_cols=50",
+        "preview": 0
+    },
+    "folds": "",
+    "lastKnownWriteTime": 22518311674839107,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1641236450042,
+    "read_only": false,
+    "read_only_alternatives": []
+}

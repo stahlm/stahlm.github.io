@@ -1,0 +1,1 @@
+"0","sf_all <- bind_rows(sf_countries, sf_states)"
