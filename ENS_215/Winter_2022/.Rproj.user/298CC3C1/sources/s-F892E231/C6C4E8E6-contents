@@ -9,9 +9,7 @@ output:
     toc_float: yes
 ---
 
-https://rstudio.cloud/profile  
-https://app.datacamp.com/groups/exploring-environmental-data-w-2022/dashboard  
-https://stahlm.github.io/ENS_215/Winter_2022/Home.html  
+# A few interesting examples 
 
 
 ```{r message = F, warning=F}
@@ -31,24 +29,24 @@ library(patchwork)
 ```
 
 
-```{r eval = F}
+```{r eval = F, echo = F}
 spData::world
 ```
 
 
 
-```{r eval = F}
+```{r eval = F, echo = F}
 df_stations <- get_station_metadata() 
 ```
 
-```{r eval = F}
+```{r eval = F, echo = F}
 
 df_stations <- df_stations %>% 
   filter(!is.na(lat), !is.na(lon)) %>% 
   st_as_sf(coords = c("lon", "lat"))
 ```
 
-```{r eval = F}
+```{r eval = F, echo = F}
 
 spData::world %>% 
   tm_shape() +
@@ -59,7 +57,7 @@ spData::world %>%
 ```
 
 
-```{r eval = F}
+```{r eval = F, echo = F}
 
 df_stations %>% 
   ggplot() +
@@ -71,8 +69,10 @@ df_stations %>%
 ## Precip and temp for specified location (point)
 
 ```{r}
+# Get the data 
+
 #loc2use <- 'Death Valley National Park'
-loc2use <- 'Chicago, IL'
+loc2use <- 'Union College'
 
 AOI = AOI::geocode(loc2use,
                    pt = TRUE)
@@ -83,6 +83,7 @@ ts  = getGridMET(AOI, param = c("tmax","tmin", "prcp"),
 ```
 
 ```{r}
+# convert units 
 ts <- ts %>% 
   mutate(tmax = ((tmax - 273.15)*(9/5) +32),
          tmin = ((tmin - 273.15)*(9/5) +32),
@@ -91,6 +92,8 @@ ts <- ts %>%
 ```
 
 ```{r}
+# Summary table
+
 ts %>% 
   summarize(pcrp_max = max(prcp),
             temp_max = max(tmax),
@@ -103,6 +106,8 @@ ts %>%
 
 
 ```{r}
+# Make the figures 
+
 fig_01 <- ts %>% 
   ggplot() +
   geom_line(aes(x = date, y = tmax), color = "red") +
@@ -128,6 +133,8 @@ fig_02 <- ts %>%
 ```
 
 ```{r}
+# Make the figures 
+
 (fig_01 / fig_02) +
   plot_annotation(title = paste(loc2use,": Temperature and precipitation", sep = ""),
                   caption = "Data source: GridMET",
