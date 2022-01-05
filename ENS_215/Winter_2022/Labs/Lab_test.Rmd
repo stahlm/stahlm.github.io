@@ -1,0 +1,17 @@
+---
+title: "Lab Week 1 (Stahl)"
+output:
+  html_document:
+    df_print: paged
+---
+
+This is my first **lab**.
+
+I just added this text and it will appear when I preview
+
+```{r}
+plot(cars)
+```
+
+
+

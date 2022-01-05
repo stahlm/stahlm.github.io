@@ -1,0 +1,228 @@
+---
+title: "Diving right into R"
+author: "ENS-215"
+date: "5-Jan-2022"
+output: html_document
+---
+
+<br/>
+
+#### We are going to jump right in with some data analysis today!  We'll work with some rainfall data from a meteorological station near Boston that has data going back to the 1890's.
+
+#### When you open an **R notebook** (.Rmd) file in **RStudio** you will see the text, code and output all in your **Editor pane**.  When you **Preview** or **Knit** the file it will be nicely rendered as a **HTML** file (*other formats such as PDF are also available*) in your **Viewer pane**. 
+
+<br/>
+
+First we'll install the packages that we need to run our analysis.  Once you've installed the packages they are on your computer and don't need to be installed again.
+
+Note that I've commented out the install function by using the # symbol.  I did this since, I've already installed these packages on my computer.  You'll want to copy these commands (without the `#`) and **paste them to your console** so that you can run the install functions (if you haven't already installed these packages on your computer).  
+
+```{r}
+# install.packages("tidyverse") 
+# install.packages("plotly")
+```
+
+Next we'll load in the packages that we need to run our analysis.  When you create a new project you'll need to load in the packages that you want to use (however you will not need to reinstall them).  The `library()` function is used to load packages.  
+
+```{r message=FALSE, warning= F}
+library(tidyverse)
+library(lubridate)
+```
+
+<br/>
+
+Now we'll load in the data from the web and clean it up a bit.  FYI, note how I use the `#` in my code blocks.  The `#` in a code block tells R that what follows the `#` should be treated as text/comment and thus it is not evaluated as code.  This is a good way to add notes directly within a code block.  
+
+```{r warning=FALSE}
+## Load in data
+met_data <- read_csv('http://stahlm.github.io/ENS_215/Data/Blue_Hills_MA_Precip_Temp_Data_1.csv')
+                     
+
+met_data <- mutate(met_data, DATE = parse_date_time(DATE,"mdy")) # convert date into computable format
+
+met_data <- select(met_data, -c(TOBS)) # remove the TOBS column, since we won't use it
+```
+
+
+We've got the data stored on our computer in a nice format called a **data frame**.  Let's take a look at data and get an idea of what we're working with  
+
+```{r}
+head(met_data) # shows us the first few rows and provides info about data types
+
+```
+<br/>
+
+```{r}
+tail(met_data) # shows us the last few rows and provides info about data types
+```
+
+
+We see that we've got info about the name of the meteorological station (**STATION**), the dates when measurements were taken, precipitation in inches (**PRCP**), and the daily min (**TMIN**) and max (**TMAX**) temperatures in degrees Fahrenheit.
+
+<br/>
+
+You can also take a look at the **data frame** by clicking on the `met_data` object in the **Environment** pane.  Give this as try.  
+
+<br/>
+
+Now let's get some summary statistics for our data.  This will help us to get a quick overview of our dataset.  
+
+```{r}
+summary(met_data)
+```
+
+We can already begin to make some interesting observations based on these quick summary statistics.  Answer the questions below.  Remember that you can type you answers right in your R Notebook - the ability to combine text, code, and output is one of the great features of R Notebooks.         
+
+* What was the hottest temperature recorded?  
+* What was the coldest temp recorded?  
+* Was there ever a day where the temperature never exceeded 0 degrees F?  
+* Does it rain on most days?
+* What else do you observe? 
+
+<br/>
+
+Let's make a quick plot of the data.
+```{r}
+ggplot(met_data) + 
+  geom_line(aes(x = DATE, y = PRCP),color = "blue") 
+```
+
+Now we've got a basic figure that is helpful for examining and understanding our data.  When you are exploring data it's useful to quickly plot it up to help you gain understanding and formulate questions/hypotheses.  We can create highly customized, publication figures in R by adding some additional code (we'll learn more about this during the term).
+
+Did you learn anything new about the data by plotting it?
+
+<br/>
+
+Let's create another figure, this time just for the data from 2000-2010.  Our figure will have a separate panel for each of the years.  This figure will be more complex and involve a couple additional transformations of the data to allow us to make the plot.   
+
+```{r}
+met_data_2000_2010 <- filter(met_data, year(DATE) >= 2000, year(DATE) <= 2010) # new data frame 
+
+ggplot(met_data_2000_2010) + 
+  geom_line(aes(x = yday(DATE), y = PRCP), color = "blue") +
+  facet_wrap(~year(DATE)) # plot the data
+```
+
+<br/>
+
+Don't worry about the code below as it includes some things that we won't learn for a few weeks.  Though spend a few minutes examining the code and see if you can decipher what is going on (chat with your neighbor and see what they think).  Call me over and we can chat about what is happening here.  
+
+Did this new figure help you learn anything new?  Did you notice any interesting or notable events?  
+
+<br/> 
+
+
+#### Now let's create some new dataframes that help us gain further insight into the data
+
+Looking at the daily data, it is difficult to see how total precipitation varies from year to year.  Let's create a new variable with annual precipitation data.
+
+```{r}
+met_data <- mutate(met_data,year_val = year(DATE), month_val = month(DATE), day_val = day(DATE)) # add columns for year, month, and day
+
+annual_precip <- group_by(met_data,year_val) # group the data by year
+
+annual_precip<- summarise(annual_precip,tot_precip = sum(PRCP,na.rm = TRUE)) # create a new data frame that has the total annual precipitation (inches)
+```
+
+
+Let's plot the data and see how annual precipitation varies between years
+
+```{r}
+ggplot(annual_precip) + 
+  geom_line(aes(x = year_val, y = tot_precip),color = "blue") + 
+  geom_point(aes(x = year_val, y = tot_precip),color = "black") 
+```
+
+What do you observe here?  Any interesting features of the annual precipitation data?  
+
+
+Let's check how much it rained in 1965.  
+```{r}
+filter(annual_precip, year_val == 1965)
+```
+How does this compare to a typical year?  Interpret and discuss this data with your classmates.  
+
+
+Now let's summarize the data by month.  This way we can see if there are seasonal patterns in rainfall for the area around Boston and how a given month's rainfall varies between years.  To visualize the data we'll create a box plot (also called a box-and-whisker plot).  
+
+```{r fig.width= 6.5, fig.height= 4}
+
+# Group the data by year and month
+monthly_precip <- group_by(met_data, year_val, month_val) %>% 
+  summarise(tot_precip = sum(PRCP, na.rm = TRUE))
+
+# Create a box plot of the monthly precipitation data
+fig_box <- ggplot(monthly_precip, aes(x=factor(month_val), y=tot_precip)) + 
+  geom_boxplot()
+
+fig_box
+```
+
+Is there much variability in total rainfall between months?  
+
+How about within a given month?  
+
+Do you notice any interesting features in the data?  Discuss with your classmates.  
+
+
+Note: If you are unfamiliar with box plots, we will discuss them in more detail in upcoming lectures, however for a quick intro to them check out this [website](https://towardsdatascience.com/understanding-boxplots-5e2df7bcbd51) or check out the Wikipedia page on box plots.  
+
+Also take a look at the help file for the `geom_boxplot()`  function.  To do this type `?geom_boxplot()` in your **console**
+
+<br/>
+
+Ok now, let's create that same box plot, but this time let's make a cool interactive version using the `plotly` package.  
+
+```{r}
+library(plotly)
+```
+
+
+```{r}
+ggplotly(fig_box)
+
+```
+
+Now let's answer some questions based on the data we've been analyzing.  
+
+How rainy was it in the year you were born?  (Hint: `filter` on the `annual_precip data`)
+```{r}
+# Your code here
+```
+
+How rainy was it in the month you were born? (Hint: use the `filter` function on `monthly_precip` and filter by multiple criteria)  
+```{r}
+# Your code here
+```
+
+
+Did it rain on the day you were born? (Hint: use the `filter` function on the `met_data` and filter by multiple criteria)
+
+```{r}
+# Your code here
+```
+
+<br/>
+
+If you finish early, explore anything else that you want to.  This could include additional analysis of this data set, or just poking around in RStudio, or anything else related to what you learned today.  Feel free to discuss with me or your classmates any ideas you may have.  I am happy to suggest some potential ideas to explore.  
+
+```{r}
+# Your code here
+```
+
+<br/>
+
+At the end of class you should **knit** your Notebook to an html file.  When you knit your Notebook, it runs all of your code and generates an html file that has all of the text, code, and results together in a nice an easy to view/share format.  
+
+To **knit** the Notebook, you can go up to the header and replace the line directly below the **title:** line with the following:
+
+`output: html_document`  
+`author: "Your Name Here"`  
+`date: "Date here"`  
+
+Then click save and you will see the the **Preview** option changed to **Knit**.  Click **Knit** and your Notebook will be knit to an html file.
+
+## Congratulations!!
+
+In your first analysis you analyzed nearly 50,000 daily precipitation measurements!  You were able to summarize, visualize and filter the data in ways that would have been tedious, error-prone, and time-consuming if you have tried to do it in Excel.  You can also modify and re-run your analysis to answer new questions or work with a different dataset, which would require starting from scratch in Excel.  Furthermore, you've generated a nice notebook that clearly documents your code, results and interpretation all in one place!  You could easily share this notebook with colleagues when working on collaborative projects and you have a clearly documented and reproducible workflow.
+

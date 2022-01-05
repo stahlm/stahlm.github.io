@@ -1,8 +1,8 @@
 ---
 title: "Exploring Environmental Data"
-date: "8 January 2020"
+date: "5 January 2022"
 output: slidy_presentation
-footer: "ENS-215 (Winter 2020)"
+footer: "ENS-215 (Winter 2022)"
 theme: united
 ---
 

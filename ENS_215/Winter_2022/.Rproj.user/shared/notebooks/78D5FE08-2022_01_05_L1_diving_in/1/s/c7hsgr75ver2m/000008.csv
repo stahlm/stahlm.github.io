@@ -1,0 +1,11 @@
+"0",""
+"0","# Group the data by year and month"
+"0","monthly_precip <- group_by(met_data, year_val, month_val) %>% "
+"0","  summarise(tot_precip = sum(PRCP, na.rm = TRUE))"
+"2","`summarise()` regrouping output by 'year_val' (override with `.groups` argument)
+"
+"0","# Create a box plot of the monthly precipitation data"
+"0","fig_box <- ggplot(monthly_precip, aes(x=factor(month_val), y=tot_precip)) + "
+"0","  geom_boxplot()"
+"0",""
+"0","fig_box"

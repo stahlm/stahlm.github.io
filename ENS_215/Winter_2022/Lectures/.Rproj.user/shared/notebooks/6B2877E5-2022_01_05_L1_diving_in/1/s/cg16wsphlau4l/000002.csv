@@ -1,0 +1,28 @@
+"0","## Load in data"
+"0","met_data <- read_csv('http://stahlm.github.io/ENS_215/Data/Blue_Hills_MA_Precip_Temp_Data_1.csv')"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m----------------------------------------------------------------------[39m
+cols(
+  STATION = [31mcol_character()[39m,
+  NAME = [31mcol_character()[39m,
+  DATE = [31mcol_character()[39m,
+  PRCP = [32mcol_double()[39m,
+  TMAX = [32mcol_double()[39m,
+  TMIN = [32mcol_double()[39m,
+  TOBS = [33mcol_logical()[39m
+)
+
+"
+"2","12529 parsing failures.
+  row  col           expected actual                                                                        file
+14074 TOBS 1/0/T/F/TRUE/FALSE     70 'http://stahlm.github.io/ENS_215/Data/Blue_Hills_MA_Precip_Temp_Data_1.csv'
+14076 TOBS 1/0/T/F/TRUE/FALSE     59 'http://stahlm.github.io/ENS_215/Data/Blue_Hills_MA_Precip_Temp_Data_1.csv'
+14077 TOBS 1/0/T/F/TRUE/FALSE     52 'http://stahlm.github.io/ENS_215/Data/Blue_Hills_MA_Precip_Temp_Data_1.csv'
+14079 TOBS 1/0/T/F/TRUE/FALSE     42 'http://stahlm.github.io/ENS_215/Data/Blue_Hills_MA_Precip_Temp_Data_1.csv'
+14086 TOBS 1/0/T/F/TRUE/FALSE     53 'http://stahlm.github.io/ENS_215/Data/Blue_Hills_MA_Precip_Temp_Data_1.csv'
+..... .... .................. ...... ...........................................................................
+See problems(...) for more details.
+"
+"0","met_data <- mutate(met_data,DATE = parse_date_time(DATE,""mdy"")) # convert date into computable format"
+"0",""
+"0","met_data <- select(met_data,-c(TOBS)) # remove the TOBS column, since we won't use it"

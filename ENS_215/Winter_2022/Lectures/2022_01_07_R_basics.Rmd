@@ -1,0 +1,585 @@
+---
+title: "R Programming and Markdown Basics"
+author: "ENS-215"
+date: "07-Jan-2022"
+output:
+  html_document:
+    theme: spacelab
+    toc: TRUE
+    toc_float: TRUE
+---
+
+## What is R Markdown?
+The R Notebooks that we work in allow us to incorporte text, code, and output all in one place.  This is a huge benefit when you want to create a report from your work in R.  
+
+An R Notebooks is technically an **R Markdown** file `(.Rmd)`.  This means that your R Notebook is a blend of **R** (which is the code portion of your Notebook) and **Markdown** (the text portion).  **Markdown** is simply a system for formatting document features (e.g. text, margins, bullets, table of contents,...).
+
+There are ton's of formatting options you can specify when working in an R Notebook and this allows us to create attractive and easy to read documents.  We'll learn a few basics today that will greatly improve how your R Notebooks look when you output your reports.  
+
+
+## Basic Elements of R Markdown (Notebook) files
+The **R Markdown Cheatsheet** that I handed out has examples similar to below, as well as more advanced topics that we won't cover today.  
+
+### File Header
+All of your R Notebooks have a file header (also called a YAML Header).  This is required for specifying how your file will look and what format it will be output to when you generate your reports.  
+
+The header is at the top of the Notebook and has three dashes `---` at the top and bottom.  
+
+Here's the header that I used on this current Notebook.  These settings specified how I want my file to look when it is rendered to a report.  
+```{r eval =FALSE}
+---
+title: "R Programming and Markdown Basics"
+author: "ENS-215"
+date: "07-Jan-2022"
+output:
+  html_notebook:
+    theme: spacelab
+    toc: TRUE
+---
+```
+
+The `html_notebook` setting allows us to instantaneously view any changes made by clicking **Preview** or simply saving the Notebook.  Note that changes to your code will appear when you **Preview** a Notebook, however have to run the code before previewing in order to see any changes to the output.  
+
+When you done and ready to generate your report you can **Knit** your document to an html file.  There are two ways to do this:  
+
+1. To knit a file you can go to the menu bar at the top of your notebook and click the dropdown that currently says preview and select the knit to html option. This will knit your document, which runs all of your code and generates a nice report in html format (the file is saved in your current working directory).
+
+2. An even easier way to knit your file is to go to the header at the top of your document and change `html_notebook` to  `html_document` and then save your file. You will then see that the Preview option in the menu bar will have changed to  Knit. Click Knit and your report will be knit.  
+
+<br/>
+
+### R Code
+As you already know, we can include R Code in our Notebooks.  We can add code blocks by hitting `Ctrl + Alt + i` (PC) or  `Cmd + Option + i` (Mac). 
+
+You can also generate a code block by typing ` ```{r} ` on one line, then hitting Enter and typing ` ``` ` on the line below.  
+
+
+Give both of these approaches a try.  
+
+Example code block
+```{r}
+x <- 10 # comments in a code block are created by putting the hashtag symbol before the comment
+x + 5
+```
+
+
+Remember you can run a code block by hitting `Ctrl + Shift + Enter` (PC) or `Cmd + Shift + Enter` (Mac).  To see the other **Run** options you can click the **Run** dropdown button in the top right of your Editor window.  
+
+<br/>
+
+### Markdown Syntax
+Since your R Notebook (R Markdown) file is essentially a plain text file (e.g. You can't modify how the text looks in your editor like you can in Microsoft Word) you need to use special characters to specify how your text should be formatted in your output report.  
+
++ **Section headers/titles** like the ones you see seperating the sections of this document are created by putting an `#` at the start of a line of text.  To create smaller section headers add more hashtags to the start of the line.  For instance `##` will create a smaller section header and `###` would create and even smaller one.  
+
++ **Bold font** is created by putting `**` at the start and end of the section of text you want in bold.  For instance you would type `** text I want in bold **`.  
+
++ _Italics_ are created with either `_text inside is in italics_` or `*text inside is in italics*`  
+
++ To make code show up verbatim you use put the ` ` ` symbol around the text your want to appear as verbatim.  Note that the symbol is NOT the single quote but is the symbol that appears to the left of the **1** on your keyboard.   
+
++ **Superscripts** such as X^2^ are done with the `^superscripted text here^`.  So X^2^, is created by `X^2^`
+
++ **Subscripts** such as X~i~ are done with `~subscripted text here~`.  So X~i~, is created by `X~i~`
+
++ I can also create **bulleted lists** using the `+` at the start of a line.  
+
++ I can create **numbered lists** by typing something like this  
+```{r eval =FALSE}
+
+1. First item
+2. Second item
+    i) sub-item 
+    ii) another sub-item
+
+```
+And the list would look like this in my report.  
+
+1. First item
+2. Second item
+    i) sub-item 
+    ii) another sub-item
+    
+    
++ **Line breaks** to make a line break show up in your formatted document, you need to put TWO SPACES at the end of the line before and then hit ENTER.  The line break will only show up in your knit/previewed document if you have two spaces `  `  
+<br/>
+
+### Exercise
+
++ Spend some time testing out the different Markdown formatting options you learned above
+
+
+--- 
+
+## R Programming basics
+### Basic operations and calculations
+
+##### As you've already seen by now you can use R as a calculator.  Below is a list of some basic operations.  
+```{r}
+2 + 1 #Add
+15 - 4 #Subtract
+9 * 2 #Multiply
+3 ^ 4 #Exponents
+120 / 8 #Divide
+5 %% 2 #Modulus
+4 > 2 #Greater than
+2 < 5 #Less than
+5 <= 5 #Less than or equal
+8 >= 2 #Greater than or equal
+2 == 2 #Equality: notice that it is TWO equal signs!
+5 != 7 #Not Equals
+```
+
+Note that when you run a code block it is sending the code the the **console**.  You can also type code directly into the console and it will be evaluated.  This can be handy for a quick one off calculation, however for running many operations we'll stick to using an R notebook.  
+
+<br/>
+
+##### Assiging values to a variable
+Typically we'll be re-using the results from some calculation so we'll want to assign it to a variable.  In R we use `<-` to assign values to objects  So `x <- 10` would mean that the object x is assigned a value of 10.
+
+```{r}
+x <- 10 # assign a variable
+
+# to print out the value of x to the console I can simply type out the variable on its own line of code
+x
+```
+
+```{r}
+y <- (2*x) + 5 # you can use mathematical operations and previously declared variables when assigning a new variable
+
+y
+```
+
+```{r}
+z <- x + y + 0.1234
+z
+```
+
+Variables can take non-numeric values.  The objects below take **strings** (i.e. text) as their values.
+```{r}
+studentName_1 <- "Bob"
+studentName_1
+```
+
+```{r}
+studentName_2 <- "Jess"
+studentName_2
+```
+Notice how I gave the objects descriptive names.  Also notice how I used a consistent naming format.  You should be put thought into how you name objects  This will make your code much easier to read and much faster to write.  
+
+Object names cannot begin with a number, contain spaces, or (most) special characters.  You may use underscores and periods in object names.  Also note that objects are **case sensitive**.  
+
+So if you have an object `a` then typing out `A` would **NOT** be referring to the object that your names `a`.
+
+<br/>
+
+##### Examining your Environment
+Now take a look at your **Environment** tab.  You'll see all of the objects that we've assigned thus far. If you want to see all of the objects in your environment you use the `ls()` function. 
+
+```{r}
+ls() # this prints out the names of all of the objects currently in my environment
+```
+
+<br/>
+
+To remove an object from your workspace you can use the `rm()` function
+```{r}
+rm(x) 
+```
+
+<br/>
+
+##### Refresher Exercise 1[^1]:
+
+1. Create two objects named `number_1` and `number_2` and give them the values of 2.5 and 10, respectively
+2. Create two more objects named `string_1` and `string_2`, give them any character string that you would like.
+3. Now using `number_1`, `number_2`, and the power of math create an object called `number_3` that equals 25
+4. Create two more objects whose value is of your choosing
+5. List the objects in your workspace
+6. Remove `string_2`
+7. Try to add `string_1` and `number_1`. What happens?
+
+
+### Data types and data structures
+Everything in R is an object.  The data assigned to a given object can be categorized by its **data type**.  Data can be organized into different structures and these structures can often accomodate a mix of different data types.  
+
+<br/>
+
+#### Data types
+Any value stored in a data object can be characterized by its data type.  
+
+The basic data types in R are:
+
+|Example|Type|
+|:----:|:---:|
+|“a” “swc”|	character|
+|2, 15.5|	numeric|
+|2L	|integer|
+|TRUE, FALSE|	logical|
+|1+4i| complex|
+|62 6f 62|	raw|
+
+
+We will almost always be dealing with character, numeric, and logical data types in this class.  
+
+
+In many cases the data you deal with may have missing values or other issues.  Values such as missing data `NA`, not a number `NaN` and infinity `inf` will come up from time to time.  We'll learn techniques for dealing with these throughout the term.  
+
+Infinity can arise as such
+```{r}
+1/0
+```
+
+Not a number can arise as follows
+```{r}
+0/0
+```
+
+<br/> 
+
+##### Getting help (reminder)
+If you get stuck remember along with me and you classmates, Google can almost always point you in the right direction.  Your textbook is also a great resource.  
+
+In addition to these resource R has built-in help files.  Let's practice with these.  
+
+To get help you type `?term_of_interest` in your console or in your Notebook (and then run the code block) and help will appear in the **Help** window to the right.  For example
+
+In your console get help for the `na.omit()` function.  Take a minute to look at the help file and understand what it is showing.  All help files are similarly formatted.
+
+Try getting help for another function that you are interested in.  
+
+
+<br/>
+  
+#### Data Structures
+Data can be stored in R as a number of different data structures.  The structure that you chose to assign data to will depend on the features/characteristics of your data.  
+
+The data structures available in base R include:
+
+  + vector
+  + list
+  + matrix
+  + data frame
+  + factors
+  + tables
+
+<br/>
+
+##### Vectors
+
+  + Common and basic data structure in R.  
+  + Can be a vector of characters, logical, integer, or numerica data - However a given vector can only contain one data type.  
+
+To create a vector we use the `c()` function
+```{r}
+majors_vec <- c("Environmental Science","Geology","Chemistry")
+num_vec <- c(1, 10, 5034.253, -1.045)
+log_vec <- c(TRUE, FALSE, FALSE, TRUE, TRUE)
+```
+
+You can simply type the variable or use the `print()` function to print out the vector's contents
+```{r}
+majors_vec
+```
+
+```{r}
+print(log_vec)
+```
+
+<br/>
+
+We can determine the properties of a vector using some helpful functions
+```{r}
+length(log_vec) # vector length
+class(num_vec) # class
+str(log_vec) # structure of the vector
+```
+
+<br/>
+
+Missing data (represented by NA) are often encountered. Below are a few methods for dealing with them.
+```{r}
+
+a_missing <- c(1,2,3,4,NA,5,6,NA,7,8,9) # create a vector that has some missing data
+
+na.omit(a_missing) #na.omit - removes them
+```
+
+
++ Try taking the sum of the `a_missing` by using the `sum()` function.  Do you see any issues?
+
+
+In some cases we will want to remove missing data entries so that we can just examine the entries where we have values.  Let's remove the NAs from `a_missing` and assign the new data to a new object called `a_cleaned`
+```{r}
+a_cleaned <- na.omit(a_missing) 
+```
+
++ Look at `a_cleaned`.  Does it look like everything worked?  
++ Now try taking the sum of `a_cleaned`.  
+
+<br/>
+
+You can also use `na.exclude()` to remove missing values
+```{r}
+na.exclude(a_missing) #similar to omit, but has different behavior with some functions.
+```
+
+`is.na()` will tell you which values in the object are NAs
+```{r}
+is.na(a_missing) #Will tell you if a value is NA
+```
+
+<br/>
+
+We commonly need to create vectors of a sequence of numbers or repeated numbers.  There are functions to speed this up.  
+
+**Create a series**
+```{r}
+series_1 <- 1:10 
+series_2 <- seq(10)
+series_3 <- seq(0, 10, by = 0.05)
+```
+
+<br/>
+
+**Repeat values**
+```{r}
+n_reps <- 5
+rep_val <- 10
+many_tens <- rep(rep_val,n_reps)
+
+print(many_tens)
+```
+Look at the above code and understand what's going on.
+
++ Can you make a vector that repeats the letter "a" 50 times?  
+
++ Can you make a vector that repeats the series of integers 1-10, 8 times?
+
+```{r}
+#Your code here
+```
+
+<br/>
+
+You can also perform math operations on vectors.  Try to predict the results before you run the code.
+```{r results='hide'}
+a <- 1
+b <- 1:10
+c <- a + b
+
+c
+```
+
+
+```{r results='hide'}
+x <- 1:10
+y <- 10:1
+z <- x + y
+
+z
+
+```
++ Were you able to predict the results?
+
+<br/>
+
+**To access elements in a vector you use `[]`**
+```{r}
+x_vec <- seq(0, 100, by = 2)
+
+x_vec[1]
+x_vec[2]
+x_vec[10]
+x_vec[10:20]
+x_vec[seq(2,10,by = 2)]
+```
++ Make sure you understand what each line of code above is doing  
+
+<br/>
+
+You can also multiply and divide vectors a single value or by a vector of the same length.  Test these things out
+```{r}
+# Your code here 
+```
++ Make sure you understand what is going on with the examples you tested.
+
+<br/>
+
+When you want to combine character vectors we can do the following
+```{r}
+fruits <- c("apple","grapes","bananas")
+vegs <- c("lettuce","brocolli","spinach")
+fruits_and_veg <- c(fruits, vegs)
+
+fruits_and_veg
+
+
+course_num <- c("210", "215" , "100")
+course_dept <- c("GEO", "ENS", "ENS")
+course_code <- paste(course_dept, course_num)
+
+course_code
+```
+
++ What happened above?  How did the results differ and when might you use these two differing methods?
++ Imagine you want a dash instead of a space between the department and the course number?  Figure out how to do this using the `paste` function
+
+<br/>
+
+##### Factors  
+
+Factors are special vectors that represent categorical data.  
+
+  + Can be ordered (e.g. low, medium, high) or unordered (e.g. male, female)  
+  + Useful for assigning groups or categories to data  
+
+**Unordered factor**
+```{r}
+responses <- factor(c("yes","no","no","yes","maybe","yes"))
+responses
+```
+
+**Ordered factor**
+```{r}
+grades <- factor(c("A","C","B","A","B","B","D","A"), levels = c("F","D","C","B","A"), ordered = TRUE)
+grades
+```
++ Think of some more examples where you might use factors.  Can you think of both ordered and unordered examples?  
++ Did you encounter any variables in your first lab that could be treated as a factor?
+
+<br/>
+
+##### Data frames
+We are going to be using these all the time in this class and in data analysis in general.  They are similar in structure to a spreadsheet that you might open in Excel.
+
+Data frames are made up of rows and columns.  Each column is a vector and all columns must be of the same length.  Basically anything the you save in as a delimeted text or Excel file `.csv`, `.xls`, or `.xlsx` can be read into R as a data frame.
+
+Date frames have a number of important attributes that you'll interact, in particular **column names**, **row names**, and **dimensions**.
+
+<br/>
+
+We can load in data to a data frame or create one from scratch.  We'll create one below using the `data.frame()` function
+```{r}
+numbers <- c(1:26, NA)
+lettersNew <- c(NA, letters) #letters is a special object available from base R
+logical <- c(rep(TRUE, 13), NA, rep(FALSE, 13))
+examp_df <- data.frame(lettersNew, numbers, logical, stringsAsFactors = FALSE)
+```
+
+<br/>
+
+To look at the first few rows and last few rows
+```{r}
+head(examp_df) # first rows
+tail(examp_df) # last rows 
+```
+
+<br/>
+
+To access a variable (column) from a data frame you use the `$` operator
+```{r}
+examp_df$lettersNew  # access the lettersNew variable
+```
++ Try accessing some other variables from this data frame
+
+
+You can also access a data frame by specifying the rows and columns of interest.  We use bracket notation `[]` to do this.  You specify the row(s) and then the column(s) of interest within the bracket. 
+```{r}
+
+examp_df[2,3] # access the data in row 2 and column 3
+examp_df[2,] # to access all of the indices in a row or column, leave the index blank
+```
+
+<br/>
+
+To access all of the indices in a row or column, leave the index blank
+```{r}
+examp_df[2,] # access the data across all of the columns of row 2
+```
++ Can you access all of the rows of column 3?
++ Once you've done that, assign this subset of the data to a new object called `examp_df_subset`
++ What data type is `examp_df_subset`?
+
+<br/>
+
+To access row and/or column range you can use the `:` operator in your indexing statement
+```{r}
+examp_df[1:4,2:3] # access the data found in rows 1 through 4 and columns 2 through 3
+```
++ Access the data rows 10:20 and all of the columns in `examp_df`
++ Access only the even rows in columns 1 and 2 of `examp_df`
+
+
+**Below are some other useful functions for examining data frames**
+```{r}
+names(examp_df) # see column names
+
+```
+
+```{r}
+rownames(examp_df) # see row names
+```
+
+```{r}
+str(examp_df) # show the data frame's structure
+```
+
+```{r}
+dim(examp_df) # get the dimensions
+```
+
+```{r}
+nrow(examp_df) # get the number of rows
+```
+
+```{r}
+ncol(examp_df) # number of columns
+```
+
+```{r}
+summary(examp_df) # summary info 
+```
+
+```{r}
+na.omit(examp_df) # omit rows with NAs 
+```
+
+<br/>
+
+##### Lists 
+Lists are actually a special type of vector
+
+  + Lists can contain multiple items, of multiple types, and of multiple structures. 
+  + List are versatile and often used inside functions or as an output of functions.
+
+
+Lists are made with the `list()` function
+```{r}
+examp_list <- list(
+  letters=c("x","y","z"),
+  animals=c("cat","dog","bird","fish"),
+  numbers=1:100,
+  df=examp_df)
+examp_list
+```
+
+<br/>
+
+
+<br/>
+
+### Exercises
+
++ Create a vector named `vec_seq` that goes from 0 to 99 by 1.  Print the vector results to console using the `print()` function
+    
++ Create another vector named `vec_fracs` with the following sequence 0/1, 1/2, 2/3, 3/4, 4/5,...,99/100.  Print the vector results to the console.
+    
++ Access every other element of `vec_fracs` starting with the 2nd element and print these subset to the console.  Thus you would access element 2, 4, 6, 8,...,100.
+    
++ Create a character vector that has five first names.  Create another vector that has five last names.  Then create a third vector that has the the first names listed in the first five elements and the last names listed in the last five elements.
+    
++ Now create a vector that combines the first and last names, however each entry should be in the format `Lastname, Firstname`.  Hint: look at the help for the `paste()` to see how you might do this.
+
+<br/>
+    
