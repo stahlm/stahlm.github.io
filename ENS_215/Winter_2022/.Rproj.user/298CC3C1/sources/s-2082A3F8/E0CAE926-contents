@@ -1,0 +1,89 @@
+---
+title: "Lecture (5-Jan-2022): Mason Stahl"
+output: html_notebook
+---
+
+plotly
+
+
+## Load in packages
+
+```{r}
+library(tidyverse)
+library(lubridate)
+```
+
+## Load in data
+
+```{r}
+met_data <- read_csv('http://stahlm.github.io/ENS_215/Data/Blue_Hills_MA_Precip_Temp_Data_1.csv')
+```
+
+
+```{r}
+met_data <- mutate(met_data, DATE = parse_date_time(DATE,"mdy")) # convert date into computable format
+
+met_data <- select(met_data, -c(TOBS)) # remove the TOBS column, since we won't use it
+```
+
+
+```{r}
+head(met_data)
+```
+
+
+
+```{r}
+tail(met_data)
+```
+
+
+```{r}
+summary(met_data)
+```
+
+```{r}
+ggplot(met_data) + 
+  geom_line(aes(x = DATE, y = PRCP),color = "blue") 
+```
+
+```{r}
+met_data_2000_2010 <- filter(met_data, year(DATE) >= 2000, year(DATE) <= 2010) # new data frame 
+
+ggplot(met_data_2000_2010) + 
+  geom_line(aes(x = yday(DATE), y = PRCP), color = "blue") +
+  facet_wrap(~year(DATE)) # plot the data
+```
+
+## Create some additional figures and analysis
+
+```{r}
+met_data <- mutate(met_data, year_val = year(DATE), month_val = month(DATE), day_val = day(DATE)) # add columns for year, month, and day
+
+annual_precip <- group_by(met_data,year_val) # group the data by year
+
+annual_precip <- summarise(annual_precip,tot_precip = sum(PRCP,na.rm = TRUE)) # create a new data frame that has the total annual precipitation (inches)
+```
+
+```{r}
+ggplot(annual_precip) + 
+  geom_line(aes(x = year_val, y = tot_precip),color = "blue") + 
+  geom_point(aes(x = year_val, y = tot_precip),color = "black") +
+  
+  geom_smooth(aes(x = year_val, y = tot_precip), method = "lm") 
+```
+
+```{r}
+filter(annual_precip, year_val == 1965)
+```
+
+```{r}
+
+```
+
+
+Is there much variability in total rainfall between months?
+
+A: I noticed
+
+

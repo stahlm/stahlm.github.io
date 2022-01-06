@@ -1,14 +1,14 @@
 {
-    "id": "D77F63F3",
+    "id": "45A7D27E",
     "path": "~/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2022/Lectures/2022_01_10_R_basics_cont.Rmd",
     "project_path": "Lectures/2022_01_10_R_basics_cont.Rmd",
     "type": "r_markdown",
     "hash": "0",
     "contents": "",
     "dirty": false,
-    "created": 1641343369311.0,
+    "created": 1641404990296.0,
     "source_on_save": false,
-    "relative_order": 7,
+    "relative_order": 9,
     "properties": {
         "cursorPosition": "9,23",
         "scrollLine": "0"
