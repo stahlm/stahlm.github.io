@@ -1,0 +1,1 @@
+"0","elevation_cropped <- raster::crop(elevation_cropped, border_state)"

@@ -1,0 +1,219 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r}
+x <- 10 # create an object called x
+```
+
+```{r}
+x + 5
+```
+
+```{r}
+function_name(arg1 = , arg2 = , arg3, ....)
+```
+
+```{r}
+mean(c(5,2,5,2,10,25,NA), na.rm = T)
+```
+# This is the title
+
+## Load in my data
+
+### Load in temperature data
+
+### Load in precipitation data
+
+## Analyze my weather data
+
+Often we want to **bold our font** and sometimes we want *to make it italic* another way to italic is _this_
+
+`make it look like code in my text`
+
+
+x^the^ 
+
+CO~2~
+
+
+1. Item one  
+2. Item two  
+    i) sub item  
+    ii) sub item  
+
+
+Here is my text and I want a line break  
+
+<br/>
+
+Here is my next line
+
+
+# Basic operations in R
+
+```{r}
+2 + 2 # add
+10 -5 # subtraction
+
+10*10 # multiply
+
+3^4 # exponents
+
+10/2.5 # division
+
+
+```
+```{r}
+ 51 %% 7
+
+25 %% 12  # modulus
+```
+
+```{r}
+4 > 2 # greater than 
+```
+
+TRUE
+T
+1
+
+FALSE
+F
+0
+
+
+```{r}
+4 < 2 # less than
+
+4 >= 2 
+
+4 <= 2
+```
+
+```{r}
+10 == 10
+
+10 != 5
+```
+
+
+```{r}
+name_student_01 <- "Mason"
+name_student_02 <- "Stahl"
+
+studentname3 <- "Mike"
+```
+
+```{r}
+name_student_02
+```
+
+
+```{r}
+ls()
+```
+
+```{r}
+
+```
+
+
+
+
+
+```{r}
+df_char <- "a"  # character
+
+df_numeric <- 2.25 # numeric
+
+df_int <-  as.integer(5)
+
+df_logical <- T 
+
+```
+
+
+
+```{r}
+1/0
+```
+
+```{r}
+0/0
+```
+
+
+
+
+
+## Data structures 
+
+- vector
+- lists
+- matrices
+- data frames
+- tables
+
+
+### Vector
+```{r}
+majors_vec <- c("Environmental Science","Geology","Chemistry")
+majors_vec
+
+```
+
+```{r}
+num_vec <- c(1, 10, 5034.253, -1.045)
+```
+
+
+
+```{r}
+logical_vec <- c(T, F, F, F, T)
+
+logical_vec
+```
+
+```{r}
+length(logical_vec)
+```
+
+```{r}
+class(num_vec)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

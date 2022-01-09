@@ -1,0 +1,8 @@
+"0","tmap_mode(""view"")"
+"2","tmap mode set to interactive viewing
+"
+"0","elevation %>% "
+"0","  tm_shape() +"
+"0","  tm_raster(midpoint = NA, style = ""cont"") "
+"2","stars object downsampled to 1149 by 871 cells. See tm_shape manual (argument raster.downsample)
+"

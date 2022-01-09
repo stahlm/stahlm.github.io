@@ -1,0 +1,8 @@
+"0","df_char <- ""a""  # character"
+"0",""
+"0","df_numeric <- 2.25 # numeric"
+"0",""
+"0","df_int <-  as.integer(5)"
+"0",""
+"0","df_logical <- T "
+"0",""

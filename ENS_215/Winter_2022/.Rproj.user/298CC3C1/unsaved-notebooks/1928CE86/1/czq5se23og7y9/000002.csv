@@ -1,0 +1,4 @@
+"0","## Sample 10000 values"
+"0","df_state <- data.frame(raster::sampleRegular(elevation_cropped,"
+"0","                                          40000, xy=TRUE))"
+"0",""

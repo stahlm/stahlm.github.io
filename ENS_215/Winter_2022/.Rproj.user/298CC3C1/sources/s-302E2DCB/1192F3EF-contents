@@ -1,0 +1,317 @@
+---
+title: "R Programming Basics (Loops)"
+author: "ENS-215"
+date: "12-Jan-2022"
+output:
+  html_document:
+    theme: spacelab
+    toc: TRUE
+    toc_float: TRUE
+---
+
+<br/>
+
+We learned about if/else/else if statements in an earlier lecture.  Now we are going to learn about loops, which are another type of **control structure**.  
+
+Loops allow us work through items in an object and apply operations to these items, without having to repeat our code.  For instance we may have a list of names and we would like to print them one-by-one to our computer screen.  We could write out a `print()` statment for each item in the list.  In a case like this we can use a **loop**.  
+
+Remember to consult your R cheatsheets (in today's lecture, the **Base R cheatsheet** is particularly helpful)
+
+<br/>
+
+## For loops
+Let's load in the tidyverse package, just in case you want to use some of its functionality
+```{r message = FALSE, warning=F}
+library(tidyverse)
+```
+
+<br/>
+
+Ok, now let's try out a basic example, so that you learn the structure of for loops.
+```{r}
+for(i in 1:10){
+  print(i)
+}
+```
+Make sure you understand what's going on above.  Now modify the loop so that it prints out $i^2$ on each loop iteration.  
+
+Pay very close attention to the syntax of the loop.  If the syntax is incorrect you will get an error.  
+
+<br/>
+
+Ok, now let's try looping over a list of some majors available at Union. Here's the list. 
+```{r}
+majors_union <- c("Environmental Science","Geology","English",
+                  "Chemistry","Math","History","Computer Science")
+```
+
+<br/>
+
+Now we would like to print this list out.
+```{r}
+for(i_major in 1:7){
+  print(majors_union[i_major])
+}
+```
+You can see that we've looped over the list `majors_union` and we used an **index** variable that started at 1 and increased by one each iteration of the loop.  It went up through 7 iterations (which we specified at the start of the loop) and then stops after the 7^th^ iteration.  
+
++ Create a new code block and modify the above code to also print out the `i_major` variable. Do you see what is happening to `i_major` on each interation of the loop?  Note how we use `i_major` to access the i^th^ index of `majors_union` on each loop iteration.  
+
+<br/>
+
+You can also loop through a list using the elements of `majors_union` as the variables over which we loop.  
+
+```{r}
+for(i_major in majors_union){
+  print(i_major)
+}
+```
+The above loop steps through each element in the `i_major` vector -- moving to the next element on each loop iteration.  
+
++ Make sure you understand the difference between the two loops above.  They produce the same results but the implementation is different.  
++ Talk with your neighbor about how the two loops above are different.  Can you think of potential reasons why in some cases you might want to use one implementation over the other?
+
+<br/>
+
+In some situations we'll want to add a **counter variable** to our loop.  This becomes particularly useful when we start to nest if statements inside of our loops (you'll learn about this later in this lesson).  Let's add a counter variable to the loop we created above.  This variable will keep track of how many times the loop is cycled through and thus will tell us how many majors are in our `majors_union` variable.  
+
+```{r}
+counter_majors <- 0 # Initialize the variable to zero
+
+for(i_major in majors_union){
+  print(i_major)
+  
+  counter_majors <- counter_majors + 1 # add one to the counter everytime the loop is run
+}
+
+```
+
++ Print out the `counters_majors` variable.  Does the value make sense?
+
+<br/>
+
+### Exercise
+Make two vectors.  One vector should have the names of the months (_you can type out the vector of names, or you can use a vector that is built into R that already has the names!  A quick Google search should reveal how to do this_).  The other vector should have the number of days in each month.  Create a loop that prints out a message like below:  
+
+
+_January has 31 days_  
+_February has 28 days_  
+_Marchs has..._ 
+
+**Hint**: use the `paste()` function to combine text.  You will nest the `paste()` function in your `print()` statement.
+
+```{r}
+# Your code here
+```
+
+
+```{r include = FALSE}
+
+# below is a solution to the above exercise
+
+month_list <- c("January","February","March","April","May",
+                "June","July","August","September","October","November","December")
+day_list <- c(31,28,31,30,31,30,31,31,30,31,30,31)
+
+for(i_mon in 1:length(month_list)){
+  
+  print( paste(month_list[i_mon],"has",day_list[i_mon],"days") )
+  
+}
+```
+
+<br/>
+
+**Challenge:** Once you've completed the exercise above, create a new code block that has the same loop, but this time, for the month of February you should print a statement that says "February has 28 days (29 on leap year)".  You can accomplish this by nesting an **if/else** statement in your loop.
+
+    + Talk this over with your neighbors if you get stuck.
+
+```{r}
+# Your code here
+```
+
+
+<br/>
+
+### Nested for loops 
+We can nest loops inside of other loops.  This is often very handy when we want to loop over multiple related variables.  Let's take a look at a simple example.
+
+We have a 5 x 5 matrix with the numbers 1 to 25 in it.  First take a look at the `x_mat` matrix to make sure you understand what you've got.
+```{r}
+x_mat <- matrix(1:25, 5, 5, byrow = TRUE)
+```
+
+<br/>
+
+Now let's print each element out row-by-row (i.e. start in row 1 and print each element out one-by-one, then go to row 2 and do the same,...)
+
+```{r}
+for(i_row in 1:5){
+  
+  for(j_col in 1:5){
+    print(x_mat[i_row, j_col])
+  }
+  
+}
+```
+Look at the structure of the code above and make sure you understand what is going on.  
+
+Do you see how I "hard-coded" the dimensions of the matrix into the loop (i.e. specified that there are 5 rows and 5 columns).  This is generally a bad practice as it makes your code very inflexible.  Imagine we are loading in a dataset that is stored in a matrix and we don't know the dimensions beforehand (or we want to load in different datasets that have different dimensions).  If we "hard-code" the dimensions into the loop then our code will throw an error (if our dataset has less than 5 rows and 5 columns in the example above) or it will not loop over all of the matrix (if our dataset has > 5 rows and > 5 columns).  
+
+<br/>
+
+### Exercise
+We can fix this issue by getting the dimensions of the data and storing it as a variable that is used in the loop.  
+
+Recreate the loop from the example above, but specify the number of rows and columns in the loop using a variable (Hint: you can use the `dim()` function to determine the dimensions of an object or the `nrow()` and `ncol()` functions)
+
+```{r}
+# Your code here 
+```
+
+
+```{r include = FALSE}
+
+# Below is a solution to the above exercise 
+
+n_row <- nrow(x_mat)
+n_col <- ncol(x_mat)
+
+for(i_row in 1:n_row){
+  
+  for(j_col in 1:n_col){
+    print(x_mat[i_row, j_col])
+  }
+  
+}
+```
+
+<br/>
+
+## While loops
+While loops begin by testing a condition.  If the condition is TRUE then the loop is executed.  The loop continues to be executed until the test condition is no longer TRUE.  While loops have many uses, however a note of caution is that these loops will run infinitely if the test condition never changes to FALSE.  
+
+Let's take a look at a simple example of a while loop.  Before you run this code, predict the first and last value that will be printed to your console.
+```{r}
+x_val <- 30  # initialize x_val
+
+while(x_val > 10){
+  
+  print(x_val)
+  x_val <- x_val - 1  # on each loop iteration, subtract 1 from x_val
+  
+}
+```
+
+Like you do with all of your code, pay careful attention to the syntax used when creating a **while** loop.  
+
+<br/>
+
+Create your own while loop and test it out
+```{r}
+# Your code here
+```
+
+<br/>
+
+## Combining flow control structures
+Control structures can be nested within one another.  This allows for even greater control in your programming.  For example, you can nest an **if statement** within a **for loop**.  
+
+Let's take a look at an example.  In this example let's load in air temperature data in Albany for November 2018.  
+```{r}
+library(readr)
+Alb_temps <- read_csv("https://stahlm.github.io/ENS_215/Data/Albany_Temperatures_Nov_2018.csv",
+                      skip = 3)
+```
+Now that you've loaded in the data, take a look at it.  The data frame has the maximum, average, and minimum temperature (in deg F) for each of the days in November 2018.  Make sure you understand each of the variables (columns) before moving ahead.  
+
+Let's loop over each day and determine the freezing risk (imagine you are storing something outside and want to know if it was at risk of freezing).   
+
+  + If the daily average temperature is $<$ 32 deg F, then you have a "high risk of freezing".  
+  + If the daily average temperature is $\ge$ 32 deg F, then you have a "low risk of freezing".
+
+```{r}
+num_days <- nrow(Alb_temps) # store the number of rows (days) to the num_days variable
+freeze_temp <- 32 # water freezing temperature in degress F
+
+for(i_day in 1:num_days){
+  
+  if(Alb_temps$Avg[i_day] > freeze_temp){
+    print(paste("On November", Alb_temps$Day[i_day], ": Low risk of freezing"))
+    
+  } else {
+    print(paste("On November", Alb_temps$Day[i_day], ": High risk of freezing"))
+  }
+  
+}
+
+```
++ Carefully go through the code block above and make sure you understand exactly what is happening.  Discuss with your neighbor.  I'll come around and check-in with you too.  
+
+
+### Exercise
++ Write a new loop that expands on the loop above.  In this new loop add an "Extreme risk of freezing" condition.  This condition is met when the **maximum temperature** on a given day never gets above freezing (on those days the temperature never went above freezing at any point).  You can use multiple if statements or you can use if -> else if -> else combination to accomplish this task.  I highly recommend that you draw out flow diagram to help you think about this problem (see simple example below).
+
+![source: Wikipedia](https://stahlm.github.io/ENS_215/Lectures/Images/If-Then-Else-diagram.png)
+
+```{r}
+# Your code here 
+```
+
+
+```{r include = FALSE}
+# Below is the solution to above exercise
+
+for(i_day in 1:num_days){
+  
+  if(Alb_temps$Avg[i_day] > freeze_temp){
+    print(paste("On November", Alb_temps$Day[i_day], ": Low risk of freezing"))
+  } else{
+    
+    if(Alb_temps$Max[i_day] <= freeze_temp){
+      print(paste("On November", Alb_temps$Day[i_day], ": Extreme risk of freezing"))
+    } else{
+      print(paste("On November", Alb_temps$Day[i_day], ": High risk of freezing"))
+    }
+  }
+  
+}
+```
+
++ Once you've got that working, add a **counting variable** that keeps a count of the number of days with an "Extreme risk of freezing".  Add similar counting variables for each of the other risk categories.  Then after your loop is complete have your code print a statement reporting the number of days in each catergory.  For example, "_Low risk of freezing: X days_".  
+
+```{r include = FALSE}
+# Below is the solution to above exercise
+counter_extreme <- 0
+counter_high <- 0
+counter_low <- 0
+
+
+for(i_day in 1:num_days){
+  
+  if(Alb_temps$Avg[i_day] > freeze_temp){
+    print(paste("On November", Alb_temps$Day[i_day], ": Low risk of freezing"))
+    counter_low <- counter_low + 1 # count low risk days
+  } else{
+    
+    if(Alb_temps$Max[i_day] <= freeze_temp){
+      print(paste("On November", Alb_temps$Day[i_day], ": Extreme risk of freezing"))
+      counter_extreme <- counter_extreme + 1 # count extreme risk days
+    } else{
+      print(paste("On November", Alb_temps$Day[i_day], ": High risk of freezing"))
+      counter_high <- counter_high + 1 # count high risk days
+    }
+  }
+  
+}
+
+print(paste("Low risk days:", counter_low))
+print(paste("High risk days:", counter_high))
+print(paste("Extreme risk days:", counter_extreme))
+```
+
+<br/>
+
+### Additional exercises
+If you have any remaining time you should continue practicing with conditional programming (if/else) and control flow (for loops, while loops).  Come up with some of your own ideas that you would like to test out.  Also you can look through the **Base R** cheatsheet and make sure you are familiar with the topics presented there.  
+

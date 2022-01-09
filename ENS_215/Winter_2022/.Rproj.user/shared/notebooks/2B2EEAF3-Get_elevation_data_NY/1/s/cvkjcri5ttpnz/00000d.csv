@@ -1,0 +1,9 @@
+"0","fig_map_cropped <- elevation_cropped %>% "
+"0","  tm_shape() +"
+"0","  "
+"0","  tm_raster(style = ""cont"", palette = ""Greys"")"
+"0",""
+"0",""
+"0","fig_map_cropped"
+"2","stars object downsampled to 1324 by 755 cells. See tm_shape manual (argument raster.downsample)
+"

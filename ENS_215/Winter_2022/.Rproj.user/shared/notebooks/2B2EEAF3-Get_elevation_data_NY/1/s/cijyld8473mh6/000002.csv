@@ -1,0 +1,6 @@
+"0","tm_shape(elev_contours) +"
+"0","  tm_iso()"
+"2","CRS object has comment, which is lost in output"
+"2","Error in gList(x = list(-72.8026267338495, -72.8089918838442, -72.8026267338495,  : 
+  only 'grobs' allowed in ""gList""
+"
