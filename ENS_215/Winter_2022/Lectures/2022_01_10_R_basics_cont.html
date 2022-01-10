@@ -1743,8 +1743,10 @@ if(city_temp &gt;= 85){
 if(city_temp &gt;= 85){
   if(city_temp &gt; 100){
     print(&quot;It is very hot&quot;)
+    
   } else{
     print(&quot;It is hot&quot;)
+    
   }
 }</code></pre>
 <p><br /></p>
@@ -1756,12 +1758,16 @@ if(city_temp &gt;= 85){
 
 if(city_temp &gt;= 85){
   print(&quot;Wow it&#39;s pretty hot out!&quot;)
+  
 } else if(city_temp &gt;= 50){
   print(&quot;The temperature is nice and comfortable&quot;)
+  
 } else if (city_temp &gt;= 32){
   print(&quot;It&#39;s pretty cold outside&quot;)
+  
 } else {
   print(&quot;It&#39;s freezing out!&quot;)
+  
 }</code></pre>
 <p><br /></p>
 <p>Notice how in the example above, I “hard-coded” the temperature thresholds into the if/else-if statements. This is not a very good practice. Imagine I decide that <code>85</code> degress is not the best value to use as a cut-off for hot weather. If I want to change that threshold then I have to go into my if/else-if statement and find each place where I’ve got an <code>85</code> and change it. As your code gets longer and more complex this is a difficult/time consuming and error prone task.</p>
