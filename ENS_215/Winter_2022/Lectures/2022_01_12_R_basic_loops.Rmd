@@ -154,6 +154,7 @@ for(i_row in 1:5){
   
 }
 ```
+
 Look at the structure of the code above and make sure you understand what is going on.  
 
 Do you see how I "hard-coded" the dimensions of the matrix into the loop (i.e. specified that there are 5 rows and 5 columns).  This is generally a bad practice as it makes your code very inflexible.  Imagine we are loading in a dataset that is stored in a matrix and we don't know the dimensions beforehand (or we want to load in different datasets that have different dimensions).  If we "hard-code" the dimensions into the loop then our code will throw an error (if our dataset has less than 5 rows and 5 columns in the example above) or it will not loop over all of the matrix (if our dataset has > 5 rows and > 5 columns).  
@@ -223,6 +224,7 @@ library(readr)
 Alb_temps <- read_csv("https://stahlm.github.io/ENS_215/Data/Albany_Temperatures_Nov_2018.csv",
                       skip = 3)
 ```
+
 Now that you've loaded in the data, take a look at it.  The data frame has the maximum, average, and minimum temperature (in deg F) for each of the days in November 2018.  Make sure you understand each of the variables (columns) before moving ahead.  
 
 Let's loop over each day and determine the freezing risk (imagine you are storing something outside and want to know if it was at risk of freezing).   
