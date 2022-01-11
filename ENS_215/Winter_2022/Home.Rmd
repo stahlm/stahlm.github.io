@@ -95,7 +95,7 @@ output:
 
 ## Labs
 + Lab 1 -- **Computer setup and logistics**
-+ Lab 2 -- **Intro and EPA Fuel Economy Data** [(html)](https://stahlm.github.io/ENS_215/Winter_2022/Labs/Lab_EPA_Fuel_Economy.html) [(Rmd)](https://stahlm.github.io/ENS_215/Winter_2022/Labs/Lab_EPA_Fuel_Economy.Rmd)
++ Lab 2 -- **Intro and EPA Fuel Economy Data** [(html)](https://stahlm.github.io/ENS_215/Winter_2022/Labs/Lab_EPA_Fuel_Economy.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2022/Labs/Lab_EPA_Fuel_Economy.Rmd)
 
 <br/> 
 
