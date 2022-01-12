@@ -58,6 +58,8 @@ output:
 + Mon (10-Jan) -- **Relational and logical operators, if/else/else if** 
 [(html)](https://stahlm.github.io/ENS_215/Winter_2022/Lectures/2022_01_10_R_basics_cont.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2022/Lectures/2022_01_10_R_basics_cont.Rmd)
 
++ Wed (12-Jan) -- **Control flow (for and while loops)**
+[(html)](https://stahlm.github.io/ENS_215/Winter_2022/Lectures/2022_01_12_R_basic_loops.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2022/Lectures/2022_01_12_R_basic_loops.Rmd)
 
 ***
  
