@@ -326,6 +326,7 @@ df_met <- read_csv("https://github.com/stahlm/stahlm.github.io/raw/master/ENS_21
 
 Ask me and/or discuss with your neighbors if you have any questions or want to go over the approach.  FYI, there are many ways that you might implement this solution.  
 
+Note: The daily temperature data for Albany was obtained through the National Oceanic and Atmospheric Administration's (NOAA) [Global Historical Climatology Netword daily (GHCNd) database](https://www.ncei.noaa.gov/products/land-based-station/global-historical-climatology-network-daily).  This is an excellent resource for daily meteorological records for > 100,000 sites around the world, with many sites having data going back many decades or more.  
 
 ```{r echo=FALSE}
 year_vec <- seq(1939,2021)
@@ -355,6 +356,11 @@ for (i_year in year_vec) {
 }
 ```
 
+```{r echo = F, eval = F}
+table_stats %>%
+  ggplot(aes(x = year, y = n_events)) + 
+  geom_point() + geom_smooth()
+```
 
 
 ### Additional exercises
