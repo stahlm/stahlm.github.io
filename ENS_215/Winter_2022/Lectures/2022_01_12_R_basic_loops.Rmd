@@ -316,7 +316,7 @@ print(paste("Extreme risk days:", counter_extreme))
 
 
 ### Challenge
-Load in the daily temperature data for Albany International Airport and for each year from 1939 through 2021 determine the number of days where the minimum temperature was less than or equal to 32 degrees F.  
+Load in the daily temperature data for Albany International Airport and for each year from 1939 through 2021 determine the number of days where the minimum temperature was less than or equal to 32 degrees F.  Your results should be saved to a data frame.  
 
 The data can be loaded in here  
 ```{r message= F, warning= F}

@@ -3,22 +3,22 @@
     "path": "~/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2022/Lectures/2022_01_12_R_basic_loops.Rmd",
     "project_path": "Lectures/2022_01_12_R_basic_loops.Rmd",
     "type": "r_markdown",
-    "hash": "2914680724",
+    "hash": "0",
     "contents": "",
     "dirty": false,
     "created": 1641911690419.0,
     "source_on_save": false,
     "relative_order": 10,
     "properties": {
-        "cursorPosition": "326,168",
+        "cursorPosition": "318,256",
         "scrollLine": "313"
     },
     "folds": "",
-    "lastKnownWriteTime": 1641958553,
+    "lastKnownWriteTime": 1641992462,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1641958553089,
+    "last_content_update": 1641992462733,
     "read_only": false,
     "read_only_alternatives": []
 }
