@@ -280,7 +280,7 @@ for(i_day in 1:num_days){
 }
 ```
 
-+ Once you've got that working, add a **counting variable** that keeps a count of the number of days with an "Extreme risk of freezing".  Add similar counting variables for each of the other risk categories.  Then after your loop is complete have your code print a statement reporting the number of days in each catergory.  For example, "_Low risk of freezing: X days_".  
++ Once you've got that working, add a **counting variable** that keeps a count of the number of days with an "Extreme risk of freezing".  Add similar counting variables for each of the other risk categories.  Then after your loop is complete have your code print a statement reporting the number of days in each category.  For example, "_Low risk of freezing: X days_".  
 
 ```{r include = FALSE}
 # Below is the solution to above exercise
@@ -313,6 +313,44 @@ print(paste("Extreme risk days:", counter_extreme))
 ```
 
 <br/>
+
+
+### Challenge
+Load in the daily temperature data for Albany International Airport and for each year from 1939 through 2021 determine the number of days where the minimum temperature was less than or equal to 32 degrees F.  
+
+The data can be loaded in here
+
+```{r}
+df_met <- read_csv("../Data/Albany_GHCND_2840632.csv")
+```
+
+```{r}
+year_vec <- seq(1939,2021)
+```
+
+```{r}
+table_stats <- tibble(year = year_vec, 
+                      n_days = NA,
+                      n_events = NA
+                      )
+```
+
+
+
+```{r}
+threshold_min <- 32
+
+for (i_year in year_vec) {
+  df_temp <- df_met[df_met$YEAR == i_year,]
+  
+  i_count <- (sum(df_temp$TMIN <= threshold_min))
+  
+  i_days <- nrow(df_temp)
+  
+  table_stats$n_events[table_stats$year == i_year] <- i_count
+  table_stats$n_days[table_stats$year == i_year] <- i_days
+}
+```
 
 ### Additional exercises
 If you have any remaining time you should continue practicing with conditional programming (if/else) and control flow (for loops, while loops).  Come up with some of your own ideas that you would like to test out.  Also you can look through the **Base R** cheatsheet and make sure you are familiar with the topics presented there.  

@@ -280,7 +280,7 @@ for(i_day in 1:num_days){
 }
 ```
 
-+ Once you've got that working, add a **counting variable** that keeps a count of the number of days with an "Extreme risk of freezing".  Add similar counting variables for each of the other risk categories.  Then after your loop is complete have your code print a statement reporting the number of days in each catergory.  For example, "_Low risk of freezing: X days_".  
++ Once you've got that working, add a **counting variable** that keeps a count of the number of days with an "Extreme risk of freezing".  Add similar counting variables for each of the other risk categories.  Then after your loop is complete have your code print a statement reporting the number of days in each category.  For example, "_Low risk of freezing: X days_".  
 
 ```{r include = FALSE}
 # Below is the solution to above exercise
