@@ -336,7 +336,7 @@ Think about what the above data can tell you
 
 4. Which country had the lowest life expectancy in 1977?
 5. Which country in Europe had the lowest life expectancy in 2007?
-6. How many countries in 2007 had both a per capita GDP greater than 10,000 a life expectancy less than 60?
+6. What were the top countries by total GDP (note that this is different from per capita GDP) in 1952?
 
 <br/>  
 
