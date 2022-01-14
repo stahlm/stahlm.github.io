@@ -1,0 +1,52 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(rnoaa)
+```
+
+```{r}
+df_met <- read_csv("../Data/Albany_GHCND_2840632.csv")
+```
+
+```{r}
+year_vec <- seq(1939,2021)
+```
+
+```{r}
+table_stats <- tibble(year = year_vec, 
+                      n_days = NA,
+                      n_events = NA
+                      )
+```
+
+
+
+```{r}
+threshold_min <- 32
+
+for (i_year in year_vec) {
+  df_temp <- df_met[df_met$YEAR == i_year,]
+  
+  i_count <- (sum(df_temp$TMIN <= threshold_min))
+  
+  i_days <- nrow(df_temp)
+  
+  table_stats$n_events[table_stats$year == i_year] <- i_count
+  table_stats$n_days[table_stats$year == i_year] <- i_days
+}
+```
+
+
+
+
+```{r}
+loop_vec <- seq(2,10, by = 2)
+```
+
+
+
+

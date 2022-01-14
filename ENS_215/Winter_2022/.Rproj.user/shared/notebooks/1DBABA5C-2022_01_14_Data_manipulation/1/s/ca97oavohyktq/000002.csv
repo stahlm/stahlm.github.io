@@ -1,0 +1,1 @@
+"0","select(gap_data, country, year, lifeExp, gdpPercap)"

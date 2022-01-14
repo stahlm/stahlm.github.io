@@ -1,0 +1,2 @@
+"0",""
+"0","gap_data %>% filter(year == 2007, continent == ""Asia"") %>% arrange(gdpPercap)"

@@ -1,0 +1,1 @@
+"0","data_2007_highGDP <- filter(gap_data, gdpPercap > 5000, year == 2007)"

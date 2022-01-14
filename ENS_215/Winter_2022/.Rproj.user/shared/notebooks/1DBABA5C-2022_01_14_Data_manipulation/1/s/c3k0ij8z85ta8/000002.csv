@@ -1,0 +1,1 @@
+"0","gap_data[gap_data$year == 2007 & gap_data$gdpPercap > 5000, ] # the old way in base R"
