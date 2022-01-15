@@ -1,0 +1,13 @@
+"0","library(readr)"
+"0","Alb_temps <- read_csv(""https://stahlm.github.io/ENS_215/Data/Albany_Temperatures_Nov_2018.csv"","
+"0","                      skip = 3)"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m--------------------------------------------------------------------[39m
+cols(
+  Day = [32mcol_double()[39m,
+  Max = [32mcol_double()[39m,
+  Avg = [32mcol_double()[39m,
+  Min = [32mcol_double()[39m
+)
+
+"

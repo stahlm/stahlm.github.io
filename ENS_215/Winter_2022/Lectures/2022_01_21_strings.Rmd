@@ -1,0 +1,378 @@
+---
+title: "Working with strings in R"
+author: "ENS-215"
+date: "21-Jan-2022"
+output:
+  html_document:
+    theme: spacelab
+    df_print: paged
+    toc: TRUE
+    toc_float: TRUE
+---
+
+<br/>
+
+You've seen thus far, that in addition to numbers, we often deal with characters (text) in our datasets of interest.  We often want to search or perform some kind of manipulation of the character values in our dataset.  R has a host of tools/functions for dealing with operations on character data (FYI, in computer science a set of characters is called a **string**) and there is a great package called `stringr` that provides many additional and easy to implement functions for handling **strings**.  We will primarily rely on the `stringr` package, which simplifies string operations, much like `dplyr` does for data manipulation/wrangling operations[^1].  
+
+<br/>
+
+**IMPORTANT NOTE:** As you work through today's lecture add your own code block for each of the techniques learned and test out your own example.  
+
+## Load in `stringr`
+The `stringr` package is part of the `tidyverse` package collection, so you've actually installed `stringr` already.  Let's load in the `stringr` package so that we can use its functionality later on in the lecture.  We could load `tidyverse` and this would load in `stringr` along with a bunch of other packages or we could just load in `stringr`. Either will work.  
+
+```{r message =FALSE, warning=FALSE}
+library(tidyverse)
+```
+
+<br/>
+
+## Search for patterns in strings
+When working with strings we often need to locate some pattern.  We might need to search a text file for a particular keyword (*e.g. the name of a US state of interest*) or sequence of letters (*e.g. a biologist searching through DNA sequence for a particular gene*).
+
+We'll learn some techniques for performing these types of operations.  
+
+<br/>
+
+
+### Finding exact matches
+A very basic operation that we will frequently perform is to search for an exact match in a string.  We can do this using conditional statements to check for equality.  You've actually already done this a few times when checking for state abbreviations in your datasets, but now we'll learn the underlying concepts.
+
+<br/>
+
+```{r}
+str_1 <- "Hello how are you"
+str_1 == "Hello how are you"
+```
+
+You see that we assigned "Hello how are you" to the string object called `str_1` and then we tested to see if `str_1` was equal to "Hello how are you".  The test, unsurprisingly returned `TRUE`.  
+
+Note that R is CASE SENSITIVE and thus the following will return a `FALSE`
+```{r}
+str_1 == "hello how are you"
+```
+
+<br/>
+
+#### Ignoring case sensitivity
+In some cases, we'll want to ignore case sensitivity.  We can do this by forcing all of the strings to lower-case by using the `tolower` function.  
+
+Let's try out `tolower`
+```{r}
+str_1 # print out str_1
+tolower(str_1) # print out str_1 in all lower-case
+```
+
+Now let's to a comparison where we force `str_1` to be all lower-case
+```{r}
+tolower(str_1)  == "hello how are you"
+```
+
+Since `str_1` was mixed-case (i.e. had lower and upper-case letters), we forced it to lower-case.  If you are interested in ignoring case sensitivity it is actually good practice force all of the strings being compared to lower-case.  The example below should highlight why you would do this.
+
+```{r}
+str_1 <- "Hello how are you"
+str_2 <- "heLLo How aRe yOU"
+```
+
+<br/>
+
+The following should return a `FALSE`
+```{r}
+tolower(str_1)  == str_2
+```
+
+<br/>
+
+The following should return a `TRUE`, since we converted everything to lower-case.
+```{r}
+tolower(str_1)  == tolower(str_2)
+```
+
+<br/>
+
+FYI, similar to `tolower` there is a `toupper` function and I'm sure you can guess what it does
+```{r}
+my_tweet <- "this is how i write all my tweets"
+toupper(my_tweet)
+```
+
+<br/>
+
+If I were writing a book I might want to convert the string to **title format**.  You can do this with the `str_to_title` function
+```{r}
+str_to_title(my_tweet)
+```
+
+<br/>
+
+### Search for partial matches
+Finding partial matches is frequently required when dealing with strings.  For instance, we might want to search for a single character or a particular word in a longer string.  
+
+#### Match anywhere in the string
+To see if our `str_1` object below contains the pattern `"ab"` anywhere in the string we use the `str_detect` function in `stringr`.  The syntax is `str_detect(object to search, pattern to search for)`.
+```{r}
+str_1 <- "abc bca cab aaab"
+
+str_detect(str_1, "ab")
+```
+
+```{r}
+str_detect(str_1, "xyz")
+```
+
+
+You can include spaces in the pattern you want to look for.  Thus, the following code should return `TRUE`.
+```{r}
+str_detect(str_1, "a c")
+```
+
+
+Whereas this code should return `FALSE`, since there is no place in `str_1` where `"ac"` occurs
+```{r}
+str_detect(str_1, "ac")
+```
+
+<br/>
+
+#### Match the start of a string
+To check if a string starts with a pattern you use the carat `^` character in front of the pattern
+```{r}
+str_detect(str_1, "^ab")
+```
+
+```{r}
+str_detect(str_1, "^ac")
+```
+
+
+#### Match the end of a string
+We can also check if a string ends with a particular pattern.  To do this we put the dollar sign character `$` at the end of the pattern.
+```{r}
+str_detect(str_1, "aab$")
+```
+
+<br/>
+
+### Finding the position of a pattern in a string
+Often times we need to not just determine if a pattern is found within a string, but also where the particular pattern sits within that string.  To do this we use the `str_locate` function.  Let's see an example.
+
+```{r}
+str_locate(str_1, "b a")
+```
+
+You can see that the `str_locate` function returns the **start** and **end** position of the pattern within the string of interest.  
+If the pattern does not exist, the `str_locate` will return a value of `NA` for the start and end positions.
+```{r}
+str_locate(str_1, "ABC123")
+```
+
+<br/>
+
+If a pattern exists more than once within the searched string, then `str_locate` will only return the positions of the **first occurrence**
+```{r}
+str_3 <- "Ab then Ab"
+str_locate(str_3, "Ab")
+```
+
+To locate ALL of the occurrences, you can use the `str_locate_all` function
+```{r}
+str_locate_all(str_3, "Ab")
+```
+
+<br/>
+
+Let's run the code above again, but this time we'll save the output to data object
+```{r}
+pattern_position <- str_locate_all(str_3, "Ab")
+```
+
+If you look in your **Environment** pane you can see that `str_locate` returns a `list` data object.  
+
+Since we data frames are nice to work with (and we have lots of experience working with them) we can convert the output to a data frame using the `as.data.frame` function
+```{r}
+pattern_position <- as.data.frame(pattern_position)
+```
+
+<br/>
+
+However, there is a reason why `str_locate_all` returns the output as a `list` as opposed to a `data frame`.  In some situations, it is not possible to format the output as a `data frame`.  The code below presents an example illustrating this point.
+```{r}
+# Create a 5 element string vector
+str_4 <- c("Abc", "Def ", "Abc Def Ab", " bc ", "ef ")
+
+# Search for all instances of "Ab"
+str_locate_all(str_4,"Ab")
+```
+
+The `str_4` object is a five element string vector.  The 1^st^ element in the vector is `"Abc"`, the 2^nd^ element is `"Def"`, ...  
+
+Thus, `str_locate_all` returns a result for EACH element of the `str_4` vector.  Since the pattern can be found multiple times in a given element of `str_4` (e.g. the 3^rd^ element has two instances of "Ab"), then the most convenient data structure for the output is a `list`.  
+
+<br/>
+
+When we have a string `vector` (i.e. a vector containing strings as its elements), we can locate the position of the **element** within the vector that contains a pattern of interest by using the `str_which` function.  
+
+Let's take a look at an example below
+```{r}
+# Create a 5 element string vector
+str_4 <- c("Abc", "Def ", "Abc Def Ab", " bc ", "ef ")
+
+# Search for all instances of "Ab"
+str_which(str_4,"Ab")
+```
+
+You see that `str_which` returns 1 and 3, which indicates that the pattern `"Ab"` is found in the 1^st^ element (i.e "Abc") and the 3^rd^ element (i.e. "Abc Def Ab") of the `str_4` vector
+
+<br/>
+
+### Determine the length of a string
+In addition to locating patterns in strings, we often need to determine the length of a string.  We can do this using the `str_length` function
+
+```{r}
+string_cheese <- "I like mozzarella, cheddar, and feta"
+str_length(string_cheese)
+```
+The above tells us that `string_cheese` is 36 characters long (including spaces, punctuation, etc.) 
+
+If we have a string `vector` then `str_length` outputs the length of each element in the vector
+```{r}
+box_of_cheese <- c("cheddar", "mozzarella", "feta", "sharp cheddar")
+str_length(box_of_cheese)
+```
+
+<br/>
+
+### Determine the frequency of a pattern
+We can also count how many times (i.e. frequency) a particular pattern occurs within a string using the `str_count` function  
+
+**On a string**
+```{r}
+str_ens215 <- "In this class we are learning data analysis in R"
+str_count(str_ens215, "ar")
+```
+
+**On a string vector**
+```{r}
+str_count(box_of_cheese, "ar")
+```
+
+<br/>
+
+## Modifying (mutating) strings
+
+### Managing string lengths 
+In many instances you will want to modify the length of a string, either by adding to the string "padding", or by removing from the string.  These operations are often used to ensure that a list or set of strings have consistent formatting.  Below we'll see how (and why) we do this.  
+
+#### Padding strings
+Imagine you have a list of days in numeric format.  In the case of days of the month you could represent the 2^nd^ day with either a `2` or `02`.  The `02` format is often useful when you are naming files/objects since they will sort better in a file folder (e.g. while files are ordered `2` would come before `10` which in the case of dates you would not want, whereas `02` would not).  This is just one example of where you would want to pad the strings.  
+
+```{r}
+days_vec <- c("1","2","3","10","11","5","24") # create a list of days 
+
+str_pad(days_vec, width = 2, side = "left", pad = "0")
+```
+The `width` controls the length to pad until, thus the "10", "11", and "24" were not padded since they are already of length 2.  The `side` controls where the padding occurs (either left or right of string) and the `pad` specifies the character to use in the padding.  
+
+Try out the `str_pad` function on your own
+```{r}
+# Your code here 
+```
+
+#### Shortening strings
+There are also cases where you will want to shorten the length of strings.  
+
+##### Trim whitespace
+One case where you may want to shorten strings is when there is whitespace on either or both ends of a string.  To do this you use the `str_trim` function.  
+```{r}
+spaced_out <- c("Jan ", "Feb ", "Mar ", "Apr ", "May ")
+str_trim(spaced_out, side = "right")
+```
+You can trim from the left, right or both sides by setting `side` equal to "left", "right" or "both"
+
+##### Truncate strings
+```{r}
+str_years <- c("2000","2001","2002","2020","2050")
+str_trunc(str_years, 2, side = "left", ellipsis = "")
+```
+
+Check out the help file on `str_trunc` to learn what each of the function parameters is doing and what options they can take.  
+
+
+### Joining strings
+If you want to join strings you can use the `str_c` function.  Below are some examples
+
+#### Joining multiple strings
+```{r}
+s1 <- "The time of collection was"
+s2 <- "10:25 AM EST"
+s3 <- "on Jan 25th"
+
+str_c(s1,s2,s3, sep = " ") # combine strings and use a space as separator between the strings
+```
+
+#### Collapse a string vector
+You can also use `str_c` to collapse a string vector into a single string
+```{r}
+str_c(str_years,collapse = ", ") # collapse and use ", " to separate the items
+```
+
+### Replace elements of a string
+There are many situations where you want to find a specific pattern and replace it with another string (e.g. replace a word with an abbreviation, replace spaces with commas,...).  The `str_replace_all` function allows you to do this.  
+
+Let's replace the spaces in the following vector string with dashes
+```{r}
+str_dates <- c("Jan 2010", "Jul 2018", "Nov 2020")
+str_replace_all(str_dates," ","-")
+```
+
+<br/>
+
+## Extracting parts of a string
+
+### Extract by indices
+Just as we often want to extract parts of a data frame object, there are similarly many situations were we need to extract parts of a string.  
+
+We can specify the indices of a string object that we would like to extract by using the `str_sub` function
+```{r}
+course_title <- "ENS-215: Exploring Environmental Data"
+str_sub(course_title, start = 1, end = 7) # get elements 1 through 7
+
+```
+```{r}
+str_sub(course_title, start = 10, end = 18) # get elements 10 through 18
+```
+
+
+If you don't specify the `start` position then `str_sub` will extract from the first index to your specified end.  If you don't specify the `end` position then `str_subt` will extract from the specified `start` to the end of the string.  
+
+Sometimes you want to extract from a string, but would like to start extracting from the end.  To do this you can use a negative index
+```{r}
+str_sub(course_title, -4) # get the last four elements of the string
+```
+
+
+### Split strings based on a specified character
+There are many situations where you might need to split a string and there are a few approaches available (depending on the exact situation).  In our class, a likely situation might be where you have a single data frame column (or a vector) that has start and end times (these might indicate start and end times of an experiment, an environmental event such as a storm, ...)
+
+```{r}
+storm_times <- c("10:15-14:20", "18:00-22:40", "15:00-21:30") # vector with start and end times of recent rainstorms
+storm_times
+```
+
+<br/>
+
+We might want to split this into two columns, one that has the start time and the other having the end time.  We will specify the character that indicates the location we would like to make the split (in this case the split character is the `-`).  To do this we use the `str_split_fixed` funtion.  
+
+```{r}
+a<- str_split_fixed(storm_times,"-", 2) # split storm_times based on the dash "-" and output results to 2 columns
+```
+
+<br/>
+
+## Other string operations
+There are tons more string operations that you can do in R.  Today we just covered a few of the more common operations that you may need to do in your data analysis in the environmental sciences.  
+
+For more info to reinforce what you learned here and to see additional topics you can check out your textbook [R4DS Chapter 14](https://r4ds.had.co.nz/strings.html) and your [`stringr` cheatsheet](https://stahlm.github.io/ENS_215/Resources/Cheatsheets_all.pdf).  
+
+[^1]: Some of today's lecture material was inspired by material from the ES218 course by Manny Gimond
