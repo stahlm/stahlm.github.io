@@ -48,6 +48,13 @@ output:
 ```
 
 
+### Week 3
+  
++ Mon (17-Jan) -- **Data wrangling continued** 
+[(html)](https://stahlm.github.io/ENS_215/Winter_2022/Lectures/2022_01_17_Data_manipulation_cont.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2022/Lectures/2022_01_17_Data_manipulation_cont.Rmd)  
+
+
+
 ```{r eval  = F, echo  = F}
 
 
