@@ -34,7 +34,10 @@ For some helpful background you should read the _Executive Summary_ section of t
 #### Other helpful resources
 + [Dams and Reservoirs @ MIT Mission 2017](http://12.000.scripts.mit.edu/mission2017/dams-and-reservoirs/)
 + [High-resolution mapping of the world's reservoirs and dams for sustainable river-flow management](https://stahlm.github.io/ENS_215/Documents/Lehner_et_al_2011.pdf)
-+ [Wikipedia page on dams](https://en.wikipedia.org/wiki/Dam)
++ [Wikipedia page on dams](https://en.wikipedia.org/wiki/Dam) 
++ ["Report Card" on America's Dams](https://infrastructurereportcard.org/cat-item/dams/#:~:text=As%20of%202019%2C%20there%20are,once%2Drural%20dams%20and%20reservoirs.)  
++ [Article on the condition of US dams (includes an interactive map of dams in poor condition)](https://apnews.com/article/ne-state-wire-us-news-ap-top-news-sc-state-wire-dams-f5f09a300d394900a1a88362238dbf77)  
+
 
 </br>
 
