@@ -1,0 +1,8 @@
+"0","# find the largest ratio between highway and city gas mileage. "
+"0",""
+"0","max_hwy_cty <- max(fuel_data$hwy2cty)"
+"0","max_hwy_cty"
+"1","[1]"
+"1"," 1.666667"
+"1","
+"

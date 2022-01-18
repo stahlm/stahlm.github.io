@@ -1,0 +1,8 @@
+"0","# group by class, then summarize to see hwy statistics"
+"0",""
+"0","class_hwy_group <- fuel_data %>% "
+"0","  group_by(class) %>% "
+"0","  summarize(mean_hwy = mean(hwy), sd_hwy = sd(hwy))"
+"2","`summarise()` ungrouping output (override with `.groups` argument)
+"
+"0","class_hwy_group"

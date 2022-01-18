@@ -1,0 +1,4 @@
+"0","# determine whether any vehicle gets better gas mileage in the city as compared to the highway"
+"0","# this would occur when the ratio of hwy/cty < 1"
+"0",""
+"0","fuel_data %>% filter(hwy2cty < 1)"
