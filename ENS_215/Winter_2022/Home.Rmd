@@ -54,6 +54,9 @@ output:
 [(html)](https://stahlm.github.io/ENS_215/Winter_2022/Lectures/2022_01_17_Data_manipulation_cont.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2022/Lectures/2022_01_17_Data_manipulation_cont.Rmd)  
 
 
++ Wed (19-Jan) -- **Data wrangling `group_by` and `summarize()`**
+[(html)](https://stahlm.github.io/ENS_215/Winter_2022/Lectures/2022_01_19.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2022/Lectures/2022_01_19.Rmd) 
+
 
 ```{r eval  = F, echo  = F}
 

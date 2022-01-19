@@ -1,0 +1,7 @@
+"0","map_all_dams_anim <- world_sf %>% "
+"0","  tm_shape() +"
+"0","  tm_polygons(col = ""lightgrey"") +"
+"0","  "
+"0","  tm_shape(dams_sf_anim) +"
+"0","  tm_dots(col = ""red"", size = 0.1) +"
+"0","  tm_facets(along = ""Year_completed"", free.coords = F)"

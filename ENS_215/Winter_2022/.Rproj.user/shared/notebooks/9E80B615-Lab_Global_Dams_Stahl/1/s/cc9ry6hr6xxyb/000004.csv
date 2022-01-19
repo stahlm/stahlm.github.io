@@ -1,0 +1,7 @@
+"0","dams_sf <- dams_data %>% "
+"0","  filter(!is.na(Latitude),"
+"0","         !is.na(Longitude)"
+"0","         ) %>% "
+"0","  "
+"0","  select(Latitude, Longitude) %>% "
+"0","  st_as_sf(coords = c(""Longitude"", ""Latitude""))"
