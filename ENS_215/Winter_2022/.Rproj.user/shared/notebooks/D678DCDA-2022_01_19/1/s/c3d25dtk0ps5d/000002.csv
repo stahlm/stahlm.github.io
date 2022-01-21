@@ -1,0 +1,13 @@
+"0",""
+"0","t5 <- precip_data %>% "
+"0","  group_by(state_cd, Year) %>% "
+"0","  summarize(tot_annual_precip = sum(Precip_inches)) %>% "
+"0","  group_by(state_cd) %>%  "
+"0","  summarize(mean_precip = mean(tot_annual_precip),"
+"0","            min_precip = min(tot_annual_precip),"
+"0","            max_precip = max(tot_annual_precip)) %>% "
+"0","  arrange(desc(mean_precip))"
+"2","`summarise()` regrouping output by 'state_cd' (override with `.groups` argument)
+"
+"2","`summarise()` ungrouping output (override with `.groups` argument)
+"

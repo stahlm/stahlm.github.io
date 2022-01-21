@@ -1,0 +1,32 @@
+{
+    "id": "694237C2",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1642429535987.0,
+    "source_on_save": false,
+    "relative_order": 11,
+    "properties": {
+        "expression": "my_gap",
+        "caption": "my_gap",
+        "totalObservations": "1704",
+        "displayedObservations": "1704",
+        "variables": "6",
+        "cacheKey": "5019BE39",
+        "object": "my_gap",
+        "environment": "",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=my_gap&cache_key=5019BE39&max_cols=50",
+        "preview": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 12948304202498162,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1642429535987,
+    "read_only": false,
+    "read_only_alternatives": []
+}

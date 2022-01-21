@@ -1,0 +1,6 @@
+"0",""
+"0","t3 <- precip_data %>% "
+"0","  group_by(state_cd, Year) %>%"
+"0","  summarize(annual_precip = sum(Precip_inches))"
+"2","`summarise()` regrouping output by 'state_cd' (override with `.groups` argument)
+"
