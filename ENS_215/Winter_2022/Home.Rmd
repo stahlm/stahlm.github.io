@@ -76,7 +76,7 @@ output:
 [(html)](https://stahlm.github.io/ENS_215/Winter_2022/Lectures/2022_01_19.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2022/Lectures/2022_01_19.Rmd) 
 
 + Fri (21-Jan) -- **Intro to strings** 
-[(html)](https://stahlm.github.io/ENS_215/Winter_2022/Lectures/2022_01_24_strings.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2022/Lectures/2022_01_21_strings.Rmd)  
+[(html)](https://stahlm.github.io/ENS_215/Winter_2022/Lectures/2022_01_21_strings.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2022/Lectures/2022_01_21_strings.Rmd)  
 
 ```
 
