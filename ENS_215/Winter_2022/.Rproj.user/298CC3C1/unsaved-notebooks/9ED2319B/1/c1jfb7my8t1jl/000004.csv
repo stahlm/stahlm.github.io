@@ -1,0 +1,10 @@
+"0","precip_data %>% "
+"0","  filter(state_cd == state2use) %>% # get my state"
+"0","  group_by(Month) %>% "
+"0","  "
+"0","  summarise(precip_mean = mean(Precip_inches),"
+"0","            precip_min = min(Precip_inches),"
+"0","            precip_max = max(Precip_inches)"
+"0","            )"
+"2","`summarise()` ungrouping output (override with `.groups` argument)
+"
