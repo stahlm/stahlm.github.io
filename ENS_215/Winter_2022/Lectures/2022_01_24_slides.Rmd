@@ -29,7 +29,10 @@ What is the relationship between life expectancy and per capita GDP?
 You have 30 seconds to assess the relationship.  GO!!
 
 ```{r echo = FALSE}
-my_gap %>% filter(year == 2007) %>% select(country, gdpPercap, lifeExp) %>% kable() %>% kable_styling(bootstrap_options = c("striped", "hover", "condensed"), full_width = FALSE)
+my_gap %>% filter(year == 2007) %>%
+  select(country, gdpPercap, lifeExp) %>% 
+  kable() %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"), full_width = FALSE)
 ```
 
 ## Motivation
@@ -40,7 +43,12 @@ You have 30 seconds again...this time it should be much, much easier!
 
 ```{r echo = FALSE}
 
-my_gap %>% filter(year == 2007) %>% ggplot() + geom_point(aes(x = gdpPercap, y = lifeExp , color = continent), size = 3) + scale_x_continuous(name="GDP per capita (dollars)", labels = comma) + ylab("Life expectancy (yrs)") + theme_classic()
+my_gap %>% filter(year == 2007) %>%
+  ggplot() + 
+  geom_point(aes(x = gdpPercap, y = lifeExp , color = continent), size = 3) +
+  scale_x_continuous(name="GDP per capita (dollars)", labels = comma) +
+  ylab("Life expectancy (yrs)") + 
+  theme_classic()
 ```
 
 
@@ -92,7 +100,9 @@ The style, detail, and level of refinement will be a function of your goals.
     - Style/formatting/level of polish is not very important 
 
 ```{r echo=FALSE}
-my_gap %>% filter(year == 2007) %>% ggplot() + geom_point(aes(x = gdpPercap, y = lifeExp)) 
+my_gap %>% filter(year == 2007) %>%
+  ggplot() + 
+  geom_point(aes(x = gdpPercap, y = lifeExp)) 
 ```
 
 
@@ -103,8 +113,17 @@ my_gap %>% filter(year == 2007) %>% ggplot() + geom_point(aes(x = gdpPercap, y =
     - High quality figures
 
 ```{r echo=FALSE}
-my_gap %>% filter(year == 2007) %>% ggplot() + geom_point(aes(x = gdpPercap, y = lifeExp , color = continent), size = 3) + scale_x_continuous(name="GDP per capita (dollars)", labels = comma) + ylab("Life expectancy (yrs)") + theme_classic(base_size = 14) + labs(caption= "data source: gapminder",subtitle = "Figure 1: Life expectancy generally increase with per capita GDP") + theme(legend.title = element_text(colour="black", size=10, 
-                                      face="bold"),legend.position=c(0.85, 0.3)) +labs(col="Continent")
+my_gap %>% filter(year == 2007) %>% 
+  ggplot() + 
+  geom_point(aes(x = gdpPercap, y = lifeExp , color = continent), size = 3) + 
+  scale_x_continuous(name="GDP per capita (dollars)", labels = comma) + ylab("Life expectancy (yrs)") + 
+  
+  theme_classic(base_size = 14) + 
+  labs(caption= "data source: gapminder",
+       subtitle = "Figure 1: Life expectancy generally increase with per capita GDP") + 
+  theme(legend.title = element_text(colour="black", size=10, 
+                                      face="bold"),
+        legend.position=c(0.85, 0.3)) +labs(col="Continent")
 ```
 
 ## Data visualization: Engagement
@@ -196,7 +215,9 @@ Let's see how we would construct Minard's figure using the _grammar of graphics_
 ```{r echo=FALSE, message = FALSE, warning=FALSE}
 minard_table <- read_csv("../Images/minard_table.csv")
 
-minard_table %>% kable() %>% kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
+minard_table %>%
+  kable() %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
 ```
 
 

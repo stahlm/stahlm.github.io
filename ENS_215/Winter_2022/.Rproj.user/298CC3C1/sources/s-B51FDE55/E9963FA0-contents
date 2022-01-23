@@ -23,13 +23,9 @@ Before jumping into the `ggplot2` package, let's become familiar with some of th
 
 <br/>
 
-**IMPORTANT NOTE:** Don't get hung up on how "pretty" (or not pretty) the graphics look in today's lecture.  We are just going over the basics and later this week we will cover how to make attractive, presentation-quality graphics.  
-
-<br/>
-
 ## Common types of plots
 
-**Scatter plots** useful for displaying the relationship between two variables (e.g. height vs. weight).  If one variable is the independent (controlling variable) it is generally plotted along the x-axis, while the dependant variable is on the y-axis.  For example if you were looking out how precipitation affects streamflow you would plot precipitation on the x-axis and streamflow on the y-axis.  A third variable can be displayed by scaling or color coding the plotted symbols.  
+**Scatter plots** useful for displaying the relationship between two variables (e.g. height vs. weight).  If one variable is the independent (controlling variable) it is generally plotted along the x-axis, while the dependent variable is on the y-axis.  For example if you were looking out how precipitation affects streamflow you would plot precipitation on the x-axis and streamflow on the y-axis.  A third variable can be displayed by scaling or color coding the plotted symbols.  
 
 **Line graph** are useful for displaying the relationship between two variables, where each x-value corresponds to a single y-value.  Line graphs are typically used to display time-series data (e.g. streamflow vs. time, temperature vs. time) where there is a single measurement at each time-point.  
 
@@ -43,7 +39,7 @@ Before jumping into the `ggplot2` package, let's become familiar with some of th
 
 **Ternary diagrams**  Used to show proportions when the three components sum to 100%.  Commonly used to display grain size information.  
 
-**Box plots**  also called box and whisker plots, they are useful at displaying the statistical distribution of catagorical data.  
+**Box plots**  also called box and whisker plots, they are useful at displaying the statistical distribution of categorical data.  
 
 **Contour and surface plots** are used to display three variables.  Typically the x and y variable is the spatial position and the color (or contoured) variable is some value that varies in space (e.g. concentration).  
 
