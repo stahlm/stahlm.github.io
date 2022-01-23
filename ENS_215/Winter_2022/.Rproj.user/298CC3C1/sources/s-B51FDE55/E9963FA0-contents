@@ -1,0 +1,121 @@
+---
+title: "Introduction to Data Visualization"
+author: "ENS-215"
+date: "24-Jan-2022"
+output:
+  html_document:
+    theme: spacelab
+    df_print: paged
+    toc: TRUE
+    toc_float: TRUE
+---
+
+<br/>
+
+## Intro to data visualization
+As you've already learned in today's lecture one of the best tools you have to interpreting/understanding your data are your own eyes!  A visual representation of your data can reveal patterns and interesting features that would have been difficult or impossible to identify by looking at a data table.  
+
+Plots are not only the most effective way for you to understand your data, they are also the most effective way for you to convey your message to an audience.  
+
+For a more in-depth look into the motivations and goals of data visualization, refer back to [today's lecture slides](https://stahlm.github.io/ENS_215/Winter_2022/Lectures/2022_01_24_slides.html).    
+
+Before jumping into the `ggplot2` package, let's become familiar with some of the most common types of graphics that you will make and encounter in you work.  
+
+<br/>
+
+**IMPORTANT NOTE:** Don't get hung up on how "pretty" (or not pretty) the graphics look in today's lecture.  We are just going over the basics and later this week we will cover how to make attractive, presentation-quality graphics.  
+
+<br/>
+
+## Common types of plots
+
+**Scatter plots** useful for displaying the relationship between two variables (e.g. height vs. weight).  If one variable is the independent (controlling variable) it is generally plotted along the x-axis, while the dependant variable is on the y-axis.  For example if you were looking out how precipitation affects streamflow you would plot precipitation on the x-axis and streamflow on the y-axis.  A third variable can be displayed by scaling or color coding the plotted symbols.  
+
+**Line graph** are useful for displaying the relationship between two variables, where each x-value corresponds to a single y-value.  Line graphs are typically used to display time-series data (e.g. streamflow vs. time, temperature vs. time) where there is a single measurement at each time-point.  
+
+**Column and bar charts** useful for displaying number of items or values in different classes/groups, where the height of the bar represents the value.  For instance, you could display the water usage by US state using a bar chart, where each state would have its own bar and the height of the bar would be proportional to the amount of water used in that state.  
+
+**Histograms** are similar to a bar chart, but they are used to display the frequency distribution of the data.  For example you could display temperature data for a location using a histogram to understand how the data is distributed.  
+
+**Rose diagrams** similar to a histogram but used for displaying data that has a directional component (e.g. wind).  
+
+**Pie charts**  useful for displaying proportions of a whole.  For instance you might display the land cover (e.g. forested, developed, grasslands,...) of a given region using a pie chart.  Stacked bar charts can also be used to display this type of information and they are generally easier to read and more compact than pie charts.  
+
+**Ternary diagrams**  Used to show proportions when the three components sum to 100%.  Commonly used to display grain size information.  
+
+**Box plots**  also called box and whisker plots, they are useful at displaying the statistical distribution of catagorical data.  
+
+**Contour and surface plots** are used to display three variables.  Typically the x and y variable is the spatial position and the color (or contoured) variable is some value that varies in space (e.g. concentration).  
+
+**Maps** are excellent at displaying spatial data.  There are tons of different styles and types of maps and this is a whole subject on its own.  We will cover some basic mapping techniques in R later in the term.  
+
+<br/>
+
+[Check out this excellent site that provides guidance on the best type of graphic to use based on the kind of data you have](https://www.data-to-viz.com/)  
+
+[You can see a bunch of great examples of plot/graphic types (which are all available in R) here](https://www.r-graph-gallery.com/)    
+
+<br/>
+
+## `ggplot2` package
+The `ggplot2` package designed around the idea that a graphic can be decomposed into its fundamental parts and thus we can build them much like a sentence, by combining these parts according to _grammatical rules_.  
+
+**IMPORTANT CLARIFICATION:** the package is called `ggplot2` however when you create a figure you use the `ggplot()` (note that there is no `2` in the function call).  Also note that the `ggplot2` library is loaded in when you load in `tidyverse`.   If you want to load in `ggplot2` by itself, you can simply type `library(ggplot2)`.  
+
+<br/>
+
+Recall that when construction a graphin in `ggplot2` the three essential components of a graphic are:
+
+1. `data`: dataset containing the mapped variables
+2. `geom`: geometric object that the data is mapped to (_e.g._ point, lines, bars, ...)
+3. `aes`: aesthetic attributes of the geometric object.  The aesthetics control how the data variables are mapped to the geometric objects (e.g. x/y position, size, shape, color, ...)  
+
+
+The basic template for creating a graphic in `ggplot2` is 
+
+```{r eval = FALSE}
+ggplot(data = DATASET) + GEOM_FUNCTION(mapping = aes(MAPPINGS) )
+```
+
+<br/>
+
+
+- Where:  
+    - **DATASET** is the name of the data object where your data is stored  
+    - **GEOM_FUNCTION** is the `geom` function you want to use (_e.g._ `geom_point()`)  
+    - **MAPPINGS** are the specifications for how you want to map your data to the `geom` (_e.g._ `x = gdpPercap, y = lifeExp, color = continent`)  
+ 
+<br/> 
+
+You can also set the `aes`thetic to be **global** (_i.e._ will apply to all of the `geoms` associated with that `ggplot` call) by defining the `aes` right in the `ggplot` call.  For instance
+```{r eval = FALSE}
+ggplot(data = DATASET, mapping = aes(MAPPINGS)) + GEOM_FUNCTION()
+```
+
+<br/>
+
+## Find an interesting graphic identify its grammar
+
+Search online for an interesting data visualization example and using the _grammar of graphics_ framework identify the 
+
+  - data and variables
+  - `geom`etries
+  - `aes`thestics
+
+<br/>
+
+Some good places to look for good examples are: 
+
+  - [USGS Data Vis Lab](https://www.usgs.gov/mission-areas/water-resources/science/water-data-visualizations)
+  - [National Geographic](https://www.nationalgeographic.com/pages/graphics/the-maps-and-graphics-of-2020-s-events-and-discoveries)
+  - [NYTimes visualizations of the year](https://www.nytimes.com/interactive/2021/12/29/us/2021-year-in-graphics.html)
+
+<br/>
+
+### Exercise
+With your neighbor(s) share and discuss the graphics you've chosen.  Think about what makes the graphic "work".  
+
+  + What is the goal of the graphic? Does it clearly get across its point?  
+  + Could the clarity be improved?  Could the aesthetics/attractiveness of the graphic be improved?  
+ 
+ Think about how you might construct this graphic in R.  Think about additional graphical approaches to presenting the same data.

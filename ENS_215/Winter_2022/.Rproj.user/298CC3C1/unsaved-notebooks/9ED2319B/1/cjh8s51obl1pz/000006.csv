@@ -1,9 +1,0 @@
-"0","precip_data %>% "
-"0","  group_by(Year, state_cd) %>% "
-"0","  summarise(precip_tot = sum(Precip_inches)) %>% "
-"0","  "
-"0","  top_n(1)"
-"2","`summarise()` regrouping output by 'Year' (override with `.groups` argument)
-"
-"2","Selecting by precip_tot
-"

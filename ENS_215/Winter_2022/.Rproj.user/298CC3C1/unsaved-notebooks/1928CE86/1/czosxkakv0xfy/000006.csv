@@ -1,4 +1,0 @@
-"0","fig_map + tm_shape(border_state) +"
-"0","  tm_borders()"
-"2","stars object downsampled to 1322 by 756 cells. See tm_shape manual (argument raster.downsample)
-"
