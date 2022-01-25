@@ -28,10 +28,10 @@ You will conduct some exploratory data analysis using the BGS data to help devel
 ## Background reading
 Before starting the analysis, you need to read the following sources.  These readings will give you helpful background info and context and will help guide your analysis.  In addition to these sources, you may find it helpful to search out other sources to help you make sense of your analysis.  
 
-+ [Fendorf _e.t. al_ (2010)](https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Documents/Fendorf_2011.pdf)  
++ [Fendorf _et al._ (2010)](https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Documents/Fendorf_2011.pdf)  
 
 
-In addition to the article above you will also find the [BGS report on arsenic in Bangladesh](https://www.bgs.ac.uk/research/groundwater/health/arsenic/Bangladesh/reports.html) helpful.  However, this report is hundreds of pages and while you may be interested in flipping through it, the following summary sections are only 1-2 pages each and will give you a nice overview of their report.
+In addition to the article above you will also find the [BGS report on arsenic in Bangladesh](https://www2.bgs.ac.uk/groundwater/health/arsenic/Bangladesh/reports.html) helpful.  However, this report is hundreds of pages and while you may be interested in flipping through it, the following summary sections are only 1-2 pages each and will give you a nice overview of their report.
 
 + [BGS Report: Executive Summary](https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Documents/ExecSummary.pdf)
 + [BGS Report: Introduction](https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Documents/ChapIntroduction.pdf)
@@ -384,4 +384,4 @@ Please make sure that the `.html` file you submit is `.html` and not `nb.html`.
 [^2]: [UN Water](http://www.unesco.org/new/fileadmin/MULTIMEDIA/HQ/SC/images/WWDR2015Facts_Figures_ENG_web.pdf)
 [^3]: [Fendorf et al. (2011)](https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Documents/Fendorf_2011.pdf)
 [^4]: [Smith et al. (2000)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2560840/pdf/11019458.pdf)
-[^5]: [BGS Bangladesh data and reports](https://www.bgs.ac.uk/research/groundwater/health/arsenic/Bangladesh/data.html)
+[^5]: [BGS Bangladesh data and reports](https://www2.bgs.ac.uk/groundwater/health/arsenic/Bangladesh/reports.html)
