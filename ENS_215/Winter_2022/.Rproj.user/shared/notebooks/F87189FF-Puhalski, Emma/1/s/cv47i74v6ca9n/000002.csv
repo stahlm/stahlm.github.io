@@ -1,0 +1,7 @@
+"0","library(readr) # install readr package to help install expanded EPA vehicle csv file"
+"0","library(dplyr) # load dplyr"
+"0","path <- ""/Users/emmapuhalski/Documents/Winter 22/ENS_215/Labs/vehicles.csv"" # specify path"
+"0",""
+"0","full_epa <- read_csv(path) #import csv vehicle file"
+"2","Error: '/Users/emmapuhalski/Documents/Winter 22/ENS_215/Labs/vehicles.csv' does not exist.
+"

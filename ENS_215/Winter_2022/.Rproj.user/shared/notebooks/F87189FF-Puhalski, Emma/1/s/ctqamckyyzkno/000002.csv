@@ -1,0 +1,3 @@
+"0","fuel_data <- mutate(fuel_data, hwy2cty = hwy/cty) # Use mutate() to create the new variable (hwy2cty) and add it to the fuel_data object"
+"0",""
+"0","fuel_data # print object to view new variable hwy2cty"

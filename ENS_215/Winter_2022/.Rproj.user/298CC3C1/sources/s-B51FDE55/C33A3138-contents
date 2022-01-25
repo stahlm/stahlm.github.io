@@ -1,0 +1,323 @@
+---
+title: "EPA Fuel Efficiency"
+author: "Emma Puhalski"
+date: "2022_01_17"
+output:
+  html_document:
+    df_print: paged
+---
+
+# Getting Started in R and EPA Fuel Efficiency Data
+### *Emma Puhalski*
+### *2022-01-17*
+
+
+* Introduction
+* Step 1: Analysis of fuel efficiency in automobiles
+  + Fuel Economy Analysis
+  + Examine factors influencing fuel economy: Displacement
+  + Additional analysis of your choosing: Displacement outliers
+* Step 2: Work with an expanded EPA fuel efficiency dataset
+  + Graph CO~2~ emissions vs. fuel efficiency
+* Works Cited
+
+
+
+
+
+
+# Introduction
+
+  In this lab we used a range of Base R tools to explore fuel efficiency in vehicles within the EPA Fuel Economy Data Set. This sort of analysis is crucial because cars are known to be a huge contributor of carbon emissions and green house gases. When oil is transformed into a usable form of fuel such as gasoline or diesel enormous amounts of CO~2~ are released, and then the vehicles that use this fuel release 1.6 billion tons of greenhouse gases^1. As a society we have developed a massive dependency on a form of transportation that guzzles oil and spews out emissions that are known to be detrimental to our climate. The past seven years are reported to be the seven warmest years on record, with no predicted end to these warming trends^2. Countries have fallen far short of the Paris Agreement climate goals and the changes that have been implemented feel too-little too-late. CO~2~ concentrations have reached 413.2 ppm in 2020 and we are still on track to see 2.7 degrees C of warming within the next 50 years^2. 
+  Making changes is only possible once we understand the data behind the cause of these issues, and fuel efficiency in cars is a great place to start. While attempts at increasing fuel economy have been worked towards, quantifying and understanding these relationships is important to know what steps to take next.
+
+  I began with an analysis of fuel economy data for popular models of cars from 1999 to 2008 within a subset of the EPA Fuel Economy Data Set. I inspected and cleaned up the mpg data set, and viewed it in different formats to understand the data. I then graphed engine displacement to examine factors influencing fuel economy. Further pulling apart fuel economy variables revealed an increase in fuel efficiency with decreased engine displacement with a predominance of small engines and better fuel economy in foreign over US cars. I also found that Corvettes have an unknown factor in their making that contributes to a higher than normal fuel efficiency.
+  I then examined the Expanded EPA Fuel Economy Data Set, which required significant cleaning and narrowing down to analyze. I graphed CO~2~ emissions against fuel efficiency over the past 30 years to visualize how emissions have changed over time and with different vehicle fuel economies. This showed a significant decrease in CO~2~ tailpipe emissions with time that correlated strongly to increased fuel efficiency. While this data is promising, further inspection could reveal what additional improvements need to be made to continue to help mitigate climate change.
+
+
+
+
+
+
+
+## Step 1: Analysis of fuel efficiency in automobiles
+
+### Fuel Economy Analysis
+Setup for analysis
+
+```{r}
+library(tidyverse) # load in tidyverse package
+```
+
+
+```{r}
+fuel_data <- mpg # assign mpg data to a new object
+```
+
+  
+  
+  
+Use View() function to see dataset in a spreadsheet-style viewer:
+Use str() function to examine the structure of the fuel_data dataset:
+
+```{r}
+str(fuel_data) # examine the structure of the dataset
+
+#View() was used in the console
+```
+
+**How many variables are there?** There are 11 variables.    
+**How many observations?** There are 234 observations.    
+**What does chr, int, and num, mean in the output above?** These indicate what type of data the variables are. "chr" indicates character data, "int" indicates integer data, and "num" indicates numeric data.  
+    
+  
+  
+Find a function that allows you to examine the first six rows of the fuel_data dataset:
+```{r}
+head(fuel_data) # view the first 6 rows of fuel_data
+```
+
+**What do the displ, cyl, and cty columns represent?** "displ" is a variable called engine displacement, in liters. "cyl" is the number of cylinders, and "cty" is the city miles per gallon.    
+**What website was the data obtained from?** This dataset contains a subset of the fuel economy data that the EPA makes available on https://fueleconomy.gov/.    
+  
+  
+How many rows and columns are there in the fuel_data dataset?
+```{r}
+dim(fuel_data) # list dimensions of an object (number of rows and columns)
+```
+
+**Number of rows?** There are 234 rows.  
+**Number of columns?** There are 11 columns.  
+**Use this approach to get the dimensions and assign the value for the number of rows to a variable n_rows and number of columns to n_cols**
+
+```{r}
+n_rows <- dim(fuel_data)[1] # assign number of rows to n_rows
+n_cols <- dim(fuel_data)[2] # assign number of columns to n_cols
+```
+  
+  
+    
+Use the summary() function to get summary statistics on the fuel_data dataset:
+```{r}
+summary(fuel_data) # get summary statistics
+```
+**For highway driving how many miles per gallon does:**  
+    **The most fuel efficient vehicle get?** 44 mpg  
+    **The least fuel efficient vehicle get?** 12 mpg  
+**What is the average miles per gallon for city driving?** 16.86 mpg  
+  
+  
+
+Create a new variable to store the ratio of the hwy to cty fuel economy:
+```{r}
+fuel_data <- mutate(fuel_data, hwy2cty = hwy/cty) # Use mutate() to create the new variable (hwy2cty) and add it to the fuel_data object
+
+fuel_data # print object to view new variable hwy2cty
+```
+
+```{r}
+# to answer questions below
+
+max(fuel_data$hwy2cty) # view maximum hwy2cty data point to determine if any > 2
+min(fuel_data$hwy2cty) # view minimum hwy2cty data point to determine if any < 1
+```
+
+**Examine this new variable** 
+**Is there any vehicle that gets better gas mileage in the city as compared to the highway?** No. If city gas mileage was better than highway gas mileage, the ratio hwy2cty would be < 1, and all the hwy2cty data is > 1.  
+**Is there any vehicle that has twice as good gas mileage on the highway relative to the city?** No. The hwy2cty ratio for a vehicle with twice as good gas mileage on the highway relative to the city would have a value of 2, and all the hwy3cty values are greater than 1 but less than 2.  
+
+  
+  
+
+### Examine factors influencing fuel economy: Displacement
+
+```{r eval = T}
+ # create a scatter plot of fuel efficiency vs. displacement
+
+ggplot(data = fuel_data) + geom_point(aes(x = displ, y = hwy)) +
+  ggtitle("Fuel efficiency by engine displacement") +
+  labs(y = "Fuel efficiency (mpg)", x = "Engine displacement (L)")
+```
+
+  
+Graphing fuel efficiency against engine displacement shows a strong linear decrease in efficiency as liters of engine displacement increases.
+
+
+
+**How does displacement influence the fuel economy?** Lower displacement results in greater fuel economy. As engine displacement increases, the highway miles per gallon decrease.  
+**Do any points appear to be outliers from the observed relationship? Any thoughts on what might explain these outliers?** There is a group of six data points at the high end of 5-6 liters of displacement that have a higher fuel economy (25 mpg) than other data points that have the same amount of displacement. I would guess some combination of a better car model, number of cylinders, type of transmission, or type of drive train result in this better fuel economy, but it is impossible to determine from just this graph.  
+
+
+
+### Examine factors influencing fuel economy: Displacement and vehicle class
+
+```{r}
+# graph displacement vs fuel economy and color points by vehicle class
+
+fig_1 <- ggplot(fuel_data) + geom_point(aes(x = displ, y = hwy, color = model)) +
+ggtitle("Fuel efficiency by engine displacement \nin all vehicles") +
+  labs(y = "Fuel efficiency (mpg)", x = "Engine displacement (L)", color = "Model")
+```
+
+  
+There is a clear decrease in fuel efficiency (in highway miles per gallon) as engine displacement (in liters) increases. Car models are differentiated by color, however, there does not appear to be a significant correlation between car model and engine displacement affecting fuel efficiency. At very low engine displacement (> 2 L), fuel efficiency increases by up to 15 mpg. Past 2 L the slope is less steep. Interestingly, there are 6 green/blue outlier data points that do not to follow this trend and have an average fuel efficiency with a very high engine displacement.   
+
+
+
+Add a new variable to fuel_data
+
+```{r}
+us_makes <- c("chevrolet", "dodge", "ford", "jeep", "lincoln", "mercury", "pontiac") # list of U.S. manufacturers 
+
+fuel_data <- mutate(fuel_data, region = if_else(manufacturer %in% us_makes, "US", "Foreign")) # if manufacturer is us_makes, region = US, if manufacturer is not, region = Foreign
+```
+
+**What is the variable `region` telling us?** The variable `region` is telling us if the manufacturer of the car is US or Foreign based.   
+**Can you briefly explain the logic and steps taken to create the variable `region`?** We have created a list of all the US manufacturers. We are then creating a new variable called `region` that will search within the manufacturer column to see if the variable is within the us_makes list. If it is (T), the region will be labeled "US". If the manufacturer isn't in the us_makes list (F), the region will be labeled "Foreign".  
+
+
+
+
+
+
+
+## Additional analysis of your choosing: Displacement outliers
+
+I would like to isolate the five green data points with high engine displacements (5.5-7) that have unusually high fuel efficiency. Once I isolate these outliers I will examine other variables that apply to them to determine if there is a quantifiable variable within this data set that explains their high fuel efficiency.
+
+
+```{r}
+# graph displacement vs fuel economy. Data points colored by vehicle model and class differentiated by shape # bivariate based on region
+
+ggplot(fuel_data) + geom_point(aes(x = displ, y = hwy, color = model)) + 
+  facet_wrap(~region) +
+  ggtitle("Fuel efficiency by engine displacement \nin foreign and US vehicles") +
+  labs(y = "Fuel efficiency (mpg)", x = "Engine displacement (L)", color = "Model")
+```
+
+  
+US models are graphed on the right and Foreign models are graphed on the left plot. Car model is still differentiated by color. It appears that Foreign cars have a higher fuel efficiency than most US cars; they are heavily clumped to the left of the graph with low engine displacement and high fuel efficiency. US cars have a higher engine displacement on average and lower fuel efficiency. Smaller engines in Foreign cars result in better fuel efficiency than larger US engines. The outlier cars are US makes, indicating that these models must have some better feature than most other US cars.
+
+
+
+
+
+
+```{r}
+US_cars <- fuel_data[fuel_data$region == "US",] # isolate all US manufactured cars
+
+# graph US cars
+
+ggplot(US_cars) + geom_point(aes(x = displ, y = hwy, color = model)) +
+ggtitle("Fuel efficiency by engine displacement in US vehicles") +
+  labs(y = "Fuel efficiency (mpg)", x = "Engine displacement (L)", color = "Model")
+```
+
+  
+Fuel efficiency based on engine displacement in US vehicles. Now that there are less data points to sort through, I can determine what model of car has the targeted unusually high fuel efficiency despite a high displacement. The US cars with unusually high fuel efficiency are corvettes.
+
+
+```{r}
+US_outlier <- fuel_data[fuel_data$model == "corvette",] # isolate all corvette rows
+
+# graph fuel efficiency of corvettes vs transmission. Examining the US-outlier data set shows that transmission is the only variable that varries within corvettes.
+
+ggplot(US_outlier) + geom_point(aes(x = trans, y = hwy)) +
+ggtitle("Fuel efficiency by transmission type in Corvettes") +
+  labs(y = "Fuel efficiency (mpg)", x = "Transmission type")
+```
+
+  
+I graphed all other possible factors that might affect fuel efficiency to determine if there was an extraneous factor  causing the corvettes to have a higher fuel efficiency. It appears that there may be an overall positive linear relationship between transmission type and fuel efficiency for corvette cars. The manual corvette has a higher fuel efficiency than the auto s6 and I4.However, there is probably not enough data presented in this graph to conclusively determine a relationship between transmission type and fuel efficiency. 
+
+
+```{r}
+# Graph all transmission type against fuel efficiency for all model types to determine if this could be a significant factor in increased fuel efficiency. 
+
+ggplot(fuel_data) + geom_point(aes(x = trans, y = hwy, color = model)) +
+ggtitle("Fuel efficiency by transmission type \nin all vehicles") +
+  labs(y = "Fuel efficiency (mpg)", x = "Transmission type", color = "Model")
+```
+
+  
+I wanted to see if there was any significant relationship between the transmission type of all cars and the fuel efficiency. There does not appear to be any significant increase in fuel efficiency conveyed by transmission type. This allows me to conclude that there is some unknown factor in the make of corvettes that causes their higher-than normal fuel efficiency for their class.
+
+
+
+
+
+
+
+
+
+# Step 2: Work with an expanded EPA fuel efficiency dataset
+
+```{r}
+library(readr) # install readr package to help install expanded EPA vehicle csv file
+library(dplyr) # load dplyr
+path <- "/Users/emmapuhalski/Documents/Winter 22/ENS_215/Labs/vehicles.csv" # specify path
+
+full_epa <- read_csv(path) #import csv vehicle file
+```
+
+
+
+### Clean data
+```{r}
+epa_full <- full_epa[ , colSums(is.na(full_epa)) < nrow(full_epa)]  # Remove rows with NA only, assign to new data frame    
+summary(epa_full) # look at summary of data
+```
+
+
+**Using the following variables with their included meaning:**  
+`co2TailpipeGpm`- tailpipe CO~2~ in grams/mile for fuelType1  
+`highway08` - highway MPG for fuelType1  
+*From https://www.fueleconomy.gov/feg/ws/index.shtml#vehicle*  
+
+Isolate model, year, tailpipe CO~2~, and highway mpg variables to look at the relationship between CO~2~ emissions produced and the fuel efficiency in miles per gallon of the vehicle.
+```{r}
+# select a subset of data to look at the relationship between tailpipe CO~2~ and highway MPG.   
+# assign subset to new data frame vroom_fume  
+
+vroom_fume <- epa_full %>% select(model, 
+                    year,
+                    co2TailpipeGpm,
+                    highway08)
+vroom_fume # print new data frame
+```
+
+```{r}
+# rename variables with easier titles
+vroom_fume <- vroom_fume %>% mutate(hwy = highway08, 
+                      tailCO2 = co2TailpipeGpm)
+
+# arrange by fuel efficiency, CO~2~ emissions and then by year
+vroom_fume %>% arrange(hwy,
+                       tailCO2,
+                       year)
+```
+
+## Graph CO~2~ emissions vs. fuel efficiency
+```{r}
+library(ggplot2) # load in ggplot2
+
+# graph hwy vs. tailCO~2~ with year differentiated by color
+
+ggplot(vroom_fume) + geom_point(aes(x = hwy, y = tailCO2, color = year)) +
+  ggtitle("Tailpipe CO2 emissions by fuel efficiency") +
+  labs(y = "Tailpipe CO2 (g/mi)", x = "Fuel efficiency (mpg)", color = "Year")
+```
+
+  
+There is a significant negative relationship between fuel efficiency (mpg) and tailpipe CO~2~ emissions (g/mi) over time. Cars with very low fuel efficiency tend to be older models with high tailpipe CO~2~ emissions. Over time, cars have become more environmentally friendly and fuel efficient. As fuel efficiency increases, there is a decrease in CO~2~ emissions produced by the car. There is a "fallout" below the trend of more recent cars (lighter blue) with low fuel efficiency and low CO~2~ emissions that further show the trend towards more environmentally friendly cars.   
+
+
+
+
+
+
+
+## Works Cited
+
+^1https://www.fueleconomy.gov/feg/climate.shtml  
+^2https://www.un.org/en/climatechange/reports  

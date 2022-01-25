@@ -1,0 +1,7 @@
+"0","US_outlier <- fuel_data[fuel_data$model == ""corvette"",] # isolate all corvette rows"
+"0",""
+"0","# graph fuel efficiency of corvettes vs transmission. Examining the US-outlier data set shows that transmission is the only variable that varries within corvettes."
+"0",""
+"0","ggplot(US_outlier) + geom_point(aes(x = trans, y = hwy)) +"
+"0","ggtitle(""Fuel efficiency by transmission type in Corvettes"") +"
+"0","  labs(y = ""Fuel efficiency (mpg)"", x = ""Transmission type"")"

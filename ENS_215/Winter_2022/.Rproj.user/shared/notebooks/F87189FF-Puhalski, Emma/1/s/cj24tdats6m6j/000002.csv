@@ -1,0 +1,5 @@
+"0"," # create a scatter plot of fuel efficiency vs. displacement"
+"0",""
+"0","ggplot(data = fuel_data) + geom_point(aes(x = displ, y = hwy)) +"
+"0","  ggtitle(""Fuel efficiency by engine displacement"") +"
+"0","  labs(y = ""Fuel efficiency (mpg)"", x = ""Engine displacement (L)"")"

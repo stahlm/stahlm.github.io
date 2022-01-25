@@ -1,0 +1,7 @@
+"0","US_cars <- fuel_data[fuel_data$region == ""US"",] # isolate all US manufactured cars"
+"0",""
+"0","# graph US cars"
+"0",""
+"0","ggplot(US_cars) + geom_point(aes(x = displ, y = hwy, color = model)) +"
+"0","ggtitle(""Fuel efficiency by engine displacement in US vehicles"") +"
+"0","  labs(y = ""Fuel efficiency (mpg)"", x = ""Engine displacement (L)"", color = ""Model"")"

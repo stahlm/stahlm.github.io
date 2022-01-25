@@ -1,0 +1,6 @@
+"0","# graph displacement vs fuel economy. Data points colored by vehicle model and class differentiated by shape # bivariate based on region"
+"0",""
+"0","ggplot(fuel_data) + geom_point(aes(x = displ, y = hwy, color = model)) + "
+"0","  facet_wrap(~region) +"
+"0","  ggtitle(""Fuel efficiency by engine displacement \nin foreign and US vehicles"") +"
+"0","  labs(y = ""Fuel efficiency (mpg)"", x = ""Engine displacement (L)"", color = ""Model"")"

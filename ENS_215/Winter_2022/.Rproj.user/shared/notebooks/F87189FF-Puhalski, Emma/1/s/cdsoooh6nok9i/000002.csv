@@ -1,0 +1,2 @@
+"0","n_rows <- dim(fuel_data)[1] # assign number of rows to n_rows"
+"0","n_cols <- dim(fuel_data)[2] # assign number of columns to n_cols"

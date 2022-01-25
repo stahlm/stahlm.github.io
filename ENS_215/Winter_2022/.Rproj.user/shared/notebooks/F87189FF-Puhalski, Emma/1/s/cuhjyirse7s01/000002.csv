@@ -1,0 +1,5 @@
+"0","# Graph all transmission type against fuel efficiency for all model types to determine if this could be a significant factor in increased fuel efficiency. "
+"0",""
+"0","ggplot(fuel_data) + geom_point(aes(x = trans, y = hwy, color = model)) +"
+"0","ggtitle(""Fuel efficiency by transmission type \nin all vehicles"") +"
+"0","  labs(y = ""Fuel efficiency (mpg)"", x = ""Transmission type"", color = ""Model"")"
