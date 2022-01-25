@@ -123,6 +123,7 @@ Once you've created `As_cat` convert it to a **factor**.  Make sure the factor i
 
 <br/>
 
+
 ```{r echo=FALSE, eval=FALSE}
 
 low_As <- 10 # low arsenic threshold (ug/L)

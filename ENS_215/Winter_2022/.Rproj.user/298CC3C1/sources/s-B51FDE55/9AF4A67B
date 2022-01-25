@@ -3,22 +3,22 @@
     "path": "~/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2022/Labs/Lab_Bangladesh_Arsenic.Rmd",
     "project_path": "Labs/Lab_Bangladesh_Arsenic.Rmd",
     "type": "r_markdown",
-    "hash": "958559605",
+    "hash": "3349788869",
     "contents": "",
     "dirty": false,
     "created": 1643122973710.0,
     "source_on_save": false,
     "relative_order": 11,
     "properties": {
-        "cursorPosition": "28,41",
-        "scrollLine": "17"
+        "cursorPosition": "124,0",
+        "scrollLine": "97"
     },
     "folds": "",
-    "lastKnownWriteTime": 1643133948,
+    "lastKnownWriteTime": 1643135543,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1643133948499,
+    "last_content_update": 1643135543996,
     "read_only": false,
     "read_only_alternatives": []
 }
