@@ -1,0 +1,2 @@
+"0","n_row<- nrow(fuel_data) #assigns the number of rows to an object named `n_row`"
+"0","n_cols<- ncol(fuel_data) #assigns the number of columns to an object named `n_cols`"

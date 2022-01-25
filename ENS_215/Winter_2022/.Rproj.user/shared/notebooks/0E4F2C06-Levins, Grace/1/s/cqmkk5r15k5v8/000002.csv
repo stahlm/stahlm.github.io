@@ -1,0 +1,2 @@
+"0","ggplot(fuel_data)+"
+"0","  geom_point(aes(displ, hwy)) #plot engine size by mileage for all points"

@@ -1,0 +1,3 @@
+"0","ggplot(data = fuel_data) + geom_point(aes(x = hwy, y = displ)) + "
+"0","  xlab(""Highway MPG"") + "
+"0","  ylab(""Cylinder Dsiplacement (liters)"") #plots the data from `fuel_data` in a scatter plot, with the x values being the `hwy` row and the y values being the `displ` row"

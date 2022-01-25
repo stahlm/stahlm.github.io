@@ -1,0 +1,3 @@
+"0","big_data<- read_csv('/Users/IP/Downloads/vehicles.csv') #Reads the downloaded CSV file and assings it to an object names `big_data`"
+"2","Error: '/Users/IP/Downloads/vehicles.csv' does not exist.
+"

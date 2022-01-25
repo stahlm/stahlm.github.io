@@ -1,0 +1,218 @@
+---
+title: "Lab 2: Getting Started in R and EPA Fuel Efficieny Data"
+author: Emma Drake
+date: 2022-01-10
+output: html_document
+---
+## Step 1: Analysis of fuel effieciency in automobiles
+
+### Fuel Economy Analysis
+#### Set up for analysis
+
+```{r}
+library(tidyverse) # load in the tidyverse package
+library(stringr)
+
+```
+
+```{r}
+fuel_data <- mpg # assigning the data set mpg to a new object (fuel_data)
+```
+
+#### Use the str() function to examine the structure of the `fuel_data` dataset
+
+```{r}
+str(fuel_data)
+```
+
++ **How many variables are there?**
+
+  There are 11 variables. 
+
++ **How many observations are there?** 
+
+  There are 234 observations.
+
++ **What does `chr`, `int`, and `num` mean in the output above?**
+
+  `chr` stands for character, `int` stands for integer and `num` stands for numeric.  
+
+#### Look at first six rows of the `fuel_data` dataset
+
+```{r}
+fuel_data[1:6,] # first way to view the first six rows
+```
+
+```{r}
+arrange(fuel_data, year)
+```
+
+```{r}
+head(fuel_data) # second way to view the first six rows
+```
+
++ **What do the `dsp`, `cyl`, and `cty` columns represent? (Hint: type `?mpg` into the console to get more information on the data set)**
+
+  `dsp` stands for engine displacement (in liters), `cyl` stands for number of cylinders and `cty` stands for city miles per gallon. 
+
++ **What website was the data obtained from?**
+
+  https://fueleconomy.gov/
+
+#### Look for the number of rows and columns in this data set
+
+```{r}
+dim(fuel_data) # dimensions of `fuel_data`
+```
+
++ **Number of rows?**
+
+  234 
+
++ **Number of columns?**
+
+  11
+
++ **Use the approach that you employed to get the dimensions and assign the value for the number of rows to a variable `n_rows` and number of columns to `n_cols` (Hint: you can find functions for just the number of rows and just number of columns respectively on your Base R Cheatsheet)**
+
+```{r}
+n_rows <- nrow(fuel_data)
+
+n_cols <- ncol(fuel_data)
+
+```
+
+#### Use the `summary()` fuction to get summary statistics on the `fuel_data` data set
+
+```{r}
+summary(fuel_data)
+```
+
++ **For highway driving how many miles per gallon does**
+  + **The most fuel efficient vehicle get?**
+
+    44 miles per gallon
+
+  + **The least fuel efficient vehicle get?**
+
+    12 miles per gallon
+
+  + **What is the average miles per gallon for city driving?**
+
+    16.86 miles per gallon
+
+#### Create a new variable to store the ratio of the `hwy` to `cty` fuel economy
+
+```{r}
+fuel_data <- mutate(fuel_data, hwy2cty = hwy/cty)
+```
+
+```{r}
+summary(fuel_data) # lets look at a summary to see what the new variable looks like
+```
+
++ **Examine this new variable**
+
+  + **Is there any vehicle that gets better gas mileage in the city as compared to the highway?**
+
+    No 
+
+  + **Is there any vehicle that has twice as good gas mileage on the highway relative to the city?**
+
+    No
+
+  + **What is the largest ratio between highway and city gas mileage?**
+
+    1.667
+
+#### Examine factors influencing fuel economy: Displacement
+
+```{r}
+ggplot(data = fuel_data) + geom_point(aes(x = displ, y = hwy))   # create a scatter plot of `hwy` vs `displ`
+```
+
++ **How does displacement influence the fuel economy?**
+
+  The higher the displacement, the lower the highway miles per gallon. The larger the displacement the less efficient the car is. 
+
++ **Do any points appear to be outliars from the observed relationship? Any thoughts on what might explain these outliars?**
+
+  There may be a few outliars when looking at the top left of the graph and the bottom right of the graph. This could be explained by the type of car.   
+
+#### Examine factors influencing fuel economy: Displacement and vehicle class
+
+```{r}
+ggplot(data = fuel_data) + geom_point(aes(x = displ, y = hwy, color = class))   # create a scatter plot of `hwy` vs `displ` and showing the class dipicted by a certain color
+```
+
++ **What new information did this provide us with?**
+
+  + **Can we say more about factors affecting fuel economy?**
+  Compact and midsize cars general get better gas mileage than pickups and suvs. The larger the car the more engine displacement there is and the less highway miles per gallon the car gets.  
+
+  + **Can we explain some of the outliars?**
+  Yes, one of the outliars is the subcompact type. That type of car ranges in displ and even the 4-6 displ for this type has good efficiency. 
+  
+#### Add a new variable to `fuel_data`
+
+```{r}
+us_makes <- c("chevrolet", "dodge", "ford", "jeep", "lincoln", "mercury", "pontiac") # list of U.S car manufacturers
+
+fuel_data <- mutate(fuel_data, region = if_else(manufacturer %in% us_makes, "US", "Foreign")) # this is taking a list with the U.S car manufacturers, cars that part on this list are named as foreign
+```
+
++ **What is the variable `region` telling us?**
+
+  The variable region is telling us if the car was made in the US or if it was made in another country. All other counries are listed as foreign.
+
++ **Can you briefly explain the logic and steps take to create the variable `region`?**
+
+  `region` was created by making a list of all the brands we know are made in the US, this was named us_makes. Next we went into the fuel_data and used the `mutate()` function to make a new variable named `region`. In `region` there is either "US" which is from the list we made before which is called us_makes. And then there is "Foreign" which is all other brands that were not in the list us_makes. 
+
+## Additional analysis of your choosing  
+
+In my analysis I chose to look and see if there was any connection between transmission type and fuel efficiency. Not to my surprise, there was a connection. Manual transmission tends to be more efficient than automatic transmission. We can conclude this statement from this data set but we should take into consideration that the data set ends in 2008. Automatic cars have become a lot more efficient since then. Therefore this conclusion may not be correct to apply to cars made between 2009 and 2022.
+
+```{r}
+fuel_data <- mutate(fuel_data,
+                    trans_type = if_else(str_detect(trans, "man"), "man", "auto")) # Making two groups, man for manual and auto for automatic
+```
+
+### Scatter plots
+
+These scatter plots show the relationship between transmission type and highway miles per gallon for each type of car. From these plots we can see which type of car has more manual or automatic makes. Minivan is strictly automatic with suvs and midsize leaning more towards automatic as well. Compact, pickup, subcompact and 2 seater all look about even. We can also see that manual compacts have more hwy than automatic. 
+
+```{r}
+ggplot(data = fuel_data) + geom_jitter(aes(x = trans_type, y = hwy, color = class),
+                                       width = 0.2, height = 0) +
+  facet_wrap(~ class)
+```
+
+### Box plot 
+
+This box plot shows transmission type and highway miles per gallon. From this plot we can see that manual transmission is more efficient than automatic transmission.
+
+```{r}
+fig_box <- ggplot(fuel_data, aes(x = factor(trans_type), y = hwy)) + 
+  geom_boxplot()
+
+fig_box
+```
+
+### Table
+
+Table that shows the amount of manual cars and automatic cars that are in the data set. 
+
+```{r}
+table(fuel_data$trans_type)
+```
+
+### Bar graph 
+
+This bar graphs shows the amount of manual and automatic cars in the data set. There are more automatic cars in this dataset although we concluded that manual is more efficient. 
+
+```{r}
+qplot(trans_type, data = fuel_data, geom = "bar", fill = trans_type)
+```
+
+

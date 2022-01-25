@@ -1,0 +1,122 @@
+---
+title: "Lab Week 2 (Abbott) - 22_1_11"
+output:
+  html_document:
+    df_print: paged
+---
+# Step 1 - Set Up
+```{r}
+library(tidyverse) #Load tidyverse
+fuel_data <- mpg
+```
+
+# Step 1 - Analysis
+## str funtion
+```{r}
+str(fuel_data) 
+```
+### 234  
+### chr is charecter, int is integer, num is numerical. These define what kind of data is present.   
+
+## Row select
+```{r}
+fuel_data[1:6,] #select the first 6 rows
+```
+### disp is the engine displacement in litres, cyl is the number of cylinders, and cty is city miles per gallon.  
+### https://fueleconomy.gov/  
+
+## Row and Column Count
+```{r}
+nrow(fuel_data)
+ncol(fuel_data)
+n_row <- nrow(fuel_data) #set the number of rows
+n_col <- ncol(fuel_data) #set the number of columns
+```
+### 234  
+### 11  
+
+## Summary
+```{r}
+summary(fuel_data)
+```
+### 44 miles per gallon, 12 miles per gallon  
+### 16.86 miles per gallon  
+
+## Create hwy to cty ratio
+```{r}
+fuel_data <- mutate(fuel_data, hwy2cty = hwy/cty)
+fuel_data$hwy2cty
+```
+```{r}
+fuel_data$hwy2cty > 1 #check if hwy is better than cty
+```
+### No vehicles have better cty than hwy  
+```{r}
+fuel_data$hwy2cty > 2 #check  if hwy is 2x better than cty
+```
+### No vehicles have 2x the hwy than cty  
+```{r}
+max(fuel_data$hwy2cty) #Max hwy2cty value
+```
+### the largest ration is 1.666667  
+
+# Step 1 - Graphing
+
+```{r}
+ggplot(data = fuel_data) + geom_point(aes(y = hwy, x = displ)) #Create scatter plot of 
+```
+### The lower the engine displacement the higher the highway miles   
+### the point with the highest displ at 7 doesnt have the lowest mileage and is actualy in the middle.  
+
+
+```{r}
+ggplot(data = fuel_data) + geom_point(aes(y = hwy, x = cyl, color = class))
+#hwy vs cyl with class being colors
+```
+### having less cylinders causes better hwy mgp.   
+### 2 cars have 5 cylindes which is a weird design. We can tell it wasnt the best as not many other copied it.  
+
+## Create New Vaariable
+```{r}
+us_makes <- c("chevrolet","dodge","ford","jeep","lincoln","mercury","pontiac") # US cars
+fuel_data <- mutate(fuel_data, region = if_else(manufacturer %in% us_makes,"US","Foreign"))
+fuel_data$region
+```
+### This variable tells us if the car is from the US or foreign.  
+### The steps first defined what was concidered a US make and called it us_makes. Next the mutate funtion was used to add region to fuel_data. This region feild was defined by stating that if the manufacturer feild was one of the brands in us_makes then it would be called "US" otherwise it woul dbe called "Foreign".  
+
+# Step 1 - Additional Analysis
+```{r}
+unique(fuel_data$trans) #list unique trans data
+trans_auto <- c("auto(l5)", "auto(av)", "auto(s6)", "auto(l4)", "auto(l3)", "auto(l6)", "auto(s5)", "auto(s4)") #Create a new field where all automatic trans are included
+fuel_data <- mutate(fuel_data, a_m = if_else(trans %in% trans_auto,"Auto","Manual")) # mutate the new field
+```
+
+```{r}
+fuel_data$a_m #Print a_m
+```
+
+## Create graph of a_m vs hwy
+```{r}
+ggplot(data = fuel_data) + geom_point(aes(x = a_m, y = hwy))
+# greated graph showing hwy mpg for automatic and manual cars
+```
+### you can see a slight trend showing that manual has a slightly higer average mpg then automatic. 
+
+# Step 2 - Set Up
+
+```{r}
+vehicles <- read_csv("vehicles.csv")
+```
+# Step 2 - Analysis
+```{r}
+vehicles$ch <- vehicles$highway08 / vehicles$city08
+# create hwy/cty field
+```
+
+```{r}
+ggplot(data = vehicles) + geom_point(aes(x = displ , y = ch, color = year ))
+```
+### We can see that similarly to the previous data more displecement means higher highway mileage ### We can also see that newer cars seem to be better.
+
+

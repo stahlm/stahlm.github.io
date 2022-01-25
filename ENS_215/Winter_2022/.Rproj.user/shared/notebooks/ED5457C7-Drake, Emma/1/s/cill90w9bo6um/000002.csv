@@ -1,0 +1,2 @@
+"0","fuel_data <- mutate(fuel_data,"
+"0","                    trans_type = if_else(str_detect(trans, ""man""), ""man"", ""auto"")) # Making two groups, man for manual and auto for automatic"

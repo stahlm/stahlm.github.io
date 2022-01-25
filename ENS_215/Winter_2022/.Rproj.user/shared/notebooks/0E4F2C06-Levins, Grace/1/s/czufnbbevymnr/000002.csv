@@ -1,0 +1,4 @@
+"0","fuel_data_expanded <- read.csv(""vehicles.csv"") #import larger data frame"
+"2","cannot open file 'vehicles.csv': No such file or directory"
+"2","Error in file(file, ""rt"") : cannot open the connection
+"

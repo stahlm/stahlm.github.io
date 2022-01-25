@@ -1,0 +1,3 @@
+"0","ggplot(data = fuel_data) + geom_jitter(aes(x = trans_type, y = hwy, color = class),"
+"0","                                       width = 0.2, height = 0) +"
+"0","  facet_wrap(~ class)"

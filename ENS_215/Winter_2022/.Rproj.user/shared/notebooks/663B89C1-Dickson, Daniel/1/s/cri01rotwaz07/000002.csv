@@ -1,0 +1,4 @@
+"0","us_makes <- c(""chevrolet"",""dodge"",""ford"",""jeep"","
+"0","              ""lincoln"",""mercury"",""pontiac"") # this lists manufactures based in the US"
+"0",""
+"0","fuel_data <- mutate(fuel_data, region = if_else(manufacturer %in% us_makes,""US"",""Foreign"") ) # this uses an if_else statement to define the category ""Foreign"" as all cars not belonging to the vector us_makes"

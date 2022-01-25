@@ -1,0 +1,5 @@
+"0","ggplot(data = dodge_data) + "
+"0","  geom_point(aes(x = model, y = hwy, color = cyl)) + "
+"0","   xlab(""Dodge Model"") + "
+"0","  ylab(""Highway MPG"") + "
+"0","  labs(color = ""Number of Cylinders"") #color now represents the number of cylinders"

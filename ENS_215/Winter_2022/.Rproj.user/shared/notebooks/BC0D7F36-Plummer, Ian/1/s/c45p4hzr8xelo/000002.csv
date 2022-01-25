@@ -1,0 +1,2 @@
+"0","fuel_data<- mutate(fuel_data, hwy2cty = hwy/cty) #ads a row to `fuel_data` that is titled `hwy2cty` and is the product of dividing the `hwy` row by the `cty` row"
+"0","fuel_data "

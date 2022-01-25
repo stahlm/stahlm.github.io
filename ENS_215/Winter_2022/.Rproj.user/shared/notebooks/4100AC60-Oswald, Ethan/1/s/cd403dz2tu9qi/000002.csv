@@ -1,0 +1,2 @@
+"0","vehicles <- read.csv(""https://www.fueleconomy.gov/feg/epadata/vehicles.csv"")"
+"0","#summary(vehicles)"

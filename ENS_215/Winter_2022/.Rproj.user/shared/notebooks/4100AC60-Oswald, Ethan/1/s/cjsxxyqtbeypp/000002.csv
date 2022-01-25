@@ -1,0 +1,5 @@
+"0","vehicles %>% "
+"0","  select(make,model,fuelType1,highway08,year) %>% "
+"0","  filter(fuelType1 == ""Regular Gasoline"") %>% "
+"0","  top_n(10, highway08) %>% "
+"0","  arrange(desc(highway08))"

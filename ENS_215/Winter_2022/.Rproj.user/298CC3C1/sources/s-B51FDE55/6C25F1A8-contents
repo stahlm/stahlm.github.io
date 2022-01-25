@@ -1,0 +1,114 @@
+---
+title: 'Lab Week 2: Levins'
+output:
+  html_document:
+    df_print: paged
+---
+# Step 1: Analysis of fuel efficency in automobiles
+
+Today we are looking at fuel economy data collected by the EPA to learn how fuel efficiency varies with different automobile features. We will first set up the data and analyze the aspects of the data frame, and then, using our new knowledge, determine how various characteristics relate to each other by creating plots. Finally, we will import a more complete data frame with more recent data and additional columns to further analyze our objective; what is the relationship between fuel efficiency and vehicles. The reasoning behind this particular analysis is to find patterns within the data as they relate to the changing climate and emissions. Since fuel efficiency measures the distance traveled on one gallon of gas, it would be more environmentally friendly to have a high fuel efficiency as it reduces oil dependence, reduces the carbon footprint, saves the driver money, and increases energy sustainability (https://www.fueleconomy.gov/feg/why.shtml). 
+
+```{r}
+library(tidyverse) #open tidyverse package
+```
+
+```{r}
+fuel_data <- mpg #save data frame to new object
+```
+
+```{r}
+str(fuel_data) #look at data frame structure elements
+```
+
+By calling the `str()` function, we can view the structure of an arbitrary R object. In this case, we can see the dimensional aspects of the data frame, column names, and what type of data they each have. Additionally, the first several inputs are shown to further depict explain the data in each column. 
+
+There are 11 variables and 234 observations. The abbreviations "chr", "int", and "num" correspond to the type of data present in each variable; chr meaning character, int meaning integer, and num meaning numeric. 
+```{r}
+fuel_data[1:6,] #look at rows 1 though 6 in data frame
+```
+By viewing the data frame in this fashion, the information is much easier read and understood, even if it is only the first six rows. To find what each of the column abbreviations mean, we can type `?mpg` into the console as long as the tidyverse package is loaded in. The displ column represents the engine displacement in liters, cyl represents the number of cylinders, and cty stands for city miles per gallon. Also using the `?mpg` resource, we can see that this data was obtained from https://fueleconomy.gov/.
+
+```{r}
+n_rows <- nrow(fuel_data) #see number of rows
+n_cols <- ncol(fuel_data) #see number of columns
+```
+
+To dive into the data a bit further, we can call the number of rows and columns specifically. In doing so, we see there are 11 columns and 234 rows on the initial data frame. 
+
+```{r}
+summary(fuel_data) #look at various aspects computed that provide an overview of the data
+```
+
+In addition to the `str()` function, `summary()` provides statistical data for the desired data frame depending on what data type is in each column. By looking at the hwy column, we see that the most fuel efficient vehicle gets 44 miles per gallon while the least efficient gets 12 miles per gallon. The average miles per gallon for city driving is 16.86. These values were pulled from the max, min, and mean categories, respectively.
+
+```{r}
+fuel_data$hwy_cty_ratio <- fuel_data$hwy/fuel_data$cty #create a new column in the df
+summary(fuel_data$hwy_cty_ratio) #find qualitative aspects of new column
+```
+
+Now that we know the `summary()` function, we can use it on specific columns as shown above. Here, we created a column to compare city and highway mileage by dividing the hwy column by the cty column. We can conclude that there is not a vehicle that gets better gas mileage in the city as compared to the highway, nor is there a vehicle that has twice as good gas mileage on the highway relative to the city. To have better gas mileage in the city, there would need to be a value less than 1 and above 2 to indicate a vehicle with double the mileage. The largest ratio between highway and city gas mileage is 1.667.
+
+```{r}
+ggplot(fuel_data)+
+  geom_point(aes(displ, hwy)) #plot engine size by mileage for all points
+```
+
+In this graph, we are observing the affect of engine displacement on highway fuel efficiency. We can interpret that displacement greatly affects the fuel economy as the higher the displacement/engine size, the lower the amount of miles per gallon. In other words, a vehicle with a lower displacement/smaller engine is more fuel efficient than that with a high displacement/larger engine.
+
+```{r}
+ggplot(fuel_data)+
+  geom_point(aes(displ, hwy, color=class)) #repeat plot but colored by type of vehicle
+  
+```
+
+Looking at this data, we now see that SUVs and pickups are the least fuel efficient while compact cars are the most, on average. The outliers appear to be 2-seater vehicles as they have large engines, but not a horrible fuel efficiency. These are typically large horsepower vehicles such as Corvettes or Jaguars that can move at a faster rate due to the large engine, but need to be refueled quicker than others. Also, there are two two subcompact cars that are outliers with small engines and high fuel efficiency. These are both 1999 4-cylinder Volkswagen beetles.
+
+```{r}
+us_makes <- c("chevrolet","dodge","ford","jeep",
+              "lincoln","mercury","pontiac") #list of U.S. manufacturers
+fuel_data <- mutate(fuel_data, region = if_else(manufacturer %in% us_makes,"US","Foreign") ) #add us_makes column in data frame
+```
+
+The region variable is telling us where the vehicle is manufactured, either the US or foreign, and was created using an if/else statement where the vehicles made in the US, as established by the names in the manufacturer column and separated by the us_makes value, were specified and all the rest were given a foreign tag.
+
+## Step 2: Expanded EPA fuel efficiency data
+
+Even though we have been looking at a relatively complex data frame with a large amount of information, there exists an even larger one that will aid in additional analysis. This expanded EPA fuel efficiency data frame ranges from 1984 to 2022 and contains 83 variables and 44,612 observations, compared to the 13 variables and 234 observations found in the original data frame. Below, exemplary graphs have been created to depict a few options of what can be shown in this vast expanse of data.
+
+```{r}
+fuel_data_expanded <- read.csv("vehicles.csv") #import larger data frame
+```
+
+```{r}
+nice_cars_data <- filter(fuel_data_expanded, make %in% c("Audi", "BMW", "Lexus")) #make new data frame with rows that only have the specified car types
+ggplot(nice_cars_data)+ #plot the new data frame with the car type and petroleum consumption
+  geom_boxplot(aes(x=make, y=barrels08))+
+  labs(x="Make of Vechicle", y="Annual Petroleum Consumption (barrels) ")
+```
+Here, we can see the annual petroleum consumption in barrels for each selected luxury car. In the code above, a new data frame was created first to sort out any row that had either Audi, BMW, or Lexus in the "make" column. Once complete, the box and whisker plot could be created. Although the vehicle models vary between the specific makers, the annual consumption for all three lies at about the same point. BMW has the highest outliers, both being the series 6 model, a sedan as listed by the data frame, and the Lexus outliers are the LX 450, their first-generation SUV. Since the data frame goes up till 2022, the outliers towards the bottom of the y-axis represent the electric vehicles made by the selected companies.
+
+
+```{r}
+ggplot(nice_cars_data)+
+  geom_boxplot(aes(x=fuelType, y=fuelCost08, color=make))+
+  labs(x= "Type of Fuel", y="Annual Cost of Fuel ($)")+
+  theme(axis.text.x = element_text(angle = 60, hjust = 1))
+```
+
+Though using the same, newly created data frame, we can see how the three luxury brands compare when it comes to the type of fuel and the cost of that fuel per year. It is apparent that the most expensive type of fuel is premium, followed by regular, and that all three makers use these types. Vehicles that run on electricity are the cheapest, for obvious reasons, and because the investment in a charging system comes upfront with the purchase of the vehicle. Fuel types that only have one brand associated with them are most likely because the models they offer can support more than one power source. The feature that was most surprising was learning what the E85 fuel type was as it is a hybrid fuel of 85% ethanol fuel and 15% hydrocarbon, most of the time corn-based. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

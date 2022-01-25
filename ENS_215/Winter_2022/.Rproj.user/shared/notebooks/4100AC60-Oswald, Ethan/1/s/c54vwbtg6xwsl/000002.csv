@@ -1,0 +1,1 @@
+"0","gt_50 <- filter(vehicles, highway08 >= 50) # new data frame "

@@ -1,0 +1,4 @@
+"0","fig_box <- ggplot(fuel_data, aes(x = factor(trans_type), y = hwy)) + "
+"0","  geom_boxplot()"
+"0",""
+"0","fig_box"

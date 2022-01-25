@@ -1,0 +1,5 @@
+"0","ggplot(data = dodge_data) + "
+"0","  geom_point(aes(x = year, y = hwy, color = cyl, shape = model)) + "
+"0","   xlab(""Year"") + "
+"0","  ylab(""Highway MPG"") + "
+"0","  labs(color = ""Number of Cylinders"", shape = ""Dodge Model"") #year is now the x value and shape represents model type"

@@ -1,0 +1,4 @@
+"0","us_makes<- c(""chevrolet"",""dodge"",""ford"",""jeep"","
+"0","              ""lincoln"",""mercury"",""pontiac"") #creating a new object that has the names listed"
+"0","fuel_data<- mutate(fuel_data, region = if_else(manufacturer %in% us_makes, ""US"", ""Foreign"")) # creates a new row that checks if the vehicle in the column is part of the `us_makes` list or not. If it is, the column in the new row will read ""US"". If it isn't, the column in the new row will read ""Foreign"""
+"0","fuel_data"

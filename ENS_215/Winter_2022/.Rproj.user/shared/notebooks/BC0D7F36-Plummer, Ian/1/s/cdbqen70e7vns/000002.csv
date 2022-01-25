@@ -1,0 +1,6 @@
+"0","ggplot(data = fuel_data) + "
+"0","  geom_point(aes(x = manufacturer, y = hwy, color = year, shape = fl)) + "
+"0","  scale_x_discrete(guide = guide_axis(n.dodge=2)) + "
+"0","   xlab(""Manufacturer"") + "
+"0","  ylab(""Highway MPG"") + "
+"0","  labs(color = ""Year"", shape = ""Fuel Type"")"

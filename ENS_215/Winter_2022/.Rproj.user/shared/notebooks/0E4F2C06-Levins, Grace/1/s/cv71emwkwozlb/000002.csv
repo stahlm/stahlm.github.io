@@ -1,0 +1,2 @@
+"0","ggplot(fuel_data)+"
+"0","  geom_point(aes(displ, hwy, color=class)) #repeat plot but colored by type of vehicle"

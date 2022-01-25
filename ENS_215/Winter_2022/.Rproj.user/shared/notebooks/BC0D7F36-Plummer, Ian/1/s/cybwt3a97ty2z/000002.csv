@@ -1,0 +1,8 @@
+"0","dodge_data<- fuel_data %>% "
+"0","  filter(manufacturer %in% c(""dodge"")) #filtering out only vehicles made by dodge and assigning them to a new object named `dodge_data`"
+"0",""
+"0","ggplot(data = dodge_data) + "
+"0","  geom_point(aes(x = year, y = hwy, color = model)) + "
+"0","  xlab(""Year"") + "
+"0","  ylab(""Highway MPG"") + "
+"0","  labs(color = ""Dodge Model"")"

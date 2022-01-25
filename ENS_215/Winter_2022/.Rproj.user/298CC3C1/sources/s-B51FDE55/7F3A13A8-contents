@@ -1,0 +1,60 @@
+---
+title: "Lab1_Karadimou"
+author: "Marilena Karadimou"
+date: "01/18/2022"
+output:
+  html_document:
+    df_print: paged
+---
+```{r}
+library(tidyverse)
+
+```
+
+```{r}
+fuel_data <- mpg
+```
+
+```{r}
+str(fuel_data)
+```
+
+
+```{r}
+fuel_data <- head(fuel_data, n = 6)
+fuel_data
+```
+
+## For the fuel data, displ represents the engine displacement in litres, cyl represents the number of cylinders and city miles per gallon. 
+## The data was abtained from https://fueleconomy.gov/
+
+```{r}
+nrow(fuel_data)
+ncol(fuel_data)
+```
+##In the fuel_data dataset there are 6 rows and 11 columns.
+
+```{r}
+summary(fuel_data)
+```
+## An 1999 Audi A4 has the most fuel efficiency for highway driving and it gets up to 21 miles per gallon while the least fuel efficient vehicle is an Audi A4 of 2008 that reaches 16 miles per gallon.
+## The average total miles per gallon for city driving are 19 miles.
+ 
+
+```{r}
+fuel_data$hwy2cty <- fuel_data$hwy/fuel_data$cty
+```
+
+```{r}
+ggplot(data = fuel_data) + geom_point(aes(x = hwy , y = displ))
+```
+
+```{r}
+us_makes <- c("chevrolet","dodge","ford","jeep", "lincoln","mercury","pontiac")
+
+fuel_data <- mutate(fuel_data, region = if_else(manufacturer %in% us_makes, "US", "Foreign"))
+```
+
+
+## The variable region is telling us that if the manufacturer has a model that is made in the US, it will print "US" otherwise it will print "Foreign". 
+

@@ -1,0 +1,5 @@
+"0","ggplot(data = dodge_data) + "
+"0","  geom_point(aes(x = model, y = hwy, color = year)) + "
+"0","   xlab(""Dodge Model"") + "
+"0","  ylab(""Highway MPG"") + "
+"0","  labs(color = ""Year"") #plots `dodge_data` with the x values being the `model` row, the y values being the `hwy` row, and the color of the points being the `year` row"

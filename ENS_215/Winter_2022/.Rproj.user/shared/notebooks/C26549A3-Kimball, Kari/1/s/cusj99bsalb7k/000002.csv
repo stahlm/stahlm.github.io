@@ -1,0 +1,1 @@
+"0","fuel_data <- mutate(fuel_data, hwy2cty = hwy/cty) # add ratio of hwy to cty to fuel_data"

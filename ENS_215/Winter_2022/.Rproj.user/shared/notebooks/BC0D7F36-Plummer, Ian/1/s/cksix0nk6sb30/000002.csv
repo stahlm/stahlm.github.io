@@ -1,0 +1,3 @@
+"0","ggplot(data = fuel_data) + geom_point(aes(x = hwy, y = displ, color = class)) + labs (color = ""Vehicle Class"") + "
+"0","  xlab(""Highway MPG"") + "
+"0","  ylab(""Cylinder Dsiplacement (liters)"") #same graph as before but we are now adding the vehicle class to the graph by setting it equal to various colors of the data points"

@@ -1,0 +1,5 @@
+"0","ggplot(data = dodge_data) + "
+"0","  geom_point(aes(x = model, y = hwy, color = year, shape = trans)) + "
+"0","   xlab(""Dodge Model"") + "
+"0","  ylab(""Highway MPG"") + "
+"0","  labs(color = ""Year"", shape = ""Transmission Type"") #same graph as above, but now we are adding new shapes to the data points, which are representative of vehicle transmission type"
