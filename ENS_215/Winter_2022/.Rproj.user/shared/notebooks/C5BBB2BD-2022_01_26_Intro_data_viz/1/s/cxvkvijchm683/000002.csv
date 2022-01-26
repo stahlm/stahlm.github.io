@@ -1,0 +1,6 @@
+"0","data_2007 <- filter(my_gap, "
+"0","                    year == 2007) # get data for year 2007"
+"0",""
+"0","data_2007 %>% "
+"0","  ggplot(aes(continent)) + "
+"0","  geom_bar()"

@@ -1,0 +1,3 @@
+"0","data_2007 %>% "
+"0","  ggplot(aes(x = gdpPercap, y = lifeExp, alpha = continent)) + "
+"0","  geom_point()"
