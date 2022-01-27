@@ -1,0 +1,4 @@
+"0","library(tidyverse)"
+"0","library(gapminder)"
+"0",""
+"0","my_gap <- gapminder # assign the gapminder data to our own data object called my_gap"

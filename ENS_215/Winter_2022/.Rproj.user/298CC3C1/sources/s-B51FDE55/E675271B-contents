@@ -1,0 +1,538 @@
+---
+title: "Data Visualization"
+author: "ENS-215"
+date: "31-Jan-2020"
+output:
+  html_document:
+    theme: spacelab
+    df_print: paged
+    toc: TRUE
+    toc_float: TRUE
+---
+
+<br/>
+
+```{r echo=FALSE}
+knitr::opts_chunk$set(comment=NA, fig.width=5.5, fig.height=4.5)
+
+```
+
+
+
+## Additional data vis concepts/tools 
+At this point we've already learn some of the basics of creating graphics in R.  Today, we will continue expanding our understanding of concepts in data visualization and add to our toolbox of techniques for creating nice graphics.  
+
+We'll first load in the packages we need for today's work.  We will load in `tidyverse` (which includes `ggplot2`) and `gapminder` so that we have a nice dataset to work with.  
+```{r message = FALSE, warning=FALSE}
+library(tidyverse)
+library(gapminder)
+
+my_gap <- gapminder # assign the gapminder data to our own data object called my_gap
+```
+
+
+<br/>
+
+### Grouping plotted data
+Grouping data according to a categorical variable is often needed when creating a graphic.  For instance, we frequently have a dataset where we would like to plot the relationship between two variables, all the while considering sub-groups of the data independently.  This can best be highlighted with an example.  
+
+Consider a case with the `gapminder` data.  Imagine we try to create a line plot of all the data to show life expectancy vs. time (year) though without considering the different series/groups.  This will create a problem since `ggplot` will try to use a single line to represent the data, which consists of a time-series for each of the countries in the dataset.  Since each country has their own time-series  we would like to have a line for each country.  The figure below shows what happens when we don't tell ggplot how to deal with the different series. 
+
+```{r}
+my_gap %>% 
+  ggplot(aes(x = year, y = lifeExp)) + 
+  geom_line()
+```
+
+We can fix this issue several ways.  One is by mapping the variable that identifies how we would like the data to be grouped to the color `aes`. In this case that would be the country variable, since each individual country has its own time-series of life expectancy.  
+
+```{r}
+my_gap %>% 
+  ggplot(aes(x = year, y = lifeExp, color = country)) + 
+  geom_line() +
+  theme(legend.position = "none") # turning off the legend  
+```
+
+
+As you can see, `ggplot()` is smart and connects the individual data points according to their country.  Thus the US has its own line, Canada has its own line, China does,.... 
+
+FYI, in the code above I turned off the legend using `theme(legend.position = "none")`, since we have > 100 countries and thus our legend for each color/country would have been huge.  
+
+The example above works nicely, however in many situations we would like to group the plotted data without having to have the grouping variable mapped to the color aesthetic.  
+
+We can do this using the `group` aesthetic.  This tells `ggplot()` to group the data by the specified variable.
+
+```{r}
+my_gap %>%
+  ggplot(aes(x = year, y = lifeExp, group = country)) + 
+  geom_line()
+```
+
+Now we have a time-series plot for each country.  This approach above also frees up the color `aes`, which we can now map another variable to if we wish.  See the example below
+
+```{r}
+my_gap %>% 
+  ggplot(aes(x = year, y = lifeExp, group = country, color = continent)) + 
+  geom_line()
+```
+
+
+Pretty cool! We've got a time-series for each country and we've colored each time-series by the continent a given country is in.  
+
+
+We can even add another `geom` that shares the same aesthetics (including the grouping).  Since we made our aesthetic "global" (_i.e._ declared it within the ggplot call), then all subsequent `geom`s associated with that `ggplot()` call will share the global aesthetic.  However you can declare a new aesthetic in the other `geom`s to override some or all of the global aesthetic for that particular `geom`.    
+
+Let's add a `geom_smooth` to create a smoothed fit to the data.  We would like to get a smooth line that is fit to the data by continent grouping.  This will allow us to see the general trajectory of life expectancy by continent.
+
+```{r}
+my_gap %>% 
+  ggplot(aes(x = year, y = lifeExp, group = country, color = continent)) + 
+  geom_line(alpha = 0.4) + 
+  geom_smooth(aes(group = continent)) +
+  theme_bw()
+```
+
+**Pay careful attention to the code above**.  Note how we changed the `group` aesthetic in the `geom_smooth` geometry.  This is very important to do, since we wanted a smoothed line for each of the continents NOT for each of the countries.  
+
+
+<br/>
+
+### Reordering plotted data
+When dealing with a categorical variable on one axis, we often want to rearrange the categories to make the graphic easier to interpret.  Take the example below where we are plotting the life expectancies in year 2007 for all of the countries in the Americas.  
+```{r}
+my_gap %>% 
+  filter(continent == "Americas", year == 2007) %>% 
+  ggplot(aes(x = lifeExp, y = country)) + 
+  geom_point() +
+  theme_bw()
+```
+
+
++ Is the above graphic easy to interpret?  
++ What in particular about the ordering of the y-axis could be improved?  
+
+<br/>
+
+Let's reorder the y variable (country) by the life expectancies.  This makes the figure much more informative.  
+```{r}
+my_gap %>% 
+  filter(continent == "Americas", year == 2007) %>% 
+  ggplot(aes(x = lifeExp, y = reorder(country,lifeExp) )) + 
+  geom_point() +
+  theme_bw()
+```
+
+Note the syntax of the reorder function.  We first give it the variable to reorder and then the variable that we would like to order according to.
+
+#### Exercise 
++ Create a similar figure to the one above, but this time plot the per capita GDP on the y-axis and the countries in Africa on the x-axis.  Make sure to reorder the y-axis so that the graphic is easy to interpret.  
+
++ Once you've created that figure, try messing around with some of the other aesthetic mappings (maybe scale the symbol size by population or life expectancy or possibly map a variable to the color)
+
+<br/>
+
+### Faceting with `facet_wrap` and `facet_grid`
+
+Let's look at a simple graphic of life expectancy vs. GDP per capita
+```{r}
+my_gap %>% 
+  ggplot(aes(x = gdpPercap, y = lifeExp)) +
+  geom_point() +
+  theme_bw()
+```
+
+Wouldn't it be nice to generate a set of identical figures, where there was a single figure for each continent?  That way we could see how the relationship varies by continent.  
+
+To do this we can employ what is called **faceting**.  There are several functions that allow us to create facets.  Let's test out the `facet_wrap()` function to illustrate how powerful it is.  
+
+```{r}
+my_gap %>% ggplot(aes(x = gdpPercap, y = lifeExp)) + 
+  geom_point() +
+  theme_bw() + 
+  facet_wrap(~ continent)
+```
+
+Pretty nice right!  A great feature of faceting is that all of the graphics have the exact same axis scales, which allows you to easily compare across categories.  For instance we can see that Asia has some countries with per capita GDPs that are much higher than anywhere else in the world.  Furthermore, we see that the life expectancies in Oceania are all reasonably high, whereas the other continents have a much larger range of life expectancies.  
+
+We can even facet my multiple variables
+```{r fig.width= 6.75, fig.height= 6}
+my_gap %>% 
+  filter(year%in% c(1952, 1972, 1992, 2002)) %>% 
+  ggplot(aes(x = gdpPercap, y = lifeExp)) + 
+  geom_point() + 
+  theme_bw() +
+  facet_grid(continent ~ year)
+```
+
+Note the syntax of both `facet_wrap` and `facet_grid`.  For `facet_wrap` you only supply a single faceting variable.  For `facet_grid` you are faceting by TWO variables, the 1^st^ variable specifies the variable for the rows of the grid and the 2^nd^ specifies the variable for the columns of the grid.  
+
+<br/>
+
+
+#### Challenge
+Can you create the following figure below?  The figure shows
+
++ Per capita GDP vs. time, where each line represents an individual country
++ Each panel shows only the countries in that continent 
++ The blue line represents the time-series of mean gdp per capita (globally) -- thus the blue line is identical in each panel
+
+**Hint:** You will want to create a dataset that has the time series of global mean gdp per capita.  You will use this data in addition to your `my_gap` data.  
+
+Your graph will look something like the figure below: 
+
+```{r echo = F, message=FALSE, warning=FALSE, fig.width= 6.25}
+global_mean_gdpPercap <- my_gap %>% 
+  group_by(year) %>% 
+  summarize(gdpPercap = mean(gdpPercap))
+
+my_gap %>% 
+  ggplot(aes(x = year, y = gdpPercap, group = country)) +
+  geom_point(alpha = 0.5) +
+  geom_line(alpha = 0.5) +
+  geom_line(data = global_mean_gdpPercap,
+            aes(x = year, y = gdpPercap, group = NA), 
+            color = "blue",
+            size = 1) +
+  geom_point(data = global_mean_gdpPercap,
+            aes(x = year, y = gdpPercap, group = NA), 
+            color = "blue",
+            size = 1.5) +
+  ylim(NA, 50000) +
+  
+  theme_bw() +
+  facet_wrap(~ continent)
+  
+```
+
+<br/>
+
+
+
+### Adding vertical, horizontal, and sloped lines to graphics
+There are many situations where we would like to put a line on our chart to help us make sense of the data.  For instance a vertical/horizontal line can help to visually divide a graphic based on some threshold (e.g. low GDP and high GDP).  Sloped lines can help us to compare the slope of two variable to a slope of interest.  
+
+The functions `geom_vline`, `geom_hline` and `geom_abline` allow us to do this.  Let's take a look at some examples.  
+
+First let's add a vertical line to delineate between high and low per capita GDP on our plot of life expectancy vs. per capita GDP.  To do this we'll use the 'geom_vline()` function.
+```{r}
+# Look just at the Americas to simply make the graphic less "crowded" with data
+
+gap_americas <- my_gap %>% 
+  filter(continent == "Americas")
+
+gap_americas %>% 
+  ggplot(aes(x = gdpPercap, y = lifeExp)) + 
+  geom_point() + 
+  geom_vline(xintercept = 10000, color = "blue") 
+```
+
+You see that we specify the `xintercept` which tells the function where the vertical line should intersect the x-axis.  We chose 10,000 since I thought that was a reasonable divide between low and high per capita GDP.  We also made the line blue, so that it stands out more.  
+
+Now let's add a horizontal line to create a visual guide between low and high life expectancy. However, before we move forward I want to introduce a useful concept.  
+
+When we want to add to a figure or create multiple versions of a figure, it is very error prone to copy and paste over and over the code to generate that figure.  Instead we can actually assign the figure to an object and then add to that object.  I'll demonstate below, by using the code above and assigning it to and object.
+```{r}
+
+fig_americas <- gap_americas %>% 
+  ggplot(aes(x = gdpPercap, y = lifeExp)) + 
+  geom_point() + 
+  geom_vline(xintercept = 10000, color = "blue")
+
+```
+
+Running the above code block creates and object called `fig_americas` that stores the graphic.  You can see that the graphic doesn't print out.  To display the graphic we would need to type the object name
+
+```{r}
+fig_americas
+```
+
+
+Nice, right.  We've got this object storing the figure.  This is very handy when we want a base figure design (template) that we will later use to generate multiple versions of a figure.  
+
+Ok, now let's get back to adding the horizontal line to our figure.  Now I don't actually need to copy and paste all of the code that I used to generate the base graphic.  I can simply add to our `fig_americas` object.  Let's add that horizontal line to delineate between low and high life expectancy using `geom_hline()`.
+
+```{r}
+fig_americas + 
+  geom_hline(yintercept = 65, color = "red")
+```
+
+So you saw two things in the above code.
+
+1) How to add a horizontal line
+2) How to add to an object that stores a graphic  
+
+For the above graphic we've now visually divided it into quadrants based on income level and life expectancy.
+
+We can also add a sloped line using the the `geom_abline` function.  Using this function you can define the slope and intercept of the line you would like to generate.  While there are many reasons/applications for doing this, you'll typically see this used to generate a _one-to_one_ line, which is a line with a slope of 1.  Let's illustrate how and why you would do this.  
+
+First I am going to create a dataframe that has the life expectancy in year 1952 and year 2007 for each country.
+```{r eval = F}
+life_exp_table <- my_gap %>% 
+  filter(year %in% c(1952,2007)) %>% 
+  group_by(country) %>% 
+  arrange(country, year) %>% 
+  summarize(continent = first(continent), life_1952 = first(lifeExp), life_2007 = last(lifeExp))
+
+life_exp_table
+```
+
+```{r echo =FALSE, message=FALSE, warning=FALSE}
+library(kableExtra)
+life_exp_table <- my_gap %>% 
+  filter(year %in% c(1952,2007)) %>% 
+  group_by(country) %>% 
+  arrange(country, year) %>% 
+  summarize(continent = first(continent), life_1952 = first(lifeExp), life_2007 = last(lifeExp))
+
+head(life_exp_table) %>% kable() %>% kable_styling()
+```
+
+
+Take a look at the table.  You'll see that we've got the life expectancy in year 1952 and year 2007 for each country.  
+
+Now let's see how the each countries life expectancy in 2007 compares with its life expectancy in 1952.  This will allow us to see how much life expectancies have changed in each country
+
+```{r}
+life_exp_table %>% 
+  ggplot(aes(x = life_1952, y = life_2007)) + 
+  geom_point() +
+  theme_bw()
+```
+
+If the life expectancy increased than the value on the life_2007 (y-value) should be greater than the life_1952 (x-value).  If it decreased over time, then the value on the life_2007 (y-value) should be less than the life_1952 (x-value).  
+
+Thus, if we add a line with a slope of 1 and intercept of zero we can easy make this comparison.  Points above the line indicate the life expectancy increased.  Points below the line indicate that it decreased.  
+
+```{r}
+life_exp_table %>% 
+  ggplot(aes(x = life_1952, y = life_2007)) +
+  geom_point() + 
+  geom_abline(slope = 1, intercept = 0, color = "red") +
+  theme_bw()
+```
+
+Take a few minutes to make sure you understand what you are looking at.  
+
++ Did most of the life expectancies go up or down?
++ Did any of the countries have their life expectancy go down?
++ Now color the points by continent to see if that adds any additional explantory power to your graphic.
++ Which continents seemed to exhibit the largest change?  Which the smallest change?
+
+```{r eval= FALSE, echo=FALSE}
+life_exp_table %>% 
+  ggplot(aes(x = life_1952, y = life_2007, color = continent)) + 
+  geom_point() +
+  geom_abline(slope = 1, intercept = 0, color = "red") +
+  theme_bw()
+
+```
+
+#### Exercise
++ Create a facet_wrap verson of the graphic above, faceting by the continent.
+
+```{r eval=FALSE, echo=FALSE}
+life_exp_table %>% ggplot(aes(x = life_1952, y = life_2007, color = continent)) +
+  geom_point() +
+  geom_abline(slope = 1, intercept = 0, color = "red") + 
+  theme_bw() +
+  facet_wrap(~ continent) 
+```
+
+<br/>
+
+
+
+```{r echo=FALSE, eval=FALSE}
+
+#+ Create a graphic where you plot the life expectancy vs. time where the data is faceted by the income level of each country in 1952.  Let's consider a country "Low income" if per cap GDP <= 2000, "Med income" if per cap GDP > 2000 and <= 5000, and "Upper income" if per cap GDP is > 5000.  
+
+
+my_gap %>% 
+  arrange(country, year) %>%  
+  group_by(country) %>% 
+  mutate(gdp_1952 = first(gdpPercap)) %>% 
+  mutate(income_level = case_when(gdpPercap <= 2000 ~"Low income",
+         gdpPercap > 2000 & gdpPercap <= 5000 ~"Med income",
+         gdpPercap > 5000 ~ "Upper income")
+         ) %>% 
+  
+  ggplot(aes(x = year, y = lifeExp, group = country, color = continent)) +
+  geom_point() +
+  geom_line() +
+  facet_wrap(~income_level)
+
+```
+
+
+<br/>
+
+## Making nice figures: Key principles
+So far, we've been creating our graphics largely for **exploratory data analysis** and we haven't been too concerned with creating presentation quality figures.  
+
+Now, that we have become familiar with some of the basics of graphics in R, we are ready to begin thinking about creating high-quality figures.  However, let's first review some key principles of making quality figures.  
+
+When producing figures that will be presented to an audience you want to make it as clear and easy to understand as possible.  There are tons of books out there that discuss the principles of effectively conveying data visually.  [Edward Tufte has written a number of great books on this topic](https://www.edwardtufte.com/tufte/books_vdqi).  Reading these books is worth the time.  You should also browse scientific publications and news publications for examples of nice displays of quantitative information.  The New York Times, the Economist, and National Geographic often has excellent data visualizations on their websites.
+
+Some of the key principles to effective data visualization are summarized below:
+
+**Maximize the data ink ratio**  
+
+<br/>
+
+$\text{Data ink ratio} = \frac{\text{data ink}}{\text{total ink used in graphic}}$  
+
+You want to maximize the proportion of ink that is used to display data (i.e. minimize the ink used to display "chart junk" such as grids, labels on every tick mark, unnecessary titles,...)  
+
+The animation below, illustrates the benefits of eliminating "chart junk".  While you may not agree with every stylistic decision made, the illustration nonetheless highlights how reducing clutter on a graphic greatly improves it's quality.  
+
+![](../Images/less-is-more-darkhorse-analytics.gif) 
+
+
+<br/>
+
+**Label important features directly**.  Where possible try to avoid using keys/legends, which can distract the reader.  
+
+**Establish a clear visual hierarchy**.  Most important items should stand out.  This can be accomplished through wise selection of colors, symbols, fonts/font sizes, and line weights.  Make sure your data is the most prominent feature of the figure.
+
+**Be consistent** Use the same fonts, colors, symbols and line weights.  In a paper or presentation you should be consistent across figures.  For example if you used squares to represent groundwater data and circle to represent surface water in one figure, then you should use this same styling in all your other figures in the same document/presentation.  
+
+**Choose an appropriate aspect ratio** A good rule of thumb is that a plot is 50% wider than it is tall.  However, the appropriate aspect ratio will vary depending on the type of plot and the data being presented.
+
+**Colors are for conveying information, not for decoration**.  Use color to emphasize elements of the figure.  Bolder and brighter colors can be used to highlight important elements of the data.  Choose visually pleasing colors that are easy on the eyes.  Be consistent in your color choices.  Choose logical colors that won't confuse the reader (e.g. if you are color-coding data by temperature it makes sense to use red for warmer temperature and blue for cooler temperatures).
+
+<br/>
+
+#### NOTE: When you get to this point please let me know before proceeding
+
+***
+
+## Customizing graphics 
+Now, let's learn some of the more common adjustments/customizations that you'll typically need to do.  
+
+
+### Set axis limits
+To set the limits of an axis we use the `xlim()` and `ylim()` functions.  
+
+```{r}
+fig_gap <- my_gap %>% 
+  ggplot(aes(x = gdpPercap, y = lifeExp)) +
+  geom_point() +
+  theme_bw() # let's save our "base/template" figure to an object so we can easily adapt it while typing less code
+
+fig_gap
+```
+
+Ok, we've got our figure and now we'd like to adjust the axes to focus in on a range of interest.  Let's limit the x-axis to not exceed 60,000.  We'll use the function `xlim()`, and specify the lower bound and upper bound of desired.
+
+```{r}
+fig_gap + 
+  xlim(0, 60000)
+```
+
+We can also change the y-limits  
+```{r}
+fig_gap + 
+  xlim(0, 60000) + 
+  ylim(30,80)
+```
+
+Sometimes we only want to specify one of the bounds for a given axis.  For instance, I may want to set my lower bound but would like `ggplot` to determine an appropriate upper-bound (based on my data).  This is easy to do -- you simply set the limit you want `ggplot` to determine to `NA` and you specify the other one.  
+
+Let's try this by setting our y-axis minimum to 60 and let `ggplot` decide what the maximum should be
+```{r}
+fig_gap + 
+  ylim(60,NA)
+```
+
+
+<br/>
+
+### Set axis scales
+Adjusting the axis scale used is particularly useful when creating readable and informative graphics.  The most common scales you will encounter are linear (what we've been using up until now in today's lecture) and logarithmic.  Log scale is particularly useful when you are plotting data that spans a very large range.  This can be nicely illustrated with our life expectancy vs. gdp plot
+
+```{r}
+fig_gap 
+```
+
+See how those few points with a very high GDP value result in the rest of our data being squished down to the left hand side of our figure.  We can improve this graphic by adjusting the x-axis to be in logarithmic scale.  We do this using the `scale_x_log10()` function.  
+
+```{r}
+fig_gap + 
+  scale_x_log10()
+```
+
+Now we've got our x-axis in log~10~ scale.  Thus every tick mark on the x-axis indicates a change by a factor of 10.  For instance the first tick mark labeled above is for 1,000 the next is 10,000 and so on.  Thus the spacing between 1,000 and 10,000 are the same as the spacing between 10,000 and 100,000 -- effectively this "unsquashes" our data and allows us to easily view the data over a much large range.  
+
+
+
+
+<br/>
+
+### Flip and reverse axes
+There are situations were we would like to flip or reverse axes.  A common situation where you may want to reverse the direction of an axis is when you are plotting a depth profile (e.g. groundwater arsenic vs. depth into an aquifer).  Let's take a look at an example.  
+
+First let's load in the groundwater data we used in this week's lab.  
+```{r message=FALSE, warning=FALSE}
+bangladesh_gw <- read_csv("https://stahlm.github.io/ENS_215/Data/NationalSurveyData_DPHE_BGS_LabData.csv")
+
+```
+
+Now let's create a plot with arsenic concentration on the x-axis and depth into the aquifer on the y-axis
+```{r}
+As_fig <- bangladesh_gw %>% 
+  ggplot(aes(x = As_ugL, y = WELL_DEPTH_m)) + 
+  geom_point() +
+  theme_bw()
+
+As_fig
+```
+
+This plot is not particularly intuitive -- the shallowest samples are at the bottom of the figure and the deepest are at the top.  However, we would like the deeper samples (ones with a large y-value) to actually be at the bottom of the figure, since this makes intuitive sense when thinking about depth into the ground.  
+
+To do this we can simply reverse the y-axis using function `scale_y_reverse` (`scale_x_reverse` also is available)
+
+```{r}
+
+As_fig <- As_fig + 
+  scale_y_reverse() # reverse the y-axis and update As_fig
+
+As_fig
+```
+
+Now our figure is much easier to interpret.  
+
+Sometimes we'll want to flip the axes for the displayed graphic.  This will technically keeps the x and y aesthetic mapping unchanged, but switches them for display purposes.  To do this we can use the `coord_flip` function.   
+
+Let's illustrate a basic example
+```{r}
+As_fig + 
+  coord_flip()
+```
+
+This allowed us to flip the axes, without having to go back and redefine the x, y mapping aesthetic.  You will see later in the term that `coord_flip` can be particularly helpful when were are plotting fitted lines (e.g. regressions) to depth profile data.  
+
+
+
+<br/>
+
+
+
+### Axes labels, titles, captions
+`ggplot` provides the column (variable) names as the default axis labels.  This is fine for exploratory data analysis, but often is not appropriate for final, presentation-quality figures.  
+
+We can relabel the axes to more informative and nicely formatted names using the `labs()` function.  This function also allows us to give the figure a title, subtitle, and caption.  
+
+```{r}
+As_fig <- As_fig + 
+  labs(title = "Groundwater arsenic in Bangladesh", 
+              subtitle = "Arsenic vs. depth",
+              x = "As (ug/L)",
+              y = "Depth (m)",
+              caption = "Data source: BGS")
+
+As_fig
+```
+
+Now this figure is much easier to read and much more informative to you and your intended audience.  
+
+<br/>

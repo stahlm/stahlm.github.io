@@ -56,6 +56,9 @@ output:
 + Wed (26-Jan) -- **Intro to data viz (continued)**
 [(html)](https://stahlm.github.io/ENS_215/Winter_2022/Lectures/2022_01_26_Intro_data_viz.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2022/Lectures/2022_01_26_Intro_data_viz.Rmd)
 
++ Fri (28-Jan) -- **Data visualization (additional topics)**
+[(html)](https://stahlm.github.io/ENS_215/Winter_2022/Lectures/2022_01_28_Data_viz.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2022/Lectures/2022_01_28_Data_viz.Rmd) 
+
 
 ```{r eval = F, echo = F}
 + Mon (27-Jan) -- **Intro to data visualization**
