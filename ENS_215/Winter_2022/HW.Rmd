@@ -20,6 +20,27 @@ output:
 
 
 ***
+### Week 5
+#### Readings
+* [**ModernDive Ch: 3.7**](https://moderndive.com/)
+* [**ModernDive Ch: 4**](https://moderndive.com/)
+
+#### Assignments 
+1. DataCamp **_Reshaping Data with tidyr_** chapters **1** ("Tidy data"), **2** ("From wide to long and back")
+    + Assigned: 28-Jan
+    + Due: 3-Feb  
+
+2. DataCamp **_Joining Data with dplyr_** chapters **1** ("Joining Tables"), **2** ("Left and Right Joins")
+    + Assigned: 28-Jan
+    + Due: 7-Feb
+    
+  
+
+***
+
+
+
+***
 ### Week 4
 #### Readings
 * [**ModernDive Ch: 2**](https://moderndive.com/)
