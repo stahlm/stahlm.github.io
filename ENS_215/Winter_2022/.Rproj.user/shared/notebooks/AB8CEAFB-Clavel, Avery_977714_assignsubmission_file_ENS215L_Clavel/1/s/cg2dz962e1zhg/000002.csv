@@ -1,2 +1,0 @@
-"0","n_rows <- nrow(fuel_data) #how many rows in fuel_data"
-"0","n_cols <- ncol(fuel_data) #how many columns in fuel_data "

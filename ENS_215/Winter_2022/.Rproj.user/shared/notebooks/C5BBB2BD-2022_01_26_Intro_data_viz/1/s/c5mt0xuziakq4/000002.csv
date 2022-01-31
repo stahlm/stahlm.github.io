@@ -1,0 +1,6 @@
+"0","top_2 <- my_gap %>% filter(year == 2007) %>% top_n(2, lifeExp) %>% select(country)"
+"0","bottom_2 <- my_gap %>% filter(year == 2007) %>% top_n(-2, lifeExp) %>% select(country)"
+"0",""
+"0","my_gap %>% "
+"0","  filter(country %in% top_2$country | country %in% bottom_2$country) %>% "
+"0","  ggplot(aes(x = year, y = lifeExp, color = country)) + geom_point() + geom_line()"

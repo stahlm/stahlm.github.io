@@ -1,0 +1,591 @@
+---
+title: "Data Visualization: Formatting graphics (continued)"
+author: "ENS-215"
+date: "31-Jan-2022"
+output:
+  html_document:
+    theme: spacelab
+    df_print: paged
+    toc: TRUE
+    toc_float: TRUE
+---
+
+```{r echo=FALSE}
+knitr::opts_chunk$set(comment=NA, fig.width=5.5, fig.height=4.5)
+
+```
+
+<br/>
+
+Let's first load in the packages we need for today's work.  We will load in `tidyverse` (which includes `ggplot2`) and `gapminder` so that we have a nice dataset to work with.  
+```{r warning=FALSE, message=FALSE}
+library(tidyverse)
+library(gapminder)
+```
+
+```{r}
+my_gap <- gapminder # create your own data object with the gapminder data
+```
+
+
+### Axis tick marks
+
+
+#### Set labels and set rotation
+
+Let's plot per capita GDP versus country in Asia for year 2007.  We'll also save our figure to an object `fig_1`.  You'll see that this object now appears in your environment pane.  It is often useful to save a graphic to an object so that we can use it later in our code/work (make changes and/or modified versions of the original graphic).  
+```{r}
+fig_1 <- my_gap %>% 
+  filter(year == 2007, continent == "Asia") %>% 
+  ggplot(aes(x = reorder(country, gdpPercap), y = gdpPercap)) + 
+  geom_point() +
+  theme_classic()
+
+fig_1
+
+```
+
+You can see that the tick labels on the x-axis are overlapping and cluttered.  We can fix this.  
+
+Let's adjust the `angle` of the text as well as the horizontal justification (`hjust`).  `hjust = 1` makes the text right-justified and `hjust = 0` makes the text left-justified.
+```{r}
+fig_1 <- fig_1 + 
+  theme(axis.text.x = element_text(angle = 60, hjust = 1))
+
+fig_1
+```
+
+Now this looks much better.  With the tick labels at an angle they no longer overlap one another.  
+
+<br/>
+
+#### Change tick number formats
+
+Changing the number formats of the tick labels often helps to make the graphic more readable and attractive.  We can use the functionality in the `scales` package to make these changes.  
+
+```{r message=FALSE, warning=FALSE}
+library(scales)
+```
+
+Look back to `fig_1` which you created in the code above.  The GDP values would be much easier to read if they had commas separating the digits.  We can adjust the labels by specifying `comma_format()` as the label type.  We do this in the `scale_y_continuous()` function, which is the function controlling the styling of the y axis in this graphic.    
+```{r}
+fig_1 + 
+  scale_y_continuous(labels=comma_format())
+```
+
+Now the plot looks much nicer.  Note, if we wanted to change the x-axis we would have used `scale_x_continuous()`.  
+
+<br/>
+
+We we have log scaling on our axis, we use `scale_x_log10()` or `scale_y_log10()` to adjust the axis features.  Let's generate a plot in log scale first.  
+
+```{r}
+
+fig_life <- ggplot(my_gap, aes(x = gdpPercap, y = lifeExp)) + 
+  geom_point() + 
+  theme_classic() +
+  scale_x_log10()
+
+fig_life
+```
+
+<br/>
+
+We've got a graphic with the x-axis in log~10~ scale.  It looks pretty good, but the tick labels are in scientific notation.  This is a nice compact way to label the ticks, but it is not very attractive or readable in the current format.  Instead of having for instance `1e+04` it would look much nicer to have 10^4^.  We can do this using the following code.   
+
+
+```{r}
+fig_life +
+  scale_x_log10(labels = trans_format('log10', math_format(10^.x)) )
+
+```
+
+Note that we specify the `label = trans_format`.  This indicates that we are will format our labels using a transformed (_mathematically_) version of our variable (in this case our x variable).  
+
+
+```{r eval= FALSE, echo = FALSE}
+ggplot(my_gap, aes(x = log10(gdpPercap), y = lifeExp)) + 
+  geom_point() + 
+  scale_x_continuous(labels = math_format(10^.x))
+```
+
+<br/>
+
+#### Set desired break points
+
+In some cases, it is useful to specify the locations where you would like tick marks and labels.  We can do this by passing the `breaks` argument to our `scale` function.  We specify the desired break locations using a vector.  
+```{r}
+fig_life +
+  scale_x_log10(breaks = c(250, 1000, 5000, 25000, 50000, 90000)) 
+```
+
+<br/>
+
+#### Exercise
++ Make the above figure with comma formatting for gdp per cap
+
+```{r echo=F, eval=FALSE}
+fig_life +
+  scale_x_log10(breaks = c(250, 1000, 5000, 25000, 50000, 90000),
+                labels=comma_format()) 
+
+```
+
+
+<br/>
+
+
+### Text formating
+
+Last class we saw how to add titles, axes labels, and captions using the `labs()` function.  
+
+The example below shows how we create these labels with the `labs()` function.  
+```{r}
+ggplot(my_gap, aes(x = gdpPercap, y = lifeExp)) + 
+  geom_point() +
+  scale_x_log10() +
+  labs(title = "Life expectancy increases with income", 
+       subtitle = "Life expectancy vs. GDP per capita",
+       x = "GDP per capita",
+       y = "Life Expectancy",
+       caption = "Data source: gapminder") +
+  theme_classic()
+  
+```
+
+The labs function generates labels using default settings for font style, size, and color.  The default settings are nicely chosen, however in many situations you may want to adjust these to meet your needs.    
+Once the labels are specified with the `labs()` function, we can adjust the label appearence with the `theme()` function.  The `theme()` function actually allows us to adjust many features of a graphic beyond just the labels, however we will first learn how to use this function with respect to label formatting.  
+
+To adjust the text appearence, we will call the `element_text()` function within `theme()`.  
+
+The `element_text()` function accepts a number of arguments (inputs), including: 
++ `color`, `size`, `face`, `family`: which adjust the font color, size, face ("plain", "bold", "italic", "bold.italic"), and family ("sans", "serif", "mono", "symbols") respectively. 
+
+
+```{r}
+ggplot(my_gap, aes(x = gdpPercap, y = lifeExp)) + 
+  geom_point() +
+  scale_x_log10() +
+  labs(title = "Life expectancy increases with income", 
+       subtitle = "Life expectancy vs. GDP per capita",
+       x = "GDP per capita",
+       y = "Life Expectancy",
+       caption = "Data source: gapminder") +
+  
+  theme_classic() + 
+  
+  theme(plot.title = element_text(color = "blue", size = 14, face = "bold"),
+        plot.subtitle = element_text(color = "blue", size = 11),
+        plot.caption = element_text(face = "italic"),
+        axis.title.x = element_text(face = "bold"),
+        axis.title.y = element_text(face = "bold")
+        ) 
+  
+```
+
+You can see that adjusting properties within `theme()` gives us a lot of control over the appearence of the text/labels (as well as other graphic features).  However, the code can quickly become long and somewhat cumbersome.  To make the coding easier, recall that you can save a graphic to an `object` and then add to this object.  This allows you to break up your figure tweaking into several steps and/or code blocks and thus makes it easier to read.  
+
+Also note how I specified `theme_classic()` and then specified `theme()`.  This first set the graphics properties to those in `theme_classic()` and then I modified a few of those theme parameters based on my desired outcome.  
+
+
+<br/>
+
+
+### Specifying colors
+
+Specifying the color scheme used in your graphic can greatly improve its readability and appearance.  There are a number of available color schemes in `ggplot2` that you can specify and they will choose colors from a nice set of agreable colors.  The table below lists the available color schemes for coloring continuous and categorical (discrete) variables.  
+
+
+| Continuous             	| Categorical         	|
+|------------------------	|---------------------	|
+| `scale_colour_gradient`  	| `scale_colour_hue`    	|
+| `scale_colour_gradient2` 	| `scale_colour_grey`   	|
+| `scale_color_distiller`  	| `scale_colour_manual` 	|
+| `scale_fill_gradient2`   	| `scale_colour_brewer` 	|
+| `scale_fill_gradient`    	|                     	|
+| `scale_fill_distiller`   	|                     	|
+| | |
+
+
+<br/>
+
+#### Continuous color schemes
+
+Let's make a graphic with GDP per capita on the x-axis and country on the y-axis, for the countries in the Americas for year 2007.  
+
+Let's color the points by its life expectancy.  Since life expectancy is a continuous variable, we'll choose from one of the available schemes for continuous variables.  
+
+```{r}
+my_gap %>% 
+  filter(continent == "Americas" , year == 2007) %>% 
+  ggplot(aes(y = reorder(country, gdpPercap), x = gdpPercap, color = lifeExp)) + 
+  geom_point(size = 3) +
+  scale_color_gradient(low = "red", high = "green") +
+  theme_classic()
+```
+
+In the above color scheme, we are able to define the `low` and `high` color.  
+
+<br/>
+
+The `scale_color_gradient2()` allows you to declare a `low`, `mid` and `high` color.  You must also declare the value you would like to use to delineate the `midpoint` of the color scheme. 
+```{r}
+my_gap %>% 
+  filter(continent == "Americas" , year == 2007) %>% 
+  ggplot(aes(y = reorder(country, gdpPercap), x = gdpPercap, color = lifeExp)) + 
+  geom_point(size = 3) +
+  scale_color_gradient2(low = "red", mid = "green", high = "blue", midpoint = 70)
+```
+
+Note that the schemes with `fill` in the name only work with symbols that accept a fill.  
+
+<br/>
+
+#### Categorical (discrete) color schemes
+
+Now let's check out the categorical color schemes by creating a graphic of GDP vs. life expectancy, where the points are color coded by continent.  The `scale_color_brewer()` has a set of nice pre-defined color palettes.  You can look at the help file to learn the available options.  
+```{r}
+ggplot(my_gap, aes(x = gdpPercap, y = lifeExp, color = continent)) + 
+  geom_point() +
+  scale_x_log10() + 
+  scale_color_brewer(palette = "Dark2")
+```
+
+
+You can also define your own color scheme using the `scale_color_manual()` function. 
+```{r}
+ggplot(my_gap, aes(x = gdpPercap, y = lifeExp, color = continent)) + 
+  geom_point() +
+  scale_x_log10() + 
+  scale_color_manual(values = c("red", "blue", "green", "gray", "purple"))
+```
+
+
+<br/>
+
+When specifying a color you can use the color's name (e.g. `color = "blue"`).  R has a large hundreds of colors that you can select by name.  [The document linked here lists these available colors](https://stahlm.github.io/ENS_215/Resources/Rcolor.pdf).
+
+
+
+<br/>
+
+### Themes
+
+#### `ggplot` themes 
+
+The `ggplot2` package comes with a number of built-in themes for setting the look/appearence of a graphic.  The built-in themes are:
+
+| Themes           	|
+|------------------	|
+| `theme_gray`     	|
+| `theme_bw`       	|
+| `theme_linedraw` 	|
+| `theme_light`    	|
+| `theme_dark`     	|
+| `theme_minimal`  	|
+| `theme_classic`  	|
+| | 
+
+<br/>
+
+
+Let's create a graphic of GDP vs. life expectancy and set the theme to `theme_classic()`.
+```{r}
+ggplot(my_gap, aes(x = gdpPercap, y = lifeExp)) + 
+  geom_point() +
+  scale_x_log10() +
+  theme_classic() 
+  
+```
+
+The built-in themes can help provide a nice base template for your figure appearence.  Once you've specified a theme (e.g. `theme_classic()`) You can then modify or override certain settings by adding a `theme()` function call where you adjust the desired settings.  
+
+<br/>
+
+#### Additional themes
+
+The `ggthemes` package has additional themese that you can use with your graphics.  If you haven't yet installed `ggthemes` go to your package window and do so.  Once you've installed it, you should then load in the package.  
+```{r}
+library(ggthemes)
+```
+
+Themes in the `ggthemes` package include:
+
+| Themes                  	|
+|-------------------------	|
+| `theme_wsj`             	|
+| `theme_economist`       	|
+| `theme_economist_white` 	|
+| `theme_fivethirtyeight` 	|
+| `theme_excel_new`       	|
+| `theme_tufte`           	|
+| |
+
+<br/>
+
+Let's create a graphic of GDP vs. life expectancy and set the theme to `theme_economist_white`, which mimics the graphic style used in the magazine _The Economist_ 
+
+```{r}
+ggplot(my_gap, aes(x = gdpPercap, y = lifeExp)) + 
+  geom_point() +
+  scale_x_log10() +
+  labs(title = "Life expectancy increases with income", 
+       subtitle = "Life expectancy vs. GDP per capita",
+       x = "GDP per capita",
+       y = "Life Expectancy",
+       caption = "Data source: gapminder") +
+  theme_economist_white()
+```
+
+<br/>
+
++ Test out some of the other themes from the `ggthemes` package
+
+<br/>
+
+### Aspect ratio
+In some cases, you will want to adjust the aspect ratio of your graphics.  This is particularly desirable, when your x and y axes have the same units and you would like the scaling to reflect their relative ranges.  Let's go back to a graphic that we created last class, where we examined how each countries life expectancy in 2007 compares with its life expectancy in 1952.  
+
+
+First we are going to create a dataframe that has the life expectancy in year 1952 and year 2007 for each country.
+```{r eval = FALSE}
+life_exp_table <- my_gap %>% 
+  filter(year %in% c(1952,2007)) %>% 
+  group_by(country) %>% 
+  arrange(country, year) %>% 
+  summarize(continent = first(continent), life_1952 = first(lifeExp), life_2007 = last(lifeExp))
+
+life_exp_table
+```
+
+
+```{r echo =FALSE, message=FALSE, warning=FALSE}
+library(kableExtra)
+life_exp_table <- my_gap %>% 
+  filter(year %in% c(1952,2007)) %>% 
+  group_by(country) %>% 
+  arrange(country, year) %>% 
+  summarize(continent = first(continent), life_1952 = first(lifeExp), life_2007 = last(lifeExp))
+
+head(life_exp_table) %>% kable() %>% kable_styling()
+```
+
+<br/>
+
+Now, let's make the graphic
+```{r}
+ggplot(life_exp_table, aes(x = life_1952, y = life_2007)) + 
+  geom_point() 
+```
+
+The above graphic has axes units (length) that differ.  For instance 10 years on the x-axis might be equal to 1 inch length and 10 years on the y-axis might be equal to 0.5 inches.  
+
+To make the axes units equal we can use the `coord_equal` function 
+
+```{r}
+ggplot(life_exp_table, aes(x = life_1952, y = life_2007)) + 
+  geom_point() +
+  coord_equal(ratio = 1)
+```
+
+<br/>
+
+### Saving figures 
+Once you've created a really nice figure, you often want to save it to a file so that you can use it outside of your R Notebook (e.g. in a paper, slide presentation, ...).  
+
+We can use the `ggsave()` function to save our graphic to file.  You can specify the file name and where you would like to save the file (i.e. file path and name) as well as the file type (e.g. JPEG).  There are a number of file types available, including: pdf, jpeg, tiff, and png.
+
+Let's create a figure to save 
+
+```{r}
+ggplot(my_gap, aes(x = gdpPercap, y = lifeExp)) + 
+  geom_point() +
+  scale_x_log10() +
+  labs(title = "Life expectancy increases with income", 
+       subtitle = "Life expectancy vs. GDP per capita",
+       x = "GDP per capita",
+       y = "Life Expectancy",
+       caption = "Data source: gapminder")
+```
+
+Now we'll use the `ggsave()` function to save our last graphic to an image file (.png in this example).
+```{r}
+ggsave("LifeExpVsGdp.png", width = 10, height = 8, units = "cm")
+
+```
+
+
+You can see that we are able to specify the dimensions (width and height) of the output graphic.  
+
+`ggsave()` will save the last graphic that you've generated unless you tell it otherwise.  For instance you can pass it an object that stores a graphic and it will save that specified graphic, e.g.
+
+`ggsave(plot = Fig_1, "MyFigure.png")` would save the graphic object `Fig_1` to the file "MyFigure.png" 
+
+<br/>
+
+### Exercises 
+
+1. Create a scatter plot of population by country with the following features
+    i) Population on the y-axis, where the y-labels are in millions (e.g. "10" represents 10 million)
+    ii) Country on the x-axis
+    iii) Countries ordered by population
+    iv) Only include countries in Europe and only data for year 2007
+    v) Include nice labels for the axes, title, and caption
+
+Make the figure as nicely formatted and easily readable as possible.  This should be a presentation quality graphic.  
+
+```{r echo=FALSE, eval=FALSE}
+fig_ex1 <- my_gap %>% 
+  filter(continent == "Europe", year == 2007) %>% 
+  ggplot(aes(x =reorder(country, pop), y = pop/10^6)) +
+  geom_point(size = 3) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
+  labs(x = "", 
+       y = "Population (millions)",
+       title = "Population of European Countries",
+       subtitle = "Year 2007",
+       caption = "Data source: gapminder"
+       ) 
+
+fig_ex1  
+```
+
+2. Create a scatter plot of the per capita GDP in 2007 vs. per capita GDP in 1952
+    i) GDP per capita in 1952 on the x-axis
+    ii) GDP per capita in 2007 on the y-axis
+    iii) a diagonal 1:1 line (_i.e._ a line with a slope of 1 and intercept of zero)
+    iv) Set the aspect ratio to 1 
+    v) facet this graphic by continent (_i.e._ create a graphic for each continent)
+    vi) Include nice labels for the axes, title, and caption
+
+Make the figure as nicely formatted and easily readable as possible.  This should be a presentation quality graphic.    
+
+Note: you can hide the legend on a figure by supplying `legend.position = "none"` in your `theme()` function call.  
+
+<br/>
+
+```{r echo=FALSE, eval=FALSE}
+gdp_change_table <- my_gap %>% 
+  filter(year %in% c(1952, 2007)) %>% 
+  group_by(country) %>% 
+  arrange(country, year) %>% 
+  summarize(continent = first(continent), gdp_1952 = first(gdpPercap), gdp_2007 = last(gdpPercap))
+```
+
+
+```{r echo=FALSE, eval=FALSE}
+gdp_change_table %>% 
+  ggplot(aes(x = gdp_1952, y = gdp_2007, color = continent)) +
+  geom_point() +
+  geom_abline(slope = 1, intercept = 0, color = "red") +
+  theme_bw() +
+  scale_x_log10(labels = trans_format('log10', math_format(10^.x)) ) +
+  scale_y_log10(labels = trans_format('log10', math_format(10^.x)), breaks = c(10^3, 10^4, 10^5) ) +
+  coord_equal(ratio = 1) +
+  facet_wrap(~continent) +
+  labs(x = "GDP per capita 1952 ($)",
+       y = "GDP per capita 2007 ($)",
+       title = "Per capita GDP over time",
+       subtitle = "Change between 1952 and 2007",
+       caption = "Data source: gapminder"
+  ) +
+  theme(legend.position = "none")
+
+```
+
+<br/>
+
+3. Make a figure that shows how the life expectancy has changed from 1952 to 2007 for all of the countries in Asia.
+
++ The countries should be ordered according to their maximum life expectancies
++ You should use color to indicate the 1952 points (grey) and the 2007 points (black) 
+
+Your figure should look like the one below. 
+
+```{r echo = F, fig.width= 5.5, fig.height= 5.25}
+my_gap %>% 
+  filter(continent == "Asia",
+         year %in% c(1952, 2007)) %>% 
+  ggplot(aes(x = lifeExp, y = reorder(country, lifeExp, FUN = max), group = country)) +
+  geom_point(aes(color = year),
+             size = 3) +
+  geom_line() +
+  scale_color_continuous(low = "darkgrey", high = "black") +
+  theme_classic() +
+  theme(legend.position = "none") + 
+  labs(title = "Change in life expectancy in Asia ",
+       subtitle = "1952 to 2007",
+       x = "Life expectancy (yrs)",
+       y = "",
+       caption = "1952 data (grey) and 2007 data (black)") 
+```
+
+<br/>
+
+4. Below is a figure showing life expectancy vs. time for all of the countries in Africa.  Each line represents the time-series data for a single country.  Let's change and improve this graphic to meet the goals of our figure    
+    i) We would like to reduce the level of detail -- each country's time-series is information overload for our audience.  While doing so we would still like to show the variability in a given year and the overall time trajectory of life expectancies across Africa    
+    ii) Look at the axis ranges and make them conform to best practices in scientific visualization  
+    iii) Remove distracting features of the figure theme (e.g. background lines, colors,...)  
+    iv) Improve titles, axes labels, captions,...
+    v) Make any other improvements you see fit  
+
+```{r}
+my_gap %>% 
+  filter(continent == "Africa") %>% 
+  ggplot(aes(x = year, y = lifeExp, group = country)) +
+  geom_line() +
+  geom_point() 
+```
+
+
+```{r echo=FALSE, eval=FALSE}
+my_gap %>% 
+  filter(continent == "Africa") %>% 
+  ggplot(aes(x = year, y = lifeExp, group = year)) +
+  geom_boxplot(fill = "grey") +
+  theme_classic() +
+  
+  labs(x = "",
+       y = "Life expectancy (years)",
+       title = "Life expectancy in Africa (1952-2007)",
+       caption = "Data source: gapminder") +
+  ylim(20,80) 
+
+```
+
+```{r echo=FALSE, eval=FALSE}
+my_gap %>% 
+  filter(continent == "Africa") %>% 
+  ggplot(aes(x = as.factor(year), y = lifeExp)) +
+  geom_boxplot(fill = "white",
+               outlier.shape = NA) +
+  geom_jitter(width = 0.2, height = 0, fill = "black", alpha = 0.3) +
+  theme_classic() +
+  
+  labs(x = "",
+       y = "Life expectancy (years)",
+       title = "Life expectancy in Africa (1952-2007)",
+       caption = "Data source: gapminder") +
+  ylim(20,80) 
+
+```
+
+
+<br/>
+
+5. Remake any of the figures from today's lecture or past lectures, though make the figure "presentation-quality".  Think about the appearence, readability/interpretability, and style of the graphics you are improving.    
+
+
+```{r eval = FALSE, echo=FALSE}
+### Legends
+
+
+## Table formatting
+
+
+## Basic LaTex
+```
+
+
+

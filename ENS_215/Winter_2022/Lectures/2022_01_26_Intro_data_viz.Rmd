@@ -465,7 +465,7 @@ Note: You will need to use your `dplyr` tools in addition to `ggplot`
 filter(my_gap, year == 2007) %>% 
   ggplot(aes(x = continent, y = lifeExp)) + 
   geom_boxplot(fill = "lightblue") + 
-  geom_jitter(alpha = 0.5)
+  geom_jitter(alpha = 0.5, width = 0.2)
 
 ```
 
@@ -483,7 +483,9 @@ bottom_2 <- my_gap %>% filter(year == 2007) %>% top_n(-2, lifeExp) %>% select(co
 
 my_gap %>% 
   filter(country %in% top_2$country | country %in% bottom_2$country) %>% 
-  ggplot(aes(x = year, y = lifeExp, color = country)) + geom_point() + geom_line()
+  ggplot(aes(x = year, y = lifeExp, color = country)) + 
+  geom_point() + 
+  geom_line()
 ```
 
 
