@@ -165,6 +165,7 @@ output:
 + Lab 2 -- **Intro and EPA Fuel Economy Data** [(html)](https://stahlm.github.io/ENS_215/Winter_2022/Labs/Lab_EPA_Fuel_Economy.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2022/Labs/Lab_EPA_Fuel_Economy.Rmd)   
 + Lab 3 -- **Global Dams and Reservoirs** [(html)](https://stahlm.github.io/ENS_215/Winter_2022/Labs/Lab_Global_Dams.html)  
 + Lab 4 -- **Groundwater Arsenic in Bangladesh** [(html)](https://stahlm.github.io/ENS_215/Winter_2022/Labs/Lab_Bangladesh_Arsenic.html)  
++ Lab 5 -- **Final project kick-off ** [(html)](https://stahlm.github.io/ENS_215/Winter_2022/Labs/Lab_Final_Project.html)  
 
 <br/> 
 
