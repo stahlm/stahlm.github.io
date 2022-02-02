@@ -49,7 +49,9 @@ output:
 
 ### Week 5
 + Mon (31-Jan) -- **Presentation quality graphics**
-[(html)](https://stahlm.github.io/ENS_215/Winter_2022/Lectures/2022_01_31.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2022/Lectures/2022_01_31.Rmd), [(Slides)](https://stahlm.github.io/ENS_215/Documents/Data_vis_slides.pdf), [Article by Kelleher and Wagener (2011)](https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Documents/ems2011%20kelleher%20and%20wagener.pdf) 
+[(html)](https://stahlm.github.io/ENS_215/Winter_2022/Lectures/2022_01_31.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2022/Lectures/2022_01_31.Rmd), [(Slides)](https://stahlm.github.io/ENS_215/Documents/Data_vis_slides.pdf), [Article by Kelleher and Wagener (2011)](https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Documents/ems2011%20kelleher%20and%20wagener.pdf)   
+
++ Wed (2-Feb) -- **Reshaping, cleaning and tidying data** [(html)](https://stahlm.github.io/ENS_215/Winter_2022/Lectures/2022_02_02.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2022/Lectures/2022_02_02.Rmd)
 
 ***  
 
