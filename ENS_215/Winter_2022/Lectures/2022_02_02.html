@@ -3540,8 +3540,12 @@ Rivers_to_clean </code></pre>
 </div>
 <div id="exercise-1" class="section level3">
 <h3>Exercise</h3>
-<p>Let’s load in some USGS streamflow data for three nearby sites:<br />
-+ Mohawk River at Cohoes (site number: 01357500) + Hudson River at Waterford (site number: 01335754) + Otsquago Creek at Fort Plain (site number: 01349000)</p>
+<p>Let’s load in some USGS streamflow data for three nearby sites:</p>
+<ul>
+<li>Mohawk River at Cohoes (site number: 01357500)</li>
+<li>Hudson River at Waterford (site number: 01335754)</li>
+<li>Otsquago Creek at Fort Plain (site number: 01349000)</li>
+</ul>
 <pre class="r"><code># We&#39;ll select only data from year 2000 onward, add a column with the month, remove any missing data which is recorded as a negative number
 
 streamflows &lt;- read_csv(&quot;https://stahlm.github.io/ENS_215/Data/Hud_Mow_streamflow_data.csv&quot;) %&gt;% 
