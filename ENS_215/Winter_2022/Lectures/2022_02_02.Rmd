@@ -128,7 +128,7 @@ Take a look at the new data frame.  You'll see that each observation (defined by
 
 <br/>
 
-### Reshape with `pivot_longer()`
+### Reshape with `pivot_wider()`
 
 In some cases you will encounter untidy data where there are too few columns in the original dataset, due to the fact that each variable has not been allocated its own column.  Let's load in a dataset that highlights this.  
 

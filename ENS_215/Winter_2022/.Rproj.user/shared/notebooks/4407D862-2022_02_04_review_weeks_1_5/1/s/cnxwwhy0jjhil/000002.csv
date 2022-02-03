@@ -1,0 +1,5 @@
+"0","library(lubridate)"
+"0",""
+"0","Hudson_flow <- read_csv(""https://stahlm.github.io/ENS_215/Data/Hudson_River_Streamflow.csv"") %>% "
+"0","  filter(site_no == ""01335754"") %>% "
+"0","  rename(flow_cfs = X_00060_00003)"

@@ -1,0 +1,13 @@
+"0","# Part 3"
+"0",""
+"0","Hudson_flow %>%"
+"0","  filter(Year >= 1970) %>% "
+"0","  group_by(Year, Month) %>% "
+"0","  summarize(flow_mean = mean(flow_cfs, na.rm = T)) %>% "
+"0","  ggplot(aes(x = Year, y = flow_mean)) +"
+"0","  geom_point() +"
+"0","  scale_y_log10() +"
+"0","  theme_bw() +"
+"0","  facet_wrap(~ Month)"
+"2","`summarise()` regrouping output by 'Year' (override with `.groups` argument)
+"

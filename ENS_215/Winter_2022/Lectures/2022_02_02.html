@@ -3306,8 +3306,8 @@ This message is displayed once per session.</code></pre>
 <p>Take a look at the new data frame. You’ll see that each observation (defined by a unique State, Year, Month combination) has its own row. Furthermore you’ll see that we have one column with precipitation measurements, as opposed to the twelve columns of precip measurements that we had in untidy dataset.</p>
 <p><br /></p>
 </div>
-<div id="reshape-with-pivot_longer-1" class="section level3">
-<h3>Reshape with <code>pivot_longer()</code></h3>
+<div id="reshape-with-pivot_wider" class="section level3">
+<h3>Reshape with <code>pivot_wider()</code></h3>
 <p>In some cases you will encounter untidy data where there are too few columns in the original dataset, due to the fact that each variable has not been allocated its own column. Let’s load in a dataset that highlights this.</p>
 <pre class="r"><code>precip_temp_untidy_CA &lt;- read_csv(&quot;https://stahlm.github.io/ENS_215/Data/CA_temp_precip_untidy.csv&quot;)</code></pre>
 <p>Take a look at the dataset and confirm that it is not in tidy format.</p>

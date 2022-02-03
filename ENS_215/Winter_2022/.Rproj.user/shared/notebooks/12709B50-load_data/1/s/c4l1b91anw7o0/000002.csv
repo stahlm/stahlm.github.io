@@ -1,0 +1,2174 @@
+"0",""
+"0","tbl = lapply(file_all_df$file_id, read_csv) %>% bind_rows()"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [32mcol_double()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [32mcol_double()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [32mcol_double()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [32mcol_double()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [32mcol_double()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [32mcol_double()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [32mcol_double()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [32mcol_double()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [32mcol_double()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [32mcol_double()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [32mcol_double()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------------------------------------------------------------------------------[39m
+cols(
+  .default = col_character(),
+  nlcdClass = [33mcol_logical()[39m,
+  decimalLatitude = [32mcol_double()[39m,
+  decimalLongitude = [32mcol_double()[39m,
+  coordinateUncertainty = [33mcol_logical()[39m,
+  elevation = [32mcol_double()[39m,
+  elevationUncertainty = [33mcol_logical()[39m,
+  startCollectDate = [34mcol_datetime(format = """")[39m,
+  endCollectDate = [34mcol_datetime(format = """")[39m,
+  testedDate = [34mcol_datetime(format = """")[39m,
+  deprecatedVialID = [33mcol_logical()[39m,
+  testNumber = [32mcol_double()[39m,
+  cqValue = [33mcol_logical()[39m,
+  locus = [33mcol_logical()[39m,
+  percentIdentity = [33mcol_logical()[39m,
+  sequenceDatabase = [33mcol_logical()[39m,
+  sequenceDatabaseID = [33mcol_logical()[39m,
+  remarks = [33mcol_logical()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"

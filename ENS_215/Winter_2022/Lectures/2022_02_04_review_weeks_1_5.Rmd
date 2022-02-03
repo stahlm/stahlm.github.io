@@ -1,7 +1,7 @@
 ---
 title: "Flashback Friday: Review of weeks 1-5"
 author: "ENS-215"
-date: "7-Feb-2020"
+date: "4-Feb-2022"
 output:
   html_document:
     theme: spacelab
@@ -12,7 +12,7 @@ output:
 
 <br/>
 
-At this point in the term, you've learned quite a bit of material and its good to stop and look back at what we've covered.  In today's lecture we will refresh our memory of the concepts and tools that we've seen up to now.  In the sections below you'll work through excercises that cover many of these key topics.  
+At this point in the term, you've learned quite a bit of material and its good to stop and look back at what we've covered.  In today's lecture we will refresh our memory of the concepts and tools that we've seen up to now.  In the sections below you'll work through exercises that cover many of these key topics.  
 
 Let's load in the libraries we'll use in this lesson
 

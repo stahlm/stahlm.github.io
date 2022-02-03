@@ -1,0 +1,5 @@
+"0","# 1"
+"0","Hudson_flow <- Hudson_flow %>% mutate(Year = year(dateTime), "
+"0","                                      Month = month(dateTime), Day = day(dateTime)) %>% "
+"0","  select(site_no, Year, Month, Day, flow_cfs)  "
+"0",""
