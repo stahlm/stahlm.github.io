@@ -27,8 +27,8 @@ library(tidyverse)
 
  <br/>
 
-## Combining data tables
-Often you will have multiple files containing data for the same project/study.  In these cases you will want to combine the mulitple datasets into a single dataset.    
+## Combining and comparing data tables
+Often you will have multiple files containing data for the same project/study.  In these cases you will want to combine the multiple datasets into a single dataset.    
 
 Now, let's learn how we do these types of operations.  
 

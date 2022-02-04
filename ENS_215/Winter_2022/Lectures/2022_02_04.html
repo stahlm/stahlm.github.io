@@ -3052,9 +3052,9 @@ div.tocify {
 <p>Let’s first load in the packages that we’ll need for today’s analysis.</p>
 <pre class="r"><code>library(tidyverse)</code></pre>
 <p><br /></p>
-<div id="combining-data-tables" class="section level2">
-<h2>Combining data tables</h2>
-<p>Often you will have multiple files containing data for the same project/study. In these cases you will want to combine the mulitple datasets into a single dataset.</p>
+<div id="combining-and-comparing-data-tables" class="section level2">
+<h2>Combining and comparing data tables</h2>
+<p>Often you will have multiple files containing data for the same project/study. In these cases you will want to combine the multiple datasets into a single dataset.</p>
 <p>Now, let’s learn how we do these types of operations.</p>
 <div id="combine-rows-observations" class="section level3">
 <h3>Combine rows (observations)</h3>
@@ -3187,7 +3187,7 @@ head(bind_example)</code></pre>
 <p>Let’s load in NOAA temperature data that we would like to join with our NOAA precipitation data. The NOAA temperature dataset has monthly temperature data for all the state in the US for every year from 1895 through 2017.</p>
 <pre class="r"><code>temperature_data &lt;- read_csv(&quot;https://stahlm.github.io/ENS_215/Data/NOAA_State_Temp_Lab_Data.csv&quot;)</code></pre>
 <p>Let’s remove the year 2016 data for New York from the temperature dataset. We are doing this, since it will help to illustrate how unmatched observations are dealt with during joins.</p>
-<pre class="r"><code>temperature_data &lt;- filter(temperature_data, !(Year == 2016 &amp; state_cd == &quot;NY&quot;)) # remove datas for NY in year 2016</code></pre>
+<pre class="r"><code>temperature_data &lt;- filter(temperature_data, !(Year == 2016 &amp; state_cd == &quot;NY&quot;)) # remove data for NY in year 2016</code></pre>
 <p><br /></p>
 <div id="joins-inner_join" class="section level4">
 <h4>Joins: <code>inner_join</code></h4>
