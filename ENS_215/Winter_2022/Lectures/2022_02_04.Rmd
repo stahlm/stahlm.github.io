@@ -96,7 +96,7 @@ bind_rows(precip_switched, precip_NY)
 
 <br/>
 
-### Set operations
+### Set operations 
 
 #### Intersect datasets with `intersect`
 ![Image source: Wikipedia.org](https://stahlm.github.io/ENS_215/Lectures/Images/Venn0001.svg){width=250}
