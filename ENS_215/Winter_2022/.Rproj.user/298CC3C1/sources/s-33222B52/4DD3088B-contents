@@ -248,7 +248,7 @@ temperature_data <- read_csv("https://stahlm.github.io/ENS_215/Data/NOAA_State_T
 Let's remove the year 2016 data for New York from the temperature dataset.  We are doing this, since it will help to illustrate how unmatched observations are dealt with during joins.  
 
 ```{r}
-temperature_data <- filter(temperature_data, !(Year == 2016 & state_cd == "NY")) # remove datas for NY in year 2016
+temperature_data <- filter(temperature_data, !(Year == 2016 & state_cd == "NY")) # remove data for NY in year 2016
 ```
 
 

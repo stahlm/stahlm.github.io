@@ -1,0 +1,32 @@
+{
+    "id": "4A73BB75",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1643939807140.0,
+    "source_on_save": false,
+    "relative_order": 13,
+    "properties": {
+        "expression": "dates_USGS",
+        "caption": "dates_USGS",
+        "totalObservations": 60,
+        "displayedObservations": 60,
+        "variables": 3,
+        "cacheKey": "D7A8A094",
+        "object": "dates_USGS",
+        "environment": "",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=dates_USGS&cache_key=D7A8A094&max_cols=50",
+        "preview": 0
+    },
+    "folds": "",
+    "lastKnownWriteTime": 7143307332886346274,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1643939807140,
+    "read_only": false,
+    "read_only_alternatives": []
+}

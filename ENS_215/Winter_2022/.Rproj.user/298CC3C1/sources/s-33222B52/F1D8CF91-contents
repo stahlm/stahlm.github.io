@@ -53,6 +53,21 @@ output:
 
 + Wed (2-Feb) -- **Reshaping, cleaning and tidying data** [(html)](https://stahlm.github.io/ENS_215/Winter_2022/Lectures/2022_02_02.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2022/Lectures/2022_02_02.Rmd)
 
+
++ Fri (4-Feb) -- **Combining/joining data**
+[(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2022_02_04.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2022/Lectures/2022_02_04.Rmd)
+
+
+```{r echo = F, eval = F}
+
++ Fri (4-Feb) -- **Review (Weeks 1-5)** 
+[(html)](https://stahlm.github.io/ENS_215/Winter_2022/Lectures/2022_02_04_review_weeks_1_5.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2022/Lectures/2022_02_04_review_weeks_1_5.Rmd)
+
++ Fri (4-Feb) -- **Combining/joining data**
+[(html)](https://stahlm.github.io/ENS_215/Winter_2020/Lectures/2022_02_04.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2022/Lectures/2022_02_04.Rmd)
+```
+
+
 ***  
 
 

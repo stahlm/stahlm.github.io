@@ -1,0 +1,2 @@
+"0","dates_EPA <- read_csv(""https://stahlm.github.io/ENS_215/Data/Sampling_dates_EPA_fish_tissue.csv"")"
+"0","dates_USGS <- read_csv(""https://stahlm.github.io/ENS_215/Data/Sampling_dates_USGS_water_quality.csv"")"
