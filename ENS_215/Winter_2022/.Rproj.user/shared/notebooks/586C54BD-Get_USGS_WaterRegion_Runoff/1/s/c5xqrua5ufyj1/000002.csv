@@ -1,0 +1,8 @@
+"0","```r
+```r
+```r
+a<- summarize(group_by(all_data,region_cd),runoff = mean(runoff_mmd))
+
+```
+```
+```"

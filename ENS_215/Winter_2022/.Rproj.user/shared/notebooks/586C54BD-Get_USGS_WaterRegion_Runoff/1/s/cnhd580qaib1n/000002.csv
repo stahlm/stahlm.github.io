@@ -1,0 +1,6 @@
+"0","```r
+```r
+write_csv(streamflow_data,\C:/Users/stahlm/Documents/Teaching_UnionCollege/Environmental_Data_Analysis/Class_Data/Hudson_River_Streamflow.csv\)
+ggplot(a) + geom_line(aes(x=dateTime,y=X_00060_00003,color = site_no)) + scale_y_log10()
+```
+```"

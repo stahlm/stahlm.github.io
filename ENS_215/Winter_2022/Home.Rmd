@@ -47,6 +47,12 @@ output:
 
 ```
 
+### Week 6
++ Mon (7-Feb)  -- **Descriptive statistics and univariate data** [(html)](https://stahlm.github.io/ENS_215/Winter_2022/Lectures/2022_02_07.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2022/Lectures/2022_02_07.Rmd) and **Loading data into R** [(html)](https://stahlm.github.io/ENS_215/Winter_2022/Lectures/2022_02_07_load_data_into_R.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2022/Lectures/2022_02_07_load_data_into_R.Rmd)
+
+
+***
+
 ### Week 5
 + Mon (31-Jan) -- **Presentation quality graphics**
 [(html)](https://stahlm.github.io/ENS_215/Winter_2022/Lectures/2022_01_31.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2022/Lectures/2022_01_31.Rmd), [(Slides)](https://stahlm.github.io/ENS_215/Documents/Data_vis_slides.pdf), [Article by Kelleher and Wagener (2011)](https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Documents/ems2011%20kelleher%20and%20wagener.pdf)   

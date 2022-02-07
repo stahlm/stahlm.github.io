@@ -1,0 +1,11 @@
+"0","```r
+```r
+a<- ecdf(loc_comb_both$`01335754`)
+xval <- data.frame(1:max(loc_comb_both$`01335754`))
+yval <- data.frame(a(1:max(loc_comb_both$`01335754`)))
+cdf_flow <- bind_cols(xval,yval) %>% rename(xvalue = X1.max.loc_comb_both..01335754..,yvalue = a.1.max.loc_comb_both..01335754...)
+ggplot(cdf_flow) + geom_line(aes(x = xvalue, y = yvalue,xlim =c(1000,10000)))
+```
+```"
+"1","Ignoring unknown aesthetics: xlimError: Aesthetics must be either length 1 or the same as the data (94400): x, y, xlim
+"

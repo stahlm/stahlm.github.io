@@ -1,0 +1,6 @@
+"0","```r
+```r
+#loc_a <- filter(streamflow_data,site_no ==\01335754\)
+loc_comb <- spread(streamflow_data,site_no,X_00060_00003)
+```
+```"
