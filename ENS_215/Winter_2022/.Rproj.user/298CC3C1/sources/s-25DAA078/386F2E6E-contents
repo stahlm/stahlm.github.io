@@ -18,6 +18,17 @@ output:
 |      |     |        |       |
 
 
+### Week 6
+#### Readings
+* [**Tidyverse style guide, Chapters 1, 2, 4, 5**](https://style.tidyverse.org/)
+    + Excellent guide to proper usage of style, formatting, and syntax in R.  Read this with care and where applicable you should begin implementing these style tips in your code.  Note that "style" is more than just cosmetic -- good style makes your code human readable and makes sharing and editing code significantly more efficient and less prone to error.  
+
+#### Assignments 
+1. Final project proposal
+    + Due: 7-Feb (by 5PM)
+    
+You should Knit your proposal to an `.html` file and submit it on Nexus.  
+
 
 ***
 ### Week 5
