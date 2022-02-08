@@ -1,0 +1,6 @@
+"0","wbt_hillshade(dem = ""test_elev.tif"","
+"0","              output = ""test_elev_hillshade.tif"","
+"0","              azimuth = 115)"
+"1","hillshade - Elapsed Time (excluding I/O): 1.785s"
+"1","
+"

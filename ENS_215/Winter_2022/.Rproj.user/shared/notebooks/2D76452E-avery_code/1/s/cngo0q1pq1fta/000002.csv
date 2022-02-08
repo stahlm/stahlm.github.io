@@ -1,0 +1,2 @@
+"0","file_all <- file_all %>% "
+"0","  separate(coordinates, into = c(""Lat"", ""Long""), sep = "" "")"

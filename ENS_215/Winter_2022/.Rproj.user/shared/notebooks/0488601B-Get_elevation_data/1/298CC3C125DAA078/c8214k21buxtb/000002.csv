@@ -1,0 +1,5 @@
+"0","hillshade <- raster(""test_elev_hillshade.tif"")
+"
+"2","Error in raster(""test_elev_hillshade.tif"") : 
+  could not find function ""raster""
+"

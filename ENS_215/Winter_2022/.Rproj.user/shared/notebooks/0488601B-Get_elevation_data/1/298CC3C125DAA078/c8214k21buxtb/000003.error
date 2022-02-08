@@ -1,0 +1,1 @@
+{"frames":[],"message":"Error in raster(\"test_elev_hillshade.tif\") : \n  could not find function \"raster\"\n"}
