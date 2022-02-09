@@ -51,7 +51,7 @@ output:
 + Mon (7-Feb)  -- **Descriptive statistics and univariate data** [(html)](https://stahlm.github.io/ENS_215/Winter_2022/Lectures/2022_02_07.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2022/Lectures/2022_02_07.Rmd) and **Loading data into R** [(html)](https://stahlm.github.io/ENS_215/Winter_2022/Lectures/2022_02_07_load_data_into_R.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2022/Lectures/2022_02_07_load_data_into_R.Rmd)
 
 
-+ Wed (09-Feb) -- **Visualizing and interpreting data distributions** 
++ Wed (9-Feb) -- **Visualizing and interpreting data distributions** 
 [(html)](https://stahlm.github.io/ENS_215/Winter_2022/Lectures/2022_02_09.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2022/Lectures/2022_02_09.Rmd) and **Graphical display of data distributions: Examples** [(html)](https://stahlm.github.io/ENS_215/Winter_2022/Lectures/2022_02_09_distributions_examples.html)
 
 ***

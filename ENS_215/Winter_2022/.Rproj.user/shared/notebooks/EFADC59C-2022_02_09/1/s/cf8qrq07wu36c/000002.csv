@@ -1,0 +1,4 @@
+"0","precip_data %>% "
+"0","  filter(state_cd %in% c(""NY"",""FL"",""CA"",""AZ"",""NE"")) %>% "
+"0","  ggplot() + geom_density(aes(x = Precip_inches, fill = state_cd), alpha = 0.3) +"
+"0","  theme_classic()"

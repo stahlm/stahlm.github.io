@@ -1,0 +1,4 @@
+"0","ny_precip %>% "
+"0","  ggplot(aes(Precip_inches)) +"
+"0","  geom_density(fill = ""grey"") +"
+"0","  theme_classic()"
