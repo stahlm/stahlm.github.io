@@ -305,9 +305,12 @@ ny_precip %>%
 
 #### Exercise
 
-Create a cumulative distribution plot of **annual** (not monthly) precipitation 
-  + You should show the cumulative distribution for "CA","FL","NY","VT","NH" on a single graphic (a curve for each state)
-  + Once you've created the graphic examine the results and think about the distribution of annual precipitation for each state (e.g. are the values tightly centered around the median, are their significant outliers,...)
+Create a cumulative distribution plot of **annual** (not monthly) precipitation  
+
+  + You should show the cumulative distribution for "CA","FL","NY","VT","NH" on a single graphic (a curve for each state)  
+  
+  + Once you've created the graphic examine the results and think about the distribution of annual precipitation for each state (e.g. are the values tightly centered around the median, are their significant outliers,...)  
+  
 ```{r echo=FALSE}
 precip_data %>% 
   group_by(state_cd, Year) %>% 
