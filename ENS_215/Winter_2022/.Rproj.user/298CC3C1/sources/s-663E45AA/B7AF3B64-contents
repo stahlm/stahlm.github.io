@@ -1,0 +1,97 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r}
+library(tidyverse)
+library(stats)
+library(ggExtra)
+library(gridExtra)
+```
+
+
+
+
+```{r warning=FALSE, message=FALSE}
+precip_data <- read_csv("https://stahlm.github.io/ENS_215/Data/NOAA_State_Precip_LabData.csv")
+```
+
+```{r}
+p <- c(0.01,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,0.99) # f-values to use in our quantile calculations
+```
+
+```{r}
+state_a <- "NY"
+state_b <- "GA"
+
+precip_data %>% 
+  filter(state_cd %in% c(state_a, state_b) ) %>% 
+  ggplot(aes(x = Precip_inches, fill = state_cd)) +
+  geom_density(alpha = 0.4) +
+  theme_classic()
+```
+
+
+
+```{r}
+
+table_q_precip <- precip_data %>% 
+  filter(state_cd %in% c(state_a, state_b) ) %>% 
+  group_by(state_cd) %>% 
+  summarize(q = quantile(Precip_inches, probs = p),
+            f_value = p
+            ) %>% 
+  ungroup() %>% 
+
+  pivot_wider(names_from = state_cd,
+              values_from = q)
+
+table_q_precip
+```
+
+
+```{r}
+fig_1 <- table_q_precip %>% 
+  ggplot() +
+  geom_point(aes_(y = as.name(state_b), x = as.name("f_value"))) +
+  theme_classic() +
+  labs(x = "f-value",
+       y = "Observed value",
+       title = state_b) +
+  xlim(0,1) +
+  ylim(0,14)
+
+
+
+fig_2 <- table_q_precip %>% 
+  ggplot() +
+  geom_point(aes_(y = as.name(state_a), x = as.name("f_value"))) +
+  theme_classic() +
+  labs(x = "f-value",
+       y = "Observed value",
+       title = state_a) +
+  xlim(0,1) +
+  ylim(0,14)
+
+
+grid.arrange(fig_1, fig_2, ncol = 2)
+```
+
+
+```{r}
+table_q_precip %>% 
+  ggplot() +
+  geom_point(aes_(x = as.name(state_b), y= as.name(state_a))) +
+  geom_abline(slope = 1, intercept = 0) +
+  theme_classic() +
+  xlim(0, 16) +
+  ylim(0,16) +
+  coord_equal() +
+  labs(title = "Precipitation Q-Q plot",
+       subtitle = paste(state_a, "and", state_b),
+       x = paste(state_b, "Precipitation (inches)"),
+       y = paste(state_a, "Precipitation (inches)"))
+```
+

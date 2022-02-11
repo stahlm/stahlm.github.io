@@ -144,11 +144,11 @@ However, if we were to pair the values in `vec_a` and `vec_b` (e.g. 1st value in
 
 Let's create a scatter plot where we pair a and b to help illustrate this point.
 ```{r echo=FALSE}
-vec_a <- rnorm(5000, mean = 0, sd = 1)
-vec_b <- rnorm(5000, mean = 0, sd = 1)
+vec_a <- rnorm(10000, mean = 0, sd = 1)
+vec_b <- rnorm(10000, mean = 0, sd = 1)
 
 p <- ggplot() +
-     geom_point(aes(x = vec_a, y = vec_b), alpha = 0.15) +
+     geom_point(aes(x = vec_a, y = vec_b), alpha = 0.10) +
      theme_classic() +
      coord_equal() 
 
