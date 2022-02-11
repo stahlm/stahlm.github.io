@@ -1,0 +1,243 @@
+---
+title: "Global Dams Data"
+author: "Emma Puhalski"
+date: "2022_01_24"
+output:
+  html_document:
+    df_print: paged
+---
+
+
+<br/>
+
+# Global Dams Data
+<br/>
+### *Emma Puhalski*
+### *2022-01-20*
+
+<br/>
+
+* Introduction
+* Step 0: Examine the data
+* Step 1: Create a scatter plot showing the relationship between reservoir storage and reservoir area
+* Step 2: Create a scatter plot showing the relationship between reservoir storage and dam height
+* Step 3: Calculate height, area, and storage averages by continent and display these results to your notebook.
+* Step 4: Create a box plot to show how the distribution of reservoir storage capacities varies between continents
+* Additional analysis of data of interest: changes in the ratio of dam types built over time
+* Works Cited
+
+
+
+<br/>
+
+
+# Introduction
+<br/>
+  In this lab we use ggplot2 and dplyr functions to analyze data from the United Nations Food and Agricultural Organization (FAO) Georeferenced dams database1 to gain insight into the patterns, features, and trends in global dams. For centuries dams have been--and probably will be for decades to come--an incredible tool in controlling humanity's most necessary and yet uncontrollable resources on the planet: water. We have learned how to stop the flow of rivers and make freshwater resources bend to our will in efforts to mitigate water supply and irrigation needs, flood and pollution control, livestock rearing, and more recently for hydropower and recreation. However, it has become increasingly apparent that increased global development and population have pushed these resources to their limits. Just because dams are our oldest tool does not mean will continue to be our best option as we hurtle down the bottleneck of climate change, overpopulation, and overconsumption. To fully understand the environmental, economic, and sociopolitical implications that dams and reservoirs exert on global demands, we must begin with data sets such as this. Only once we can quantify the role and influence of dams within all these global spheres can we begin to take steps in a new direction.
+  Specifically, I believe that understanding changes in the function of dams being built over time can provide insights on how we have previously responded to population and climate changes. This understanding coupled with knowledge of the success of these dams can guide us forward in the future of dam building, maintenance, and potentially away from dams and onto better, more sustainable options. 
+
+<br/>
+
+I began by examining the FAO Georeferenced dams data set and worked to clean up the data and make it more understandable. I then graphed scatter plots showing the positive linear relationship between reservoir area and storage capacity, and the positive relationship between dam height and storage capacity. While dam height will have an affect on storage capacity, it is apparent that the surface area of the reservoir has a stronger determining factor in the storage capacity. I then calculated the average, height, area, and storage capacity of all dams per continent. This analysis was only useful after I had visualized the data on a graph. Graphing a box plot of the reservoir storage capacities between continents revealed larger-scale similarities and differences between dams across countries. For my 
+additional analysis I examined the changes in the ratio of dam types built over time. This revealed a consistent building of irrigation dams over time as reflection of our ever increasing demand on crops. 
+
+<br/>
+
+# Objectives
+In the lab that you submit you should discuss your observations/findings related the objectives below. Do not simply make the figures/tables without providing a discussion. 
+<br/>
+
+## Required
+### 0. Examine the data
+<br/>
+Download the data
+```{r}
+library(tidyverse) # load in tidyverse
+
+dams_data <- read_csv("https://stahlm.github.io/ENS_215/Data/Dams_FAO_SelectCols_LabData.csv") # download data
+
+summary(dams_data) #view summary statistics
+```
+
+<br/>
+
+```{r}
+select(dams_data, Continent, Country, Dam_name, Reservoir_capacity_million_m3, everything()) # reorder the columns
+```
+<br/>
+**In your submitted lab write-up/discussion, you should provide a short summary/description of the dataset (e.g. number of variables and observations, general content, key variables, period of record,…).** There are 22 variables describing the dams data set, outlining each dam's location, river name and statistics, capacity, year built, and function. The data begins in 1000 CE and spans about 2000 years.  
+
+<br/>
+
+### 1. Create a scatter plot showing the relationship between reservoir storage and reservoir area
+
+```{r}
+library(ggplot2) #load in ggplot2 for graphing
+
+# graph reservoir storage vs. reservoir area
+
+ggplot(dams_data) + geom_point(aes(x = Reservoir_area_km2, y = Reservoir_capacity_million_m3, color = Continent)) +
+  ggtitle("Reservoir storage and reservoir area") +
+  labs(y = "Reservoir capacity (millions m^3)", x = "Reservoir area (km^2)") + # name graph and axes
+  scale_x_log10() + # change x and y axes to log scales
+  scale_y_log10()
+```
+<br/>
+**Do you notice any interesting features? Comment on your observations. You may want to try coloring the points by continent to see if there are regional patterns/trends.** There is a strong positive relationship between reservoir area an reservoir capacity; as reservoir area increases, reservoir capacity increases. While dam height will have an affect on storage capacity, it is very clear that the surface area of the reservoir is a strong determining factor in the storage capacity. Asia has the most densely concentrated grouping of reservoir area vs. reservoir capacity. This may indicate that many of their dams have a same surface area and depth, possibly constrained by similarities in topography across Asia. The vertical group of points between 1e-1e+300 would also indicate dams of identical surface are but different depths resulting in a range of reservoir capacities. There are also some Asian outlier dams with a surprisingly high capacity, meaning they must be located in exceptionally deep valleys, allowing for more storage. The distribution of this relationship for dams in the Americas is much more widely distributed, likely indicating that the topography of these areas is much more diverse. European dams are concentrated at high surface areas and high capacities, meaning that their dams are consistently both large and deep.
+
+
+<br/>
+
+### 2. Create a scatter plot showing the relationship between reservoir storage and dam height
+
+```{r}
+ggplot(dams_data) + geom_point(aes(x = Dam_height_m, y = Reservoir_capacity_million_m3, color = Continent)) +
+  ggtitle("Reservoir storage and reservoir height") + # graph title
+  labs(x = "Dam height (m)", y = "Reservoir capacity (millions m^3)") + # name axes
+  scale_x_log10() +
+  scale_y_log10() # set x and y axes to log scales
+```
+<br/>  
+**Do you notice any interesting features? Comment on your observations. Do you observe any outlier or notable points. You may want to try coloring the points by continent to see if there are regional patterns/trends.** There is a positive linear relationship between dam height and reservoir storage capacity, but this relationship has a lot more scatter than the one between reservoir area and capacity. Overall, as dam height increases reservoir capacity increases. The data for all continents is very tightly grouped in the center of the graph, indicating that most countries build dams of similar heights (~ 50 m) with relatively similar capacities. Asian dams have a cluster of high dam heights between 50-100 m that have surprisingly low reservoir capacities, which may indicate that these dams have a smaller surface area than most dams. The Americas have more dams under 10 m than any other continent, but their capacities is consistent with the linear trend. However, there are also tons of American dams with identical dam heights that vary greatly in capacity, indicating changes in surface area. Africa and Europe dams tend to fall at the top of the height trend, indicating that they tend to have taller dams than average. 
+
+<br/>
+
+### 3. Calculate height, area, and storage averages by continent and display these results to your notebook
+
+```{r}
+dams_sum <- dams_data %>% group_by(Continent) %>% 
+  summarise(height_avg = mean(Dam_height_m, na.rm = TRUE),
+                     area_avg = mean(Reservoir_area_km2, na.rm = TRUE),
+                     storage_avg = mean(Reservoir_capacity_million_m3, na.rm = TRUE))
+
+dams_sum
+```
+<br/> 
+**How do these statistics differ by continent? Any thoughts on why they may differ?** These statistics differ due to different topographical trends present on different continents. The rivers used for reservoirs are going to flow through topographies of different width and height based on the different geologic histories of each continent, and all these factors result in different height, area, and storage averages of reservoirs in the five continents. African dams tend to be very wide, but fairly short, which makes sense because Africa does not have enormous topographical features. Europe, on the other hand, has both tall and expansive dams, which combine to result in the largest storage capacity on average of all the countries. Asia has dams that are on average both short and have small areas, resulting in overall the lowest storage average. While Oceanic dams have extremely small areas, they are the second deepest on average, which combines to keep Oceania's average storage capacity above Asia's.
+
+
+<br/>
+
+### 4. Create a box plot to show how the distribution of reservoir storage capacities varies between continents
+
+<br/>
+
+```{r}
+dams_data %>% ggplot() + geom_boxplot(aes(x = Continent, y = Reservoir_capacity_million_m3, color = Continent)) +
+  ggtitle("Reservoir storage capacities by continent") +
+  labs(y = "Reservoir capacity (millions m^3)", y = "Continent") +
+  scale_y_log10()
+```
+<br/> 
+**Once you’ve made you plot, take and look and note what you observe. Are the distributions similar or different between continents?** The average distributions and ranges all appear to be fairly similar between all five continents. All of the top third percentiles of reservoir capacity overlap. The ranges of capacities for Africa, America, and Asia are all fairly similar. Europe and Oceania have the smallest ranges, but this is likely an effect of the smaller size of these continents. Based on these overall similarities between all continents, we can conclude that there are some consistent specifications and attributes that are standard across all dams or are necessary for their success. 
+
+
+<br/>
+
+
+## Additional analysis 
+The task above were intended to get you started. Once you finish those above tasks you will need to continue with your own analysis. Below are some additional ideas, however you are more than free (and encouraged) to pursue your own ideas.
+<br/>
+### Examine the data on the purposes of the reservoirs (e.g. irrigation, water supply, navigation,…)
+
+```{r}
+# Examine the change in the purpose of reservoirs over time. 
+# Count number of each function variable, grouped by year
+# Assign to `dams_fxn`
+
+dams_fxn <- dams_data %>% group_by(Year_completed) %>% 
+  summarise(n_irr = sum(Irrigation),
+            n_supp = sum(Water_supply),
+            n_flood = sum(Flood_control),
+            n_elec = sum(Hydroelectricity),
+            n_nav = sum(Navigation),
+            n_rec = sum(Recreation),
+            n_pol = sum(Pollution_control),
+            n_live = sum(Livestock_rearing),
+            n_other = sum(Other),
+            n_dams = n())
+
+dams_fxn # print new data frame
+```
+<br/>
+
+```{r}
+#n_dams <- count(dams_data, Year_completed) # number of dams per year
+```
+<br/>
+```{r}
+# Calculate percent of reservoir built per function each year. 
+# Divide each dams_fxn variable by n_dams 
+# Assign to dams_Pfxn
+
+dams_Pfxn <- dams_fxn %>% group_by(Year_completed) %>% 
+  summarise(p_irr = n_irr/n_dams,
+            p_supp = n_supp/n_dams,
+            p_flood = n_flood/n_dams,
+            p_elec = n_elec/n_dams,
+            p_nav = n_nav/n_dams,
+            p_rec = n_rec/n_dams,
+            p_pol = n_pol/n_dams,
+            p_live = n_live/n_dams,
+            p_other = n_other/n_dams)
+
+dams_Pfxn
+```
+
+<br/>
+
+```{r}
+# Line graph of number of each damn function built each year over time
+
+dams_fxn %>% ggplot() +
+  geom_line(aes(x = Year_completed, y = n_irr, color = "Irrigation")) +
+  geom_line(aes(x = Year_completed, y = n_supp, color = "Water Supply")) +
+  geom_line(aes(x = Year_completed, y = n_flood, color = "Flood Control")) +
+  geom_line(aes(x = Year_completed, y = n_elec, color = "Hydroelectricy")) +
+  geom_line(aes(x = Year_completed, y = n_nav, color = "Navigation")) +
+  geom_line(aes(x = Year_completed, y = n_rec, color = "Recreation")) +
+  geom_line(aes(x = Year_completed, y = n_pol, color = "Pollution Control")) +
+  geom_line(aes(x = Year_completed, y = n_live, color = "Livestock Rearing")) +
+  geom_line(aes(x = Year_completed, y = n_other, color = "Other")) +
+  coord_cartesian(ylim = c(0, 175), xlim = c(1600, 2020)) + # change x-axis and y-axis limits to make data visible
+  ggtitle("Number dams built based on function per year") +               
+  labs(y = "Number of dams built", x = "Year", color = "Dam Function")
+```
+<br/>
+This graph shows the number of dams built each year from 1600-2008, where each color line indicates the function of the dam built. There is a clear increase in the overall number of dams built over time, with a significant annual increase beginning around 1900. This increase in number of dams built increases drastically through the 1900's, but begins to decrease at the end of the century and into the early 2000's. The two types of dams built the most during this period of increased growth are irrigation dams and hydroelectric dams, with dams for water supply coming close behind. This shows the high demand that the world places on food, power, and water supply in recent years. However, as we have begun to realize that building more dams is not the solution to all these problems, the number of dams being built each year has decreased significantly as the world is beginning to turn towards other solutions to the ever growing demands of our population. While this graph gives a good picture of the number of each type of dam being built each year, it doesn't allow for a great comparison in trends of dam functions over time. The next figure graphs percent function of dams built each year and allows for this analysis over time. 
+
+
+<br/>
+
+```{r}
+# Line graph of percent of each damn function out of all dams built each year over time
+
+dams_Pfxn %>% ggplot() +
+  geom_line(aes(x = Year_completed, y = p_irr, color = "Irrigation")) + # try fill = color for variables
+  geom_line(aes(x = Year_completed, y = p_supp, color = "Water Supply")) +
+  geom_line(aes(x = Year_completed, y = p_flood, color = "Flood Control")) +
+  geom_line(aes(x = Year_completed, y = p_elec, color = "Hydroelectricy")) +
+  geom_line(aes(x = Year_completed, y = p_nav, color = "Navigation")) +
+  geom_line(aes(x = Year_completed, y = p_rec, color = "Recreation")) +
+  geom_line(aes(x = Year_completed, y = p_pol, color = "Pollution Control")) +
+  geom_line(aes(x = Year_completed, y = p_live, color = "Livestock Rearing")) +
+  geom_line(aes(x = Year_completed, y = p_other, color = "Other")) +
+  coord_cartesian(xlim = c(1800, 2010)) +
+  ggtitle("Percent dams built based on function per year") +                  
+  labs(y = "Percent dams built per function", x = "Year", color = "Dam Function")        
+```
+<br/>
+
+  This graph shows the distribution of dam functions for all dams built each year by graphing each type of dam as percentage of total dams built per year. This allows us to understand the change in distribution of dam function over time. Before 1600 there were very few dams and they were solely built for irrigation, starting in 1000; this early data was excluded to allow for a clearer interpretation of the later dam data. After irrigation dams, the next type of dam was built for water supply in the year 1500. A huge jump in dam development and usage begins in 1800, where dams begin to be built for recreating, other purposes, and livestock rearing. There are a number of years where recreation dams are the only ones being built around 1850, but we also begin to see flood control and navigation dams appear around this time as well. To me this indicates that dams are still seen as an exciting novelty during this time and their full potential has not been realized or exploited yet. Irrigation dams continue to be some of the most frequently built dams which can reveal the demands a rapidly expanding population exerts on global crops. Hydroelectric dams are not invented until just before 1900, but they are consistently some of the more commonly built dams for all years after their invention. Up to 1900, the graphed percent lines indicating dam function consistently reach 1.00, meaning that dams are still infrequently built. The 100%'s mean that that one type of dam was the only type built during that year. However once we hit the 1900's the percent of each type of dam decreases significantly, meaning that more dams and more varried functions are being built each year. During much of the 20th century all nine types of dams are frequently built each year. The huge increase at 1950 of percent irrigation dams likely reflects a global need for increased crop production and the beginning effects of climate change on farming. The other types of dams are still being built, but the proportion is less compared to the amount of irrigation dams. After 2000 there is a decrease in the number of dams being built that can be seen by the return to 100% of dams built being irrigation dams.   
+  This percentage visualization of types of dams built per year shows that humanities continued need for food is one of our most significant draws on the global water supply. It begs the question, at what point are more irrigation dams no longer enough to feed the demand of our global farming systems? If we continue to have a need for irrigation dams after 1000 years of them being built, when do we turn to other solutions for watering our crops? What will our irrigation needs look like in the next 10 years, 20, or 50 years of climate change? While we have continued to use irrigation dams to patch this problem, when will we realize that they are not enough?
+  
+  
+
+<br/>
+
+
+### Works Cited
+
+https://stahlm.github.io/ENS_215/Documents/world_commission_on_dams_final_report.pdf
+https://stahlm.github.io/ENS_215/Documents/Lehner_et_al_2011.pdf
+

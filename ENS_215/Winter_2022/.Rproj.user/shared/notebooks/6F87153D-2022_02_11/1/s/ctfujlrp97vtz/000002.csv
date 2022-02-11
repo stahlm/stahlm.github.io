@@ -1,0 +1,8 @@
+"0","bangladesh_gw <- read_csv(""https://stahlm.github.io/ENS_215/Data/NationalSurveyData_DPHE_BGS_LabData.csv"")"
+"0",""
+"0","division_1 <- bangladesh_gw %>% "
+"0","  filter(DIVISION == ""Khulna"") "
+"0",""
+"0","division_2 <- bangladesh_gw %>% "
+"0","  filter(DIVISION == ""Dhaka"") "
+"0",""

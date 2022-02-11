@@ -1,0 +1,438 @@
+---
+title: "Comparing distributions: Q-Q plots"
+author: "ENS-215"
+date: "11-Feb-2022"
+output:
+  html_document:
+    theme: spacelab
+    df_print: paged
+    toc: TRUE
+    toc_float: TRUE
+---
+
+
+<br/>
+
+We've already learned how to use a number of different graphical and statistical techniques to characterize the distribution of data and to compare distributions between two groups.  Some of the concepts we've learned include:  
+
+  + Characterizing central tendency (e.g. mean and median)  
+  + Characterizing spread (e.g. standard deviation and variance)
+  + Identifying modes (multi and unimodal)
+  + Calculating quantiles
+  + Application of graphical techniques to display and compare distributions
+      + Box plots
+      + Histograms and density curves
+      + Cumulative distribution curves
+      + Quantile plots
+
+<br/>
+
+Today we will continue down this path, introducing some more advanced tools for comparing and interpreting data distributions.  In particular we will learn how to construct and interpret **quantile-quantile (Q-Q) plots**  
+
+<br/>
+
+Let's load in the packages we'll use today.  
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+library(stats)
+```
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+# packages for code used to generate content in this lecture
+library(ggExtra)
+library(gridExtra)
+library(ggrepel)
+```
+
+<br/>
+
+## Quantile-quantile (Q-Q) plots 
+
+Today's lecture has a lot of information about Q-Q plots.  If you are interested in some more information you can find additional helpful resources at the following website from the [US National Institute of Standards and Technology (NIST)](https://www.itl.nist.gov/div898/handbook/eda/section3/eda33o.htm) 
+
+<br/>
+
+### What is a Q-Q plot?
+A quantile-quantile plot (Q-Q plot) takes the quantile data from two different datasets, pairs them based on their _f-value_ and then plots the paired quantile values.  A Q-Q plot allows you to compare the distributions between two datasets.  For instance, if you wanted to compare whether daily temperatures in NYC have a similar distribution as daily temperatures in Boston, then to create a Q-Q plot you would do the following:  
+
++ Compute the quantile values for the NYC data (e.g. the 1^st^ percentile, 2^nd^ percentile, ..., 99^th^ percentile temperatures)
++ Compute the quantile values for the Boston data (e.g. the 1^st^ percentile, 2^nd^ percentile, ..., 99^th^ percentile temperatures)
++ Pair the data based on the percentile (_f-value_) (i.e., the 1^st^ percentile in NYC with the 1^st^ percentile in Boston, 2^nd^ percentile in NYC with the 2^nd^ percentile in Boston, ...)
++ Plot the paired quantile temperature data with Boston on one axis and NYC on the other.   
+
+<br/>
+
+Below is an example that illustrates the underlying concepts behind a Q-Q plot.  In the example I've generated two sets of data (Batch A and Batch B) and they are drawn from different underlying distributions.  First we construct individual a quantile plots -- one for Batch A and one for Batch B.  On each plot the points are labeled with their corresponding _f-value_.  To properly compare the distributions of the Batch A and Batch B, we then construct a Q-Q plot, by pairing the quantile values (e.g. 10^th^ percentile in A with 10^th^ percentile in B and so on) and then generating a graphic.  
+
+If the data in the two batches come from the same distribution then they will plot very close to the 45$^\circ$ line.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+batch_A <- rnorm(500, mean = 8, sd = 2)
+batch_B <- rnorm(1000, mean = 12, sd = 1)
+
+q_v <- seq(0.05,1, by = 0.05)
+q_v2 <- seq(0.1,1, by = 0.1)
+fig_A <- ggplot() +
+  geom_point(aes(x = q_v, y = quantile(batch_A, probs = q_v)), size = 2 ) +
+  geom_text_repel(aes(x = q_v2, y = quantile(batch_A, probs = q_v2),label = q_v2),
+                      nudge_y      = 1,
+                      direction = "y",
+                      hjust        = 1,
+                      segment.size = 0.2) +
+  theme_classic() +
+  labs(x = "f-value",
+       y = "Observed value",
+       title = "Quantile plot: Batch A") +
+  xlim(0,1) +
+  ylim(4,16)
+
+
+fig_B <- ggplot() +
+  geom_point(aes(x = q_v, y = quantile(batch_B, probs = q_v)), size = 2 ) +
+  geom_text_repel(aes(x = q_v2, y = quantile(batch_B, probs = q_v2),label = q_v2),
+                      nudge_y      = 1,
+                      direction = "y",
+                      hjust        = 1,
+                      segment.size = 0.2) +
+  theme_classic() +
+  labs(x = "f-value",
+       y = "Observed value",
+       title = "Quantile plot: Batch B") +
+  xlim(0,1) +
+  ylim(4,16)
+
+grid.arrange(fig_A, fig_B, ncol = 2)
+
+ggplot() +
+  geom_point(aes(x = quantile(batch_A, probs = q_v), y = quantile(batch_B, probs = q_v)), size = 2) + 
+  geom_text_repel(aes(x = quantile(batch_A, probs = q_v2), y = quantile(batch_B, probs = q_v2), label = q_v2),
+                      nudge_y      = 1,
+                      direction = "y",
+                      hjust        = 1,
+                      segment.size = 0.2) +
+  geom_abline(slope = 1, intercept = 0) +
+  xlim(4,16) +
+  ylim(4,16) +
+  coord_equal() +
+  theme_classic() +
+  labs(title = "Q-Q Plot",
+       subtitle = "Batches A and B",
+       x = "Batch A: Observed Value",
+       y = "Batch B: Observed Value")
+  
+```
+
+<br/>
+
+#### Q-Q plots are NOT the same as a scatter plot
+
+Q-Q plots are not the same thing as a scatter plot.  A scatter plot is used to display the relationship between paired varaiables (e.g. daily temperature and precipitation where the data are paired for a given location).  A scatter plot helps us to examine the relationship between the paired variables (i.e. if one of the variables is a function of the other).  
+
+A Q-Q plot is intended to examine if the data have similar distributions -- it is not intended to examine if the variables are correlated.  
+
+<br/>
+
+To help illustrate this concept, let's examine the example below.  Here we are creating two vectors -- each of which contains 5000 randomly drawn values from a Normal distribution with a mean = 0 and a standard deviation = 1.  Thus `vec_a` and `vec_b` should have very, very similar distributions since they are both drawn from the same theoretical distribution.  
+
+```{r}
+vec_a <- rnorm(5000, mean = 0, sd = 1)
+vec_b <- rnorm(5000, mean = 0, sd = 1)
+```
+
+
+However, if we were to pair the values in `vec_a` and `vec_b` (e.g. 1st value in a with 1^st^ value in b, 2^nd^ value in a with 2^nd^ value in b, ...) there is no reason to believe that they should be correlated.  That is, if the 1^st^ value in a is high, there is no reason to believe that the 1^st^ value in b should also be relatively high.
+
+Let's create a scatter plot where we pair a and b to help illustrate this point.
+```{r echo=FALSE}
+vec_a <- rnorm(5000, mean = 0, sd = 1)
+vec_b <- rnorm(5000, mean = 0, sd = 1)
+
+p <- ggplot() +
+     geom_point(aes(x = vec_a, y = vec_b), alpha = 0.15) +
+     theme_classic() +
+     coord_equal() 
+
+grid.arrange(ggMarginal(p, type="density", fill = "grey") , ncol = 1)
+
+```
+
+<br/>
+
+Based on the scatter plot it is clear that the values in `vec_a` and `vec_b` are not correlated with one another.  While they are not correlated we know that they have very similar distributions, as they were both drawn from the same theoretical distribution -- the density plots on the margin of the graphic further illustrate the similarity of the sample distributions.  
+
+Now let's create a Q-Q plot with these two datasets to highlight that they come from the same distribution.
+
+```{r}
+
+q_v <- seq(0,1, by = 0.05) # vector of f-values that we will use to specify quantiles to compute in code below
+
+ggplot() +
+  geom_point(aes(x = quantile(vec_a, probs = q_v), y = quantile(vec_b, probs = q_v)), size = 2) +
+  geom_abline(slope = 1, intercept = 0) +
+  theme_classic() +
+  labs(title = "Q-Q plot",
+       x = "A",
+       y = "B") + 
+  coord_equal() # sets the axis scales equal, which makes Q-Q plot easier to read
+```
+
+<br/>
+
+You can see that the data fall close to the 45$^\circ$ line (_i.e._ line with slope = 1, and intercept = 0), indicating that the data in both datasets (A and B) are drawn from the same distribution.  
+
+<br/>
+
+### What can be learned from Q-Q plots?
+As we have already discussed, a Q-Q plot allows you to examine how the distributions of data compare between two datasets.  This question comes up all the time in science.  For instance you may want to know of the distribution of daily temperatures in NYC from 1900-1960 differs from data for 1961-2018.  Or you may want to know if the distribution of groundwater arsenic concentrations in Bangladesh is similar to the distribution found in Vietnam.  A Q-Q plot allows you to graphically investigate these types of questions.  
+
+The Q-Q plot goes beyond simply allowing you to assess if the distributions are similar or different -- it also allows you to identify how they differ:  
+
++ Compare shifts in central tendencies/location of distribution
++ Compare shifts in the spread
++ Compare outlier values, tails, and skewness  
++ If samples are drawn from the same family of distributions (e.g. Normal, exponential, gamma, ...)
+
+<br/>
+
+As we saw earlier, when two sets of data have the same underlying distribution, the points on the Q-Q plot will fall on or very close to the 45$^\circ$ line (_i.e._ line with slope = 1, and intercept = 0).  
+
+When the data have similar distributions, with the only difference being an **additive shift** _i.e._ $Group_B = Group_A + shift$, then the Q-Q plot will plot parallel to the 45$^\circ$ line, but not on it.  
+
+```{r echo=FALSE}
+vec_a <- rnorm(500, mean = 0, sd = 1)
+vec_b <- rnorm(500, mean = 0, sd = 1)
+
+q_v <- seq(0,1, by = 0.05) # vector of f-values that we will use to specify quantiles to compute in code below
+
+ggplot() +
+  geom_point(aes(x = quantile(vec_a, probs = q_v), y = quantile(vec_b + 2, probs = q_v)), size = 2) +
+  geom_abline(slope = 1, intercept = 0) +
+  theme_classic() +
+  labs(title = "Q-Q plot",
+       x = "A",
+       y = "B") + 
+  coord_equal() # sets the axis scales equal, which makes Q-Q plot easier to read
+```
+
+The spread and shape of the distributions of A and B are similar, however it is clear that B has an additive shift of approximately 2.  You can see this in the Q-Q plot, as the quantile values for group B are simply the quantile values of group A with an upward shift of two units.  
+
++ Sketch density curves for the distribution of Group A and B -- think about how what you see in the Q-Q plot translates into density curves.   
+
+<br/>
+
+When the points in the Q-Q plot form a line that is NOT parallel to the 45$^\circ$ line, then we say that there is a **multiplicative shift**.  This means that $Group_B = Group_A * factor$  
+
+```{r echo=FALSE}
+vec_a <- rnorm(500, mean = 0, sd = 1)
+vec_b <- rnorm(500, mean = 0, sd = 1)
+
+q_v <- seq(0,1, by = 0.05) # vector of f-values that we will use to specify quantiles to compute in code below
+
+ggplot() +
+  geom_point(aes(x = quantile(vec_a, probs = q_v), y = quantile(vec_b * 2, probs = q_v)), size = 2) +
+  geom_abline(slope = 1, intercept = 0) +
+  theme_classic() +
+  labs(title = "Q-Q plot",
+       x = "A",
+       y = "B") + 
+  xlim(-8,8) +
+  ylim(-8,8) +
+  coord_equal() # sets the axis scales equal, which makes Q-Q plot easier to read
+```
+
+<br/>
+
+In the example above the distributions of group A and B only differ by a multiplicative factor, with the values in Group B being approximately twice that of Group A _i.e._ $Group_B = 2 * Group_A$.  
+
++ Sketch density curves for the distribution of Group A and B -- think about how what you see in the Q-Q plot translates into density curves.   
+
+
+In many situations you will encounter a relationship between distributions that has both a **mulitiplicative shift** and an **additive shift**  
+
+<br/>
+
+If the two distributions differ by something other than a linear transformation, then the Q-Q plot will not form a straight line.  The example below shows a Q-Q plot for two datasets that are drawn from different distributions (Normal and Exponential distributions respectively)
+
+```{r echo=FALSE, warning=FALSE}
+vec_a <- rnorm(500, mean = 0, sd = 0.5)
+vec_b <- rexp(500, rate = 2)
+
+q_v <- seq(0,1, by = 0.05) # vector of f-values that we will use to specify quantiles to compute in code below
+
+ggplot() +
+  geom_point(aes(x = quantile(vec_a, probs = q_v), y = quantile(vec_b, probs = q_v)), size = 2) +
+  geom_abline(slope = 1, intercept = 0) +
+  theme_classic() +
+  labs(title = "Q-Q plot",
+       x = "A",
+       y = "B") + 
+  xlim(-3,3) +
+  ylim(-3,3) +
+  coord_equal() # sets the axis scales equal, which makes Q-Q plot easier to read
+```
+
+
+<br/>
+
+### Q-Q plot: precipitation data
+Let's load in some data that we will use to create a Q-Q plot.  We'll load in the NOAA monthly precipitation data that we've used in the the past.
+
+```{r warning=FALSE, message=FALSE}
+precip_data <- read_csv("https://stahlm.github.io/ENS_215/Data/NOAA_State_Precip_LabData.csv")
+```
+
+<br/>
+
+Let's create a new data frame that just has data for New York (NY) and Rhode Island (RI).  
+```{r}
+precip_NY_RI <- precip_data %>% 
+  filter(state_cd %in% c("NY", "RI"))
+```
+
+
+These states are located reasonably close to one another and it would be interesting and useful to know if they have monthly precipitation that is similarly distributed.  Let's create overlaying density curves as a first pass examination before we move on and create a Q-Q plot.  
+```{r}
+precip_NY_RI %>% 
+  ggplot(aes(x = Precip_inches, fill = state_cd)) +
+  geom_density(alpha = 0.4) +
+  theme_classic()
+```
+
+
+Let's also create a summary table to compare some statistics between the two groups (NY and RI)
+```{r}
+precip_NY_RI %>% 
+  group_by(state_cd) %>% 
+  summarise_at(vars(Precip_inches), funs(mean, sd, p25 = quantile(.,probs = 0.25), p50 = median, p75= quantile(.,probs = 0.75)))
+```
++ Based on the density curves and the statistics, do the two datasets seem to have similar distributions?  If not how do they differ (e.g. in location, skewness, spread, ...)
+
+<br/>
+
+Now let's create a Q-Q plot to compare the distribution of monthly precipitation data between NY and RI.
+```{r}
+
+p <- seq(0, 1, by = 0.05) # f-values to use in our quantile calculations
+
+precip_RI <- filter(precip_NY_RI, state_cd == "RI") # Rhode Island data
+precip_NY <- filter(precip_NY_RI, state_cd == "NY") # NY data
+
+q_RI <- quantile(precip_RI$Precip_inches, probs = p) # RI quantile data
+q_NY <- quantile(precip_NY$Precip_inches, probs = p) # NY quantile data
+
+ggplot() +
+  geom_point(aes(x = q_RI, y= q_NY)) +
+  geom_abline(slope = 1, intercept = 0) +
+  theme_classic() +
+  xlim(0, 16) +
+  ylim(0,16) +
+  coord_equal() +
+  labs(title = "Precipitation Q-Q plot",
+       subtitle = "New York and Rhode Island",
+       x = "Rhode Island Precipitation (inches)",
+       y = "New York Precipitation (inches)")
+```
+
++ How do the distributions compare (skewness, outliers, range, ...)?
++ Do the Q-Q points appear to fall along a line? 
++ Does there appear to be an additive and/or multiplicative shift?
++ Think about what you can learn/infer from the Q-Q plot and some of the environmental implications of what you have learned.  Discuss this with your neighbor and I will also come around and discuss this with you.  
+
+
+<br/>
+
+Ok, now let's investigate the shifts in the distributions between RI and NY that you should have observed in the Q-Q plot you generated above.  
+
+To tease out the the shifts, we'll take a trial and error approach.  The multiplicative shift we can be teased out by multiplying either the `q_NY` or the `q_RI` data by a factor -- once the Q-Q plot forms a line parallel to the 45$^\circ$ line, then we have identified the correct shift.  Then once we have the multiplicative shift, we can tease out the additive shift by adding or subtracting from either the `q_NY` or the `q_RI` data.  
+
+<br/>
+
+Let's operate just on the `q_NY` data (we could also just operate on `q_RI` if we wanted).  
+
+Let's start with a multiplicative shift `shift_mult` = 3.  We'll keep the additive shift `shift_add` = 0, until we have the multiplicative shift squared away.  
+
+Look in the `geom_point()` function below and note that we are applying the shifts.  Run the code and see if you get the line to be parallel to the to the 45$^\circ$ line.  If not, then adjust the `shift_mult` and run the code again until you get a value that you are satisfied with.  Once you've got the `shift_mult` settled, then adjust the `shift_add` to get the Q-Q plot to fall as close to the 45$^\circ$ line as possible.
+
+```{r eval=FALSE, warning=FALSE}
+shift_mult <- 3
+shift_add <- 0
+
+p <- seq(0, 1, by = 0.05) # f-values to use in our quantile calculations
+
+precip_RI <- filter(precip_NY_RI, state_cd == "RI") # Rhode Island data
+precip_NY <- filter(precip_NY_RI, state_cd == "NY") # NY data
+
+q_RI <- quantile(precip_RI$Precip_inches, probs = p) # RI quantile data
+q_NY <- quantile(precip_NY$Precip_inches, probs = p) # NY quantile data
+
+ggplot() +
+  geom_point(aes(x = q_RI, y= q_NY * shift_mult + shift_add)) +
+  geom_abline(slope = 1, intercept = 0) +
+  theme_classic() +
+  xlim(0, 16) +
+  ylim(0,16) +
+  coord_equal() +
+  labs(title = "Precipitation Q-Q plot",
+       subtitle = "New York and Rhode Island",
+       x = "Rhode Island Precipitation (inches)",
+       y = "New York Precipitation (inches)")
+```
+
++ In the end what multiplicative and additive shifts did you obtain?  
+
+```{r echo=FALSE, eval=FALSE}
+# shifts that I obtained
+shift_mult <- 1.5 
+shift_add <- -1
+```
+
+<br/>
+
+### Exercises
+
+1. Choose two other US states and create a Q-Q plot comparing their monthly precipitation distributions.  
+    + How do their distributions compare?
+    + Do they differ by a multiplicative and/or additive shift?  Or are the data from very different distributions (_i.e._ Q-Q plot does not form a line)?  
+    
+2. Choose a US state of interest and create a Q-Q plot comparing the distribution of monthly precipitation between two time periods.  How do the distributions between the two time periods compare?  Note that this type of exercise is useful if you are interested in assessing a shift in climate.  Discuss the results with your neighbor and with me.  
+
+    
+3. Load in the British Geological Survey arsenic data from Bangladesh and create a Q-Q plot comparing the distribution of groundwater arsenic between the Dhaka and Khulna divisions.  When creating your Q-Q plot, you will want to convert the axes to log scale using `scale_x_log10` and `scale_y_log10` (this will make the graphic easier to read).  Also make sure to add a 45$^\circ$ line to aid in the interpretation of the Q-Q plot.  
+    + How do the distributions compare?  What are the implications of these results?
+
+
+Code to load in the data
+```{r message=FALSE, warning=FALSE}
+bangladesh_gw <- read_csv("https://stahlm.github.io/ENS_215/Data/NationalSurveyData_DPHE_BGS_LabData.csv")
+
+division_1 <- bangladesh_gw %>% 
+  filter(DIVISION == "Khulna") 
+
+division_2 <- bangladesh_gw %>% 
+  filter(DIVISION == "Dhaka") 
+
+```
+
+```{r}
+# Your code here
+```
+
+
+```{r echo=FALSE, eval=FALSE}
+q_vec <- seq(0, 1, by = 0.05)
+
+ggplot() +
+  geom_point(aes(x = quantile(division_1$As_ugL, probs = q_vec), y = quantile(division_2$As_ugL, probs = q_vec)), size = 2) +
+  geom_abline(slope = 1, intercept = 0) +
+  theme_classic() + 
+  scale_y_log10() +
+  scale_x_log10() +
+  coord_equal() + 
+  labs(x = "Dhaka As (ug/L)",
+       y = "Khulna As (ug/L)",
+       title = "Q-Q Plot: Arsenic Data",
+       subtitle = "Dhaka and Khulna Divisions",
+       caption = "data source: BGS")
+```
+
+

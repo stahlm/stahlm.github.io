@@ -1,0 +1,2 @@
+"0","vec_a <- rnorm(5000, mean = 0, sd = 1)"
+"0","vec_b <- rnorm(5000, mean = 0, sd = 1)"
