@@ -1,0 +1,32 @@
+{
+    "id": "E18E1714",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1644790629671.0,
+    "source_on_save": false,
+    "relative_order": 19,
+    "properties": {
+        "expression": "tbar",
+        "caption": "tbar",
+        "totalObservations": 730,
+        "displayedObservations": 730,
+        "variables": 47,
+        "cacheKey": "8096D5CF",
+        "object": "tbar",
+        "environment": "",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=tbar&cache_key=8096D5CF&max_cols=50",
+        "preview": 0
+    },
+    "folds": "",
+    "lastKnownWriteTime": 18296217089015877,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1644790629671,
+    "read_only": false,
+    "read_only_alternatives": []
+}

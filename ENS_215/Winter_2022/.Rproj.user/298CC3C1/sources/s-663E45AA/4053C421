@@ -1,0 +1,32 @@
+{
+    "id": "4053C421",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1644792041322.0,
+    "source_on_save": false,
+    "relative_order": 15,
+    "properties": {
+        "expression": "sites_schdy_flow",
+        "caption": "sites_schdy_flow",
+        "totalObservations": 6,
+        "displayedObservations": 6,
+        "variables": 8,
+        "cacheKey": "B77DBCAF",
+        "object": "sites_schdy_flow",
+        "environment": "",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=sites_schdy_flow&cache_key=B77DBCAF&max_cols=50",
+        "preview": 0
+    },
+    "folds": "",
+    "lastKnownWriteTime": 8533869541156725367,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1644792041322,
+    "read_only": false,
+    "read_only_alternatives": []
+}

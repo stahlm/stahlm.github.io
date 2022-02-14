@@ -1,0 +1,3 @@
+"0","sites_schdy_flow <- whatNWISsites(countyCd = ""36093"", parameterCd = ""00060"")"
+"0",""
+"0","sites_NY_flow <- whatNWISsites(stateCd = ""NY"", parameterCd = ""00060"")"

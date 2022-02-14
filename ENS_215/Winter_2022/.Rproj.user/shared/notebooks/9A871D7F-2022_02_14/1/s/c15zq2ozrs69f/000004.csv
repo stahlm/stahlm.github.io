@@ -1,0 +1,4 @@
+"0","precip_state %>% "
+"0","  ggplot(aes(x = Precip_inches)) +"
+"0","  geom_density(fill = ""bisque"") + "
+"0","  theme_classic()"

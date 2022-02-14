@@ -1,0 +1,6 @@
+"0","flow_summary <- flow %>% "
+"0","  group_by(Month, Day) %>% "
+"0","  summarize(mean_flow_cfs = mean(flow_cfs, na.rm = T)) %>% "
+"0","  mutate(date = ymd(paste(2020, Month, Day))) "
+"2","`summarise()` regrouping output by 'Month' (override with `.groups` argument)
+"

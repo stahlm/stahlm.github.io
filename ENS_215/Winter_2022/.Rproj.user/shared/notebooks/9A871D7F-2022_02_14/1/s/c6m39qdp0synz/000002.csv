@@ -1,0 +1,2 @@
+"0","bangladesh_gathered <- bangladesh_gw %>% "
+"0","  gather(key = Parameter, value = Concentration, colnames(bangladesh_gw)[12:31])"

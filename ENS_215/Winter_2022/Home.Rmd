@@ -47,6 +47,13 @@ output:
 
 ```
 
+
+### Week 7 
++ Mon (14-Feb) -- **Bivariate data and time-series analysis** [(html)](https://stahlm.github.io/ENS_215/Winter_2022/Lectures/2022_02_14_bivariate.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2022/Lectures/2022_02_14_bivariate.Rmd) 
+
+
+***
+
 ### Week 6
 + Mon (7-Feb)  -- **Descriptive statistics and univariate data** [(html)](https://stahlm.github.io/ENS_215/Winter_2022/Lectures/2022_02_07.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2022/Lectures/2022_02_07.Rmd) and **Loading data into R** [(html)](https://stahlm.github.io/ENS_215/Winter_2022/Lectures/2022_02_07_load_data_into_R.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2022/Lectures/2022_02_07_load_data_into_R.Rmd)
 

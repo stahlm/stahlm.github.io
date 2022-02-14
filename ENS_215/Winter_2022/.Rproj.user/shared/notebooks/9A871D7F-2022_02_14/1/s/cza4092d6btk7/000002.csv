@@ -1,0 +1,4 @@
+"0","bangladesh_gw %>% "
+"0","  ggplot(aes(x = log10(Ba_mgL))) + "
+"0","  geom_density(fill = ""bisque"") +"
+"0","  theme_classic()"
