@@ -51,7 +51,7 @@ library(GSODR)
 The package comes with a dataset that has all of the available meteorological stations and their location information/details (e.g., lat/long, country, state, period of data coverage).  We will load in this data below.  
 
 ```{r}
-isd_history <- load(system.file("extdata", "isd_history.rda", package = "GSODR"))
+load(system.file("extdata", "isd_history.rda", package = "GSODR"))
 ```
 
 
@@ -74,7 +74,7 @@ If you identified a station(s) of interest you can download the data using the `
 
 725090-14739
 ```{r}
-met_df <- get_GSOD(years = 2018:2021, station = "681100-99999")
+met_df <- get_GSOD(years = 2021:2022, station = "681100-99999")
 ```
 
 
@@ -100,7 +100,7 @@ met_df %>%
 
 <br/> 
 
-Oftentimes you have a study location/area of interest and you would like to identify any/all meterological stations that exist nearby your site.  The `GSODR` package has a really helpful function, `nearest_stations()` that does this.  You need to supply the lat/long of the area to query and the radial distance (in kilometers) from your search point.  The function will then return a list of the STNID with the station info for all stations that fall within your search radius.  
+Oftentimes you have a study location/area of interest and you would like to identify any/all meteorological stations that exist nearby your site.  The `GSODR` package has a really helpful function, `nearest_stations()` that does this.  You need to supply the lat/long of the area to query and the radial distance (in kilometers) from your search point.  The function will then return a list of the STNID with the station info for all stations that fall within your search radius.  
 
 Let's test this out by searching for all of the stations within 25 km of Schenectady.  
 
@@ -235,18 +235,6 @@ df_stream_data %>%
 
 
 
-```{r}
-siteINFO <- readNWISsite(sites_what_data$site_no)
-```
-
-
-
-
-```{r}
-comment(siteINFO)
-```
-
-
 ### water quality example
 
 00915 (Calcium, filtered, mg/L)
@@ -301,15 +289,44 @@ fig_map_NO3 <- NY_NO3_recent_data_summary %>%
 
 
 ## rnoaa
+```{r}
+library(rnoaa)
+```
+
+```{r}
+a <- isd(usaf = "725180", wban = "14735", year = 2021)
+```
 
 
 
 
 ## stationaRy
 
+```{r}
+library(stationaRy)
+```
+
+```{r}
+station_df <- get_station_metadata() 
+```
 
 
-## elevatr
+```{r}
+station_met_data <- get_met_data(station_id = "725180-14735", years = 2020) 
+
+```
+
+
+
+## worldmet
+```{r}
+library(worldmet)
+```
+
+```{r}
+worldmet_data <- worldmet::importNOAA(code = "725180-14735", year = 2021, hourly = T)
+```
+
 
 
 ## rWBclimate

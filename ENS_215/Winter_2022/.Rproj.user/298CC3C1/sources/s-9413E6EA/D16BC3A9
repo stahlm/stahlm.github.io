@@ -3,24 +3,24 @@
     "path": "~/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2022/2022_data_access_packages.Rmd",
     "project_path": "2022_data_access_packages.Rmd",
     "type": "r_markdown",
-    "hash": "3616176396",
+    "hash": "64723185",
     "contents": "",
     "dirty": false,
     "created": 1644780550543.0,
     "source_on_save": false,
-    "relative_order": 10,
+    "relative_order": 6,
     "properties": {
         "tempName": "Untitled2",
         "chunk_output_type": "inline",
-        "cursorPosition": "273,59",
-        "scrollLine": "0"
+        "cursorPosition": "326,85",
+        "scrollLine": "324"
     },
     "folds": "",
-    "lastKnownWriteTime": 1644970024,
+    "lastKnownWriteTime": 1644978549,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1644970024297,
+    "last_content_update": 1644978549168,
     "read_only": false,
     "read_only_alternatives": []
 }

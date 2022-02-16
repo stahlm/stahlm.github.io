@@ -3008,7 +3008,7 @@ Dhaka_gw %&gt;%
   </script>
 </div>
 <p>The table output by <code>get_regression_table()</code> gives us the intercept and slope estimates from the fitted linear model. We see that the slope is 1.55 – meaning that the linear model predicts a 1.55 ppm change in CO<sub>2</sub> concentration each year. The other columns in the table provide information about the mathematical confidence of these slope and intercept estimates. We don’t have sufficient time in this class to dive into the meaning of the the <em>p-value</em>, but generally speaking it tells us how confident we are that the computed estimate is different from zero – a smaller <em>p-value</em> means we are more confident in this fact. Typically a p-value &lt; 0.05 is considered to be a “good” indication that the estimate differs from zero. The <code>lower_ci</code> and <code>upper_ci</code> are confidence intervals on the estimate – loosely speaking they provide a set of reasonable bounds on the “true” value of the parameter.</p>
-<p>The <code>get_regression_summaries()</code>function from the <code>moderndive</code> package provides summary statistics that tell us how well our modeled (fitted) values match the observations. While we don’t have time in this class to cover the details of these statistics, they are nonetheless worth being aware of. The <em>r-squared</em> statistic is one that you will commonly hear reference to – it tells us how well our explanatory variable (in this example the year) explains the dependent variable (in this example CO<sub>2</sub>). An r-squared of 1 means the explanatory variable perfectly explains the variablity in the dependent variable and a value of 0 means that the explanatory variable has no explanatory power.</p>
+<p>The <code>get_regression_summaries()</code>function from the <code>moderndive</code> package provides summary statistics that tell us how well our modeled (fitted) values match the observations. While we don’t have time in this class to cover the details of these statistics, they are nonetheless worth being aware of. The <em>r-squared</em> statistic is one that you will commonly hear reference to – it tells us how well our explanatory variable (in this example the year) explains the dependent variable (in this example CO<sub>2</sub>). An r-squared of 1 means the model perfectly explains the variability in the dependent variable and a value of 0 means that the model has no explanatory power (i.e., does not explain any of the variability in the dependent variable).</p>
 <pre class="r"><code>get_regression_summaries(lm_mauna_loa)</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
@@ -3092,10 +3092,7 @@ head(lm_mauna_loa_points)</code></pre>
 <h3>Extra section: Combining different figures into a single graphic</h3>
 <p>If you finish the above work in time you can proceed on. If not you can work go over this section after class or in lab.</p>
 <p>Oftentimes we have several different (but related) figures that we would like to combine into a single graphic. For instance you may want to have a time-series of streamflow data and a boxplot of that same data shown in a single combined graphic. There is a very helpful package called <code>patchwork</code> that allows you to easily do this. This will likely be very helpful as you put together your final projects.</p>
-<p>Let’s first install the package. To do this, type the following code to your console and run it.</p>
-<blockquote>
-<p><code>devtools::install_github(&quot;thomasp85/patchwork&quot;)</code></p>
-</blockquote>
+<p>Let’s first install the package.</p>
 <p>Once the package is installed let’s load it in</p>
 <pre class="r"><code>library(patchwork)</code></pre>
 <p><br /></p>

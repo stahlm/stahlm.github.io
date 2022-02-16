@@ -12,14 +12,14 @@
     "properties": {
         "expression": "met_df",
         "caption": "met_df",
-        "totalObservations": 2180,
-        "displayedObservations": 2180,
-        "variables": 47,
-        "cacheKey": "8F804791",
+        "totalObservations": "393",
+        "displayedObservations": "393",
+        "variables": "47",
+        "cacheKey": "7247EB05",
         "object": "met_df",
         "environment": "",
-        "contentUrl": "grid_resource/gridviewer.html?env=&obj=met_df&cache_key=8F804791&max_cols=50",
-        "preview": 0
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=met_df&cache_key=7247EB05&max_cols=50",
+        "preview": "0"
     },
     "folds": "",
     "lastKnownWriteTime": 22518311674839107,
