@@ -1,0 +1,6 @@
+"0","pCode <- c(""00618"")"
+"0","NY_NO3 <- whatNWISdata(stateCd=""NY"", "
+"0","                       parameterCd=pCode, startDate = ""2015-01-01"""
+"0","                     ) %>% "
+"0","  filter(site_tp_cd == ""GW"")"
+"0",""

@@ -1,7 +1,0 @@
-"0","met_df %>% "
-"0","  ggplot() +"
-"0","  #geom_line(aes(x = YEARMODA, y = TEMP), color = ""black"") +"
-"0","  geom_line(aes(x = YEARMODA, y = MIN), color = ""blue"") +"
-"0","  geom_line(aes(x = YEARMODA, y = MAX), color = ""red"") +"
-"0","  "
-"0","  theme_classic()"

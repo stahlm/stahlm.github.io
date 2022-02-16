@@ -1,3 +1,0 @@
-"0","flowAndTemp <- whatNWISdata(siteNumber = sites_NY_flow$site_no, service = ""uv"", "
-"0","                             parameterCd = c(""00060"",""00010""),"
-"0","                             statCd = ""00003"")"

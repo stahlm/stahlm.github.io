@@ -1,0 +1,4 @@
+"0","fig_map <- sites_what_data %>% "
+"0","  leaflet() %>% "
+"0","  addProviderTiles(providers$OpenStreetMap) %>% "
+"0","  addMarkers(~ dec_long_va, ~ dec_lat_va, popup = ~ station_nm)"

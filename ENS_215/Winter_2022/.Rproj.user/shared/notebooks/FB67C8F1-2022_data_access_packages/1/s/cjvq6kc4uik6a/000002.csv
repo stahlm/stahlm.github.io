@@ -1,0 +1,3 @@
+"0","NY_NO3_recent_data <- readNWISqw(siteNumbers = NY_NO3$site_no, "
+"0","                                 startDate = ""2015-01-01"", "
+"0","                                 parameterCd = pCode)"
