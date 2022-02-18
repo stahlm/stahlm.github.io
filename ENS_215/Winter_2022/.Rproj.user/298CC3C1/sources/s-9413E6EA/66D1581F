@@ -1,0 +1,32 @@
+{
+    "id": "66D1581F",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1645116949930.0,
+    "source_on_save": false,
+    "relative_order": 18,
+    "properties": {
+        "expression": "NY_NO3",
+        "caption": "NY_NO3",
+        "totalObservations": "552",
+        "displayedObservations": "552",
+        "variables": "24",
+        "cacheKey": "D0E46000",
+        "object": "NY_NO3",
+        "environment": "",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=NY_NO3&cache_key=D0E46000&max_cols=50",
+        "preview": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 27303502243889202,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1645116949930,
+    "read_only": false,
+    "read_only_alternatives": []
+}

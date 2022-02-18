@@ -1,0 +1,14 @@
+"0","pCode <- c(""00618"")"
+"0",""
+"0","NY_NO3 <- whatNWISdata(stateCd=""NY"", "
+"0","                       parameterCd=pCode, "
+"0","                       startDate = ""2015-01-01"", site_tp_cd = ""GW"""
+"0","                     ) %>% "
+"0","  filter(site_tp_cd == ""GW"")"
+"2","Request failed [400]. Retrying in 1 seconds...
+"
+"2","Request failed [400]. Retrying in 2.6 seconds...
+"
+"2","Error in getWebServiceData(obs_url, encoding = ""gzip"") : 
+  HTTP Status 400 - lexical error: unrecognized keyword: site_tp_cd [position=0]
+"

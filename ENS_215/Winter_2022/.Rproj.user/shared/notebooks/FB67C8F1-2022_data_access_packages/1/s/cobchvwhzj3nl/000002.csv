@@ -1,8 +1,0 @@
-"0","a <- isd(usaf = ""725180"", wban = ""14735"", year = 2021)"
-"2","Registered S3 method overwritten by 'data.table':
-  method           from
-  print.data.table     
-"
-"2","<path>C:\Users\stahlm\AppData\Local\Cache/R/noaa_isd/725180-14735-2021.gz
-
-"

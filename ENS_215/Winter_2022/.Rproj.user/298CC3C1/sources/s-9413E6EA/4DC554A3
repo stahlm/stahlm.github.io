@@ -1,0 +1,32 @@
+{
+    "id": "4DC554A3",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1645125351746.0,
+    "source_on_save": false,
+    "relative_order": 19,
+    "properties": {
+        "expression": "usgs_parm_cd_df",
+        "caption": "usgs_parm_cd_df",
+        "totalObservations": 16980,
+        "displayedObservations": 16980,
+        "variables": 6,
+        "cacheKey": "221AF0A0",
+        "object": "usgs_parm_cd_df",
+        "environment": "",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=usgs_parm_cd_df&cache_key=221AF0A0&max_cols=50",
+        "preview": 0
+    },
+    "folds": "",
+    "lastKnownWriteTime": 12948304202498162,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1645125351746,
+    "read_only": false,
+    "read_only_alternatives": []
+}

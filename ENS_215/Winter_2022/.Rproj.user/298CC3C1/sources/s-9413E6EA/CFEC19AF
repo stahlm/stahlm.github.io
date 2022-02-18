@@ -1,0 +1,32 @@
+{
+    "id": "CFEC19AF",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1645105321172.0,
+    "source_on_save": false,
+    "relative_order": 16,
+    "properties": {
+        "expression": "worldmet_site_df",
+        "caption": "worldmet_site_df",
+        "totalObservations": 12834,
+        "displayedObservations": 12834,
+        "variables": 12,
+        "cacheKey": "3FD7A200",
+        "object": "worldmet_site_df",
+        "environment": "",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=worldmet_site_df&cache_key=3FD7A200&max_cols=50",
+        "preview": 0
+    },
+    "folds": "",
+    "lastKnownWriteTime": 22518311674839107,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1645105321172,
+    "read_only": false,
+    "read_only_alternatives": []
+}
