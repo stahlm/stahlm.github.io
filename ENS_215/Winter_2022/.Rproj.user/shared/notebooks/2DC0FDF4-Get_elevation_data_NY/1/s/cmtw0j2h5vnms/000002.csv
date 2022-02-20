@@ -1,0 +1,3 @@
+"0","elevation_cropped <- raster::mask(elevation, border_NY) # mask the raster"
+"0",""
+"0",""

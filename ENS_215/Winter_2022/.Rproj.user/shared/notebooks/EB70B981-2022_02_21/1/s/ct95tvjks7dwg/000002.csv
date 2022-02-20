@@ -1,0 +1,6 @@
+"0","state_mean_temps <- state_temps %>% "
+"0","  group_by(state_cd) %>% "
+"0","  summarize(mean_temp = mean(Avg_Temp_F))"
+"2","`summarise()` ungrouping output (override with `.groups` argument)
+"
+"0","state_mean_temps"

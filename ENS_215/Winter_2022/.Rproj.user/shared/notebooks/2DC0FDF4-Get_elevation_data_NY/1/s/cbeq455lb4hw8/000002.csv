@@ -1,0 +1,12 @@
+"0","tmap_mode(""plot"")"
+"2","tmap mode set to plotting
+"
+"0","fig_map <- elevation %>% "
+"0","  tm_shape() +"
+"0","  "
+"0","  tm_raster(style = ""cont"")"
+"0",""
+"0",""
+"0","fig_map"
+"2","stars object downsampled to 1322 by 756 cells. See tm_shape manual (argument raster.downsample)
+"

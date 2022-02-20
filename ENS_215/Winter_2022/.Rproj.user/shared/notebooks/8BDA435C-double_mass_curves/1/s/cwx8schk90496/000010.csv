@@ -1,0 +1,5 @@
+"0","df_precip_flow %>% "
+"0","  ggplot(aes(x = cumul_precip, y = cumul_flow)) +"
+"0","  geom_point() +"
+"0","  "
+"0","  geom_text_repel(aes(label = YEAR), box.padding = 0.75)"

@@ -1,0 +1,3 @@
+"0","map_data_ne <- map_data_usa %>% "
+"0","  filter(region %in% c(""massachusetts"", ""new york"", ""connecticut"", ""rhode island"", ""maine"","
+"0","                       ""vermont"",""new hampshire""))"

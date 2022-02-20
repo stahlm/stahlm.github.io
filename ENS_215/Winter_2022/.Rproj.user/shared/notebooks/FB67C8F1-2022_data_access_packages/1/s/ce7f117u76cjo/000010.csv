@@ -1,5 +1,0 @@
-"0","worldmet_data %>% "
-"0","  ggplot(aes(x = date, y = air_temp)) +"
-"0","  geom_line() +"
-"0","  "
-"0","  theme_bw()"
