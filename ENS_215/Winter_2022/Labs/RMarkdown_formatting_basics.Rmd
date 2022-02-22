@@ -102,25 +102,29 @@ If you want to generate a table or figure -- but want to have it displayed later
 Then later on in the document you can display the figure or table by simply typing `fig_1` or `table_1` in your code chunk  
 
 
+<br/>  
 
 ### Additional features
 To explore the many formatting and output options for R Markdown documents you should look at the freely available book [**R Markdown: The Definitive Guide**](https://bookdown.org/yihui/rmarkdown/).  This book is an excellent resource that provides a range of easy to follow examples that will allow you to create professionally formatted documents from your Rmd files.    
 
 In particular [take a look at chapter 3](https://bookdown.org/yihui/rmarkdown/html-document.html), which covers formatting HTML document output (which is what we have been doing in this class) when knitting your Rmd file.  This chapter shows you how to implement many useful formatting features and I strongly recommend you look through this chapter and apply features that you think will be helpful.  
 
-Below a mention a few notable document features that you might be interested in (though consult chapter 3 for a wide range of options).  
+Below I mention a few notable document features that you might be interested in (though consult chapter 3 for a wide range of options).  
 
-You should also consult your [R Markdown cheatsheet](https://stahlm.github.io/ENS_215/Resources/Cheatsheets_all.pdf), which has a bunch of helpful examples for formatting your documents (e.g., including equations, text formatting, lists, footnotes,...).  
+You should also consult your [R Markdown cheatsheet](https://stahlm.github.io/ENS_215/Resources/Cheatsheets_all.pdf), which has a bunch of helpful examples for formatting your documents (e.g., including equations, adding images, text formatting, lists, footnotes,...).  
 
 <br/>  
 
 #### Themes
 Themes set the style of the document (e.g., font type, font colors, section header styles, headers/footers,...).  There are a number of built-in themes, which you can [see here](https://bootswatch.com/3/) and you can see how to set these themes in your Rmd file by following the examples [here](https://bookdown.org/yihui/rmarkdown/html-document.html#appearance-and-style).  
 
+<br/>  
 
 #### Table of contents
 You can add a table of contents (which I add to all of our lecture documents) by modifiying the YAML header at the top of your Rmd file.  Take a look at [chapter 3.1.1](https://bookdown.org/yihui/rmarkdown/html-document.html#table-of-contents) for details.  
 
+
+<br/>  
 
 #### Nicely formatted tables in Rmarkdown
 If you are including tables of output/results in your knit document, you should consider using the `kable` and `kableExtra` packages.  These packages allow you to control table formatting in your HTML file (e.g., fonts, colors, table dimensions, interactive/responsive tables,...).  You can find a [tutorial on these packages here](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html).   
