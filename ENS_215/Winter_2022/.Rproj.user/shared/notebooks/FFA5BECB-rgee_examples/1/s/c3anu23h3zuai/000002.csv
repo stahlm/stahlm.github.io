@@ -1,0 +1,55 @@
+"0","```r
+# Define study area (local -> earth engine)
+# Communal Reserve Amarakaeri - Peru
+rlist <- list(xmin = -71.13, xmax = -70.95,ymin = -12.89, ymax = -12.73)
+ROI <- c(rlist$xmin, rlist$ymin,
+         rlist$xmax, rlist$ymin,
+         rlist$xmax, rlist$ymax,
+         rlist$xmin, rlist$ymax,
+         rlist$xmin, rlist$ymin)
+ee_ROI <- matrix(ROI, ncol = 2, byrow = TRUE) %>%
+  list() %>%
+  st_polygon() %>%
+  st_sfc() %>%
+  st_set_crs(4326) %>%
+  sf_as_ee()
+
+
+# Get the mean annual NDVI for 2011
+cloudMaskL457 <- function(image) {
+  qa <- image$select(\"pixel_qa\")
+  cloud <- qa$bitwiseAnd(32L)$
+    And(qa$bitwiseAnd(128L))$
+    Or(qa$bitwiseAnd(8L))
+  mask2 <- image$mask()$reduce(ee$Reducer$min())
+  image <- image$updateMask(cloud$Not())$updateMask(mask2)
+  image$normalizedDifference(list(\"B4\", \"B3\"))
+}
+
+ic_l5 <- ee$ImageCollection(\"LANDSAT/LT05/C01/T1_SR\")$
+  filterBounds(ee$FeatureCollection(ee_ROI))$
+  filterDate(\"2011-01-01\", \"2011-12-31\")$
+  map(cloudMaskL457)
+
+# Create simple composite
+mean_l5 <- ic_l5$mean()$rename(\"NDVI\")
+mean_l5 <- mean_l5$reproject(crs = \"EPSG:4326\", scale = 500)
+mean_l5_Amarakaeri <- mean_l5$clip(ee_ROI)
+
+# Move results from Earth Engine to Drive
+assetid <- paste0(ee_get_assethome(), '/l5_Amarakaeri')
+task_img <- ee_image_to_asset(
+  image = mean_l5_Amarakaeri,
+  assetId = assetid,
+  overwrite = TRUE,
+  scale = 500,
+  region = ee_ROI
+)
+
+task_img$start()
+ee_monitoring(task_img)
+
+ee_l5 <- ee$Image(assetid)
+Map$centerObject(ee_l5)
+Map$addLayer(ee_l5)
+```"

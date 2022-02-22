@@ -1,0 +1,8 @@
+"0","alaska_data <- alaska # assign alaska data to our own R object"
+"0",""
+"0","tm_shape(alaska_data) +"
+"0","  tm_fill(""lightgrey"") +   # add the fill"
+"0","  tm_borders(""black"", lwd = 2) +  # add the borders and set border line width"
+"0","  tm_compass(position = c(""left"", ""top"")) +  # add a compass"
+"0","  tm_scale_bar(breaks = c(0, 250, 500), text.size = 1) +    # add a scale bar"
+"0","  tm_layout(bg.color = ""lightblue"", title = ""Alaska"")  # set the background color and title"

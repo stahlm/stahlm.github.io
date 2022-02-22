@@ -1,0 +1,44 @@
+"0","```r
+ee_Initialize(gcs = TRUE)
+```"
+"1","Welcome to the Earth Engine client library for R!
+----------------------------------------------------------------
+It seems it is your first time using rgee. First off, keep in mind that
+Google Earth Engine is only available to registered users, check the
+official website https://earthengine.google.com/ to get more information.
+Before start coding is necessary to set up a Python environment. Run
+rgee::ee_install() to set up automatically, after that, restart the R
+session to see changes. See more than 250+ examples of rgee at
+https://csaybar.github.io/rgee-examples/
+"
+"0","```r
+Y
+```"
+"1","-- rgee 1.0.2 --------------------------------------------------------------------------------------------------------------------- earthengine-api 0.1.227 -- 
+ âˆš email: not_defined
+ âˆš GCS credentials:
+ âˆš GCS credentials: NOT FOUND
+ âˆš Initializing Google Earth Engine:
+ âˆš Initializing Google Earth Engine:  DONE!
+
+ âˆš Earth Engine user: users/stahlm 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+"
+"0","```r
+# Get the filename of a image
+d2H <- raster::raster('C:/Users/stahlm/Documents/Research_Projects/Groundwater_Isotopes/Output/RF_model/RF_model_GW_isotopes_H.gri')
+
+#assetId <- sprintf(\"%s/%s\",ee_get_assethome(),'stars_l7')
+assetid <- paste0(ee_get_assethome(), '/RF_model_GW_isotopes_H')
+
+# # Method 2
+ee_raster_02 <- raster_as_ee(
+  x = d2H,
+  assetId = assetId,
+  overwrite = TRUE,
+  bucket = \"rgee_dev\"
+)
+```"
+"1","1. Converting stars (raster) object to GeoTIFF ... saving in /tmp
+Error in .local(.Object, ...) : Unable to create dataset
+"

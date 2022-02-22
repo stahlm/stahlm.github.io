@@ -1,0 +1,14 @@
+"0","```r
+assetId <- sprintf(\"%s/%s\",ee_get_assethome(),'/d2H')
+assetid <- paste0(ee_get_assethome(), '/RF_model_GW_isotopes_H')
+
+ee_raster_02 <- raster_as_ee(
+  x = d2H,
+  assetId = assetId,
+  overwrite = TRUE,
+  bucket = \"rgee_dev\"
+)
+```"
+"1","1. Converting stars (raster) object to GeoTIFF ... saving in /tmp
+Error in .local(.Object, ...) : Unable to create dataset
+"

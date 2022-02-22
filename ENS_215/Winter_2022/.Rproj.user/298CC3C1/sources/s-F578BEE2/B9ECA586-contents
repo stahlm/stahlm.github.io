@@ -5,3 +5,61 @@ output: html_notebook
 
 URL <- "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.csv"
 Earthquake_30Days <- read.table(URL, sep = ",", header = T)
+
+```{r}
+library(tidyverse)
+library(tmap)
+library(sf)
+
+library(geodata)
+
+```
+
+
+
+```{r}
+fra <- gadm(country="FRA", level=1, path=tempdir())
+pop <- population(2020, 10, path=tempdir())
+
+```
+
+```{r}
+fra_sf <- terra::vect(fra)
+```
+
+```{r}
+pop_raster <- pop %>% raster::raster()
+```
+
+
+```{r}
+
+
+```
+
+
+```{r}
+wc_raster1 <- worldclim_country("Namibia", var="tmin", path=tempdir())
+
+```
+
+```{r}
+wc_raster <- wc_raster1 %>% 
+  raster::brick()
+```
+
+```{r}
+country_border <- spData::world %>% 
+  filter(name_long == "Namibia")
+```
+
+
+```{r}
+raster::raster(wc_raster, layer = 1) %>% 
+  tm_shape() +
+  tm_raster(style = "quantile", n = 15) +
+  
+  tm_shape(country_border) +
+  tm_borders()
+```
+

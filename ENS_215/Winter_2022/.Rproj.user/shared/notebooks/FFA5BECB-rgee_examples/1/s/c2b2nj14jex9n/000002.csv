@@ -1,0 +1,20 @@
+"0","```r
+dataset <- ee$Image(\"WORLDCLIM/V1/MONTHLY\")
+
+worldclim <- dataset$select(\"tavg\")
+worldclim_vis <- list(
+  min = -400,
+  max = 300,
+  palette = c('blue', 'purple', 'cyan', 'green', 'yellow', 'red')
+)
+
+Map$setCenter(-111.313, 39.724, 6)
+Map$addLayer(
+  worldclim,
+  worldclim_vis,
+  \"ALOS Topographic Diversity\"
+)
+```"
+"1","Error in py_call_impl(callable, dots$args, dots$keywords) : 
+  EEException: Image.load: Asset 'WORLDCLIM/V1/MONTHLY' is not an Image.
+"

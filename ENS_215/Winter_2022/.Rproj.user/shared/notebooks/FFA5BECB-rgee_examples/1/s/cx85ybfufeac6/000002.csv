@@ -1,0 +1,28 @@
+"0","```r
+library(tidyverse)
+library(sf)
+library(rgee)
+
+ee_Initialize()
+```"
+"1","Welcome to the Earth Engine client library for R!
+----------------------------------------------------------------
+It seems it is your first time using rgee. First off, keep in mind that
+Google Earth Engine is only available to registered users, check the
+official website https://earthengine.google.com/ to get more information.
+Before start coding is necessary to set up a Python environment. Run
+rgee::ee_install() to set up automatically, after that, restart the R
+session to see changes. See more than 250+ examples of rgee at
+https://csaybar.github.io/rgee-examples/
+"
+"0","```r
+Y
+```"
+"1","-- rgee 1.0.2 --------------------------------------------------------------------------------------------------------------------- earthengine-api 0.1.227 -- 
+ âˆš email: not_defined
+ âˆš Initializing Google Earth Engine:
+ âˆš Initializing Google Earth Engine:  DONE!
+
+ âˆš Earth Engine user: users/stahlm 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+"

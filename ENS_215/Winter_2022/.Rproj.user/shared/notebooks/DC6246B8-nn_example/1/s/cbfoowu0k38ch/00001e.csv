@@ -1,0 +1,9 @@
+"0","# Get the NLCD (USA ONLY)"
+"0","# Returns a raster"
+"0","NLCD <- get_nlcd("
+"0","  template = schdy_county,"
+"0","  year = 2011,"
+"0","  label = ""schdy_nlcd"", force.redo = T"
+"0",")"
+"2","Error: [crop] cannot get a SpatExtent from y
+"

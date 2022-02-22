@@ -1,0 +1,5 @@
+"0","```r
+d2H <- raster::raster('C:/Users/stahlm/Documents/Research_Projects/Groundwater_Isotopes/Output/RF_model/RF_model_GW_isotopes_H.gri')
+
+raster::crs(d2H) <- \"+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0\" 
+```"

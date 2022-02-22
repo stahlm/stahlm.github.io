@@ -2,26 +2,17 @@
 "2","package ‘elevatr’ was built under R version 4.0.5"
 "0","library(whitebox)"
 "2","package ‘whitebox’ was built under R version 4.0.5"
-"2","
-------------------------------------------------------------------------
-Could not find WhiteboxTools!
-------------------------------------------------------------------------
-
-Your next step is to download and install the WhiteboxTools binary:
-    > whitebox::install_whitebox()
-
-If you have WhiteboxTools installed already run `wbt_init(exe_path=...)`': 
-    > wbt_init(exe_path='/home/user/path/to/whitebox_tools')
-
-For whitebox package documentation, ask for help:
-    > ??whitebox
-
-For more information visit https://giswqs.github.io/whiteboxR/
-
-------------------------------------------------------------------------
-
-"
 "0","library(AOI)"
+"2","Registered S3 methods overwritten by 'htmltools':
+  method               from         
+  print.html           tools:rstudio
+  print.shiny.tag      tools:rstudio
+  print.shiny.tag.list tools:rstudio
+"
+"2","Registered S3 method overwritten by 'htmlwidgets':
+  method           from         
+  print.htmlwidget tools:rstudio
+"
 "0","library(sf)"
 "2","Linking to GEOS 3.8.0, GDAL 3.0.4, PROJ 6.3.1
 "
