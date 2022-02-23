@@ -17,6 +17,7 @@ In the last lesson we learned about some basic concepts related to spatial data 
 As we saw the `ggplot2` package allows you to create high-quality maps (there is much more functionality than we were able to cover in one class) and you could easily do much of your map making work in `ggplot2`.  However, there are many other packages/tools available for creating maps in R and it is worthwhile to be introduced to two highly useful and widely used packages -- `leaflet` and `tmap`.  The `leaflet` and `tmap` packages, allow you to create both interactive (`leaflet` and `tmap`) and static maps (`tmap`) and will expand the map making tools at your disposal.  
 
 Again, I strongly recommend those of you who are interested to map making (and spatial analysis more broadly) to consult the excellent and freely available textbook [Geocomputation with R](https://geocompr.robinlovelace.net/).  
+
 <br/> 
 
 ## Interactive maps with `leaflet`
@@ -48,7 +49,8 @@ The default basemap tile (OpenStreetMap) is suitable for some applications, thou
 
 The basemap tiles available in Leaflet are listed [here](http://leaflet-extras.github.io/leaflet-providers/preview/).  Take a look at the link to see all of the options.  
 
-The `addProviderTiles()` function allows you to specify the basemap tile you want to use.  Let's illustrate this with an example.  We'll us the National Geographic basemap.
+The `addProviderTiles()` function allows you to specify the basemap tile you want to use.  Let's illustrate this with an example.  We'll us the National Geographic basemap.  
+
 ```{r}
 leaflet() %>% 
   addProviderTiles(providers$Esri.NatGeoWorldMap)
@@ -71,7 +73,7 @@ state_cap_locs <- read_csv("https://stahlm.github.io/ENS_215/Data/us_capitals_lo
 
 state_cap_locs <- state_cap_locs %>% 
   filter(state_cd %in% state.abb) %>% # remove locations that aren't US state list (e.g. Puerto Rico, Guam, ...)
-  filter(state_cd != "AK", state_cd != "HI") # remove capitals of Alaska and Hawaii (our basemap only has the lower 48 states)
+  #filter(state_cd != "AK", state_cd != "HI") # remove capitals of Alaska and Hawaii (our basemap only has the lower 48 states)
 ```
 
 
@@ -248,7 +250,7 @@ My map looks like this (I've added a few extra features, such as graticules (lat
 ```{r eval = FALSE}
 world_map_data %>% 
   filter(gdpPercap > 10000) %>% 
-  tm_shape(projection= "+proj=wintri") +
+  tm_shape(projection= "+proj=moll") +
   tm_borders() +
   tm_graticules(labels.size = 0.5, n.x = 20, alpha = 0.5) +
 

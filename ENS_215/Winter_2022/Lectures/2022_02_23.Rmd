@@ -17,6 +17,7 @@ In the last lesson we learned about some basic concepts related to spatial data 
 As we saw the `ggplot2` package allows you to create high-quality maps (there is much more functionality than we were able to cover in one class) and you could easily do much of your map making work in `ggplot2`.  However, there are many other packages/tools available for creating maps in R and it is worthwhile to be introduced to two highly useful and widely used packages -- `leaflet` and `tmap`.  The `leaflet` and `tmap` packages, allow you to create both interactive (`leaflet` and `tmap`) and static maps (`tmap`) and will expand the map making tools at your disposal.  
 
 Again, I strongly recommend those of you who are interested to map making (and spatial analysis more broadly) to consult the excellent and freely available textbook [Geocomputation with R](https://geocompr.robinlovelace.net/).  
+
 <br/> 
 
 ## Interactive maps with `leaflet`
@@ -48,7 +49,8 @@ The default basemap tile (OpenStreetMap) is suitable for some applications, thou
 
 The basemap tiles available in Leaflet are listed [here](http://leaflet-extras.github.io/leaflet-providers/preview/).  Take a look at the link to see all of the options.  
 
-The `addProviderTiles()` function allows you to specify the basemap tile you want to use.  Let's illustrate this with an example.  We'll us the National Geographic basemap.
+The `addProviderTiles()` function allows you to specify the basemap tile you want to use.  Let's illustrate this with an example.  We'll us the National Geographic basemap.  
+
 ```{r}
 leaflet() %>% 
   addProviderTiles(providers$Esri.NatGeoWorldMap)
@@ -70,8 +72,8 @@ Let's load in the locations of the US state capitals and save the data to a data
 state_cap_locs <- read_csv("https://stahlm.github.io/ENS_215/Data/us_capitals_locs.csv", skip = 2)
 
 state_cap_locs <- state_cap_locs %>% 
-  filter(state_cd %in% state.abb) %>% # remove locations that aren't US state list (e.g. Puerto Rico, Guam, ...)
-  filter(state_cd != "AK", state_cd != "HI") # remove capitals of Alaska and Hawaii (our basemap only has the lower 48 states)
+  filter(state_cd %in% state.abb) # remove locations that aren't US state list (e.g. Puerto Rico, Guam, ...)
+  
 ```
 
 
@@ -248,7 +250,7 @@ My map looks like this (I've added a few extra features, such as graticules (lat
 ```{r eval = FALSE}
 world_map_data %>% 
   filter(gdpPercap > 10000) %>% 
-  tm_shape(projection= "+proj=wintri") +
+  tm_shape(projection= "+proj=moll") +
   tm_borders() +
   tm_graticules(labels.size = 0.5, n.x = 20, alpha = 0.5) +
 
@@ -261,6 +263,30 @@ world_map_data %>%
 ```
 
 
+You'll notice that in the `tm_shape()` function call I set `projection = "+proj=moll"`.  This set the map's projection (i.e., how the geographic data from the Earth's curved surface is transformed to be displayed on a flat surface).  There are many, many different projections that can be used when making maps ([see some common ones here](https://en.wikipedia.org/wiki/List_of_map_projections)).  Different projections have different strengths and weaknesses (e.g., how well they preserve areas or distances and how well they preserve shapes).  Some projections are only useful when mapping a particular region (e.g., polar region vs. the whole world).  
+
+In many cases where you obtain data that is distributed as spatial data (e.g., shapefile, sf) it may already have a projection assigned to it.  In these cases, tmap will use the assigned projection.  
+
+If you want to reproject the data to better meet the goals of your map you can specify what projection you want to use (as we did in the code above).  You can specify the projection a number of ways.  One way is to use the **EPSG** code, which is a numeric code that refers to particular projection.  There are thousands of [EPSG codes](https://jjimenezshaw.github.io/crs-explorer/), though a few commonly used ones can be found [here](https://guides.library.duke.edu/r-geospatial/CRS).
+
+You can also specify the projection using what is called a **proj4string**.  That is what we did above when we set `projection = "+proj=moll"`.
+
+Try out a few other projections by changing the `projection = ` argument in the code above.  A few interesting/useful ones to use for world maps are:  
+
++ Winkel tripel projection `"+proj=wintri"`  
+
++ Lambert azimuthal equal-area projection (centered on lat/long of NYC) `"+proj=laea +x_0=0 +y_0=0 +lon_0=-74 +lat_0=40"`  
+
+
+You can also try out setting the projection using a EPSG code (e.g. `projection = 4326`).  
+
+
+To learn more about coordinate reference systems and map projections see [chapters 2.4](https://geocompr.robinlovelace.net/spatial-class.html#crs-intro) and [chapter 7](https://geocompr.robinlovelace.net/reproj-geo-data.html) of **Geocomputation with R**.  
+
+
+Ok, now let's move on to a few more topics with `tmap` and map making.  
+
+<br/>  
 
 There are tons of formatting options for `tmap` graphics, which allow you to customize your map and to generate research quality graphics.  
 
@@ -347,7 +373,8 @@ Now we are going to see that there are some R packages that allow you to directl
 
 There are a number of packages that allow you to query different geospatial data repositories, but today we'll look at the `TIGRIS` package, which allows you to query US Census Bureau geographic data (e.g. state boundaries, county boundaries, roads, waterbodies,...), many of which are useful across a range of environmental science and policy research questions.  
 
-You'll first need to install the `tigris` package and then load it in.  We are also going to use the `sf` package below (this package provides functionality for a range of useful spatial operations).  
+You'll first need to install the `tigris` package and then load it in.  We are also going to use the `sf` package below (this package provides functionality for a range of useful spatial operations).  An overview of the `tigris` package is [here](https://github.com/walkerke/tigris).  
+
 
 ```{r warning= F, message= F}
 library(tigris)
@@ -361,7 +388,8 @@ Let's get the county borders for New York state.  To do this we will use the `co
 NY_counties <- counties(state = "NY", cb = TRUE) # cb = TRUE specifies to download a lower resolution file (faster download)
 ```
 
-The data is downloaded as a shapefile.  To plot in in `tmap` or `ggplot` we will need to conver the shapefile to a simple features spatial data frame.  To do this we will use the function `st_as_sf()` from the `sf` package
+
+The data is downloaded as a shapefile.  To plot in in `tmap` or `ggplot` we will need to convert the shapefile to a simple features (sf) spatial data frame.  To do this we will use the function `st_as_sf()` from the `sf` package.  
 ```{r}
 NY_counties <- st_as_sf(NY_counties) # convert to an sf object
 ```

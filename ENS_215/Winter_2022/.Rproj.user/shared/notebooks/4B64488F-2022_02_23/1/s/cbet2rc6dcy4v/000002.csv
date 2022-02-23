@@ -1,3 +1,0 @@
-"0","leaflet(state_cap_locs) %>% "
-"0","  addTiles() %>% "
-"0","  addCircles(lng = ~long_deg, lat = ~lat_deg, radius = 30*10^3, fillColor = ""transparent"")"

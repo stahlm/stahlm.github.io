@@ -1,6 +1,0 @@
-"0","Schenectady_map + "
-"0","  tm_shape(Linear_water_Schenectady) +"
-"0","  tm_lines(col = ""blue"") +"
-"0","  tm_compass(position = c(""right"", ""top"")) +  # add a compass"
-"0","  tm_layout(title = ""Schenectady hydrography"","
-"0","            frame = F)"
