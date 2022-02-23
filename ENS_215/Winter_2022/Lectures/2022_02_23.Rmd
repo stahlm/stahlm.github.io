@@ -247,7 +247,7 @@ Since the `world_map_data` is a spatial data frame, we can use `dplyr` functiona
 Try creating a world map that has every country's borders shown where only countries with a per capita GDP > 10,000 are colored lightblue.  Hint you can add multiple layers to a map by using a `tm_shape()` function call for each layer.  
 
 My map looks like this (I've added a few extra features, such as graticules (lat/long lines), but you don't need to add these).
-```{r eval = FALSE}
+```{r eval = T}
 world_map_data %>% 
   filter(gdpPercap > 10000) %>% 
   tm_shape(projection= "+proj=moll") +

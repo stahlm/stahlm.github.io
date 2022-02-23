@@ -1,0 +1,63 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r message = FALSE, warning=FALSE}
+library(tidyverse)
+library(gapminder)
+
+my_gap <- gapminder # assign the gapminder data to our own data object called my_gap
+```
+
+
+
+```{r}
+china_data <- filter(my_gap, 
+                     country == "China") # filter rows with data for China
+
+```
+
+
+## Define coordinate system
+```{r}
+china_data %>% 
+  ggplot(aes(x = year, y = gdpPercap)) 
+  
+```
+
+
+## Add geometry 
+```{r}
+china_data %>% 
+  ggplot(aes(x = year, y = gdpPercap)) + 
+  geom_line()
+```
+
+
+## Add an additional geometry 
+```{r}
+china_data %>% 
+  ggplot(aes(x = year, y = gdpPercap)) + 
+  geom_line() +
+  geom_point()
+```
+
+
+## Assign another variable to the aesthetic of one of the geometries 
+```{r}
+china_data %>% 
+  ggplot(aes(x = year, y = gdpPercap)) + 
+  geom_line() +
+  geom_point(aes(size = pop))
+```
+
+
+## Assign another aesthetic as a "global" aesthetic 
+```{r}
+china_data %>% 
+  ggplot(aes(x = year, y = gdpPercap, size = pop)) + 
+  geom_line() +
+  geom_point()
+```

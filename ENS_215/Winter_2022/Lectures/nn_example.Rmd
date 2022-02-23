@@ -133,7 +133,7 @@ plot(a$Flowline)
 
 
 ```{r}
-# Get the NLCD (USA ONLY)
+# Get the NLCD (USA ONLY) 
 # Returns a raster
 NLCD <- get_nlcd(
   template = schdy_county,
