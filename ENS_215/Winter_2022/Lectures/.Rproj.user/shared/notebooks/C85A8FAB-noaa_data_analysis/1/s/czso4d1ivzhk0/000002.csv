@@ -1,0 +1,6 @@
+"0","```r
+ub_VeryDenseFog <- 100 # upper bound in meters for very dense fog
+ub_DenseFog <- 250
+ub_MedDenseFog <- 500
+ub_LightFog <- 1000
+```"

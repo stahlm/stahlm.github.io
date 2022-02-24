@@ -1,0 +1,10 @@
+"0","```r
+table_yr_mon_summary %>% 
+  filter(id == \"726060-14764\") %>% 
+  filter(n_ceil_meas/n_timepoints > 0.9) %>% 
+  
+  ggplot(aes(x = lubridate::make_date(Year, Month, 15), y = mean_ceiling_w_LT_22000 )) + 
+  
+  geom_line()
+
+```"

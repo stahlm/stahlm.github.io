@@ -1,0 +1,15 @@
+"0","```r
+table_yr_mon_summary_filtered <- table_yr_mon_summary %>% 
+    ungroup() %>% 
+    filter(vis_meas_coverage >= 0.9) %>%
+    group_by(id) %>% 
+    mutate(max_year = max(Year)) %>% 
+    filter(length(unique(Year)) >= 5) %>% 
+    filter(max_year > 2000, Year >= 1950) %>% 
+    ungroup()
+
+cycle_plot(table_yr_mon_summary_filtered,\"726060-14764\", fog_percent_time_w_meas)
+
+```"
+"1","`summarise()` ungrouping output (override with `.groups` argument)
+"

@@ -1,0 +1,1 @@
+"0","climate_current <- getTerraClim(AOI, param = ""prcp"", startDate = ""2015-01-01"", endDate = ""2015-12-31"")"

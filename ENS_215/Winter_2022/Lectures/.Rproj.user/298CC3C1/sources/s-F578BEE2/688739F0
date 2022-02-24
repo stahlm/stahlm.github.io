@@ -1,0 +1,32 @@
+{
+    "id": "688739F0",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1645717198878.0,
+    "source_on_save": false,
+    "relative_order": 16,
+    "properties": {
+        "expression": "df_seasonality_precip",
+        "caption": "df_seasonality_precip",
+        "totalObservations": "48",
+        "displayedObservations": "48",
+        "variables": "6",
+        "cacheKey": "D459118C",
+        "object": "df_seasonality_precip",
+        "environment": "",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=df_seasonality_precip&cache_key=D459118C&max_cols=50",
+        "preview": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 2478510836879073312,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1645717198878,
+    "read_only": false,
+    "read_only_alternatives": []
+}

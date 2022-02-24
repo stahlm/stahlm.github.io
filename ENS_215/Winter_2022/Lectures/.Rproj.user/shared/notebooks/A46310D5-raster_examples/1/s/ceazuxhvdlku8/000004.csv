@@ -1,0 +1,2 @@
+"0","NY_climate <- getTerraClimNormals(AOI, param = ""prcp"", period = ""19812010"", month = 1:12)"
+"0",""

@@ -1,0 +1,7 @@
+"0","a <- download.file(file_list[1], ""test.tiff"")"
+"2","trying URL 'https://neo.gsfc.nasa.gov/archive/geotiff.float/MYD28M/MYD28M_2021-11.FLOAT.TIFF'
+"
+"2","cannot open URL 'https://neo.gsfc.nasa.gov/archive/geotiff.float/MYD28M/MYD28M_2021-11.FLOAT.TIFF': HTTP status was '403 Forbidden'"
+"2","Error in download.file(file_list[1], ""test.tiff"") : 
+  cannot open URL 'https://neo.gsfc.nasa.gov/archive/geotiff.float/MYD28M/MYD28M_2021-11.FLOAT.TIFF'
+"

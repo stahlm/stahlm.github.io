@@ -1,0 +1,5 @@
+"0","```r
+data_buoy_info <- buoy_stations() %>% 
+  filter(between(lat, lat_bounds[1], lat_bounds[2]),
+         between(lon, lon_bounds[1], lon_bounds[2])) 
+```"

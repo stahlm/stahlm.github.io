@@ -1,0 +1,48 @@
+"0","```r
+
+i_iter <- 1
+
+for (i_site in buoy_list) {
+  
+  current_file <- paste(\"./data/Gulf_of_Maine/buoy_data/\", i_site, sep = \"\")
+  
+  current_buoy_data <- read_csv(current_file,
+                                col_types = list(
+                                time = col_datetime(),
+                                lat = col_double(),
+                                lon = col_double(),
+                                wind_dir = col_double(),
+                                wind_spd = col_double(),
+                                gust = col_double(),
+                                wave_height = col_double(),
+                                dominant_wpd = col_double(),
+                                average_wpd = col_double(),
+                                mean_wave_dir = col_double(),
+                                air_pressure = col_double(),
+                                air_temperature = col_double(),
+                                sea_surface_temperature = col_double(),
+                                dewpt_temperature = col_double(),
+                                visibility = col_double(),
+                                water_level = col_double(),
+                                station = col_character()
+                                )
+                              )
+  
+  current_buoy_data <- current_buoy_data %>% 
+    select(station, time, lat, lon, sea_surface_temperature, air_temperature, visibility) 
+  
+  
+  if (i_iter == 1) {
+    
+    all_buoy_data <- current_buoy_data
+    
+  } else{
+    
+    all_buoy_data <- bind_rows(all_buoy_data, current_buoy_data)
+  }
+  
+  i_iter <- 2
+  
+}
+
+```"

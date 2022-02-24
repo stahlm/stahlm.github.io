@@ -1,0 +1,6 @@
+"0","```r
+df_seasonality_precip <- df_seasonality_precip %>% 
+  left_join(state_dictionary)
+```"
+"1","Joining, by = \"state_cd\"
+"

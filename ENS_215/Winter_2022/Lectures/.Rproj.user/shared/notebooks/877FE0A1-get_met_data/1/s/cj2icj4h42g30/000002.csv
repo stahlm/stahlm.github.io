@@ -1,0 +1,32 @@
+"0","```r
+for (i_site in data_landsite_info$id) {
+  
+  current_file <- paste(\"./data/Gulf_of_Maine/land_stations/met_station_\",
+                        i_site,
+                        \".csv\",
+                        sep = \"\")
+  
+  if (!file.exists(current_file)) {
+    
+    tryCatch(data_landMet_current <- get_met_data(station_id = i_site),
+             error = function(e){
+               message(\"Error\")
+             },
+             
+             warning = function(w){
+               message(\"Warning\")
+             },
+             
+             finally = {
+               write_csv(data_landMet_current, file = current_file) 
+             }
+             )
+    
+    #data_landMet_current <- get_met_data(station_id = i_site)
+    
+    
+  }
+  
+  
+}
+```"

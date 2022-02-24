@@ -1,0 +1,6 @@
+"0","```r
+all_buoy_data <- all_buoy_data %>% 
+  mutate(Year = year(time), Month = month(time)) %>% 
+  mutate(visibility__m = visibility * 1852) %>%  # nautical miles to meters
+  select(- visibility)
+```"

@@ -1,0 +1,11 @@
+"0","```r
+library(dataRetrieval)
+library(lubridate)
+```"
+"1","package ã¤¼ã¸±lubridateã¤¼ã¸² was built under R version 4.0.3
+Attaching package: ã¤¼ã¸±lubridateã¤¼ã¸²
+
+The following objects are masked from ã¤¼ã¸±package:baseã¤¼ã¸²:
+
+    date, intersect, setdiff, union
+"

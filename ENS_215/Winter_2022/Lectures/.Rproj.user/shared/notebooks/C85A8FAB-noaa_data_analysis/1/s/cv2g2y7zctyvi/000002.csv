@@ -1,0 +1,20 @@
+"0","```r
+buoy_site_info <- read_csv(\"./data/Gulf_of_Maine/buoy_data/buoy_site_info.csv\")
+```"
+"1","
+-- Column specification -----------------------------------------------------------------------------------------------------------------
+cols(
+  station = col_character(),
+  lat = col_double(),
+  lon = col_double(),
+  viewport = col_character(),
+  DC.title = col_character(),
+  DC.description = col_character(),
+  description = col_character(),
+  DC.subject = col_character(),
+  DC.creator = col_character(),
+  DC.language = col_character(),
+  DC.format = col_character(),
+  DC.date.created = col_date(format = \"\")
+)
+"

@@ -1,0 +1,40 @@
+"0","```r
+
+  
+for (i_year in 1990:2020) {
+  
+
+  i_iter <- 1
+  
+  for(i_site in data_buoy_info$station){
+    
+    tryCatch(buoy_current <- buoy(dataset = \"stdmet\", buoyid = i_site, year = i_year),
+             error = function(e){
+               message(\"No data\")
+             },
+             warning = function(w){
+               message(\"warning\")
+             },
+             
+             finally = {
+              message(\"data\")
+              buoy_current <- buoy_current$data
+  
+              buoy_current$station = i_site
+    
+              if (i_iter == 1) {
+                buoy_current_all <- buoy_current
+              } else{
+                buoy_current_all <- bind_rows(buoy_current_all, buoy_current)
+              }
+    
+              i_iter <- 2 
+              }
+             )
+    
+  }
+  
+  write_csv(buoy_current_all, file = paste(\"./data/Gulf_of_Maine/buoy_data/buoy_data_\", i_year,\".csv\", sep = \"\"))
+  
+}
+```"

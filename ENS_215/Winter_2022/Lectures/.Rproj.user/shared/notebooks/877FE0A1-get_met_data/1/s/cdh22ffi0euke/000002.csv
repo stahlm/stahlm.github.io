@@ -1,0 +1,6 @@
+"0","```r
+data_landsite_info %>% 
+  leaflet() %>% 
+  addProviderTiles(providers$Esri.NatGeoWorldMap) %>% 
+  addCircleMarkers(~lon, ~lat, popup = ~name)
+```"

@@ -1,0 +1,9 @@
+"0","```r
+sf_seasonality_precip %>% 
+  #filter(SI > 0.2) %>% 
+  tm_shape(bbox = st_bbox(sf_states)) +
+  tm_polygons(col = \"SI\", style = \"cont\", palette = \"viridis\")+
+  
+  tm_shape(sf_states) +
+  tm_borders() 
+```"

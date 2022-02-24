@@ -1,0 +1,19 @@
+"0","```r
+table_buoy <- all_buoy_data %>% 
+  group_by(station, Year, Month) %>% 
+  summarise(lat = first(lat),
+            lon = first(lon),
+            n_timepoints = n(),
+            n_vis_meas = sum(!is.na(visibility__m)),
+            fog_percent_all_time = sum(visibility__m <= 1000, na.rm = T)/n(),
+            fog_percent_all_time = 100 * sum(visibility__m <= 1000, na.rm = T)/n(),
+            fog_percent_time_w_meas = 100 * sum(visibility__m <= 1000, na.rm = T)/sum(!is.na(visibility__m)),
+            
+            mean_sst__C = mean(sea_surface_temperature, na.rm = T),
+            mean_air_temp__C = mean(air_temperature, na.rm = T)
+            ) %>% 
+  
+  mutate(vis_meas_coverage = n_vis_meas/n_timepoints)
+```"
+"1","`summarise()` regrouping output by 'station', 'Year' (override with `.groups` argument)
+"

@@ -1761,12 +1761,10 @@ summary {
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5saWJyYXJ5KGxlYWZsZXQpXG5cbmxpYnJhcnkoc2YpXG5cbmxpYnJhcnkodG1hcClcbmxpYnJhcnkoc3BEYXRhKVxuXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5saWJyYXJ5KGxlYWZsZXQpXG5saWJyYXJ5KHNmKVxubGlicmFyeSh0bWFwKVxubGlicmFyeShzcERhdGEpXG5cbmBgYCJ9 -->
 <pre class="r"><code>library(tidyverse)
 library(leaflet)
-
 library(sf)
-
 library(tmap)
 library(spData)
 </code></pre>
@@ -1783,6 +1781,20 @@ df_states &lt;- map_data(&quot;state&quot;)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3RyKHNmX3N0YXRlcylcbmBgYCJ9 -->
+<pre class="r"><code>str(sf_states)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3RyKGRmX3N0YXRlcylcbmBgYCJ9 -->
+<pre class="r"><code>str(df_states)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 <p>Note how we add layers (similar to adding layers in ggplot) to our <strong>leaflet</strong> and our <strong>tmap</strong> maps</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
@@ -1790,7 +1802,7 @@ df_states &lt;- map_data(&quot;state&quot;)</code></pre>
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpgYGB7cn0NCmxpYnJhcnkodGlkeXZlcnNlKQ0KbGlicmFyeShsZWFmbGV0KQ0KDQpsaWJyYXJ5KHNmKQ0KDQpsaWJyYXJ5KHRtYXApDQpsaWJyYXJ5KHNwRGF0YSkNCg0KYGBgDQoNCg0KDQpOb3RlIHRoZSBkaWZmZXJlbmNlIGJldHdlZW4gYSBkYXRhIGZyYW1lIHdpdGggc3BhdGlhbCBpbmZvcm1hdGlvbiBhbmQgYSAqKnNpbXBsZSBmZWF0dXJlcyAoc2YpKiogZGF0YSBmcmFtZQ0KDQpgYGB7cn0NCnNmX3N0YXRlcyA8LSBzcERhdGE6OnVzX3N0YXRlcw0KDQpkZl9zdGF0ZXMgPC0gbWFwX2RhdGEoInN0YXRlIikNCmBgYA0KDQoNCg0KTm90ZSBob3cgd2UgYWRkIGxheWVycyAoc2ltaWxhciB0byBhZGRpbmcgbGF5ZXJzIGluIGdncGxvdCkgdG8gb3VyICoqbGVhZmxldCoqIGFuZCBvdXIgKip0bWFwKiogbWFwcw0KDQpgYGB7cn0NCg0KYGBgDQoNCg==</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpgYGB7cn0NCmxpYnJhcnkodGlkeXZlcnNlKQ0KbGlicmFyeShsZWFmbGV0KQ0KbGlicmFyeShzZikNCmxpYnJhcnkodG1hcCkNCmxpYnJhcnkoc3BEYXRhKQ0KDQpgYGANCg0KDQoNCk5vdGUgdGhlIGRpZmZlcmVuY2UgYmV0d2VlbiBhIGRhdGEgZnJhbWUgd2l0aCBzcGF0aWFsIGluZm9ybWF0aW9uIGFuZCBhICoqc2ltcGxlIGZlYXR1cmVzIChzZikqKiBkYXRhIGZyYW1lDQoNCmBgYHtyfQ0Kc2Zfc3RhdGVzIDwtIHNwRGF0YTo6dXNfc3RhdGVzDQoNCmRmX3N0YXRlcyA8LSBtYXBfZGF0YSgic3RhdGUiKQ0KYGBgDQoNCg0KYGBge3J9DQpzdHIoc2Zfc3RhdGVzKQ0KYGBgDQoNCmBgYHtyfQ0Kc3RyKGRmX3N0YXRlcykNCmBgYA0KDQoNCg0KTm90ZSBob3cgd2UgYWRkIGxheWVycyAoc2ltaWxhciB0byBhZGRpbmcgbGF5ZXJzIGluIGdncGxvdCkgdG8gb3VyICoqbGVhZmxldCoqIGFuZCBvdXIgKip0bWFwKiogbWFwcw0KDQpgYGB7cn0NCg0KYGBgDQoNCg0KDQoNCg==</div>
 
 
 

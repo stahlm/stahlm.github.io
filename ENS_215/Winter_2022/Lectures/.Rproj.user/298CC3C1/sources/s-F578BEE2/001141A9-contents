@@ -1,0 +1,630 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+
+## Load in packages
+```{r}
+library(tidyverse)
+library(stationaRy)
+library(leaflet)
+library(rnoaa)
+library(lubridate)
+```
+
+
+## Load in data
+
+See the file [get_met_data.Rmd](./get_met_data.Rmd) for script that download both the land based and buoy meteorological data for the sites in and around the Gulf of Maine.  
+
+The land-based met station data comes from the Integrated Surface Dataset (ISD), which is maintained by the National Oceanic and Atmospheric Administration (NOAA).
+
+The buoy data comes from the NOAA's National Data Buoy Center (NDBC).  
+
+
+List of files containing land-based station data
+```{r}
+met_list <- list.files("./data/Gulf_of_Maine/land_stations", pattern = "met_station_")
+```
+
+
+Dataset with the site metadata for the land-based stations
+```{r}
+met_site_list <- read_csv("./data/Gulf_of_Maine/land_stations/met_stations_site_info.csv")
+```
+
+### Load in the land-based station data for multiple sites and merge into a single data frame
+```{r}
+i_iter <- 1
+
+for (i_station in met_list) {
+  
+  current_file <- paste("./data/Gulf_of_Maine/land_stations/", i_station, sep = "")
+  
+  current_data <- data.table::fread(current_file)
+  
+  current_data <- current_data %>% 
+    select(id, time, temp, visibility, ceil_hgt) 
+  
+  if (i_iter == 1) {
+    data_all_met <- current_data
+    
+  } else{
+    data_all_met <- bind_rows(data_all_met, current_data)  
+  }
+  
+  i_iter <- 2
+    
+  
+}
+```
+
+
+**id:** station ID (unique to each station and is USAF-WBAN ID)  
+
+**time:** date/time of measurement  
+
+**temp:** air temperature in degrees C  
+
+**visibility:** The horizontal distance at which an object can be seen and identified. Measured in meters. Values greater than 16000 are entered as 16000 (which constitutes 10 mile visibility).  
+
+**ceil_hgt:** The height above ground level of the lowest cloud cover or other obscuring phenomena amounting to at least 5/8 sky coverage. Measured in meters. Unlimited height (no obstruction) is denoted by the value 22000.
+
+
+
+
+## Define fog related variables
+
+See Sampurno et al. (2005) Table 1 for fog class definitions (DOI: 10.1002/0470848944.hsa041)  
+```{r}
+ub_VeryDenseFog <- 100 # upper bound in meters for very dense fog
+ub_DenseFog <- 250
+ub_MedDenseFog <- 500
+ub_LightFog <- 1000
+```
+
+
+## Land-based station summary table (by site, year, month)
+```{r}
+table_yr_mon_summary <- data_all_met %>% 
+  mutate(Year = year(time),
+         Month = month(time)) %>% 
+  
+  group_by(id, Year, Month) %>% 
+  summarize(n_timepoints = n(),
+            n_fog_meas = sum(!is.na(visibility)),
+            n_ceil_meas = sum(!is.na(ceil_hgt)),
+            n_temp_meas = sum(!is.na(temp)),
+            
+            fog_percent_all_time = 100*sum(visibility <= ub_LightFog, na.rm = T)/n(),
+            fog_percent_time_w_meas = 100*sum(visibility <= ub_LightFog, na.rm = T)/sum(!is.na(visibility)),
+            
+            percent_time_w_meas_ceiling_LT_22000 = 100*sum(ceil_hgt < 22000, na.rm = T)/sum(!is.na(ceil_hgt)),
+            percent_time_w_meas_ceiling_LT_400 = 100*sum(ceil_hgt <= 400, na.rm = T)/sum(!is.na(ceil_hgt)),
+            
+            mean_ceiling_w_LT_22000 = mean((ceil_hgt < 22000)*ceil_hgt, na.rm = T),
+            
+            mean_temp__C = mean(temp, na.rm = T) 
+            
+            ) %>% 
+  
+  mutate(vis_meas_coverage = n_fog_meas/n_timepoints) %>% 
+  mutate(Month = as.factor(Month))
+```
+
+```{r}
+table_yr_mon_summary <- table_yr_mon_summary %>% 
+  left_join(met_site_list)
+```
+
+
+
+```{r}
+table_yr_mon_summary %>% 
+  filter(vis_meas_coverage >= 0.8) %>%
+  ggplot() +
+  geom_boxplot(aes(x = Month, y = fog_percent_time_w_meas)) +
+  ylim(0,20)
+
+
+table_yr_mon_summary %>% 
+  filter(n_ceil_meas/n_timepoints >= 0.8) %>%
+  ggplot() +
+  geom_boxplot(aes(x = Month, y = mean_ceiling_w_LT_22000)) +
+  ylim(0,2500)
+```
+
+```{r fig.height= 8}
+table_yr_mon_summary %>% 
+  ungroup() %>% 
+  filter(vis_meas_coverage >= 0.5) %>%
+  group_by(id) %>% 
+  mutate(max_year = max(Year)) %>% 
+  filter(length(unique(Year)) >= 5) %>% 
+  filter(max_year >= 2000,
+         Year >= 1950) %>% 
+      
+  mutate(DATE = ymd(paste(Year, Month, "15"))) %>% 
+  
+  ggplot(aes(x = DATE, y = fog_percent_time_w_meas)) +
+  
+  #geom_point() +
+  geom_line() +
+  geom_smooth(method = "lm", se = F) + 
+  #ylim(0,20) +
+  theme_bw() +
+  theme(legend.position = "none") + 
+  
+  facet_wrap(name ~ id, scales = "free")
+
+```
+
+
+
+## Function to generate cycle plots
+```{r fig.width= 9, fig.height= 4}
+
+
+
+cycle_plot = function(data_set, i_site, var2use){
+  
+  site_name <- data_set %>% 
+    filter(id == i_site) %>% 
+    group_by(id) %>% 
+    summarize(name = first(name))
+  
+  data_set <- data_set %>% 
+    filter(id == i_site) 
+  
+  
+  min_year <- min(data_set$Year)
+  max_year <- max(data_set$Year)
+  
+  data_set %>%   
+    ggplot(aes(x = Year, y = {{var2use}}, fill = Year)) +
+    geom_point(shape = 21, color = "black") +
+    geom_smooth(se = T, method = MASS::rlm) + 
+  
+    facet_wrap(~ Month, ncol = 12) +
+  
+    theme_classic() +
+    theme(axis.text.x = element_blank(),
+          legend.position = "none") +
+  
+    scale_fill_viridis_c() +
+    labs(x = "",
+         #y = "Fog (% of meas time)",
+         title = site_name$name,
+         subtitle = paste(min_year, "-", max_year, sep = "" ),
+         caption = paste("Site: ", i_site, sep = ""))
+  
+}  
+
+
+
+  
+```
+
+"726060-14764"
+"743920-14611"
+"726079-94601"
+"726077-14616"
+"727135-94623"
+"726064-64709"
+"726070-14606"
+
+"726073-14615"
+"726077-99999"
+"726079-99999"
+"726184-94709"
+"726079-99999"
+
+```{r}
+table_yr_mon_summary %>% 
+    ungroup() %>% 
+    filter(vis_meas_coverage >= 0.9) %>%
+    group_by(id) %>% 
+    mutate(max_year = max(Year)) %>% 
+    filter(length(unique(Year)) >= 5) %>% 
+    filter(max_year > 2000, Year >= 1950) %>% 
+    summarise(n_years = length(unique(Year)))
+```
+
+
+
+```{r fig.width= 8}
+table_yr_mon_summary_filtered <- table_yr_mon_summary %>% 
+    ungroup() %>% 
+    filter(vis_meas_coverage >= 0.9) %>%
+    group_by(id) %>% 
+    mutate(max_year = max(Year)) %>% 
+    filter(length(unique(Year)) >= 5) %>% 
+    filter(max_year > 2000, Year >= 1950) %>% 
+    ungroup()
+
+cycle_plot(table_yr_mon_summary_filtered,"726060-14764", fog_percent_time_w_meas)
+cycle_plot(table_yr_mon_summary_filtered,"726060-14764", mean_temp__C)
+cycle_plot(table_yr_mon_summary_filtered,"726060-14764", mean_ceiling_w_LT_22000)
+
+cycle_plot(table_yr_mon_summary_filtered,"743920-14611", fog_percent_time_w_meas)
+cycle_plot(table_yr_mon_summary_filtered,"743920-14611", mean_ceiling_w_LT_22000)
+
+cycle_plot(table_yr_mon_summary_filtered,"726079-94601", fog_percent_time_w_meas)
+cycle_plot(table_yr_mon_summary_filtered,"726079-99999", fog_percent_time_w_meas)
+
+cycle_plot(table_yr_mon_summary_filtered,"726077-14616", fog_percent_time_w_meas)
+cycle_plot(table_yr_mon_summary_filtered,"726077-99999", fog_percent_time_w_meas)
+
+cycle_plot(table_yr_mon_summary_filtered,"727135-94623", fog_percent_time_w_meas)
+
+cycle_plot(table_yr_mon_summary_filtered,"726064-64709", fog_percent_time_w_meas)
+cycle_plot(table_yr_mon_summary_filtered,"726070-14606", fog_percent_time_w_meas)
+
+cycle_plot(table_yr_mon_summary_filtered,"726073-14615", fog_percent_time_w_meas)
+
+cycle_plot(table_yr_mon_summary_filtered,"726184-94709", fog_percent_time_w_meas)
+
+
+```
+
+
+```{r}
+cycle_plot(table_yr_mon_summary_filtered,"726060-14764", percent_time_w_meas_ceiling_LT_400)
+cycle_plot(table_yr_mon_summary_filtered,"726060-14764", mean_ceiling_w_LT_22000)
+cycle_plot(table_yr_mon_summary_filtered,"726060-14764", fog_percent_time_w_meas)
+
+table_yr_mon_summary %>% 
+  filter(id == "726060-14764") %>% 
+  filter(n_ceil_meas/n_timepoints > 0.9) %>% 
+  
+  ggplot(aes(x = lubridate::make_date(Year, Month, 15), y = mean_ceiling_w_LT_22000 )) + 
+  
+  geom_line()
+
+```
+
+
+
+```{r}
+data_all_met %>% 
+  filter(id == "726060-14764") %>% 
+  filter(ceil_hgt < 22000) %>% 
+  
+  ggplot(aes(x= time, y = ceil_hgt)) +
+  geom_line()
+
+
+data_all_met %>% 
+  filter(id == "726060-14764") %>% 
+  
+  ggplot(aes(x= time, y = visibility)) +
+  geom_line()
+```
+
+
+```{r}
+ site_name <- table_yr_mon_summary %>% 
+    filter(id == i_site) %>% 
+    group_by(id) %>% 
+    summarize(name = first(name))
+```
+
+## Buoy data
+
+```{r}
+
+```
+
+
+
+
+```{r}
+buoy_list <- list.files("./data/Gulf_of_Maine/buoy_data", pattern = "buoy_data_")
+```
+
+```{r}
+buoy_site_info <- read_csv("./data/Gulf_of_Maine/buoy_data/buoy_site_info.csv")
+```
+
+```{r}
+current_file <- paste("./data/Gulf_of_Maine/buoy_data/", buoy_list[26], sep = "")
+
+a <- read_csv(current_file,
+              col_types = list(col_datetime(),
+                               col_double(),
+                               col_double(),
+                               col_double(),
+                               col_double(),
+                               col_double(),
+                               col_double(),
+                               col_double(),
+                               col_double(),
+                               col_double(),
+                               col_double(),
+                               col_double(),
+                               col_double(),
+                               col_double(),
+                               col_double(),
+                               col_double(),
+                               col_character()
+                               )
+              )
+```
+
+
+
+
+```{r}
+
+i_iter <- 1
+
+for (i_site in buoy_list) {
+  
+  current_file <- paste("./data/Gulf_of_Maine/buoy_data/", i_site, sep = "")
+  
+  current_buoy_data <- read_csv(current_file,
+                                col_types = list(
+                                time = col_datetime(),
+                                lat = col_double(),
+                                lon = col_double(),
+                                wind_dir = col_double(),
+                                wind_spd = col_double(),
+                                gust = col_double(),
+                                wave_height = col_double(),
+                                dominant_wpd = col_double(),
+                                average_wpd = col_double(),
+                                mean_wave_dir = col_double(),
+                                air_pressure = col_double(),
+                                air_temperature = col_double(),
+                                sea_surface_temperature = col_double(),
+                                dewpt_temperature = col_double(),
+                                visibility = col_double(),
+                                water_level = col_double(),
+                                station = col_character()
+                                )
+                              )
+  
+  current_buoy_data <- current_buoy_data %>% 
+    select(station, time, lat, lon, sea_surface_temperature, air_temperature, visibility) 
+  
+  
+  if (i_iter == 1) {
+    
+    all_buoy_data <- current_buoy_data
+    
+  } else{
+    
+    all_buoy_data <- bind_rows(all_buoy_data, current_buoy_data)
+  }
+  
+  i_iter <- 2
+  
+}
+
+```
+
+
+```{r}
+all_buoy_data <- all_buoy_data %>% 
+  mutate(Year = year(time), Month = month(time)) %>% 
+  mutate(visibility__m = visibility * 1852) %>%  # nautical miles to meters
+  select(- visibility)
+```
+
+
+```{r}
+table_buoy <- all_buoy_data %>% 
+  group_by(station, Year, Month) %>% 
+  summarise(lat = first(lat),
+            lon = first(lon),
+            n_timepoints = n(),
+            n_vis_meas = sum(!is.na(visibility__m)),
+            fog_percent_all_time = sum(visibility__m <= 1000, na.rm = T)/n(),
+            fog_percent_all_time = 100 * sum(visibility__m <= 1000, na.rm = T)/n(),
+            fog_percent_time_w_meas = 100 * sum(visibility__m <= 1000, na.rm = T)/sum(!is.na(visibility__m)),
+            
+            mean_sst__C = mean(sea_surface_temperature, na.rm = T),
+            mean_air_temp__C = mean(air_temperature, na.rm = T)
+            ) %>% 
+  
+  mutate(vis_meas_coverage = n_vis_meas/n_timepoints)
+```
+```{r}
+table_buoy %>% 
+  filter(vis_meas_coverage >= 0.90) %>% 
+  
+  ggplot(aes(x = as.factor(Month), y = fog_percent_time_w_meas)) +
+  geom_boxplot() +
+  
+  facet_wrap(~ station)
+```
+
+```{r}
+cycle_plot = function(data_set, i_site, var2use){
+  
+  data_set <- data_set %>%   
+    filter(station == i_site)
+  
+  
+  min_year <- min(data_set$Year)
+  max_year <- max(data_set$Year)
+  
+  data_set %>%   
+    ggplot(aes(x = Year, y = {{var2use}}, fill = Year)) +
+    geom_point(shape = 21, color = "black") +
+    geom_smooth(se = F, method = MASS::rlm) + 
+  
+    facet_wrap(~ Month, ncol = 12) +
+  
+    theme_bw() +
+    theme(axis.text.x = element_blank(),
+          legend.position = "none") +
+  
+    scale_fill_viridis_c() +
+    labs(x = "",
+         #y = "Fog (% of meas time)",
+         title = i_site,
+         subtitle = paste(min_year, "-", max_year, sep = "" ),
+         caption = paste("Site: ", i_site, sep = ""))
+  
+}  
+```
+
+
+```{r}
+sites2use <- table_buoy %>% 
+  filter(vis_meas_coverage >= 0.90) %>% 
+  #group_by(station, Month) %>% 
+  #filter(length(Month) >= 5) %>% 
+  
+  group_by(station) %>% 
+  summarize(n_years = length(unique(Year)),
+            lat = first(lat),
+            lon = first(lon)) %>% 
+  
+  filter(n_years > 5)
+
+sites2use
+```
+
+
+```{r}
+sites2use %>% 
+  leaflet() %>% 
+  addProviderTiles(providers$Esri.NatGeoWorldMap) %>% 
+  addCircleMarkers(~lon, ~lat, popup = ~station)
+```
+
+
+```{r fig.width= 9, fig.height= 4}
+table_buoy_filtered <-  table_buoy %>% 
+  filter(vis_meas_coverage >= 0.90)
+
+cycle_plot(table_buoy_filtered,"44030", fog_percent_time_w_meas)
+#cycle_plot(table_buoy_filtered,"44031", fog_percent_time_w_meas)
+cycle_plot(table_buoy_filtered,"44032", fog_percent_time_w_meas)
+cycle_plot(table_buoy_filtered,"44033", fog_percent_time_w_meas)
+cycle_plot(table_buoy_filtered,"44034", fog_percent_time_w_meas)
+#cycle_plot(table_buoy_filtered,"44035", fog_percent_time_w_meas)
+cycle_plot(table_buoy_filtered,"44037", fog_percent_time_w_meas)
+#cycle_plot(table_buoy_filtered,"44038", fog_percent_time_w_meas)
+```
+
+
+```{r}
+table_buoy %>% 
+  ggplot(aes(x = make_date(Year, Month, 15), y = mean_air_temp__C - mean_sst__C)) +
+  geom_
+```
+
+
+
+```{r fig.width= 9}
+table_buoy_filtered <-  table_buoy %>% 
+  filter(vis_meas_coverage >= 0.90)
+
+table_buoy_filtered %>% 
+  ggplot(aes(x =  mean_sst__C, y = fog_percent_time_w_meas, color = as.factor(Month))) +
+  geom_point() +
+  geom_smooth(se = F, method = "lm") +
+  
+  facet_wrap(~ station)
+
+
+table_buoy_filtered %>% 
+  ggplot(aes(x =  mean_air_temp__C - mean_sst__C, y = fog_percent_time_w_meas, color = station)) +
+  geom_point() +
+  geom_vline(xintercept = 0, color = "red") + 
+  geom_smooth(se = F, method = "lm") +
+  
+  facet_wrap(~ Month) # , scales = "free" 
+
+
+
+table_buoy_filtered %>% 
+  ggplot(aes(x =  mean_air_temp__C - mean_sst__C, y = fog_percent_time_w_meas, color = station)) +
+  geom_point() +
+  geom_smooth(method = "lm", formula = (y ~ exp(x)), color = "black") +
+  geom_vline(xintercept = 0, color = "red") + 
+  
+  # geom_smooth(se = F, method = "lm") 
+  facet_wrap(~ station) +
+  theme_bw() 
+  
+  
+  #facet_wrap(~ Month) # , scales = "free" 
+```
+
+
+
+```{r}
+table_buoy_filtered <- table_buoy %>% 
+  filter(!is.na(mean_sst__C))
+
+cycle_plot(table_buoy_filtered,"44030", mean_sst__C)
+cycle_plot(table_buoy_filtered,"44031", mean_sst__C)
+cycle_plot(table_buoy_filtered,"44032", mean_sst__C)
+cycle_plot(table_buoy_filtered,"44033", mean_sst__C)
+cycle_plot(table_buoy_filtered,"44034", mean_sst__C)
+cycle_plot(table_buoy_filtered,"44035", mean_sst__C)
+cycle_plot(table_buoy_filtered,"44037", mean_sst__C)
+cycle_plot(table_buoy_filtered,"44005", mean_sst__C)
+
+cycle_plot(table_buoy_filtered,"ATGM1", mean_sst__C)
+cycle_plot(table_buoy_filtered,"44027", mean_sst__C)
+
+cycle_plot(table_buoy_filtered,"44038", mean_sst__C)
+
+
+```
+
+
+```{r}
+table_buoy_filtered <- table_buoy %>% 
+  filter(!is.na(mean_sst__C))
+
+cycle_plot(table_buoy_filtered,"44030", mean_air_temp__C - mean_sst__C)
+cycle_plot(table_buoy_filtered,"44031", mean_air_temp__C - mean_sst__C)
+cycle_plot(table_buoy_filtered,"44032", mean_air_temp__C - mean_sst__C)
+cycle_plot(table_buoy_filtered,"44033", mean_air_temp__C - mean_sst__C)
+cycle_plot(table_buoy_filtered,"44034", mean_air_temp__C - mean_sst__C)
+cycle_plot(table_buoy_filtered,"44035", mean_air_temp__C - mean_sst__C)
+cycle_plot(table_buoy_filtered,"44037", mean_air_temp__C - mean_sst__C)
+cycle_plot(table_buoy_filtered,"44005", mean_air_temp__C - mean_sst__C) 
+cycle_plot(table_buoy,"44007", mean_sst__C)
+
+cycle_plot(table_buoy_filtered,"ATGM1", mean_air_temp__C - mean_sst__C)
+cycle_plot(table_buoy_filtered,"44027", mean_air_temp__C - mean_sst__C)
+
+cycle_plot(table_buoy_filtered,"44038", mean_air_temp__C - mean_sst__C)
+```
+
+
+
+
+```{r}
+a <- all_buoy_data %>% 
+  filter(!is.na(sea_surface_temperature)) %>% 
+  mutate(Year = year(time),
+         Month = month(time)) %>%
+  
+  group_by(station, Year, Month) %>% 
+  summarize(sst_mean = mean(sea_surface_temperature, na.rm = T)) %>% 
+  mutate(DATE = ymd(paste(Year, Month,"15", sep = "-"))) %>% 
+  
+  ungroup() %>% 
+  drop_na() %>% 
+  
+  ggplot(aes(x = DATE, y = sst_mean)) +
+  geom_line() +
+  
+  facet_wrap(~ station)
+  
+```
+
+
+
+
+

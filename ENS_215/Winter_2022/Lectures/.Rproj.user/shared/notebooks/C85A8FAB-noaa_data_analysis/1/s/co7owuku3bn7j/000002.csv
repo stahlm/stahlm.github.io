@@ -1,0 +1,9 @@
+"0","```r
+table_buoy %>% 
+  filter(vis_meas_coverage >= 0.90) %>% 
+  
+  ggplot(aes(x = as.factor(Month), y = fog_percent_time_w_meas)) +
+  geom_boxplot() +
+  
+  facet_wrap(~ station)
+```"

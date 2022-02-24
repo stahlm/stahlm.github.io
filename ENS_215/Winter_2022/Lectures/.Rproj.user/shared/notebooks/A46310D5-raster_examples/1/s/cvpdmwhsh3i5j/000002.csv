@@ -1,0 +1,1 @@
+"0","climate_current <- raster::stack(climate_current)"

@@ -1,0 +1,9 @@
+"0","```r
+df_monthly_normals %>% 
+  filter(state_cd %in% c(\"RI\", \"CA\", \"ID\")) %>% 
+  
+  ggplot() +
+  geom_col(aes(x = factor(Month), y = prcp_mean_inches)) +
+  
+  facet_wrap(~ state_cd)
+```"

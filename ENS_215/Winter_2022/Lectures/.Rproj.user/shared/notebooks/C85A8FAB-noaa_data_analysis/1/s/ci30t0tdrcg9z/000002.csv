@@ -1,0 +1,24 @@
+"0","```r
+i_iter <- 1
+
+for (i_station in met_list) {
+  
+  current_file <- paste(\"./data/Gulf_of_Maine/land_stations/\", i_station, sep = \"\")
+  
+  current_data <- data.table::fread(current_file)
+  
+  current_data <- current_data %>% 
+    select(id, time, temp, visibility, ceil_hgt) 
+  
+  if (i_iter == 1) {
+    data_all_met <- current_data
+    
+  } else{
+    data_all_met <- bind_rows(data_all_met, current_data)  
+  }
+  
+  i_iter <- 2
+    
+  
+}
+```"

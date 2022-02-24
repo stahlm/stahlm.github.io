@@ -1,0 +1,3 @@
+"0","df_monthly_normals <-df_monthly_normals %>% "
+"0","  mutate(month_angle = 15 + (Month-1)*30) %>% "
+"0","  mutate(month_angle_radians = 2*pi*(month_angle/360))"

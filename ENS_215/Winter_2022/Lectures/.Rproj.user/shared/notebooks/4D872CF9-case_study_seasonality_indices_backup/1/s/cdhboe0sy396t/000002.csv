@@ -1,0 +1,3 @@
+"0","a <- compute_seaonality_indices(df_monthly_normals)"
+"2","`summarise()` ungrouping output (override with `.groups` argument)
+"

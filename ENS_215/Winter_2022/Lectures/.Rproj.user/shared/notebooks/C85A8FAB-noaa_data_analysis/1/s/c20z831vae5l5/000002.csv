@@ -1,0 +1,23 @@
+"0","```r
+a <- all_buoy_data %>% 
+  filter(!is.na(sea_surface_temperature)) %>% 
+  mutate(Year = year(time),
+         Month = month(time)) %>%
+  
+  group_by(station, Year, Month) %>% 
+  summarize(sst_mean = mean(sea_surface_temperature, na.rm = T)) %>% 
+  mutate(DATE = ymd(paste(Year, Month,\"15\", sep = \"-\"))) %>% 
+  
+  ungroup() %>% 
+  drop_na() %>% 
+  
+  ggplot(aes(x = DATE, y = sst_mean)) +
+  geom_line() +
+  
+  facet_wrap(~ station)
+```"
+"1","`summarise()` regrouping output by 'station', 'Year' (override with `.groups` argument)
+"
+"0","```r
+  
+```"

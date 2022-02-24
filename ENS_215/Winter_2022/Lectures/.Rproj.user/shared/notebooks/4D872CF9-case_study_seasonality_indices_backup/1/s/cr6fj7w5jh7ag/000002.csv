@@ -1,0 +1,4 @@
+"0","df_monthly_normals <- df_monthly_normals %>% "
+"0","  mutate(prcp_x = prcp_mean_inches*cos(month_angle_radians),"
+"0","         prcp_y = prcp_mean_inches*sin(month_angle_radians)"
+"0","         )"

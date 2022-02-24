@@ -1,0 +1,158 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r}
+library(tidyverse)
+```
+
+
+```{r}
+file_list <- c("https://neo.gsfc.nasa.gov/archive/geotiff.float/MYD28M/MYD28M_2021-11.FLOAT.TIFF","https://neo.gsfc.nasa.gov/archive/geotiff.float/MYD28M/MYD28M_2021-10.FLOAT.TIFF")
+
+raster_sst <- raster::stack(x = file_list)
+```
+
+```{r}
+a <- (file_list[1], "test.tiff")
+```
+
+
+```{r}
+a <- raster::raster("C:/Users/stahlm/Downloads/MYD28M_2021-11.FLOAT.tiff")
+```
+
+
+```{r}
+a[a > 100] <- NA
+```
+
+```{r}
+raster::plot(a)
+```
+```{r}
+world_borders <- spData::world
+```
+
+
+
+
+```{r}
+tm_shape(a) +
+  tm_raster() +
+  
+  tm_shape(world) +
+  tm_borders()
+  
+```
+
+
+```{r}
+library(AOI)
+library(climateR)
+```
+
+
+
+```{r}
+param_meta$terraclim
+```
+
+
+
+```{r}
+AOI = aoi_get(country = "Ethiopia")
+plot(AOI$geometry)
+```
+
+```{r}
+NY_climate <- getTerraClimNormals(AOI, param = "prcp", period = "19812010", month = 1:12)
+
+```
+
+
+```{r}
+
+```
+
+```{r}
+ny_stack <- raster::stack(NY_climate)
+```
+
+
+
+```{r}
+ny_stack <- raster::mask(ny_stack, AOI)
+```
+
+
+```{r}
+ny_stack <- raster::crop(ny_stack, AOI)
+```
+
+
+```{r}
+raster::plot(ny_stack)
+```
+```{r}
+ny_delta_t <- max(ny_stack) - min(ny_stack)
+```
+
+
+```{r}
+raster::plot(ny_delta_t)
+```
+```{r}
+tm_shape(ny_stack) +
+  tm_raster(style = "cont", palette = "Blues") +
+  tm_shape(AOI) +
+  tm_borders()
+```
+
+```{r}
+climate_current <- getTerraClim(AOI, param = "prcp", startDate = "2015-01-01", endDate = "2015-12-31")
+```
+
+```{r}
+climate_current <- raster::stack(climate_current)
+```
+
+
+```{r}
+tm_shape(climate_current) +
+  tm_raster(style = "cont", palette = "Blues") +
+  tm_shape(AOI) +
+  tm_borders()
+```
+
+```{r}
+prcp_def <- climate_current - ny_stack
+```
+
+```{r}
+prcp_def <- raster::mask(prcp_def, AOI)
+prcp_def <- raster::crop(prcp_def, AOI)
+```
+
+
+```{r}
+prcp_def_annual <- sum(prcp_def)
+```
+
+
+```{r}
+tm_shape(prcp_def_annual) +
+  tm_raster(style = "cont", palette = "RdBu", breaks = c(-150,-100,-50,-25,0,25,50,100,150)) +
+  tm_shape(AOI) +
+  tm_borders()
+```
+
+
+
+```{r}
+load(url("https://github.com/mgimond/Spatial/raw/main/Data/raster.RData"))
+```
+
+

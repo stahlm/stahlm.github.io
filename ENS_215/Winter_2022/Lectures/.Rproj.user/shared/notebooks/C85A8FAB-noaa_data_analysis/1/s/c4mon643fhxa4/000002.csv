@@ -1,0 +1,41 @@
+"0","```r
+library(tidyverse)
+```"
+"1","Registered S3 methods overwritten by 'dbplyr':
+  method         from
+  print.tbl_lazy     
+  print.tbl_sql      
+-- Attaching packages ------------------------------------------------------------------------------------------------ tidyverse 1.3.0 --
+v ggplot2 3.3.3     v purrr   0.3.4
+v tibble  3.0.4     v dplyr   1.0.2
+v tidyr   1.1.2     v stringr 1.4.0
+v readr   1.4.0     v forcats 0.5.0
+package ‘tibble’ was built under R version 4.0.3package ‘tidyr’ was built under R version 4.0.3package ‘readr’ was built under R version 4.0.3package ‘dplyr’ was built under R version 4.0.3-- Conflicts --------------------------------------------------------------------------------------------------- tidyverse_conflicts() --
+x dplyr::filter() masks stats::filter()
+x dplyr::lag()    masks stats::lag()
+"
+"0","```r
+library(stationaRy)
+library(leaflet)
+```"
+"1","Registered S3 method overwritten by 'htmlwidgets':
+  method           from         
+  print.htmlwidget tools:rstudio
+"
+"0","```r
+library(rnoaa)
+```"
+"1","package ‘rnoaa’ was built under R version 4.0.3Registered S3 method overwritten by 'hoardr':
+  method           from
+  print.cache_info httr
+"
+"0","```r
+library(lubridate)
+```"
+"1","package ã¤¼ã¸±lubridateã¤¼ã¸² was built under R version 4.0.3
+Attaching package: ã¤¼ã¸±lubridateã¤¼ã¸²
+
+The following objects are masked from ã¤¼ã¸±package:baseã¤¼ã¸²:
+
+    date, intersect, setdiff, union
+"

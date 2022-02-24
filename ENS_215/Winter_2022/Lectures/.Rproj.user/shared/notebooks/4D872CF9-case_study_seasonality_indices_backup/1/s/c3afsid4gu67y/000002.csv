@@ -1,0 +1,9 @@
+"0","df_seasonality_precip <- df_monthly_normals %>% "
+"0","  group_by(state_cd) %>% "
+"0","  "
+"0","  summarize(prcp_tot = sum(prcp_mean_inches),"
+"0","            prcp_tot_x = sum(prcp_x),"
+"0","            prcp_tot_y = sum(prcp_y)"
+"0","            )"
+"2","`summarise()` ungrouping output (override with `.groups` argument)
+"

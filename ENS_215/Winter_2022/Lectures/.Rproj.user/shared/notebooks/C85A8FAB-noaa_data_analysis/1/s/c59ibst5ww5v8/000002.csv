@@ -1,0 +1,28 @@
+"0","```r
+table_yr_mon_summary <- data_all_met %>% 
+  mutate(Year = year(time),
+         Month = month(time)) %>% 
+  
+  group_by(id, Year, Month) %>% 
+  summarize(n_timepoints = n(),
+            n_fog_meas = sum(!is.na(visibility)),
+            n_ceil_meas = sum(!is.na(ceil_hgt)),
+            n_temp_meas = sum(!is.na(temp)),
+            
+            fog_percent_all_time = 100*sum(visibility <= ub_LightFog, na.rm = T)/n(),
+            fog_percent_time_w_meas = 100*sum(visibility <= ub_LightFog, na.rm = T)/sum(!is.na(visibility)),
+            
+            percent_time_w_meas_ceiling_LT_22000 = 100*sum(ceil_hgt < 22000, na.rm = T)/sum(!is.na(ceil_hgt)),
+            percent_time_w_meas_ceiling_LT_400 = 100*sum(ceil_hgt <= 400, na.rm = T)/sum(!is.na(ceil_hgt)),
+            
+            mean_ceiling_w_LT_22000 = mean((ceil_hgt < 22000)*ceil_hgt, na.rm = T),
+            
+            mean_temp__C = mean(temp, na.rm = T) 
+            
+            ) %>% 
+  
+  mutate(vis_meas_coverage = n_fog_meas/n_timepoints) %>% 
+  mutate(Month = as.factor(Month))
+```"
+"1","`summarise()` regrouping output by 'id', 'Year' (override with `.groups` argument)
+"

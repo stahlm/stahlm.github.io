@@ -1,0 +1,8 @@
+"0","```r
+ site_name <- table_yr_mon_summary %>% 
+    filter(id == i_site) %>% 
+    group_by(id) %>% 
+    summarize(name = first(name))
+```"
+"1","`summarise()` ungrouping output (override with `.groups` argument)
+"

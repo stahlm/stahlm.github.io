@@ -1,0 +1,24 @@
+"0","```r
+current_file <- paste(\"./data/Gulf_of_Maine/buoy_data/\", buoy_list[26], sep = \"\")
+
+a <- read_csv(current_file,
+              col_types = list(col_datetime(),
+                               col_double(),
+                               col_double(),
+                               col_double(),
+                               col_double(),
+                               col_double(),
+                               col_double(),
+                               col_double(),
+                               col_double(),
+                               col_double(),
+                               col_double(),
+                               col_double(),
+                               col_double(),
+                               col_double(),
+                               col_double(),
+                               col_double(),
+                               col_character()
+                               )
+              )
+```"

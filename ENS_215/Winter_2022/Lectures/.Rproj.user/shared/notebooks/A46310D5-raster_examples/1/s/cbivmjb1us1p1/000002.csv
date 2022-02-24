@@ -1,0 +1,7 @@
+"0","tm_shape(a) +"
+"0","  tm_raster() +"
+"0","  "
+"0","  tm_shape(world) +"
+"0","  tm_borders()"
+"2","stars object downsampled to 1414 by 707 cells. See tm_shape manual (argument raster.downsample)
+"

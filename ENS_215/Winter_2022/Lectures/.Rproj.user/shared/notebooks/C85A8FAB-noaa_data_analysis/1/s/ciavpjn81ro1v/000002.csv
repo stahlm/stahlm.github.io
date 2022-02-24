@@ -1,0 +1,6 @@
+"0","```r
+sites2use %>% 
+  leaflet() %>% 
+  addProviderTiles(providers$Esri.NatGeoWorldMap) %>% 
+  addCircleMarkers(~lon, ~lat, popup = ~station)
+```"

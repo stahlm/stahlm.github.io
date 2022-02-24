@@ -1,0 +1,11 @@
+"0","precip_data <- read_csv(""https://stahlm.github.io/ENS_215/Data/NOAA_State_Precip_LabData.csv"")"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m----------------------------------------------------------------------------------------------------------------[39m
+cols(
+  Year = [32mcol_double()[39m,
+  Month = [32mcol_double()[39m,
+  Precip_inches = [32mcol_double()[39m,
+  state_cd = [31mcol_character()[39m
+)
+
+"

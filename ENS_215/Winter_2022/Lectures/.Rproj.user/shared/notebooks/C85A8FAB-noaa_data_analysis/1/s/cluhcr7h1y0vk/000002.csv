@@ -1,0 +1,8 @@
+"0","```r
+data_all_met %>% 
+  filter(id == \"726060-14764\") %>% 
+  filter(ceil_hgt < 22000) %>% 
+  
+  ggplot(aes(x= time, y = ceil_hgt)) +
+  geom_line()
+```"

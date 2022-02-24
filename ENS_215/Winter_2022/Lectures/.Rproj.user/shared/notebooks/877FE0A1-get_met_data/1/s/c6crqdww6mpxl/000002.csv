@@ -1,0 +1,4 @@
+"0","```r
+lat_bounds <- c(42.6, 45.2) # min and max
+lon_bounds <- c(-71.2, -65.9) # min and max
+```"

@@ -1,0 +1,18 @@
+"0","```r
+sites2use <- table_buoy %>% 
+  filter(vis_meas_coverage >= 0.90) %>% 
+  #group_by(station, Month) %>% 
+  #filter(length(Month) >= 5) %>% 
+  
+  group_by(station) %>% 
+  summarize(n_years = length(unique(Year)),
+            lat = first(lat),
+            lon = first(lon)) %>% 
+  
+  filter(n_years > 5)
+```"
+"1","`summarise()` ungrouping output (override with `.groups` argument)
+"
+"0","```r
+sites2use
+```"

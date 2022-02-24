@@ -1,0 +1,4 @@
+"0","```r
+data_landsite_info %>% select(-years) %>% 
+  write_csv(file = \"./data/Gulf_of_Maine/land_stations/met_station_site_info.csv\")
+```"

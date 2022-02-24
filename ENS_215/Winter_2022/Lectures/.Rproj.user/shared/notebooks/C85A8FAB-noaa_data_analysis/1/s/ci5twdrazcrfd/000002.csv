@@ -1,0 +1,23 @@
+"0","```r
+met_site_list <- read_csv(\"./data/Gulf_of_Maine/land_stations/met_stations_site_info.csv\")
+```"
+"1","
+-- Column specification -----------------------------------------------------------------------------------------------------------------
+cols(
+  id = col_character(),
+  usaf = col_double(),
+  wban = col_double(),
+  name = col_character(),
+  country = col_character(),
+  state = col_character(),
+  icao = col_character(),
+  lat = col_double(),
+  lon = col_double(),
+  elev = col_double(),
+  begin_date = col_date(format = \"\"),
+  end_date = col_date(format = \"\"),
+  begin_year = col_double(),
+  end_year = col_double(),
+  tz_name = col_character()
+)
+"

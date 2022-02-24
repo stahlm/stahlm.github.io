@@ -1,0 +1,12 @@
+"0","```r
+table_yr_mon_summary %>% 
+    ungroup() %>% 
+    filter(vis_meas_coverage >= 0.9) %>%
+    group_by(id) %>% 
+    mutate(max_year = max(Year)) %>% 
+    filter(length(unique(Year)) >= 5) %>% 
+    filter(max_year > 2000, Year >= 1950) %>% 
+    summarise(n_years = length(unique(Year)))
+```"
+"1","`summarise()` ungrouping output (override with `.groups` argument)
+"

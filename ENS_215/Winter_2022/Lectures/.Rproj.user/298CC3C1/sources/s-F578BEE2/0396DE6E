@@ -1,0 +1,32 @@
+{
+    "id": "0396DE6E",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1645730309708.0,
+    "source_on_save": false,
+    "relative_order": 6,
+    "properties": {
+        "expression": "monthly_met_bos_sfo",
+        "caption": "monthly_met_bos_sfo",
+        "totalObservations": 24,
+        "displayedObservations": 24,
+        "variables": 3,
+        "cacheKey": "6E79CC93",
+        "object": "monthly_met_bos_sfo",
+        "environment": "",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=monthly_met_bos_sfo&cache_key=6E79CC93&max_cols=50",
+        "preview": 0
+    },
+    "folds": "",
+    "lastKnownWriteTime": 28429462281715828,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1645730309708,
+    "read_only": false,
+    "read_only_alternatives": []
+}

@@ -1,0 +1,9 @@
+"0","library(tidyverse)"
+"0",""
+"0","library(tmap)"
+"2","package ‘tmap’ was built under R version 4.0.3"
+"2","Registered S3 method overwritten by 'htmlwidgets':
+  method           from         
+  print.htmlwidget tools:rstudio
+"
+"0","library(sf)"

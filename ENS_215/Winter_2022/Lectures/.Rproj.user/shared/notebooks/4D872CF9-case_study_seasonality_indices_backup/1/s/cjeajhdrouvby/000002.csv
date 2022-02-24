@@ -1,0 +1,7 @@
+"0","df_stream_monthly_normals <- df_stream_data %>% "
+"0","  filter(Year > 2011 & Year < 2022) %>% "
+"0","  "
+"0","  group_by(Month) %>% "
+"0","  summarize(flow_mean = mean(Flow, na.rm = T))"
+"2","`summarise()` ungrouping output (override with `.groups` argument)
+"

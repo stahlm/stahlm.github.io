@@ -1,0 +1,5 @@
+"0","```r
+cycle_plot(table_yr_mon_summary_filtered,\"726060-14764\", mean_ceiling_w_LT_22000)
+```"
+"1","`summarise()` ungrouping output (override with `.groups` argument)
+"

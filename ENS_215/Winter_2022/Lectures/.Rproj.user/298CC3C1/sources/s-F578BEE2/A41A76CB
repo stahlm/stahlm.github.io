@@ -1,0 +1,25 @@
+{
+    "id": "A41A76CB",
+    "path": "~/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2022/Lectures/compute_seasonality_indices.R",
+    "project_path": "compute_seasonality_indices.R",
+    "type": "r_source",
+    "hash": "3278326167",
+    "contents": "",
+    "dirty": false,
+    "created": 1645734346810.0,
+    "source_on_save": false,
+    "relative_order": 24,
+    "properties": {
+        "tempName": "Untitled1",
+        "cursorPosition": "36,1",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1645734365,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1645734365736,
+    "read_only": false,
+    "read_only_alternatives": []
+}

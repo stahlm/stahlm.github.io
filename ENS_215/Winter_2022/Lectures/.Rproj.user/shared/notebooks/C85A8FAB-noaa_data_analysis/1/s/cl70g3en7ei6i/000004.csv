@@ -1,0 +1,9 @@
+"0","```r
+
+
+table_yr_mon_summary %>% 
+  filter(n_ceil_meas/n_timepoints >= 0.8) %>%
+  ggplot() +
+  geom_boxplot(aes(x = Month, y = mean_ceiling_w_LT_22000)) +
+  ylim(0,2500)
+```"

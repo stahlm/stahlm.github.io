@@ -1,0 +1,5 @@
+"0","```r
+data_landsite_info <- get_station_metadata() %>% 
+  filter(country == \"US\") %>% 
+  filter(state == \"ME\", elev <= 100) 
+```"

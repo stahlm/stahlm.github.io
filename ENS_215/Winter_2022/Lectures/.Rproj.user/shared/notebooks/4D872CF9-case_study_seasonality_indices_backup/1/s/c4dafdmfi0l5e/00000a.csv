@@ -1,0 +1,4 @@
+"0","sf_seasonality_precip <- sf_states %>% "
+"0","  right_join(df_seasonality_precip)"
+"2","Joining, by = ""NAME""
+"

@@ -1,0 +1,7 @@
+"0","```r
+table_yr_mon_summary %>% 
+  filter(vis_meas_coverage >= 0.8) %>%
+  ggplot() +
+  geom_boxplot(aes(x = Month, y = fog_percent_time_w_meas)) +
+  ylim(0,20)
+```"

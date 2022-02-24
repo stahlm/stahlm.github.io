@@ -1,0 +1,24 @@
+"0","```r
+table_yr_mon_summary %>% 
+  ungroup() %>% 
+  filter(vis_meas_coverage >= 0.5) %>%
+  group_by(id) %>% 
+  mutate(max_year = max(Year)) %>% 
+  filter(length(unique(Year)) >= 5) %>% 
+  filter(max_year >= 2000,
+         Year >= 1950) %>% 
+      
+  mutate(DATE = ymd(paste(Year, Month, \"15\"))) %>% 
+  
+  ggplot(aes(x = DATE, y = fog_percent_time_w_meas)) +
+  
+  #geom_point() +
+  geom_line() +
+  geom_smooth(method = \"lm\", se = F) + 
+  #ylim(0,20) +
+  theme_bw() +
+  theme(legend.position = \"none\") + 
+  
+  facet_wrap(name ~ id, scales = \"free\")
+
+```"

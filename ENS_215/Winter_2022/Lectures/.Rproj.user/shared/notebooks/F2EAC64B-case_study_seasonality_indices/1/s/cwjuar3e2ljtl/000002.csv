@@ -1,0 +1,9 @@
+"0","```r
+df_seasonality_precip %>% 
+  ggplot(aes(x = SC, y = SI)) +
+  
+  geom_segment(aes(y = 0, xend = SC, yend = SI)) +
+  
+  scale_x_continuous(breaks = c(0,90,180,270,360), limits = c(0,360)) +
+  coord_polar() 
+```"

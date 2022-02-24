@@ -1,0 +1,5 @@
+"0","```r
+table_buoy %>% 
+  ggplot(aes(x = make_date(Year, Month, 15), y = mean_air_temp__C - mean_sst__C)) +
+  geom_
+```"

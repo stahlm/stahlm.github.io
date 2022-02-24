@@ -1,0 +1,6 @@
+"0","```r
+table_yr_mon_summary <- table_yr_mon_summary %>% 
+  left_join(met_site_list)
+```"
+"1","Joining, by = \"id\"
+"

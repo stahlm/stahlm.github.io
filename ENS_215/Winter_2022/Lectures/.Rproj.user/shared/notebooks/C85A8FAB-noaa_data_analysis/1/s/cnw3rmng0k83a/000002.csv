@@ -1,0 +1,42 @@
+"0","```r
+
+
+
+cycle_plot = function(data_set, i_site, var2use){
+  
+  site_name <- data_set %>% 
+    filter(id == i_site) %>% 
+    group_by(id) %>% 
+    summarize(name = first(name))
+  
+  data_set <- data_set %>% 
+    filter(id == i_site) 
+  
+  
+  min_year <- min(data_set$Year)
+  max_year <- max(data_set$Year)
+  
+  data_set %>%   
+    ggplot(aes(x = Year, y = {{var2use}}, fill = Year)) +
+    geom_point(shape = 21, color = \"black\") +
+    geom_smooth(se = T, method = MASS::rlm) + 
+  
+    facet_wrap(~ Month, ncol = 12) +
+  
+    theme_classic() +
+    theme(axis.text.x = element_blank(),
+          legend.position = \"none\") +
+  
+    scale_fill_viridis_c() +
+    labs(x = \"\",
+         #y = \"Fog (% of meas time)\",
+         title = site_name$name,
+         subtitle = paste(min_year, \"-\", max_year, sep = \"\" ),
+         caption = paste(\"Site: \", i_site, sep = \"\"))
+  
+}  
+
+
+
+  
+```"
