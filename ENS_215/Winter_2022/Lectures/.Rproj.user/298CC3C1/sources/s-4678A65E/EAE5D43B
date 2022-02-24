@@ -1,0 +1,32 @@
+{
+    "id": "EAE5D43B",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1645741115104.0,
+    "source_on_save": false,
+    "relative_order": 14,
+    "properties": {
+        "expression": "df_alb_precip_monthly_normals",
+        "caption": "df_alb_precip_monthly_normals",
+        "totalObservations": 12,
+        "displayedObservations": 12,
+        "variables": 3,
+        "cacheKey": "FDFA7938",
+        "object": "df_alb_precip_monthly_normals",
+        "environment": "",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=df_alb_precip_monthly_normals&cache_key=FDFA7938&max_cols=50",
+        "preview": 0
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1837530501912,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1645741115104,
+    "read_only": false,
+    "read_only_alternatives": []
+}

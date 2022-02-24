@@ -1,0 +1,32 @@
+{
+    "id": "2AA0467C",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1645741806566.0,
+    "source_on_save": false,
+    "relative_order": 16,
+    "properties": {
+        "expression": "mauna_loa",
+        "caption": "mauna_loa",
+        "totalObservations": 731,
+        "displayedObservations": 731,
+        "variables": 3,
+        "cacheKey": "E97B9782",
+        "object": "mauna_loa",
+        "environment": "",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=mauna_loa&cache_key=E97B9782&max_cols=50",
+        "preview": 0
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1645741463,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1645741806566,
+    "read_only": false,
+    "read_only_alternatives": []
+}

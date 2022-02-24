@@ -1,6 +1,0 @@
-"0","```r
-df_seasonality_precip %>% 
-  ggplot(aes(y = reorder(state_cd, SI), x = SI)) +
-  
-  geom_point(size = 2)
-```"

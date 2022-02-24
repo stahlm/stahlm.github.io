@@ -1,0 +1,3 @@
+"0","world <- ne_countries(scale = ""large"", returnclass = ""sf"")"
+"0","antarc <- world %>% filter(sovereignt == ""Antarctica"")"
+"0","tm_shape(antarc) + tm_borders()"

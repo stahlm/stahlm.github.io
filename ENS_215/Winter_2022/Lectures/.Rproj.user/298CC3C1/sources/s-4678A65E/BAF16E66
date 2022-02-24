@@ -1,0 +1,26 @@
+{
+    "id": "BAF16E66",
+    "path": "~/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2022/Lectures/case_study_seasonality_indices.Rmd",
+    "project_path": "case_study_seasonality_indices.Rmd",
+    "type": "r_markdown",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1645726198001.0,
+    "source_on_save": false,
+    "relative_order": 5,
+    "properties": {
+        "tempName": "Untitled1",
+        "chunk_output_type": "inline",
+        "cursorPosition": "0,0",
+        "scrollLine": "0"
+    },
+    "folds": "35|25|73|0|\n",
+    "lastKnownWriteTime": 1645741322,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1645741322940,
+    "read_only": false,
+    "read_only_alternatives": []
+}
