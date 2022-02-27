@@ -1,0 +1,2 @@
+"0","pop_raster <- raster::mask(pop_raster, us_borders)"
+"2","Discarded datum Unknown based on GRS80 ellipsoid in CRS definition"

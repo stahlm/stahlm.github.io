@@ -1,0 +1,32 @@
+{
+    "id": "8FBD588A",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1645803970095.0,
+    "source_on_save": false,
+    "relative_order": 11,
+    "properties": {
+        "expression": "sf_caps",
+        "caption": "sf_caps",
+        "totalObservations": 48,
+        "displayedObservations": 48,
+        "variables": 2,
+        "cacheKey": "C562CE3B",
+        "object": "sf_caps",
+        "environment": "",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=sf_caps&cache_key=C562CE3B&max_cols=50",
+        "preview": 0
+    },
+    "folds": "",
+    "lastKnownWriteTime": 28429462281715828,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1645803970095,
+    "read_only": false,
+    "read_only_alternatives": []
+}

@@ -1,0 +1,1 @@
+"0","pop_raster <- raster::crop(pop_raster, us_borders)"

@@ -1,0 +1,1 @@
+"0","world_borders <- rnaturalearth::ne_countries(scale = ""large"", returnclass = ""sf"")"

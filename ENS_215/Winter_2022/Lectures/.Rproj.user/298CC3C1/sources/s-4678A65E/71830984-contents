@@ -1,0 +1,338 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r}
+library(tidyverse)
+library(readxl)
+
+library(tmap)
+library(sf)
+```
+
+https://pubs.usgs.gov/sir/2017/5118/sir20175118_element.php?el=82
+https://pubs.usgs.gov/ds/801/downloads/
+```{r}
+df_soil_pb <- read_csv("./Data/USGS_DS801_top5cm_soil_Pb.csv") %>% 
+  filter(!is.na(Top5_Pb))
+
+
+df_Chorizon_pb <- read_csv("./Data/USGS_DS801_Chorizon_soil_Pb.csv") %>% 
+  filter(!is.na(C_Pb)) %>% 
+  select(SiteID, C_Pb)
+```
+
+```{r}
+df_soil_all <- df_soil_pb %>% 
+  left_join(df_Chorizon_pb)
+```
+
+
+```{r}
+sf_soil_pb <- st_as_sf(df_soil_all, coords = c("Longitude", "Latitude"))
+```
+
+
+```{r}
+sf_soil_pb <- sf_soil_pb %>% 
+  mutate(Top5_C_ratio = Top5_Pb/C_Pb)
+```
+
+
+```{r}
+us_borders <- spData::us_states
+```
+
+
+```{r}
+
+sf_soil_pb %>% 
+  ggplot(aes(x = Top5_Pb)) +
+  geom_histogram() +
+  xlim(NA,100)
+
+```
+
+https://neo.gsfc.nasa.gov/view.php?datasetId=SEDAC_POP
+```{r}
+pop_raster <- raster::raster("./Data/SEDAC_POP_2000-01-01_rgb_3600x1800.FLOAT.TIFF")
+```
+
+
+```{r}
+pop_raster <- raster::crop(pop_raster, us_borders)
+```
+
+```{r}
+pop_raster <- raster::mask(pop_raster, us_borders)
+```
+```{r}
+pop_raster[pop_raster > 50000] <- NA
+```
+
+
+```{r}
+raster::plot(pop_raster)
+
+```
+
+
+
+```{r}
+tm_shape(us_borders, projection = 5070) +
+  
+  tm_fill("white") +
+  tm_borders(lwd = 3, col = "black") +
+  
+  #tm_shape(pop_raster) +
+  #tm_raster(style = "log10") +
+  
+  tm_shape(sf_soil_pb) +
+  tm_dots(col = "Top5_Pb", style = "quantile", n = 8, palette = "viridis", size = 0.10) 
+```
+
+
+
+```{r}
+tm_shape(us_borders, projection = 5070) +
+  
+  tm_fill("white") +
+  tm_borders(lwd = 3, col = "black") +
+  
+  #tm_shape(pop_raster) +
+  #tm_raster(style = "log10") +
+  
+  tm_shape(sf_soil_pb) +
+  tm_dots(col = "Top5_C_ratio", breaks = c(0,0.5,0.75,1,1.25,1.75,2,4), palette = "-RdBu", size = 0.10) 
+```
+
+
+
+```{r}
+
+sf_soil_pb$pop_density <- raster::extract(pop_raster, sf_soil_pb, fun = mean, na.rm = T)
+
+```
+
+```{r}
+sf_soil_pb %>% 
+  ggplot(aes(x = pop_density, y = Top5_Pb)) +
+  geom_point() +
+  
+  geom_smooth(method = "lm") +
+  
+  
+  scale_x_log10() +
+  scale_y_log10(limits = c(NA,1000)) 
+```
+
+```{r}
+sf_soil_pb %>% 
+  ggplot(aes(x = C_Pb, y = Top5_Pb)) +
+  geom_point() +
+  
+  geom_abline(slope = 1, intercept = 0, color = "blue") +
+  scale_x_log10() +
+  scale_y_log10()
+```
+
+
+
+```{r}
+sf_soil_pb %>% 
+  ggplot(aes(x = pop_density, y = Top5_Pb - C_Pb)) +
+  geom_point() +
+  
+  geom_smooth(method = "lm") +
+  
+  
+  scale_x_log10() +
+  scale_y_log10(limits = c(NA,1000)) 
+```
+
+
+```{r}
+sf_soil_pb %>% 
+  ggplot(aes(x = pop_density, y = Top5_C_ratio)) +
+  geom_point() +
+  
+  geom_smooth(method = "lm") +
+  
+  
+  scale_x_log10() +
+  scale_y_log10(limits = c(NA,10)) 
+```
+```{r}
+sf_soil_pb <- sf_soil_pb %>% 
+  mutate(Pb_diff = Top5_Pb - C_Pb)
+```
+
+
+
+```{r}
+tm_shape(us_borders, projection = 5070) +
+  
+  tm_fill("white") +
+  tm_borders(lwd = 3, col = "black") +
+  
+  #tm_shape(pop_raster) +
+  #tm_raster(style = "log10") +
+  
+  tm_shape(sf_soil_pb) +
+  tm_dots(col = "Pb_diff", style = "quantile", n = 7, palette = "-Spectral", size = 0.10) 
+```
+
+
+```{r}
+sf_soil_pb <- sf_soil_pb %>% 
+  mutate(Top5_Pb_log10 = log10(Top5_Pb),
+         pop_density_log10 = log10(pop_density),
+         C_Pb_log10 = log10(C_Pb)
+         )
+```
+
+
+
+```{r}
+pb_model <- lm(Top5_Pb_log10 ~ pop_density_log10 * LandCover1 + C_Pb_log10, data = sf_soil_pb)
+```
+
+```{r}
+moderndive::get_regression_table(pb_model)
+moderndive::get_regression_summaries(pb_model)
+```
+```{r}
+new <- sf_soil_pb %>% 
+  mutate(pop_density_log10 = 0)
+
+
+new$Top5_Pb_log10_pred <- predict(pb_model,new)
+```
+
+
+
+
+```{r}
+sf_soil_pb %>% 
+  ggplot(aes(x = pop_density, y = Top5_Pb)) +
+  geom_point() +
+  
+  geom_smooth(method = "lm") +
+  
+  
+  scale_x_log10() +
+  scale_y_log10(limits = c(NA,1000)) +
+  
+  facet_wrap(~ LandCover1, scales = "free_y")
+```
+
+
+```{r}
+sf_soil_pb %>% 
+  ggplot(aes(x = LandCover1, y = Top5_Pb)) +
+  geom_boxplot() +
+  scale_y_log10(limits = c(NA,500)) +
+  coord_flip()
+```
+
+
+```{r}
+
+sf_soil_pb %>% 
+  ggplot(aes(x = pop_density, y = Top5_Pb, color = LandCover1)) +
+  #geom_point() +
+  
+  geom_smooth(method = "lm", se = F) +
+  
+  
+  scale_x_log10() +
+  scale_y_log10(limits = c(NA,100)) 
+```
+
+
+```{r}
+sf_soil_pb %>% 
+  filter(StateID %in% c("MA", "NY", "NJ", "CT", "PA", "NH")) %>% 
+  ggplot(aes(x = pop_density, y = Top5_Pb)) +
+  geom_point() +
+  
+  geom_smooth(method = "lm") +
+  
+  
+  scale_x_log10() +
+  scale_y_log10() +
+  
+  facet_wrap(~ LandCover1, scales = "free_y")
+```
+
+
+
+## Examine data in NY
+
+```{r}
+sf_soil_pb %>% 
+  filter(StateID %in% c("NY")) %>% 
+  ggplot(aes(x = pop_density, y = Top5_Pb)) +
+  geom_point() +
+  
+  geom_smooth(method = "lm") +
+  
+  
+  scale_x_log10() +
+  #scale_y_log10() +
+  
+  facet_wrap(~ LandCover1, scales = "free_y")
+```
+
+
+```{r}
+library(tigris)
+```
+
+
+```{r}
+NY_counties <- counties(state = "NY", cb = TRUE) # cb = TRUE specifies to download a lower resolution file (faster download) 
+```
+
+```{r}
+NY_roads <- tigris::primary_roads()
+```
+
+
+
+```{r}
+NY_counties <- st_as_sf(NY_counties) # convert to an sf object
+
+NY_roads <- st_as_sf(NY_roads)
+```
+
+
+```{r}
+NY_counties %>% 
+  #filter(NAME == "Schenectady") %>% 
+  
+  tm_shape() +
+  tm_borders() +
+  
+  tm_shape(NY_roads) +
+  tm_lines() +
+  
+  tm_shape(sf_soil_pb) +
+  tm_dots(col = "Top5_Pb", style = "quantile", palette = "viridis", size = 0.75)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+

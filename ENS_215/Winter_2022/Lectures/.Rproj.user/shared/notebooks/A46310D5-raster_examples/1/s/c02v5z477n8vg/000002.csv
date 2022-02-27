@@ -1,0 +1,4 @@
+"0","climate_current <- getTerraClim(AOI, param = ""prcp"", startDate = ""2020-01-01"", endDate = ""2020-12-31"")"
+"2","Error in getTerraClim(AOI, param = ""prcp"", startDate = ""2020-01-01"", endDate = ""2020-12-31"") : 
+  TerraClim data only avaliable between 1958 and 2019
+"

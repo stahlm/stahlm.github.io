@@ -1,0 +1,1 @@
+"0","lulc_raster[is.na(lulc_raster)] <- 17"

@@ -1,0 +1,93 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+```{r}
+library(tidyverse)
+library(rnaturalearth)
+library(sf)
+library(tmap)
+
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+
+
+```{r}
+world <- ne_countries(scale = "large", returnclass = "sf")
+antarc <- world %>% filter(sovereignt == "Antarctica")
+
+```
+
+
+
+```{r}
+
+tm_shape(antarc, projection = 3031) +
+  tm_fill(col = "white") +
+  #tm_graticules(col = "black", alpha = 0.25) +
+  
+  tm_layout(bg.color = "lightblue")
+
+
+```
+
+
+```{r}
+calc_sea_temp <- function(df_in){
+  
+  df_out <- df_in %>% 
+    mutate(sea_temp = 16.9  -4.28*d18O)
+  
+}
+```
+
+
+```{r}
+df_coords <- tibble(lat = c(-77.5), long = c(163.5), site = "a") 
+
+df_coords <- df_coords %>% 
+  mutate(lat = as.numeric(lat),
+         long = as.numeric(long)
+         )
+```
+
+```{r}
+st_as_sf(df_coords, coords = c("long", "lat") )
+```
+
+
+
+```{r}
+calc_sea_temp(df_in)
+```
+
+
+
+
+
+
+S 77 deg 30 mins 56.5 secs (Lat)
+E 163 deg 29 min 56.3 secs (long)
+
+
+decimal degrees = deg + (mins/60) + (seconds/60^2)
+
+60*60
+
+
+
+
+
+
+
+

@@ -1,0 +1,515 @@
+---
+title: "Lab03_Stoltenberg"
+output: html_notebook
+author: Hailey Stoltenberg
+date: 1/25/2022
+---
+
+# Groundwater Arsenic Lab
+<br/>
+
+# Introduction
+
+<br/>
+
+In our increasingly industrial world, clean drinking water is threatened by a multitude of factors-- agricultural pesticides, city run-off, manufacturing pollution, and the list goes on. Although arsenic is a naturally occurring element, it can cause harm to ecosystems and human health in large quantities. Through human activities such as mining, fossil fuel combustion, and arsenic-containing pesticides, we have introduced a surplus of arsenic into the environment and, most alarmingly, into groundwater. According to the British Geologic Survey, almost 60 million people in Bangladesh are exposed to arsenic in their drinking water at a concentration exceeding the World Health Organization's guideline of 10ug L. 
+        There are natural mechanisms which release groundwater, and these are thought to be the primary processes introducing arsenic into drinking water. The processes responsible are still being researched but understanding of them has increased greatly over the past 20 years. A prominent theory involves iron oxides, which are thought to have picked up arsenic during water transport and desorbed them into the water supply (BGS). Arsenic contamination is one of the most pressing public health issues facing Bangladesh. Understanding the geochemistry behind arsenic in groundwater is vital for coming up with solutions to solve it. The following report explores how arsenic concentration relates to depth, time, and concentrations of other elements.
+        
+<br/>
+Source: British Geologic Survey. 2001. "Arsenic contamination of groundwater in Bangaldesh." Vol. 2. 
+<br/>
+
+
+# Examine the data
+
+```{r}
+library(tidyverse)
+
+bangladesh_gw <- read_csv("https://stahlm.github.io/ENS_215/Data/NationalSurveyData_DPHE_BGS_LabData.csv") # assign data to object
+```
+
+```{r}
+summary(bangladesh_gw) # get a summary of the data set
+```
+
+```{r}
+str(bangladesh_gw) # examine the structure of the data set
+```
+
+# Create additional variables
+
+<br/>
+
+## Categorical variable: depth
+
+```{r}
+bangladesh_gw <- bangladesh_gw %>% 
+  mutate(depth_cat = case_when(WELL_DEPTH_m <= 50 ~ "shallow",
+        WELL_DEPTH_m > 50 & WELL_DEPTH_m <= 100 ~ "intermediate",
+         WELL_DEPTH_m > 100 ~ "deep")) ## Create a categorical variable for well depth
+```
+
+```{r}
+bangladesh_gw <- 
+  mutate(
+    bangladesh_gw,
+    depth_cat =
+      factor(depth_cat, ordered = TRUE, levels = c("shallow", "intermediate", "deep")
+        )
+  ) # Reorder factors
+```
+
+## Categorical variable: arsenic
+
+
+```{r}
+bangladesh_gw <- bangladesh_gw %>% 
+  mutate(arsenic_cat = case_when(As_ugL <= 10 ~ "low arsenic",
+        As_ugL > 10 & As_ugL <= 50 ~ "medium arsenic",
+         As_ugL > 50 ~ "high arsenic")) ## Create a categorical variable for arsenic levels
+```
+
+Low arsenic is characterized as below the World Health Organization (WHO) guideline for arsenic in drinking water of 10 ugL. Medium arsenic is characterized as falling above the WHO guideline and below the Bangaldesh standard for arsenic in drinking water of 50 ugL. High arsenic is anything above the Bangladesh standard.
+
+```{r}
+bangladesh_gw <- 
+  mutate(
+    bangladesh_gw,
+    arsenic_cat =
+      factor(arsenic_cat, ordered = TRUE, levels = c("low arsenic", "medium arsenic", "high arsenic")
+        )
+  ) # Reorder factors
+```
+
+## Create summary tables
+<br/>
+
+### Geochemical overview
+
+```{r}
+geochem_summary <- 
+  bangladesh_gw %>%
+  summarize_at(
+    vars(
+      WELL_DEPTH_m, YEAR_CONSTRUCTION, As_ugL, Fe_mgL, Mn_mgL, SO4_mgL),
+      funs(median, mean),
+    na.rm = TRUE
+    ) # summarize mean and median for well depth, well contruction year, arsenic, iron, manganese, and sulfate
+```
+
+```{r}
+geochem_summary <- 
+  bangladesh_gw %>%
+  group_by(DIVISION) %>% 
+  summarize_at(
+    vars(
+      WELL_DEPTH_m, YEAR_CONSTRUCTION, As_ugL, Fe_mgL, Mn_mgL, SO4_mgL),
+      funs(median, mean),
+    na.rm = TRUE
+    ) %>% 
+  arrange(desc(As_ugL_mean))
+# Make same table but group by division
+```
+
+
+### Risk/exposure Assessment
+<br/>
+
+**Create a summary table describing the distribution of low, medium, and high arsenic wells by division.**
+```{r}
+division_risk_assessment <-
+  bangladesh_gw %>% 
+  group_by(DIVISION) %>% 
+  summarize_at(vars(arsenic_cat),
+    funs(num_wells = n(),
+         percent_low_As = sum(((arsenic_cat == "low arsenic")/num_wells)*100),
+         percent_med_As = sum(((arsenic_cat == "med arsenic")/num_wells)*100),
+         percent_high_As = sum(((arsenic_cat == "high arsenic")/num_wells)*100)
+  )) # create risk assessment for percent of arsenic categorical values and the total number of wells for each division
+```
+
+Chittagong has particularly widespread arsenic contamination, with 50% of their wells having high levels of arsenic. Additionally, 40% of wells in Khulna and 30% of wells in Dhaka have high arsenic. These are all significant amounts and require urgent remediation. In comparison, Rajshahi has a comparable number of wells to Dhaka but with lower amounts of arsenic contamination. For the division with the most wells, it is notable that Rajshahi has only 6% of those containing high levels of arsenic.
+
+**Create a summary table describing the distribution of low, medium, and high arsenic wells by depth category.**
+```{r}
+depth_risk_assessment <-
+  bangladesh_gw %>% 
+  group_by(depth_cat) %>% 
+  summarize_at(vars(arsenic_cat),
+    funs(num_wells = n(),
+         percent_low_As = sum(((arsenic_cat == "low arsenic")/num_wells)*100),
+         percent_med_As = sum(((arsenic_cat == "med arsenic")/num_wells)*100),
+         percent_high_As = sum(((arsenic_cat == "high arsenic")/num_wells)*100)
+  )) # create summary table same as last but group by depth category
+```
+
+It's clear that shallow and intermediate depth wells are at a higher risk for arsenic contamination. 28% of shallow wells and 23% of intermediate wells in Bangladesh have high arsenic levels, while only 10% of deep wells have high levels. Shallow wells are more susceptible to runoff contamination from agricultural and industrial production containing several kinds of pollutants.
+
+<br/>
+
+# Examine parameters related to groundwater arsenic levels.
+
+
+<br/>
+
+## Depth profiles
+
+
+<br/>
+
+**As vs. depth**
+```{r}
+As_depth_plot <-
+  bangladesh_gw %>% 
+  ggplot(aes(As_ugL, WELL_DEPTH_m)) + 
+  geom_point(alpha = 0.2, color = "steelblue1") +
+scale_y_reverse() + # create a plot for arsenic levels vs depth
+theme_bw() +
+  labs(title = "Arsenic vs. well depth",
+       x = "As (ugL)",
+       y = "Well Depth (m)",
+       caption = "Data source: British Geologic Society")
+
+As_depth_plot +
+  labs(title = "Figure 1. Arsenic vs. well depth")
+```
+
+```{r}
+arsenic_division_plot <- bangladesh_gw %>% 
+  ggplot(aes(x = As_ugL, y = WELL_DEPTH_m, color = DIVISION)) + 
+  geom_point(alpha = 0.5) + 
+  scale_y_reverse() +
+  facet_wrap(~DIVISION) + # create a plot of Arsenic vs. depth, faceted by division
+  theme_bw() +
+  scale_color_brewer(palette = "Set2") +
+  labs(title = "Figure 2. Arsenic vs. well depth in Bangladesh regions",
+       x = "As (ugL)",
+       y = "Well Depth (m)",
+       caption = "Data source: British Geologic Society")
+
+arsenic_division_plot
+```
+
+```{r}
+arsenic_division_plot +
+  ylim(100, 0)  # create a plot of Arsenic vs. depth, faceted by division, looking only at depths below 100m
+```
+**Does arsenic display any interesting depth patterns?**
+<br/>
+
+Arsenic contamination is higher at shallow levels. Interestingly, Sylhet does not show the same distribution pattern the other 5 divisions do, showing the high levels of contamination for shallow wells. However, it is important to note that Sylhet has the lowest number of wells at 260. Additionally, Barisal appears to have a greater number of deeper wells compared to other divisions, with few shallow and intermediate wells. Sylhet and Barisal have the smallest populations compared to the other divisions, which could be a factor in their distinct distribution patterns (https://en.wikipedia.org/wiki/Divisions_of_Bangladesh).
+
+<br/>
+**Think about depths that might be ideal and not-ideal for installing safe wells**
+<br/>
+
+It appears that there is greater number of shallow wells, most falling between the range of 25 to 100 meters deep. Deeper wells are more difficult to construct safely, which is most likely why there are fewer of them.
+<br/>
+
+# Fe, Mn, and SO~4~ vs. depth
+<br/>
+
+```{r}
+library(gridExtra) # load in gridExtra to help create plots
+```
+
+```{r}
+Fe_depth_plot <-
+  bangladesh_gw %>% 
+  ggplot(aes(x = Fe_mgL, y = WELL_DEPTH_m)) + 
+  geom_point(alpha = 0.2, color = "deeppink1") + 
+  scale_y_reverse() + # create a plot for Fe levels vs depth
+  theme_bw() +
+  labs(title = "Iron vs. well depth",
+       x = "Fe (mgL)",
+       y = "Well Depth (m)",
+       caption = "Data source: British Geologic Society")
+
+Fe_depth_plot +
+  labs(title = "Figure 3. Iron vs. well depth")
+```
+
+```{r}
+Mn_depth_plot <-
+  bangladesh_gw %>% 
+  ggplot(aes(x = Mn_mgL, y = WELL_DEPTH_m)) + 
+  geom_point(alpha = 0.2, color = "indianred2") + 
+  scale_y_reverse() + # create a plot for Mn levels vs depth
+  theme_bw() +
+  labs(title = "Manganese vs. well depth",
+       x = "Mn (mgL)",
+       y = "Well Depth (m)",
+       caption = "Data source: British Geologic Society")
+
+Mn_depth_plot +
+  labs(title = "Figure 4. Manganese vs. well depth")
+```
+
+```{r}
+SO4_depth_plot <-
+  bangladesh_gw %>% 
+  ggplot(aes(x = SO4_mgL, y = WELL_DEPTH_m)) + 
+  geom_point(alpha = 0.2, color = "lightgreen") + 
+  scale_y_reverse() + # create a plot for SO4 levels vs depth
+  theme_bw() +
+  labs(title = "Sulfate vs. well depth",
+       x = "SO4 (mgL)",
+       y = "Well Depth (m)",
+       caption = "Data source: British Geologic Society")
+
+SO4_depth_plot +
+  labs(title = "Figure 5. Sulfate vs. well depth")
+```
+
+```{r}
+grid.arrange(As_depth_plot, SO4_depth_plot, Mn_depth_plot, Fe_depth_plot)
+```
+**Do these parameters display any interesting depth patterns?**
+<br/>
+In each plot, there is a small gap in the data at intermediate depths, indicating that there are not many wells built at intermediate depths of around 200 feet deep. I'd be curious as to why that is. It could possibly have to do with policies surrounding the construction of wells. 
+
+<br/>
+**Are their depth patterns similiar? Are they similar to the arsenic depth pattern?**
+<br/>
+In the case of all the pollutants, contamination levels are higher for shallow wells than deep wells. There is less distribution in contamination levels at deeper depths. The manganese and iron plots look nearly identical to the Arsenic plot, while the sulfate plot shows much less distribution in contamination amount at shallow depths.
+
+<br/>
+**Do these depth patterns provide any insight into the processes/factors driving As mobilization?**
+<br/>
+
+
+<br/>
+
+# Relationships between parameters
+
+<br/>
+
+**As vs. Fe**
+
+```{r}
+As_Fe_plot <-
+bangladesh_gw %>% 
+  ggplot(aes(x = As_ugL, Fe_mgL, color = DIVISION)) + geom_point(alpha = 0.5) +
+  geom_smooth(aes(x = As_ugL, Fe_mgL), method = "lm") +
+  facet_wrap(~DIVISION) +
+  theme_bw() +
+  scale_color_brewer(palette = "Set3") +
+  labs(title = "Figure 6. Release of arsenic into groundwater via Iron oxides",
+       subtitle = "Fe vs. As",
+       x = "As (ugL)",
+       y = "Fe (mgL)",
+       caption = "Data source: British Geologic Survey") +
+      xlim(0, 1000) +
+      ylim(0, 10)
+
+As_Fe_plot
+```
+**How do As and Fe relate to one another?**
+<br/>
+As iron oxide increases, so do arsenic concentrations. This relationship is shown in each plot except for Sylhet, but that may be due to the small sample size for that region. 
+
+<br/>
+**Does the relationship conform with your expectations, based on what you’ve learned about As mobilization?**
+<br/>
+This observed relationship upholds what the literature suggests, which is that the presence of iron oxides in an area correlates to arsenic as the oxides most likely carry arsenic to groundwater sources (Fendorf et al., 2011). 
+
+<br/>
+Source: Fendorf et al. 2011. "Spatial and Temporal Variations of Groundwater Arsenic in South and Southeast Asia." Science 328, 1123.
+<br/>
+
+**As vs. Mn**
+
+```{r}
+As_Mn_plot <-
+bangladesh_gw %>% 
+  ggplot(aes(x = As_ugL, y = Mn_mgL, color = DIVISION)) + geom_point(alpha = 0.5) +
+  geom_smooth(aes(x = As_ugL, Fe_mgL), method = "lm") +
+  facet_wrap(~DIVISION) +
+  theme_bw() +
+  scale_color_brewer(palette = "Dark2") +
+  labs(title = "Figure 7. Manganese and arsenic in Bangladesh groundwater",
+       subtitle = "As vs. Mn",
+       x = "As (ugL)",
+       y = "Mn (mgL)",
+       caption = "Data source: British Geologic Survey") +
+      xlim(0, 500) +
+      ylim(0, 10)
+
+As_Mn_plot
+```
+Between Manganese and Arsenic we can see that there is not much correlation between the two. It appears that as arsenic concentrations increase, manganese concentrations stay relatively low in Khulna, Sylhet, Barisal, and Chittagong. Dhaka shows the most distribution, but still it appears that most wells have higher concentrations of either one or the other. Rajshahi appears to have a more spread-out distribtuion as well, but most wells are dominated by manganese with relatively low arsenic levels. Due to redox conditions, it has been found that manganese and arsenic contamination often occur together (Schaefer et al., 2020). Interestingly, these plots do not necessarily show that relationship.
+<br/>
+
+Source: Schaefer et al. 2020. "Manganese, Arsenic, and Carbonate Interactions in Model Oxic Groundwater Systems." Environmental Science Technology. 54(17):10621-10629. https://pubmed.ncbi.nlm.nih.gov/32786605/.
+<br/>
+
+
+**As vs. SO~4~**
+
+```{r}
+As_SO4_plot <-
+bangladesh_gw %>% 
+  ggplot(aes(x = As_ugL, y = SO4_mgL, color = DIVISION)) + geom_point(alpha = 0.5) +
+  geom_smooth(aes(x = As_ugL, Fe_mgL), method = "lm") +
+  facet_wrap(~DIVISION) +
+  theme_bw() +
+  scale_color_brewer(palette = "Paired") +
+  labs(title = "Figure 8. Arsenic release limited by sulfates",
+       subtitle = "As vs. SO4",
+       x = "As (ugL)",
+       y = "SO4 (mgL)",
+       caption = "Data source: British Geologic Survey") +
+      xlim(0, 1000) +
+      ylim(0, 10)
+
+As_SO4_plot
+```
+**How do As and SO4 relate to one another?**
+<br/>
+The presence of sulfate limits arsenic contamination. We can see in all 6 regions that there is little distribtuion throughout the middle of the plots, showing that there are either high levels of one or the other. However, we can see-- especially in Rajshahi, Sylhet, Dhaka, and Barisal-- that when there are high levels of sulfate the levels of arsenic in that well are low.
+
+<br/>
+**Does the relationship conform with your expectations, based on what you’ve learned about As mobilization?**
+<br/>
+Sulfate-reducing bacteria form sulfide which reacts to precipitate arsenic and iron, which removes arsenic from groundwater (Kirk et al., 2004; Fendorf et al., 2011). 
+
+
+<br/>
+Source: Kirk et al. 2004. "Bacterial sulfate reduction limits natural arsenic contamination in groundwater." Geological Society of America. https://www.gwb.com/pdf/pubs/Geology_As.pdf. 
+<br/>
+
+Fendorf et al. 2011. "Spatial and Temporal Variations of Groundwater Arsenic in South and Southeast Asia." Science 328, 1123.
+<br/>
+
+##Additional Analysis
+
+```{r}
+As_time <- 
+  bangladesh_gw %>% 
+  ggplot(aes(x = reorder(DIVISION, As_ugL), y = As_ugL)) +
+  geom_boxplot(fill = "magenta", alpha = 0.2) +
+  theme_bw() +
+  labs(title = "Figure 9. Arsenic contamination in Bangladesh regions",
+       subtitle = "Divisions vs. aresenic levels",
+       x = "Division",
+       y = "As (ugL)",
+       caption = "Data source: British Geologic Survey") +
+  ylim(0,750) 
+
+As_time
+```
+This box plot allows us to visualize arsenic contamination by region in a new way. We can see clearly that Chittagong has the highest levels and highest distribution of arsenic contaminationm, reiterating the results of the risk assessment by region we ran earlier. Additionally, Barisal and Rajshahi have very low mean levels of arsenic but also have many outlier data points. 
+
+
+```{r}
+bangladesh_gw <- bangladesh_gw %>% 
+  mutate(aluminum_cat = case_when(Al_mgL <= 0.1 ~ "low aluminum",
+        Al_mgL > 0.1 & Al_mgL <= 0.2 ~ "medium aluminum",
+         Al_mgL > 0.2 ~ "high aluminum")) ## Create a categorical variable for arsenic levels
+```
+
+```{r}
+bangladesh_gw <- 
+  mutate(
+    bangladesh_gw,
+    arsenic_cat =
+      factor(aluminum_cat, levels = c("low aluminum", "medium aluminum", "high aluminum", ordered = TRUE)
+        )
+  ) # Reorder factors
+```
+
+```{r}
+aluminum_levels <- 
+  na.omit(bangladesh_gw) %>% 
+  ggplot(aes(Al_mgL, WELL_DEPTH_m, color = aluminum_cat)) +
+  geom_point(alpha = 0.5) +
+  facet_wrap(~DIVISION) +
+  xlim(0, 4) +
+  scale_y_reverse() +
+  theme_bw() +
+  scale_color_brewer(palette = "RdYlGn") +
+  labs(title = "Figure 10. Aluminum contamination in Bangladesh regions",
+       subtitle = "Divisions vs. aluminum levels",
+       x = "Division",
+       y = "Al (mgL)",
+       caption = "Data source: British Geologic Survey")
+
+aluminum_levels
+```
+Aluminum levels were categorized based on WHO guidelines, which recommend maximum aluminum levels in drinking water to be between 0.1-0.2mgL. 
+<br/>
+
+Aluminum poses a high risk to dialysis patients, because it can accumulate when the kidneys are not functioning properly, possibly increasing a patient's likelihood to develop dementia (WQA, 2013). We can see that Bangladesh does not struggle as much with aluminum as the country struggles with arsenic. However, there are still many wells with medium and high levels of aluminum. It is worth nothing that in Barisal there are a cluster of deep wells with high arsenic levels. This may be due to mining, allowing metals to enter groundwater aquifers. For the most part, though, we see the same distribution with other contaminants, where higher contaminant levels are found in shallow wells.
+
+<br/>
+Source: Water Quality Association (WQA). 2013. "Aluminum Fact Sheet." https://www.wqa.org/portals/0/technical/technical%20fact%20sheets/2014_aluminum.pdf. 
+
+```{r}
+As_time <- 
+  bangladesh_gw %>% 
+  ggplot(aes(YEAR_CONSTRUCTION, As_ugL, color = depth_cat)) +
+  geom_jitter(height = 0, alpha = 0.5) +
+  xlim(1960, 2000) +
+  ylim(0, 1000) +
+  theme_bw() +
+  scale_color_brewer(palette = "GnBu") +
+  labs(title = "Figure 11. Arsenic contamination in wells built from 1960-2000",
+       subtitle = "Arsenic levels vs. year of well construction",
+       x = "Year of Construction",
+       y = "As (ugL)",
+       caption = "Data source: British Geologic Society")
+  
+As_time
+```
+
+We can also see, again, that shallow and intermediate wells have higher levels of contamination than deeper wells. Figure 11 shows higher levels of arsenic contamination in wells constructed more recently. Additionally, we can see that as time goes on, arsenic levels have increased.
+
+```{r}
+year_depth <-
+  na.omit(bangladesh_gw) %>% 
+  ggplot(aes(YEAR_CONSTRUCTION, WELL_DEPTH_m, color = arsenic_cat)) +
+  geom_jitter(height = 0, alpha = 0.3) +
+  theme_bw() +
+  scale_color_brewer(palette = "YlOrRd") +
+  labs(title = "Figure 12. Deep wells were built starting in the 1990s",
+       subtitle = "Well depth vs. year of construction",
+       x = "Year of Construction",
+       y = "Well Depth (m)",
+       caption = "Data Source: British Geologic Survey") +
+  xlim(1960, 2000) +
+  scale_y_reverse()
+
+year_depth
+```
+Figure 12 elaborates on the information presented in Figure 11. We witness a distinct increase in deep-well construction during the 1990s. Whereas in Figure 11 one may have assumed that arsenic has begun to infiltrate deeper wells over time, Figure 12 makes it clear that not many deep wells even existed until later decades. This most likely goes back to the fact that until technological advances were made, it was not safe to build deeper wells. Additionally, Figure 12 reiterates what Figure 11 did in that higher levels of aluminum are present in the late 20th century. 
+<br/>
+
+## Conclusion
+<br/>
+
+        Arsenic contamination presents a large health and environmental risk to Bangladesh. Exposure to arsenic in drinking water can cause liver cancer, bladder cancer, lung cancer, cardiovascular disease, and can disrupt mental development of children (Fendorf et al., 2011). The region has grappled with the contamination for decades, but scientists are working hard to find a treatment. Through our analysis, it is clear that shallow wells are at high risk for dangerous levels of arsenic contamination. One solution that has been presented to Bangladesh is to draw drinking water from deep aquifers that have a lower risk for contamination (Fendorf et al., 2011). Certainly, the main priority for public health measures is to test aquifers and wells frequently for contamination. There should be increased public access to at-home testing kits and efforts to dig new wells in areas less likely to be contaminated. Additionally, access to healthcare should be ensured to populations at high risk of arsenic-related illness. It is important that these initiatives reach rural areas, as tubewells-- where the contamination was first discovered-- is the main source of drinking water in rural Bangladesh (Ahmad et al., 2018). With targeted and efficient assistance, millions of people can live longer, healthier lives.
+        
+<br/>
+
+##References
+<br/>
+
+Ahmad et al. 2018. "Arsenic contamination in groundwater in Bangladesh: implications and challenges for healthcare policy." Risk Management Healthcare Policy. 11:251-261. https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6281155/. 
+<br/>
+
+British Geologic Survey. 2001. "Arsenic contamination of groundwater in Bangaldesh." Vol. 2. 
+<br/>
+
+Fendorf et al. 2011. "Spatial and Temporal Variations of Groundwater Arsenic in South and Southeast Asia." Science 328, 1123.
+<br/>
+
+Kirk et al. 2004. "Bacterial sulfate reduction limits natural arsenic contamination in groundwater." Geological Society of America. https://www.gwb.com/pdf/pubs/Geology_As.pdf.
+<br/>
+
+Schaefer et al. 2020. "Manganese, Arsenic, and Carbonate Interactions in Model Oxic Groundwater Systems." Environmental Science Technology. 54(17):10621-10629. https://pubmed.ncbi.nlm.nih.gov/32786605/.
+<br/>
+
+Water Quality Association (WQA). 2013. "Aluminum Fact Sheet." https://www.wqa.org/portals/0/technical/technical%20fact%20sheets/2014_aluminum.pdf. 
+<br/>
+
+Wikipedia Contributors. 2022. "Divisions of Bangladesh." https://en.wikipedia.org/w/index.php?title=Special:CiteThisPage&page=Divisions_of_Bangladesh&id=1068958995&wpFormIdentifier=titleform. 

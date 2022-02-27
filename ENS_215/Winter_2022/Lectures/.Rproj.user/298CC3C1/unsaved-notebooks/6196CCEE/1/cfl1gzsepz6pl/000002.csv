@@ -1,0 +1,6 @@
+"0","df_coords <- tibble(lat = c(-77.5), long = c(163.5), site = ""a"") "
+"0",""
+"0","df_coords <- df_coords %>% "
+"0","  mutate(lat = as.numeric(lat),"
+"0","         long = as.numeric(long)"
+"0","         )"

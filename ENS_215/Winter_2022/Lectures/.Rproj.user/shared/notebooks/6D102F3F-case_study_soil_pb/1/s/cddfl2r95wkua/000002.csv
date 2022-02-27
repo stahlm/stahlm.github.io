@@ -1,0 +1,4 @@
+"0","df_soil_all <- df_soil_pb %>% "
+"0","  left_join(df_Chorizon_pb)"
+"2","Joining, by = ""SiteID""
+"

@@ -1,0 +1,1 @@
+"0","lulc_raster[lulc_raster > 100 & lulc_raster < 255] <- NA"

@@ -1,0 +1,32 @@
+{
+    "id": "C6DC5D7B",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1645802178507.0,
+    "source_on_save": false,
+    "relative_order": 13,
+    "properties": {
+        "expression": "df_coords",
+        "caption": "df_coords",
+        "totalObservations": "1",
+        "displayedObservations": "1",
+        "variables": "2",
+        "cacheKey": "BE02A9B4",
+        "object": "df_coords",
+        "environment": "",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=df_coords&cache_key=BE02A9B4&max_cols=50",
+        "preview": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 7307491043415436322,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1645802178507,
+    "read_only": false,
+    "read_only_alternatives": []
+}

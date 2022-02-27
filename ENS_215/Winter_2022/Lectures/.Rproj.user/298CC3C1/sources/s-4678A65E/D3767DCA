@@ -1,0 +1,32 @@
+{
+    "id": "D3767DCA",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1645829121335.0,
+    "source_on_save": false,
+    "relative_order": 17,
+    "properties": {
+        "expression": "df_Chorizon_pb",
+        "caption": "df_Chorizon_pb",
+        "totalObservations": 4782,
+        "displayedObservations": 4782,
+        "variables": 2,
+        "cacheKey": "0D47B9F2",
+        "object": "df_Chorizon_pb",
+        "environment": "",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=df_Chorizon_pb&cache_key=0D47B9F2&max_cols=50",
+        "preview": 0
+    },
+    "folds": "",
+    "lastKnownWriteTime": 28429462281715828,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1645829121335,
+    "read_only": false,
+    "read_only_alternatives": []
+}

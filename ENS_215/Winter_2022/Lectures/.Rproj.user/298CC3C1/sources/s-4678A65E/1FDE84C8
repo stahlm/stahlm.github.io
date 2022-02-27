@@ -1,0 +1,32 @@
+{
+    "id": "1FDE84C8",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1645803887877.0,
+    "source_on_save": false,
+    "relative_order": 10,
+    "properties": {
+        "expression": "state_cap_locs",
+        "caption": "state_cap_locs",
+        "totalObservations": 48,
+        "displayedObservations": 48,
+        "variables": 3,
+        "cacheKey": "A8A189B0",
+        "object": "state_cap_locs",
+        "environment": "",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=state_cap_locs&cache_key=A8A189B0&max_cols=50",
+        "preview": 0
+    },
+    "folds": "",
+    "lastKnownWriteTime": 28429462281715828,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1645803887877,
+    "read_only": false,
+    "read_only_alternatives": []
+}

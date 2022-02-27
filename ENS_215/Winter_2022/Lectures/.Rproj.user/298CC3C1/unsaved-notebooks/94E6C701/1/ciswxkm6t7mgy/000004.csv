@@ -1,0 +1,3 @@
+"0","lulc <- raster::extract(lulc_raster, arg_border)"
+"2","Discarded datum Unknown based on WGS84 ellipsoid in CRS definition"
+"0","lulc <- unlist(lulc)"

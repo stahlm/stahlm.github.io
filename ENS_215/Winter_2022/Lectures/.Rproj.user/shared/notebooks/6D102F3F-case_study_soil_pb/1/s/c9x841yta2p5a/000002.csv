@@ -1,0 +1,3 @@
+"0",""
+"0","sf_soil_pb$pop_density <- raster::extract(pop_raster, sf_soil_pb, fun = mean, na.rm = T)"
+"0",""

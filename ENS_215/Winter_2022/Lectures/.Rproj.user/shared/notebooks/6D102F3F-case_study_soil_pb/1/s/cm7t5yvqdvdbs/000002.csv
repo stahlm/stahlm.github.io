@@ -1,0 +1,1 @@
+"0","pop_raster[pop_raster > 50000] <- NA"

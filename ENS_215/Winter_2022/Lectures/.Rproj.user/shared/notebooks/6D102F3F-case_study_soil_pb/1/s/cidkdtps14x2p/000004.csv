@@ -1,0 +1,37 @@
+"0","df_soil_pb <- read_csv(""./Data/USGS_DS801_top5cm_soil_Pb.csv"") %>% "
+"0","  filter(!is.na(Top5_Pb))"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m---------------------------------------------------------------------------------------------------------------[39m
+cols(
+  Top5_LabID = [31mcol_character()[39m,
+  SiteID = [32mcol_double()[39m,
+  StateID = [31mcol_character()[39m,
+  Latitude = [32mcol_double()[39m,
+  Longitude = [32mcol_double()[39m,
+  CollDate = [31mcol_character()[39m,
+  LandCover1 = [31mcol_character()[39m,
+  LandCover2 = [31mcol_character()[39m,
+  Top5_Depth = [31mcol_character()[39m,
+  Top5_Pb = [32mcol_double()[39m
+)
+
+"
+"0","df_Chorizon_pb <- read_csv(""./Data/USGS_DS801_Chorizon_soil_Pb.csv"") %>% "
+"0","  filter(!is.na(C_Pb)) %>% "
+"0","  select(SiteID, C_Pb)"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m---------------------------------------------------------------------------------------------------------------[39m
+cols(
+  C_LabID = [31mcol_character()[39m,
+  SiteID = [32mcol_double()[39m,
+  StateID = [31mcol_character()[39m,
+  Latitude = [32mcol_double()[39m,
+  Longitude = [32mcol_double()[39m,
+  CollDate = [31mcol_character()[39m,
+  LandCover1 = [31mcol_character()[39m,
+  LandCover2 = [31mcol_character()[39m,
+  C_Depth = [31mcol_character()[39m,
+  C_Pb = [32mcol_double()[39m
+)
+
+"

@@ -1,0 +1,94 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+library()
+```{r}
+library(tidyverse)
+library(sf)
+library(tmap)
+```
+
+
+
+```{r}
+lulc_raster <- raster::raster("./Data/MCD12C1_T1_2011-01-01_rgb_3600x1800.TIFF")
+```
+
+```{r}
+lulc_raster[is.na(lulc_raster)] <- 17
+```
+
+
+```{r}
+lulc_raster[lulc_raster > 100 & lulc_raster < 255] <- NA
+```
+
+```{r}
+raster::plot(lulc_raster)
+```
+
+
+```{r}
+world_borders <- rnaturalearth::ne_countries(scale = "large", returnclass = "sf")
+```
+
+https://lpdaac.usgs.gov/documents/101/MCD12_User_Guide_V6.pdf
+```{r}
+lulc_pal <- c("#218A21",
+              "#32CD31",
+              "#9ACD32",
+              "#99F997",
+              "#90BB8E",
+              "#BC8E90",
+              "#F5DEB4",
+              "#DAEB9D",
+              "#FFD600",
+              "#F0B768",
+              "#4683B2",
+              "#F9ED73",
+              "#FE0000",
+              "#979354",
+              "#FFFFF9",
+              "#BDBDBD",
+              "#181880"
+              )
+```
+
+
+```{r}
+tm_shape(lulc_raster) +
+  tm_raster(style = "cat", palette = lulc_pal) +
+  
+  tm_shape(world_borders) +
+  tm_borders()
+```
+
+```{r}
+arg_border <- world_borders %>% 
+  filter(name == "Congo")
+```
+
+
+```{r}
+lulc <- raster::extract(lulc_raster, arg_border)
+
+lulc <- unlist(lulc)
+```
+
+```{r}
+b <- as.data.frame(lulc)
+```
+
+```{r}
+b %>% 
+  group_by(lulc) %>% 
+  summarize(n_pixels = n()) %>% 
+  ungroup() %>% 
+  mutate(lulc_frac = 100*n_pixels/sum(n_pixels)) %>% 
+  arrange(-lulc_frac)
+```
+
+

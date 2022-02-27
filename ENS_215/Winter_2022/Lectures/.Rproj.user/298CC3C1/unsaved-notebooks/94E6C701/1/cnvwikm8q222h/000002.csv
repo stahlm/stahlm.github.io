@@ -1,0 +1,1 @@
+"0","lulc_raster <- raster::raster(""./Data/MCD12C1_T1_2011-01-01_rgb_3600x1800.TIFF"")"

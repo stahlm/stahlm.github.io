@@ -1,0 +1,5 @@
+"0","sf_soil_pb <- sf_soil_pb %>% "
+"0","  mutate(Top5_Pb_log10 = log10(Top5_Pb),"
+"0","         pop_density_log10 = log10(pop_density),"
+"0","         C_Pb_log10 = log10(C_Pb)"
+"0","         )"
