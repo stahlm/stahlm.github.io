@@ -1,5 +1,0 @@
-"0","raster_world_elev_with_ocean <- raster::raster(""https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Winter_2022/Lectures/Data/World_elev.TIFF"")"
-"0",""
-"0","raster_world_elev_with_ocean[raster_world_elev_with_ocean == 99999] <- 0"
-"0",""
-"0","raster::plot(raster_world_elev_with_ocean)"

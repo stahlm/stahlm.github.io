@@ -1,8 +1,0 @@
-"0","raster_day_temps <- raster(""https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Winter_2022/Lectures/Data/Day_temp_2001_march.tif"")"
-"0","raster_day_temps[raster_day_temps == 99999] <- NA"
-"0",""
-"0","raster_night_temps <- raster(""https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Winter_2022/Lectures/Data/Night_temp_2001_march.TIFF"")"
-"0","raster_night_temps[raster_night_temps == 99999] <- NA"
-"0",""
-"0","# Data from: https://neo.sci.gsfc.nasa.gov/view.php?datasetId=MOD_LSTD_CLIM_M"
-"0","# Data from: https://neo.sci.gsfc.nasa.gov/view.php?datasetId=MOD_LSTN_CLIM_M"

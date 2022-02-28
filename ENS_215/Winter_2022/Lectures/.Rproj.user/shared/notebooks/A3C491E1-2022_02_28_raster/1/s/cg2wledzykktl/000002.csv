@@ -1,1 +1,0 @@
-"0","raster_world_elev[raster_world_elev == 99999] <- NA"

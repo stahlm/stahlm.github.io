@@ -1,1 +1,0 @@
-"0","r_schdy <- raster::terrain(elevation, opt = ""slope"", unit = ""degrees"")"

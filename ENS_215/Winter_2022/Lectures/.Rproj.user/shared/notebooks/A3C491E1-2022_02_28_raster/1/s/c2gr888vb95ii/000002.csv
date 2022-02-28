@@ -1,8 +1,0 @@
-"0","tm_shape(raster_world_elev) +"
-"0","  tm_raster(style = ""cont"") +"
-"0",""
-"0","tm_shape(borders_data) +"
-"0","  tm_borders() +"
-"0","  tm_layout(legend.position = c(""LEFT"", ""center""))"
-"2","stars object downsampled to 1414 by 707 cells. See tm_shape manual (argument raster.downsample)
-"

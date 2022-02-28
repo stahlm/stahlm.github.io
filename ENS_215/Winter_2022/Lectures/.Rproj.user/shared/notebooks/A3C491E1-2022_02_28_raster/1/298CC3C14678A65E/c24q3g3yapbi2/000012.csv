@@ -1,5 +1,0 @@
-"0","tm_shape(r_schdy_slope) +"
-"0","  tm_raster(style = ""quantile"", n = 10) +"
-"0","  tm_layout(legend.outside = T)"
-"2","stars object downsampled to 1134 by 882 cells. See tm_shape manual (argument raster.downsample)
-"

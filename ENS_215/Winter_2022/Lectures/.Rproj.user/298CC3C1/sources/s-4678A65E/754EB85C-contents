@@ -53,16 +53,15 @@ loc2use <- aoi_get(x = list("Schenectady, NY",5,5) )
 
 
 ```{r message=FALSE, warning=FALSE, echo = F}
-elevation <- get_elev_raster(loc2use, z = 14, clip = "bbox")
+#elevation <- get_elev_raster(loc2use, z = 14, clip = "bbox")
 
 #writeRaster(elevation, "./elevation_schdy.tiff")
+
+elevation <- raster::raster("https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Winter_2022/Lectures/Data/elevation_schdy.tif")
 ```
 
 
 
-```{r message=FALSE, warning=FALSE, echo = F}
-names(elevation) <- "elev_m"
-```
 
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
@@ -397,7 +396,7 @@ Check out the help file for `tm_raster` to see additional options.
 We've just scratched the surface with what you can do with the analysis of raster data, though this should give you the tools to many important analysis and to learn additional techniques outside of class.  
 
 
-### Exercise 
+### Exercise: World elevations 
 You are interested in studying high elevation habitats and you would like to identify the areas of the world that would be ideal for your research.  Make a world map where that shows the borders of every country with the the countries filled in with a solid color.  Overlain on this map show areas of the world that have an elevation > 1500 m.  
 
 If you have time, use the skills you learned earlier this week to make your map look nice.  Also try making some additional maps with the world elevation data if you have time.  
@@ -425,17 +424,58 @@ tm_shape(borders_data) +
 
 <br/>
 
-As a last exercise use a raster(s) from today's lecture to perform analysis of your own choosing.  Let me know if you want to try something but aren't sure how to move forward.  I can also point you to additional data.  
+### Terrain analysis: Schenectady example
+For the final activity in today's class I want to introduce you to the `terrain()` function from the raster package.  This function computes terrain characteristics on an elevation raster.  In particular, you can use the `terrain()` function to compute the slope and aspect (i.e., direction a sloped surface faces) at each pixel.  The `terrain` function also allows for the calculation of a number of other terrain characteristics (see the help file for additional info).  
 
 
+First let's load in a raster with elevation data for Schenectady.  
+
+```{r}
+elevation <- raster::raster("https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Winter_2022/Lectures/Data/elevation_schdy.tif")
+```
+
+<br/>
+
+Slope and aspect have a wide range of hydrologic, ecologic, and engineering applications, so let's go ahead and calculate these values for the Schenectady elevation data.  
+
+
+To calculate the slope, we pass the `elevation` raster to the `terrain()` function.  You'll see that to compute the slope we set the `opt = "slope"`.  Also note that we've set the units to degrees, so that the values returned for the slope are in degrees.  
 ```{r}
 r_schdy_slope <- raster::terrain(elevation, opt = "slope", unit = "degrees")
 ```
 
+
+Now let's compute the aspect.  We do this by setting `opt = "aspect"`  
 ```{r}
 r_schdy_aspect <- raster::terrain(elevation, opt = "aspect", unit = "degrees")
 ```
 
+
+Let's  plot the slope and aspect rasters to see what they look like
+```{r}
+tm_shape(r_schdy_slope) +
+  tm_raster(style = "quantile", n = 10) +
+  tm_layout(legend.outside = T)
+```
+
+<br/>
+
+
+```{r}
+tm_shape(r_schdy_aspect) +
+  tm_raster(n = 10) +
+  tm_layout(legend.outside = T)
+```
+
+
+<br/>
+
+
+Note that an aspect of 0 degrees indicates that the surface faces north, an aspect of 90 degrees is east, 180 is west,...   
+
+Since the aspect is the direction that a sloping face is pointed, the aspect is less meaningful in relatively flat areas.  Let's create a new raster that has values equal to the aspect when the slope is above a threshold of 1 degree and has a value of `NA` when the slope is less than 1 degree.  
+
+To do this we will first create a raster that has a binary flag (1 if slope >= 1 degree, 0 if slope < 1 degree).  Recall how we replaced raster values in the world elevation raster at the beginning of the lecture.  We'll apply that same approach to create a raster with this binary flag.  
 
 ```{r}
 r_schdy_slope_flag <- r_schdy_slope
@@ -447,27 +487,43 @@ r_schdy_slope_flag[r_schdy_slope_flag >= 1] <- 1
 ```
 
 
-```{r}
-r_schdy_slope_flag
-```
-
+Let's take a look at the binary flag raster that we've created
 
 ```{r}
-tm_shape(r_schdy_slope) +
-  tm_raster(style = "quantile", n = 10) +
+tm_shape(r_schdy_slope_flag) +
+  tm_raster(colorNA = "grey") +
   tm_layout(legend.outside = T)
 ```
 
+
+You can see that the areas with a slope < 1 degree (flat areas) have NA values (show up grey) and areas with slopes greater than 1 degree all have a value of 1 (show up as tan).  
+
+Now let's create a raster that has the aspect for all pixels with slopes > 1 degree and has values of NA for all other pixels.  This is easy to do since we can simply multiply our `r_schdy_aspect` raster by the `r_schdy_slope_flag` raster.  
+
 ```{r}
-raster::hist(r_schdy_slope)
+r_schdy_aspect_steep <- r_schdy_slope_flag*r_schdy_aspect
 ```
 
 
+<br/> 
+
+
 ```{r}
-tm_shape(r_schdy_slope_flag*r_schdy_aspect) +
+tm_shape(r_schdy_aspect_steep) +
   tm_raster(n = 12, colorNA = "grey") +
   tm_layout(legend.outside = T)
 ```
+
+
+
+
+<br/>
+
+
+### Additional activities  
+
+We will see some additional topics in spatial and raster analysis in the coming lectures, though this is a large topic and we will just scratch the surface in this class.  Let me know if you want to try something else but aren't sure how to move forward.  I can also point you to additional data.  A great place to quickly find some interesting rasters is at [NASA Earth Observation website](https://neo.gsfc.nasa.gov/dataset_index.php).  You can quickly view rasters and download data for preliminary analysis at this site.  The site also provides information and links to the research quality versions of the data if you are interested (though for most initial analysis the data on the link I provide are sufficient).  
+
 
 
  
