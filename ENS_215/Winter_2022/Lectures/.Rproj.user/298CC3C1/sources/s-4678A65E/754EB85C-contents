@@ -54,7 +54,11 @@ loc2use <- aoi_get(x = list("Schenectady, NY",5,5) )
 
 ```{r message=FALSE, warning=FALSE, echo = F}
 elevation <- get_elev_raster(loc2use, z = 14, clip = "bbox")
+
+#writeRaster(elevation, "./elevation_schdy.tiff")
 ```
+
+
 
 ```{r message=FALSE, warning=FALSE, echo = F}
 names(elevation) <- "elev_m"
@@ -77,7 +81,7 @@ We often encounter geographic raster data in the environmental sciences -- in pa
 
 Let's load in a raster of the world's topography (elevation).  FYI, this raster reports elevation in units of meters. 
 ```{r}
-raster_world_elev <- raster("./Spatial_data/World_elev.TIFF")
+raster_world_elev <- raster("https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Winter_2022/Lectures/Data/World_elev.TIFF")
 
 # Data was obtained from: https://neo.sci.gsfc.nasa.gov/view.php?datasetId=SRTM_RAMP2_TOPO
 ```
@@ -140,7 +144,7 @@ You can see that we have fixed the issue.
     + Then compute the mean and maximum elevations of the Earth's topographic data.  
     
 ```{r echo=FALSE ,eval=FALSE}
-raster_world_elev_with_ocean <- raster::raster("./Spatial_data/World_elev.TIFF")
+raster_world_elev_with_ocean <- raster::raster("https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Winter_2022/Lectures/Data/World_elev.TIFF")
 
 raster_world_elev_with_ocean[raster_world_elev_with_ocean == 99999] <- 0
 
@@ -219,10 +223,11 @@ We also often need to compute values based on several rasters.  For instance we 
 
 Let's work with an example involving just two rasters.  Here we will load in a raster of the average daytime temperatures for March and a raster of the average nighttime temperatures for March (units are degrees C).  
 ```{r}
-raster_day_temps <- raster("./Spatial_data/Day_temp_2001_march.tif")
+raster_day_temps <- raster("https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Winter_2022/Lectures/Data/Day_temp_2001_march.tif")
 raster_day_temps[raster_day_temps == 99999] <- NA
 
-raster_night_temps <- raster("./Spatial_data/Night_temp_2001_march.TIFF")
+raster_night_temps <- raster("https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Winter_2022/Lectures/Data/Night_temp_2001_march.TIFF")
+
 raster_night_temps[raster_night_temps == 99999] <- NA
 
 # Data from: https://neo.sci.gsfc.nasa.gov/view.php?datasetId=MOD_LSTD_CLIM_M
@@ -274,13 +279,13 @@ To reclassify the raster we will need to define a matrix that has the upper and 
 
 ```{r}
 reclass_df <- c(-Inf, 3, 1,
-              3, 6, 2,
-             6, 15, 3,
-             15, Inf, 4)
+                3, 6, 2,
+                6, 15, 3,
+                15, Inf, 4)
 
 reclass_m <- matrix(reclass_df,
-                ncol = 3,
-                byrow = TRUE)
+                    ncol = 3,
+                    byrow = TRUE)
 
 reclass_m
 ```
@@ -362,6 +367,9 @@ So far we've just been mapping the rasters using the very basic (but easy and qu
 As you already know the basics of `tmap`, adding a raster is very easy.  We simply use the `tm_raster()` function.  
 
 Let's make a map with the borders of every country and the global elevation raster
+
+
+
 ```{r}
 tm_shape(raster_world_elev) +
   tm_raster() +
@@ -418,6 +426,48 @@ tm_shape(borders_data) +
 <br/>
 
 As a last exercise use a raster(s) from today's lecture to perform analysis of your own choosing.  Let me know if you want to try something but aren't sure how to move forward.  I can also point you to additional data.  
+
+
+```{r}
+r_schdy_slope <- raster::terrain(elevation, opt = "slope", unit = "degrees")
+```
+
+```{r}
+r_schdy_aspect <- raster::terrain(elevation, opt = "aspect", unit = "degrees")
+```
+
+
+```{r}
+r_schdy_slope_flag <- r_schdy_slope
+
+r_schdy_slope_flag[r_schdy_slope_flag < 1] <- NA
+r_schdy_slope_flag[r_schdy_slope_flag >= 1] <- 1
+
+
+```
+
+
+```{r}
+r_schdy_slope_flag
+```
+
+
+```{r}
+tm_shape(r_schdy_slope) +
+  tm_raster(style = "quantile", n = 10) +
+  tm_layout(legend.outside = T)
+```
+
+```{r}
+raster::hist(r_schdy_slope)
+```
+
+
+```{r}
+tm_shape(r_schdy_slope_flag*r_schdy_aspect) +
+  tm_raster(n = 12, colorNA = "grey") +
+  tm_layout(legend.outside = T)
+```
 
 
  

@@ -1,0 +1,2 @@
+"0","raster_temps_diff_reclass <- raster::reclassify(raster_temps_diff,"
+"0","                                                reclass_df)"

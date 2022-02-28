@@ -1,0 +1,6 @@
+"0","r_schdy_slope_flag <- r_schdy_slope"
+"0",""
+"0","r_schdy_slope_flag[r_schdy_slope_flag < 1] <- NA"
+"0","r_schdy_slope_flag[r_schdy_slope_flag >= 1] <- 1"
+"0",""
+"0",""
