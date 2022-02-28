@@ -1,0 +1,4 @@
+"0","forests_raster <- lulc_raster"
+"0",""
+"0","forests_raster[forests_raster <= 4] <- 1"
+"0","forests_raster[forests_raster > 4] <- 0"

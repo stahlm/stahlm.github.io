@@ -1,8 +1,0 @@
-"0","b %>% "
-"0","  group_by(lulc) %>% "
-"0","  summarize(n_pixels = n()) %>% "
-"0","  ungroup() %>% "
-"0","  mutate(lulc_frac = 100*n_pixels/sum(n_pixels)) %>% "
-"0","  arrange(-lulc_frac)"
-"2","`summarise()` ungrouping output (override with `.groups` argument)
-"

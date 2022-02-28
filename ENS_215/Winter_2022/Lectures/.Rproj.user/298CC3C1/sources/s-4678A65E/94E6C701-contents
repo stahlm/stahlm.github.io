@@ -14,7 +14,9 @@ library(tmap)
 
 
 ```{r}
-lulc_raster <- raster::raster("./Data/MCD12C1_T1_2011-01-01_rgb_3600x1800.TIFF")
+# lulc_raster <- raster::raster("./Data/MCD12C1_T1_2011-01-01_rgb_3600x1800.TIFF")
+
+lulc_raster <- raster::raster("https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Winter_2022/Lectures/Data/MCD12C1_T1_2011-01-01_rgb_3600x1800.TIFF")
 ```
 
 ```{r}
@@ -67,8 +69,13 @@ tm_shape(lulc_raster) +
 ```
 
 ```{r}
+unique(world_borders$continent)
+```
+
+
+```{r}
 arg_border <- world_borders %>% 
-  filter(name == "Congo")
+  filter(name == "Brazil")
 ```
 
 
@@ -79,11 +86,11 @@ lulc <- unlist(lulc)
 ```
 
 ```{r}
-b <- as.data.frame(lulc)
+lulc <- as.data.frame(lulc)
 ```
 
 ```{r}
-b %>% 
+lulc %>% 
   group_by(lulc) %>% 
   summarize(n_pixels = n()) %>% 
   ungroup() %>% 
@@ -91,4 +98,22 @@ b %>%
   arrange(-lulc_frac)
 ```
 
+
+```{r}
+forests_raster <- lulc_raster
+
+forests_raster[forests_raster <= 4] <- 1
+forests_raster[forests_raster > 4] <- 0
+```
+
+
+```{r}
+other_borders <- world_borders %>% 
+  filter(continent == "South America")
+```
+
+
+```{r}
+a <- raster::extract(forests_raster, other_borders, fun = mean, df = T)
+```
 

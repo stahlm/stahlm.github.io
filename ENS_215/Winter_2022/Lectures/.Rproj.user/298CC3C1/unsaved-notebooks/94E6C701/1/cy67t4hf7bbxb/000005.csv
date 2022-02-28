@@ -1,0 +1,2 @@
+"0","a <- raster::extract(forests_raster, other_borders, fun = mean, df = T)"
+"2","Discarded datum Unknown based on WGS84 ellipsoid in CRS definition"

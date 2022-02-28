@@ -1,0 +1,7 @@
+"0","tm_shape(lulc_raster) +"
+"0","  tm_raster(style = ""cat"", palette = lulc_pal) +"
+"0","  "
+"0","  tm_shape(world_borders) +"
+"0","  tm_borders()"
+"2","stars object downsampled to 1414 by 707 cells. See tm_shape manual (argument raster.downsample)
+"

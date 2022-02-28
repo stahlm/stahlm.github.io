@@ -1,1 +1,1 @@
-"0","b <- as.data.frame(lulc)"
+"0","lulc <- as.data.frame(lulc)"

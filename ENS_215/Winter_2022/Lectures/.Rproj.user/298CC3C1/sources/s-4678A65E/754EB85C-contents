@@ -23,7 +23,6 @@ library(raster)
 
 <br/>
 
-> **Important:** Before proceeding you will need to [download this zipfile](https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Winter_2020/Lectures/Spatial_data.zip) from our class site.  This folder has the necessary data for today's lecture.  You should then unzip the folder to a sub-folder in your "Lectures" directory.  Make sure to call this sub-folder "Spatial_data".  
 
 ## Raster basics 
 
@@ -41,42 +40,29 @@ Today you'll be introduced to raster data.  You are already somewhat familiar wi
 A great example of raster data would be global elevation data.  In this case you the world would be divided into grid cells (e.g. 1 degree latitude by 1 degree longitude) and for each grid cell an elevation value would be reported.  Below I'm showing a raster of elevation data for Schenectady.   
 
 
-```{r echo=FALSE, results='hide', warning=FALSE}
-source("get_usgs_elevation_data.R")
-source("define_image_size.R")
+
+```{r message=FALSE, warning=FALSE, echo = F}
+library(AOI)
+library(elevatr)
 ```
 
 
-
-
-```{r echo=FALSE, results='hide'}
-# define bounding box with longitude/latitude coordinates
-bbox <- list(
-  p1 = list(long = -73.997889, lat = 42.768403), # bottom-left
-  p2 = list(long = -73.873456, lat = 42.862791)   # top-right
-)
+```{r message=FALSE, warning=FALSE, echo = F}
+loc2use <- aoi_get(x = list("Schenectady, NY",5,5) )
 ```
 
 
-```{r echo=FALSE, results='hide', warning=FALSE}
-image_size <- define_image_size(bbox, major_dim = 600)
+```{r message=FALSE, warning=FALSE, echo = F}
+elevation <- get_elev_raster(loc2use, z = 14, clip = "bbox")
+```
+
+```{r message=FALSE, warning=FALSE, echo = F}
+names(elevation) <- "elev_m"
 ```
 
 
-```{r echo=FALSE, results='hide', message=FALSE, warning=FALSE}
-# download elevation data
-elev_file <- file.path("./Spatial_data", "schenectady-elevation.TIFF")
-get_usgs_elevation_data(bbox, size = image_size$size, file = elev_file,
-                        sr_bbox = 4326, sr_image = 4326)
-```
-
-
-```{r echo=FALSE, results='hide', message=FALSE, warning=FALSE}
-elev_img <- raster::raster("./Spatial_data/schenectady-elevation.TIFF")
-```
-
-```{r echo=FALSE, warning=FALSE, message=FALSE, warning=FALSE}
-elev_img %>% 
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+elevation %>% 
   tm_shape() +
   tm_raster(style = "cont", palette = terrain.colors(10)) +
   tm_layout(legend.outside = T,
