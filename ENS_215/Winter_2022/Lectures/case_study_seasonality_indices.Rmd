@@ -526,6 +526,8 @@ df_stream_monthly_normals <- df_stream_data %>%
 
 ```{r}
 df_seasonality_flow <- compute_seaonality_indices(df_stream_monthly_normals)
+
+df_seasonality_flow <- df_seasonality_flow[[2]]
 ```
 
 
@@ -553,6 +555,8 @@ df_alb_precip_monthly_normals <- met_df %>%
 
 ```{r}
 df_seasonality_alb_precip <- compute_seaonality_indices(df_alb_precip_monthly_normals)
+
+df_seasonality_alb_precip <- df_seasonality_alb_precip[[2]]
 ```
 
 
