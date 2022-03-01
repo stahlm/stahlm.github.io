@@ -1,0 +1,4 @@
+"0","fra_sf <- terra::vect(fra)"
+"2","Error in (function (classes, fdef, mtable)  : 
+  unable to find an inherited method for function ‘vect’ for signature ‘""SpatVector""’
+"

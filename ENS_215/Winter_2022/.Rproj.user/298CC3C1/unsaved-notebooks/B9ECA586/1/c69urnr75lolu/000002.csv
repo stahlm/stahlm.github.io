@@ -1,0 +1,25 @@
+"0","library(tidyverse)"
+"0","library(tmap)"
+"0","library(sf)"
+"0",""
+"0","library(geodata)"
+"2","package ‘geodata’ was built under R version 4.0.5"
+"2","Loading required package: terra
+"
+"2","package ‘terra’ was built under R version 4.0.5"
+"2","terra version 1.2.5
+"
+"2","
+Attaching package: ‘terra’
+
+"
+"2","The following object is masked from ‘package:dplyr’:
+
+    near
+
+"
+"2","The following objects are masked from ‘package:tidyr’:
+
+    expand, pack, separate
+
+"

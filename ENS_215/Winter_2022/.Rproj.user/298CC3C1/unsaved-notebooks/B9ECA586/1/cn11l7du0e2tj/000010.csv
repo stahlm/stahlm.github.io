@@ -1,0 +1,4 @@
+"0",""
+"0","tm_shape(base_schdy$basemap_20220228080717.2) +"
+"0","  tm_raster(palette = ""Greens"") +"
+"0","  tm_layout(legend.show = F)"

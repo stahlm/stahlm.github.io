@@ -1,0 +1,18 @@
+"0","fra <- gadm(country=""FRA"", level=1, path=tempdir())"
+"2","trying URL 'https://biogeo.ucdavis.edu/data/gadm3.6/pck/gadm36_FRA_1_pk.rds'
+"
+"2","Content type '`}¡lü'"
+"2"," length 856542 bytes (836 KB)
+"
+"2","downloaded 836 KB
+
+"
+"0","pop <- population(2020, 10, path=tempdir())"
+"2","trying URL 'https://biogeo.ucdavis.edu/data/geodata/pop/gpw_v4_population_density_rev11_2020_10m.tif'
+"
+"2","Content type 'image/tiff'"
+"2"," length 2331102 bytes (2.2 MB)
+"
+"2","downloaded 2.2 MB
+
+"

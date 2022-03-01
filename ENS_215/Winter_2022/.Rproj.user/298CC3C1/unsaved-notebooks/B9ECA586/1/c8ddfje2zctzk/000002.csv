@@ -1,0 +1,7 @@
+"0","base_schdy <- basemap_raster(loc2use,map_res = 0)"
+"1","Loading basemap 'terrain' from map service 'osm_stamen'..."
+"1","
+"
+"2","no non-missing arguments to max; returning -Inf"
+"2","Error in tile_extent$x_min:tile_extent$x_max : NA/NaN argument
+"

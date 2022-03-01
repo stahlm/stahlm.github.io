@@ -3,7 +3,7 @@
     "path": null,
     "project_path": null,
     "type": "r_markdown",
-    "hash": "0",
+    "hash": "3414493312",
     "contents": "",
     "dirty": false,
     "created": 1645376045856.0,
@@ -12,15 +12,15 @@
     "properties": {
         "tempName": "Untitled2",
         "chunk_output_type": "inline",
-        "cursorPosition": "10,13",
-        "scrollLine": "0"
+        "cursorPosition": "142,26",
+        "scrollLine": "137"
     },
     "folds": "",
     "lastKnownWriteTime": 12948304202498162,
     "encoding": "",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1645396796115,
+    "last_content_update": 1646074746805,
     "read_only": false,
     "read_only_alternatives": []
 }
