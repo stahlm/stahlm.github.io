@@ -165,7 +165,7 @@ Take a minute or two to explore the 3D graphic.
 ## Interactive time-series with `dygraph`
 It is often very helpful to add interactivity to time-series data.  Often we would like to zoom in on a particular time period within a longer times-series.  
 
-The [dygraphs](https://rstudio.github.io/dygraphs/index.html) package provides excellent funtionality for creating interactive time-series graphics.  
+The [dygraphs](https://rstudio.github.io/dygraphs/index.html) package provides excellent functionality for creating interactive time-series graphics.  
 
 Let's first load in the `dygraphs` package and the `xts` package, which we will also use along with dygraphs (you will probably need to first install these packages).  
 ```{r message = FALSE}
