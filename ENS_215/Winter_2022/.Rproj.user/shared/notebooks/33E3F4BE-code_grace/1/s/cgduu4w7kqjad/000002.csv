@@ -1,0 +1,3 @@
+"0","df_grace <- df_grace %>% "
+"0","  select(-gust, -dominant_wpd, - average_wpd, - mean_wave_dir,"
+"0","         -dewpt_temperature, - visibility, - water_level, - year_value, -month_value, -day_value)"

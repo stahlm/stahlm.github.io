@@ -1,0 +1,93 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r}
+library(tidyverse)
+library(worldmet)
+
+```
+725180-14735
+411400-99999
+
+725300-94846
+```{r}
+worldmet_data <- importNOAA(code = "404150-99999", 
+                                      year = 2021:2022)
+```
+
+```{r}
+worldmet_data <- importNOAA(code = "725300-94846", 
+                                      year = 1995)
+```
+406740-99999
+
+```{r}
+worldmet_data <- importNOAA(code = "406740-99999", 
+                                      year = 2015)
+```
+
+
+
+```{r}
+T_air <- 20
+rh_percent <- 15
+
+```
+
+
+
+
+```{r}
+calc_wetbulb <- function(T_air, rh_percent){
+  # T_air is the air temperature in degrees C
+  # rh_percent is the relative humidity (e.g., 85% relative humidity would be entered as 85)
+  
+T_wetbulb <- T_air*atan(0.151977*(rh_percent + 8.313659)^0.5) +
+  atan(T_air + rh_percent) -
+  atan(rh_percent - 1.676331) +
+  (0.00391838*(rh_percent)^(3/2)) * atan(0.023101*rh_percent) - 4.686035
+
+}
+```
+
+
+```{r}
+
+T_wetbulb <- calc_wetbulb(T_air = 20, rh_percent = 10)
+```
+
+```{r}
+
+worldmet_data$wet_bulb <- calc_wetbulb(worldmet_data$air_temp, worldmet_data$RH)
+```
+
+
+```{r}
+summary(worldmet_data$wet_bulb)
+```
+
+```{r}
+quantile(worldmet_data$wet_bulb, probs = c(0.95), na.rm = T)
+```
+
+```{r}
+worldmet_data %>% 
+  filter(!is.na(wet_bulb)) %>% 
+  ggplot(aes(x = date, y = wet_bulb)) +
+  #geom_point() +
+  geom_line()
+```
+
+
+```{r}
+worldmet_data %>% 
+  ggplot(aes(y = wet_bulb)) +
+  geom_boxplot() +
+  
+  theme_bw()
+  
+```
+

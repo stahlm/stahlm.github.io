@@ -1,0 +1,32 @@
+{
+    "id": "2D8AE982",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1646322289759.0,
+    "source_on_save": false,
+    "relative_order": 19,
+    "properties": {
+        "expression": "worldmet_data",
+        "caption": "worldmet_data",
+        "totalObservations": "8763",
+        "displayedObservations": "8763",
+        "variables": "24",
+        "cacheKey": "51A44A5D",
+        "object": "worldmet_data",
+        "environment": "",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=worldmet_data&cache_key=51A44A5D&max_cols=50",
+        "preview": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 22518311674839107,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1646322289759,
+    "read_only": false,
+    "read_only_alternatives": []
+}

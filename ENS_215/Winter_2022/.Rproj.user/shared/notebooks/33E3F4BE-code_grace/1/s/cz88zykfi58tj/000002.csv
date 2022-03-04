@@ -1,0 +1,6 @@
+"0","library(tmap)"
+"0","library(tidyverse)"
+"0","library(spData)"
+"2","To access larger datasets in this package, install the spDataLarge package with: `install.packages('spDataLarge',
+repos='https://nowosad.github.io/drat/', type='source')`
+"

@@ -1,0 +1,7 @@
+"0","site_locs <- df_grace %>% "
+"0","  group_by(site) %>% "
+"0","  summarize(lat = first(lat),"
+"0","            lon = first(lon)"
+"0","            )"
+"2","`summarise()` ungrouping output (override with `.groups` argument)
+"

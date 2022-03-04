@@ -1,0 +1,2 @@
+"0",""
+"0","worldmet_data$wet_bulb <- calc_wetbulb(worldmet_data$air_temp, worldmet_data$RH)"

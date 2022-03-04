@@ -1,0 +1,32 @@
+{
+    "id": "794D1470",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1646339617604.0,
+    "source_on_save": false,
+    "relative_order": 22,
+    "properties": {
+        "expression": "site_locs",
+        "caption": "site_locs",
+        "totalObservations": 8,
+        "displayedObservations": 8,
+        "variables": 3,
+        "cacheKey": "EB336710",
+        "object": "site_locs",
+        "environment": "",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=site_locs&cache_key=EB336710&max_cols=50",
+        "preview": 0
+    },
+    "folds": "",
+    "lastKnownWriteTime": 18296217089015877,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1646339617604,
+    "read_only": false,
+    "read_only_alternatives": []
+}

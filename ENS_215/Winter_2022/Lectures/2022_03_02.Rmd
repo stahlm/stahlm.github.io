@@ -165,7 +165,7 @@ Take a minute or two to explore the 3D graphic.
 ## Interactive time-series with `dygraph`
 It is often very helpful to add interactivity to time-series data.  Often we would like to zoom in on a particular time period within a longer times-series.  
 
-The [dygraphs](https://rstudio.github.io/dygraphs/index.html) package provides excellent funtionality for creating interactive time-series graphics.  
+The [dygraphs](https://rstudio.github.io/dygraphs/index.html) package provides excellent functionality for creating interactive time-series graphics.  
 
 Let's first load in the `dygraphs` package and the `xts` package, which we will also use along with dygraphs (you will probably need to first install these packages).  
 ```{r message = FALSE}
@@ -222,9 +222,10 @@ dygraph(flow_ts, ylab = "Flow (cfs)") %>%
 Animations are another way of presenting data in a more dynamic fashion.  We can create animations in R using the `gganimate` package.  We will go through a few basic examples, though you can learn more [here](https://gganimate.com/articles/gganimate.html).
 
 
-Let's first load in the `gganimate` package (you will probably need to first install this package).
+Let's first load in the `gganimate` package (you will probably need to first install this package).  You will also need the `gifski` package, so you should install that package and load it in as well.  
 ```{r message = FALSE, warning = FALSE}
 library(gganimate)
+library(gifski)
 ```
 
 <br/>

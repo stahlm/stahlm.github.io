@@ -1,0 +1,86 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(tmap)
+library(tidyverse)
+library(spData)
+```
+
+
+```{r}
+library(data.table)
+```
+
+
+
+```{r}
+df_grace <- fread("C:/Users/stahlm/Downloads/buoy_data_final.csv")
+```
+
+```{r}
+df_grace <- df_grace %>% 
+  select(-gust, -dominant_wpd, - average_wpd, - mean_wave_dir,
+         -dewpt_temperature, - visibility, - water_level, - year_value, -month_value, -day_value)
+```
+
+
+
+```{r}
+summary(df_grace)
+```
+```{r}
+site_locs <- df_grace %>% 
+  group_by(site) %>% 
+  summarize(lat = first(lat),
+            lon = first(lon)
+            )
+```
+
+```{r}
+df_grace %>% 
+  filter(site == "44008") %>% 
+  filter(year < 2019) %>% 
+  ggplot(aes(x =time, y = wave_height)) +
+  geom_line()
+```
+
+```{r}
+df_grace %>% 
+  filter(!is.na(wave_height)) %>% 
+  #filter(site == "44008") %>% 
+  ggplot(aes(x = factor(month), y = wave_height )) +
+  geom_boxplot() +
+  
+  coord_cartesian(ylim = c(0, 4)) +
+  facet_wrap(~ site)
+  
+```
+
+
+
+```{r}
+us_borders <- spData::us_states
+```
+
+
+```{r}
+tm_shape(us_borders) +
+  tm_borders()
+
+```
+
+
+```{r}
+us_boundary <- USAboundaries::us_boundaries()
+```
+
+
+```{r}
+tm_shape(us_boundary) +
+  tm_borders()
+
+```
+

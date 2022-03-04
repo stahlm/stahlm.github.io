@@ -1,0 +1,7 @@
+"0","quantile(worldmet_data$wet_bulb, probs = c(0.95), na.rm = T)"
+"1","     95% "
+"1","
+"
+"1","22.53956 "
+"1","
+"
