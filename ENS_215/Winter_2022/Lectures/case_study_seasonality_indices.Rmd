@@ -119,7 +119,7 @@ The Seasonal Concentration (SC) describes the time of year that the values are m
 ```{r echo = F, message= F, warning= F}
 
 df_seasonality_bos_sfo <- monthly_met_bos_sfo %>% 
-  compute_seaonality_indices()
+  compute_seasonality_indices)
 
 
 monthly_met_bos_sfo <- df_seasonality_bos_sfo[[1]]
@@ -359,15 +359,15 @@ FYI, if you want you can also download the R file from my [github site](https://
 
 <br/> 
 
-Now let's use the `compute_seaonality_indices()` function to compute the indices.  
+Now let's use the `compute_seasonality_indices)` function to compute the indices.  
 
 ```{r message = F}
-df_seasonality_precip <- compute_seaonality_indices(df_monthly_normals)
+df_seasonality_precip <- compute_seasonality_indicesdf_monthly_normals)
 
 ```
 
 
-The `compute_seaonality_indices()` function returns a list containing two data frames.  You will just need the 2nd data frame.  Let's use the code below to select just the 2nd data frame which has the results we will need. 
+The `compute_seasonality_indices)` function returns a list containing two data frames.  You will just need the 2nd data frame.  Let's use the code below to select just the 2nd data frame which has the results we will need. 
 
 ```{r}
 df_seasonality_precip <- df_seasonality_precip[[2]]
@@ -521,9 +521,9 @@ df_stream_monthly_normals <- df_stream_data %>%
 
 <br/>
 
-Now that we have the streamflow data, let's use our `compute_seaonality_indices()` function to calculate the seasonality indices.  
+Now that we have the streamflow data, let's use our `compute_seasonality_indices)` function to calculate the seasonality indices.  
 ```{r}
-df_seasonality_flow <- compute_seaonality_indices(df_stream_monthly_normals)
+df_seasonality_flow <- compute_seasonality_indicesdf_stream_monthly_normals)
 
 df_seasonality_flow <- df_seasonality_flow[[2]]
 ```
@@ -551,7 +551,7 @@ met_df <- get_GSOD(years = 2012:2021, station = "725180-14735")
 ```
 
 
-You'll see in the `met_df` data frame that we have daily meteorological data for Albany International Airport for 2012-2021.  Let's go ahead and compute
+You'll see in the `met_df` data frame that we have daily meteorological data for Albany International Airport for 2012-2021.  Let's go ahead and compute the monthly means so that we can use our 
 
 ```{r}
 df_alb_precip_monthly_normals <- met_df %>% 
@@ -570,7 +570,7 @@ df_alb_precip_monthly_normals <- met_df %>%
 
 
 ```{r}
-df_seasonality_alb_precip <- compute_seaonality_indices(df_alb_precip_monthly_normals)
+df_seasonality_alb_precip <- compute_seasonality_indices(df_alb_precip_monthly_normals)
 
 df_seasonality_alb_precip <- df_seasonality_alb_precip[[2]]
 ```
