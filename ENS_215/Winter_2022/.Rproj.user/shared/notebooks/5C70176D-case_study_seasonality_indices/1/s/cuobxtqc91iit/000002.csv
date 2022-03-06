@@ -1,0 +1,7 @@
+"0","df_monthly_normals <- precip_data %>% "
+"0","  filter(Year >= 1980) %>% "
+"0","  "
+"0","  group_by(state_cd, Month) %>% "
+"0","  summarize(observation_value = mean(Precip_inches)) %>% "
+"0","  "
+"0","  rename(group_name = state_cd)"

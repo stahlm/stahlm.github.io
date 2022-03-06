@@ -10,15 +10,16 @@
     "source_on_save": false,
     "relative_order": 14,
     "properties": {
-        "cursorPosition": "467,110",
-        "scrollLine": "449"
+        "cursorPosition": "353,443",
+        "scrollLine": "319",
+        "ignored_words": "evapotranspiration\n"
     },
     "folds": "",
-    "lastKnownWriteTime": 1646251980,
+    "lastKnownWriteTime": 1646595959,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1646251981039,
+    "last_content_update": 1646595959500,
     "read_only": false,
     "read_only_alternatives": []
 }

@@ -81,10 +81,9 @@ monthly_met_bos_sfo <- monthly_met_bos %>%
 ```
 
 
+<br/> 
 
-
-```{r echo = F, message= F, warning= F}
-
+```{r echo = F, message= F, warning= F, fig.width = 8, fig.height= 4}
 monthly_met_bos_sfo %>% 
   
   ggplot(aes(x = factor(Month), y = observation_value )) +
@@ -98,6 +97,8 @@ monthly_met_bos_sfo %>%
        ) +
   theme_bw()
 ```
+
+<br/> 
 
 What can we say about the seasonal cycles of precipitation in Boston and In San Francisco?  How would you describe these cycles?  What features stand out?  How do the cycles between the two locations compare and contrast?  Can you think of objective metrics that would quantitatively capture the features you observe?   
 
@@ -175,6 +176,7 @@ month_zero <- monthly_met_bos_sfo %>%
 
 
 Now let's take those vectors from the figure above and put them end to end (making sure to keep the orientation of each monthly vector the same as in the figure above).  When we do that we get a vector (red vector) whose angle represents the seasonal concentration of precipitation (i.e., which season precipitation is most focused in).  
+
 ```{r echo = F, message= F, warning= F}
 
 df_end <- monthly_met_bos_sfo %>% 
@@ -226,7 +228,7 @@ You can imagine that if a location had all of its precipitation fall in a single
 
 Based on the figure below it is clear that for Boston the red bar is only a small proportion of the grey bar, thus indicating that precipitation in Boston is relatively evenly distributed throughout the year.  Whereas in San Francisco the red bar is similar in magnitude to the total annual precipitation (grey bar) indicating that precipitation is not uniformly distributed (i.e., occurs in a narrow window of months).  
 
-```{r fig.width= 3.5, fig.height= 5}
+```{r fig.width= 3.5, fig.height= 5, echo = F}
 df_seasonality_bos_sfo %>% 
   mutate(group_name = if_else(group_name == "724940-23234", "San Francisco", "Boston")) %>% 
   mutate(a_vec_length = (value_tot_x^2 + value_tot_y^2)^0.5) %>% 
@@ -242,7 +244,7 @@ df_seasonality_bos_sfo %>%
   theme_bw(base_size = 14) +
   theme(legend.position = "none") +
   
-  labs(y = "Precipitation magnitude (mm)", x = "") 
+  labs(y = "Precipitation magnitude (mm)") 
 ```
 
 
@@ -268,7 +270,7 @@ Note that $V_x$ represents the x directional component of monthly precipitation,
 <br/> 
 
 I've computed the seasonality indices (SI and SC) for the Boston and San Francisco precipitation data 
-```{r}
+```{r echo = F, message = F}
 df_seasonality_bos_sfo %>% 
   mutate(group_name = if_else(group_name == "724940-23234", "San Francisco", "Boston")) %>% 
   rename(Location = group_name) %>% 
@@ -282,6 +284,8 @@ df_seasonality_bos_sfo %>%
   kableExtra::  kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
   
 ```
+
+<br/> 
 
 We can see that San Francisco has a relatively large Seasonality Index (SI) - indicating that precipitation is highly focused in a few months of the year.  Boston, however, has an SI close to zero, indicating that precipitation there is relatively uniformly distributed across all months.  
 
@@ -314,12 +318,11 @@ df_seasonality_bos_sfo %>%
 <br/>
 
 
-
 ## Precipitation seasonality across the US
 Now we are going to compute seasonality indices (SI and SC) for each US state using the method introduced above.  First let's load in monthly precipitation data for all of the states in the US (excluding AK and HI).  You'll recall working with this data, which comes from NOAA, in some prior class exercises.  
 
 
-```{r}
+```{r warning= F, message = F}
 precip_data <- read_csv("https://stahlm.github.io/ENS_215/Data/NOAA_State_Precip_LabData.csv")
 
 ```
@@ -328,7 +331,7 @@ Take a look at the dataset to refresh your memory of what it contains.  You'll s
 
 Using just the data from 1980 onward, let's compute the average precipitation in each month for each state.
 
-```{r}
+```{r message = F}
 df_monthly_normals <- precip_data %>% 
   filter(Year >= 1980) %>% 
   
@@ -340,6 +343,7 @@ df_monthly_normals <- precip_data %>%
 
 Take a look at the data frame you just created, which contains monthly precipitation normals for each state.  Make sure you understand what is in the data frame and that everything looks sensible.   
 
+<br/> 
 
 Since we want to compute the seasonality indices SI and SC on this data we are going to need some code to do that.  I've written a function in R to compute these indices.  Let's go ahead a load in this function from our class github site. 
 
@@ -347,15 +351,17 @@ Since we want to compute the seasonality indices SI and SC on this data we are g
 source("https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2022/Lectures/compute_seasonality_indices.R")
 ```
 
-You'll now see in your environment pane that you have a function called `compute_seasonality_indices()`.  This is the function we will use to compute the SI and SC indices.  If you click on the function in your environment pane the source code will pop up.  Go ahead and do this.  
+You'll now see in your environment pane that you have a function called `compute_seasonality_indices()`.  This is the function we will use to compute the SI and SC indices.  If you click on the function in your environment pane the source code will pop up.  Go ahead and do this.  Make sure to read the comments within the function file as these comments explain what the function does, the inputs its requires, and the outputs it generates.  
 
 
 FYI, if you want you can also download the R file from my [github site](https://github.com/stahlm/stahlm.github.io/blob/master/ENS_215/Winter_2022/Lectures/compute_seasonality_indices.R).  
 
 
+<br/> 
+
 Now let's use the `compute_seaonality_indices()` function to compute the indices.  
 
-```{r}
+```{r message = F}
 df_seasonality_precip <- compute_seaonality_indices(df_monthly_normals)
 
 ```
@@ -370,6 +376,8 @@ df_seasonality_precip <- df_seasonality_precip[[2]]
 
 Take a look at the `df_seasonality_precip` data frame to make sure you understand what it contains.  
 
+
+<br/> 
 
 You can see that we now have a data frame that has precipitation seasonality indices SI and SC for each US state!  Let's create a figure to examine these results.  
 
@@ -393,6 +401,8 @@ Take some time to look over these results.
 
 
 
+<br/>  
+
 To get a better sense of what the monthly precipitation looks like for different SI values, let's examine the monthly precipitation for California (high SI value), Idaho (intermediate SI value), and Rhode Island (low SI value).  
 
 ```{r fig.width= 8, fig.height= 3}
@@ -409,26 +419,6 @@ df_monthly_normals %>%
   labs(x = "Month", y = "Precipitation (inches)")
 ```
 
-
-
-```{r echo = F, eval = F}
-
-library(geofacet)
-
-df_seasonality_precip %>% 
-  ggplot(aes(x = SC, y = SI, group = group_name)) +
-  
-  geom_segment(aes(y = 0, xend = SC, yend = SI),
-               size = 0.75, arrow = arrow(length = unit(0.1, "npc")), color = "blue" ) +
-  
-  
-  
-  scale_x_continuous(breaks = c(0,90,180,270,360), limits = c(0,360)) +
-  coord_polar() +
-  theme_bw(base_size = 3) +
-  
-  geofacet::facet_geo(~ group_name)
-```
 
 
 <br/> 
@@ -482,17 +472,18 @@ sf_seasonality_precip %>%
 <br/>
 
 ## Precipitation and streamflow seasonality: Mohawk Watershed
+
+Now that we've gone of the theory behind seasonality indices and applied these indices to monthly precipitation for each US state, let's delve further into the topic.  In particular, let's examine seasonality of precipitation and streamflow for the Mohawk River watershed - this will help us to better characterize and understand the hydrologic processes that influence streamflow in our local watershed.  
+
+As you are aware, the water that ultimately makes its way into the Mohawk River originally must have fallen as precipitation within the watershed.  However, precipitation that falls does not necessarily make its way to a river/stream immediately - for instance precipitation that falls as snow in the winter may sit on the ground for weeks to months before melting and contributing to streamflow.  Furthermore due to seasonal differences in evapotranspiration, a unit of precipitation that comes down in the middle of the summer may generate much less streamflow than a unit of precipitation that comes down in late fall.  Thus, the seasonal cycle of precipitation might not be the same as the seasonal cycle of streamflow and by comparing and contrasting these two cycles we can learn more about the underlying hydrologic/environmental processes.  
+
+Let's go ahead and download streamflow data for the Mohawk River at Freeman's Bridge in Schenectady (USGS 01354500).  To do so we'll use the USGS `dataRetrieval` package, which we've used in past classes.  
+
 ```{r}
 library(dataRetrieval)
 library(lubridate)
 ```
 
-
-
-
-
-
-01354500
 
 ```{r}
 df_stream_data <- readNWISdv(siteNumbers = "01354500",
@@ -503,7 +494,10 @@ df_stream_data <- readNWISdv(siteNumbers = "01354500",
 
 
 
+
 ```{r}
+# Add columns with year, month, and day information 
+
 df_stream_data <- df_stream_data %>% 
   mutate(Year = year(Date), 
          Month = month(Date),
@@ -512,6 +506,7 @@ df_stream_data <- df_stream_data %>%
 ```
 
 
+Let's select data for 2012-2021 and then compute the mean flow by month (i.e., Jan mean flow, Feb mean flow,..., Dec mean flow) as our function that computes the seasonality indices requires monthly values as inputs.  Once you've computed these means take a look at the resulting data frame to confirm that everything makes sense to you and looks reasonable.  
 
 ```{r}
 df_stream_monthly_normals <- df_stream_data %>% 
@@ -524,18 +519,39 @@ df_stream_monthly_normals <- df_stream_data %>%
 ```
 
 
+<br/>
+
+Now that we have the streamflow data, let's use our `compute_seaonality_indices()` function to calculate the seasonality indices.  
 ```{r}
 df_seasonality_flow <- compute_seaonality_indices(df_stream_monthly_normals)
 
 df_seasonality_flow <- df_seasonality_flow[[2]]
 ```
++ Take a look at the seasonality indices for the Mohawk River.  Think about these values, what they mean/imply, and discuss with your neighbors.  
+
+
+<br/>
+
+
+
+Now that we have calculated the SI and SC seasonality indices on the Mohawk River streamflow data, let's do the same for local precipitation data.  
+
+We are going to obtain precipitation data from Albany International Airport (accessed through NOAA's Global Summary of the Day) using the `GSODR` package that we have used in prior classes.  
+
+```{r eval = F}
+library(GSODR)
+```
 
 
 
 ```{r}
+# Download data for 2012-2021 
+
 met_df <- get_GSOD(years = 2012:2021, station = "725180-14735")
 ```
 
+
+You'll see in the `met_df` data frame that we have daily meteorological data for Albany International Airport for 2012-2021.  Let's go ahead and compute
 
 ```{r}
 df_alb_precip_monthly_normals <- met_df %>% 
