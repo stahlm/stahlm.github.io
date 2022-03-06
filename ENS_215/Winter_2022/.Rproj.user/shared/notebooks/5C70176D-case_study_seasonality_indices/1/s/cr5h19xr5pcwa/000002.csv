@@ -1,6 +1,6 @@
 "0",""
 "0","df_seasonality_bos_sfo <- monthly_met_bos_sfo %>% "
-"0","  compute_seaonality_indices()"
+"0","  compute_seasonality_indices()"
 "0",""
 "0",""
 "0","monthly_met_bos_sfo <- df_seasonality_bos_sfo[[1]]"

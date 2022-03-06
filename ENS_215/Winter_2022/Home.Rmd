@@ -47,6 +47,11 @@ output:
 
 ```
 
+### Week 10
++ Mon (7-Mar) -- **Seasonality indices: Environmental applications**
+[(html)](https://stahlm.github.io/ENS_215/Winter_2022/Lectures/case_study_seasonality_indices.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2022/Lectures/case_study_seasonality_indices.Rmd)
+
+***
 
 ### Week 9
 + Mon (28-Feb) -- **Spatial analysis continued: Introduction to rasters**
