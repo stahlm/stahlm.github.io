@@ -1,0 +1,13 @@
+"0","```r
+ggplot(dem_cropped_df, aes(x, y, z = layer)) +
+  geom_relief(sun.angle = 60, shadow = F) +
+  geom_sf(data = country_border$geometry, color = NA,
+          inherit.aes = F, fill = NA) +
+  coord_sf() +
+  theme_void() +
+  theme(legend.position = \"none\")
+
+ggsave(paste(country2use,\".png\", sep = \"\"), dpi = 1500)
+```"
+"1","Saving 7.29 x 4.5 in image
+"

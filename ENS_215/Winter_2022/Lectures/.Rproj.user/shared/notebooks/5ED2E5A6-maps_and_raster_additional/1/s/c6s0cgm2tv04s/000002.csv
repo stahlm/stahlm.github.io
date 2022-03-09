@@ -1,0 +1,14 @@
+"0","```r
+sf_rivers <- rnaturalearth::ne_download(scale = \"large\",category = \"physical\",
+                                        type = \"rivers_lake_centerlines\", returnclass = \"sf\")
+```"
+"1","trying URL 'http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/physical/ne_10m_rivers_lake_centerlines.zip'
+Content type 'application/zip' length 2079507 bytes (2.0 MB)
+downloaded 2.0 MB
+"
+"1","OGR data source with driver: ESRI Shapefile 
+Source: \"C:\Users\stahlm\AppData\Local\Temp\Rtmp2NLqfd\", layer: \"ne_10m_rivers_lake_centerlines\"
+with 1473 features
+It has 38 fields
+Integer64 fields read as strings:  ne_id 
+"

@@ -1,0 +1,4 @@
+"0","coast <- getbb(loc2use) %>%"
+"0","  opq()%>%"
+"0","  add_osm_feature(key = ""natural"", value = ""coastline"") %>%"
+"0","  osmdata_sf()"

@@ -1,0 +1,11 @@
+"0","```r
+
+  tm_shape(small_streets$osm_lines) +
+  tm_lines(col = \"darkgrey\") +
+
+  tm_shape(streets$osm_lines) +
+  tm_lines() +
+  
+  tm_shape(river$osm_lines) +
+  tm_lines(col = \"blue\") 
+```"

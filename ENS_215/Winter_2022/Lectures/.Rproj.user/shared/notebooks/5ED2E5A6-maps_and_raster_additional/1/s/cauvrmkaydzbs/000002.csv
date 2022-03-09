@@ -1,0 +1,35 @@
+"0","```r
+raster_elev_zoomed <- get_elev_raster(aoi_zoomed, z = 12, clip = \"locations\")
+```"
+"1","
+ Accessing raster elevation [-------------------------]   0%
+ Accessing raster elevation [>------------------------]   4%
+ Accessing raster elevation [=>-----------------------]   8%
+ Accessing raster elevation [==>----------------------]  12%
+ Accessing raster elevation [===>---------------------]  16%
+ Accessing raster elevation [====>--------------------]  20%
+ Accessing raster elevation [=====>-------------------]  24%
+ Accessing raster elevation [======>------------------]  28%
+ Accessing raster elevation [=======>-----------------]  32%
+ Accessing raster elevation [========>----------------]  36%
+ Accessing raster elevation [=========>---------------]  40%
+ Accessing raster elevation [==========>--------------]  44%
+ Accessing raster elevation [===========>-------------]  48%
+ Accessing raster elevation [============>------------]  52%
+ Accessing raster elevation [=============>-----------]  56%
+ Accessing raster elevation [==============>----------]  60%
+ Accessing raster elevation [===============>---------]  64%
+ Accessing raster elevation [================>--------]  68%
+ Accessing raster elevation [=================>-------]  72%
+ Accessing raster elevation [==================>------]  76%
+ Accessing raster elevation [===================>-----]  80%
+ Accessing raster elevation [====================>----]  84%
+ Accessing raster elevation [=====================>---]  88%
+ Accessing raster elevation [======================>--]  92%
+ Accessing raster elevation [=======================>-]  96%
+ Accessing raster elevation [=========================] 100%
+"
+"1","Mosaicing & Projecting
+Clipping DEM to locations
+Note: Elevation units are in meters.
+"

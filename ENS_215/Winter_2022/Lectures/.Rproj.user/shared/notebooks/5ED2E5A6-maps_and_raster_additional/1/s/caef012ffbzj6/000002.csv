@@ -1,0 +1,3 @@
+"0","```r
+loc_basemap_zoomed <- raster::stack(loc_path)
+```"

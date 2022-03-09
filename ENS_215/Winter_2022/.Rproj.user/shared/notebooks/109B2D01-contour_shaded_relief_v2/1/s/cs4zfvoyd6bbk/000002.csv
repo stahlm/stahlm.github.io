@@ -1,0 +1,4 @@
+"0","```r
+dem_cropped <- raster::projectRaster(dem, crs = raster::crs(country_border),
+                                     method = 'bilinear')
+```"

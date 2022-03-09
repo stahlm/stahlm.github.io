@@ -1,0 +1,11 @@
+"0","```r
+tm_shape(raster_elev) +
+  tm_raster(style = \"cont\", midpoint = NA, palette = terrain.colors(10)) +
+  
+  tm_shape(borders_hires) +
+  tm_borders() +
+  
+  tm_layout(legend.outside = T, frame = F) +
+  
+  tm_scale_bar()
+```"

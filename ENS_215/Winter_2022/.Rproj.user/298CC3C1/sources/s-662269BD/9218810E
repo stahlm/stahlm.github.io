@@ -1,0 +1,25 @@
+{
+    "id": "9218810E",
+    "path": "~/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2022/Lectures/case_study_seasonality_indices.Rmd",
+    "project_path": "Lectures/case_study_seasonality_indices.Rmd",
+    "type": "r_markdown",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1645795606770.0,
+    "source_on_save": false,
+    "relative_order": 6,
+    "properties": {
+        "cursorPosition": "14,6",
+        "scrollLine": "0",
+        "ignored_words": "evapotranspiration\n"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1646661272,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1646661272737,
+    "read_only": false,
+    "read_only_alternatives": []
+}

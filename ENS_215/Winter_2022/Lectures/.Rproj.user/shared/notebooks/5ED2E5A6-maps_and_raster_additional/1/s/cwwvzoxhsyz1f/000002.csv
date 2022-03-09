@@ -1,0 +1,18 @@
+"0","```r
+raster_elev <- get_elev_raster(borders_hires, z = 5, clip = \"locations\")
+```"
+"1","
+ Accessing raster elevation [-------------------------]   0%
+ Accessing raster elevation [==>----------------------]  12%
+ Accessing raster elevation [=====>-------------------]  25%
+ Accessing raster elevation [========>----------------]  38%
+ Accessing raster elevation [===========>-------------]  50%
+ Accessing raster elevation [===============>---------]  62%
+ Accessing raster elevation [==================>------]  75%
+ Accessing raster elevation [=====================>---]  88%
+ Accessing raster elevation [=========================] 100%
+"
+"1","Mosaicing & Projecting
+Clipping DEM to locations
+Note: Elevation units are in meters.
+"

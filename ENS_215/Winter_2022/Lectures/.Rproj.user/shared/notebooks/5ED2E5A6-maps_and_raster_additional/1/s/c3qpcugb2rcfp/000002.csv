@@ -1,0 +1,5 @@
+"0","```r
+map_full
+
+print(map_zoom, vp = viewport(0.8, 0.27, width = 0.5, height = 0.5))
+```"

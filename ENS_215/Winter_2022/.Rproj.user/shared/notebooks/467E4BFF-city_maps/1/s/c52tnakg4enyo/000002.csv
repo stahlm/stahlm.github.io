@@ -1,0 +1,40 @@
+"0","Schenectady_map <- tm_shape(dem_cropped, bbox = bb_values) +
+  tm_raster(midpoint = NA, style = \"cont\",
+            #breaks = c(0,2,5,10,20,50,100),
+            palette = terrain.colors(n = 6)
+            #style = \"cont\"
+            ) +
+  
+  {if(country == \"US\"){
+  tm_shape(Water_features, bbox = bb_values) +
+  tm_polygons(col = \"blue\", border.alpha = 0) +
+  
+  tm_shape(Linear_water, bbox = bb_values) +
+  tm_lines(col = \"blue\") 
+  }} +
+  
+  
+  tm_shape(streets$osm_lines) +
+  tm_lines(col = \"black\", lwd = 0.4, alpha = 0.8) +
+  
+  tm_shape(small_streets$osm_lines) +
+  tm_lines(col = \"black\", lwd = 0.4, alpha = 0.6) +
+  
+  
+  
+  # geom_sf(data = streets$osm_lines,
+  #         inherit.aes = FALSE,
+  #         color = \"black\",
+  #         size = .4,
+  #         alpha = .8) +
+  # geom_sf(data = small_streets$osm_lines,
+  #         inherit.aes = FALSE,
+  #         color = \"black\",
+  #         size = .4,
+  #         alpha = .6) +
+  
+  tm_layout(frame = F, legend.show = F) 
+  
+  
+
+Schenectady_map"

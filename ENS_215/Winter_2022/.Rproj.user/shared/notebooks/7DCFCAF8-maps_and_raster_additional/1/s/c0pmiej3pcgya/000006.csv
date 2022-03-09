@@ -1,0 +1,2 @@
+"0","aoi2use = aoi_get(country = ""Ethiopia"")"
+"0","plot(aoi2use$geometry)"

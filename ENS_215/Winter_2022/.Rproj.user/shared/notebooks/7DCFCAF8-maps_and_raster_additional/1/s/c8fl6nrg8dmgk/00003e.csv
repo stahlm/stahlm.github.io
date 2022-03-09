@@ -1,0 +1,41 @@
+"0","pal2use <- terrain.colors(n = 12)"
+"0","pal2use[1] <- ""#0000FF""	 "
+"0",""
+"0","tm_shape(raster_elev_zoomed) +"
+"0","  tm_raster(palette = pal2use, n = 12, title = ""Elev (m)"") + "
+"0","  "
+"0","  tm_shape(small_streets$osm_lines) +"
+"0","  tm_lines(col = ""black"", lwd = 0.2) +"
+"0",""
+"0","  tm_shape(streets$osm_lines) +"
+"0","  tm_lines(lwd = 1) +"
+"0","  "
+"0","  tm_shape(river$osm_lines) +"
+"0","  tm_lines(col = ""blue"", lwd = 1.5) +"
+"0","  "
+"0","  # tm_shape(coast$osm_lines) +"
+"0","  # tm_lines(col = ""red"") +"
+"0","  "
+"0","  tm_layout(legend.outside = T, frame = F) +"
+"0","  "
+"0","  tm_scale_bar()"
+"2","stars object downsampled to 855 by 1169 cells. See tm_shape manual (argument raster.downsample)
+"
+"2","old-style crs object detected; please recreate object with a recent sf::st_crs()
+"
+"2","old-style crs object detected; please recreate object with a recent sf::st_crs()
+"
+"2","old-style crs object detected; please recreate object with a recent sf::st_crs()
+"
+"2","old-style crs object detected; please recreate object with a recent sf::st_crs()
+"
+"2","old-style crs object detected; please recreate object with a recent sf::st_crs()
+"
+"2","old-style crs object detected; please recreate object with a recent sf::st_crs()
+"
+"2","old-style crs object detected; please recreate object with a recent sf::st_crs()
+"
+"2","old-style crs object detected; please recreate object with a recent sf::st_crs()
+"
+"2","old-style crs object detected; please recreate object with a recent sf::st_crs()
+"

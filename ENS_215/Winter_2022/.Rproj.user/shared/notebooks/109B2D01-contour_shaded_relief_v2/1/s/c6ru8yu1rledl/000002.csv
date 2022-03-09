@@ -1,0 +1,16 @@
+"0","```r
+n_breaks <- 12
+pal2use <- terrain.colors(n = n_breaks)
+
+tm_shape(dem_cropped) +
+  tm_raster(style = \"quantile\",n = n_breaks,
+            palette = pal2use) +
+  
+  
+tm_shape(country_border) +
+  tm_borders() +
+  
+  tm_layout(legend.show = F, frame = F)
+```"
+"1","stars object downsampled to 728 by 1372 cells. See tm_shape manual (argument raster.downsample)
+"

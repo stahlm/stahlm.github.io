@@ -1,0 +1,16 @@
+"0","```r
+tm_shape(raster_elev) +
+  tm_raster(style = \"cont\", midpoint = NA, palette = terrain.colors(10)) +
+  
+  tm_shape(borders_hires) +
+  tm_borders() +
+  
+  tm_shape(sf_rivers) +
+  tm_lines(col = \"blue\") + 
+  
+  tm_shape(sf_airports) +
+  tm_dots(col = \"red\", size = 0.2) +
+  
+  tm_layout(legend.outside = T, frame = F) 
+
+```"

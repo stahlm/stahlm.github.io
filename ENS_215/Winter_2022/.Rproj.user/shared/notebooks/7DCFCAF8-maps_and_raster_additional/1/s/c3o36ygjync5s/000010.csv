@@ -1,0 +1,4 @@
+"0","country_prcp <- getTerraClimNormals(AOI = aoi2use, param = ""prcp"", period = ""19812010"", month = 1:12)"
+"2","Error in withCallingHandlers(expr, warning = function(w) if (inherits(w,  : 
+  Requested AOI not in model domain
+"

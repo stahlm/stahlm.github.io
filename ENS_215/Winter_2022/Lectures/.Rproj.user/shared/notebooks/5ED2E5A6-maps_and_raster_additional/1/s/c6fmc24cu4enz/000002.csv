@@ -1,0 +1,9 @@
+"0","```r
+
+map_full <- tm_shape(loc_basemap) +
+  tm_rgb() +
+  tm_shape(borders_hires) +
+  tm_borders(col = \"red\") 
+
+map_full
+```"

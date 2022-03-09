@@ -1,0 +1,14 @@
+"0","```r
+country_borders <- rnaturalearth::ne_download(scale = 50, type = 'countries') %>% 
+  st_as_sf()
+```"
+"1","trying URL 'http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/50m/cultural/ne_50m_admin_0_countries.zip'
+Content type 'application/zip' length 774188 bytes (756 KB)
+downloaded 756 KB
+"
+"1","OGR data source with driver: ESRI Shapefile 
+Source: \"C:\Users\stahlm\AppData\Local\Temp\RtmpADbBcH\", layer: \"ne_50m_admin_0_countries\"
+with 241 features
+It has 94 fields
+Integer64 fields read as strings:  POP_EST NE_ID 
+"

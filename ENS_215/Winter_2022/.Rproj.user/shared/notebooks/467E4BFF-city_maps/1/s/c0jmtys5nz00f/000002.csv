@@ -1,0 +1,29 @@
+"0","ggplot() +
+  
+  geom_sf(data = streets$osm_lines,
+          inherit.aes = FALSE,
+          color = \"#7fc0ff\",
+          size = .4,
+          alpha = .8) +
+  geom_sf(data = small_streets$osm_lines,
+          inherit.aes = FALSE,
+          color = \"#ffbe7f\",
+          size = .2,
+          alpha = .6) +
+  geom_sf(data = river$osm_lines,
+          inherit.aes = FALSE,
+          color = \"#ffbe7f\",
+          size = .2,
+          alpha = .5) +
+  
+  geom_sf(data = Linear_water,
+          fill = \"lightgrey\") +         
+  
+  geom_sf(data = Water_features,
+          fill = \"lightgrey\") + 
+  coord_sf(xlim = c(bb_values[1,1], bb_values[1,2]), 
+           ylim = c(bb_values[2,1], bb_values[2,2]),
+           expand = FALSE) +
+  theme_void() +
+  theme(plot.background = element_rect(fill = \"#282828\")
+  )"

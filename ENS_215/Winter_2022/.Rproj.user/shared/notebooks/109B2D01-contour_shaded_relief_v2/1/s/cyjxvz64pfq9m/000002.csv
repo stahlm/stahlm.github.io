@@ -1,0 +1,8 @@
+"0","ggplot(dem_cropped_df, aes(x, y, z = layer)) +
+  geom_contour_fill(bins = 10) +
+  geom_contour_tanaka(bins = 10) +
+  #scale_fill_manual(pal2use) +
+  scale_fill_gradient(low = \"white\", high = \"black\") +
+  coord_quickmap() +
+  theme_void() +
+  theme(legend.position = \"none\")"

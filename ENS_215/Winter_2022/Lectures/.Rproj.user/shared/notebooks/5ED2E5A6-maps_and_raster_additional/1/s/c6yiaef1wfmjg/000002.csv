@@ -1,0 +1,4 @@
+"0","```r
+tm_shape(loc_basemap_zoomed) +
+  tm_rgb()
+```"

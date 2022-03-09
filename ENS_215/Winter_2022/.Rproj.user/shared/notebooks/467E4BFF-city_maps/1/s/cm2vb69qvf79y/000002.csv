@@ -1,0 +1,8 @@
+"0","```r
+
+
+dem_cropped <- raster::projectRaster(dem, crs = raster::crs(streets$osm_lines) ,method = 'bilinear')
+
+dem_cropped[dem_cropped > 0] <- NA
+dem_cropped[dem_cropped <= 0] <- 0
+```"

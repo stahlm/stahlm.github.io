@@ -1,0 +1,18 @@
+"0","```r
+library(tidyverse)
+library(osmdata)
+library(tigris)
+library(sf)
+library(tmap)
+library(osmplotr)
+library(tmaptools)
+library(OpenStreetMap)
+library(metR)
+library(ggpomological)
+
+library(ceramic)
+Sys.setenv(MAPBOX_API_KEY = \"pk.eyJ1Ijoic3RhaGxtIiwiYSI6ImNrZnJiMDMxbDA0aGsyenFlajhvMzZ4bXUifQ.I7l7fJBAHCQWRwyYozq4ZQ\")
+
+extrafont::loadfonts(device = \"win\")
+
+```"

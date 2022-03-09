@@ -1,0 +1,5 @@
+"0","```r
+ggsave(\"test_map.png\")
+```"
+"1","Saving 7 x 7 in image
+"
