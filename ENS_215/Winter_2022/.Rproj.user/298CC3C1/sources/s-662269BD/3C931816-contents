@@ -1,0 +1,183 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+
+library(tidyverse)
+library(raster)
+library(sf)
+library(whitebox)
+library(tmap)
+library(stars)
+#library(rayshader)
+#library(rgl)
+
+whitebox::wbt_init()
+
+
+theme_set(theme_classic())
+```
+
+
+## Get raster
+42.877564,-74.2380117
+```{r}
+aoi_zoomed <- AOI::aoi_get(c(42.657564,-74.2380117, 50,40 ))
+```
+
+
+
+```{r}
+raster_elev_zoomed <- get_elev_raster(aoi_zoomed, z = 10, clip = "locations")
+```
+
+```{r}
+tm_shape(raster_elev_zoomed) +
+  tm_raster(n = 10)
+```
+
+
+```{r}
+raster::writeRaster(raster_elev_zoomed, "./ws_delim/LK_raster.tif", overwrite = T)
+```
+
+
+
+## Generate a hillshade
+
+```{r}
+wbt_hillshade(dem = "./ws_delim/LK_raster.tif",
+              output = "./ws_delim/brush_hillshade.tif",
+              azimuth = 115)
+```
+
+```{r}
+hillshade <- raster("./ws_delim/brush_hillshade.tif")
+
+tm_shape(hillshade)+
+  tm_raster(style = "cont",palette = "-Greys", legend.show = FALSE) +
+  tm_scale_bar()
+```
+
+
+
+## Prepare DEM for hydrology analyses
+
+```{r}
+wbt_fill_single_cell_pits(dem = "./ws_delim/LK_raster.tif",
+                          output = "./ws_delim/LK_raster_filled.tif")
+```
+
+```{r}
+wbt_breach_depressions_least_cost(
+                     dem = "./ws_delim/LK_raster_filled.tif",
+                     output = "./ws_delim/LK_raster_filled_breached.tif",
+                     dist = 5,
+                     fill = TRUE)
+```
+
+## Create flow accumulation and pointer grids
+```{r}
+wbt_d8_flow_accumulation(input = "./ws_delim/LK_raster_filled_breached.tif",
+                         output = "./ws_delim/D8FA.tif")
+```
+
+
+```{r}
+wbt_d8_pointer(dem =  "./ws_delim/LK_raster_filled_breached.tif",
+               output = "./ws_delim/D8pointer.tif")
+```
+42.9119729,-74.2817677
+
+## Set pour points
+```{r}
+ppoints <- tribble(
+          ~Lon, ~Lat,
+          -74.2817677, 42.9119729,
+          )
+
+ppointsSP <- SpatialPoints(ppoints, proj4string = CRS("+proj=longlat +datum=WGS84"))
+
+shapefile(ppointsSP, filename = "./ws_delim/pourpoints.shp", overwrite = TRUE)
+```
+
+
+```{r}
+tmap_mode("view")
+
+tm_shape(raster_elev_zoomed)+
+  tm_raster(style = "cont", legend.show = FALSE)+
+  
+  tm_shape(ppointsSP) +
+  tm_dots(col = "red") +
+  tm_scale_bar()
+```
+
+
+
+```{r}
+wbt_extract_streams(flow_accum = "./ws_delim/D8FA.tif",
+                    output = "./ws_delim/raster_streams.tif",
+                    threshold = 50)
+```
+
+
+```{r}
+wbt_raster_streams_to_vector(streams = "./ws_delim/raster_streams.tif",
+                             d8_pntr = "./ws_delim/D8pointer.tif",
+                             output = "./ws_delim/streams.shp")
+```
+
+
+```{r}
+wbt_jenson_snap_pour_points(pour_pts = "./ws_delim/pourpoints.shp",
+                            streams = "./ws_delim/raster_streams.tif",
+                            output = "./ws_delim/snappedpp.shp",
+                            snap_dist = 0.0005) #careful with this! Know the units of your data
+```
+
+
+
+```{r}
+
+tmap_mode("view")
+
+pp <- shapefile("./ws_delim/snappedpp.shp")
+#streams <- raster("./ws_delim/raster_streams.tif")
+streams <- st_read("./ws_delim/streams.shp", stringsAsFactors = F)
+
+tm_shape(streams)+
+  tm_lines()+
+tm_shape(pp)+
+  tm_dots(col = "red")
+```
+
+
+
+
+
+## Delineate
+```{r}
+wbt_watershed(d8_pntr = "./ws_delim/D8pointer.tif",
+              pour_pts = "./ws_delim/snappedpp.shp",
+              output = "./ws_delim/brush_watersheds.tif")
+```
+
+
+```{r}
+ws <- raster("./ws_delim/brush_watersheds.tif")
+tmap_mode("view")
+# tm_shape(hillshade)+
+#   tm_raster(style = "cont",palette = "-Greys", legend.show = FALSE)+
+tm_shape(ws)+
+  tm_raster(legend.show = TRUE, alpha = 0.5, style = "cat")+
+tm_shape(pp)+
+  tm_dots(col = "red")
+```
+
+42.7904714,-73.8446588
+
+
+

@@ -1,0 +1,8 @@
+"0","ppoints <- tribble("
+"0","          ~Lon, ~Lat,"
+"0","          -74.2817677, 42.9119729,"
+"0","          )"
+"0",""
+"0","ppointsSP <- SpatialPoints(ppoints, proj4string = CRS(""+proj=longlat +datum=WGS84""))"
+"0",""
+"0","shapefile(ppointsSP, filename = ""./ws_delim/pourpoints.shp"", overwrite = TRUE)"

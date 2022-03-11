@@ -1,0 +1,15 @@
+"0","wbt_shadow_animation(input = ""./additional_hydro/dem_raster_geomorph.tif"", "
+"0","                     output = ""./additional_hydro/shadow_animation.html"", date = ""21/06/2021"","
+"0","                     interval = 15, location = ""42.077317/-74.3272637/-4"""
+"0","                     )"
+"2","
+Error running WhiteboxTools (shadow_animation)
+  whitebox.exe_path: ""C:/Users/stahlm/Documents/R/win-library/4.0/whitebox/WBT/whitebox_tools.exe""; File exists? TRUE
+  Arguments: --run=shadow_animation  --input=./additional_hydro/dem_raster_geomorph.tif --output=./additional_hydro/shadow_animation.html --palette=atlas --max_dist= --date=21/06/2021 --interval=15 --location=42.077317/-74.3272637/-4 --height=600 --delay=250 --label= -v
+
+"
+"2","System command had status 101
+"
+"1","shadow_animation - Elapsed Time: NA [did not run]"
+"1","
+"

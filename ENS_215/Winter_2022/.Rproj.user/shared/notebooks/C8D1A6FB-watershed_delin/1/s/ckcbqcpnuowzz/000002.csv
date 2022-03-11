@@ -1,0 +1,6 @@
+"0","wbt_raster_streams_to_vector(streams = ""./ws_delim/raster_streams.tif"","
+"0","                             d8_pntr = ""./ws_delim/D8pointer.tif"","
+"0","                             output = ""./ws_delim/streams.shp"")"
+"1","raster_streams_to_vector - Elapsed Time (excluding I/O): 0.59s"
+"1","
+"

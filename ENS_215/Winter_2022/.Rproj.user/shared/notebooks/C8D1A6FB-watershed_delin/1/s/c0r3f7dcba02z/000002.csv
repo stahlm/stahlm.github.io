@@ -1,0 +1,6 @@
+"0","wbt_hillshade(dem = ""./ws_delim/LK_raster.tif"","
+"0","              output = ""./ws_delim/brush_hillshade.tif"","
+"0","              azimuth = 115)"
+"1","hillshade - Elapsed Time (excluding I/O): 0.51s"
+"1","
+"

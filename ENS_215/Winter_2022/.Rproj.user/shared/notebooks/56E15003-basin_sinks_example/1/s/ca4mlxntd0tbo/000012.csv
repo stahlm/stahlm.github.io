@@ -1,0 +1,9 @@
+"0","tmap_mode(""plot"")"
+"2","tmap mode set to plotting
+"
+"0","tm_shape(raster_elev_zoomed) +"
+"0","  tm_raster(midpoint = NA, n = 10, style = ""cont"") +"
+"0","  "
+"0","  tm_shape(aoi_zoomed) +"
+"0","  tm_borders() +"
+"0","  tm_layout(legend.outside = T)"

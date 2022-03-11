@@ -1,0 +1,109 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r}
+library(tidyverse)
+library(rnaturalearth)
+
+library(sf)
+library(tmap)
+
+library(AOI)
+library(climateR)
+
+library(elevatr)
+
+library(basemaps)
+```
+
+
+
+
+```{r}
+borders_hires <- rnaturalearth::ne_countries(country = "Qatar", scale = "large", returnclass = "sf")
+
+```
+
+
+```{r}
+tm_shape(borders_hires) +
+  tm_borders()
+```
+
+
+```{r}
+raster_elev <- get_elev_raster(borders_hires, z = 10, clip = "locations")
+```
+
+
+```{r}
+raster_elev
+```
+
+
+
+
+
+```{r}
+tm_shape(raster_elev) +
+  tm_raster(style = "cont", midpoint = NA, 
+            palette = terrain.colors(10), title = "Elev (m)") +
+  
+  tm_shape(borders_hires) +
+  tm_borders() +
+  
+  tm_layout(legend.outside = T, frame = F) +
+  
+  tm_scale_bar(position = c("left", "top"))
+```
+
+
+```{r}
+aoi_zoomed <- AOI::aoi_get(c(42.790351,-73.8630654, 8,8 ))
+```
+
+
+
+```{r}
+raster_elev_zoomed <- get_elev_raster(aoi_zoomed, z = 12, clip = "locations")
+```
+```{r}
+tmap_mode("view")
+tm_shape(raster_elev_zoomed) +
+  tm_raster(style = "cont", midpoint = NA, 
+            palette = terrain.colors(10), title = "Elev (m)") +
+  
+  tm_shape(borders_hires) +
+  tm_borders() +
+  
+  tm_layout(legend.outside = T, frame = F) +
+  
+  tm_scale_bar(position = c("left", "top"))
+```
+
+
+```{r}
+loc_path <- basemap_geotif(aoi_zoomed, map_service = "esri", map_type = "world_imagery", map_res = 0.7)
+
+loc_path
+```
+
+
+
+
+
+
+```{r}
+loc_basemap <- raster::stack(loc_path)
+
+loc_basemap
+
+#raster::plotRGB(loc_basemap)
+```
+```{r}
+
+```
+

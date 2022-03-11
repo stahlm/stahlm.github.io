@@ -1,0 +1,6 @@
+"0","wbt_watershed(d8_pntr = ""./ws_delim/D8pointer.tif"","
+"0","              pour_pts = ""./ws_delim/snappedpp.shp"","
+"0","              output = ""./ws_delim/brush_watersheds.tif"")"
+"1","watershed - Elapsed Time (excluding I/O): 0.83s"
+"1","
+"

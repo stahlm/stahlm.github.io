@@ -1,0 +1,6 @@
+"0","wbt_geomorphons(dem = ""./additional_hydro/dem_raster_geomorph.tif"","
+"0","                output = ""./additional_hydro/raster_geomorphons.tif"""
+"0","                )"
+"1","geomorphons - Elapsed Time (excluding I/O): 10.873s"
+"1","
+"

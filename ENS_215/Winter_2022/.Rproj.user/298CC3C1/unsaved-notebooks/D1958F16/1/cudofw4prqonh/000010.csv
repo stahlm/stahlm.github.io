@@ -1,0 +1,9 @@
+"0","tmap_mode(""view"")"
+"2","tmap mode set to interactive viewing
+"
+"0","tm_shape(raster_geomorphons) +"
+"0","  tm_raster(style = ""cat"", palette = ""cat"") +"
+"0","  "
+"0","  tm_layout(legend.outside = T)"
+"2","stars object downsampled to 1161 by 861 cells. See tm_shape manual (argument raster.downsample)
+"
