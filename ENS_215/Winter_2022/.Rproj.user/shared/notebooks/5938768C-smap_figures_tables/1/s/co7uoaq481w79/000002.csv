@@ -1,0 +1,4 @@
+"0","```r
+sm_dataframe <- sm_dataframe[rowSums(!is.na(sm_dataframe[,3:54])) >= 1, ]
+
+```"

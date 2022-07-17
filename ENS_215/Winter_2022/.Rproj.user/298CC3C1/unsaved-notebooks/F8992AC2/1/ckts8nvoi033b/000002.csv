@@ -1,0 +1,5 @@
+"0","my_stations <- isd_history %>% "
+"0","  filter(CTRY == ""US"", "
+"0","         LAT >= 40,BEGIN <= 20190101, END >= 20210101"
+"0","         "
+"0","         ) "

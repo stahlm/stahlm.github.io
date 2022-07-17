@@ -1,0 +1,20 @@
+"0","```r
+site_summary_sf <- site_summary %>% 
+  filter(!is.na(DecLongVa),
+         !is.na(DecLatVa)) %>% 
+  
+  st_as_sf(coords = c(\"DecLongVa\", \"DecLatVa\"))
+    
+map_skewness <-  tm_shape(us_states, projection = 2163) +
+  tm_borders() +
+  tm_shape(shape_aquifers) +
+  tm_fill(col = \"ROCK_NAME\", alpha = 0.5, legend.show = F) +
+
+  tm_shape(site_summary_sf) +
+  tm_dots(col = \"DTW_skew\", size = 0.05, border.col = \"black\", border.lwd = 0.5, style = \"fixed\", 
+          palette = \"div\", 
+          breaks = seq(-1,1, by = 0.25),
+          popup.vars = c(\"DTW_skew\", \"WellDepth__ft\", \"SiteNo\")
+             )  
+  
+```"

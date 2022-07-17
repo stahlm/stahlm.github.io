@@ -1,0 +1,49 @@
+"0","```r
+fig_obj <- monthly_climate_sm_df %>% 
+  
+  ggplot() +
+  geom_hline(yintercept = 0, linetype = \"dotted\", size = 0.5) +
+  
+  geom_smooth(aes(x = Month, y = modeled_sm_p_minus_pet_anomaly), color = \"darkgreen\") +
+  #geom_smooth(aes(x = Month, y = smap_sm_anomaly), color = \"black\") +
+  
+  stat_summary_bin(aes(y = modeled_sm_p_minus_pet_anomaly,x = Month), fun.y= function(z) { quantile(z,0.75) }, 
+                   geom = \"line\",fill = NA, color = \"darkgreen\",
+                   size = 0.5, linetype = \"dashed\") +
+  
+  stat_summary_bin(aes(y = modeled_sm_p_minus_pet_anomaly,x = Month), fun.y= function(z) { quantile(z,0.25) }, 
+                   geom = \"line\",fill = NA, color = \"darkgreen\",
+                   size = 0.5, linetype = \"dashed\") +
+  
+  
+  # stat_summary_bin(aes(y = smap_sm_anomaly,x = Month), fun.y= function(z) { quantile(z,0.75) }, 
+  #                  geom = \"line\",fill = NA, color = \"black\",
+  #                  size = 0.5, linetype = \"dashed\") +
+  # 
+  # stat_summary_bin(aes(y = smap_sm_anomaly,x = Month), fun.y= function(z) { quantile(z,0.25) }, 
+  #                  geom = \"line\",fill = NA, color = \"black\",
+  #                  size = 0.5, linetype = \"dashed\") +
+  
+  scale_x_continuous(breaks = seq(0,12)) +
+  
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
+        axis.text = element_text(size = 10, face = \"bold\"), legend.position = \"none\"
+        ) +
+  
+  facet_grid(region ~ cluster_id) # MODIFIED 17-JAN-2022
+```"
+"1","`fun.y` is deprecated. Use `fun` instead.Ignoring unknown parameters: fill`fun.y` is deprecated. Use `fun` instead.Ignoring unknown parameters: fill
+"
+"0","```r
+ggsave(plot = fig_obj, filename = \"./figures/manuscript/soil_moisture_anomaly_monthly_modeled_p_minus_pet.png\",
+       dpi = 300,
+       width = 14,
+       height = 4.5)
+
+ggsave(plot = fig_obj, filename = \"./figures/manuscript/soil_moisture_anomaly_monthly_modeled_p_minus_pet.svg\",
+       dpi = 300,
+       width = 14,
+       height = 4.5)
+```"

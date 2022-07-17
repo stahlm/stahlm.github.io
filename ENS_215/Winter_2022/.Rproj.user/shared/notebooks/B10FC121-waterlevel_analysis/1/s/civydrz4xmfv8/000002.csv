@@ -1,0 +1,6 @@
+"0","```r
+
+n_clust = 6
+k_n <- kmeans(table_cluster, centers = n_clust, nstart = 50)
+
+```"

@@ -1,0 +1,11 @@
+"0","```r
+table_WT_max_all <- table_WT_max_all %>% 
+  left_join(data_site_info) %>% 
+  filter(!is.na(DecLatVa), !is.na(DecLongVa)) %>% 
+  st_as_sf(coords = c(\"DecLongVa\", \"DecLatVa\"))
+
+table_WT_min_all <- table_WT_min_all %>% 
+  left_join(data_site_info) %>% 
+  filter(!is.na(DecLatVa), !is.na(DecLongVa)) %>% 
+  st_as_sf(coords = c(\"DecLongVa\", \"DecLatVa\"))
+```"

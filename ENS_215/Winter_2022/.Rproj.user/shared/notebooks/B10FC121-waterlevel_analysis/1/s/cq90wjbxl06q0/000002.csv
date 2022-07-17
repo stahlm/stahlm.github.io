@@ -1,0 +1,6 @@
+"0","```r
+data_waterlevels %>% 
+  filter(SiteNo %in% site_ids) %>% 
+  group_by(SiteNo) %>% 
+  summarize(skew = moments::skewness(DTW_rescaled, na.rm = T))
+```"

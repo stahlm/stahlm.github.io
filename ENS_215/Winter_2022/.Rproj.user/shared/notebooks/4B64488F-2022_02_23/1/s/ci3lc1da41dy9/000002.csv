@@ -1,0 +1,5 @@
+"0","tm_shape(world_map_data) +"
+"0","  tm_polygons(""lifeExp"")"
+"2","Error in CPL_lwgeom_transform(x, crs) : 
+  st_lwgeom_transform: one of the proj strings is invalid
+"

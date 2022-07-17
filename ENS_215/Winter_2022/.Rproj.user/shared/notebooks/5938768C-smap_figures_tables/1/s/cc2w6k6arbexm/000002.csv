@@ -1,0 +1,22 @@
+"0","```r
+sm_dataframe_long %>% 
+  
+  #mutate(region = if_else(abs(lat) <= 23.5, \"tropic\", \"extratropic\")) %>% 
+  
+  #mutate(region = if_else(abs(lat >=66.5,)))
+  
+  group_by(cluster_id, region) %>%
+  summarize(n = n()) %>% 
+  
+  ungroup() %>% 
+  
+  group_by(cluster_id) %>% 
+  mutate(nfrac = round(n/sum(n), 2)) %>% 
+  
+  ggplot(aes(x = cluster_id, y = nfrac, fill = region)) +
+  geom_col() +
+  
+  theme_bw()
+```"
+"1","`summarise()` regrouping output by 'cluster_id' (override with `.groups` argument)
+"

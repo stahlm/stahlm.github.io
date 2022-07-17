@@ -1,0 +1,3 @@
+"0","aoi_to_use <- rnaturalearth::ne_countries(country = ""Israel"", scale = ""large"", returnclass = ""sf"")"
+"0",""
+"0","#aoi_to_use <- AOI::aoi_get(list(""Bolton Landing, NY"", 45,25))"

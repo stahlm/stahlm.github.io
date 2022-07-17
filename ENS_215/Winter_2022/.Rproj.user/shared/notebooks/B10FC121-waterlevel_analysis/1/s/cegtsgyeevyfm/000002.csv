@@ -1,0 +1,15 @@
+"0","```r
+a <- data_waterlevels %>% 
+  filter(!is.na(cluster_id), cluster_id %in% c(1,2)) %>% 
+  mutate(Year = year(Time),
+         day_of_year = yday(Time)) %>% 
+  ggplot() +
+  geom_line(aes(x = day_of_year, y = Depth_to_WT_anomaly_normalized, group = interaction(Year, SiteNo)), color = \"grey\") +
+  geom_smooth(aes(x = day_of_year, y = Depth_to_WT_anomaly_normalized), span = 1/12, method = \"auto\") +
+  geom_vline(xintercept = 365/2, linetype = 2) + 
+  scale_y_reverse() +
+  theme_bw() +
+  facet_wrap(~ cluster_id, scales = \"free_y\") +
+  theme(strip.text.x = element_text(margin = margin(2, 0, 2, 0)),
+        legend.position = \"none\")
+```"

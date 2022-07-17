@@ -1,0 +1,11 @@
+"0","```r
+fig_a <- data_waterlevels %>% 
+  filter(SiteNo %in% site_ids) %>% 
+  ggplot(aes(x = DTW_rescaled)) +
+  geom_histogram(aes(y=..density..)) +
+  theme_bw() +
+  scale_x_reverse() +
+  theme(legend.position = \"none\") + 
+  facet_wrap(StateNm ~ SiteNo, scales = \"free_y\") +
+  theme(strip.text.x = element_text(margin = margin(2, 0, 2, 0)) )
+```"

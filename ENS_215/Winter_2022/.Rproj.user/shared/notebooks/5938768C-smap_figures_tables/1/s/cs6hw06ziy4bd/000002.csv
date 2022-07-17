@@ -1,0 +1,6 @@
+"0","```r
+monthly_climate_sm_df <- monthly_climate_sm_df %>% 
+  mutate(wcpf2 = if_else(sm_mean > wcpf2, sm_mean, wcpf2), 
+         wcpF4_2 = if_else(sm_mean < wcpF4_2, sm_mean, wcpF4_2)
+         )
+```"

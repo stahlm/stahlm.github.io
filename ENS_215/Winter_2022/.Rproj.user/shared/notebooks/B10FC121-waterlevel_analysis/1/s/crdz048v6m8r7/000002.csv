@@ -1,0 +1,21 @@
+"0","```r
+site_summary_annual %>% 
+  group_by(StateNm) %>% 
+  filter(n() >= 5) %>% 
+  ungroup() %>% 
+  mutate(range_prop = 100*(WT_depth_max - WT_depth_min)/WellDepth__ft) %>% 
+  
+  filter(n_months >= 9, WellDepth__ft <= 100,
+         !is.na(WellDepth_cat)) %>% 
+  ggplot(aes(x = reorder(StateNm, range_prop, FUN = median, na.rm = T),
+             y =  range_prop)) +
+  geom_boxplot(outlier.shape = NA) +
+  
+  #scale_y_log10() +
+  ylim(0,50) +
+  theme_bw() +
+  theme(legend.position = \"none\") +
+  coord_flip() #+
+  #facet_wrap(~ WellDepth_cat)
+
+```"

@@ -1,0 +1,5 @@
+"0","```r
+sm_dataframe_long <- sm_dataframe_long %>% 
+  mutate(week_num = if_else(y <= 0, week_num_shift, as.numeric(week_num))) %>% 
+  dplyr::select(- week_num_shift)
+```"

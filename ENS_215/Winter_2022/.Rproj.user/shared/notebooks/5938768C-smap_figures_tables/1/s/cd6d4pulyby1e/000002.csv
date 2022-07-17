@@ -1,0 +1,8 @@
+"0","```r
+```r
+#file_list <- list.files(path = \./output/rf_models\, pattern = \rf_with\)
+
+file_name <- \./output/rf_models/rf_with_07_predictors.rds\
+#file_names <- str_remove(file_list, pattern = \.rds\)
+```
+```"

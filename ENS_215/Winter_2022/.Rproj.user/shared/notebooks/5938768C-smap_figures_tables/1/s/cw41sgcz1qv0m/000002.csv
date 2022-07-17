@@ -1,0 +1,7 @@
+"0","```r
+sm_dataframe_long <- sm_dataframe_long %>% 
+  ungroup() %>% 
+  mutate(week_num_shift = week_num + 26) %>% 
+  mutate(week_num_shift = week_num_shift %% 52) %>% 
+  mutate(week_num_shift = if_else(week_num_shift == 0, 52, week_num_shift))
+```"

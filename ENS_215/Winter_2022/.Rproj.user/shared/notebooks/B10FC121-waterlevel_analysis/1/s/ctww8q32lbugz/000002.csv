@@ -1,0 +1,20 @@
+"0","```r
+site_summary %>% 
+  group_by(StateNm) %>% 
+  filter(n() >= 5,
+         !is.na(DTW_skew)) %>% 
+  ungroup() %>% 
+  filter(WellDepth__ft <= 100) %>% 
+  ggplot(aes(x = reorder(StateNm, DTW_skew, FUN = median, na.rm = T),
+             y =  DTW_skew)) +
+  geom_boxplot(outlier.shape = NA) +
+  geom_hline(yintercept = 0, color = \"blue\") +
+  
+  #scale_y_log10() +
+  #ylim(-1,1) +
+  theme_bw() +
+  theme(legend.position = \"none\") +
+  coord_flip() #+
+  #facet_wrap(~ WellDepth_cat)
+
+```"

@@ -1,0 +1,6 @@
+"0","```r
+data_site_info %>% 
+  leaflet() %>% 
+  addProviderTiles(providers$Esri.NatGeoWorldMap) %>% 
+  addCircles(~DecLongVa, ~DecLatVa)
+```"

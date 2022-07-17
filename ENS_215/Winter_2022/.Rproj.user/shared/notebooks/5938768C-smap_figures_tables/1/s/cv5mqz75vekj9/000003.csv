@@ -1,0 +1,5 @@
+"0","```r
+
+
+write_csv(table_1, \"./table_cluster_areas.csv\")
+```"

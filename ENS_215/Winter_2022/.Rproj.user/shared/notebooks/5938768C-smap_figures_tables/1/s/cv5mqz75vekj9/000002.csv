@@ -1,0 +1,15 @@
+"0","```r
+table_1 <- sm_dataframe_long %>% 
+  
+  group_by(cluster_id, region) %>%
+  summarize(n = n()) %>% 
+  
+  ungroup() %>% 
+  summarise(n = n/sum(n), cluster_id = cluster_id, region = region
+            )
+```"
+"1","`summarise()` regrouping output by 'cluster_id' (override with `.groups` argument)
+"
+"0","```r
+table_1
+```"

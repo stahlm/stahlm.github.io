@@ -1,0 +1,55 @@
+"0","```r
+fig_obj <- monthly_climate_sm_df %>% 
+
+  ggplot() + 
+  geom_smooth(aes(x = Month, y = pet_tc__mm),
+              se = T, size = 1, color = \"red\") + 
+  
+  stat_summary_bin(aes(y = pet_tc__mm,x = Month), fun.y= function(z) { quantile(z,0.75) }, 
+                   geom = \"line\",fill = NA, color = \"red\",
+                   size = 0.5, linetype = \"dashed\") +
+  
+  stat_summary_bin(aes(y = pet_tc__mm,x = Month), fun.y= function(z) { quantile(z,0.25) }, 
+                   geom = \"line\",fill = NA, color = \"red\",
+                   size = 0.5, linetype = \"dashed\") +
+  
+  geom_smooth(aes(x = Month, y = precip_tc__mm),
+              se = T, size = 1, color = \"blue\") +
+  
+  stat_summary_bin(aes(y = precip_tc__mm,x = Month), fun.y= function(z) { quantile(z,0.75) }, 
+                   geom = \"line\",fill = NA, color = \"blue\",
+                   size = 0.5, linetype = \"dashed\") +
+  
+  stat_summary_bin(aes(y = precip_tc__mm,x = Month), fun.y= function(z) { quantile(z,0.25) }, 
+                   geom = \"line\",fill = NA, color = \"blue\",
+                   size = 0.5, linetype = \"dashed\") +
+  
+
+
+  geom_hline(yintercept = 0, linetype = \"dotted\") +
+  
+  scale_x_continuous(breaks = seq(0,12)) +
+  
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
+        axis.text = element_text(size = 10, face = \"bold\")
+        ) +
+  
+  facet_grid(region ~ cluster_id) # MODIFIED 17-JAN-2022
+```"
+"1","`fun.y` is deprecated. Use `fun` instead.Ignoring unknown parameters: fill`fun.y` is deprecated. Use `fun` instead.Ignoring unknown parameters: fill`fun.y` is deprecated. Use `fun` instead.Ignoring unknown parameters: fill`fun.y` is deprecated. Use `fun` instead.Ignoring unknown parameters: fill
+"
+"0","```r
+  
+
+ggsave(plot = fig_obj, filename = \"./figures/manuscript/APPENDIX_climate_absolute_timeseries_cluster_region.png\",
+       dpi = 300,
+       width = 14,
+       height = 4.5)  
+
+ggsave(plot = fig_obj, filename = \"./figures/manuscript/APPENDIX_climate_absolute_timeseries_cluster_region.svg\",
+       dpi = 300,
+       width = 14,
+       height = 4.5)  
+```"

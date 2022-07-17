@@ -1,0 +1,18 @@
+"0","```r
+sm_dataframe_long %>% 
+  
+  
+  group_by(cluster_id, region) %>%
+  summarize(n = n()) %>% 
+  
+  ggplot(aes(x = cluster_id, y = n/52, fill = factor(cluster_id))) +
+  geom_col() +
+  
+  scale_fill_manual(values = pal2use) +
+  
+  geom_hline(yintercept = 5500, color = \"black\") +
+  
+  facet_wrap(~ region)
+```"
+"1","`summarise()` regrouping output by 'cluster_id' (override with `.groups` argument)
+"

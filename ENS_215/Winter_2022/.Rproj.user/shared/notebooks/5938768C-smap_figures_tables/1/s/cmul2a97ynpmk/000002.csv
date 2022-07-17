@@ -1,0 +1,4 @@
+"0","```r
+rm(raster_sm)
+rm(sm_dataframe)
+```"

@@ -1,0 +1,34 @@
+"1","
+"
+"2","trying URL 'https://cran.rstudio.com/src/contrib/vctrs_0.4.1.tar.gz'
+"
+"2","Content type 'application/x-gzip'"
+"2"," length 916782 bytes (895 KB)
+"
+"2","downloaded 895 KB
+
+"
+"1","* installing *source* package 'vctrs' ...
+"
+"1","** package 'vctrs' successfully unpacked and MD5 sums checked
+"
+"1","ERROR: cannot remove earlier installation, is it in use?
+"
+"1","* removing 'C:/Users/stahlm/Documents/R/win-library/4.0/vctrs'
+"
+"1","* restoring previous 'C:/Users/stahlm/Documents/R/win-library/4.0/vctrs'
+"
+"1","Warning in file.copy(lp, dirname(pkgdir), recursive = TRUE, copy.date = TRUE) :
+"
+"1","  problem copying C:\Users\stahlm\Documents\R\win-library\4.0\00LOCK-vctrs\vctrs\libs\x64\vctrs.dll to C:\Users\stahlm\Documents\R\win-library\4.0\vctrs\libs\x64\vctrs.dll: Permission denied
+"
+"2","
+"
+"2",""
+"2","The downloaded source packages are in
+	‘C:\Users\stahlm\AppData\Local\Temp\Rtmp8s7wBg\downloaded_packages’"
+"2",""
+"2","
+"
+"0","library(spData)"
+"0","library(sf)"

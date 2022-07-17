@@ -1,0 +1,76 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r}
+library(tidyverse)
+library(lubridate)
+library(leaflet)
+library(GSODR)
+```
+
+
+```{r}
+load(system.file("extdata", "isd_history.rda", package = "GSODR"))
+```
+
+
+```{r}
+met_df <- get_GSOD(years = 2021:2022, station = "681100-99999")
+
+```
+
+
+```{r}
+met_df %>% 
+  ggplot() +
+  geom_line(aes(x = YEARMODA, y = MIN), color = "blue") +
+  geom_line(aes(x = YEARMODA, y = MAX), color = "red") +
+  
+  labs(title = met_df$NAME[1],
+       x = "Date",
+       y = "Temperature (C)",
+       caption = paste("Data source GSOD station", met_df$STNID[1])
+       ) +
+  
+  theme_classic()
+```
+
+
+```{r}
+my_stations <- isd_history %>% 
+  filter(CTRY == "US", 
+         LAT >= 40,BEGIN <= 20190101, END >= 20210101
+         
+         ) 
+```
+
+
+```{r}
+yrs2get <- 2019:2020
+```
+
+
+
+```{r}
+i_loop <- 1
+
+for (i_station in my_stations$STNID[1:4]) {
+  
+  df_temp <- get_GSOD(years = yrs2get, station = i_station)
+  
+  if (i_loop == 1) {
+    df_all <- df_temp
+  }else{
+    df_all <- bind_rows(df_all, df_temp)
+  }
+  
+  i_loop <- 2
+  
+}
+```
+
+
+

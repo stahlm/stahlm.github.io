@@ -1,0 +1,4 @@
+"0","```r
+sm_dataframe_long <- sm_dataframe_long %>% 
+  mutate(region = if_else(abs(lat) <= 23.43643, \"tropic\", \"extratropic\"))
+```"

@@ -1,0 +1,4 @@
+"0","```r
+alos_landforms <- ee$Image(\"CSP/ERGo/1_0/Global/ALOS_landforms\") #$reproject(\"EPSG:4326\")
+srtm_mTPI <- ee$Image(\"CSP/ERGo/1_0/Global/SRTM_mTPI\") #$reproject(\"EPSG:4326\")
+```"

@@ -1,0 +1,11 @@
+"0","```r
+ee_bio_clim %>% 
+  mutate(cluster_id = as.factor(cluster_id)) %>% 
+  ggplot(aes(x = cluster_id, y = bio15,
+             fill = cluster_id)) +
+  geom_boxplot(notch = T) +
+  scale_fill_brewer(palette = pal2use) +
+  #ylim(-10,10) +
+  theme_bw() +
+  theme(legend.position = \"none\" )
+```"

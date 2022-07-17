@@ -1,0 +1,10 @@
+"0","```r
+var_importance_data %>% 
+  ggplot(aes(x = MeanDecreaseAccuracy, y = reorder(predictor_var, MeanDecreaseAccuracy))) +
+  geom_segment(aes(xend = 0, yend = predictor_var), size = 1.25, color = \"darkgrey\") +
+  geom_point(size = 3) +
+  
+  theme_bw()
+
+ggsave(\"./figures/manuscript/Figure_varImp_accuracy.svg\")
+```"

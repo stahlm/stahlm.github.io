@@ -1,0 +1,14 @@
+"0","```r
+table_skew <- data_waterlevels %>% 
+  #filter(WellDepth__ft <= 100) %>% 
+  
+  group_by(AgencyCd, SiteNo) %>% 
+  summarize(DTW_skew = moments::skewness(DTW_rescaled, na.rm = T),
+            n_samples = n()
+            ) %>% 
+  
+  filter(n_samples > 25) %>% 
+  ungroup()
+```"
+"1","`summarise()` regrouping output by 'AgencyCd' (override with `.groups` argument)
+"

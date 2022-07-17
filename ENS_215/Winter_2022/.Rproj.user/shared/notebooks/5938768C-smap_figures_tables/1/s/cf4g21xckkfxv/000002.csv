@@ -1,0 +1,10 @@
+"0","```r
+```r
+# sm_dataframe_long <- sm_dataframe %>% 
+#   pivot_longer(cols = contains(\SMAP\), names_to = \week\, values_to = \soil_moisture\) %>% 
+#   group_by(x,y) %>% 
+#   mutate(week_num = 1:52) %>% 
+#   
+#   mutate(loc_id = paste(x,y,sep=\-\)) 
+```
+```"

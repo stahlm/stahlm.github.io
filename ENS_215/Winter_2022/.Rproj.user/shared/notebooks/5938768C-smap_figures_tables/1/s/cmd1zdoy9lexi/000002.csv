@@ -1,0 +1,11 @@
+"0","```r
+site_coordinates <- monthly_climate_sm_df %>% 
+  dplyr::select(x,y,lat,long, pixel_id) %>% 
+  group_by(x,y) %>% 
+  summarize(lat = first(lat),
+            long = first(long),
+            pixel_id = first(pixel_id)
+            )
+```"
+"1","`summarise()` regrouping output by 'x' (override with `.groups` argument)
+"

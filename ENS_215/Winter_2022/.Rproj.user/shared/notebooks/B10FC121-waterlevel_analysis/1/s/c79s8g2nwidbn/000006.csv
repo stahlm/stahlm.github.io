@@ -1,0 +1,16 @@
+"0","```r
+
+
+
+
+fig_3 <- table_cluster_unscaled %>% 
+  ggplot(aes(x = cluster_id, y = mean_WT_range,
+             fill = cluster_id)) +
+  geom_boxplot(notch = T) +
+  scale_fill_brewer(palette = pal2use) +
+  ylim(0,50) +
+  theme_bw() +
+  theme(legend.position = \"none\" )
+
+fig_3
+```"

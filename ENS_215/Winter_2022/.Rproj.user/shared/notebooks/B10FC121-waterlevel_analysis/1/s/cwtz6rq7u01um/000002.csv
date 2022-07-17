@@ -1,0 +1,16 @@
+"0","```r
+site_summary <- data_waterlevels %>% 
+  group_by(AgencyCd, SiteNo) %>% 
+  summarize(WT_depth_mean = mean(Depth_to_WT_ft, na.rm = T),
+            WT_depth_std = sd(Depth_to_WT_ft, na.rm = T),
+            DTW_skew = moments::skewness(DTW_rescaled, na.rm = T),
+            first_date = first(Time),
+            last_date = last(Time),
+            StateNm = first(StateNm),
+            DecLatVa = first(DecLatVa),
+            DecLongVa = first(DecLongVa),
+            n_samples = n(),
+            WellDepth__ft = first(WellDepth__ft)) %>% 
+  ungroup()
+
+```"

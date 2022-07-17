@@ -1,0 +1,40 @@
+"0","```r
+state2use <- c(\"Massachusetts\", \"Florida\", \"Nebraska\", \"Montana\", \"Oregon\", \"South Carolina\",
+               \"New York\", \"North Carolina\", \"North Dakota\", \"Maine\", \"Virginia\",
+               \"New Jersey\", \"Vermont\")
+
+state2use <- c(\"Massachusetts\", \"Florida\", \"Nebraska\", \"Oregon\", \"South Carolina\",
+               \"New York\", \"North Carolina\", \"Maine\",
+               \"New Jersey\")
+
+state2use <- c(\"Massachusetts\", \"Florida\", \"Oregon\", \"North Carolina\",\"North Dakota\",
+               \"New York\", \"New Jersey\")
+
+site_list <- site_summary %>% 
+  filter(WellDepth__ft <= 100) %>% 
+  filter(StateNm %in% state2use) %>% 
+  group_by(StateNm) %>% 
+  top_n(4, wt = n_samples) %>% 
+  ungroup()
+
+
+site_ids <- site_list$SiteNo
+
+fig_a <- data_waterlevels %>% 
+  filter(SiteNo %in% site_ids) %>% 
+  mutate(Time = as_date(Time)) %>% 
+  mutate(Month = as.factor(lubridate::month(Time))) %>% 
+  ggplot(aes(x = Month, y = Depth_to_WT_anomaly_ft, group = Month, fill = Month)) +
+  geom_hline(yintercept = 0, linetype = 2, color = \"blue\") +
+  geom_boxplot(outlier.shape = NA) +
+  scale_y_reverse() +
+  theme_bw() +
+  theme(legend.position = \"none\") + 
+  facet_wrap(~ SiteNo, scales = \"free_y\") +
+  theme(strip.text.x = element_text(margin = margin(2, 0, 2, 0)) )
+
+fig_a
+
+site_list %>% 
+  select(SiteNo, StateNm)
+```"

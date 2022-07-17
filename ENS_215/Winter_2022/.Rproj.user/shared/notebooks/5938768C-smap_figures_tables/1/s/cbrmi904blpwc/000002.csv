@@ -1,0 +1,69 @@
+"0","```r
+library(tidyverse)
+```"
+"1","Registered S3 methods overwritten by 'dbplyr':
+  method         from
+  print.tbl_lazy     
+  print.tbl_sql      
+-- Attaching packages --------------------------------------------------------------------------------------------------- tidyverse 1.3.0 --
+v ggplot2 3.3.3     v purrr   0.3.4
+v tibble  3.0.4     v dplyr   1.0.2
+v tidyr   1.1.2     v stringr 1.4.0
+v readr   1.4.0     v forcats 0.5.0
+package ‘tibble’ was built under R version 4.0.3package ‘tidyr’ was built under R version 4.0.3package ‘readr’ was built under R version 4.0.3package ‘dplyr’ was built under R version 4.0.3-- Conflicts ------------------------------------------------------------------------------------------------------ tidyverse_conflicts() --
+x dplyr::filter() masks stats::filter()
+x dplyr::lag()    masks stats::lag()
+"
+"0","```r
+library(sf)
+```"
+"1","Linking to GEOS 3.8.0, GDAL 3.0.4, PROJ 6.3.1
+"
+"0","```r
+library(tmap)
+```"
+"1","package ‘tmap’ was built under R version 4.0.3Registered S3 method overwritten by 'htmlwidgets':
+  method           from         
+  print.htmlwidget tools:rstudio
+"
+"0","```r
+library(terra)
+```"
+"1","package ã¤¼ã¸±terraã¤¼ã¸² was built under R version 4.0.5terra version 1.2.5
+
+Attaching package: ã¤¼ã¸±terraã¤¼ã¸²
+
+The following object is masked from ã¤¼ã¸±package:dplyrã¤¼ã¸²:
+
+    near
+
+The following objects are masked from ã¤¼ã¸±package:tidyrã¤¼ã¸²:
+
+    expand, pack, separate
+"
+"0","```r
+library(randomForest)
+```"
+"1","package ã¤¼ã¸±randomForestã¤¼ã¸² was built under R version 4.0.3randomForest 4.6-14
+Type rfNews() to see new features/changes/bug fixes.
+
+Attaching package: ã¤¼ã¸±randomForestã¤¼ã¸²
+
+The following object is masked from ã¤¼ã¸±package:dplyrã¤¼ã¸²:
+
+    combine
+
+The following object is masked from ã¤¼ã¸±package:ggplot2ã¤¼ã¸²:
+
+    margin
+"
+"0","```r
+library(patchwork)
+```"
+"1","package ã¤¼ã¸±patchworkã¤¼ã¸² was built under R version 4.0.3
+Attaching package: ã¤¼ã¸±patchworkã¤¼ã¸²
+
+The following object is masked from ã¤¼ã¸±package:terraã¤¼ã¸²:
+
+    area
+"

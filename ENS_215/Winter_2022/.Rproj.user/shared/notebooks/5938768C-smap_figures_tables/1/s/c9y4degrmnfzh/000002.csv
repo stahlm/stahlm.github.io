@@ -1,0 +1,4 @@
+"0","```r
+monthly_climate_sm_df <- monthly_climate_sm_df %>% 
+  mutate(hemisphere = if_else(lat >= 0, \"N\", \"S\"))
+```"

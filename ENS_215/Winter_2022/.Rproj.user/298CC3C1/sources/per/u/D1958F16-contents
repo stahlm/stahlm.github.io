@@ -1,0 +1,143 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+
+```{r}
+
+library(tidyverse)
+library(raster)
+library(sf)
+library(whitebox)
+library(tmap)
+library(stars)
+#library(rayshader)
+#library(rgl)
+
+library(elevatr)
+
+library(streamstats)
+whitebox::wbt_init()
+
+
+theme_set(theme_classic())
+```
+
+17.2480951,54.8483043
+```{r}
+aoi_zoomed <- AOI::aoi_get(list("Phoenicia, NY", 3,3))
+
+#aoi_zoomed <- AOI::aoi_get(list(17.1980651,54.8616302, 5,3))
+```
+
+
+
+```{r}
+raster_elev_zoomed <- get_elev_raster(aoi_zoomed, z = 14, clip = "locations")
+```
+
+```{r}
+raster::writeRaster(raster_elev_zoomed, "./additional_hydro/dem_raster_geomorph.tif", overwrite = T)
+```
+
+
+```{r}
+raster::plot(raster_elev_zoomed)
+```
+
+```{r}
+wbt_geomorphons(dem = "./additional_hydro/dem_raster_geomorph.tif",
+                output = "./additional_hydro/raster_geomorphons.tif"
+                )
+```
+
+
+```{r}
+raster_geomorphons <- raster::raster("./additional_hydro/raster_geomorphons.tif")
+```
+
+```{r}
+raster_geomorphons[raster_geomorphons < 0] <- NA
+```
+
+
+```{r}
+raster::plot(raster_geomorphons)
+```
+```{r}
+
+
+ws1 <- delineateWatershed(xlocation = -74.33259, ylocation = 42.08082, crs = 4326, 
+                          includeparameters = "true")
+```
+
+```{r}
+leafletWatershed(ws1)
+```
+
+```{r}
+writeShapefile(ws1, "ws", dir = ".", what = "boundary")
+```
+```{r}
+ws_sf2 <- st_read("./ws.shp")
+```
+
+
+```{r}
+ws_sf <- toSp(ws1, what = "boundary")
+```
+```{r}
+ws_sf <- st_as_sf(ws_sf)
+```
+
+```{r}
+st_crs(ws_sf) <- crs(raster_elev_zoomed)
+```
+
+
+```{r}
+tmap_mode("view")
+
+
+tm_shape(raster_elev_zoomed) +
+  tm_raster(style = "cont", palette = terrain.colors(10)) +
+  
+  tm_shape(ws_sf2) +
+  tm_polygons() +
+  
+  tm_layout(legend.outside = T)
+```
+
+
+```{r}
+
+
+tm_shape(raster_geomorphons) +
+  tm_raster(style = "cat", palette = "cat") +
+  
+  tm_layout(legend.outside = T)
+```
+
+
+```{r}
+wbt_contours_from_raster(input = "./additional_hydro/dem_raster_geomorph.tif", interval = 20, 
+                         output = "./additional_hydro/contours.shp"
+                          
+                         )
+```
+
+
+
+```{r}
+contours_sf <- st_read("./additional_hydro/contours.shp")
+```
+
+```{r}
+tm_shape(raster_geomorphons) +
+  tm_raster(style = "cat", palette = "cat") +
+tm_shape(contours_sf) +
+  tm_lines()
+```
+

@@ -1,0 +1,22 @@
+"0","```r
+table_1 <- table_WT_max_all %>% 
+  rename(mean_angle_max = mean_angle) %>% 
+  select(AgencyCd, SiteNo, mean_angle_max, num_years)
+
+table_2 <- table_WT_min_all %>% 
+  rename(mean_angle_min = mean_angle) %>% 
+  select(AgencyCd, SiteNo, mean_angle_min, num_years)
+
+
+table_min_max <- table_1 %>% 
+  left_join(table_2) %>% 
+  mutate(day_btwn_min_max = abs(mean_angle_max - mean_angle_min)) %>% 
+  mutate(day_btwn_min_max = if_else(day_btwn_min_max > 180, (360 - day_btwn_min_max)*(365/360), day_btwn_min_max)*(365/360))
+
+
+table_min_max <- table_min_max %>% 
+  left_join(data_site_info) %>% 
+  filter(!is.na(DecLatVa), !is.na(DecLongVa)) %>% 
+  st_as_sf(coords = c(\"DecLongVa\", \"DecLatVa\"))
+
+```"

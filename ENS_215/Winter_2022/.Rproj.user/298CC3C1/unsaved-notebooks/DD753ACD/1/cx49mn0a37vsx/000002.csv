@@ -1,0 +1,1 @@
+"0","dem_df <- raster::as.data.frame(dem_raster, centroids = T, xy = T)"

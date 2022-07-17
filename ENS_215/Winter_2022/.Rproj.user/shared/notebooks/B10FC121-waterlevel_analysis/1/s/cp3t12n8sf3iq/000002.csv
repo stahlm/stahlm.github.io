@@ -1,0 +1,4 @@
+"0","```r
+table_cluster_unscaled <- table_cluster_unscaled %>% 
+  mutate(cluster_id = as.factor(cluster_id))
+```"

@@ -1,0 +1,14 @@
+"0","```r
+site_summary_annual %>% 
+  mutate(WellDepth_cat = cut(WellDepth__ft, breaks = c(0,25,50,100,250,500,2500) )) %>% 
+  filter(n_months >= 9) %>% 
+  ggplot(aes(fill = 100*(WT_depth_max - WT_depth_min)/WT_depth_max, y = WellDepth__ft, 
+             x = WT_depth_max)) +
+  geom_point(alpha = 0.25, shape = 21) +
+  
+  scale_fill_viridis_c(limits=c(0, 100), oob=scales::squish) +
+  scale_y_log10() +
+  scale_x_log10() +
+  theme_bw()
+
+```"

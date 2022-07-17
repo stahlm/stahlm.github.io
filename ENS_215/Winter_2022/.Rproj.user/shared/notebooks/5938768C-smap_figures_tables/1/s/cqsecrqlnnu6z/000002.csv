@@ -1,0 +1,10 @@
+"0","```r
+#pal2use <- c(\"#7fc97fff\",\"#beaed4ff\",\"#fdc086ff\",\"#ffff99ff\",\"#386cb0ff\")
+
+
+pal2use <- c(\"#beaed4ff\",    # Modified 8-JAN-2022
+             \"#ffff99ff\",
+             \"#386cb0ff\",
+             \"#fdc086ff\",
+             \"#7fc97fff\")
+```"

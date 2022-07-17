@@ -1,0 +1,12 @@
+"0","```r
+data_waterlevels %>% 
+  filter(StateNm == \"Maine\",
+         !is.na(DTW_rescaled)) %>% 
+  group_by(AgencyCd, SiteNo) %>% 
+  arrange(DTW_rescaled) %>% 
+  mutate(cumul_value = row_number()/n()) %>% 
+  
+  summarize(GINI = 1 - 2 * pracma::trapz(DTW_rescaled, cumul_value)) %>% 
+  
+  arrange(GINI)
+```"

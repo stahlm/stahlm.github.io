@@ -1,0 +1,5 @@
+"0","library(tidyverse)"
+"2","package �tidyverse� was built under R version 4.0.5"
+"2","Error: package or namespace load failed for ‘tidyverse’ in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):
+ namespace ‘broom’ 0.7.3 is being loaded, but >= 0.7.6 is required
+"

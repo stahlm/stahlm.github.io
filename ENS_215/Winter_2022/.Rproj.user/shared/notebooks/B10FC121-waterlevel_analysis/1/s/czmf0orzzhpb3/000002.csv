@@ -1,0 +1,11 @@
+"0","```r
+data_waterlevels <- data_waterlevels %>%   
+  mutate(Year = year(Time),
+         Month = month(Time)) %>% 
+  
+  group_by(AgencyCd, SiteNo, Year) %>% 
+  mutate(Depth_to_WT_anomaly_ft = Depth_to_WT_ft - mean(Depth_to_WT_ft)) %>% 
+  mutate(Depth_to_WT_anomaly_normalized = Depth_to_WT_anomaly_ft/max(abs(Depth_to_WT_anomaly_ft))) %>% 
+  mutate(Depth_to_WT_median_anomaly_ft = Depth_to_WT_ft - median(Depth_to_WT_ft)) %>% 
+  ungroup()
+```"

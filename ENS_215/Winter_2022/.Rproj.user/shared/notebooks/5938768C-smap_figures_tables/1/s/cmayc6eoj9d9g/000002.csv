@@ -1,0 +1,12 @@
+"0","```r
+sm_dataframe_long %>% 
+  group_by(cluster_id, region) %>%
+  summarize(n = n()) %>% 
+  
+  ungroup() %>% 
+  
+  group_by(cluster_id) %>% 
+  mutate(nfrac = round(n/sum(n), 2))
+```"
+"1","`summarise()` regrouping output by 'cluster_id' (override with `.groups` argument)
+"

@@ -1,0 +1,5 @@
+"0","```r
+ee_landform <- ee_extract(x = alos_landforms, y = cluster_list, sf = TRUE)
+
+ee_mTPI <- ee_extract(x = srtm_mTPI, y = cluster_list, sf = TRUE)
+```"

@@ -1,0 +1,43 @@
+"0","```r
+t1 <- site_summary_annual %>% 
+  group_by(AgencyCd, SiteNo) %>% 
+  summarize(mean_WT_range = mean(WT_depth_max - WT_depth_min),
+            mean_WT_range_span = mean((WT_depth_max - WT_depth_min)/WT_depth_max),
+            DecLatVa = mean(DecLatVa),
+            DecLongVa = mean(DecLongVa),
+            WellDepth__ft = mean(WellDepth__ft),
+            num_years = length(unique(Year)),
+            ROCK_NAME = first(ROCK_NAME),
+            NatAqfrDesc = first(NatAqfrDesc)) %>% 
+  
+  filter(!is.na(DecLatVa), !is.na(DecLongVa)) %>% 
+  st_as_sf(coords = c(\"DecLongVa\", \"DecLatVa\"))
+  
+  map_range <- us_states %>% 
+  tm_shape(projection = 2163) +
+  tm_borders() +
+  tm_shape(shape_aquifers) +
+  tm_fill(col = \"ROCK_NAME\", alpha = 0.5, legend.show = F) +
+
+  tm_shape(t1) +
+  tm_dots(col = \"mean_WT_range\", size = 0.05, border.col = \"black\", border.lwd = 0.5, style = \"fixed\", 
+          palette = \"viridis\", 
+          breaks = seq(0,15, by = 2),
+          popup.vars = c(\"mean_WT_range\", \"num_years\", \"WellDepth__ft\",
+                         \"ROCK_NAME\", \"NatAqfrDesc\")
+             )
+  
+  map_range_2 <- us_states %>% 
+  tm_shape(projection = 2163) +
+  tm_borders() +
+  tm_shape(shape_aquifers) +
+  tm_fill(col = \"ROCK_NAME\", alpha = 0.5, legend.show = F) +
+
+  tm_shape(t1) +
+  tm_dots(col = \"mean_WT_range_span\", size = 0.05, border.col = \"black\", border.lwd = 0.5, style = \"fixed\", 
+          palette = \"viridis\", 
+          breaks = seq(0,1, by = 0.1),
+          popup.vars = c(\"mean_WT_range\", \"num_years\", \"WellDepth__ft\",
+                         \"ROCK_NAME\", \"NatAqfrDesc\")
+             ) 
+```"

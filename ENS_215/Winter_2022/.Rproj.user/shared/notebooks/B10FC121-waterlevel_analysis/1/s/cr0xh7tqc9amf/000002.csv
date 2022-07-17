@@ -1,0 +1,11 @@
+"0","```r
+ee_mTPI %>% 
+  mutate(cluster_id = as.factor(cluster_id)) %>% 
+  ggplot(aes(x = cluster_id, y = elevation,
+             fill = cluster_id)) +
+  geom_boxplot(notch = T) +
+  scale_fill_brewer(palette = pal2use) +
+  ylim(-10,10) +
+  theme_bw() +
+  theme(legend.position = \"none\" )
+```"

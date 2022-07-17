@@ -1,0 +1,6 @@
+"0","```r
+```r
+coastlines <- rnaturalearth::ne_coastline(returnclass = \sf\,scale = \medium\)
+wb <- rnaturalearth::ne_countries(returnclass = \sf\)
+```
+```"

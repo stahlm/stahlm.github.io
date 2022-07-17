@@ -1,0 +1,19 @@
+"0","```r
+a<- data_waterlevels %>% 
+  filter(StateNm == \"Maine\",
+         !is.na(DTW_rescaled)) %>% 
+  group_by(AgencyCd, SiteNo) %>% 
+  arrange(DTW_rescaled) %>% 
+  mutate(cumul_value = row_number()/n()) %>% 
+  
+  ggplot(aes(x = DTW_rescaled, y = cumul_value)) +
+  geom_line() +
+  geom_point() +
+  
+  geom_abline(slope = 1, intercept = 0,
+              color = \"blue\") +
+  
+  facet_wrap(~ SiteNo)
+
+a
+```"

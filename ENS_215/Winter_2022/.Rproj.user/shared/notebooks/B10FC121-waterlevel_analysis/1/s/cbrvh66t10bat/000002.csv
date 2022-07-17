@@ -1,0 +1,8 @@
+"0","```r
+table_cluster_unscaled %>%
+  select(cluster_id, WellDepth__ft, day_btwn_min_max, mean_angle_min, 
+         mean_angle_max, mean_WT_range, mean_WT_range_span, DTW_skew,
+         mean_median_position, mean_stdev_normalized) %>% 
+  arsenal::tableby(cluster_id ~ ., data = .) %>%
+  summary(digits = 1)
+```"

@@ -1,0 +1,18 @@
+"0","```r
+table_cluster <- table_range %>% 
+  left_join(table_skew) %>% 
+  left_join(table_min_max) %>% 
+  
+  mutate(SiteID_unique = paste(AgencyCd, SiteNo, sep = \"/\")) %>% 
+  select(SiteID_unique, mean_WT_range, mean_WT_range_span,
+         mean_median_position, mean_stdev_normalized, DTW_skew,
+         mean_angle_max, mean_angle_min, day_btwn_min_max) %>% 
+  drop_na() 
+```"
+"1","Joining, by = c(\"AgencyCd\", \"SiteNo\")
+Joining, by = c(\"AgencyCd\", \"SiteNo\")
+"
+"0","```r
+table_cluster_unscaled <- table_cluster %>% 
+  separate(SiteID_unique, into = c(\"AgencyCd\", \"SiteNo\"), sep = \"/\")
+```"

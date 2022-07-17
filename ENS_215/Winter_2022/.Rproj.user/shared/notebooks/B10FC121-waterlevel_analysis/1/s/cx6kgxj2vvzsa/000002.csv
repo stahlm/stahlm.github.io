@@ -1,0 +1,43 @@
+"0","```r
+tmap_mode(\"view\") 
+
+month_palette <- c(\"blue\",\"lightblue\",\"olivedrab\",
+                   \"green4\",\"olivedrab\",\"lightcoral\",
+                   \"red\",\"lightcoral\",\"orange\",
+                   \"darkorange3\",\"lightblue\",\"blue\")
+
+map_max <- us_states %>% 
+  tm_shape(projection = 2163) +
+  tm_borders() +
+  tm_shape(shape_aquifers) +
+  tm_fill(col = \"ROCK_NAME\", alpha = 0.5, legend.show = F) +
+
+  tm_shape(table_WT_max_all) +
+  tm_dots(col = \"mean_angle\", size = 0.05, border.col = \"black\", border.lwd = 0.5, style = \"fixed\", 
+          palette = month_palette, 
+          breaks = seq(0,360, by = 360/12),
+          popup.vars = c(\"mean_angle\", \"num_years\", \"WellDepth__ft\")
+             ) +
+  tm_layout(title = \"WT Max\")
+
+#breaks = c(0,45,90,135,180,225,270,315,360)/2
+
+
+map_min <- us_states %>% 
+  tm_shape(projection = 2163) +
+  tm_borders() +
+  tm_shape(shape_aquifers) +
+  tm_fill(col = \"ROCK_NAME\", alpha = 0.5) +
+  
+  tm_shape(table_WT_min_all) +
+  tm_dots(col = \"mean_angle\", size = 0.05, border.col = \"black\", border.lwd = 0.5, style = \"fixed\", 
+          palette = month_palette, 
+          breaks = seq(0,360, by = 360/12),
+          popup.vars = c(\"mean_angle\", \"num_years\", \"WellDepth__ft\")
+             ) +
+  tm_layout(title = \"WT Min\")
+
+tmap_arrange(map_max,map_min,
+             nrow = 2,
+             sync = T)  
+```"

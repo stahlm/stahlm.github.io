@@ -1,0 +1,16 @@
+"0","```r
+table_min_max %>% 
+  group_by(StateNm) %>% 
+  filter(n() >= 5) %>% 
+  mutate(day_btwn_median = median(day_btwn_min_max)) %>% 
+  ungroup() %>% 
+  ggplot(aes(x = day_btwn_min_max, y = reorder(StateNm, day_btwn_min_max, FUN = median),
+             fill = day_btwn_median )) +
+  scale_fill_viridis_c() +
+  geom_boxplot(outlier.shape = NA, notch = F) + 
+  geom_jitter(width = 0, alpha = 0.2, height = 0.1) +
+  theme_bw() +
+  theme(legend.position = \"none\") +
+  labs(y =\"\") +
+  scale_x_continuous(breaks = seq(0,180, by = 30)) 
+```"

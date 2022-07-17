@@ -1,0 +1,4 @@
+"0","```r
+shape_aquifers <- shape_aquifers %>% 
+  mutate(ROCK_NAME = if_else(is.na(ROCK_NAME), AQ_NAME, ROCK_NAME) )
+```"

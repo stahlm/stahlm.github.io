@@ -1,0 +1,6 @@
+"0","```r
+table_cluster_unscaled <- table_cluster_unscaled %>% 
+  left_join(df_cluster_info)
+```"
+"1","Joining, by = c(\"AgencyCd\", \"SiteNo\")
+"

@@ -1,0 +1,8 @@
+"0","```r
+data_waterlevels <- data_waterlevels %>% 
+  group_by(AgencyCd, SiteNo, Year) %>% 
+  mutate(DTW_rescaled = (Depth_to_WT_ft - min(Depth_to_WT_ft))/(max(Depth_to_WT_ft) - min(Depth_to_WT_ft))
+           ) %>% 
+  
+  ungroup()
+```"

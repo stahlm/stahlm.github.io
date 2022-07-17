@@ -1,0 +1,6 @@
+"0","```r
+sm_dataframe_long <- sm_dataframe_long %>% 
+  group_by(pixel_id) %>% 
+  mutate(sm_anomaly = soil_moisture - mean(soil_moisture)) %>% 
+  ungroup()
+```"

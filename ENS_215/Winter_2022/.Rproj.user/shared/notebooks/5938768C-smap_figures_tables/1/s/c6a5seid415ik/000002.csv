@@ -1,0 +1,5 @@
+"0","```r
+sm_dataframe_long <- sm_dataframe_long %>% 
+  mutate(soil_moisture = soil_moisture_interpolated) %>% 
+  ungroup()
+```"

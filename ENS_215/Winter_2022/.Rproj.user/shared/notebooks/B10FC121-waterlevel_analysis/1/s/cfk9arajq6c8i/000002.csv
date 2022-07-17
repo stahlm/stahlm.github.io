@@ -1,0 +1,32 @@
+"0","```r
+table_range <- data_waterlevels %>% 
+  #filter(WellDepth__ft <= 100) %>% 
+  
+  group_by(AgencyCd, SiteNo, Year) %>% 
+  summarize(DTW_min = min(Depth_to_WT_ft, na.rm = T),
+            DTW_max = max(Depth_to_WT_ft, na.rm = T),
+            median_position = median(Depth_to_WT_ft, na.rm = T)/(DTW_max - DTW_min),
+            stdev_normalized = sd(Depth_to_WT_ft, na.rm = T)/(DTW_max - DTW_min),
+            WellDepth__ft = first(WellDepth__ft),
+            n_months = length(unique(Month))
+            ) %>% 
+  
+  filter(n_months > 9) %>% 
+  
+  ungroup() %>% 
+  
+  group_by(AgencyCd, SiteNo) %>% 
+  summarize(mean_WT_range = mean(DTW_max - DTW_min),
+            mean_WT_range_span = mean(DTW_max - DTW_min)/mean(WellDepth__ft),
+            mean_median_position = mean(median_position),
+            mean_stdev_normalized = mean(stdev_normalized),
+            n_years = length(unique(Year))
+            
+            ) %>% 
+  
+  filter(n_years >= 2) %>% 
+  ungroup()
+```"
+"1","`summarise()` regrouping output by 'AgencyCd', 'SiteNo' (override with `.groups` argument)
+`summarise()` regrouping output by 'AgencyCd' (override with `.groups` argument)
+"

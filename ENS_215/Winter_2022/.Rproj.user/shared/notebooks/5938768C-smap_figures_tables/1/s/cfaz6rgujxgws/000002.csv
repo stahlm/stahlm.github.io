@@ -1,0 +1,6 @@
+"0","```r
+sm_dataframe_long <- sm_dataframe_long %>% 
+  left_join(sm_cluster_dataframe)
+```"
+"1","Joining, by = c(\"x\", \"y\")
+"

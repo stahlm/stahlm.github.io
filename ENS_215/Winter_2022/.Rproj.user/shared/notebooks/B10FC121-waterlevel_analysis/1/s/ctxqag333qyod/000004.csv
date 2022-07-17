@@ -1,0 +1,8 @@
+"0","```r
+
+
+ee_landform %>% 
+  ggplot(aes(x = cluster_id, fill = as.factor(constant))) +
+  geom_bar() +
+  theme_bw()
+```"

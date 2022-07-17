@@ -1,0 +1,14 @@
+"0","```r
+map_btwn_min_max <- us_states %>% 
+  tm_shape(projection = 2163) +
+  tm_borders() +
+  tm_shape(shape_aquifers) +
+  tm_fill(col = \"ROCK_NAME\", alpha = 0.5, legend.show = F) +
+
+  tm_shape(table_min_max) +
+  tm_dots(col = \"day_btwn_min_max\", size = 0.05, border.col = \"black\", border.lwd = 0.5, style = \"fixed\", 
+          palette = \"viridis\", 
+          breaks = seq(0,182.5, by = 182.5/6),
+          popup.vars = c(\"day_btwn_min_max\", \"num_years\", \"WellDepth__ft\")
+             ) 
+```"

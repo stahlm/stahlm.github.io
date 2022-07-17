@@ -1,0 +1,5 @@
+"0","```r
+df_cluster_info <- df_cluster_info %>% 
+  filter(!is.na(DecLatVa), !is.na(DecLongVa)) %>% 
+  st_as_sf(coords = c(\"DecLongVa\", \"DecLatVa\")) 
+```"

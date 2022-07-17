@@ -1,0 +1,14 @@
+"0","```r
+site_summary_annual %>% 
+  filter(n_months >= 9) %>% 
+  ggplot(aes(x = WT_depth_max, y = 100*(WT_depth_max - WT_depth_min)/WT_depth_max, 
+             fill = WellDepth__ft)) +
+  geom_point(alpha = 0.25, shape = 21) +
+  
+  scale_fill_viridis_c() +
+  scale_y_log10() +
+  scale_x_log10() +
+  theme_bw()
+
+
+```"

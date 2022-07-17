@@ -1,0 +1,4 @@
+"0","```r
+sm_dataframe_long <- sm_dataframe_long %>% 
+  arrange(loc_id, week_num)
+```"

@@ -1,0 +1,83 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+
+```{r}
+
+library(tidyverse)
+library(raster)
+library(sf)
+library(whitebox)
+library(tmap)
+library(stars)
+library(rayshader)
+#library(rgl)
+
+library(elevatr)
+
+library(streamstats)
+library(metR)
+whitebox::wbt_init()
+
+
+theme_set(theme_classic())
+```
+
+17.2480951,54.8483043
+```{r}
+aoi_to_use <- rnaturalearth::ne_countries(country = "Israel", scale = "large", returnclass = "sf")
+
+#aoi_to_use <- AOI::aoi_get(list("Bolton Landing, NY", 45,25))
+```
+
+
+
+```{r}
+dem_raster <- get_elev_raster(aoi_to_use, z = 8, clip = "locations")
+```
+
+
+
+
+```{r}
+tmap_mode("plot")
+
+tm_shape(dem_raster) +
+  tm_raster(style = "cont", midpoint = 500,
+            title = "Elev (m)") +
+tm_shape(aoi_to_use) +
+  tm_borders() +
+  
+  tm_layout(legend.outside = T, frame = F)
+```
+
+
+
+```{r}
+dem_df <- raster::as.data.frame(dem_raster, centroids = T, xy = T)
+```
+
+```{r}
+dem_df$z <- dem_df[,3]
+```
+
+
+https://eliocamp.github.io/metR/articles/Visualization-tools.html#geom-contour-tanaka
+```{r}
+ggplot(dem_df, aes(x, y, z = z)) +
+     geom_contour_fill() +
+     geom_contour_tanaka(sun.angle = 60, smooth = 1) +
+  #scale_fill_divergent() +
+  scale_fill_gradient(low = "white", high = "black") +
+  coord_equal() +
+  
+  theme_void() +
+  theme(legend.position = "none")
+  
+
+```
+
+

@@ -1,0 +1,5 @@
+"0",""
+"0",""
+"0","ws1 <- delineateWatershed(xlocation = -74.33259, ylocation = 42.08082, crs = 4326, "
+"0","                          includeparameters = ""true"")"
+"1","https://streamstats.usgs.gov/streamstatsservices/watershed.geojson?rcode=NY&xlocation=-74.33259&ylocation=42.08082&includeparameters=true&includeflowtypes=false&includefeatures=true&crs=4326"

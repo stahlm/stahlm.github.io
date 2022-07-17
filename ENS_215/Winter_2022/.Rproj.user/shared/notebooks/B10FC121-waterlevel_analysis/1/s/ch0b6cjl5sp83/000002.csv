@@ -1,0 +1,16 @@
+"0","```r
+fig_table_max <- table_WT_max_all %>% 
+  select(AgencyCd, SiteNo, StateNm, ROCK_NAME, NatAqfrDesc, mean_angle, -geometry) %>% 
+  rename(max_mean_angle = mean_angle) %>% 
+  st_drop_geometry()
+
+fig_table_min <- table_WT_min_all %>% 
+  select(AgencyCd, SiteNo, StateNm, ROCK_NAME, NatAqfrDesc, mean_angle) %>% 
+  rename(min_mean_angle = mean_angle) %>% 
+  st_drop_geometry()
+  
+  
+
+fig_table_max_min <- fig_table_max %>% 
+  left_join(fig_table_min) 
+```"

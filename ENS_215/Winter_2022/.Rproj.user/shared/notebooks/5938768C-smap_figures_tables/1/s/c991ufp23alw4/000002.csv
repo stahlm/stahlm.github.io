@@ -1,0 +1,8 @@
+"0","```r
+sm_dataframe_long <- sm_dataframe_long %>%
+  group_by(loc_id) %>% 
+  
+  mutate(weeks_with_data = sum(!is.na(soil_moisture)) ) %>% 
+  
+  ungroup()
+```"

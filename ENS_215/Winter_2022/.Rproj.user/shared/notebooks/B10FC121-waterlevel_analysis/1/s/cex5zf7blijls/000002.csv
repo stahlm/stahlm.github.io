@@ -1,0 +1,9 @@
+"0","```r
+fviz_nbclust(
+  table_cluster, 
+  kmeans, 
+  k.max = 25,
+  method = \"wss\",
+  diss = get_dist(table_cluster, method = \"spearman\")
+)
+```"

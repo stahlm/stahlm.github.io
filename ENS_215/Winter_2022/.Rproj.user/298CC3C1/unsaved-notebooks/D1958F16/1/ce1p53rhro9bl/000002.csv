@@ -1,1 +1,3 @@
 "0","aoi_zoomed <- AOI::aoi_get(list(""Phoenicia, NY"", 3,3))"
+"0",""
+"0","#aoi_zoomed <- AOI::aoi_get(list(17.1980651,54.8616302, 5,3))"

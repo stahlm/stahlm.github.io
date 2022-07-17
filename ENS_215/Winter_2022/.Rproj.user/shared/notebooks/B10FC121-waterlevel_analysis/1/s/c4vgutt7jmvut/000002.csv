@@ -1,0 +1,17 @@
+"0","```r
+site_summary_annual %>% 
+  mutate(WellDepth_cat = cut(WellDepth__ft, breaks = c(0,25,50,100,250,500,2500) )) %>% 
+  filter(n_months >= 9) %>% 
+  ggplot(aes(x = 100*WT_depth_max/WellDepth__ft, y = 100*(WT_depth_max - WT_depth_min)/WT_depth_max, 
+             fill = WT_depth_max - WT_depth_min)) +
+  geom_point(alpha = 0.25, shape = 21) +
+  
+  scale_fill_viridis_c(limits=c(0, 15), oob=scales::squish) +
+  scale_y_log10(breaks = c(0.1,1,10,25,50,100),
+                limits = c(0.1,200)) +
+  scale_x_log10(breaks = c(0.1,1,10,25,50,100),
+                limits = c(0.1,100)) +
+  theme_bw() +
+  facet_wrap(~ WellDepth_cat)
+
+```"

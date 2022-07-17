@@ -1,0 +1,17 @@
+"0","```r
+site_summary_annual %>% 
+  mutate(WellDepth_cat = cut(WellDepth__ft, breaks = c(0,25,50,100,250,500,2500) ),
+         WT_range = WT_depth_max - WT_depth_min) %>% 
+  filter(n_months >= 9) %>% 
+  filter(!is.na(WellDepth_cat)) %>% 
+  
+  ggplot(aes(y = (WT_range), x = ROCK_NAME)) +
+  
+  geom_boxplot(aes(fill = ROCK_NAME, outlier.shape = NA)) +
+  geom_jitter(height = 0, alpha = 0.01) +
+  ylim(0,15) +
+  facet_wrap(~ WellDepth_cat)
+
+
+
+```"

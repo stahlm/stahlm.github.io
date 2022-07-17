@@ -1,0 +1,8 @@
+"0","```r
+set.seed(123)
+
+library(cluster)    # clustering algorithms
+library(factoextra) # clustering algorithms & visualization
+```"
+"1","package ‘factoextra’ was built under R version 4.0.3Welcome! Want to learn more? See two factoextra-related books at https://goo.gl/ve3WBa
+"
