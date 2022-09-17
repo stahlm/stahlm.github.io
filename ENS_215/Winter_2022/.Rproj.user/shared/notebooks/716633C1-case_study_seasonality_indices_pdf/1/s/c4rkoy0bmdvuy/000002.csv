@@ -1,0 +1,5 @@
+"0","df_seasonality_alb_precip$obs_type <- ""Precip"""
+"0",""
+"0","df_seasonality_flow$obs_type <- ""Flow"""
+"0",""
+"0","df_seasonality <- bind_rows(df_seasonality_alb_precip, df_seasonality_flow)"

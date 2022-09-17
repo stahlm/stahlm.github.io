@@ -27,9 +27,38 @@ leaflet() %>% addTiles() %>% setView(-93.65, 42.0285, zoom = 4) %>%
   )
 ```
 
+```{r}
+leaflet() %>% addTiles() %>% setView(-93.65, 42.0285, zoom = 4) %>%
+  addWMSTiles(
+    "https://basemap.nationalmap.gov:443/arcgis/services/USGSHydroCached/MapServer/WmsServer?",
+    layers = "0",
+    options = WMSTileOptions(format = "image/png", transparent = T),
+    attribution = ""
+  ) 
+```
+
+
+```{r}
+leaflet() %>% addTiles() %>% setView(-73.784, 43.083, zoom = 10) %>%
+  addWMSTiles(
+    "https://carto.nationalmap.gov:443/arcgis/services/contours/MapServer/WmsServer?",
+    layers = "0",
+    options = WMSTileOptions(format = "image/png", transparent = T),
+    attribution = ""
+  ) 
+```
 
 
 
+```{r}
+leaflet() %>% addTiles() %>% setView(-73.784, 43.083, zoom = 11) %>%
+  addWMSTiles(
+    "https://elevation.nationalmap.gov:443/arcgis/services/3DEPElevation/ImageServer/WMSServer",
+    layers = "3DEPElevation:Hillshade Gray",
+    options = WMSTileOptions(format = "image/png", transparent = T),
+    attribution = ""
+  ) 
+```
 
 
 ```{r}
