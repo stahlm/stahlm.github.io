@@ -1,1 +1,1 @@
-Some files related to the 2022 Birdsall-Dreiss lecture/visit to Union College
+Some files related to the 2022 Birdsall-Dreiss lecture/visit to Union College 
