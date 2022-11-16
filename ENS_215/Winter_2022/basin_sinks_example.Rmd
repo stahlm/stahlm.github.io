@@ -13,6 +13,7 @@ library(sf)
 library(whitebox)
 library(tmap)
 library(stars)
+library(elevatr)
 #library(rayshader)
 #library(rgl)
 

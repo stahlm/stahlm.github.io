@@ -1,0 +1,168 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+https://www.whiteboxgeo.com/manual/wbt_book/intro.html
+https://giswqs.github.io/whiteboxR/index.html
+
+https://usgs-r.github.io/nhdplusTools/index.html
+
+```{r}
+
+library(tidyverse)
+library(raster)
+library(sf)
+library(whitebox)
+library(tmap)
+library(stars)
+library(elevatr)
+#library(rayshader)
+#library(rgl)
+
+whitebox::wbt_init()
+
+```
+
+
+
+```{r}
+getwd()
+```
+20.919259, 105.900520
+44.455058, -67.879121
+```{r}
+aoi_zoomed <- AOI::aoi_get(x = "Big Indian, NY")
+
+#aoi_zoomed <- AOI::aoi_get(x = c(44.455372, -67.890304, 1, 1.5))
+#aoi_zoomed <- AOI::aoi_get(x = c(38.152274, -75.804369, 1, 1))
+#aoi_zoomed <- AOI::aoi_get(x = c(38.141581, -75.781343, 1, 1))
+```
+
+
+
+```{r}
+raster_elev_zoomed <- get_elev_raster(aoi_zoomed, z = 14, clip = "locations")
+```
+
+
+```{r}
+raster::writeRaster(raster_elev_zoomed, "../additional_hydro/dem_geomorph.tif", overwrite = T)
+```
+
+
+
+
+```{r}
+raster::plot(raster_elev_zoomed)
+```
+
+
+https://www.whiteboxgeo.com/manual/wbt_book/available_tools/geomorphometric_analysis.html#Geomorphons
+```{r}
+wbt_geomorphons(dem = "../additional_hydro/dem_geomorph.tif",
+                output = "../additional_hydro/dem_geomorph_out.tif"
+                )
+```
+
+
+```{r}
+raster_geomorph <- raster::raster("../additional_hydro/dem_geomorph_out.tif")
+```
+
+
+```{r}
+tmap_mode("view")
+
+tm_shape(raster_geomorph) +
+  #tm_raster(style = "cont")
+  tm_raster(style = "cat", palette = "cat")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+```{r}
+wbt_hypsometric_analysis(inputs = "../additional_hydro/dem_geomorph.tif",
+                         output = "../hypso_example.html")
+```
+
+
+
+
+```{r}
+wbt_slope(dem = "../additional_hydro/dem_geomorph.tif",
+          output = "../additional_hydro/dem_embankment_out.tif")
+```
+
+
+```{r}
+raster_ridges <- raster::raster("../additional_hydro/dem_embankment_out.tif")
+```
+
+
+```{r}
+tmap_mode("view")
+
+tm_shape(raster_ridges) +
+  tm_raster(style = "cont")
+  #tm_raster(style = "cat", palette = "cat")
+```
+
+
+
+
+
+
+```{r}
+wbt_hillshade(dem = "../additional_hydro/dem_geomorph.tif", 
+              output =  "../additional_hydro/dem_hillshade.tif", z = 4)
+```
+
+```{r}
+raster_hillshade <- raster::raster("../additional_hydro/dem_hillshade.tif")
+```
+
+
+
+
+
+```{r}
+tmap_mode("view")
+
+tm_shape(raster_hillshade, raster.downsample = F) +
+  tm_raster(style = "cont", palette = "Greys")
+```
+
+
+
+
+
+```{r}
+wbt_aspect(dem = "../additional_hydro/dem_geomorph.tif", 
+           output =  "../additional_hydro/aspect.tif")
+```
+
+```{r}
+raster_aspect <- raster::raster("../additional_hydro/aspect.tif")
+```
+
+
+
+```{r}
+tmap_mode("view")
+
+tm_shape(raster_aspect) +
+  tm_raster(style = "cont")
+```
+
+

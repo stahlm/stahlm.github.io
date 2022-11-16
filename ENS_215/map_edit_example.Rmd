@@ -1,0 +1,111 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+https://inbo.github.io/tutorials/tutorials/spatial_wms_services/
+https://github.com/r-spatial/mapedit
+
+https://apps.nationalmap.gov/services/
+
+https://elevation.nationalmap.gov/arcgis/services/3DEPElevation/ImageServer/WMSServer?request=GetCapabilities&service=WMS
+
+```{r}
+library(mapedit)
+library(leaflet)
+library(mapview)
+library(tmap)
+library(sf)
+
+
+```
+
+3DEPElevation:Slope Map
+
+
+```{r}
+data_out <- leaflet() %>% addTiles(group = "topo") %>% 
+  
+  setView(-73.9284, 42.8191, zoom = 11) %>%
+  
+  addWMSTiles(
+    "https://elevation.nationalmap.gov:443/arcgis/services/3DEPElevation/ImageServer/WMSServer",
+    layers = "3DEPElevation:Hillshade Gray",
+    options = c(WMSTileOptions(format = "image/png", transparent = T),
+                layersControlOptions(collapsed = FALSE)), 
+    
+    group = "topo1"
+  ) %>% 
+  
+  addWMSTiles(
+    "https://elevation.nationalmap.gov:443/arcgis/services/3DEPElevation/ImageServer/WMSServer",
+    layers = "3DEPElevation:Hillshade Multidirectional",
+    options = c(WMSTileOptions(format = "image/png", transparent = T),
+                layersControlOptions(collapsed = FALSE)),
+
+    group = "topo2"
+  ) %>%
+
+   addWMSTiles(
+    "https://elevation.nationalmap.gov:443/arcgis/services/3DEPElevation/ImageServer/WMSServer",
+    layers = "3DEPElevation:Hillshade Elevation Tinted",
+    options = c(WMSTileOptions(format = "image/png", transparent = T),
+                layersControlOptions(collapsed = FALSE)),
+
+    group = "topo3"
+  ) %>%
+  
+  
+## NEW START
+  
+    addWMSTiles(
+    "https://imagery.nationalmap.gov:443/arcgis/services/USGSNAIPPlus/ImageServer/WMSServer",
+    layers = "0",
+    options = c(WMSTileOptions(format = "image/png", transparent = T),
+                layersControlOptions(collapsed = FALSE)),
+
+    group = "topo4"
+  ) %>%
+  
+  
+## NEW END  
+  
+    addLayersControl(
+    baseGroups = "topo",
+    overlayGroups = c("topo1","topo2","topo3", "topo4"),
+    options = layersControlOptions(collapsed = FALSE)
+  ) %>% 
+  
+  editMap()
+```
+https://imagery.nationalmap.gov:443/arcgis/services/USGSNAIPPlus/ImageServer/WMSServer
+
+https://basemap.nationalmap.gov:443/arcgis/services/USGSImageryOnly/MapServer/WmsServer?
+
+```{r}
+a <- data_out$drawn
+```
+
+
+```{r}
+fname <- "grace_01.shp" # name to save your file as 
+
+st_write(a, fname)
+```
+
+
+```{r}
+
+
+shape_levee <- st_read(fname, 
+                       stringsAsFactors = FALSE)
+```
+
+
+```{r}
+tmap_mode("view")
+
+tm_shape(shape_levee) + tm_lines()
+```
+

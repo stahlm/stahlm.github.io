@@ -39,6 +39,9 @@ raster_elev <- get_elev_raster(borders_hires, z = 5, clip = "locations")
 ```
 
 
+
+
+
 ```{r}
 tm_shape(raster_elev) +
   tm_raster()
