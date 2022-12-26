@@ -1,0 +1,18 @@
+"0","```r
+buildings <- bb_values %>%
+  opq()%>%
+  add_osm_feature(key = \"building\") %>%
+  osmdata_sf()
+
+buildings
+```"
+"1","Object of class 'osmdata' with:
+                 $bbox : 42.8096477,-73.9402887,42.8236477,-73.9192887
+        $overpass_call : The call submitted to the overpass API
+                 $meta : metadata including timestamp and version numbers
+           $osm_points : 'sf' Simple Features Collection with 2313 points
+            $osm_lines : 'sf' Simple Features Collection with 22 linestrings
+         $osm_polygons : 'sf' Simple Features Collection with 388 polygons
+       $osm_multilines : NULL
+    $osm_multipolygons : 'sf' Simple Features Collection with 13 multipolygons
+"

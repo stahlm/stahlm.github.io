@@ -1,0 +1,9 @@
+"0","```r
+bb_values <- getbb(loc2use)
+
+bb_values
+```"
+"1","        min      max
+x  2.224122  2.46976
+y 48.815576 48.90216
+"

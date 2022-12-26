@@ -1,0 +1,14 @@
+"0","```r
+small_streets <- getbb(loc2use) %>%
+  opq()%>%
+  add_osm_feature(key = \"highway\", 
+                  value = c(\"residential\", \"living_street\",
+                            \"unclassified\",
+                            \"service\", \"footway\")) %>%
+  osmdata_sf()
+
+river <-  getbb(loc2use) %>%
+  opq()%>%
+  add_osm_feature(key = \"waterway\", value = \"river\") %>%
+  osmdata_sf()
+```"

@@ -1,0 +1,43 @@
+"0","```r
+ggplot() +
+  
+  geom_sf(data = buildings$osm_polygons,
+          inherit.aes = FALSE,
+          color = \"grey\",
+          fill = \"white\",
+          size = .4,
+          alpha = 1) +
+  
+  #7fc0ff
+  geom_sf(data = streets$osm_lines,
+          inherit.aes = FALSE,
+          color = \"white\",
+          size = .8,
+          alpha = .8) +
+  
+  #ffbe7f
+  geom_sf(data = small_streets$osm_lines,
+          inherit.aes = FALSE,
+          color = \"white\",
+          size = .4,
+          alpha = .6) +
+  
+  #blue
+  # geom_sf(data = river$osm_lines,
+  #         inherit.aes = FALSE,
+  #         color = \"white\",
+  #         size = .4,
+  #         alpha = 1) + 
+  
+  geom_sf(data = Linear_water,
+          color = \"lightgrey\") +         
+  
+  geom_sf(data = Water_features,
+          fill = \"lightgrey\") + 
+  coord_sf(xlim = c(bb_values[1,1], bb_values[1,2]), 
+           ylim = c(bb_values[2,1], bb_values[2,2]),
+           expand = FALSE) +
+
+  theme_void() +
+  theme(plot.background = element_rect(fill = \"#282828\"))
+```"

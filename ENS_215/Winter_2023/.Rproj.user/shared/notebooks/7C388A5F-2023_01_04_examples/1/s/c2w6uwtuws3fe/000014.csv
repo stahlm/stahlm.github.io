@@ -1,0 +1,10 @@
+"0","tmap_mode(""view"")"
+"2","tmap mode set to interactive viewing
+"
+"0","map_springs <- "
+"0","  tm_shape(NY_border) +"
+"0","  tm_borders(col = ""black"") +"
+"0","tm_shape(springs_data$osm_points) +"
+"0","  tm_dots(col = ""blue"") "
+"0","  "
+"0","  "

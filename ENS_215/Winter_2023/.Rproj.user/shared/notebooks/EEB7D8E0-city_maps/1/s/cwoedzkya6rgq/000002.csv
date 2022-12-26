@@ -1,0 +1,1 @@
+"0","nat_borders_cropped <- st_crop(nat_borders, streets$osm_lines)"

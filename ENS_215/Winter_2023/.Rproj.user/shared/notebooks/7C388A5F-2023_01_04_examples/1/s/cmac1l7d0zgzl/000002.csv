@@ -1,0 +1,7 @@
+"0","henri = getGridMET(aoi_get(state = c(""NY"", ""NJ"")), "
+"0","                  param = ""prcp"", "
+"0","                  startDate = ""2021-08-16"", endDate = ""2021-08-24"")"
+"2","Error in s2_geography_from_wkb(x, oriented = oriented, check = check) : 
+  Evaluation error: Found 1 feature with invalid spherical geometry.
+[1] Loop 0 edge 505 has duplicate near loop 1 edge 55.
+"

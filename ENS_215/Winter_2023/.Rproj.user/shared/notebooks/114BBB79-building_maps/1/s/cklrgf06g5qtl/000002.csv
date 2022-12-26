@@ -1,0 +1,16 @@
+"0","```r
+if (country == \"US\") {
+  Water_features <- area_water(state = state2use, county = county2use)  # download the data
+
+Water_features <- st_as_sf(Water_features) # convert to an sf object
+
+Linear_water <- linear_water(state = state2use, county = county2use)  # download the data
+
+Linear_water <- st_as_sf(Linear_water) # convert to an sf object
+}
+```"
+"1","Using FIPS code '36' for state 'NY'
+Using FIPS code '093' for 'Schenectady County'
+Using FIPS code '36' for state 'NY'
+Using FIPS code '093' for 'Schenectady County'
+"

@@ -1,0 +1,14 @@
+"0","```r
+loc_name <- \"Union\"
+
+loc2use <- \"Schenectady, NY\"
+country <- \"US\"
+
+state2use <- \"NY\"
+county2use <- \"Schenectady\"
+
+
+
+lat_pt <- 42.8166477
+long_pt <- -73.9297887
+```"

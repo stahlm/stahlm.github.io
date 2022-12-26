@@ -1,0 +1,7 @@
+"0","```r
+#fname <- str_replace(loc2use, pattern = \", \", replacement = \"_\")
+
+ggsave(paste(loc_name,\"_antique_background.png\", sep = \"\"), 
+       width = 6, height = 6,
+       dpi = 1200)
+```"

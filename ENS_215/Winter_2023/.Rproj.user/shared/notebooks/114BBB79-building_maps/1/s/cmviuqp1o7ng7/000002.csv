@@ -1,0 +1,11 @@
+"0","```r
+tmap_mode(\"view\") 
+tm_shape(buildings$osm_polygons) +
+  tm_polygons() +
+
+tm_shape(streets$osm_lines) +
+  tm_lines() +
+  
+tm_shape(small_streets$osm_lines) +
+  tm_lines() 
+```"

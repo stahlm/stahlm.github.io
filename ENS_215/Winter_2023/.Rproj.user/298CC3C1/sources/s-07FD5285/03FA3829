@@ -1,0 +1,25 @@
+{
+    "id": "03FA3829",
+    "path": "~/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/water-explainer/city_maps.Rmd",
+    "project_path": null,
+    "type": "r_markdown",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1672078422543.0,
+    "source_on_save": false,
+    "relative_order": 5,
+    "properties": {
+        "chunk_output_type": "inline",
+        "cursorPosition": "35,0",
+        "scrollLine": "21"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1608574768,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1608574768,
+    "read_only": false,
+    "read_only_alternatives": []
+}

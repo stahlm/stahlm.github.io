@@ -1,0 +1,19 @@
+"0","```r
+streets <- getbb(loc2use) %>%
+  opq()%>%
+  add_osm_feature(key = \"highway\", 
+                  value = c(\"motorway\", \"primary\", 
+                            \"secondary\", \"tertiary\")) %>%
+  osmdata_sf()
+streets
+```"
+"1","Object of class 'osmdata' with:
+                 $bbox : 48.8155755,2.224122,48.902156,2.4697602
+        $overpass_call : The call submitted to the overpass API
+                 $meta : metadata including timestamp and version numbers
+           $osm_points : 'sf' Simple Features Collection with 36804 points
+            $osm_lines : 'sf' Simple Features Collection with 8499 linestrings
+         $osm_polygons : 'sf' Simple Features Collection with 14 polygons
+       $osm_multilines : NULL
+    $osm_multipolygons : NULL
+"

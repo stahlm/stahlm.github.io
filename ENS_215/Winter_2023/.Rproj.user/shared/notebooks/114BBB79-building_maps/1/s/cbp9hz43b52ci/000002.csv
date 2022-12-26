@@ -1,0 +1,14 @@
+"0","```r
+#42.8166477,-73.9297887
+#42.3605748,-71.0943991
+
+
+coord_buffer <- 0.007 
+
+
+bb_values[1,1] <- long_pt - coord_buffer*1.5
+bb_values[1,2] <- long_pt + coord_buffer*1.5
+
+bb_values[2,1] <- lat_pt - coord_buffer
+bb_values[2,2] <- lat_pt + coord_buffer
+```"

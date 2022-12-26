@@ -1,0 +1,2 @@
+"0","NY_border <- spData::us_states %>% "
+"0","  filter(NAME == ""New Mexico"")"
