@@ -1,0 +1,38 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r}
+# load the packages
+library(rvest)
+library(dplyr)
+library(tidyverse)
+```
+
+```{r}
+
+
+# Read the US GDP data
+df <- read_csv("US_GDP.csv")
+
+# Plot the US GDP data
+ggplot(df, aes(x=Year, y=GDP)) +
+  geom_line(color = "red") +
+  xlab("Year") +
+  ylab("GDP (in $ Trillion)") +
+  ggtitle("US GDP Time Series Plot")
+
+```
+
+
+
+
+
+```{r}
+# view the data
+data
+
+```
+

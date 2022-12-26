@@ -1,0 +1,11 @@
+"0","```r
+tmap_mode(\"view\")
+```"
+"1","tmap mode set to interactive viewing
+"
+"0","```r
+tm_shape(raster_aspect) +
+  tm_raster(style = \"cont\")
+```"
+"1","stars object downsampled to 1000 by 1000 cells. See tm_shape manual (argument raster.downsample)
+"

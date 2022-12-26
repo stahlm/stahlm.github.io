@@ -1,0 +1,7 @@
+"0","```r
+wbt_geomorphons(dem = \"../additional_hydro/dem_geomorph.tif\",
+                output = \"../additional_hydro/dem_geomorph_out.tif\"
+                )
+```"
+"1","geomorphons - Elapsed Time (excluding I/O): 8.124s
+"

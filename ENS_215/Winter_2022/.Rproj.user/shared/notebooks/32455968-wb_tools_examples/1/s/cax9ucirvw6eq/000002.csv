@@ -1,0 +1,37 @@
+"0","```r
+
+library(tidyverse)
+library(raster)
+```"
+"1","package ã¤¼ã¸±rasterã¤¼ã¸² was built under R version 4.0.5Loading required package: sp
+package ã¤¼ã¸±spã¤¼ã¸² was built under R version 4.0.5
+Attaching package: ã¤¼ã¸±rasterã¤¼ã¸²
+
+The following object is masked from ã¤¼ã¸±package:dplyrã¤¼ã¸²:
+
+    select
+"
+"0","```r
+library(sf)
+library(whitebox)
+```"
+"1","package ã¤¼ã¸±whiteboxã¤¼ã¸² was built under R version 4.0.5
+"
+"0","```r
+library(tmap)
+library(stars)
+```"
+"1","package ‘stars’ was built under R version 4.0.5Loading required package: abind
+"
+"0","```r
+library(elevatr)
+```"
+"1","package ã¤¼ã¸±elevatrã¤¼ã¸² was built under R version 4.0.5
+"
+"0","```r
+#library(rayshader)
+#library(rgl)
+
+whitebox::wbt_init()
+
+```"

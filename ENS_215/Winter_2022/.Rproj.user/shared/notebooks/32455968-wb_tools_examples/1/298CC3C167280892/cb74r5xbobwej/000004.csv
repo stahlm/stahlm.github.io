@@ -1,0 +1,6 @@
+"0","tmap_mode(""view"")"
+"2","tmap mode set to interactive viewing
+"
+"0","map_fig <- tm_shape(raster_ridges) +"
+"0","  tm_raster(style = ""cont"")"
+"0","  #tm_raster(style = ""cat"", palette = ""cat"")"

@@ -1,0 +1,5 @@
+"0","tmap_mode(""view"")"
+"2","tmap mode set to interactive viewing
+"
+"0","map_fig <- tm_shape(raster_hillshade, raster.downsample = F) +"
+"0","  tm_raster(style = ""cont"", palette = ""Greys"")"

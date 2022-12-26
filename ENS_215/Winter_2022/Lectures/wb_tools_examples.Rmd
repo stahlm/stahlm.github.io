@@ -32,8 +32,9 @@ getwd()
 20.919259, 105.900520
 44.455058, -67.879121
 ```{r}
-aoi_zoomed <- AOI::aoi_get(x = "Big Indian, NY")
+#aoi_zoomed <- AOI::aoi_get(x = "Big Indian, NY")
 
+aoi_zoomed <- AOI::aoi_get(x = c(30.8564, 34.7793, 3, 3))
 #aoi_zoomed <- AOI::aoi_get(x = c(44.455372, -67.890304, 1, 1.5))
 #aoi_zoomed <- AOI::aoi_get(x = c(38.152274, -75.804369, 1, 1))
 #aoi_zoomed <- AOI::aoi_get(x = c(38.141581, -75.781343, 1, 1))
@@ -74,7 +75,7 @@ raster_geomorph <- raster::raster("../additional_hydro/dem_geomorph_out.tif")
 ```{r}
 tmap_mode("view")
 
-tm_shape(raster_geomorph) +
+map_fig <- tm_shape(raster_geomorph) +
   #tm_raster(style = "cont")
   tm_raster(style = "cat", palette = "cat")
 ```
@@ -113,7 +114,7 @@ raster_ridges <- raster::raster("../additional_hydro/dem_embankment_out.tif")
 ```{r}
 tmap_mode("view")
 
-tm_shape(raster_ridges) +
+map_fig <- tm_shape(raster_ridges) +
   tm_raster(style = "cont")
   #tm_raster(style = "cat", palette = "cat")
 ```
@@ -139,7 +140,8 @@ raster_hillshade <- raster::raster("../additional_hydro/dem_hillshade.tif")
 ```{r}
 tmap_mode("view")
 
-tm_shape(raster_hillshade, raster.downsample = F) +
+
+map_fig <- tm_shape(raster_hillshade, raster.downsample = F) +
   tm_raster(style = "cont", palette = "Greys")
 ```
 
@@ -161,7 +163,7 @@ raster_aspect <- raster::raster("../additional_hydro/aspect.tif")
 ```{r}
 tmap_mode("view")
 
-tm_shape(raster_aspect) +
+ map_fig <- tm_shape(raster_aspect) +
   tm_raster(style = "cont")
 ```
 

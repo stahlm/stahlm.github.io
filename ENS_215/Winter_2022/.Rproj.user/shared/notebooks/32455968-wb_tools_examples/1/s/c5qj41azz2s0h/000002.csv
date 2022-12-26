@@ -1,0 +1,7 @@
+"0","```r
+aoi_zoomed <- AOI::aoi_get(x = \"Big Indian, NY\")
+
+#aoi_zoomed <- AOI::aoi_get(x = c(44.455372, -67.890304, 1, 1.5))
+#aoi_zoomed <- AOI::aoi_get(x = c(38.152274, -75.804369, 1, 1))
+#aoi_zoomed <- AOI::aoi_get(x = c(38.141581, -75.781343, 1, 1))
+```"

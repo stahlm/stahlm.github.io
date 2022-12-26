@@ -1,0 +1,6 @@
+"0","```r
+wbt_aspect(dem = \"../additional_hydro/dem_geomorph.tif\", 
+           output =  \"../additional_hydro/aspect.tif\")
+```"
+"1","aspect - Elapsed Time (excluding I/O): 0.425s
+"

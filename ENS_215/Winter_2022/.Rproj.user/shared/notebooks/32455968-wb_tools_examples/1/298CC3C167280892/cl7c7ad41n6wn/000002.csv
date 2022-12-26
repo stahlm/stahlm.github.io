@@ -1,0 +1,1 @@
+"0","raster_aspect <- raster::raster(""../additional_hydro/aspect.tif"")"

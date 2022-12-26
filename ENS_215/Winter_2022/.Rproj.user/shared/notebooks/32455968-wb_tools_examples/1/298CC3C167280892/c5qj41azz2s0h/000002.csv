@@ -1,0 +1,6 @@
+"0","#aoi_zoomed <- AOI::aoi_get(x = ""Big Indian, NY"")"
+"0",""
+"0","aoi_zoomed <- AOI::aoi_get(x = c(30.8564, 34.7793, 3, 3))"
+"0","#aoi_zoomed <- AOI::aoi_get(x = c(44.455372, -67.890304, 1, 1.5))"
+"0","#aoi_zoomed <- AOI::aoi_get(x = c(38.152274, -75.804369, 1, 1))"
+"0","#aoi_zoomed <- AOI::aoi_get(x = c(38.141581, -75.781343, 1, 1))"

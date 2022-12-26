@@ -1,0 +1,6 @@
+"0",""
+"0",""
+"0","# Read the US GDP data"
+"0","df <- read_csv(""US_GDP.csv"")"
+"2","Error: 'US_GDP.csv' does not exist in current working directory ('C:/Users/stahlm/Documents/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2022').
+"

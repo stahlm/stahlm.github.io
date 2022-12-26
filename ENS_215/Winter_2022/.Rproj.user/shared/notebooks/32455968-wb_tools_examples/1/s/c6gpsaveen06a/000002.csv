@@ -1,0 +1,6 @@
+"0","```r
+wbt_hillshade(dem = \"../additional_hydro/dem_geomorph.tif\", 
+              output =  \"../additional_hydro/dem_hillshade.tif\", z = 4)
+```"
+"1","hillshade - Elapsed Time (excluding I/O): 0.37s
+"
