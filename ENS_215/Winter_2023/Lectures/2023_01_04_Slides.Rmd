@@ -1,8 +1,8 @@
 ---
 title: "Welcome to ENS-215"
-date: "Winter 2022"
+date: "Winter 2023"
 output: slidy_presentation
-footer: "ENS-215 (Winter 2022)"
+footer: "ENS-215 (Winter 2023)"
 theme: united
 ---
 
@@ -18,17 +18,17 @@ library(ggthemes)
 library(sf)
 library(tmap)
 
-Heard_of <- read_xlsx("../../Data/Class_survey_2022.xlsx", sheet = "Heard_of")
+Heard_of <- read_xlsx("../../Data/Class_survey_2023.xlsx", sheet = "Heard_of")
 
-Class_yr <- read_xlsx("../../Data/Class_survey_2022.xlsx", sheet = "Class_yr")
+Class_yr <- read_xlsx("../../Data/Class_survey_2023.xlsx", sheet = "Class_yr")
 
 Class_yr$Year <- ordered(Class_yr$Year, levels = c("FR","SO","JR","SR","Other"))
 
-Majors <- read_xlsx("../../Data/Class_survey_2022.xlsx", sheet = "Major")
+Majors <- read_xlsx("../../Data/Class_survey_2023.xlsx", sheet = "Major")
 
-My_age <- read_xlsx("../../Data/Class_survey_2022.xlsx", sheet = "My_age")
+My_age <- read_xlsx("../../Data/Class_survey_2023.xlsx", sheet = "My_age")
 
-States <- read_xlsx("../../Data/Class_survey_2022.xlsx", sheet = "Home_state")
+States <- read_xlsx("../../Data/Class_survey_2023.xlsx", sheet = "Home_state")
 ```
 
 
