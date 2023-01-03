@@ -15,7 +15,7 @@ output:
 
 # Course Information
 **Term:** Winter 2023  
-**Location:** Olin 306 (_Class_) and Olin 306 (_Lab_)  
+**Location:** Olin 306 (_Class_) and Olin 306 (_Lab_)    
 **Meeting times:** 
 
   + **Class:** M/W/F, 9:15-10:20 AM
