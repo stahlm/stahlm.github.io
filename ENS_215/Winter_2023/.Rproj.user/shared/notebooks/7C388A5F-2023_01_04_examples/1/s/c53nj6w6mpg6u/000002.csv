@@ -1,0 +1,1 @@
+"0","round(raster::maxValue(r_inches),2) %>% as.data.frame()"

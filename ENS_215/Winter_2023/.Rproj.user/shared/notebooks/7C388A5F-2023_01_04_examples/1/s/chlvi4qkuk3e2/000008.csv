@@ -1,7 +1,0 @@
-"0","sf::sf_use_s2(FALSE)"
-"0",""
-"0","temperature_US = getGridMET(aoi_get(state = ""conus""), "
-"0","                  param = ""tmin"", "
-"0","                  startDate = ""2022-12-24"", endDate = ""2022-12-24"")"
-"0","#> Spherical geometry (s2) switched off"
-"0","#> Spherical geometry (s2) switched on"

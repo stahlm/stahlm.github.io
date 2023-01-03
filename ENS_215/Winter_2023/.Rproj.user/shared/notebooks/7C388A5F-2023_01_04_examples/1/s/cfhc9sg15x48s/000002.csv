@@ -1,4 +1,4 @@
 "0","map_income_interactive <- tm_shape(Schdy) +"
-"0","  tm_polygons(col = ""estimate"", alpha = 0.5)"
+"0","  tm_polygons(col = ""estimate"", alpha = 0.6)"
 "0",""
 "0",""

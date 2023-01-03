@@ -29,41 +29,6 @@ library(patchwork)
 ```
 
 
-```{r eval = F, echo = F}
-spData::world
-```
-
-
-
-```{r eval = F, echo = F}
-df_stations <- get_station_metadata() 
-```
-
-```{r eval = F, echo = F}
-
-df_stations <- df_stations %>% 
-  filter(!is.na(lat), !is.na(lon)) %>% 
-  st_as_sf(coords = c("lon", "lat"))
-```
-
-```{r eval = F, echo = F}
-
-spData::world %>% 
-  tm_shape() +
-  tm_polygons() +
-  
-  tm_shape( df_stations) +
-  tm_dots()
-```
-
-
-```{r eval = F, echo = F}
-
-df_stations %>% 
-  ggplot() +
-  geom_sf() +
-  geom_sf(data = spData::world)
-```
 
 
 ## Precip and temp for specified location (point)
@@ -79,7 +44,7 @@ AOI = AOI::geocode(loc2use,
 
 ts  = getGridMET(AOI, param = c("tmax","tmin", "prcp"),
                  startDate = "2022-01-01", 
-                 endDate = "2022-12-01")
+                 endDate = "2022-12-31")
 ```
 
 ```{r}
@@ -99,7 +64,9 @@ ts %>%
             temp_max = max(tmax),
             temp_min = min(tmin),
             temp_mean = mean((tmin+tmax)/2),
-            temp_max_change = max(tmax - tmin)
+            temp_max_change = max(tmax - tmin),
+            n_days = n()
+            
             )
 ```
 
@@ -401,7 +368,7 @@ census_example_df %>%
 ```
 
 
-```{r}
+```{r message = F, warning= F}
 Schdy <- get_acs(
   state = "NY",
   county = "Schenectady",
@@ -431,6 +398,8 @@ map_income_interactive <- tm_shape(Schdy) +
 
 ```{r}
 tmap_mode("view")
+
+map_income_interactive
 ```
 
 

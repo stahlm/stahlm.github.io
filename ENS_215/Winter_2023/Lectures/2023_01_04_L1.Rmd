@@ -100,7 +100,7 @@ Your textbooks [_R for Data Science_](https://r4ds.had.co.nz/) and [_ModernDive_
 
 ## Syllabus and course logistics
 * **Course logistics**
-    + You will find all course related materials (e.g. schedule/syllabus, assignments, notes, course policies,...) at our [class webpage](https://stahlm.github.io/ENS_215/Winter_2022/Home.html)
+    + You will find all course related materials (e.g. schedule/syllabus, assignments, notes, course policies,...) at our [class webpage](https://stahlm.github.io/ENS_215/Winter_2023/Home.html)
     + Assignments will be submitted through Nexus.  You MUST use the specified naming convention for the files you submit.
     + Attendance and on-time arrival is critical and your grade will be affected by unexcused absences and late arrivals!  You will quickly fall behind if you miss class or arrive late.
     + We will use computers during class and lab, however you should ONLY use your computer for class related activities.  This means that you should close unrelated material prior to the start of class and that your should not check email, news, Instagram, Twitter,... during class.

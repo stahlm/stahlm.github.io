@@ -1,8 +1,0 @@
-"0","tmap_mode(""plot"")"
-"2","tmap mode set to plotting
-"
-"0","temperature_US %>% "
-"0","  tm_shape() +"
-"0","  tm_raster(style = ""cont"", palette = ""-RdBu"", midpoint = 32) +"
-"0","  tm_shape(spData::us_states) +"
-"0","  tm_borders()"
