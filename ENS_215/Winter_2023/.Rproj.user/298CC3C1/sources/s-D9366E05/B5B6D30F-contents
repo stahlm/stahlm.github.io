@@ -1,0 +1,436 @@
+---
+title: "Day 1: A few examples"
+author: "ENS-215"
+date: "Winter 2023"
+output:
+  html_document:
+    theme: spacelab
+    toc: yes
+    toc_float: yes
+---
+
+# A few interesting examples 
+
+
+```{r message = F, warning=F}
+library(tidyverse)
+library(stationaRy)
+library(sf)
+library(tmap)
+library(spData)
+
+library(AOI)
+library(climateR)
+
+library(raster)
+library(rasterVis)
+
+library(patchwork)
+```
+
+
+```{r eval = F, echo = F}
+spData::world
+```
+
+
+
+```{r eval = F, echo = F}
+df_stations <- get_station_metadata() 
+```
+
+```{r eval = F, echo = F}
+
+df_stations <- df_stations %>% 
+  filter(!is.na(lat), !is.na(lon)) %>% 
+  st_as_sf(coords = c("lon", "lat"))
+```
+
+```{r eval = F, echo = F}
+
+spData::world %>% 
+  tm_shape() +
+  tm_polygons() +
+  
+  tm_shape( df_stations) +
+  tm_dots()
+```
+
+
+```{r eval = F, echo = F}
+
+df_stations %>% 
+  ggplot() +
+  geom_sf() +
+  geom_sf(data = spData::world)
+```
+
+
+## Precip and temp for specified location (point)
+
+```{r}
+# Get the data 
+
+#loc2use <- 'Death Valley National Park'
+loc2use <- 'Union College'
+
+AOI = AOI::geocode(loc2use,
+                   pt = TRUE)
+
+ts  = getGridMET(AOI, param = c("tmax","tmin", "prcp"),
+                 startDate = "2022-01-01", 
+                 endDate = "2022-12-01")
+```
+
+```{r}
+# convert units 
+ts <- ts %>% 
+  mutate(tmax = ((tmax - 273.15)*(9/5) +32),
+         tmin = ((tmin - 273.15)*(9/5) +32),
+         prcp = prcp/25.4
+         )
+```
+
+```{r}
+# Summary table
+
+ts %>% 
+  summarize(pcrp_max = max(prcp),
+            temp_max = max(tmax),
+            temp_min = min(tmin),
+            temp_mean = mean((tmin+tmax)/2),
+            temp_max_change = max(tmax - tmin)
+            )
+```
+
+
+
+```{r}
+# Make the figures 
+
+fig_01 <- ts %>% 
+  ggplot() +
+  geom_line(aes(x = date, y = tmax), color = "red") +
+  geom_line(aes(x = date, y = tmin), color = "blue") +
+  
+  labs(x = "", 
+       y = "Temperature (F)"
+       ) +
+  
+  geom_hline(yintercept = 32, linetype = "dashed") +
+  theme_bw() 
+  
+
+
+fig_02 <- ts %>% 
+  ggplot() +
+  geom_col(aes(x = date, y = prcp), color = "black") +
+    
+  labs(y = "Precipitation (inches)") +
+    
+  theme_bw()
+  
+```
+
+```{r}
+# Make the figures 
+
+(fig_01 / fig_02) +
+  plot_annotation(title = paste(loc2use,": Temperature and precipitation", sep = ""),
+                  caption = "Data source: GridMET",
+                  tag_levels = "a"
+                  ) 
+```
+
+
+## Obtain and analyze precipitation data for Hurricane Henry
+
+
+```{r}
+henri = getGridMET(aoi_get(state = c("NY")), 
+                  param = "prcp", 
+                  startDate = "2021-08-16", endDate = "2021-08-24")
+```
+
+
+
+```{r}
+r = raster::stack(henri)
+```
+
+```{r}
+r_inches <- r/25.4
+```
+
+### Static map  
+
+```{r message = F, warning = F}
+
+tmap_mode("plot") 
+
+fig_map <- r_inches %>% 
+  tm_shape() +
+  tm_raster(style = "cont") +
+  tm_shape(spData::us_states) +
+  tm_borders()
+
+fig_map
+```
+<br/>  
+
+### Interactive map  
+ 
+ 
+```{r message= F, warning = F}
+tmap_mode("view")
+
+fig_map 
+```
+
+
+<br/> 
+
+
+```{r message= F, warning = F}
+tmap_mode("plot")
+```
+
+<br/>  
+
+Get the maximum precipitation amount for each day of the storm  
+```{r}
+round(raster::maxValue(r_inches),2) %>% as.data.frame()
+```
+<br/> 
+
+## Get climate data for specified region of the US
+
+```{r}
+sf::sf_use_s2(FALSE)
+
+temperature_US = getGridMET(aoi_get(state = "conus"), 
+                  param = "tmin", 
+                  startDate = "2022-12-24", endDate = "2022-12-24")
+#> Spherical geometry (s2) switched off
+#> Spherical geometry (s2) switched on
+```
+
+```{r}
+temperature_US <- raster::stack(temperature_US)
+```
+
+
+```{r}
+temperature_US <- temperature_US - 273.15
+```
+
+```{r}
+temperature_US <- (temperature_US*9/5) + 32
+```
+
+
+```{r}
+tmap_mode("plot")
+
+temperature_US %>% 
+  tm_shape() +
+  tm_raster(style = "cont", palette = "-RdBu", midpoint = 32) +
+  tm_shape(spData::us_states) +
+  tm_borders()
+```
+
+## Map of springs in New Mexico 
+```{r message = F, warning=F}
+library(osmdata)
+library(tigris)
+library(sf)
+library(osmplotr)
+library(tmaptools)
+library(OpenStreetMap)
+
+Sys.setenv(MAPBOX_API_KEY = "pk.eyJ1Ijoic3RhaGxtIiwiYSI6ImNrZnJiMDMxbDA0aGsyenFlajhvMzZ4bXUifQ.I7l7fJBAHCQWRwyYozq4ZQ")
+
+```
+
+
+```{r}
+loc2use <- "New Mexico"
+bb_values <- getbb(loc2use)
+
+bb_values
+```
+
+```{r}
+springs_data <- opq(bb_values) %>% 
+  add_osm_feature(key = 'natural', value = 'spring') %>% 
+  osmdata_sf()
+```
+
+```{r}
+loc_border <- spData::us_states %>% 
+  filter(NAME == "New Mexico")
+```
+
+
+```{r}
+tmap_mode("view")
+
+map_springs <- 
+  tm_shape(loc_border) +
+  tm_borders(col = "black") +
+tm_shape(springs_data$osm_points) +
+  tm_dots(col = "blue") 
+  
+  
+```
+
+```{r}
+map_springs
+```
+
+
+
+## Obtain streamflow data from the USGS (Colorado River at Lee's Ferry example)
+
+```{r message = F, warning=F}
+library(dataRetrieval)
+library(lubridate)
+```
+
+```{r}
+df_stream_data <- readNWISdv(siteNumbers = "09380000",
+                             parameterCd = c("00060"),
+                             statCd = "00003") %>% 
+  renameNWISColumns()
+```
+
+
+### Daily flows
+```{r}
+df_stream_data %>% 
+  ggplot(aes(x = Date, y = Flow)) +
+  geom_line() +
+  
+  theme_classic()
+```
+
+<br/>
+
+### Annual flow statistics  
+```{r}
+table_flows <- df_stream_data %>% 
+  mutate(Year = year(Date)) %>% 
+  group_by(Year) %>% 
+  summarize(mean_flow = mean(Flow, na.rm= T), 
+            min_flow = min(Flow, na.rm = T),
+            max_flow = max(Flow, na.rm = T),
+            n_meas = n()) %>% 
+  filter(n_meas > 350)
+
+table_flows
+```
+
+
+```{r}
+fig_max <- table_flows %>% 
+  ggplot(aes(x = Year)) +
+  geom_line(aes(y = max_flow), size = 1, color = "blue") +
+  #geom_line(aes(y = min_flow), size = 1, color = "red") +
+  #geom_line(aes(y = mean_flow), size = 1, color = "black") +
+  
+  theme_classic()
+  
+
+fig_min <- table_flows %>% 
+  ggplot(aes(x = Year)) +
+  geom_line(aes(y = min_flow), size = 1, color = "red") +
+  #geom_line(aes(y = mean_flow), size = 1, color = "black") +
+  
+  theme_classic()
+
+
+fig_mean <- table_flows %>% 
+  ggplot(aes(x = Year)) +
+  geom_line(aes(y = mean_flow), size = 1, color = "black") +
+  
+  theme_classic()
+```
+
+
+```{r fig.height= 6}
+fig_mean/fig_max/fig_min
+```
+
+
+## Obtain US Census data
+
+https://api.census.gov/data/2015/acs/acs5/variables
+
+```{r}
+library(tidycensus)
+```
+
+
+```{r}
+census_example_df <- get_acs(geography = "county", 
+                             variables = c(medincome = "B19013_001"), 
+                             state = "NY", 
+                             year = 2021)
+
+```
+
+
+```{r}
+census_example_df %>% 
+  arrange(-estimate)
+```
+
+```{r fig.height= 8, fig.width= 5}
+census_example_df %>%
+  mutate(NAME = gsub(" County, New York", "", NAME)) %>%
+  ggplot(aes(x = estimate, y = reorder(NAME, estimate))) +
+  geom_errorbarh(aes(xmin = estimate - moe, xmax = estimate + moe)) +
+  geom_point(color = "red", size = 3) +
+  labs(title = "Household income by county in New York",
+       subtitle = "2021 American Community Survey",
+       y = "",
+       x = "ACS estimate (bars represent margin of error)") +
+  
+  
+  theme_bw()
+```
+
+
+```{r}
+Schdy <- get_acs(
+  state = "NY",
+  county = "Schenectady",
+  geography = "tract",
+  variables = "B19013_001",
+  geometry = TRUE,
+  year = 2020
+)
+```
+
+```{r}
+tmap_mode("plot")
+
+map_income <- tm_shape(Schdy) +
+  tm_polygons(col = "estimate", alpha = 1)
+
+map_income
+```
+
+
+```{r}
+map_income_interactive <- tm_shape(Schdy) +
+  tm_polygons(col = "estimate", alpha = 0.6)
+
+
+```
+
+```{r}
+tmap_mode("view")
+```
+
+

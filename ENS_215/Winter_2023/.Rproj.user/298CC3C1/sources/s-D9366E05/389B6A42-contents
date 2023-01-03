@@ -1,0 +1,76 @@
+---
+title: "Exploring Environmental Data (ENS-215)"
+date: "Winter 2023"
+output:
+  html_document:
+    theme: spacelab
+    toc: yes
+    toc_float: yes
+---
+
+
+
+```{r eval = F, echo = F}
+<style>
+#TOC {
+  background: url("https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Images/logo_ens_215.png");
+  background-size: contain;
+  padding-top: 280px !important;
+  background-repeat: no-repeat;
+}
+</style>
+```
+
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-137229217-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-137229217-1');
+</script>
+
+***
+
+
+| [ENS-215](https://stahlm.github.io/ENS_215/Winter_2023/Home.html)  | [Homework](https://stahlm.github.io/ENS_215/Winter_2023/HW.html)  | [Syllabus](https://stahlm.github.io/ENS_215/Winter_2023/Syllabus.html)  |
+|:-------:|:------:|:--------:|
+|      |     |        |       |
+
+## Lectures 
+
+
+ 
+### Week 1
++ Wed (4-Jan) -- **Course introduction** 
+[(html)](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_01_04_L1.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2022/Lectures/2023_01_04_L1.Rmd), [Slides](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_01_04_Slides.html), [In-class examples](https://stahlm.github.io/ENS_215/Winter_2023/2023_01_04_examples.html) 
+
+```{r echo = F, eval = F}
++ Wed (5-Jan) -- **Diving into R** [(html)](https://stahlm.github.io/ENS_215/Winter_2022/Lectures/2022_01_05_L1_diving_in.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2022/Lectures/2022_01_05_L1_diving_in.Rmd), [Slides](https://stahlm.github.io/ENS_215/Winter_2022/Lectures/2022_01_05_Slides.html), [Cheatsheets](https://stahlm.github.io/ENS_215/Resources/Cheatsheets_all.pdf)
+
++ Fri (7-Jan) -- **R Programming and Markdown Basics**
+[(html)](https://stahlm.github.io/ENS_215/Winter_2022/Lectures/2022_01_07_R_basics.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2022/Lectures/2022_01_07_R_basics.Rmd)  
+
+```
+
+
+
+
+***
+<br/>
+
+## Labs
++ Lab 1 -- **Computer setup and logistics**
+
+
+<br/> 
+
+***
+
+_Mason Stahl (2023)_  
+_Union College_ 
+
+![](C:/Users/stahlm/Documents/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2023/Images/logo_ens_215.png){width=100px}

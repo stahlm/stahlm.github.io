@@ -362,5 +362,75 @@ fig_mean/fig_max/fig_min
 ```
 
 
+## Obtain US Census data
+
+https://api.census.gov/data/2015/acs/acs5/variables
+
+```{r}
+library(tidycensus)
+```
+
+
+```{r}
+census_example_df <- get_acs(geography = "county", 
+                             variables = c(medincome = "B19013_001"), 
+                             state = "NY", 
+                             year = 2021)
+
+```
+
+
+```{r}
+census_example_df %>% 
+  arrange(-estimate)
+```
+
+```{r fig.height= 8, fig.width= 5}
+census_example_df %>%
+  mutate(NAME = gsub(" County, New York", "", NAME)) %>%
+  ggplot(aes(x = estimate, y = reorder(NAME, estimate))) +
+  geom_errorbarh(aes(xmin = estimate - moe, xmax = estimate + moe)) +
+  geom_point(color = "red", size = 3) +
+  labs(title = "Household income by county in New York",
+       subtitle = "2021 American Community Survey",
+       y = "",
+       x = "ACS estimate (bars represent margin of error)") +
+  
+  
+  theme_bw()
+```
+
+
+```{r}
+Schdy <- get_acs(
+  state = "NY",
+  county = "Schenectady",
+  geography = "tract",
+  variables = "B19013_001",
+  geometry = TRUE,
+  year = 2020
+)
+```
+
+```{r}
+tmap_mode("plot")
+
+map_income <- tm_shape(Schdy) +
+  tm_polygons(col = "estimate", alpha = 1)
+
+map_income
+```
+
+
+```{r}
+map_income_interactive <- tm_shape(Schdy) +
+  tm_polygons(col = "estimate", alpha = 0.6)
+
+
+```
+
+```{r}
+tmap_mode("view")
+```
 
 
