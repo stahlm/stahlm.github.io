@@ -113,16 +113,16 @@ map_data_usa %>%
 
 ```{r echo = FALSE, message=FALSE, warning=FALSE}
 sf_states <- spData::us_states %>% 
-  filter(NAME %in% c("New York", "New Jersey", "California",
-                     "Massachusetts", "Pennsylvania", "Connecticut",
-                     "Wisconsin", "Colorado"
+  filter(NAME %in% c("New York", "Maine", "New Hampshire", "Massachusetts",
+                     "Rhode Island"
+                     
                      )
          ) %>% 
   
   dplyr::select(name_long = NAME)
 
 sf_countries <- spData::world %>% 
-  filter(name_long %in% c("Greece", "Vietnam")) %>% 
+  filter(name_long %in% c("China")) %>% 
   dplyr::select(name_long) %>% 
   rename(geometry = geom)
 
@@ -165,7 +165,9 @@ ggplot(Class_yr) +
 ## Class composition by major
 ```{r}
 ggplot(Majors) + 
-  geom_col(aes(x = Major, y = Count), fill = "mediumseagreen") +
+  geom_col(aes(x = reorder(Major, Count), y = Count), fill = "mediumseagreen") +
+  
+  labs(x = "Major") +
   
   theme_bw()
 ```

@@ -1,7 +1,0 @@
-"0","# Make the figures "
-"0",""
-"0","(fig_01 / fig_02) +"
-"0","  plot_annotation(title = paste(loc2use,"": Temperature and precipitation"", sep = """"),"
-"0","                  caption = ""Data source: GridMET"","
-"0","                  tag_levels = ""a"""
-"0","                  ) "
