@@ -46,11 +46,11 @@ output:
  
 ### Week 1
 + Wed (4-Jan) -- **Course introduction** 
-[(html)](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_01_04_L1.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Lectures/2023_01_04_L1.Rmd), [In-class examples](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_01_04_examples.html) 
+[(html)](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_01_04_L1.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Lectures/2023_01_04_L1.Rmd), [In-class examples](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_01_04_examples.html), [Slides](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_01_04_Slides.html)  
 
 ```{r echo = F, eval = F}
 
-, [Slides](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_01_04_Slides.html)
+
 
 + Wed (5-Jan) -- **Diving into R** [(html)](https://stahlm.github.io/ENS_215/Winter_2022/Lectures/2022_01_05_L1_diving_in.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2022/Lectures/2022_01_05_L1_diving_in.Rmd), [Slides](https://stahlm.github.io/ENS_215/Winter_2022/Lectures/2022_01_05_Slides.html), [Cheatsheets](https://stahlm.github.io/ENS_215/Resources/Cheatsheets_all.pdf)
 
