@@ -48,6 +48,9 @@ output:
 + Wed (4-Jan) -- **Course introduction** 
 [(html)](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_01_04_L1.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Lectures/2023_01_04_L1.Rmd), [In-class examples](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_01_04_examples.html), [Slides](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_01_04_Slides.html)  
 
++ Wed (6-Jan) -- **Diving into R** [(html)](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_01_06_L1_diving_in.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Lectures/2023_01_06_L1_diving_in.Rmd), [Slides](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_01_06_Slides.html), [Cheatsheets](https://stahlm.github.io/ENS_215/Resources/Cheatsheets_all.pdf)  
+
+
 ```{r echo = F, eval = F}
 
 
