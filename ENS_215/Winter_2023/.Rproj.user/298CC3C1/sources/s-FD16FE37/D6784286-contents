@@ -1,0 +1,24 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+05506X0032/PUITS
+
+```{r}
+df <- get_niveaux_nappes_chroniques(list(code_bss = "06256X0188/PZ",
+                                         date_debut_mesure = "2020-01-01",
+                                         date_fin_mesure = "2022-12-31"))
+```
+
+```{r}
+df2 <- get_niveaux_nappes_chroniques(list(code_bss = "05506X0032/PUITS",
+                                         date_debut_mesure = "2020-01-01",
+                                         date_fin_mesure = "2022-12-31"))
+```
+
+```{r}
+df3 <- get_niveaux_nappes_chroniques(list(code_bss = c("05506X0032/PUITS","06256X0188/PZ"),
+                                         date_debut_mesure = "2020-01-01",
+                                         date_fin_mesure = "2022-12-31"))
+```
+

@@ -1,0 +1,6 @@
+"0","df3 <- get_niveaux_nappes_chroniques(list(code_bss = c(""05506X0032/PUITS"",""06256X0188/PZ""),"
+"0","                                         date_debut_mesure = ""2020-01-01"","
+"0","                                         date_fin_mesure = ""2022-12-31""))"
+"2","Error in urltools::param_set(query, key = paramName, value = params[[paramName]]) : 
+  'value' must be the same length as 'urls', or of length 1
+"
