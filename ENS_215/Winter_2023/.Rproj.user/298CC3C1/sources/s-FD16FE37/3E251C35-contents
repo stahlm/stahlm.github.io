@@ -44,6 +44,7 @@ met_data <- select(met_data, -c(TOBS)) # remove the TOBS column, since we won't 
 ```
 
 
+
 We've got the data stored on our computer in a nice format called a **data frame**.  Let's take a look at data and get an idea of what we're working with  
 
 ```{r}
