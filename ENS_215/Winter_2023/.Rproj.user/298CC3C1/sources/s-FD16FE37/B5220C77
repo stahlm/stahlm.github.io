@@ -1,18 +1,18 @@
 {
-    "id": "F23F04BC",
+    "id": "B5220C77",
     "path": null,
     "project_path": null,
     "type": "r_markdown",
-    "hash": "1477837810",
+    "hash": "0",
     "contents": "",
-    "dirty": true,
-    "created": 1673016084799.0,
+    "dirty": false,
+    "created": 1673274494121.0,
     "source_on_save": false,
-    "relative_order": 6,
+    "relative_order": 8,
     "properties": {
-        "tempName": "Untitled3",
+        "tempName": "Untitled4",
         "chunk_output_type": "inline",
-        "cursorPosition": "9,0",
+        "cursorPosition": "3,0",
         "scrollLine": "0"
     },
     "folds": "",
@@ -20,7 +20,7 @@
     "encoding": "",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1673016198868,
+    "last_content_update": 1673274494121,
     "read_only": false,
     "read_only_alternatives": []
 }
