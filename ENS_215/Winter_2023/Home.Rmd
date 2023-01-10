@@ -45,6 +45,9 @@ output:
 + Mon (9-Jan) -- **R Programming and Markdown Basics** 
 [(html)](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_01_09_R_basics.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Lectures/2023_01_09_R_basics.Rmd)  
 
++ Wed (11-Jan) -- **Relational and logical operators, if/else/else if** 
+[(html)](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_01_011_R_basics_cont.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Lectures/2023_01_11_R_basics_cont.Rmd)  
+
 
 ```{r eval = F, echo = F}
 ### Week 2

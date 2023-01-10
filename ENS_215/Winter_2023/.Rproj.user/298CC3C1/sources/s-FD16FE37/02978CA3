@@ -3,9 +3,9 @@
     "path": "~/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2023/test_1.Rmd",
     "project_path": "test_1.Rmd",
     "type": "r_markdown",
-    "hash": "0",
+    "hash": "3978104298",
     "contents": "",
-    "dirty": true,
+    "dirty": false,
     "created": 1673270806322.0,
     "source_on_save": false,
     "relative_order": 7,
@@ -20,7 +20,7 @@
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1673277117103,
+    "last_content_update": 1673290976007,
     "read_only": false,
     "read_only_alternatives": []
 }
