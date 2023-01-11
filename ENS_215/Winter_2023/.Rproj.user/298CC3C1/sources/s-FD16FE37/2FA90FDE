@@ -3,22 +3,22 @@
     "path": "~/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_01_11_R_basics_cont.Rmd",
     "project_path": "Lectures/2023_01_11_R_basics_cont.Rmd",
     "type": "r_markdown",
-    "hash": "0",
+    "hash": "1081476191",
     "contents": "",
     "dirty": false,
     "created": 1673360287072.0,
     "source_on_save": false,
-    "relative_order": 12,
+    "relative_order": 6,
     "properties": {
-        "cursorPosition": "14,315",
-        "scrollLine": "0"
+        "cursorPosition": "300,3",
+        "scrollLine": "277"
     },
     "folds": "",
-    "lastKnownWriteTime": 1673361121,
+    "lastKnownWriteTime": 1673451320,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1673361912585,
+    "last_content_update": 1673451320201,
     "read_only": false,
     "read_only_alternatives": []
 }

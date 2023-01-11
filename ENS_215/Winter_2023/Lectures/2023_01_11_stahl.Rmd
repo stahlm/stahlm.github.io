@@ -1,0 +1,25 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+city_temp <- 24
+
+if(city_temp >= 85){
+  if(city_temp > 100){
+    print("It is very hot")
+    
+  }
+  } else{
+    print("It is hot")
+    
+  }
+
+```
+
