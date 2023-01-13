@@ -48,6 +48,9 @@ output:
 + Wed (11-Jan) -- **Relational and logical operators, if/else/else if** 
 [(html)](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_01_11_R_basics_cont.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Lectures/2023_01_11_R_basics_cont.Rmd)  
 
++ Fri (13-Jan) -- **Control flow (for and while loops)** 
+[(html)](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_01_13_R_basic_loops.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Lectures/2023_01_13_R_basic_loops.Rmd)  
+
 
 ```{r eval = F, echo = F}
 ### Week 2
