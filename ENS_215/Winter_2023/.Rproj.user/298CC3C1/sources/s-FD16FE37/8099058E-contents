@@ -1,0 +1,62 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+
+data(mpg)
+```
+
+
+```{r}
+my_vec <- seq(1, 10, by = 1)
+
+my_vec
+```
+
+
+```{r}
+my_vec >= 4
+```
+
+
+
+```{r}
+cars_good_hwy <- mpg[mpg$hwy >= 30, ]
+```
+
+
+
+```{r}
+mpg$hwy
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

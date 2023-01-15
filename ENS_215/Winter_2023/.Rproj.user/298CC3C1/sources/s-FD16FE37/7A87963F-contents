@@ -51,7 +51,6 @@ Now we would like to print this list out.
 ```{r}
 for(i_major in 1:7){
   print(majors_union[i_major])
-  
  
 }
 ```
