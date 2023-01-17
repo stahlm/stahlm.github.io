@@ -1,0 +1,4 @@
+"0","```r
+# Compare the variable \"trans_cat\" with city miles per gallon
+ggplot (data = fuel_data) + geom_jitter(aes(x = trans_cat, y = cty, color = region), width = 0.2, height = 0)
+```"

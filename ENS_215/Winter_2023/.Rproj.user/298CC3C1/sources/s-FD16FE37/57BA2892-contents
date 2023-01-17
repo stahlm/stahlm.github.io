@@ -1,0 +1,383 @@
+---
+title: "Introduction to Data Manipulation (continued)"
+author: "ENS-215"
+date: "18-Jan-2023"
+output:
+  html_document:
+    theme: spacelab
+    toc: TRUE
+    toc_float: TRUE
+---
+
+<br/>
+
+Last week you got an introduction to the `dplyr` package, which allows us to transform our data in an efficient, easy to read and code manner.  With `dplyr` we can perform many of the most common data manipulation/transformation operations with the functions available in the package.  Below is a table with the `dplyr` functions we've learned thus far.  Today we will learn some more functions in `dplyr` that will greatly improve your capabilities with data manipulation and analysis.  
+
+`dplyr` function   | Description
+-------------------|-------------
+`filter()`         | Subset by row values
+`arrange()`        | Sort rows by column values
+`select()`         | Subset columns
+
+
+<br/>
+
+## Load in the `dplyr` package and the `gapminder` package
+We'll load in `tidyverse` which contains `dplyr` (as well as many other packages).  We will also load in the `gapminder` library so we can continue to work with the `gapminder` data the we used last week.  
+```{r message = FALSE, warning=FALSE}
+library(tidyverse)
+library(gapminder)
+```
+
+<br/>
+
+Let's assign the gapminder data to our own data frame that we'll call `my_gap`
+```{r}
+my_gap <- gapminder
+```
+
+
+
+
+
+<br/>
+
+## Quick refresher `dplyr` verbs and concepts we learned last week
+
+### `filter()`
+We can select the rows (observations) in a data set according to criteria that we specify.  Remember the syntax is `filter(dataset, criteria 1, criteria 2, ...)`
+
+```{r}
+filter(my_gap, 
+       lifeExp > 65, 
+       gdpPercap < 5000, 
+       year == 2007)
+```
+
+<br/>
+
+Try out your own filter operation.  Think of something interesting to try.  If you found something cool, share it with the class.
+```{r}
+# Your code here
+```
+
+<br/>
+
+Take a look at your notes from last class and make sure you understand the `%in%` operator and how you can use it along with `filter()`
+
+<br/>
+
+### `arrange()`
+Arrange allows us to sort data by variable(s) of interest.  Let's sort `my_gap` by year (descending order) and then by population (ascending order).  Remember the default sort order is ascending (smallest to largest) and to sort in descending order we need to use the `desc()` function.
+```{r}
+arrange(my_gap, desc(year), pop)
+```
+
+<br/>
+
+Practice with `arrange()`.  Think of something interesting to try.  If you found something cool, share it with the class.
+```{r}
+# Your code here
+```
+
+<br/>
+
+### `select()`
+The `select()` function allows us to grab only the variables (columns) we want out of a data set.  
+
+You can specify the ones you want
+```{r}
+select(my_gap, country, year, lifeExp)
+```
+
+<br/>
+
+If you want you can rename the columns you select 
+```{r}
+select(my_gap, country, year, Life_in_years = lifeExp)
+```
+
+<br/>
+
+Or the ones you don't want by putting `-` before the variable
+```{r}
+select(my_gap, -pop, -gdpPercap)
+```
+
+<br/>
+
+Give `select()` some more practice
+```{r}
+# Your code here
+```
+
+<br/>
+
+### Piping with `%>%` 
+We can pass the output from one function to be the input to another function by using the "pipe" command ` %>%`  
+
+Let's filter our `my_gap` data and then pipe it to the `arrange()` to sort the filtered data.  Piping is super useful when you want to perform a sequence of operations.
+
+```{r}
+filter(my_gap, year == 1952) %>% arrange(pop)
+```
+
+<br/>
+
+Notice how I didn't specify the input data in the `arrange()` function.  This is because we piped the output from the previous function, so the input to arrange has already been specified.  
+
+Make sure you understand what is going on with the pipe operation.  If you don't, then ask your neighbor or me.  
+
+Test out the pipe operator on your own
+```{r}
+# Your code here
+```
+
+<br/>
+
+### Exercise
+Let's bring everything above together.  
+
+Using a single line of code perform the following sequence of operations on the `my_gap` data:
+
+1. Remove the continent column
+2. Keep only the rows for the years 1952 and 2007
+3. Keep only the rows that have countries with per capita GDP > 10000
+4. Sort the data by year in ascending order and then by per capita GDP in descending order
+
+```{r eval = FALSE, echo=FALSE}
+my_gap %>% 
+  select(-continent) %>% 
+  filter(year %in% c(1952, 2007), gdpPercap > 10000) %>% 
+  arrange(year, desc(gdpPercap))
+```
+
+Take a look at your results.  Do you see anything interesting/note-worthy?
+
+<br/>
+
+## More `dplyr`
+Ok, so we've gotten some more practice with the `dplyr` functions that we saw last week.  Now, let's learn some more tools that `dplyr` has to offer.  
+
+Just in case you've saved modifications/changes to your `my_gap` data, let's recreate a fresh copy from the original `gapminder` data before moving ahead.
+```{r}
+my_gap <- gapminder
+```
+
+<br/>
+
+### Create new variables with `mutate()`
+We often want to create new variables (columns) in a dataset, where the new variable is a function of exisiting variables.  For instance if we have a column with precipitation data in inches, we might want to create a new column that has the same precipitation data in centimeters.  In this case we would simply multiply our precipitation in inches by 2.54 (number of cm per inch) to get the new, desired column.  
+
+Let's create a new column in our `my_gap` dataset that has the total GDP (i.e. per capita GDP multiplied by the population)
+
+```{r}
+mutate(my_gap, 
+       tot_gdp = gdpPercap * pop)
+```
+<br/>
+
+We calculated this new variable.  However, remember if we want to save this information we need to assign it to a data object.  Let's save this new column to our `my_gap` data
+```{r}
+my_gap <- mutate(my_gap, 
+                 tot_gdp = gdpPercap * pop) 
+```
+
+Take at look at your `my_gap` data to confirm that you've added this new variable.  
+
++ In 1952 which country had the largest total GDP? (Rely on the `dplyr` functions to help you here)
++ In 2007 which country had the largest total GDP?
+
+<br/>
+
+Ok now create a new column called `pop_mill` that has the population in millions (e.g. 1,000,000 should appear as 1) and assign make sure to add this variable to your `my_gap` data
+```{r}
+# Your code here 
+```
+
+Make sure you understand exactly what is going on in the code above.  If you have any questions, discuss with your neighbor or me before moving ahead.  
+
+<br/>
+
+#### Vector functions with `mutate()`
+We can also apply functions to the data when creating a new column (variable).  We can perform just about any mathematical operation (you've already seen multiplication when creating a new variable) -- for a list of additional operations check out your `dplyr` cheatsheet.  
+
+For instance, we might want to create a new column that has the log~10~ of the population data.  In this case we can simply employ the `log10` function in our `mutate()` operation
+```{r}
+my_gap <- mutate(my_gap, 
+                 log10_pop = log10(pop))
+```
+
+<br/>
+
+Try out the `mutate()` function to create a new variable `gdp_percap_ratio`, where you divide all of the per capita GDP values, by the maximum per capita GDP observed.  This will allow you to see how a given observation compares to the maximum observed.  
+```{r}
+# Your code here
+```
+
+```{r echo = FALSE, eval = FALSE}
+my_gap <- mutate(my_gap, 
+                 gdp_percap_ratio = gdpPercap/max(gdpPercap))
+```
+Take a look at the results and think about what you are observing.
+
+<br/>
+
+#### Conditional statements with `if_else()`
+We often want to create a new variable using `mutate()` where the values are based on some conditional statement.  For example, we might want to create a categorical variable where countries are labeled "lower-income" or "higher-income" based on their per capita GDP.  
+
+We can use the `if_else()` function with `mutate()` to do these types of operations.  First let's create a new variable `income_status` and assign it to `my_gap`.
+```{r}
+my_gap <- mutate(my_gap, 
+                 income_status = if_else(gdpPercap > 7500, "higher-income","lower-income")) 
+```
+
+Take a look at `my_gap` and make sure you understand what we did here before moving on.  
+
+<br/>
+
+Now try creating your own variable using the `mutate()` and `if_else()` functions and add this variable to your `my_gap` data
+```{r}
+# Your code here
+```
+
+<br/>
+
+#### Conditional statements with `case_when()`
+The `if_else()` function is great when you have just two cases that you would like to assign (e.g. "lower-income" and "higher-income").  However, there are instances where we would like to assign values based on more than two cases.  In this instances we can use the `case_when()` function.  
+
+Let's change our `income_status` variable to cover three cases, "low income", "middle income", and "high income".  
+```{r}
+my_gap <- mutate(my_gap, 
+                 income_status = case_when(gdpPercap > 7500 ~ "high income", 
+                                           gdpPercap > 3500 & gdpPercap <= 7500 ~ "middle income", 
+                                           gdpPercap <= 3500 ~ "low income") )
+```
+
+<br/>
+
+Now create a variable `life_exp_status` where:  
+"**high life exp**" if life expectancy is > 72  
+"**med life exp**" if life exp is <= 72 and > 65   
+"**low life exp**" otherwise.  
+```{r}
+# Your code here 
+```
+
+<br/>
+
+
+
+### Rename variables with `rename()`
+We often want to rename columns (variables) in a dataset.  Often, we'll load in data that has a column name that we don't like for one reason or another (too long, not descriptive, includes spaces or odd characters,...).  We can use the `rename()` function to do this.  
+
+Let's rename the columns in our `my_gap` data so that they are all in a consistent format/style.  For this example let's have only lower case letters in our column names and lets indicate spaces between words with and underscore `_`.  This means that we'll need to rename our `lifeExp` and `gdpPercap` column and the other columns can remain unchanged.
+
+```{r}
+my_gap <- rename(my_gap, 
+                 life_exp = lifeExp, 
+                 gdp_per_cap = gdpPercap)
+```
+
+<br/>
+
+#### Quick aside regarding the `select()` function
+Remember how we used the select function to keep only the variable we wanted?  We'll there is some additional functionality that you can use with `select()` that you will now appreciate.  
+
+Imagine we have a dataset with lots of variables and we only wanted to select variable using some criteria of their name.  We can use some helper functions with `select()` to perform these operations.  
+
+Imagine we just wanted the year, country, and any columns containing gdp information.  Since our columns with gdp information, all have "gdp" somewhere in the name, we can use the `contains()` function with `select()`
+```{r}
+select(my_gap, year, country, contains("gdp"))
+```
+Take a look at the output and make sure you understand what is going on.  Also take a look at your `dplyr` cheatsheet and you'll see some other functions that you can use with `select()`.  
+
+Try testing out some of these functions that you can use with `select()`.  While we don't have very many columns in our current dataset, you can imagine these select functions will become more and more useful as the number of variables grows.  
+```{r}
+# Your code here
+```
+
+
+<br/>
+
+
+### Select n rows by a variable ranking `top_n()`
+We are often interested in the selecting rows (observations) based on their rank.  For instance, we might want to just get the top 10 observations by life expectancy.  We can use the  `top_n()` function to do this.  
+
+```{r}
+top_n(my_gap, 10, life_exp) # top 10 countries by life expectancy
+```
+
+<br/> 
+
+What were the top 10 countries by total GDP in 1952.  Make sure to output the list in descending order by total GDP.  You'll probably want to use `top_n()` in addition other `dplyr` function.
+```{r}
+# Your code here
+```
+
+```{r echo=FALSE, eval=FALSE}
+filter(my_gap, year == 1952) %>% 
+  top_n(10, tot_gdp) %>% 
+  arrange(desc(tot_gdp))
+```
+
+<br/> 
+
+What were the top 10 countries by total GDP in 2007.  Make sure to output the list in descending order by total GDP.  You'll probably want to use `top_n()` in addition other `dplyr` function.  
+
+```{r echo=FALSE, eval=FALSE}
+filter(my_gap, year == 2007) %>% 
+  top_n(10, tot_gdp) %>% 
+  arrange(desc(tot_gdp))
+```
+
+```{r}
+# Your code here
+```
+Did the top 10 countries change much between 1952 and 2007?
+
+<br/>
+
+
+### `summarize()`
+When analyzing a dataset, we are often interested in generating a table with statistics that summarize that data.  As the name suggests the `summarize()` function helps us do just that.  
+
+Let's compute average life expectancies and per capita GDP on our `gap_data`.  Before doing this, let's filter our data so we are just looking at year 2007.  
+
+```{r}
+my_gap_2007 <- filter(my_gap, year == 2007)
+```
+
+<br/>
+
+Now, let's use the `summarize()` function.  The basic syntax is the `summarize(dataset, variable_name_1 = statistic, variable_name_2 = statistic,...)`.  
+
+Note: both the American English spelling `summarize()` and British English spelling `summarise()` will work.  
+
+```{r}
+summarize(my_gap_2007, 
+          avg_life = mean(life_exp), 
+          avg_gdp_per_cap = mean(gdp_per_cap) )
+```
+
+You can use a ton of other summary statistics functions (see your `dplyr` cheatsheet).  
+
+Create a few more summary tables using your `my_gap` data (note you may want to filter your data first as we did with year 2007).  
+
+```{r}
+# Your code here 
+```
+
+<br/>
+
+Did you learn anything interesting?  If so, feel free to share what you found with the class.  
+
+<br/>
+
+## Exercises
+If you finish early, spend some time exploring the gapminder dataset while applying the new `dplyr` tools you've learned.  Formulate some questions and use what you've learned to try and answer/explore them.  
+
+```{r}
+# your code here
+```
+

@@ -1,0 +1,123 @@
+---
+title: "Lab 1: EPA Fuel Analysis"
+author: "Rachel Bryan"
+date: "January 9, 2023"
+output: html_document
+---
+
+# Fuel Economy Analysis
+
+### Set up for analysis
+```{r}
+library(tidyverse)
+```
+### Examine the data
+```{r}
+fuel_data <- mpg
+str(fuel_data)
+```
+
+
+```{r}
+head(fuel_data)
+```
+
++ `displ` represents engine displacement, in litres
+
++ `cyl` represents number of cylinders
+
++ `cty` represents city miles per gallon
+
++ This data was obtained from https://fueleconomy.gov/
+
+```{r}
+dim(fuel_data)
+```
+
++ There are 234 columns and 11 rows in this data set
+```{r}
+n_rows <- nrow(fuel_data)
+n_cols <- ncol(fuel_data)
+summary(fuel_data)
+```
+
++ The most fuel efficient vehicle gets 44 miles per gallon, while the least fuel efficient gets 12 miles per gallon.
+
++ The average miles per gallon for city driving is 16.86.
+
+```{r}
+fuel_data <- mutate(fuel_data, hwy2cty = hwy/cty)
+
+summary(fuel_data)
+```
+
++ There is no vehicle that gets better milage in the city than compared to the highway.
+
++ There is no vehicle that has twice as good gas milage on the highway relative to the city.
+
++ The largest ratio between highway and city gas milage is 1.667. 
+
+
+### Examine factors influencing fuel economy: Displacement
+```{r}
+ggplot(data = fuel_data) + geom_point(aes(x = hwy, y =displ))
+```
+
++ Lower displacement correlates with higher fuel economy.
+
++ There are a few points around the top of the graph which appear to be outliers. This could possibly be influenced by vehicle or engine size.
+
+### Examine factors influencing fuel economy: Displacement and vehicle class
+```{r}
+ggplot(data = fuel_data) + geom_point(aes(x = hwy, y = displ, color = class))
+```
+
++ This new information implies that the class of vehicle affects the fuel economy.
+
++ The majority of the outliers mentioned previously appear to be 2 seaters, which implies that something about the build of these specific cars is what changes this ratio.
+
+### Add a new variable to fuel_data
+```{r}
+us_makes <- c("chevrolet","dodge","ford","jeep","lincoln","mercury","pontiac")
+
+fuel_data <- mutate(fuel_data, region = if_else(manufacturer %in% us_makes,"US","Foreign"))
+
+summary(fuel_data)
+```
+
++ The variable `region` tells us whether the vehicle is from the US or foreign
+
++ To create the variable `region`, the data was mutated to add another variable, the US models were identified as us_makes, and then the if_else() function was used to label anything that was not one of the identified US makes as Foreign.
+
+## Additional Analysis
+
+### How does the gas milage of US car models compare to foreign models?
+```{r}
+ggplot(data = fuel_data) + geom_point(aes(x = displ, y = hwy, color = region))
+
+```
+
+Larger engines typically have lower gas milage. Based on this data, US car models typically have greater displacement, and as a result, US cars tend to have a worse gas milage than foreign models. However, this data also shows that the reason why foreign cars are typically more efficient is that they tend to have smaller engines. As a result of this, the US may be responsible for higher carbon emissions associated with car use, although the main reason for this is that larger cars tend to be produced by the US, and if they were to switch to smaller models this could be resolved. 
+
+```{r}
+ggplot(data = fuel_data) + geom_point(aes(x = cyl, y = hwy, color = region))
+
+```
+
+After looking at the displacement statistics, I compared the cylinder size versus gas milage for the US vs foreign car models. Based on this data, it appears that not only does the US manufacter larger cars which use gas more quickly, but they also have much larger cylinders which has a clear impact on fuel efficiency as well. So overall, US car models are less fuel efficient than foreign models, and this clearly correlates to size of and way these cars are built.
+
+```{r}
+ggplot(data = fuel_data) + geom_point(aes(x = class, y = hwy, color = region))
+```
+
+The final piece of information I analyzed to compare the efficiency between US and foreign car makes was the class of each car versus the highway mileage. With this data, I was able to compare the efficiency between the two regions while using similar types of cars, which helped to explain outliers and make more accurate comparisons. It's clear that in general, foreign models are more fuel efficient. For example, one of the least fuel efficient classes for any region is pickup, although based on this chart, we can see that all of the foreign pickups are still more fuel efficient than those manufactered in the US.
+
+
+
+### Are cars becoming more fuel efficient overtime?
+```{r}
+ggplot(data = fuel_data) + geom_point(aes(x = manufacturer, y = hwy, color = year))
+
+```
+
+To determine if cars are becoming more fuel efficient overtime, I compared the highway mileage versus each manufacturer in this data set, and color coded each point by year. Since we only have data for two years, 2000 and 2008, there is not enough information to confidently make a useful comparison. However, based on the information given, it seems that the most fuel efficient car from most manufacturers (all of them except Volkswagen), was manufactured in 2008. This can be used to support the hypothesis that car manufacturers are making an effort to create more fuel efficient cars as time goes on.

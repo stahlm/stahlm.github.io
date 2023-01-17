@@ -1,0 +1,4 @@
+"0","```r
+fuel_data <- mutate(fuel_data, hwy2cty = hwy/cty)
+fuel_data
+```"

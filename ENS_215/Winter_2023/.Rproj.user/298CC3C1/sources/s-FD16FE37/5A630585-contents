@@ -1,0 +1,129 @@
+---
+title: 'Lab 1: EPA Fuel Analysis'
+author: "Katie Boermeester"
+output:
+  html_document:
+    df_print: paged
+---
+## Section 1: Analysis of fuel efficiency in automobiles
+
+```{r}
+fuel_data <- mpg #assign mpg to a new object  
+str(fuel_data)
+```
+How many variables are there?  
+*There are 11 variables (column categories).*  
+How many observations?  
+*There are 234 observations (row variables).*  
+What does `chr`, `int`, and `num` mean in the output above?  
+*`chr` stands fr character, `int` stands fro integer, and `num` stands for numeric. All of these are different data types, which is hte structure of the data we are storing.*
+
+```{r}
+head(fuel_data)
+```
+What do the `displ`, `cyl`, and `cty` columns represent?  
+*`displ` stands for the engine displacement in liters, `cyl` stands for the number of cylinders, and `cty` represents the city miles per gallon.*  
+What website was the data obtained from?  
+*The website used to obtain the data is https://fueleconomy.gov/ .*  
+
+```{r}
+nrow(fuel_data)
+ncol(fuel_data)
+n_col <- ncol(fuel_data)
+n_row <- nrow(fuel_data)
+```
+
+Number of rows?  
+*234 rows.*  
+Number of columns?  
+*11 columns.*
+
+```{r}
+summary(fuel_data)
+```
+
++ For highway driving, how many miles per gallon does:
+  + The most fuel efficient vehicle get?  
+  *44 miles per gallon.*
+  + The least fuel efficient vehicle get?  
+  *12 miles per gallon.*
++ What is the average miles per gallon for city driving?  
+*The average, or mean mi/gl for city driving is 16.85.*
+
+```{r}
+fuel_data <- mutate(fuel_data, hwy2cty = hwy/cty)
+str(fuel_data)
+summary(fuel_data)
+```
+
++ Examine the new variable  
+  + Is there any vehicle that gets better gas mileage in the city as compared to the highway?  
+  *There is no vehicle that recieves greater mileage in the city in comparison to the highway.*  
+  + Is there any vehicle that has twice as good gas mileage on the highway relative to the city?  
+  *There is no vehicle that has twice as good gas mileage on the highway relative to the city, but the maximum difference is ~1.67 mi/gl.*  
+  + What is the largest ratio between highway and city gas mileage?    
+  *The largest ratio is 1.667:1 (highway:city).*  
+
+```{r}
+ggplot(data = fuel_data) +
+  geom_point(aes(x=displ, y=hwy))
+```
+
+How does displacement influence the fuel economy?  
+*As engine displacement increases, the highway milage decreases.*  
+Do any points appear to be outliers from the observed relationship? Any thoughts on what might explain these outliers?  
+*There doesn't seem to be any obvious outliers besides the points that lie in the y-range of 22-25 and x-range of 5.25-7. This does not match the data fully. It is possible that this is influenced by the fuel grade of the respective model and or the year of manufacture (how old the car is). The age of the car could possibly decrease the efficiency of a vehicle due to lack of updating/additions to the engine or other areas of the car. Alongside with this, different fuel grades can contribute to fuel efficiency and mileage in a number of ways, primarily increasing or decreasing the mileage that can be obtained.*
+
+```{r}
+ggplot(data = fuel_data) +
+  geom_point(aes(x=class, y=displ, color = "red"))
+```
+
++ What new information did this provide us with?  
+*The new information provided us with the idea that the model fo the car is very influential in the displacement of the engine, or the range of the engine displacement within the respective model. The obvious indicator of change/influence can be seen in the "2seater" column in particular and how small, but high in terms of displacement, that model is.*  
+  + Can we say more about factors affecting fuel economy?  
+  *Yes, we can say that the model of the car influences the range of displacement available for an engine, thus a predictor of how fuel efficient a certain model can be.*  
+  + Can we explain some of the outliers?  
+  *The outliers in this graph are not as obvious, but can possibly be explained by how old the vehicle is, alongside its feul type, which can possible explain why a certain car within that model category has a higher/lower displacement than the others.*  
+  
+```{r}
+us_makes <- c("chevrolet","dodge", "ford", "jeep", "lincoln", "mercury", "pontiac") #list of US manufacturers
+
+fuel_data <- mutate(fuel_data, region = if_else(manufacturer %in% us_makes, "US", "Foreign"))
+```
+
+What is the variable region telling us?  
+*The variable tells us where (if in the United States or not) the car model was manufactured.*  
+Can you briefly explain the logic and steps taken to create the variable `region`?  
+*To create the variable, we first needed to assign names to the factor "us_makes". After doing so, we were able to add that new factor and the data contained, into that classified variable of `region` with the function of naming us-made vehicles as "US" and all others not made in the US as "Foreign". All of this information used in the argument is executed vua hte mutate function affecting the "fuel_data".*
+
+## Section 2: Additional analysis of my choosing
+
+Factors not investigated:  
++ Number of cylinders  
++ Fuel type  
++ Type of transmission  
++ Year of manufacturing  
++ Types of drive train (front-wheel, rear-wheel, 4wd)  
+
+```{r fig.width=4, fig.height=3}
+ggplot(fuel_data) +
+  geom_point(aes(x=model, y=hwy, color=manufacturer, shape=factor(year))) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
+```
+
+Graph above looks at specific car models from 1999 and 2008 and their fuel efficiency on the highway. The results are pretty mixed in terms of which model (in terms of year being made) had the higher fuel efficiency. The trend within the graph varies in terms of which models (from 1999 or 2008) are more fuel efficient on the highway, though most models have improved efficiency from their 2008 models (highest y-value). The outliers are from the Jetta, New Beetle, and Passat models produced by Volkswagen. All of these models had 1999 models with fuel efficiencies greater than 40 miles per gallon. 
+
+```{r fig.width=4, fig.height=3}
+ggplot(fuel_data) +
+  geom_point(aes(x=manufacturer, y=hwy, shape=factor(year))) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
+```
+This graph is getting a further look into the manufacturer and their fuel efficiency "ranges". As talked about earlier, Volkswagen has the vehicles with the highest fuel efficieny with a max greater than 40. The vehicles with the lowest fuel efficiencies are Jeep and Dodge vehicles. Most of the manufacturers have vehicles that have a higher fuel efficiency in 2008 than in 1999, with the main exception as mentioned earlier being Volkswagen. This could possibly be due to a switch in management or goal of the company itself wishing to focus on short-term profit than providing a long-lasting vehicle at a price the durablity deserves. 
+
+```{r fig.width=1, fig.height=2} 
+ggplot(fuel_data) +
+  geom_point(aes(x=year, y=hwy)) + 
+  geom_line(aes(x=year, y=hwy, group=model))
+```
+The graph above was an attempt at looking at the trend for fuel efficiency from 1999 to 2008. The main trend that can be seen is that most manufacturers had an increasing fuel efficiency from 1999 to 2008, showing an improvement of technology or a change of goals from nearly a decade ago. One item I would like to include for the future is having various colors to express how much a particular manufacturer improved and viewing the slope of that line. 

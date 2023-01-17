@@ -1,0 +1,6 @@
+"0","```r
+# Assign the variable \"luxury\" to vehicles with models identified below. Everything else classify as \"non-luxury\"
+luxury <- c(\"a4\", \"a4 quattro\", \"corvette\", \"mustang\", \"range rover\", 	
+\"land cruiser wagon 4wd\")
+fuel_data <- mutate(fuel_data, luxury_cat = if_else(model %in% luxury, \"Luxury\", \"Non-luxury\"))
+```"

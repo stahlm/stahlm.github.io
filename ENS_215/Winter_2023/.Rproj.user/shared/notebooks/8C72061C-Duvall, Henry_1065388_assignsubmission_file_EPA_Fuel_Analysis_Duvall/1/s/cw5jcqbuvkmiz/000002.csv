@@ -1,0 +1,5 @@
+"0","```r
+# Assign the variable \"manual\" to vehicles with manual transmissions. Everything else classify as \"automatic\"
+manual <- c(\"manual(m5)\", \"manual(m6)\")
+fuel_data <- mutate(fuel_data, trans_cat = if_else(trans %in% manual, \"Manual\", \"Automatic\"))
+```"

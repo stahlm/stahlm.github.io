@@ -1,0 +1,4 @@
+"0","```r
+us_makes <- c(\"chevrolet\", \"dodge\", \"ford\", \"jeep\", \"lincoln\", \"mercury\", \"pontiac\")
+fuel_data <- mutate(fuel_data, region = if_else(manufacturer %in% us_makes, \"US\", \"Foreign\"))
+```"

@@ -1,0 +1,83 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+
+library(gapminder)
+```
+
+
+```{r}
+for (i_value in 1:12) {
+  
+  print(i_value)
+
+}
+```
+
+
+
+
+
+```{r}
+month_list <- c("January","February","March","April","May",
+                "June","July","August","September",
+                "October","November","December")
+
+
+day_list <- c(31,28,31,30,31,30,31,31,30,31,30,31)
+
+```
+
+```{r}
+day_list
+```
+
+
+
+
+```{r}
+for (i_value in month_list) {
+  
+  print(i_value)
+  
+}
+```
+
+
+```{r}
+for (i_value in 1:12) {
+  
+  #print(i_value)
+  print(month_list[i_value])
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```{r}
+for(i_value in 1:12){
+  
+  print( paste(month_list[i_value],"has",
+               day_list[i_value],"days") )
+  
+}
+```
+

@@ -1,0 +1,136 @@
+---
+title: "Lab 1: EPA Fuel Analysis"
+author: "Hank Duvall"
+date: January 16, 2023
+output: html_document
+---
+
+## Introduction
+  This lab consisted of manipulation and analysis of the "mpg" data set. MPG is a data set that contains the fuel economy of 38 popular cars from 1999 to 2008. The tidyverse and ggplot2 packages made the analysis of this data for the purposes of the lab possible. Methods used in this lab included creating new variables which isolate specific categories in mpg data set, the "view" function, "str" function, "dim" function, "summary" function, "mutate" function as well as indexing were used to obtain results. Using these methods allowed additional analysis of the data set to gain in depth insight.
+
+### Section 1: Fuel Economy Analysis
+
+```{r}
+# Load in required libraries:
+library(tidyverse)
+library(ggplot2)
+```
+```{r}
+# Assign mpg to new object, "fuel_data"
+fuel_data <- mpg
+```
+
+```{r}
+# View the data set
+View(fuel_data)
+```
+
+```{r}
+# Use the str() function to examine the structure of the data set
+str(fuel_data)
+```
+##### Observations: There are 11 variables.  There are 234 different observations.  "chr" indicates that the output is text.  "num" indicates that the output is a number, not necessarily an integer.  "int" indicates that the output is an integer.
+
+```{r}
+# Isolate the first 6 rows and clumns of the data set
+fuel_data[c(1,6)]
+fuel_data
+```
+##### Observations:  "displ" refers to the engine displacement, in liters.  "cyl" refers to the number of cylinders for the given car.  "cty" refers to the MPG city driving.
+
+```{r}
+# Obtain the number of rows and columns
+dim(fuel_data)
+```
+234 rows.
+11 columns.
+
+```{r}
+# Assign number of rows and columns to new object "n_rows" and "n_cols"
+n_rows <- nrow(fuel_data)
+n_rows
+n_cols <- ncol(fuel_data)
+n_cols
+```
+```{r}
+# Obtain summary statistics of fuel_data
+summary(fuel_data)
+```
+##### Observations:  The most efficient vehicle gets 44 mpg on the highway.  The least efficient vehicle gets 12 mpg on the highway.  The average mpg for city driving in cars in the data set is 16.86 mpg. 
+
+```{r}
+# Create a new variable to store the ratio of highway to city fuel economy
+fuel_data <- mutate(fuel_data, hwy2cty = hwy/cty)
+fuel_data
+```
+##### Observations:  There is no vehicle that gets better gas mileage in the city compared to on the highway.  There is also no vehicle that gets twice as good gas mileage on the highway than in the city.  The largest ratio between highway and city gas mileage is 1.666667 hwy/city. 
+
+```{r}
+# Graph the relationship between fuel economy and displacement
+ggplot (data = fuel_data) + geom_point(aes(x = displ, y = hwy))
+```
+##### Observations:  The trend in the plot above indicates that the higher the displacement of a given vehicle, the lower mpg on the highway.  The outliers we see have similar displacements but vastly different hwy mpg. This suggests that even though these vehicles may have similar displacements, there are other factors that influence these vehicles efficiency. Many of the outliers are 2-seater vehiclee that have large engines however they are much lighter than pick-up trucks and other vehicles with the same displacement. 
+
+```{r}
+# Graph the relationship between fuel economy, displacement and color
+ggplot (data = fuel_data) + geom_point(aes(x = displ, y = hwy, color = class))
+```
+##### Observations:  The color function allows us to examine fuel efficiency on highways and displacement as well as the class type of a given vehicle.  The size of the vehicle affects it's efficiency.  This plot allows us to explain some of the outliers, 2 seaters have high engine displacement, similar to SUVs and Pickup Trucks. However, 2-seaters are more efficient on average than larger vehicles with similar engine displacement. We can assume that there are other factors like size and weight that impact highway mpg.
+
+```{r}
+# Create a new variable "region"
+us_makes <- c("chevrolet", "dodge", "ford", "jeep", "lincoln", "mercury", "pontiac")
+fuel_data <- mutate(fuel_data, region = if_else(manufacturer %in% us_makes, "US", "Foreign"))
+```
+##### Observations: Region examines the manufacturers name and checks if it is one of the names defined in "us_makes", if it is not then it assigns that manufacturer as "foreign".  The logic in designing "region" is using an if_else statement to check the characters within the "manufacturer" data frame. If the value is one of the values defined in "us_makes", then the vehicle is classified as "US". If the value is not one of the values defined in "us_makes", then the vehicle is classified as "foreign".
+
+### Section 2: Additional Analysis
+```{r}
+# Assign the variable "manual" to vehicles with manual transmissions. Everything else classify as "automatic" and store in the object "trans_cat". 
+manual <- c("manual(m5)", "manual(m6)")
+fuel_data <- mutate(fuel_data, trans_cat = if_else(trans %in% manual, "Manual", "Automatic"))
+```
+
+```{r}
+# Graph the relationship between transmission type, city miles per gallon and region. 
+ggplot (data = fuel_data) + geom_jitter(aes(x = trans_cat, y = cty, color = region), width = 0.2, height = 0)
+```
+##### Discussion:  The data set shows that manual cars get better mileage in the city than automatic cars. According to a Consumer Reports study from 2012, manual cars were shown to get slightly better gas mileage than automatic (Consumer Reports). The data in this lab reflects that. Automatic technology has evolved since so that there is no observable difference in city mileage between manual and automatic cars in cars made in the last 10 years (Honda of Winchester). Foreign made manual cars get better city mileage than American made manuals. This is in line with studies which illustrate different emission standards in Europe which require their vehicles have higher fuel economy than American vehicles (Get my Parking). 
+
+```{r}
+# Assign the variable "luxury" to vehicles with models identified below. Everything else classify as "non-luxury" and stoe in object "luxury_cat".
+luxury <- c("a4", "a4 quattro", "corvette", "mustang", "range rover", 	
+"land cruiser wagon 4wd")
+fuel_data <- mutate(fuel_data, luxury_cat = if_else(model %in% luxury, "Luxury", "Non-luxury"))
+```
+
+```{r}
+# Graph the relationship between luxury and non-luxury cars and highway miles per gallon.
+ggplot (data = fuel_data) + geom_jitter(aes(x = luxury_cat, y = hwy), width = 0.2, height = 0)
+```
+##### Discussion:  The data set shows that non-luxury cars get better highway mileage than luxury cars. The variable "luxury" includes cars that I designated as "luxury" according to their make. These brands almost always cost more than brands which I classified as "non-luxury". Literature surrounding luxury car fuel economy especially before the mass production of electric cars supports my findings (Cars and Credit Master). While luxury cars are more expensive than non-luxury ones, they often come with more feautures which make the vehicles heavier or impact fuel economy negatively in some way. Therefore, these findings make sense according to my research. 
+
+```{r}
+# Graph the relationship between fule type, class and highway miles per gallon.
+ggplot (data = fuel_data) + geom_jitter(aes(x = fl, y = hwy, color = class), width = 0.2, height = 0)
+```
+##### Discussion: The data set shows that cars that take regular get better mileage on the highway than cars that take different types of fuel. Diesel cars have the potential to get significantly better mileage than cars burning other types of fuel, this is because the compression ratio of diesel is higher than that of regular gasoline (Rentar Fuel Catalyst). This explains the outliers with much higher highway mileage which burn diesel fuel. 
+
+### References:
+
+**Consumer reports -**  
+https://www.consumerreports.org/cro/2012/01/save-gas-and-money-with-a-manual-transmission/index.htm#:~:text=In%20our%20tests%2C%20we've,also%20improve%20acceleration%2C%20sometimes%20significantly.
+
+**Honda of Winchester -** 
+https://www.cmashondaofwinchester.com/do-manual-transmission-cars-get-better-gas-mileage/#:~:text=No%2C%20modern%20manual%20transmission%20vehicles,fuel%20economy%20than%20automatic%20transmissions.
+
+**Get my Parking -**
+https://blog.getmyparking.com/2020/01/20/why-does-europe-prefer-manual-cars-over-automatic-ones/
+
+**Cars and Credit Master -** 
+https://www.carsmaster.com/blogs/2823/get-approved/luxury-versus-economy-which-one-is-better/
+
+**Rentar Fuel Catalyst -** 
+https://rentar.com/determines-engine-fuel-efficiency-gas-mileage-vehicle/#:~:text=The%20more%20energy%20in%20a%20fuel%20%E2%80%94%20per%20unit%20of%20volume,considerably%20different%20densities%20in%20fact.
+
+
