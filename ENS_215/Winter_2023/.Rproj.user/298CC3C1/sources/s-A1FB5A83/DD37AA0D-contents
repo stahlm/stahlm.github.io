@@ -1,0 +1,69 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r}
+library(tidyverse)
+library(gapminder)
+```
+
+
+
+
+# Multiple steps
+
+```{r}
+my_gap <- gapminder
+```
+
+
+```{r}
+test <- my_gap %>% arrange(continent, pop)
+```
+
+
+```{r}
+gap_2007 <- filter(my_gap, year == 2007, continent == "Asia")
+```
+
+
+```{r}
+gap_2007 <- arrange(gap_2007, gdpPercap)
+```
+
+
+```{r}
+gap_2007 <- select(gap_2007, -pop)
+```
+
+
+
+
+# In a single step 
+
+```{r}
+my_gap %>% 
+  filter(year == 2007, continent == "Asia") %>% 
+  arrange(gdpPercap) %>% 
+  select(-pop)
+```
+
+
+```{r}
+filter(my_gap, lifeExp > 70)
+```
+
+```{r}
+my_gap %>% 
+  filter(lifeExp > 65) %>% 
+  arrange(pop)
+```
+
+
+
+
+
+
+

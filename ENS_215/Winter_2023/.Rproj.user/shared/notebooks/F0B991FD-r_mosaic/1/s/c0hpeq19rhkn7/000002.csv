@@ -1,0 +1,3 @@
+"0","test_merge <- terra::merge(raster_list[1:3])"
+"2","Error in as.data.frame(y) : argument ""y"" is missing, with no default
+"

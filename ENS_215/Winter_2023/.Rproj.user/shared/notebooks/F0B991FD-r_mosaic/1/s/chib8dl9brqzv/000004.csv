@@ -1,0 +1,5 @@
+"0","rlist <- list(raster_list[1:3])"
+"0","rsrc <- terra::sprc(rlist)"
+"2","Error: [sprc] list elements should be 'SpatRaster'
+is of class: character
+"

@@ -1,0 +1,1 @@
+"0","raster_list <- list.files(""D:/NAIP zip files/NAIP_TIFF/"", full.names = T, pattern = "".tif"")"

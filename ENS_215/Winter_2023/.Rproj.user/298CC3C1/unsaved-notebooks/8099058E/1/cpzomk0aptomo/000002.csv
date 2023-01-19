@@ -1,1 +1,0 @@
-"0","cars_good_hwy <- mpg[mpg$hwy >= 30, ]"

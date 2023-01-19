@@ -1,0 +1,3 @@
+"0","rast_test <- terra::rast(raster_list[1:3])"
+"2","Error: [rast] extents do not match
+"
