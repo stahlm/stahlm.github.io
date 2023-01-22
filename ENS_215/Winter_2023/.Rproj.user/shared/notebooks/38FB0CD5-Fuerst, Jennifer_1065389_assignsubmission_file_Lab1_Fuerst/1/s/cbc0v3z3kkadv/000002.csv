@@ -1,0 +1,2 @@
+"0","## How do city miles per gallon and highway miles per gallon compare? Does a specific manufactor exceed both? Does a specific manufactor fail in both?"
+"0","ggplot(data = fuel_data) + geom_point(aes(x = hwy , y = cty, color = manufacturer))"

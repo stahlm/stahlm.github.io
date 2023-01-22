@@ -1,0 +1,6 @@
+"0","my_gap %>% "
+"0","  filter(year == 2007, continent == ""Africa"") %>%"
+"0","  mutate(avg_life_dev = -(mean(lifeExp) - lifeExp)) %>% "
+"0","  "
+"0","  summarize(country, lifeExp, avg_life_dev, gdpPercap) %>% "
+"0","  arrange(avg_life_dev)"

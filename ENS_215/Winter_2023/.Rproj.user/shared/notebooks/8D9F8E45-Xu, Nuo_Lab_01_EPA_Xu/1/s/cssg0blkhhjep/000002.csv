@@ -1,0 +1,3 @@
+"0","# now assign the value for the number of rows and columns "
+"0","n_rows <- nrow(fuel_data)"
+"0","n_cols <- ncol(fuel_data)"

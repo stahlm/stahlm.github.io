@@ -1,0 +1,3 @@
+"0",""
+"0","fuel_data <- mutate(fuel_data, model_trans = paste(model,trans,sep=""-""))"
+"0","#model_trans= paste(model,trans,sep="","")"

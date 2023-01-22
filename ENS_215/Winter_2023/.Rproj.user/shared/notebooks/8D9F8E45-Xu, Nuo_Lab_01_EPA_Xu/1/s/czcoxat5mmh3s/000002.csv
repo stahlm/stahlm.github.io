@@ -1,0 +1,1 @@
+"0","ggplot(data=fuel_data) + geom_jitter(aes(x=cty, y=region, color=class), width = 0, height=0.2)"

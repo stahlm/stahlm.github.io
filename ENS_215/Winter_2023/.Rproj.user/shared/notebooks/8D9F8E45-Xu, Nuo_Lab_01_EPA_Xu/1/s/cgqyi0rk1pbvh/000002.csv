@@ -1,0 +1,6 @@
+"0","## Use mutate() to create the new variable (hwy2cty) and add it to the fuel_data object"
+"0","fuel_data <- mutate(fuel_data, hwy2cty = hwy/cty)"
+"0",""
+"0","## Use the $ notation to create the new variable (hwy2cty) and add it to the fuel_data object"
+"0","# fuel_data$hwy2cty <- fuel_data$hwy/fuel_data$cty"
+"0","print(fuel_data)"

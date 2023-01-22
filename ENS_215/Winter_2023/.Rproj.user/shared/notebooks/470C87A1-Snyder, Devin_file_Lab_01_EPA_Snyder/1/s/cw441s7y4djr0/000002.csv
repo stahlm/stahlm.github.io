@@ -1,0 +1,2 @@
+"0","fuel_data_class_displ <- ggplot(data = fuel_data) + geom_point(aes(x = displ, y = hwy, color = class))"
+"0","fuel_data_class_displ"

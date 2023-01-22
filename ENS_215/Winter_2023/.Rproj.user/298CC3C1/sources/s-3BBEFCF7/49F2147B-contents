@@ -1,0 +1,229 @@
+---
+title: "Introduction to Data Visualization"
+output: slidy_presentation
+date: "23-Jan-2023"
+footer: "ENS-215 (Winter 2023)"
+---
+
+
+## Motivation
+One of the best tools you have to interpreting/understanding your data are your eyes!  
+
+A visual representation of your data can reveal patterns and interesting features that would have been difficult or impossible to identify by looking at a data table.
+
+<br/>
+$Graphics + Eyes + Brain = Understanding$
+
+```{r echo = FALSE, message = FALSE, warning=FALSE}
+library(tidyverse)
+library(gapminder)
+library(kableExtra)
+library(scales)
+
+my_gap <- gapminder
+```
+
+## Motivation
+What is the relationship between life expectancy and per capita GDP?  
+
+You have 30 seconds to assess the relationship.  GO!!
+
+```{r echo = FALSE}
+my_gap %>% filter(year == 2007) %>%
+  select(country, gdpPercap, lifeExp) %>% 
+  kable() %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"), full_width = FALSE)
+```
+
+## Motivation
+What is the relationship between life expectancy and per capita GDP?  
+
+You have 30 seconds again...this time it should be much, much easier!  
+
+
+```{r echo = FALSE}
+
+my_gap %>% filter(year == 2007) %>%
+  ggplot() + 
+  geom_point(aes(x = gdpPercap, y = lifeExp , color = continent), size = 3) +
+  scale_x_continuous(name="GDP per capita (dollars)", labels = comma) +
+  ylab("Life expectancy (yrs)") + 
+  theme_classic()
+```
+
+
+## Motivation
+Graphics are critical at all stages of a project -- from the initial data aquisition and exploration to the final product that is conveys results to other (colleagues, the public, ...).  
+
+Graphics reveal patterns and features in data that statistics (_e.g._ mean, median, correlation) may fail to convey/capture.  
+
+Consider the four datasets that were constructed by the statistician **Francis Anscombe**  
+
+All of four datasets have the following statistics:  
+
+| Property                                           |   | Value             |
+|--------------------------------------------------|---|-------------------|
+| Mean of x                                          |   | 9                 |
+| Sample variance of x                               |   | 11                |
+| Mean of y                                          |   | 7.5               |
+| Sample variance of y                               |   | 4.125             |
+| Corr. between x and y                              |   | 0.816             |
+| Linear regression line                             |   | y = 3.00 + 0.500x |
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | ||
+
+Based on the above table you would be led to believe that the data look roughly the same.  
+
+## Motivation
+
+![Anscombe's quartet (source: Wikipedia)](https://stahlm.github.io/ENS_215/Lectures/Images/1000px-Anscombes_quartet_3.png){width=750px}  
+
+Take home message: You should examine your data graphically! 
+
+
+## Data visualization: Goals
+You will create graphics for many different purposes throughout this class and your career.  
+
+- When making a graphic you should consider the purpose/goal.  Is the graphic for:
+    - Exploring and generating initial understanding (**EDA**)
+    - Presentation and explanation (_e.g._ conference/thesis presentation, journal article or thesis, ...)
+    - Engagement (_e.g._ reaching a broader audience via web, video, news,...)  
+
+The style, detail, and level of refinement will be a function of your goals.  
+
+
+
+## Data visualization: EDA
+
+- Exploratory data analysis (EDA): 
+    - Quickly develop an understanding 
+    - Inform the next steps of your research
+    - Style/formatting/level of polish is not very important 
+
+```{r echo=FALSE}
+my_gap %>% filter(year == 2007) %>%
+  ggplot() + 
+  geom_point(aes(x = gdpPercap, y = lifeExp)) 
+```
+
+
+## Data visualization: Presentation quality figures
+
+- Presentation/explanation: 
+    - Convey and explain findings/results
+    - High quality figures
+
+```{r echo=FALSE}
+my_gap %>% filter(year == 2007) %>% 
+  ggplot() + 
+  geom_point(aes(x = gdpPercap, y = lifeExp , color = continent), size = 3) + 
+  scale_x_continuous(name="GDP per capita (dollars)", labels = comma) + ylab("Life expectancy (yrs)") + 
+  
+  theme_classic(base_size = 14) + 
+  labs(caption= "data source: gapminder",
+       subtitle = "Figure 1: Life expectancy generally increase with per capita GDP") + 
+  theme(legend.title = element_text(colour="black", size=10, 
+                                      face="bold"),
+        legend.position=c(0.85, 0.3)) +labs(col="Continent")
+```
+
+## Data visualization: Engagement
+- Engagement of a broader audience
+    - Similiar to figures for "presentation"
+    - Geared towards a less technical audience
+    - May be more stylized and have more "_explanatory_" features 
+    
+Good examples of these types of figures are found in:  
+
+- Popular press (_e.g._ NYTimes, National Geographic, ...)  
+- Many government and NGO websites and publications
+
+
+## Graphics in `R`
+R has excellent graphic making capabilities that allow you to create figures of the highest quality.  
+
+In fact many figures you see in scientific journals and in the popular press are made in R (many of the graphics in the NY Times are made in R!).  
+
+- The _base graphics_ functionality is in the `graphics` package that comes bundled with R.  
+- There are a number of other graphics packages available for creating graphics in R (_e.g._ `lattice`, `ggplot2` packages)
+
+Most of the figures in this class will be made with the `ggplot2` package. 
+
+## Graphics in `R`
+In the this and upcoming lectures you will learn how to make static graphics in R.  
+
+You will learn fundamental concepts about how to visualize different types of data and how to generate these visualizations in R.  
+
+Later in the term we will cover how to make interactive (_dynamic_) graphics and basic maps in R.  
+
+
+## `ggplot2` package 
+The `ggplot2` package implements what is called the _grammar of graphics_.  This is a system that describes a graph's construction and complex graphs can be built by combining elements together much like you would construct a sentence in a natural language.  
+
+- `ggplot2` is widely used (you've already been using) and there are countless learning resources freely available.  
+    - Both of our textbooks, [moderndive](https://moderndive.com/) and [R4DS](https://r4ds.had.co.nz) largely use `ggplot2` to teach data visualizaiton
+
+
+## `ggplot2` package 
+
+_The grammar of graphics_ is based on the concept that[^1]:
+
+  > A graphic is created by `mapping` the `data` variables to the `aes`thetic attributs of `geom`etric objects.  
+
+The three essential components of a graphic are:
+
+1. `data`: dataset containing the mapped variables
+2. `geom`: geometric object that the data is mapped to (_e.g._ point, lines, bars, ...)
+3. `aes`: aesthetic attributes of the geometric object.  The aesthetics control how the data variables are mapped to the geometric objects (e.g. x/y position, size, shape, color, ...)  
+
+Additional components that can be added include:  
+
+  - **Statistical** elements such as smoothing or binning
+  - **Facets** for creating mulitiples of graphics based on a categorical variable
+  - **Coordinate systems** for defining the coordinate system (cartesian, polar, map projection)
+
+
+[^1]: See md chapter 3.
+
+
+## `ggplot2` package 
+The basic template for creating a graphic in `ggplot2` is 
+
+```{r eval = FALSE}
+ggplot(data = DATASET) + GEOM_FUNCTION(mapping = aes(MAPPINGS) )
+```
+
+- Where:  
+    - **DATASET** is the name of the data object where your data is stored  
+    - **GEOM_FUNCTION** is the `geom` function you want to use (_e.g._ `geom_point()`)  
+    - **MAPPINGS** are the specifications for how you want to map your data to the `geom` (_e.g._ `x = gdpPercap, y = lifeExp, color = continent`)  
+    
+
+## Examining graphical components
+
+![Minard's illustration of Napolean's March (source: Wikipedia)](https://stahlm.github.io/ENS_215/Lectures/Images/Minard.png){width=850px} 
+    
+
+## Examining graphical components
+![Minard's illustration of Napolean's March (source: Wikipedia)](https://stahlm.github.io/ENS_215/Lectures/Images/Minard_Update.png){width=950px} 
+
+
+## Examining graphical components
+Let's see how we would construct Minard's figure using the _grammar of graphics_
+
+
+
+```{r echo=FALSE, message = FALSE, warning=FALSE}
+minard_table <- read_csv("../Images/minard_table.csv")
+
+minard_table %>%
+  kable() %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
+```
+
+
+
+
+
+
+    
+    

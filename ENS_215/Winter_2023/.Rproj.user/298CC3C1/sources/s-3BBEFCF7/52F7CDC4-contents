@@ -1,0 +1,205 @@
+---
+title: 'Lab 1: EPA Fuel Analysis'
+author: "Devin Snyder"
+output:
+  html_document:
+    df_print: paged
+---
+
+
+```{r}
+# install.packages("tidyverse")
+```
+
+```{r}
+library(tidyverse)
+
+```
+
+```{r}
+fuel_data <- mpg # assigning mpg
+```
+
+
+
+
+```{r}
+str(fuel_data)
+```
+There are 11 variables  
+
++  manufacturer
++  model
++  display
++  year
++  cyl
++  trans
++  drv
++  cty
++  hwy
++  fl
++  class  
+
+
+
+
+
+```{r}
+head(fuel_data) # this function allows me to view the first six rows of the fuel_data dataset
+```
+
+How many variables are there?
+# There are 11 variables
+How many observations?
+# There are 234 observations.
+
+What does chr, int, and num mean in the output above?
+# chr refers to a character string, num refers to a numeric data type, and int refers to an integer data type
+
+```{r}
+mpg
+```
+What do teh disp, cyl, and cty columns represent?
+*disp*, *cyl*, and *cty* represents *engine displacement*, *number of cylinders*, and *city mpg*
+What website was the data obtained from?
+# The data was obtained from https://www.fueleconomy.gov/feg/climate.shtml
+
+
+```{r}
+n_rows <- nrow(fuel_data) # number of rows
+n_cols <- ncol(fuel_data) # number of columns
+n_rows
+n_cols
+```
+
+
+Number of rows?
+# There are 234 rows
+Number of columns?
+# There are 11 columns
+
+
+```{r}
+summary(fuel_data) #function to get summary statistics
+```
+For highway how many miles per gallon does (hwy is used to get mpg for highway driving)
+  
++ The most fuel efficient vehicle get? 
+# The most efficient vehicle gets 44 mpg for highway driving
++ The least fuel efficient vehicle get? 
+# The least efficient vehicle gets 12 mpg for highway driving
+what is the average miles per gallon for city driving
+# The average mpg for city driving is 16.86 miles per gallon
+
+
+What website was the data obtained from?
+
++ https://www.fueleconomy.gov/feg/climate.shtml
+
+## Use mutate() to create the new variable (hwy2cty) and add it to the fuel_data object
+# fuel_data <- mutate(fuel_data, hwy2cty = hwy/cty)
+```{r}
+fuel_data <- mutate(fuel_data, hwy2cty = hwy/cty)
+```
+
+## Use the $ notation to create the new variable (hwy2cty) and add it to the fuel_data object
+# fuel_data$hwy2cty <- fuel_data$hwy/fuel_data$cty
+
+```{r}
+summary(fuel_data)
+```
+
+Examine this new variable
+
++ Is there any vehicle that gets better gas mileage in the city as compare to the highway? 
+# There are not any vehicles that get better gas mileage in the city in comparison to the highway.
+
+Is there any vehicle that has twice as good gas mileage on the highway relative to the city? 
+# There are not any vehicles that have twice as good gas mileage on the highway relative to the city.
++ What is the largest ratio between highway and city gas mileage? 
+# The largest ratio is **1.667 mpg** on a highway vs. mpg on a city.
+
+What is the code hwy2cty doing?
+
+# This code represents ratio of highway mpg to city mpg for different vehicles.
+
+```{r}
+fuel_data_class_displ <- ggplot(data = fuel_data) + geom_point(aes(x = displ, y = hwy, color = class))
+fuel_data_class_displ
+```
+
+How does displacement influence the fuel economy?
+
+# As you increase displacement fuel efficiency of a vehicle will decrease.  Vice versa, when displacement is decreased fuel efficiency increases.  Cars with greater displacement are likely to have a greater fuel demand, meaning that areas with larger vehicles (rural areas) will demand more fuel than areas with smaller vehicles (suburban).
+
+Do any point appear to be outliers from the observed relationship? Any thoughts on what might explain these outliers?
+
+# Specific cars that appear to be outliers in this figure include 2 subcompacts and 1 2seater.  The 2seater outlier displays the highest level of displacement yet still has a higher fuel use efficiency than almost all pickups and SUVs.  This elevated efficiency compared may result from this vehicle being hybrid or being lighter than suvs and other subcompacts meaning less fuel input is required to travel the same distance. Additionally there are two types of subcompact vehicles that have a much higher fuel use efficiency than other subcompacts and compacts with lower levels of displacement.  This conflicts with the idea that lower displacement values attribute to higher fuel use efficiency.  One specific reason why this case scenario may be true is that these vehicles in particular have are newer models or even hybrid allowing them to be more efficient.
+
+```{r}
+fuel_data_year_hwy <- ggplot(data = fuel_data) + geom_point(aes(x= class, y = displ, color = class))
+fuel_data_year_hwy
+```
+What new information did this provide us with?
+
+ Can we say more about factors affecting fuel economy?  
+# The size of car can impact the level of displacement, with larger cars typically observing a greater level of displacement.  Considering greater displacement can attribute to lower levels of fuel efficiency we can see that larger vehicle classes are typically more fuel demanding in our economy than smaller more efficient vehicles.
+ Can we explain some of the outliers?  
+# As time progresses and more electric/hybrid vehicles are being produced the likelihood of having outliers also increases.  For example, newly introduced hydrid vehicles would observe a much greater fuel efficiency than an older version of the same class of car.  Another factor to keep in mind is the decrease in weight of vehicles over time which will require less fuel as there is less mass being moved.  Outliers can occur in the opposite direction where large heavy and high displacement vehicles can display definite lower levels of fuel efficiency than their newer counterparts.  Older cars are typically heavier and release a greater amount amount of emissions.
+
+```{r}
+us_makes <- c("chevrolet","dodge","ford","jeep",
+              "lincoln","mercury","pontiac") # list of U.S. manufacturers
+fuel_data <- mutate(fuel_data, region = if_else(manufacturer %in% us_makes, "US","Foreign"))
+fuel_data
+```
+What is the variable region telling us?
+# Region allows us to determine whether a vehicle was manufactured domestically or internationally.
+
+Can you briefly explain the logic and steps taken to create the variable region?
+# This variable region was created through associating the brands of U.S. made vehicles with the variable U.S. makes to separate these specific vehicles from those that are internationally produced.  This variable could then be incorporated into our overall fuel data in order to allow us to plot differences in car model and fuel efficiency between U.S vehicles and the rest of the world.
+```{r}
+us_cars <- filter(fuel_data, region == "US")
+```
+**How do different manufacturers of U.S cars compare to one another in regard to highway fuel usage per gallon?**
+```{r}
+fuel_data_U.S_brands <- ggplot(data = us_cars) + geom_point(aes(x= manufacturer, y = hwy))
+fuel_data_U.S_brands
+```
+# Looking at the U.S manufacturers highway fuel efficiency chevrolet and pontiac stand out as the two companies producing the best vehicles in terms of highway fuel efficiency. Chevrolet produces the most fuel effiecient car in the 2008 Malibu which obtained a highway miles per gallon of 30.  Meanwhile, Pontiac produced the most fuel efficient cars on average with the highest fuel efficient model having 28 high mpg, and the least fuel efficient model having 25 mpg.  On the down side manufacturers such as dodge, lincoln, mercury, and jeep exhibited very low fuel efficient cars as none of these brands produced a car with up to a 25 highway mpg fuel use efficiency.  A majority of their products had a fuel use efficiency between 15 highway mpg and 10 highway mpg.  In order for these U.S manufacturers to lower their overall carbon footprint they must strive to come up with more fuel efficient models, whether that be through implementing hybrid or electric cars instead.
+
+```{r}
+foreign_cars <- filter(fuel_data, region == "Foreign")
+```
+**How do different international car brands compare to one another in terms of fuel usage per gallon?**
+```{r}
+fuel_data_foreign_brands <- ggplot(data = foreign_cars) + geom_point(aes(x= manufacturer, y = hwy))
+fuel_data_foreign_brands
+```
+
+# Based on the figure above we are able to see manufacturers such as Honda, Toyota, and Volkswagen achieving the highest levels of fuel use efficiency based on their highway mpg results.  Looking at the figure we can also see that toyota exhibits the greatest range of highway mile per gallon values. Some cars be as low as 15 mpg like the 1999 land cruiser wagon 1999, while other toyota models have significantly higher fuel use efficiency at 37 highway mpg like the Toyota Corolla 2008. Additionally I noticed very low fuel use efficiency values by land rover as both of their models in our data have below 20 highway mpg indicating that they are less fuel efficient.  It is important to recognize which models from which companies have the lowest fuel effiency and determine their anthropogenic impact. Through increasing fuel use efficiency from brand to brand we are able to decrease our reliance on usage of fossil fuels and decrease our output of CO2.
+
+
+**How does highway fuel usage efficiency compare from Toyota cars manufactured in 1999 to  those produced in 2008?**
+```{r}
+
+fuel_data <- mutate(fuel_data, model_trans = paste(model,trans,sep="-"))
+#model_trans= paste(model,trans,sep=",")
+```
+
+
+```{r}
+
+toyota_year <- filter(fuel_data, manufacturer == "toyota")
+fuel_data_toyota_year <- ggplot(data = toyota_year) + geom_point(aes(x= year, y = hwy, color = model_trans)) + 
+  geom_line(aes(x = year, y = hwy, group = model_trans))
+fuel_data_toyota_year
+```
+
+# Looking at the model of the changes in highway fuel use efficiency between toyota model over time I was able to notice a definite difference in the overall miles per gallon values between 1999 and 2008.  Models that display definite improvement in fuel use efficiency over time include the toyota tacoma 4wd-manual(m5), the camry-auto(I4), the camry solara-manual(m5), the corolla-manual(m5), and the corolla-auto(I4).  These improvements in fuel use efficiency prove that it is possible to decrease our fossil fuel demand through implementing more sufficient technologies.  After looking at this model I am wondering about the magnitude of change in highway fuel use efficiency when comparing toyota models from 2008 to today.  I predict that the levels of efficiency will increase over time especially with the additions of hybrid and electric models, which may have a massive impact on the overall car industry's anthropogenic carbon output.  State and federal government agencies must continue to set policies to incentivize and influence car manufacturers to up their fuel usage efficiency.  This can be implemented through setting a floor highway mpg that certain classes of cars must achieve.  This can also be pushed through enlisting greater taxation of gas in order to limit the utilization of large fuel inefficient vehicles.
+
+
+
+
+
+

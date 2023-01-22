@@ -1,0 +1,5 @@
+"0","# list of U.S. manufacturers"
+"0","us_makes <- c(""chevrolet"",""dodge"",""ford"",""jeep"","
+"0","              ""lincoln"",""mercury"",""pontiac"") "
+"0",""
+"0","fuel_data <- mutate(fuel_data, region = if_else(manufacturer %in% us_makes,""US"",""Foreign"") )"

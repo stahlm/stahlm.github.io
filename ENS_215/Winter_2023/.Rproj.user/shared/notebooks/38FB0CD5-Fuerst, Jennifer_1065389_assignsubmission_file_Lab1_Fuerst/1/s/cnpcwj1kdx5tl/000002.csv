@@ -1,0 +1,2 @@
+"0","## How do regions display when looking at engine displacement and highway miles per gallon? Are foreign cars better or US cars? Can you make an opinion with this information?"
+"0","ggplot(data = fuel_data) + geom_point(aes(x = displ , y = hwy, color = region))"

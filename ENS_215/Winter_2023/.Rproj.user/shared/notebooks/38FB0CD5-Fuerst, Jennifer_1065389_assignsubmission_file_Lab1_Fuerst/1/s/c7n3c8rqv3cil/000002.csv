@@ -1,0 +1,2 @@
+"0","## How do manufacturers alter the information gathered by the previous graph? Is class that much different?"
+"0","ggplot(data = fuel_data) + geom_point(aes(x = displ , y = hwy, color = manufacturer))"

@@ -1,0 +1,7 @@
+"0","my_gap %>% "
+"0","  group_by(continent, year) %>% "
+"0","  summarize(mean_gdpPercap = mean(gdpPercap),"
+"0","            max__gdpPercap = max(gdpPercap),"
+"0","            n_countries = n()"
+"0","            )"
+"2","`summarise()` has grouped output by 'continent'. You can override using the `.groups` argument."

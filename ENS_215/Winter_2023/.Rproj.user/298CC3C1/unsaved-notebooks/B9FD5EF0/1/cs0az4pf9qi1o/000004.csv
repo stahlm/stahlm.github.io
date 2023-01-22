@@ -1,3 +1,0 @@
-"0","dams_data %>% "
-"0","  ggplot(aes(x = Reservoir_area_km2, y = Reservoir_capacity_million_m3)) +"
-"0","  geom_point()"

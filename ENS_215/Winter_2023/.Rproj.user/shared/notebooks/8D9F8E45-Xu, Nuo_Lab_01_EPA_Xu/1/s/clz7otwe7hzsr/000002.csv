@@ -1,0 +1,2 @@
+"0","# head funtion can be used to look at the first 6 rows of the fuel_data dataset"
+"0","head(fuel_data)"

@@ -1,0 +1,3 @@
+"0","model_year <- 1999"
+"0",""
+"0","fuel_data <- mutate(fuel_data, age = if_else(year %in% model_year,""Old"",""New""))"

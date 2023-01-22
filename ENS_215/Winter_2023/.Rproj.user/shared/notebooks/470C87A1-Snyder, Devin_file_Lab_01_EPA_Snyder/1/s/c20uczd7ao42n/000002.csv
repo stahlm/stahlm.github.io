@@ -1,0 +1,2 @@
+"0","fuel_data_foreign_brands <- ggplot(data = foreign_cars) + geom_point(aes(x= manufacturer, y = hwy))"
+"0","fuel_data_foreign_brands"

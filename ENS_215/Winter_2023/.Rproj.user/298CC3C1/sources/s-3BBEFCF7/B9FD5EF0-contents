@@ -1,0 +1,118 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r}
+library(tidyverse)
+library(gapminder)
+```
+
+
+```{r}
+my_gap <- gapminder
+```
+
+### Exercise
+Let's bring everything above together.  
+
+Using a single line of code perform the following sequence of operations on the `my_gap` data:
+
+1. Remove the continent column
+2. Keep only the rows for the years 1952 and 2007
+3. Keep only the rows that have countries with per capita GDP > 10000
+4. Sort the data by year in ascending order and then by per capita GDP in descending order
+
+
+```{r}
+my_gap %>% 
+  select(-continent) %>% 
+  filter(year == 1952 | year == 2007) %>% 
+  #filter(year %in% c(1952, 2007))
+  filter(gdpPercap > 10000) %>% 
+  arrange(year, desc(gdpPercap))
+  
+  
+```
+
+
+
+
+
+
+```{r}
+my_gap %>% 
+  group_by(continent, year) %>% 
+  summarize(mean_gdpPercap = mean(gdpPercap),
+            max__gdpPercap = max(gdpPercap),
+            n_countries = n()
+            )
+```
+
+
+```{r}
+my_gap %>% 
+  filter(gdpPercap > 10000, year == 2007) %>% 
+  group_by(continent) %>% 
+  summarize(n_countries = n())
+```
+
+```{r}
+my_gap %>% 
+  filter(continent == "Africa",
+         year %in% c(1987, 1992, 1997)
+         ) %>% 
+  
+  group_by(country) %>% 
+  summarize(avg_life = mean(lifeExp))
+  
+```
+
+
+```{r}
+my_gap %>% 
+  filter(year == 2007, continent == "Africa") %>%
+  mutate(avg_life_dev = -(mean(lifeExp) - lifeExp)) %>% 
+  
+  summarize(country, lifeExp, avg_life_dev, gdpPercap) %>% 
+  arrange(avg_life_dev)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```{r eval = T, echo=T}
+
+my_gap %>% 
+  select(-continent) %>% 
+  filter(year %in% c(1952, 2007), gdpPercap > 10000) %>% 
+  arrange(year, desc(gdpPercap))
+
+```
+
+
+```{r}
+my_gap <- mutate(my_gap, 
+                 income_status = if_else(gdpPercap > 7500, "higher-income","lower-income")) 
+```
+
+
+```{r}
+my_gap <- mutate(my_gap, 
+                 income_status = case_when(gdpPercap > 7500 ~ "high income",
+                                           gdpPercap > 3500 & gdpPercap <= 7500 ~ "middle income", 
+                                           gdpPercap <= 3500 ~ "low income") )
+```
+
+
