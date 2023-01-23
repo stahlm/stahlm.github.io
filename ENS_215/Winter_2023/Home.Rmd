@@ -43,10 +43,10 @@ output:
 ## Lectures 
 
 ### Week 4
-+ Mon (23-Jan) -- **Intro to data visualization** [(html)](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_01_23_Intro_data_viz.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Lectures/2023_01_23_Intro_data_viz.Rmd), 
++ Mon (23-Jan) -- **Intro to data visualization** [(html)](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_01_23_Intro_data_viz.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Lectures/2023_01_23_Intro_data_viz.Rmd), [Slides](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_01_23_slides.html) 
 
 ```{r eval = F, echo = F}
-[Slides](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_01_23_slides.html)
+
 ```
 
 ***
