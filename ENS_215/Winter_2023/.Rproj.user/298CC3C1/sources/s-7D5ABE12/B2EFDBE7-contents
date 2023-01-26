@@ -1,0 +1,22 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r}
+library(tidyverse)
+library(readxl)
+```
+
+
+```{r}
+getwd()
+```
+
+
+```{r}
+met_df <- read_xlsx("../Data/Union_College_Schenectady_NY_1-1-20_12-00_AM_1_Year_1674749719_v2.xlsx",
+                    skip = 5)
+```
+
