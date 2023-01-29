@@ -1,0 +1,3 @@
+"0","ggplot(data = dams_data) + geom_point(aes(x = Reservoir_area_km2, y = Dam_height_m, color = Continent)) +"
+"0","  scale_x_log10() +"
+"0","  scale_y_log10()"

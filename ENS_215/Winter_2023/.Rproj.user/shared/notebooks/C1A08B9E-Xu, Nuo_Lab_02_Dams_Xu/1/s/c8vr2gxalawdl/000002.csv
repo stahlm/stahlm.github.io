@@ -1,0 +1,4 @@
+"0","dams_data %>% "
+"0","  group_by(Country) %>%"
+"0","  filter(Water_supply == 1) %>% "
+"0","  summarise(tot_wtsup = n())"

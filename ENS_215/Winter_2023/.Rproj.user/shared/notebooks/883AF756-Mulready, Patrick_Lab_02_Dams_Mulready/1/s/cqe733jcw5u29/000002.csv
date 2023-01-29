@@ -1,0 +1,5 @@
+"0","ggplot(data = dams_data) + "
+"0","  geom_point(aes(x = Year_completed, y = Dam_height_m, alpha = 1)) + #adding an alpha value for readability"
+"0",""
+"0","scale_y_log10() +"
+"0","  xlim(1825, NA) #adding an x limit for clarity "

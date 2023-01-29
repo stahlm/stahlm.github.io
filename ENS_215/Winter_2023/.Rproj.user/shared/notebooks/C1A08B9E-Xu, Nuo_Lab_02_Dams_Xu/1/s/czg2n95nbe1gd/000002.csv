@@ -1,0 +1,4 @@
+"0","dams_data %>% "
+"0","  group_by(Major_basin) %>%"
+"0","  filter(Recreation == 1) %>% "
+"0","  summarise(tot_recreat = n())"

@@ -1,0 +1,5 @@
+"0","dams_data %>% "
+"0","  filter(Continent == ""Americas"", Year_completed >= 1850) %>% "
+"0","  ggplot(aes(x = Year_completed, y = Reservoir_capacity_million_m3)) + "
+"0","  geom_point(shape = 21, fill = ""white"") +"
+"0","  scale_y_log10()"

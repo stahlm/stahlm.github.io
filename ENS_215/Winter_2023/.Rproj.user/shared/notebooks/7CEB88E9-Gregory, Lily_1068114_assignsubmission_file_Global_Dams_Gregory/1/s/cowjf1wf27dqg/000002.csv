@@ -1,0 +1,4 @@
+"0","dams_data %>%"
+"0","  group_by(Water_supply, Continent) %>% "
+"0","  summarise(mean_storage = mean(Reservoir_capacity_million_m3, na.rm = T))"
+"2","`summarise()` has grouped output by 'Water_supply'. You can override using the `.groups` argument."

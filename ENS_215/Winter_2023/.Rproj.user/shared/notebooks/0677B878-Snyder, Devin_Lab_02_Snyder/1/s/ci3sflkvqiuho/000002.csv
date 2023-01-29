@@ -1,0 +1,5 @@
+"0","dam_table <- dam_table %>% "
+"0","  mutate(agriculture_usage = animals + irrig)"
+"0",""
+"0","dam_table %>% "
+"0","  select(-irrig,-animals)"

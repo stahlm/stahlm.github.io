@@ -1,0 +1,6 @@
+"0","ggplot(data = dams_data) + "
+"0","  geom_point(aes(x = Reservoir_capacity_million_m3, y = Reservoir_area_km2, color = Continent)) +"
+"0",""
+"0","scale_x_log10() +"
+"0","scale_y_log10() + "
+"0","  facet_wrap(~ Continent)"

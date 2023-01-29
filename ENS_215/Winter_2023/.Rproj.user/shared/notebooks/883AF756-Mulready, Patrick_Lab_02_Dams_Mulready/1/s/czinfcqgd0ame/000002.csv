@@ -1,0 +1,1 @@
+"0","dam_giants <- filter(dams_data, Country == ""India"" | Country == ""United States of America"")"

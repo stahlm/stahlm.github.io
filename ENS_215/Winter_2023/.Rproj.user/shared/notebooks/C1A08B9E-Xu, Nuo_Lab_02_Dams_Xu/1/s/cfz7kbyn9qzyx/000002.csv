@@ -1,0 +1,4 @@
+"0","dams_data %>% "
+"0","  group_by(Country) %>%"
+"0","  filter(Navigation == 1, Dam_height_m > 50) %>% "
+"0","  summarise(tot_navig = n())"

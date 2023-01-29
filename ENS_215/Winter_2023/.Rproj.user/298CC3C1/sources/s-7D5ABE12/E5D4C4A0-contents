@@ -1,0 +1,317 @@
+---
+title: "Lab 2: Global Dams Data"
+author: "Nuo Xu"
+output:
+  html_document:
+    theme: cerulean
+    highlight: kate
+    toc: TRUE
+--- 
+
+<br>
+
+## Introduction 
+#### Dams are used for a variety of purposes such as irrigation, flood control, hydroelectric power generation, water supply, and recreation. The construction process typically involves surveying the site, designing the dam, obtaining necessary permits and approvals, and then building the dam using a variety of materials such as concrete, rock, or earth. The process can take several years to complete and can be complex and costly.
+
+<br>
+
+#### PROs on Dam Construction:
+#### -Flood control: Dams can help to reduce the risk of flooding by holding back excess water during heavy rainfall or snowmelt.
+#### -Hydroelectric power generation: Dams can be used to generate electricity by harnessing the energy of falling water.
+#### -Irrigation: Dams can be used to store water for irrigation, which can help to increase agricultural productivity in dry areas.
+#### -Water supply: Dams can be used to store water for drinking and other uses, which can help to increase water availability in areas where water is scarce.
+#### -Recreational opportunities: Many dams have recreational areas around them, such as parks and lakes, which can provide opportunities for fishing, boating, and other activities.
+
+<br>
+
+#### CONs on Dam Construction:
+
+#### -Environmental impacts: Dams can have negative impacts on the environment, such as altering natural water flows and disrupting fish migration.
+#### -Displacement of people: Building a dam can displace people who live in the area where the dam is being built, and can also displace people downstream who are impacted by changes in water flows.
+#### -Cost: Dam construction can be expensive, and ongoing maintenance and repair costs can also be significant.
+#### -Impact on wildlife: Dams can disrupt the habitats of fish and other aquatic animals, and can also lead to the extinction of certain species.
+#### -Risk of failure: Dams can fail due to natural disasters or poor maintenance, which can lead to devastating consequences such as loss of life and property damage.
+
+<br>
+
+#### However, as the awareness of the negative impact of dams on the environment, people and communities is growing, many countries and organizations are rethinking the construction of dams, promoting alternative solutions and also implementing mitigation measures to reduce the environmental impacts of existing dams.In addition, many countries and organizations are now also focusing on decommissioning old, unsafe or unnecessary dams and restoring the rivers to their natural state.
+
+<br>
+
+## Objectives 
+```{r}
+library(tidyverse)
+
+dams_data <- read_csv("https://stahlm.github.io/ENS_215/Data/Dams_FAO_SelectCols_LabData.csv")
+```
+
+```{r}
+head(dams_data)
+```
+
+<br>
+
+### 1. Create a scatter plot showing the relationship between reservoir storage and reservoir area
+
+```{r}
+ggplot(data=dams_data) + geom_point(aes(x=Reservoir_area_km2, y=Reservoir_capacity_million_m3, color=Continent))
+```
+
+#### We can see here the data points are clustered at the bottom left corner. This graph is not effective and not as informative as we want it to be. The outliers that are very far from the majority data points force the whole scale of the graph very large, causing it really hard to see the relationship between reservoir storage and reservoir area. In this case, we should set our axes to log scale to better interpret the relationship between storage and reservoir area. 
+
+<br>
+
+```{r}
+ggplot(data=dams_data) + geom_point(aes(x=Reservoir_area_km2, y=Reservoir_capacity_million_m3, color=Continent)) + scale_x_log10() + scale_y_log10()
+```
+
+#### After we applied the log scale to the scatter plot, we can see that the scatter plots are more spread out. There's a clear positive relationship between reservoir area and reservoir capacity. Which make sense that larger reservoir tends to have higher water storage. This graph is significantly more effective than the previous one but based on how the data was collected, those scatter plots overlaped each other making it hard to see the whole picture for all continents. 
+
+<br>
+
+```{r}
+ggplot(data=dams_data) + geom_point(aes(x=Reservoir_area_km2, y=Reservoir_capacity_million_m3, color=Continent)) + scale_x_log10() + scale_y_log10() + 
+  facet_wrap(~Continent)
+```
+
+#### We can add facet_wrap(~Continent) at the end of the code to see those 5 panels that are nice to visualize since data points from different continents are not overlapping each other. From this, we can have a clear picture of the relationship between reservoir area and reservoir capacity in each contient. And we can see that Europe stand out more larger reservoir areas and Asia has a wide range of reservoir areas. 
+
+<br>
+
+### 2. Create a scatter plot showing the relationship between reservoir storage and dam height
+
+```{r}
+ggplot(data=dams_data) + geom_point(aes(x=Dam_height_m, y=Reservoir_capacity_million_m3, color=Continent)) + scale_x_log10() + scale_y_log10() +
+  facet_wrap(~Continent)
+```
+
+#### After appling the log scale to the scatter plot, we can now focus more on the data points that are close to each other to better see the relationship between reservoir storage and dam height. There's a clear positive relation ship between dam height and dam capacity. The higher the dam, the higher the storage capacity. This makes sense because high storage reservoirs need higher dams to block for any possible purposes and it would be unnecessary to construct high dams if the reservoir capacity is low. We can see here Europe tends to have higher dams with high reservoir capacity, same applies to Oceania too. On the other hand, Americas and Asia tends to have dams constructed with various heights based on the reservoir capacity.  
+
+<br>
+
+### 3. Calculate height, area, and storage averages by continent and display these results to your notebook.
+
+```{r}
+dams_data %>% 
+  group_by(Continent) %>%
+  summarise(mean_height = mean(Dam_height_m, na.rm = T),
+            mean_area = mean(Reservoir_area_km2, na.rm = T), 
+            mean_storage = mean(Reservoir_capacity_million_m3, na.rm = T)
+            )
+```
+
+<br>
+
+### 4. Create a box plot to show how the distribution of reservoir storage capacities varies between continents
+
+```{r}
+ggplot(data = dams_data) +
+  geom_boxplot(aes(x = Continent, y = Reservoir_capacity_million_m3, color = Continent)) +
+  scale_y_log10()
+  
+```
+
+#### We can see here both Afirca, Americas and Asia has  wider range of reservoir capacity among other continents but Americas has a higher reservoir median among the three. And Europe and Oceania tend to have smaller range of resercior capacity. Overall, Europe has the highest reservoir median among other continents. 
+
+<br>
+
+
+## Additional analysis
+
+### 1. Create a summary table that has additional info about dams and reservoirs
+#### averages, total, minimums, and maximums by continent
+```{r}
+dams_data %>% 
+  group_by(Continent) %>%
+  summarise(mean_height = mean(Dam_height_m, na.rm = T),
+            mean_area = mean(Reservoir_area_km2, na.rm = T), 
+            mean_storage = mean(Reservoir_capacity_million_m3, na.rm = T),
+            
+            sum_height = sum(Dam_height_m, na.rm = T),
+            sum_area = sum(Reservoir_area_km2, na.rm = T), 
+            sum_storage = sum(Reservoir_capacity_million_m3, na.rm = T),
+            
+            min_height = min(Dam_height_m),
+            min_area = min(Reservoir_area_km2), 
+            min_storage = min(Reservoir_capacity_million_m3),
+            
+            max_height = max(Dam_height_m),
+            max_area = max(Reservoir_area_km2), 
+            max_storage = max(Reservoir_capacity_million_m3),)
+          
+```
+
+<br>
+
+#### averages, total, minimums, and maximums by country
+```{r}
+dams_data %>% 
+  group_by(Country) %>%
+  summarise(mean_height = mean(Dam_height_m, na.rm = T),
+            mean_area = mean(Reservoir_area_km2, na.rm = T), 
+            mean_storage = mean(Reservoir_capacity_million_m3, na.rm = T),
+            
+            sum_height = sum(Dam_height_m, na.rm = T),
+            sum_area = sum(Reservoir_area_km2, na.rm = T), 
+            sum_storage = sum(Reservoir_capacity_million_m3, na.rm = T),
+            
+            min_height = min(Dam_height_m),
+            min_area = min(Reservoir_area_km2), 
+            min_storage = min(Reservoir_capacity_million_m3),
+            
+            max_height = max(Dam_height_m),
+            max_area = max(Reservoir_area_km2), 
+            max_storage = max(Reservoir_capacity_million_m3),)
+```
+
+<br>
+
+#### averages, total, minimums, and maximums by year
+```{r}
+dams_data %>% 
+  group_by(Year_completed, na.rm = T) %>%
+  summarise(mean_height = mean(Dam_height_m, na.rm = T),
+            mean_area = mean(Reservoir_area_km2, na.rm = T), 
+            mean_storage = mean(Reservoir_capacity_million_m3, na.rm = T),
+            
+            sum_height = sum(Dam_height_m, na.rm = T),
+            sum_area = sum(Reservoir_area_km2, na.rm = T), 
+            sum_storage = sum(Reservoir_capacity_million_m3, na.rm = T),
+            
+            min_height = min(Dam_height_m),
+            min_area = min(Reservoir_area_km2), 
+            min_storage = min(Reservoir_capacity_million_m3),
+            
+            max_height = max(Dam_height_m),
+            max_area = max(Reservoir_area_km2), 
+            max_storage = max(Reservoir_capacity_million_m3),)
+```
+
+<br>
+
+### 2a. Create a plot showing the total number of dams over time
+```{r}
+q1 <- dams_data %>% 
+  group_by(Year_completed) %>%
+  summarise(tot_dam = n())
+
+ggplot(data = q1, aes(x=Year_completed, y = tot_dam))+
+         geom_line()
+```
+
+#### We can see here: in order to fit all the number of dams constructed every year in the data set, it's making the graph very tiny. And it's not sufficient to see the trend of the overall numbers of dams throughout the years. And I found that large number of dams are constructed roughly after 1850. 
+
+<br>
+
+### 2b. Create a plot showing the total number of dams over time from year 1850
+```{r}
+q2 <- dams_data %>% 
+  group_by(Year_completed) %>%
+  filter(Year_completed > 1850) %>% 
+  summarise(tot_dam = n())
+
+ggplot(data = q2, aes(x=Year_completed, y = tot_dam))+
+         geom_line()
+```
+
+#### As I filter the year and only look at number of dams over time after 1850m we can see the clear trend of dams constructed over time. The number of dams constructed gradually increased from 1850 till 1950, quickly increased from 1950 and peaked around 1980 and dropped rapidly thereafter. 
+
+<br>
+
+### 3. Select a country or countries of interest and examine the data
+```{r}
+dams_data %>% 
+  filter(Country == "China") %>% 
+  top_n(10, Dam_height_m) %>% 
+  arrange(desc(Dam_height_m))
+```
+
+#### I would like to see the top10 highest dams from highest to lowest arrangment in China. 
+
+<br>
+
+### 4. Examine the data on the purposes of the reservoirs (e.g. irrigation, water supply, navigation,…)
+#### by irrigation: I would like to see the total number of dams constructed for irrigation purpose in each continent 
+```{r}
+dams_data %>% 
+  group_by(Continent) %>%
+  filter(Irrigation == 1) %>% 
+  summarise(tot_irrig = n())
+```
+
+<br>
+
+#### by water supply: I would like to see the total number of dams constructed for water supply purpose in each country
+```{r}
+dams_data %>% 
+  group_by(Country) %>%
+  filter(Water_supply == 1) %>% 
+  summarise(tot_wtsup = n())
+```
+
+<br>
+
+#### by flood control: I would like to see the total number of dams constructed for the flood control purpose in each year
+```{r}
+dams_data %>% 
+  group_by(Year_completed) %>%
+  filter(Flood_control == 1) %>% 
+  summarise(tot_flcon = n())
+```
+
+<br>
+
+#### by hydroelectricity: I would like to see the total number of dams constructed for hydroelectricity in each continant after year 2000. 
+```{r}
+dams_data %>% 
+  group_by(Continent) %>%
+  filter(Hydroelectricity == 1, Year_completed > 2000) %>% 
+  summarise(tot_hydroelec = n())
+```
+
+<br>
+
+#### by navigation: I would like to see the total number of dams constructed for navigation purpose in each country that are higher than 50 meters. 
+```{r}
+dams_data %>% 
+  group_by(Country) %>%
+  filter(Navigation == 1, Dam_height_m > 50) %>% 
+  summarise(tot_navig = n())
+```
+
+<br>
+
+#### by recreation: I would like to see the total number of dams constructed for recreation in each major basin. 
+```{r}
+dams_data %>% 
+  group_by(Major_basin) %>%
+  filter(Recreation == 1) %>% 
+  summarise(tot_recreat = n())
+```
+
+<br>
+
+#### by pollution control: I would like to see the total number of dams constructed for pollution control purpose in Americas continent.
+```{r}
+dams_data %>% 
+  group_by(Continent) %>%
+  filter(Pollution_control == 1, Continent == "Americas") %>% 
+  summarise(tot_pollcon = n())
+```
+
+<br>
+
+#### by livestock rearing: I would like to see the total number of dams constructed for livestock rearing purpose in each major basin after year 1900. 
+```{r}
+dams_data %>% 
+  group_by(Major_basin) %>%
+  filter(Livestock_rearing == 1,  Year_completed > 1900) %>% 
+  summarise(tot_liverear = n())
+```
+
+
+
+```
+
+
+ 

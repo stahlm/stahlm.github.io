@@ -1,0 +1,6 @@
+"0","q1 <- dams_data %>% "
+"0","  group_by(Year_completed) %>%"
+"0","  summarise(tot_dam = n())"
+"0",""
+"0","ggplot(data = q1, aes(x=Year_completed, y = tot_dam))+"
+"0","         geom_line()"

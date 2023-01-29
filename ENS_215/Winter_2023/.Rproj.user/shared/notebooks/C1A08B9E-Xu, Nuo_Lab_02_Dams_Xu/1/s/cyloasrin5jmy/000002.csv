@@ -1,0 +1,3 @@
+"0","ggplot(data = dams_data) +"
+"0","  geom_boxplot(aes(x = Continent, y = Reservoir_capacity_million_m3, color = Continent)) +"
+"0","  scale_y_log10()"

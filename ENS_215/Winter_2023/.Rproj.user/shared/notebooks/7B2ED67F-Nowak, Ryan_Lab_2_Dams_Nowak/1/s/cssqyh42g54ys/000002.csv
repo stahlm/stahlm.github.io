@@ -1,0 +1,6 @@
+"0","#create a graphical representation of dams used for pollution"
+"0","dams_for_pollution <- dams_data %>% filter(Pollution_control == 1)"
+"0",""
+"0","ggplot(data = dams_for_pollution) +"
+"0","  geom_boxplot(aes (x = Continent, y = Reservoir_capacity_million_m3, color = Continent))+"
+"0","  scale_y_log10()"

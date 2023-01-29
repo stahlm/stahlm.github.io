@@ -1,0 +1,4 @@
+"0","dam_chart <- dam_table %>% "
+"0","  pivot_longer(everything(),"
+"0","               names_to = ""dam_use"")"
+"0","dam_chart"

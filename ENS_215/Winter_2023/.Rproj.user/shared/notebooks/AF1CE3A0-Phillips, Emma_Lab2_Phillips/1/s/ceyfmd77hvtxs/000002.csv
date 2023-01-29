@@ -1,0 +1,5 @@
+"0","armenia_table <- summary_table %>% "
+"0","  filter(Country == ""Armenia"", Major_basin == ""Araks"") %>% "
+"0","  arrange(desc(Hydroelectricity))"
+"0",""
+"0","armenia_table"

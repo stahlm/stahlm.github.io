@@ -1,0 +1,86 @@
+---
+title: "Lab 2: Global Dams Data"
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+
+dams_data <- read_csv("https://stahlm.github.io/ENS_215/Data/Dams_FAO_SelectCols_LabData.csv")
+```
+**About the Data:** 
+This is a fairly clean dataset from the United Nations Food and Agricultural Organization. It contains in depth information on dams all around the world. Specifically, it includes 14,216 dams with 22 different types of information (variables). It includes where they are located, when they were built, the dimensions of the dam, the waterway that it dams, and the purpose of the dam. 
+
+**Number 1 - Relationship between reservoir storage and reservoir area**
+```{r}
+ggplot(data = dams_data) + geom_point(aes(x = Reservoir_capacity_million_m3, y = Reservoir_area_km2, color = Continent)) +
+  scale_x_log10() +
+  scale_y_log10()
+```
+**Observations:** 
+The interesting feature that we noted in lab was the fact that 75% of the points were not visible because there were a few outlying dams that scaled the axes. So we used the log feature to scale the axis to have the tick marks be scaled to factors of 10 so that all of the points were visible on a bigger scale so that we could examine the trend better. As I am looking at this on this scale, I can see that their is a positive trend that bigger reservoirs have a larger storage capacity. Then I colored the data by continent. This showed me that most of the dams are located in Asia, and these dams are average on a global scale, they are in the midrange of reservoir storage therefore in the midrange of reservoir capacity. 
+
+**Number 2 - Relationship between reservoir storage and dam height**
+```{r}
+ggplot(data = dams_data) + geom_point(aes(x = Reservoir_area_km2, y = Dam_height_m, color = Continent)) +
+  scale_x_log10() +
+  scale_y_log10()
+```
+**Observation:** 
+This scatterplot comparing height and storage shows that the taller the reservoir is the more water it can store. Looking at the dams by continent, there are some fairly small and therefore inefficient reservoirs in the Americas. The lower outliers that have shorter reservoirs and therefore, store less water are located in the Americas. Asia generally houses the dams that are in the average/high average of the data.
+
+**Number 3 - Calculate average height by continent**
+```{r}
+dams_data %>%
+  group_by(Continent) %>%
+  summarise(avg_height = mean(Dam_height_m, na.rm = T))
+```
+**Number 3 - Calculate average area by continent**
+```{r}
+dams_data %>%
+  group_by(Continent) %>%
+  summarise(avg_area = mean(Reservoir_area_km2, na.rm = T))
+```
+**Number 3 - Calculate average storage by continent**
+```{r}
+dams_data %>%
+  group_by(Continent) %>%
+  summarise(avg_storage = mean(Reservoir_capacity_million_m3, na.rm = T))
+```
+**Observations:** 
+The range of average heights in the different continents is not very large. All of the heights are within the range of 33-56, with Asia, Africa and the Americas having similar, lower average heights and Oceania and Europe having larger average heights. The range of the areas is a bit larger, Africa is an outlier with a much greater average reservoir area of ~223m. The other continents are within a closer range with Oceania definitely having a smaller average area of ~19km2. Now, looking at the average storage capacity by continent, which is correlated with average area, Asia has the lowest storage capacity at around 250m3. Asia does not however have the smallest average area, it is the second smallest at 39km2, but not as small as the average in Oceania. Europe and Africa have large average storage capacities, this is correlated with the average areas in the calculation above for Africa who has the largest average area but not for Europe. 
+
+**Number 4 - Box plot showing the distribution of reservoir storage capacities by continent**
+```{r}
+ggplot(data = dams_data) + 
+  geom_boxplot(aes(x = Reservoir_capacity_million_m3, y = Continent)) +
+  scale_x_log10() 
+```
+**Observations:** 
+Looking at this box plot, I can see that the distributions of storage capacity are fairly different between continents, with a couple similar continents. Asia and the Americas have a similar distribution of storage capacities with a similar average in the middle and a large range of values on both sides. Oceania and Europe have similar averages slightly above that of Asia and the Americas, but they both have much smaller ranges of capacities compared to Asia and the Americas. 
+
+
+**Additional Analyses**
+```{r}
+dams_data %>%
+  group_by(Water_supply, Continent) %>% 
+  summarise(mean_storage = mean(Reservoir_capacity_million_m3, na.rm = T))
+```
+I looked into the average reservoir capacity of water supply dams compared to all kinds of dams. I did this to see if the characteristic that makes a water supply dam good for water supply is the large reservoir capacity. I was curious about this question because of my prior knowledge of reservoir capacity from a class I took on dams: The New Wall of China. I got unexpected results which led to a surprising conclusion. The results showed that large reservoirs is not a characteristic of water supply dams. In fact, in Africa, the Americas, and Oceania, the mean reservoir capacity was higher for non-water supply dams than water supply dams. I concluded that their must be other factors that make water supply dams good for water supply. I am interested in researching what those features are, and what makes water supply dams so effective for water conservation in dry places. 
+
+```{r}
+ggplot(data = dams_data) + 
+  geom_point(aes(x = Year_completed, y = Reservoir_area_km2, color = Continent)) +
+  scale_x_log10() +
+  scale_y_log10()
+```
+
+
+In this analysis, I wanted to look into how the reservoir capacities evolved over the years to see if they got more advanced, and further, on what continents was their a large evolution. I compared the reservoir area with the year of completion and colored them by continent. I learned a lot looking at this scatterplot. One thing that I wasn't even looking for but learned is that the earliest dams were constructed around 1500, and dam construction didn't become really common until the early 1800s. To answer my analysis question, I learned that there is a wide variety of reservoir size across all continents where dams are built. It did surprise me though that Africa had some dams with large reservoirs, because that requires infrastructure and resources to build and maintain. However there does not seem to be the trend that I was expecting in that as the years progress, the reservoir size increased. I expected this because of my prior knowledge of dams that dams and large reservoirs require infrastructure, time, money, workers, engineering, etc. to build large reservoirs. This is why I expected the reservoir size to increase as time and technology advanced. 
+
+
+**Conclusion:**
+In this lab I learned about the history, size, type, and location of dams around the world. It was very interesting to see this data laid out in different visualizations that showed different information based on the criteria I put in my code. Last term, I took a class on dams called The New Wall of China learning all about the engineering behind dams as well as the social/cultural implications of dams. So I found this lab particularly interesting because of my prior knowledge of dams. It was interesting to learn about water supply dams, reservoir capacity, and the location of different dams. 
+
+
+

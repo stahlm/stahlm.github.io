@@ -1,0 +1,3 @@
+"0","dams_count<- dams_count%>%arrange(Year_completed)%>%"
+"0","  mutate(Total_dams=cumsum(the_count))"
+"0","dams_count"

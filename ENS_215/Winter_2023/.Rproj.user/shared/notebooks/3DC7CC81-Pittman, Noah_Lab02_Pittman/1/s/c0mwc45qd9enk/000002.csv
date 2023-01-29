@@ -1,0 +1,3 @@
+"0",""
+"0","ggplot(dams_count)+ geom_point(aes(x= Year_completed, y= Total_dams)) + geom_line(aes(x=Year_completed,y=Total_dams))+"
+"0"," scale_y_log10()"

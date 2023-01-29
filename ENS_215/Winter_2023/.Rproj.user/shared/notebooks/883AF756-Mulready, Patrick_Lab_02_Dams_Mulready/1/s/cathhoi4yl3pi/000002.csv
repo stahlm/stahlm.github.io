@@ -1,0 +1,2 @@
+"0","ggplot(data = dams_data) + "
+"0","  geom_point(aes(x = Reservoir_capacity_million_m3, y = Reservoir_area_km2)) #creating a scatter plot showing the relationship between reservoir storage and storage area"

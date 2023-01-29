@@ -1,0 +1,4 @@
+"0","dams_data %>% "
+"0","  group_by(Continent) %>%"
+"0","  filter(Hydroelectricity == 1, Year_completed > 2000) %>% "
+"0","  summarise(tot_hydroelec = n())"

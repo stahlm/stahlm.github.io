@@ -1,0 +1,3 @@
+"0","dams_data %>%"
+"0","  group_by(Continent) %>%"
+"0","  summarise(avg_storage = mean(Reservoir_capacity_million_m3, na.rm = T))"

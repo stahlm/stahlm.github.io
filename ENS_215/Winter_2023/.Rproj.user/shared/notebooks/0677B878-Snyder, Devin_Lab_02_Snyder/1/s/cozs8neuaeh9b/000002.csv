@@ -1,0 +1,5 @@
+"0",""
+"0","dam_chart %>% "
+"0","  rename(water_usage = value) %>%  "
+"0","ggplot(aes(x = dam_use , y = water_usage)) + "
+"0","  geom_col()"

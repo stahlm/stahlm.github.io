@@ -1,0 +1,2 @@
+"0","# ggThemeAssistGadget(damsOvertime) + theme(panel.grid.major = element_line(colour = ""ivory2""),"
+"0","#    panel.background = element_rect(fill = NA)) +labs(y = ""Dams_Over_Time"")"

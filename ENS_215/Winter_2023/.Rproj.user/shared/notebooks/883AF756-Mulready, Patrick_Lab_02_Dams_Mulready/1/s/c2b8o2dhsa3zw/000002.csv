@@ -1,0 +1,1 @@
+"0","dams_data <- arrange(dams_data, Country, Dam_name) #arranging the data alphabetically by country, then dam name for my own preference"

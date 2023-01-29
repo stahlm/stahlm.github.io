@@ -1,0 +1,5 @@
+"0","#height per continent"
+"0",""
+"0","dams_data %>%"
+"0","  group_by(Continent) %>%"
+"0","  summarise(avg_height = mean(Dam_height_m, na.rm = TRUE))"

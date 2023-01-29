@@ -1,0 +1,4 @@
+"0","dams_data %>% "
+"0","  group_by(Major_basin) %>%"
+"0","  filter(Livestock_rearing == 1,  Year_completed > 1900) %>% "
+"0","  summarise(tot_liverear = n())"

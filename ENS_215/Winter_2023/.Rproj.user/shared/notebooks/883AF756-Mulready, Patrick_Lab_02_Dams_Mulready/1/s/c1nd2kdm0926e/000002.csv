@@ -1,0 +1,6 @@
+"0","ggplot(data = dam_giants) + "
+"0","  geom_point(aes(x = Reservoir_capacity_million_m3, y = Dam_height_m, color = Country)) +"
+"0",""
+"0","scale_x_log10() +"
+"0","scale_y_log10() + "
+"0","  facet_wrap(~ Country)"

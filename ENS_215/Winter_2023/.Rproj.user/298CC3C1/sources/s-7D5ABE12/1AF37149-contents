@@ -1,0 +1,206 @@
+---
+title: "R Notebook"
+output:
+  html_document:
+    df_print: paged
+---
+
+Dataset input:
+```{r}
+dams_data <- read_csv("https://stahlm.github.io/ENS_215/Data/Dams_FAO_SelectCols_LabData.csv")
+```
+# Dataset Summary/Description  
+
+In the *dams_data* dataset, there are twenty-two (22) different variables that are analyzed. Although most of these variables are specified to the individual datapoint, the last nine (9) are formated in a binary fashion. This means that they aren't given specified variables like "blue" or "South Queensland", rather a *1* or a *0*. If the variable is given a *1*, the observation is true, and if it is given a *0* then the observation is false. By using the binary numeric method instead of "yes" and "no", creating summaries of certain variables like  
+
++ Dam used for recreation  
++ Dam used for irrigation  
++ Dam used for hydroelectric generation  
+
+becomes significantly easier to create and look through.
+
+
+### Scatter plot of reservoir storage and reservoir area.
+
+```{r}
+capacity_v_area <- ggplot(dams_data) +
+  geom_point(aes(x = Reservoir_area_km2, y = Reservoir_capacity_million_m3, col = Continent)) +
+  
+  scale_x_log10() +
+  scale_y_log10() +
+  
+  facet_wrap(~Continent)
+
+capacity_v_area
+```
+The five plots above show the spread of dam area & capacity across each continent. My first observation was that although the trends are essentially the same (i.e the larger the area, the larger the capacity), each continent has specific trends that it follows. The European trend to dam building seems to be to keep the sizes contained to the larger end and not having many outliers, while Asia seems to kind of just put dams anywhere there is a place to put one. This ends up with really strange outliers that have massive surface areas and somehow inversely small capacity.
+
+### Scatter plot of reservoir storage and dam height.
+
+```{r}
+
+capacity_v_height <- dams_data %>% 
+  ggplot() + 
+  geom_point(aes(x = Reservoir_capacity_million_m3, y = Dam_height_m, col = Continent)) +
+  
+  scale_x_log10() +
+  scale_y_log10() +
+  
+  facet_wrap(~Continent)
+
+capacity_v_height
+```
+These graphs above are comparing reservoir capacity with dam height and this provides a little bit more context about the design styles on different continents. Dams built in Europe and Oceania stay pretty tightly inside certain boundaries, mainly between *1e-01* and *1e-05* m^3 in capacity and between 10 and 500 m high. In Asia and the Americas however the dam height and capacity sprawls wildly, which is again most likely a nod to how these structures are built. In areas where there is more space, there are more dams, and because there is more space there will be more variation in the construction.
+
+
+### Calculate height, area, and storage averages by continent.
+
+```{r}
+dams_data %>% 
+  group_by(Continent) %>% 
+  summarize(mean_height = mean(Dam_height_m, na.rm = TRUE),
+            mean_area = mean(Reservoir_area_km2, na.rm = TRUE),
+            mean_storage = mean(Reservoir_capacity_million_m3, na.rm = TRUE))
+
+
+```
+For mean height, it appears that Europe has overwhelmingly larger dam heights than the other continents, and the Americas having the smallest. The most curious thing about these values is that Africa appears to have an enormous mean dam area, which doesn't fit with the rest of the data. How could it have a mean storage similar to the other continents and yet have an average storage area of an entirely different order of magnitude?  
+
+It turns out that the two largest dams in Africa, the Owen Falls dam in Tanzania and the Owen Falls dam in Uganda are monstrously large, and almost five times the size of the third largest dam on the continent. This skews the data significantly and makes it appear as though each dam in Africa is much larger than they actually are.
+
+### Create a box plot to show how the distribution of reservoir storage capacities varies between continents.
+
+```{r}
+dams_data %>% 
+  ggplot(aes(x = Continent, y = Reservoir_capacity_million_m3),
+               na.rm = TRUE) +
+  geom_boxplot(outlier.color = "red") +
+
+  scale_y_log10()
+
+```
+The distributions in this box plot are fairly similar at the medians, but the outliers (i.e extremes) definitely show more than the median calculation. It shows which continents, and by extension which countries, build larger or smaller dams and by what factor. Africa seems to skew towards fewer and larger structures, the Americas and Asia seem to split the difference quite well, and Europe skews towards more larger dams.
+
+### Additional Analysis of your choosing
+
+I'm going to look at the different uses for all the dams in Asia to identify which is the most common, least common, etc. To do this, I'll restructure the data so that each "use" is coded to its own column, and has all instances summed up as a final value.
+
+```{r}
+table_uses <- dams_data %>% 
+  summarise(irrig = sum(Irrigation), 
+            supply = sum(Water_supply),
+            flood = sum(Flood_control),
+            hydro = sum(Hydroelectricity),
+            nav = sum(Navigation),
+            rec = sum(Recreation),
+            pollut = sum(Pollution_control),
+            live = sum(Livestock_rearing)
+            )
+
+table_uses
+```
+
+```{r}
+dam_chart <- table_uses %>% 
+  pivot_longer(everything(),
+               names_to = "dam_use")
+
+dam_chart
+```
+
+
+Now I'll plot the results:
+
+```{r}
+totaluses <- ggplot(dam_chart) + 
+  geom_col(aes(x = dam_use, y = value, colour = "Uses"))
+
+totaluses
+```
+This is interesting, but now I want to know **which** ways each country in Africa uses their dams. Essentially, I want to see which way each country uses most of their dams and plot it.
+
+```{r}
+country_dam_use <- dams_data %>% 
+  filter(Continent == "Africa") %>% 
+  group_by(Country) %>% 
+  summarise(irrigation = sum(Irrigation),
+            supply = sum(Water_supply),
+            flood = sum(Flood_control),
+            hydro = sum(Hydroelectricity),
+            navigation = sum(Navigation),
+            recreation = sum(Recreation),
+            pollution = sum(Pollution_control),
+            livestock = sum(Livestock_rearing))
+  
+country_dam_use <- country_dam_use [-45,]
+
+pivoted_dam_use <- country_dam_use %>%
+  pivot_longer(!Country, names_to = "use", values_to = "total")
+
+
+pivoted_dam_use %>% 
+  group_by(Country) %>% 
+  ggplot() +
+  geom_col(aes(x = use, y = total)) + 
+  
+  facet_wrap(~Country)
+
+
+```
+This one took me a while to figure out, and honestly I don't know how to clean it up - essentially it's each country listed in Africa and the number of dams listed under each alternative use. A cleaner example of a single country is below:
+
+```{r}
+algeria_data <- dams_data %>% 
+  filter(Country == "Algeria") %>% 
+  summarise(irrigation = sum(Irrigation), 
+            supply = sum(Water_supply),
+            flood = sum(Flood_control),
+            hydro = sum(Hydroelectricity),
+            navigation = sum(Navigation),
+            recreation = sum(Recreation),
+            pollution = sum(Pollution_control),
+            livestock = sum(Livestock_rearing))
+
+
+algeria_chart <- algeria_test %>% 
+  pivot_longer(everything(),
+               names_to = "dam_uses")
+
+algeria_graph <- ggplot(algeria_chart) +
+  geom_col(aes(x = dam_uses, y = value, colour = "number of dams"))
+
+algeria_graph
+```
+Over all of the dams we can see that the predominant use is irrigation, but in Burkina Faso the main use is actually livestock, followed closely by drinking water supply (seen in the graph below). This makes sense as Burkina Faso is a massive exporter of livestock to the countries surrounding it, including Ghana and Nigeria (which, by looking at the graphs, we can see have very few dams themselves.)
+
+```{r}
+burkina_faso <- dams_data %>% 
+  filter(Country == "Burkina Faso") %>% 
+  summarise(irrigation = sum(Irrigation), 
+            supply = sum(Water_supply),
+            flood = sum(Flood_control),
+            hydro = sum(Hydroelectricity),
+            navigation = sum(Navigation),
+            recreation = sum(Recreation),
+            pollution = sum(Pollution_control),
+            livestock = sum(Livestock_rearing))
+
+
+burkina_faso_pivot <- burkina_faso %>% 
+  pivot_longer(everything(),
+               names_to = "dam_uses")
+
+burkina_faso_graph <- ggplot(burkina_faso_pivot) +
+  geom_col(aes(x = dam_uses, y = value, colour = "number of dams"))
+
+burkina_faso_graph
+```
+The countries in Africa that have a significant number of dams all appear to be either significant exporters of goods to other countries **or** have access to water sources that make dams a more appealing source of irrigation. Irrigation is by far the most dominant form of dam use in Africa due to the fact that much of the continent relies on farming for income and export.
+
+
+
+
+
+
+
+

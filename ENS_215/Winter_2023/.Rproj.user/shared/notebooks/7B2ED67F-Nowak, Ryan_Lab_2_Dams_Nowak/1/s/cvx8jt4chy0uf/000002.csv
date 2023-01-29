@@ -1,0 +1,7 @@
+"0","#make a table with averages, mins and maxes of height, area per country"
+"0","dams_data %>%"
+"0","  group_by(Continent) %>% "
+"0","  summarise(avg_storage = mean(Reservoir_capacity_million_m3, na.rm = TRUE),"
+"0","            avg_height = mean(Dam_height_m, na.rm = TRUE),"
+"0","            avg_area = mean(Reservoir_area_km2, na.rm = TRUE),"
+"0","            avg_year = mean(Year_completed, na.rm = TRUE))"

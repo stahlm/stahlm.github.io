@@ -1,0 +1,2 @@
+"0","ggplot(data = dam_giants) + "
+"0","  geom_bar(aes(x = Water_supply, fill = Country))"

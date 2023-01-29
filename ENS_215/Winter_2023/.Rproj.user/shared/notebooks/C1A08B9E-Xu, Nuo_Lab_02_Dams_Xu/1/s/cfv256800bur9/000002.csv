@@ -1,0 +1,4 @@
+"0","dams_data %>% "
+"0","  group_by(Continent) %>%"
+"0","  filter(Pollution_control == 1, Continent == ""Americas"") %>% "
+"0","  summarise(tot_pollcon = n())"

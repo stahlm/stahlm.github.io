@@ -1,0 +1,4 @@
+"0","dams_data %>% "
+"0","  group_by(Continent) %>%"
+"0","  filter(Irrigation == 1) %>% "
+"0","  summarise(tot_irrig = n())"

@@ -1,0 +1,3 @@
+"0","dams_data %>% "
+"0","  group_by(Major_basin)%>%"
+"0","  summarize(mean_height = mean(Dam_height_m, na.rm=TRUE), mean_area = mean(Reservoir_area_km2, na.rm=TRUE), mean_storage = mean(Reservoir_capacity_million_m3, na.rm=TRUE), mean_irrigation =mean(Irrigation,na.rm=TRUE),mean_Water = mean(Water_supply,na.rm=TRUE),mean_sed = mean(Sedimentation_percent,na.ra=TRUE))"

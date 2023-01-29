@@ -1,0 +1,7 @@
+"0","summary_table <- dams_data %>% "
+"0","  filter(Continent == ""Asia"") %>% "
+"0","  select(-ISO_code, -Sedimentation_percent, -Other, -Latitude, -Longitude, -Continent, -River) %>% "
+"0","  arrange(Country, Dam_height_m) %>% "
+"0","  relocate(Dam_height_m, Hydroelectricity, .before = Year_completed)"
+"0",""
+"0","summary_table"
