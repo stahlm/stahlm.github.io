@@ -114,6 +114,8 @@ output:
 
 + Lab 2 -- **Dams and Reservoirs: A global analysis** [(html)](https://stahlm.github.io/ENS_215/Winter_2023/Labs/Lab_Global_Dams.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Labs/Lab_Global_Dams.Rmd)    
 
++ Lab 3 -- **Groundwater Arsenic in Bangladesh** [(html)](https://stahlm.github.io/ENS_215/Winter_2023/Labs/Lab_Bangladesh_Arsenic.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Labs/Lab_Bangladesh_Arsenic.Rmd)      
+
 ```{r eval = F, echo = F}
 [(html)](https://stahlm.github.io/ENS_215/Winter_2023/Labs/Lab_Global_Dams.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Labs/Lab_Global_Dams.Rmd)  
 ```
