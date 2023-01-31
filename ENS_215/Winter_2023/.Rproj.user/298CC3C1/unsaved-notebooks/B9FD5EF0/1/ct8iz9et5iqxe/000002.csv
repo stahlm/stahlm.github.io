@@ -1,7 +1,0 @@
-"0","my_gap %>% "
-"0","  filter(continent == ""Africa"","
-"0","         year %in% c(1987, 1992, 1997)"
-"0","         ) %>% "
-"0","  "
-"0","  group_by(country) %>% "
-"0","  summarize(avg_life = mean(lifeExp))"

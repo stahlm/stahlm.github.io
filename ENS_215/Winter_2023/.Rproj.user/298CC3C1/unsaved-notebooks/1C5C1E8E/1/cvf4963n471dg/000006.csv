@@ -1,6 +1,0 @@
-"0","my_gap %>% "
-"0","  filter(year == 2007, continent == ""Africa"") %>% "
-"0","  "
-"0","  ggplot(aes(x = gdpPercap,"
-"0","             y = reorder(country, gdpPercap))) +"
-"0","  geom_point()"

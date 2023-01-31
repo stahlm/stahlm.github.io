@@ -1,6 +1,0 @@
-"0","dams_data %>%"
-"0","  group_by(Country) %>%"
-"0","  filter(na.omit(Irrigation == 1))  %>%"
-"0","  filter(na.omit(Water_supply == 1))  %>%"
-"0","  filter(na.omit(Pollution_control == 1)) %>%"
-"0","  filter(na.omit(Livestock_rearing == 1)) "

@@ -25,7 +25,7 @@ my_gap %>%
 
 
 ```{r}
-my_gap %>% 
+fig_1 <- my_gap %>% 
   filter(year == 2007, continent == "Africa") %>% 
   
   ggplot(aes(x = gdpPercap,
@@ -56,31 +56,9 @@ my_gap %>%
   facet_wrap(~ continent)
 ```
 
-```{r}
-library(tidyverse)
-```
 
 ```{r}
-dams_data <- read_csv("https://stahlm.github.io/ENS_215/Data/Dams_FAO_SelectCols_LabData.csv")
+bangladesh_gw <- read_csv("https://stahlm.github.io/ENS_215/Data/NationalSurveyData_DPHE_BGS_LabData.csv")
 ```
 
-```{r}
-dams_data %>%
-  group_by(Country) %>%
-  filter(na.omit(Irrigation == 1))  %>%
-  filter(na.omit(Water_supply == 1))  %>%
-  filter(na.omit(Pollution_control == 1)) %>%
-  filter(na.omit(Livestock_rearing == 1)) 
-```
-
-
-
-```{r}
-dams_data %>%
-  group_by(Country) %>%
-  filter((Irrigation == 1))  %>%
-  filter((Water_supply == 1))  %>%
-  filter((Pollution_control == 1)) %>%
-  filter((Livestock_rearing == 1)) 
-```
 

@@ -1,4 +1,0 @@
-"0","china_data %>% "
-"0","  ggplot(aes(x = year, y = gdpPercap)) +"
-"0","  geom_line() +"
-"0","  geom_point(aes(size = pop), color = ""blue"")"

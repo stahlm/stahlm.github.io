@@ -1,4 +1,0 @@
-"0","my_gap %>% "
-"0","  filter(gdpPercap > 10000, year == 2007) %>% "
-"0","  group_by(continent) %>% "
-"0","  summarize(n_countries = n())"

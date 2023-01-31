@@ -1,6 +1,0 @@
-"0","my_gap %>% "
-"0","  select(-continent) %>% "
-"0","  filter(year == 1952 | year == 2007) %>% "
-"0","  #filter(year %in% c(1952, 2007))"
-"0","  filter(gdpPercap > 10000) %>% "
-"0","  arrange(year, desc(gdpPercap))"
