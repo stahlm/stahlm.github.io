@@ -1,24 +1,25 @@
 {
-    "id": "2907CAFB",
+    "id": "8717ADCF",
     "path": "~/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2023/Home.Rmd",
     "project_path": "Home.Rmd",
     "type": "r_markdown",
-    "hash": "0",
+    "hash": "2339362152",
     "contents": "",
     "dirty": false,
-    "created": 1672761963279.0,
+    "created": 1675367062664.0,
     "source_on_save": false,
-    "relative_order": 3,
+    "relative_order": 8,
     "properties": {
-        "cursorPosition": "52,200",
-        "scrollLine": "49"
+        "cursorPosition": "55,200",
+        "scrollLine": "41",
+        "docOutlineVisible": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1675180156,
+    "lastKnownWriteTime": 1675367102,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1675180156143,
+    "last_content_update": 1675367102727,
     "read_only": false,
     "read_only_alternatives": []
 }
