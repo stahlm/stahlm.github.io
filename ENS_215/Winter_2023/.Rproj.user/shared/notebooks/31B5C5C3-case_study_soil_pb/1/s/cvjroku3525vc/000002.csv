@@ -1,0 +1,15 @@
+"0","```r
+NY_counties %>% 
+  #filter(NAME == \"Schenectady\") %>% 
+  
+  tm_shape() +
+  tm_borders() +
+  
+  tm_shape(NY_roads) +
+  tm_lines() +
+  
+  tm_shape(sf_soil_pb) +
+  tm_dots(col = \"Top5_Pb\", style = \"quantile\", palette = \"viridis\", size = 0.75)
+```"
+"1","Currect projection of shape sf_soil_pb unknown. Long-lat (WGS84) is assumed.
+"

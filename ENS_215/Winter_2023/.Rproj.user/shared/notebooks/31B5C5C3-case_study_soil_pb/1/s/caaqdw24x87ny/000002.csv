@@ -1,0 +1,4 @@
+"0","```r
+raster::plot(pop_raster)
+
+```"

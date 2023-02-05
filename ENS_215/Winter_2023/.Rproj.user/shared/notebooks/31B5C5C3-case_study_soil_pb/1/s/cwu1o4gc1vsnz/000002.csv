@@ -1,0 +1,7 @@
+"0","```r
+sf_soil_pb %>% 
+  ggplot(aes(x = LandCover1, y = Top5_Pb)) +
+  geom_boxplot() +
+  scale_y_log10(limits = c(NA,500)) +
+  coord_flip()
+```"

@@ -1,0 +1,6 @@
+"0","```r
+df_precip_flow <- df_precip_flow %>% 
+  mutate(cumul_precip = cumsum(precip_tot),
+         cumul_flow = cumsum(flow_annual_mean)
+         )
+```"

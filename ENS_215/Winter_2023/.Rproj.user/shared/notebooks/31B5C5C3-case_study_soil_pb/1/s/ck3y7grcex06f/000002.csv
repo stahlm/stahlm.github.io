@@ -1,0 +1,9 @@
+"0","```r
+sf_soil_pb %>% 
+  ggplot(aes(x = C_Pb, y = Top5_Pb)) +
+  geom_point() +
+  
+  geom_abline(slope = 1, intercept = 0, color = \"blue\") +
+  scale_x_log10() +
+  scale_y_log10()
+```"

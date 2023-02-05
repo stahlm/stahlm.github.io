@@ -1,0 +1,2 @@
+"0","climate_data <- inner_join(precip_combined, temperature_data)"
+"2","Joining, by = c(""Year"", ""Month"", ""state_cd"")"

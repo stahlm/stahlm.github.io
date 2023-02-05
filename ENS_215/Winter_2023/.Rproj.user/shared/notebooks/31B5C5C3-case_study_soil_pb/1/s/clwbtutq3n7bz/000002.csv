@@ -1,0 +1,21 @@
+"0","df_soil_pb <- read_csv(""./Data/USGS_DS801_top5cm_soil_Pb.csv"") %>% "
+"0","  filter(!is.na(Top5_Pb))"
+"2","[1mRows: [22m[34m4857[39m [1mColumns: [22m[34m10[39m"
+"2","[36m--[39m [1mColumn specification[22m [36m-------------------------------------------------------[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m (6): Top5_LabID, StateID, CollDate, LandCover1, LandCover2, Top5_Depth
+[32mdbl[39m (4): SiteID, Latitude, Longitude, Top5_Pb"
+"2","
+[36mi[39m Use `spec()` to retrieve the full column specification for this data.
+[36mi[39m Specify the column types or set `show_col_types = FALSE` to quiet this message."
+"0","df_Chorizon_pb <- read_csv(""./Data/USGS_DS801_Chorizon_soil_Pb.csv"") %>% "
+"0","  filter(!is.na(C_Pb)) %>% "
+"0","  select(SiteID, C_Pb)"
+"2","[1mRows: [22m[34m4857[39m [1mColumns: [22m[34m10[39m"
+"2","[36m--[39m [1mColumn specification[22m [36m-------------------------------------------------------[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m (6): C_LabID, StateID, CollDate, LandCover1, LandCover2, C_Depth
+[32mdbl[39m (4): SiteID, Latitude, Longitude, C_Pb"
+"2","
+[36mi[39m Use `spec()` to retrieve the full column specification for this data.
+[36mi[39m Specify the column types or set `show_col_types = FALSE` to quiet this message."

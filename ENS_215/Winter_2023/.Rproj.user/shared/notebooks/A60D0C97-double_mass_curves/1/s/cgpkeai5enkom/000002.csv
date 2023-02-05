@@ -1,0 +1,16 @@
+"0","```r
+df_met_summary <- met_df %>% 
+  group_by(YEAR) %>% 
+  summarize(precip_tot = sum(PRCP, na.rm = T),
+            n_days = sum(!is.na(PRCP))
+            ) %>% 
+  
+  filter(n_days >= 365) %>% 
+  
+  select(-n_days)
+```"
+"1","`summarise()` ungrouping output (override with `.groups` argument)
+"
+"0","```r
+  
+```"

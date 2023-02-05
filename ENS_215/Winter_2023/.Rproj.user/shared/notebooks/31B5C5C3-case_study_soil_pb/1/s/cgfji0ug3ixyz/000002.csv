@@ -1,0 +1,4 @@
+"0","```r
+sf_soil_pb <- sf_soil_pb %>% 
+  mutate(Top5_C_ratio = Top5_Pb/C_Pb)
+```"

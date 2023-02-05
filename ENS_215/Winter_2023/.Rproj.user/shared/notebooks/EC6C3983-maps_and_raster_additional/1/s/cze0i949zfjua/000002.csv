@@ -1,0 +1,11 @@
+"0","```r
+```r
+streets <- getbb(loc2use) %>%
+  opq()%>%
+  add_osm_feature(key = \highway\, 
+                  value = c(\motorway\, \primary\, 
+                            \secondary\, \tertiary\)) %>%
+  osmdata_sf()
+streets
+```
+```"

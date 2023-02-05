@@ -1,0 +1,2 @@
+"0","years_USGS <- select(dates_USGS, Year) "
+"0","months_days_USGS <- select(dates_USGS, Month, Day) "

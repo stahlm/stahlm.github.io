@@ -1,0 +1,15 @@
+"0","```r
+df_stream_summary <- df_stream_data %>% 
+  mutate(YEAR = year(Date)) %>% 
+  
+  group_by(YEAR) %>% 
+  summarize(flow_annual_mean = mean(Flow, na.rm = T),
+            n_days = n()
+            ) %>% 
+  
+  filter(n_days >= 365) %>% 
+  
+  select(-n_days)
+```"
+"1","`summarise()` ungrouping output (override with `.groups` argument)
+"

@@ -1,0 +1,7 @@
+"0","```r
+new <- sf_soil_pb %>% 
+  mutate(pop_density_log10 = 0)
+
+
+new$Top5_Pb_log10_pred <- predict(pb_model,new)
+```"

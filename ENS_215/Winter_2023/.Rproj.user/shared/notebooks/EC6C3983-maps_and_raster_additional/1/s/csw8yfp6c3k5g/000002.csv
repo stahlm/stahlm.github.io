@@ -1,0 +1,16 @@
+"0","```r
+```r
+library(tidyverse)
+library(rnaturalearth)
+
+library(sf)
+library(tmap)
+
+library(AOI)
+library(climateR)
+
+library(elevatr)
+
+library(basemaps)
+```
+```"

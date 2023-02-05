@@ -1,0 +1,4 @@
+"0","```r
+df_stream_data <- df_stream_data %>% 
+  renameNWISColumns()
+```"

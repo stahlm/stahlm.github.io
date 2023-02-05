@@ -1,0 +1,5 @@
+"0","```r
+nearby_met_stations <- nearest_stations(LAT = streamflow_site_info$dec_lat_va,
+                                        LON = streamflow_site_info$dec_long_va,
+                                        distance = 75)
+```"

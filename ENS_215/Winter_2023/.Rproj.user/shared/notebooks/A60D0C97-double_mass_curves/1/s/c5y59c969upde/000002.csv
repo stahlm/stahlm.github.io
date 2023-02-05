@@ -1,0 +1,17 @@
+"0","```r
+met_long_record <- isd_history %>% 
+    mutate(y_start = year(ymd(BEGIN)), 
+           y_end =  year(ymd(END)) 
+         ) %>% 
+  
+  filter(y_start <= 1970,
+         y_end >= 2020, 
+         COUNTRY_NAME == \"UNITED STATES\"
+          
+         
+         ) %>% 
+  
+  leaflet() %>% 
+  addProviderTiles(provider = providers$OpenStreetMap) %>% 
+  addMarkers(lng = ~ LON, lat = ~ LAT, popup = ~ STNID)
+```"

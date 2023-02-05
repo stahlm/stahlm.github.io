@@ -1,0 +1,9 @@
+"0","```r
+met_site_to_use <- isd_history %>% 
+  filter(STNID %in% nearby_met_stations) %>% 
+  filter(ymd(END) - ymd(BEGIN) == max(ymd(END) - ymd(BEGIN))) %>% 
+  
+  mutate(y_start = year(ymd(BEGIN)), 
+         y_end =  year(ymd(END)) 
+         )
+```"

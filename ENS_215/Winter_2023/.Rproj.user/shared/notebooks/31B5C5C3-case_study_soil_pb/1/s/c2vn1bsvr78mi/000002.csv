@@ -1,0 +1,14 @@
+"0","```r
+tm_shape(us_borders, projection = 5070) +
+  
+  tm_fill(\"white\") +
+  tm_borders(lwd = 3, col = \"black\") +
+  
+  #tm_shape(pop_raster) +
+  #tm_raster(style = \"log10\") +
+  
+  tm_shape(sf_soil_pb) +
+  tm_dots(col = \"Pb_diff\", style = \"quantile\", n = 7, palette = \"-Spectral\", size = 0.10) 
+```"
+"1","Currect projection of shape sf_soil_pb unknown. Long-lat (WGS84) is assumed.
+"

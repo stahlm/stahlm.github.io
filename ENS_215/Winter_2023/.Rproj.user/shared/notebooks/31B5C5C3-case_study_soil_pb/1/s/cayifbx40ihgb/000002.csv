@@ -1,0 +1,12 @@
+"0","```r
+library(tigris)
+```"
+"1","To enable 
+caching of data, set `options(tigris_use_cache = TRUE)` in your R script or .Rprofile.
+
+Attaching package: ã¤¼ã¸±tigrisã¤¼ã¸²
+
+The following object is masked from ã¤¼ã¸±package:AOIã¤¼ã¸²:
+
+    list_states
+"

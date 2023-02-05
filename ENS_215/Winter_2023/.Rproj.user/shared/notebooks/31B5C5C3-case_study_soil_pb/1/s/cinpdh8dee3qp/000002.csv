@@ -1,0 +1,13 @@
+"0","```r
+sf_soil_pb %>% 
+  ggplot(aes(x = pop_density, y = Top5_Pb)) +
+  geom_point() +
+  
+  geom_smooth(method = \"lm\") +
+  
+  
+  scale_x_log10() +
+  scale_y_log10(limits = c(NA,1000)) +
+  
+  facet_wrap(~ LandCover1, scales = \"free_y\")
+```"

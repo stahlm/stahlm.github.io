@@ -1,0 +1,12 @@
+"0","```r
+
+sf_soil_pb %>% 
+  ggplot(aes(x = pop_density, y = Top5_Pb, color = LandCover1)) +
+  #geom_point() +
+  
+  geom_smooth(method = \"lm\", se = F) +
+  
+  
+  scale_x_log10() +
+  scale_y_log10(limits = c(NA,100)) 
+```"

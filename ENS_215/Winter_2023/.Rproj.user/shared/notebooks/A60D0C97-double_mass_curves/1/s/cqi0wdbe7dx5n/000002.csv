@@ -1,0 +1,6 @@
+"0","```r
+site_to_get <- \"06867500\"
+
+df_stream_data <- readNWISdv(siteNumbers = site_to_get,
+                             parameterCd = c(\"00060\"))
+```"
