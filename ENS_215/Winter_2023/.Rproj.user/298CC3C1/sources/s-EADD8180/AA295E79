@@ -1,0 +1,32 @@
+{
+    "id": "AA295E79",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1675782449458.0,
+    "source_on_save": false,
+    "relative_order": 19,
+    "properties": {
+        "expression": "water_events",
+        "caption": "water_events",
+        "totalObservations": 1298,
+        "displayedObservations": 1298,
+        "variables": 11,
+        "cacheKey": "100F5D81",
+        "object": "water_events",
+        "environment": "",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=water_events&cache_key=100F5D81&max_cols=50",
+        "preview": 0
+    },
+    "folds": "",
+    "lastKnownWriteTime": 12948304202498162,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1675782449458,
+    "read_only": false,
+    "read_only_alternatives": []
+}

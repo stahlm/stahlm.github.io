@@ -1,0 +1,15 @@
+"0","library(AOI)"
+"0","library(climateR)"
+"0","library(sf)"
+"2","package ‘sf’ was built under R version 4.0.5"
+"2","Linking to GEOS 3.9.1, GDAL 3.2.1, PROJ 7.2.1; sf_use_s2() is TRUE
+"
+"0","library(raster)"
+"2","package ‘raster’ was built under R version 4.0.5"
+"2","Loading required package: sp
+"
+"2","package ‘sp’ was built under R version 4.0.5"
+"0","library(rasterVis)"
+"2","package ‘rasterVis’ was built under R version 4.0.5"
+"2","Loading required package: lattice
+"

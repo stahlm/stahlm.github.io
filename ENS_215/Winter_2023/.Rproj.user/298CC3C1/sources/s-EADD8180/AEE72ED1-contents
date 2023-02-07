@@ -1,0 +1,72 @@
+---
+title: "R Notebook"
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+```
+
+https://www.fao.org/faostat/en/#data
+
+```{r}
+ag_data <- read_csv("./Data/FAOSTAT_data_en_2-7-2023.csv")
+```
+
+```{r}
+getwd()
+```
+https://www.worldwater.org/water-conflict/
+https://www.worldwater.org/water-conflict/definitions-methods-sources/
+```{r}
+water_events <- read_csv("../../Data/World-Water-Conflicts-2022.csv")
+```
+
+```{r}
+library(GSODR)
+```
+
+
+
+```{r}
+met_df <- get_GSOD(years = 2021:2022, station = "489910-99999")
+```
+
+
+
+
+
+
+
+```{r}
+library(AOI)
+library(climateR)
+library(sf)
+library(raster)
+library(rasterVis)
+```
+
+```{r}
+sf::sf_use_s2(FALSE)
+
+```
+
+
+```{r}
+cambodia = aoi_get(country = "Cambodia")
+tc = getTerraClim(cambodia, param = "prcp", startDate = "2018-01-01", endDate =  "2018-02-01")
+#> Spherical geometry (s2) switched off
+#> Spherical geometry (s2) switched on
+chirps <- getCHIRPS(cambodia, startDate = "2018-01-01", endDate = "2018-01-04")
+#> Spherical geometry (s2) switched off
+#> Spherical geometry (s2) switched on
+
+p1 = levelplot(tc$terraclim_prcp, par.settings = BTCTheme, main = "January 2018; TerraClim", margin = FALSE) +
+  layer(sp.lines(as_Spatial(cambodia), col="white", lwd=3))
+
+p2 = levelplot(chirps,  par.settings = BTCTheme, main = "Janaury 1-4, 2018; CHIRPS", layout=c(2, 2)) +
+  layer(sp.lines(as_Spatial(cambodia), col="white", lwd=3))
+
+gridExtra::grid.arrange(p1,p2, nrow = 1)
+```
+

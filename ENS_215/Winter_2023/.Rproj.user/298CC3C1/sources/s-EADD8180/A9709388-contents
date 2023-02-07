@@ -1,0 +1,20 @@
+---
+title: "Project Proposal"
+author: "Mason Stahl"
+output: html_notebook
+---
+
+Found this cool climate dataset 
+726130-14755
+
+```{r}
+library(GSODR)
+library(tidyverse)
+```
+
+
+
+```{r}
+met_df <- get_GSOD(years = 2021:2022, station = "726130-14755")
+```
+
