@@ -1,0 +1,9 @@
+"0","water_events <- read_csv(""../../Data/World-Water-Conflicts-2022.csv"")"
+"2","[1mRows: [22m[34m1298[39m [1mColumns: [22m[34m11[39m"
+"2","[36m--[39m [1mColumn specification[22m [36m---------------------------------------------------[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m (7): Date Text, Region, Country, Basis, Headline, Description, Sources
+[32mdbl[39m (4): Start, End, Latitude, Longitude"
+"2","
+[36mi[39m Use `spec()` to retrieve the full column specification for this data.
+[36mi[39m Specify the column types or set `show_col_types = FALSE` to quiet this message."

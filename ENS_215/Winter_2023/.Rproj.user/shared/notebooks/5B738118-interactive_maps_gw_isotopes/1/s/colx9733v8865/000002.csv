@@ -1,0 +1,20 @@
+"0","library(raster)"
+"2","package ‘raster’ was built under R version 4.0.5"
+"2","Loading required package: sp
+"
+"2","package ‘sp’ was built under R version 4.0.5"
+"2","
+Attaching package: ‘raster’
+
+"
+"2","The following object is masked from ‘package:dplyr’:
+
+    select
+
+"
+"0","library(mapview)"
+"2","package ‘mapview’ was built under R version 4.0.5"
+"0","library(leaflet)"
+"2","package ‘leaflet’ was built under R version 4.0.5"
+"0","library(leafem)"
+"2","package ‘leafem’ was built under R version 4.0.5"

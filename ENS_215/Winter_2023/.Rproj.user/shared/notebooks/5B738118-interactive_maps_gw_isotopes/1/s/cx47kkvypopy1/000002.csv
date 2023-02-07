@@ -1,0 +1,3 @@
+"0","d2H <- raster::raster(""C:/Users/stahlm/Documents/Research_Projects/Groundwater_Isotopes/Output/RF_model/RF_model_GW_isotopes_H.grd"")"
+"0",""
+"0","d18O <- raster::raster(""C:/Users/stahlm/Documents/Research_Projects/Groundwater_Isotopes/Output/RF_model/RF_model_GW_isotopes_O.grd"")"

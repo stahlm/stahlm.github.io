@@ -1,0 +1,2 @@
+"0","raster::writeRaster(d2H, ""./RF_model_GW_isotopes_H.tif"", "
+"0","                    format = ""GTiff"", overwrite = TRUE)"

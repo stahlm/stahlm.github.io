@@ -1,0 +1,121 @@
+---
+title: "Groundwater isoscapes for the United States"
+output:
+  html_document:
+    df_print: paged
+---
+
+
+
+
+```{r, include=FALSE, eval=TRUE}
+knitr::opts_chunk$set(eval = TRUE, echo = F, warning = F, message = F)
+```
+
+
+The maps below show groundwater isoscapes ($\delta^2H$ and $\delta^{18}O$) for the United States.  These isoscapes were developed as part of the work in [Stahl et al. (2020)](https://doi.org/10.1002/hyp.13832).  For additional details on the development of these isoscapes and for static versions of these maps see [Stahl et al. (2020)](https://doi.org/10.1002/hyp.13832).  Raster files with the isoscape data are available [here](https://github.com/stahlm/gw_isoscapes).  
+
+
+Note: By moving your cursor over the map you can obtain the isotopic value (see map top right corner) latitude and longitude (see map top left corner) for a particular location.   
+
+<br/> 
+
+
+
+```{r}
+library(tidyverse)
+library(sf)
+library(tmap)
+library(terra)
+
+
+library(patchwork)
+```
+
+
+```{r}
+borders_us <- USAboundaries::us_states() %>% 
+  filter(stusps != "AK", stusps != "PR", stusps != "HI")
+```
+
+
+```{r}
+world_map_data <- spData::world # save the world data from the spData package to our own R object
+```
+
+
+
+```{r}
+library(raster)
+library(mapview)
+library(leaflet)
+library(leafem)
+```
+
+
+
+```{r}
+d2H <- raster::raster("C:/Users/stahlm/Documents/Research_Projects/Groundwater_Isotopes/Output/RF_model/RF_model_GW_isotopes_H.grd")
+
+d18O <- raster::raster("C:/Users/stahlm/Documents/Research_Projects/Groundwater_Isotopes/Output/RF_model/RF_model_GW_isotopes_O.grd")
+```
+
+
+```{r}
+raster::writeRaster(d2H, "./RF_model_GW_isotopes_H.tif", 
+                    format = "GTiff", overwrite = TRUE)
+
+raster::writeRaster(d18O, "./RF_model_GW_isotopes_O.tif", 
+                    format = "GTiff", overwrite = TRUE)
+```
+
+
+```{r}
+crs(d2H) <- "EPSG:4326"
+crs(d18O) <- "EPSG:4326"
+```
+
+
+```{r}
+#pal = mapviewPalette("mapviewTopoColors")
+#pal(100)
+
+pal <- RColorBrewer::brewer.pal(11,"RdBu")
+pal <- rev(pal)
+
+map_gw_d2H <- mapview(d2H, na.alpha = 0, col.regions = pal, 
+            maxpixels = 10^6) +
+  mapview(borders_us, alpha.regions = 0) 
+
+
+map_gw_d18O <- mapview(d18O, na.alpha = 0, col.regions = pal, 
+            maxpixels = 10^6) +
+  mapview(borders_us, alpha.regions = 0) 
+  
+```
+
+
+### Groundwater $\delta^{2}H$ isoscape
+
+```{r fig.width = 10, fig.height= 6}
+map_gw_d2H
+```
+
+<br/>
+
+
+
+### Groundwater $\delta^{18}O$ isoscape
+```{r fig.width = 10, fig.height= 6}
+map_gw_d18O
+```
+
+
+<br/>  
+
+
+> **Citation:**
+Stahl MO, Gehring J, Jameel Y. 2020. Isotopic variation in groundwater across the conterminous United States – Insight into hydrologic processes. Hydrological Processes 34 (16): 3506–3523 DOI: 10.1002/hyp.13832  
+
+<br/> 
+
