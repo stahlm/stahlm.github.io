@@ -1,0 +1,20 @@
+"0","NY_map <- NY_counties %>% "
+"2","Warning messages:
+"
+"2","1: "
+"2","In browseURL(paste0(""http://127.0.0.1:"", port, ""/library/"", pkgname,  :"
+"2","
+ "
+"2"," closing unused connection 4 (https://earthquake.usgs.gov/fdsnws/event/1/query.csv?starttime=2023-01-01%2000:00:00&endtime=2023-02-13%2023:59:59&minmagnitude=2.5&orderby=time)
+"
+"2","2: "
+"2","In browseURL(paste0(""http://127.0.0.1:"", port, ""/library/"", pkgname,  :"
+"2","
+ "
+"2"," closing unused connection 3 (https://www1.ncdc.noaa.gov/pub/data/noaa/isd-history.csv)
+"
+"0","  tm_shape() +"
+"0","  tm_polygons(col = ""lightgrey"", border.col = ""black"") +"
+"0","  tm_scale_bar(breaks = c(0, 50, 100), size = 1, position = c(""LEFT"", ""BOTTOM""))     # add a scale bar"
+"0",""
+"0","NY_map"

@@ -1,0 +1,5 @@
+"0","met_df <- get_GSOD(years = 2022:2023, station = ""681100-99999"")"
+"2","
+This station, 681100-99999, only provides data for years 1957 to 2022.
+
+"

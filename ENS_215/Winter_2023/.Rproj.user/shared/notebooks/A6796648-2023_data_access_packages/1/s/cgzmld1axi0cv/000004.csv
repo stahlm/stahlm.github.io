@@ -1,0 +1,6 @@
+"0","sites_what_data <- whatNWISdata(siteNumber = sites_schdy$site_no, "
+"0","                            service = ""dv"", "
+"0","                            parameterCd = c(""00060"",""00065""),"
+"0","                            statCd = ""00003"")"
+"0",""
+"0","sites_what_data"

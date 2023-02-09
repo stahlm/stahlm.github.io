@@ -1,0 +1,2 @@
+"0","NY_counties <- counties(state = ""NY"","
+"0","                        cb = TRUE) # cb = TRUE specifies to download a lower resolution file (faster download)"

@@ -1,0 +1,7 @@
+"0","sites_schdy <- whatNWISsites(countyCd = ""36093"", "
+"0","                             parameterCd = c(""00060"",""00065""),"
+"0","                             service = ""dv"""
+"0","                             )"
+"0",""
+"0",""
+"0","sites_schdy"

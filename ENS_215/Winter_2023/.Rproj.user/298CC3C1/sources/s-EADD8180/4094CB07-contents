@@ -1,0 +1,299 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+
+```{r}
+library(tidyverse)
+library(rnaturalearth)
+
+library(sf)
+library(tmap)
+
+library(AOI)
+library(climateR)
+
+library(elevatr)
+
+library(basemaps)
+```
+
+
+
+```{r}
+borders_hires <- rnaturalearth::ne_countries(country = "Vietnam", scale = "large", returnclass = "sf")
+
+```
+
+
+```{r}
+tm_shape(borders_hires) +
+  tm_borders()
+```
+
+
+```{r}
+raster_elev <- get_elev_raster(borders_hires, z = 5, clip = "locations")
+```
+
+
+
+
+
+```{r}
+tm_shape(raster_elev) +
+  tm_raster()
+```
+
+
+```{r}
+raster_elev
+```
+
+
+```{r}
+raster::plot(raster_elev)
+```
+
+```{r}
+loc_path <- basemap_geotif(borders_hires, map_service = "esri", map_type = "world_imagery", map_res = 0.7)
+
+loc_path
+```
+
+
+
+
+
+
+```{r}
+loc_basemap <- raster::stack(loc_path)
+
+loc_basemap
+
+#raster::plotRGB(loc_basemap)
+```
+
+```{r}
+
+map_full <- tm_shape(loc_basemap) +
+  tm_rgb() +
+  tm_shape(borders_hires) +
+  tm_borders(col = "red") 
+
+map_full
+```
+
+
+
+
+```{r}
+tm_shape(raster_elev) +
+  tm_raster(style = "cont", midpoint = NA, palette = terrain.colors(10)) +
+  
+  tm_shape(borders_hires) +
+  tm_borders() +
+  
+  tm_layout(legend.outside = T, frame = F) +
+  
+  tm_scale_bar()
+```
+
+
+
+```{r}
+sf_rivers <- rnaturalearth::ne_download(scale = "large",category = "physical",
+                                        type = "rivers_lake_centerlines", returnclass = "sf")
+```
+```{r}
+sf_airports <- rnaturalearth::ne_download(scale = "large", category = "cultural",
+                                        type = "airports", returnclass = "sf")
+
+```
+
+
+```{r}
+tm_shape(raster_elev) +
+  tm_raster(style = "cont", midpoint = NA, palette = terrain.colors(10)) +
+  
+  tm_shape(borders_hires) +
+  tm_borders() +
+  
+  tm_shape(sf_rivers) +
+  tm_lines(col = "blue") + 
+  
+  tm_shape(sf_airports) +
+  tm_dots(col = "red", size = 0.2) +
+  
+  tm_layout(legend.outside = T, frame = F) 
+
+```
+
+```{r}
+library(osmdata)
+```
+
+```{r}
+loc2use <- "Hue, Vietnam"
+```
+
+
+```{r}
+streets <- getbb(loc2use) %>%
+  opq()%>%
+  add_osm_feature(key = "highway", 
+                  value = c("motorway", "primary", 
+                            "secondary", "tertiary")) %>%
+  osmdata_sf()
+streets
+```
+
+
+```{r}
+small_streets <- getbb(loc2use) %>%
+  opq()%>%
+  add_osm_feature(key = "highway", 
+                  value = c("residential", "living_street",
+                            "unclassified",
+                            "service", "footway")) %>%
+  osmdata_sf()
+
+river <-  getbb(loc2use) %>%
+  opq()%>%
+  add_osm_feature(key = "waterway", value = "river") %>%
+  osmdata_sf()
+```
+
+```{r}
+coast <- getbb(loc2use) %>%
+  opq()%>%
+  add_osm_feature(key = "natural", value = "coastline") %>%
+  osmdata_sf()
+```
+
+
+
+```{r}
+
+  tm_shape(small_streets$osm_lines) +
+  tm_lines(col = "darkgrey") +
+
+  tm_shape(streets$osm_lines) +
+  tm_lines() +
+  
+  tm_shape(river$osm_lines) +
+  tm_lines(col = "blue") 
+```
+
+
+
+```{r}
+aoi_zoomed <- aoi_get(x = loc2use)
+```
+
+
+```{r}
+loc_path <- basemap_geotif(aoi_zoomed, map_service = "osm", map_type = "streets", map_res = 0.7)
+
+loc_path
+```
+
+
+
+
+
+
+```{r}
+loc_basemap_zoomed <- raster::stack(loc_path)
+
+loc_basemap_zoomed
+
+#raster::plotRGB(loc_basemap)
+```
+
+```{r}
+raster_elev_zoomed <- get_elev_raster(aoi_zoomed, z = 12, clip = "locations")
+```
+```{r}
+terrain.colors(n = 12)
+```
+
+
+```{r}
+pal2use <- terrain.colors(n = 12)
+pal2use[1] <- "#0000FF"	 
+
+tm_shape(raster_elev_zoomed) +
+  tm_raster(palette = pal2use, n = 12, title = "Elev (m)") + 
+  
+  tm_shape(small_streets$osm_lines) +
+  tm_lines(col = "black", lwd = 0.2) +
+
+  tm_shape(streets$osm_lines) +
+  tm_lines(lwd = 1) +
+  
+  tm_shape(river$osm_lines) +
+  tm_lines(col = "blue", lwd = 1.5) +
+  
+  # tm_shape(coast$osm_lines) +
+  # tm_lines(col = "red") +
+  
+  tm_layout(legend.outside = T, frame = F) +
+  
+  tm_scale_bar()
+```
+
+
+```{r}
+aoi2use = aoi_get(country = "Ethiopia")
+plot(aoi2use$geometry)
+```
+
+
+```{r}
+country_prcp <- getTerraClimNormals(AOI = aoi2use, param = "prcp", period = "19812010", month = 1:12)
+```
+
+
+##### Extra
+```{r}
+tm_shape(loc_basemap_zoomed) +
+  tm_rgb()
+```
+
+
+#### Extra
+
+```{r}
+aoi_zoomed <- aoi_get(x = "Buenos Aires")
+```
+
+
+```{r}
+loc_path <- basemap_geotif(aoi_zoomed, map_service = "osm", map_type = "topographic", map_res = 1)
+```
+
+```{r}
+loc_basemap_zoomed <- raster::stack(loc_path)
+```
+
+
+```{r}
+map_zoom <- tm_shape(loc_basemap_zoomed) +
+  tm_rgb() 
+
+map_zoom
+```
+
+```{r}
+library(grid)
+```
+
+
+```{r}
+map_full
+
+print(map_zoom, vp = viewport(0.8, 0.27, width = 0.5, height = 0.5))
+```

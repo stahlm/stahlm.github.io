@@ -1,0 +1,32 @@
+{
+    "id": "56835EE3",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1675960912174.0,
+    "source_on_save": false,
+    "relative_order": 14,
+    "properties": {
+        "expression": "NY_NO3_sites",
+        "caption": "NY_NO3_sites",
+        "totalObservations": 573,
+        "displayedObservations": 573,
+        "variables": 16,
+        "cacheKey": "31FD272A",
+        "object": "NY_NO3_sites",
+        "environment": "",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=NY_NO3_sites&cache_key=31FD272A&max_cols=50",
+        "preview": 0
+    },
+    "folds": "",
+    "lastKnownWriteTime": 22518311674839107,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1675960912174,
+    "read_only": false,
+    "read_only_alternatives": []
+}
