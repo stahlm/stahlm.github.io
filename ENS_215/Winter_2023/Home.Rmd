@@ -46,7 +46,10 @@ output:
 + Mon (6-Feb)  -- **Descriptive statistics and univariate data** [(html)](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_02_06.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Lectures/2023_02_06.Rmd) and **Loading data into R** [(html)](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_02_06_load_data_into_R.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Lectures/2023_02_06_load_data_into_R.Rmd)  
 
 + Wed (8-Feb) -- **Visualizing and interpreting data distributions** 
-[(html)](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_02_08.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Lectures/2023_02_08.Rmd) and **Graphical display of data distributions: Examples** [(html)](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_02_08_distributions_examples.html)
+[(html)](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_02_08.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Lectures/2023_02_08.Rmd) and **Graphical display of data distributions: Examples** [(html)](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_02_08_distributions_examples.html)  
+
++ Fri (10-Feb) -- **Finding and accessing environmental data in R**
+[(html)](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_data_access_packages.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Lectures/2023_data_access_packages.Rmd)  
 
 
 ### Week 5

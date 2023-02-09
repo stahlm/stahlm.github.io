@@ -1,0 +1,4 @@
+"0","shape_borders %>% sf::st_drop_geometry() %>% "
+"0","  group_by(country_name) %>% "
+"0","  summarize(n = n()) %>% "
+"0","  arrange(-n)"

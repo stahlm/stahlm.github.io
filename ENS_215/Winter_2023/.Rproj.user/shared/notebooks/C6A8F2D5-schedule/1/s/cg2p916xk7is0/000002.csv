@@ -1,0 +1,2 @@
+"0","a <- shape_borders %>% "
+"0","  filter(country_name == ""Israel"")"

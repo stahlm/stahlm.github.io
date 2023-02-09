@@ -24,6 +24,7 @@ Again, I strongly recommend those of you who are interested to map making (and s
 Leaflet is a very popular, open-source library for creating interactive maps.  You've almost certainly interacted Leaflet maps before as they are widely used by The US National Parks Service, The New York Times and The Washington Post, along with a host of other popular sites.  You can easily generate Leaflet maps in R using the `leaflet` package.  These interactive maps will be nicely embedded in your knit html documents, thus allowing you to easily share them.
 
 Let's first load in the `leaflet` package, which we will use to make interactive maps.  We'll also load in the `tidyverse` package, since we will use some of its data wrangling/handling packages.  
+
 ```{r warning=FALSE, message=FALSE}
 library(leaflet)
 library(tidyverse)

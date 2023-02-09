@@ -1,0 +1,7 @@
+"0","st_area(a)"
+"2","Error in s2_geography_from_wkb(x, oriented = oriented, check = check) : 
+  Evaluation error: Found 3 features with invalid spherical geometry.
+[1] Loop 0 is not valid: Edge 89 crosses edge 91
+[2] Loop 0 is not valid: Edge 89 is degenerate (duplicate vertex)
+[3] Loop 0 is not valid: Edge 92 crosses edge 94.
+"
