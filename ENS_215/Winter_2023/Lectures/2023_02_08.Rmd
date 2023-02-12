@@ -131,6 +131,30 @@ ny_precip %>%
     + Add vertical lines showing the medians for each of the periods
 + Has the distribution of precipitation changed over time?  With you neighbor discuss the potential implications of any changes.
 
+
+```{r echo = F, eval = F}
+med_pre <- ny_precip %>%
+  filter(time_period == "Pre-1950") %>% 
+  summarize(med_ppt = median(Precip_inches))
+
+med_post <- ny_precip %>%
+  filter(time_period == "Post-1950") %>% 
+  summarize(med_ppt = median(Precip_inches))
+
+
+
+ny_precip %>% 
+  ggplot(aes(Precip_inches, group = time_period, fill = time_period)) +
+  geom_density(alpha = 0.5) +
+  scale_fill_manual(values = c("grey", "blue")) +
+  
+  geom_vline(xintercept = med_pre$med_ppt, color = "blue") +
+  geom_vline(xintercept = med_post$med_ppt, color = "black") +
+  
+  theme_classic()
+```
+
+
 <br/>
 
 You saw above how overlaying density curves can be a great way to compare the distribution of a univariate data between multiple groups.  With the example above we were comparing just two groups so the graphic wasn't too cluttered and we were able to easily interpret the results.  However, when you want to compare more than 2 or 3 groups, the graphic can become difficult to read.  

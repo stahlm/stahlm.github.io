@@ -12,7 +12,45 @@ library(GSODR)
 library(tidyverse)
 ```
 
+```{r}
+world_map_data <- spData::world # save the world data from the spData package to our own R object
 
+```
+
+```{r}
+world_map_data %>% 
+  ggplot() +
+  geom_sf() +
+```
+
+```{r echo=FALSE, warning= FALSE}
+map_world_data <- map_data("world")
+```
+
+```{r}
+map_ME_data <- map_world_data %>% 
+  filter(region %in% c("Turkey", "Syria"))
+```
+
+
+
+```{r echo=FALSE}
+earthquake_map <- map_world_data %>% 
+  ggplot() +
+  geom_polygon(aes(long, lat, group = group), fill = "lightgray", color = "black") +
+  geom_point(data = earthquakes, aes(longitude, latitude,  color = mag),
+             shape = 21, fill = "NA", stroke = 1.5) + 
+  scale_color_gradient(low = "blue", high = "red") +
+  
+  labs(title = "Earthquakes > 2.5 magnitude since the start of 2023",
+       subtitle = "Date window: 1-Jan to 12-Feb-2023",
+       caption = "Data source: USGS") +
+  
+  theme_void() +
+  coord_quickmap() 
+
+earthquake_map
+```
 
 ```{r}
 met_df <- get_GSOD(years = 2021:2022, station = "726130-14755")

@@ -1,0 +1,32 @@
+{
+    "id": "8709FBF7",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1676226888897.0,
+    "source_on_save": false,
+    "relative_order": 12,
+    "properties": {
+        "expression": "map_ME_data",
+        "caption": "map_ME_data",
+        "totalObservations": 732,
+        "displayedObservations": 732,
+        "variables": 6,
+        "cacheKey": "ECA94EA6",
+        "object": "map_ME_data",
+        "environment": "",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=map_ME_data&cache_key=ECA94EA6&max_cols=50",
+        "preview": 0
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1676226760,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1676226888897,
+    "read_only": false,
+    "read_only_alternatives": []
+}

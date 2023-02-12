@@ -1,0 +1,2 @@
+"0","map_ME_data <- map_world_data %>% "
+"0","  filter(region %in% c(""Turkey"", ""Syria""))"

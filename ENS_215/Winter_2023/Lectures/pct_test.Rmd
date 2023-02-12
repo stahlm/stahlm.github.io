@@ -1,0 +1,57 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r}
+library(sf)
+library(tidyverse)
+library(leaflet)
+
+library(elevatr)
+```
+
+
+```{r}
+pct_sf <- read_sf("./Data/pct/PacificCrestTrail.shp")
+```
+
+
+
+```{r}
+pct_sf <- st_transform(pct_sf, "EPSG:4326")
+```
+
+
+```{r}
+test_df <- st_coordinates(pct_sf)
+```
+
+```{r}
+test_df <- as.data.frame(test_df)
+```
+
+```{r}
+test_df_use <- test_df %>% 
+  select(lon = X, lat = Y)
+```
+
+
+
+
+
+```{r}
+a <- get_elev_point(test_df_use[1:1000,], src = "epqs", prj = "EPSG:4326")
+```
+```{r}
+a$elevation
+```
+
+```{r}
+a %>% tm_shape() +
+  tm_dots()
+```
+
+
+

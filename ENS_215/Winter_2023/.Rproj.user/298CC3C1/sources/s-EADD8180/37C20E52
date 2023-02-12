@@ -1,0 +1,32 @@
+{
+    "id": "37C20E52",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1676225784868.0,
+    "source_on_save": false,
+    "relative_order": 10,
+    "properties": {
+        "expression": "map_world_data",
+        "caption": "map_world_data",
+        "totalObservations": 99338,
+        "displayedObservations": 99338,
+        "variables": 6,
+        "cacheKey": "766BA30F",
+        "object": "map_world_data",
+        "environment": "",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=map_world_data&cache_key=766BA30F&max_cols=50",
+        "preview": 0
+    },
+    "folds": "",
+    "lastKnownWriteTime": 12948304202498162,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1676225784868,
+    "read_only": false,
+    "read_only_alternatives": []
+}
