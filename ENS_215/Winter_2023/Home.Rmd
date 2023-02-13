@@ -140,7 +140,9 @@ output:
 
 + Lab 3 -- **Groundwater Arsenic in Bangladesh** [(html)](https://stahlm.github.io/ENS_215/Winter_2023/Labs/Lab_Bangladesh_Arsenic.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Labs/Lab_Bangladesh_Arsenic.Rmd)      
 
-+ Lab 4 -- **Final project kick-off ** [(html)](https://stahlm.github.io/ENS_215/Winter_2023/Labs/Lab_Final_Project.html)  
++ Lab 4 -- **Final project kick-off** [(html)](https://stahlm.github.io/ENS_215/Winter_2023/Labs/Lab_Final_Project.html)  
+
++ Lab 5 -- **Final project: post-proposal consultations and analysis**
 
 ```{r eval = F, echo = F}
 [(html)](https://stahlm.github.io/ENS_215/Winter_2023/Labs/Lab_Global_Dams.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Labs/Lab_Global_Dams.Rmd)  
