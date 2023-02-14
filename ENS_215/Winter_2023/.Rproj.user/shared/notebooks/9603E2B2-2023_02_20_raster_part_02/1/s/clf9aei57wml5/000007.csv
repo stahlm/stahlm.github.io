@@ -1,0 +1,6 @@
+"0","p$prism_tmax %>% "
+"0","  tm_shape() +"
+"0","  tm_raster() +"
+"0","  "
+"0","  tm_shape(border_NY) +"
+"0","  tm_borders()"

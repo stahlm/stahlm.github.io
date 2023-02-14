@@ -1,0 +1,6 @@
+"0","```r
+file_list <- c(\"https://neo.gsfc.nasa.gov/archive/geotiff.float/MYD28M/MYD28M_2021-11.FLOAT.TIFF\",
+               \"https://neo.gsfc.nasa.gov/archive/geotiff.float/MYD28M/MYD28M_2021-10.FLOAT.TIFF\")
+
+raster_sst <- raster::stack(x = file_list)
+```"

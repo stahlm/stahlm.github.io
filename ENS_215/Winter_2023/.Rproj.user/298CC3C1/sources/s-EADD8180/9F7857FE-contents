@@ -1,0 +1,318 @@
+---
+title: "Rasters Part II: Analyzing and obtaining environmental rasters "
+author: "ENS-215"
+date: "20-Feb-2023"
+output:
+  html_document:
+    df_print: paged
+    theme: spacelab
+    toc: yes
+    toc_float: yes
+---
+
+<br/>
+
+Let's load in the packages that we will use today.  Note that while we will be using the `raster` package throughout our analysis today we will not load in the raster package.  Instead when we want to use a function from the `raster` package we will use the double-colon notation, for example, `raster::plot()` allows us to call the `plot()` function from the `raster` package.  The reason we do this is because a number of the functions in the `raster` package has names that are identical to functions in the `tidyverse`packages. This can create conflicts/issues with your code and we can avoid these issues by calling `raster` functions using the double-colon notation.  
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+library(tmap)
+library(sf)
+```
+
+<br/>
+
+## Get elevation rasters in R
+```{r}
+library(elevatr)
+library(tigris)
+```
+
+
+```{r}
+NY_counties <- counties(state = "NY",
+                        cb = TRUE) 
+```
+
+```{r}
+county_schenectady <- NY_counties %>% 
+  filter(NAME == "Schenectady")
+```
+
+```{r}
+raster_elev <- get_elev_raster(county_schenectady, z = 12, clip = "locations")
+```
+
+```{r}
+raster::plot(raster_elev)
+```
+
+```{r}
+borders_hires <- rnaturalearth::ne_countries(country = "Lesotho", 
+                                             scale = "large", 
+                                             returnclass = "sf")
+```
+
+```{r}
+raster_elev <- get_elev_raster(borders_hires,
+                               z = 9, 
+                               clip = "locations")
+```
+
+
+```{r}
+raster_elev %>% 
+  tm_shape() +
+  tm_raster(style = "cont", palette = terrain.colors(n = 10)) +
+  
+  tm_shape(borders_hires) +
+  tm_borders()
+```
+
+## Get climate rasters in R
+```{r}
+library(climateR)
+```
+
+
+```{r}
+sf::sf_use_s2(FALSE)
+```
+### PRISM data (US meteorological data)
+```{r}
+border_NY <- USAboundaries::us_states(states = "NY", resolution = "high")
+```
+
+
+
+```{r}
+
+p = getPRISM(border_NY,
+             param = c('tmax','tmin'), startDate = "2023-02-04")
+```
+
+```{r}
+p$prism_tmax %>% 
+  tm_shape() +
+  tm_raster() +
+  
+  tm_shape(border_NY) +
+  tm_borders()
+```
+
+### Terraclim (Global meteorological data)
+
+```{r}
+borders_hires <- rnaturalearth::ne_countries(country = "Lesotho", 
+                                             scale = "large", 
+                                             returnclass = "sf")
+```
+
+```{r}
+climate_raster <- getTerraClimNormals(AOI = borders_hires, 
+                                      param = "prcp", 
+                                      period = "19812010", month = 1:12)
+```
+
+```{r}
+climate_raster$terraclim_19812010_prcp %>% 
+  tm_shape() +
+  tm_raster() +
+  
+  tm_shape(borders_hires) +
+  tm_borders()
+  
+```
+
+
+## Terrain analysis: Schenectady example
+I want to introduce you to the `terrain()` function from the raster package.  This function computes terrain characteristics on an elevation raster.  In particular, you can use the `terrain()` function to compute the slope and aspect (i.e., direction a sloped surface faces) at each pixel.  The `terrain` function also allows for the calculation of a number of other terrain characteristics (see the help file for additional info).  
+
+
+First let's load in a raster with elevation data for Schenectady.  
+
+```{r}
+elevation <- raster::raster("https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Winter_2022/Lectures/Data/elevation_schdy.tif")
+```
+
+<br/>
+
+Slope and aspect have a wide range of hydrologic, ecologic, and engineering applications, so let's go ahead and calculate these values for the Schenectady elevation data.  
+
+
+To calculate the slope, we pass the `elevation` raster to the `terrain()` function.  You'll see that to compute the slope we set the `opt = "slope"`.  Also note that we've set the units to degrees, so that the values returned for the slope are in degrees.  
+```{r}
+r_schdy_slope <- raster::terrain(elevation, opt = "slope", unit = "degrees")
+```
+
+
+Now let's compute the aspect.  We do this by setting `opt = "aspect"`  
+```{r}
+r_schdy_aspect <- raster::terrain(elevation, opt = "aspect", unit = "degrees")
+```
+
+
+Let's  plot the slope and aspect rasters to see what they look like
+```{r}
+tm_shape(r_schdy_slope) +
+  tm_raster(style = "quantile", n = 10) +
+  tm_layout(legend.outside = T)
+```
+
+<br/>
+
+
+```{r}
+tm_shape(r_schdy_aspect) +
+  tm_raster(n = 10) +
+  tm_layout(legend.outside = T)
+```
+
+
+<br/>
+
+
+Note that an aspect of 0 degrees indicates that the surface faces north, an aspect of 90 degrees is east, 180 is west,...   
+
+Since the aspect is the direction that a sloping face is pointed, the aspect is less meaningful in relatively flat areas.  Let's create a new raster that has values equal to the aspect when the slope is above a threshold of 1 degree and has a value of `NA` when the slope is less than 1 degree.  
+
+To do this we will first create a raster that has a binary flag (1 if slope >= 1 degree, 0 if slope < 1 degree).  Recall how we replaced raster values in the world elevation raster at the beginning of the lecture.  We'll apply that same approach to create a raster with this binary flag.  
+
+```{r}
+r_schdy_slope_flag <- r_schdy_slope
+
+r_schdy_slope_flag[r_schdy_slope_flag < 1] <- NA
+r_schdy_slope_flag[r_schdy_slope_flag >= 1] <- 1
+
+
+```
+
+
+Let's take a look at the binary flag raster that we've created
+
+```{r}
+tm_shape(r_schdy_slope_flag) +
+  tm_raster(colorNA = "grey") +
+  tm_layout(legend.outside = T)
+```
+
+
+You can see that the areas with a slope < 1 degree (flat areas) have NA values (show up grey) and areas with slopes greater than 1 degree all have a value of 1 (show up as tan).  
+
+Now let's create a raster that has the aspect for all pixels with slopes > 1 degree and has values of NA for all other pixels.  This is easy to do since we can simply multiply our `r_schdy_aspect` raster by the `r_schdy_slope_flag` raster.  
+
+```{r}
+r_schdy_aspect_steep <- r_schdy_slope_flag*r_schdy_aspect
+```
+
+
+<br/> 
+
+
+```{r}
+tm_shape(r_schdy_aspect_steep) +
+  tm_raster(n = 12, colorNA = "grey") +
+  tm_layout(legend.outside = T)
+```
+
+
+
+
+<br/>
+
+
+### Additional activities  
+
+We will see some additional topics in spatial and raster analysis in the coming lectures, though this is a large topic and we will just scratch the surface in this class.  Let me know if you want to try something else but aren't sure how to move forward.  I can also point you to additional data.  A great place to quickly find some interesting rasters is at [NASA Earth Observation website](https://neo.gsfc.nasa.gov/dataset_index.php).  You can quickly view rasters and download data for preliminary analysis at this site.  The site also provides information and links to the research quality versions of the data if you are interested (though for most initial analysis the data on the link I provide are sufficient).  
+
+
+
+ 
+```{r echo=FALSE, eval=FALSE}
+#https://neo.sci.gsfc.nasa.gov/view.php?datasetId=MOD_LSTD_CLIM_M
+```
+
+
+```{r echo=FALSE, eval=FALSE}
+#load(url(("https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Winter_2020/Lectures/Spatial_data/MODIS_NPP_2016_07.TIFF")))
+```
+
+
+```{r echo=FALSE, eval=FALSE}
+#load(url("https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Winter_2020/Lectures/testa.RData"))
+```
+
+
+```{r echo=FALSE, eval=FALSE}
+raster_npp_july <- raster::raster("./Spatial_data/MODIS_NPP_2016_07.TIFF")
+raster_npp_jan <- raster::raster("./Spatial_data/MODIS_NPP_2016_01.TIFF")
+```
+
+```{r echo=FALSE, eval=FALSE}
+raster_npp_july
+raster_npp_jan
+```
+
+
+```{r echo=FALSE, eval=FALSE}
+raster_npp_jan[raster_npp_jan > 50] <- NA
+raster_npp_july[raster_npp_july > 50] <-NA
+```
+
+
+```{r echo=FALSE, eval=FALSE}
+raster::maxValue(raster_npp_jan)
+```
+
+
+```{r echo=FALSE, eval=FALSE}
+raster::plot(raster_npp_jan)
+raster::plot(raster_npp_july)
+```
+
+```{r echo=FALSE, eval=FALSE}
+world_borders <- spData::world
+```
+
+
+
+```{r echo=FALSE, eval=FALSE}
+tm_shape(raster_npp_july) +
+  tm_raster() +
+  tm_shape(world_borders) +
+  tm_borders() +
+  tm_layout(legend.position = c("LEFT","BOTTOM"))
+```
+
+
+```{r echo=FALSE, eval=FALSE}
+country_npp_july <- raster::extract(raster_npp_july, world_borders, 
+                                    fun = mean, na.rm = TRUE, weights = TRUE, sp = TRUE)
+```
+
+
+
+```{r echo=FALSE, eval=FALSE}
+raster_npp_diff_july_jan <- raster_npp_july < raster_npp_jan
+```
+
+```{r echo=FALSE, eval=FALSE}
+raster::plot(raster_npp_diff_july_jan)
+```
+
+
+```{r echo=FALSE, eval=FALSE}
+country_npp_july <- st_as_sf(country_npp_july)
+```
+
+
+```{r echo=FALSE, eval=FALSE}
+km2_to_m2 <- 1000*1000
+
+country_npp_july %>% 
+  group_by(name_long) %>% 
+  summarize(tot_npp = MODIS_NPP_2016_07*area_km2*km2_to_m2) %>% 
+  arrange(-tot_npp)
+```
+
+

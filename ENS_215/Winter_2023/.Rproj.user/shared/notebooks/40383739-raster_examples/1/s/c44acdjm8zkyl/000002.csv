@@ -1,0 +1,6 @@
+"0","```r
+tm_shape(prcp_def_annual) +
+  tm_raster(style = \"cont\", palette = \"RdBu\", breaks = c(-150,-100,-50,-25,0,25,50,100,150)) +
+  tm_shape(AOI) +
+  tm_borders()
+```"

@@ -1,0 +1,8 @@
+"0","```r
+tm_shape(a) +
+  tm_raster() +
+  
+  tm_shape(world) +
+  tm_borders()
+  
+```"

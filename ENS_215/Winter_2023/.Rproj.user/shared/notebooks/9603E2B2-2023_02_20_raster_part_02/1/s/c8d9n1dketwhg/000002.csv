@@ -1,0 +1,10 @@
+"0","border_NY <- USAboundaries::us_states(states = ""NY"", resolution = ""high"")"
+"2","The USAboundariesData package needs to be updated.
+"
+"2"," Please try installing the package using the following command: 
+     install.packages(""USAboundariesData"", repos = ""https://ropensci.r-universe.dev"", type = ""source"")
+"
+"2","old-style crs object detected; please recreate object with a recent sf::st_crs()
+"
+"2","old-style crs object detected; please recreate object with a recent sf::st_crs()
+"

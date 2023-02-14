@@ -1,0 +1,5 @@
+"0","sf::sf_use_s2(FALSE)"
+"2","Spherical geometry (s2) switched off
+"
+"0","NY_climate <- getTerraClimNormals(AOI = AOI2, param = ""prcp"", period = ""19812010"", month = 1:12)"
+"0",""

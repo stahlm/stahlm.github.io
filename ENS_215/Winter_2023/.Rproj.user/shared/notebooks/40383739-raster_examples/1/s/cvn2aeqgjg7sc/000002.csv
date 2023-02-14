@@ -1,0 +1,1 @@
+"0","ny_stack <- raster::stack(NY_climate)"

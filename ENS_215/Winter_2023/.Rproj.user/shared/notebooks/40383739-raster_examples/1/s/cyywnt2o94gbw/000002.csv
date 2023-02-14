@@ -1,0 +1,2 @@
+"0","AOI = aoi_get(state = ""NC"")"
+"0","p = getPRISM(AOI, param = c('tmax','tmin'), startDate = ""2018-10-29"")"

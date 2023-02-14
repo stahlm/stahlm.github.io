@@ -1,0 +1,4 @@
+"0","```r
+prcp_def <- raster::mask(prcp_def, AOI)
+prcp_def <- raster::crop(prcp_def, AOI)
+```"

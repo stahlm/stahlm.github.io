@@ -1,0 +1,1 @@
+"0","ny_stack <- raster::crop(ny_stack, AOI2)"

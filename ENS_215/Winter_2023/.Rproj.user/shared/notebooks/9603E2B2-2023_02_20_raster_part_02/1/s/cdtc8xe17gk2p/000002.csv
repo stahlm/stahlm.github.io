@@ -1,0 +1,3 @@
+"0","climate_raster <- getTerraClimNormals(AOI = borders_hires, "
+"0","                                      param = ""prcp"", "
+"0","                                      period = ""19812010"", month = 1:12)"

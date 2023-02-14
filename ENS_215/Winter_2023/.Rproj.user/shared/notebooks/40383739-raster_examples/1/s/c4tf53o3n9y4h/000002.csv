@@ -1,0 +1,6 @@
+"0","```r
+tm_shape(climate_current) +
+  tm_raster(style = \"cont\", palette = \"Blues\") +
+  tm_shape(AOI) +
+  tm_borders()
+```"
