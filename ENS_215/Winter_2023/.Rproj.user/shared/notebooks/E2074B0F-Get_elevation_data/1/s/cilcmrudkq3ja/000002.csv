@@ -1,0 +1,74 @@
+"0","```r
+elevation <- get_elev_raster(loc2use, z = 14, clip = \"bbox\")
+```"
+"1","
+ Accessing raster elevation [-------------------------]   0%
+ Accessing raster elevation [-------------------------]   2%
+ Accessing raster elevation [>------------------------]   3%
+ Accessing raster elevation [>------------------------]   5%
+ Accessing raster elevation [=>-----------------------]   6%
+ Accessing raster elevation [=>-----------------------]   8%
+ Accessing raster elevation [=>-----------------------]   9%
+ Accessing raster elevation [==>----------------------]  11%
+ Accessing raster elevation [==>----------------------]  12%
+ Accessing raster elevation [===>---------------------]  14%
+ Accessing raster elevation [===>---------------------]  16%
+ Accessing raster elevation [===>---------------------]  17%
+ Accessing raster elevation [====>--------------------]  19%
+ Accessing raster elevation [====>--------------------]  20%
+ Accessing raster elevation [====>--------------------]  22%
+ Accessing raster elevation [=====>-------------------]  23%
+ Accessing raster elevation [=====>-------------------]  25%
+ Accessing raster elevation [======>------------------]  27%
+ Accessing raster elevation [======>------------------]  28%
+ Accessing raster elevation [======>------------------]  30%
+ Accessing raster elevation [=======>-----------------]  31%
+ Accessing raster elevation [=======>-----------------]  33%
+ Accessing raster elevation [========>----------------]  34%
+ Accessing raster elevation [========>----------------]  36%
+ Accessing raster elevation [========>----------------]  38%
+ Accessing raster elevation [=========>---------------]  39%
+ Accessing raster elevation [=========>---------------]  41%
+ Accessing raster elevation [==========>--------------]  42%
+ Accessing raster elevation [==========>--------------]  44%
+ Accessing raster elevation [==========>--------------]  45%
+ Accessing raster elevation [===========>-------------]  47%
+ Accessing raster elevation [===========>-------------]  48%
+ Accessing raster elevation [===========>-------------]  50%
+ Accessing raster elevation [============>------------]  52%
+ Accessing raster elevation [============>------------]  53%
+ Accessing raster elevation [=============>-----------]  55%
+ Accessing raster elevation [=============>-----------]  56%
+ Accessing raster elevation [=============>-----------]  58%
+ Accessing raster elevation [==============>----------]  59%
+ Accessing raster elevation [==============>----------]  61%
+ Accessing raster elevation [===============>---------]  62%
+ Accessing raster elevation [===============>---------]  64%
+ Accessing raster elevation [===============>---------]  66%
+ Accessing raster elevation [================>--------]  67%
+ Accessing raster elevation [================>--------]  69%
+ Accessing raster elevation [=================>-------]  70%
+ Accessing raster elevation [=================>-------]  72%
+ Accessing raster elevation [=================>-------]  73%
+ Accessing raster elevation [==================>------]  75%
+ Accessing raster elevation [==================>------]  77%
+ Accessing raster elevation [===================>-----]  78%
+ Accessing raster elevation [===================>-----]  80%
+ Accessing raster elevation [===================>-----]  81%
+ Accessing raster elevation [====================>----]  83%
+ Accessing raster elevation [====================>----]  84%
+ Accessing raster elevation [====================>----]  86%
+ Accessing raster elevation [=====================>---]  88%
+ Accessing raster elevation [=====================>---]  89%
+ Accessing raster elevation [======================>--]  91%
+ Accessing raster elevation [======================>--]  92%
+ Accessing raster elevation [======================>--]  94%
+ Accessing raster elevation [=======================>-]  95%
+ Accessing raster elevation [=======================>-]  97%
+ Accessing raster elevation [========================>]  98%
+ Accessing raster elevation [=========================] 100%
+"
+"1","Mosaicing & Projecting
+Clipping DEM to bbox
+Note: Elevation units are in meters.
+"

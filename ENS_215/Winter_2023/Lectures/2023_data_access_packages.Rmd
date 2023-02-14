@@ -484,9 +484,9 @@ Continue to experiment with the packages that we have learned how to use today. 
 
 ```{r echo = F, eval = F}
 ## ebird
-https://cran.r-project.org/web/packages/rebird/vignettes/rebird_vignette.html
+#https://cran.r-project.org/web/packages/rebird/vignettes/rebird_vignette.html
 
-ebird_key <- #your key here
+ebird_key <-  "c2jlhls8h84c" #your key here
 ```
 
 
@@ -509,7 +509,8 @@ new_tax <- ebirdtaxonomy()
 
 ```{r echo = F, eval = F}
 
-a <- ebirdgeo(species = species_code('Accipiter cooperii'), lat = 42.8, lng = -73.9, back = 30, dist = 50,
+a <- ebirdgeo(species = species_code('Accipiter cooperii'), 
+              lat = 42.8, lng = -73.9, back = 30, dist = 50,
               key = ebird_key)
 ```
 

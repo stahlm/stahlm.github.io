@@ -1,0 +1,39 @@
+---
+title: "Elevation data: Schenectady"
+output: html_document
+---
+
+## Load in packages
+```{r}
+library(elevatr)
+library(AOI)
+
+library(tmap)
+```
+
+## Get bounding box coordinates for Union
+```{r}
+loc2use <- aoi_get(x = list("Union College", 10,10) )
+```
+
+
+```{r}
+elevation <- get_elev_raster(loc2use, z = 14, clip = "bbox")
+```
+## Create in interactive map
+```{r}
+tmap_mode("view")
+elevation %>% 
+  tm_shape() +
+  tm_raster(midpoint = NA, style = "cont") 
+```
+```{r}
+elev_contours <- raster::rasterToContour(elevation)
+```
+
+```{r}
+tm_shape(elev_contours) +
+  tm_iso()
+```
+
+

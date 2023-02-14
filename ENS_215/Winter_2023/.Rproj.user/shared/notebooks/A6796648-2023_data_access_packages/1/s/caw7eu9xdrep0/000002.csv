@@ -1,0 +1,6 @@
+"0",""
+"0","fig_map <- a %>% "
+"0","  leaflet() %>% "
+"0","  addProviderTiles(providers$Esri.NatGeoWorldMap) %>% "
+"0","  addMarkers(~ lng, ~ lat, popup = ~ paste(comName, ""; n:"", howMany))"
+"0",""

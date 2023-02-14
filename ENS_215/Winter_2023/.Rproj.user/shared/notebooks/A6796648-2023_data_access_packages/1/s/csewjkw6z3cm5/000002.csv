@@ -1,2 +1,3 @@
+"0","# Let's also load in the `sf` and the `tmap` packages.  You will probably need to install these packages first.  FYI, both of these packages are used for spatial analysis and making maps.  We will learn much more about these topics in upcoming lectures.  "
 "0","library(sf)"
 "0","library(tmap)"
