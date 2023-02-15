@@ -18,6 +18,18 @@ output:
 |      |     |        |       |
 
 
+
+### Week 7
+#### Readings
+* [**ModernDive Ch: 5**](https://moderndive.com/)
+
+#### Assignments 
+1. DataCamp **_Modeling with Data in the Tidyverse_** chapters **1** ("Introduction to Modeling") and **2** ("Modeling with Basic Regression")
+    + Assigned: 15-Feb
+    + Due: 22-Feb
+
+***
+
 ### Week 6
 #### Readings
 * [**Tidyverse style guide, Chapters 1, 2, 4, 5**](https://style.tidyverse.org/)

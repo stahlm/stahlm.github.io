@@ -1,0 +1,7 @@
+"0","library(elevatr)"
+"2","package ‘elevatr’ was built under R version 4.0.5"
+"0","library(tigris)"
+"2","package ‘tigris’ was built under R version 4.0.5"
+"2","To enable caching of data, set `options(tigris_use_cache = TRUE)`
+in your R script or .Rprofile.
+"

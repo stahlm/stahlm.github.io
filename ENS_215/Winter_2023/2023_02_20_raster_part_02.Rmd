@@ -23,6 +23,8 @@ library(sf)
 <br/>
 
 ## Get elevation rasters in R
+https://cran.r-project.org/web/packages/elevatr/vignettes/introduction_to_elevatr.html
+
 ```{r}
 library(elevatr)
 library(tigris)
@@ -122,6 +124,82 @@ climate_raster$terraclim_19812010_prcp %>%
   tm_shape(borders_hires) +
   tm_borders()
   
+```
+
+```{r}
+a <- sum(climate_raster$terraclim_19812010_prcp)
+```
+
+
+```{r}
+a$layer %>% 
+  tm_shape() +
+  tm_raster() +
+  
+  tm_shape(borders_hires) +
+  tm_borders()
+  
+```
+
+## Basemaps
+```{r}
+library(basemaps)
+```
+
+
+```{r}
+loc_path <- basemap_geotif(borders_hires, 
+                           map_service = "esri", 
+                           map_type = "world_imagery",
+                           map_res = 1.0)
+
+loc_path
+```
+
+
+
+
+
+
+```{r}
+loc_basemap <- raster::stack(loc_path)
+
+loc_basemap
+
+#raster::plotRGB(loc_basemap)
+```
+
+```{r}
+
+map_full <- tm_shape(loc_basemap) + 
+  tm_rgb() +
+  tm_shape(borders_hires) +
+  tm_borders(col = "red") 
+
+map_full
+```
+
+```{r}
+loc_path <- basemap_geotif(county_schenectady, 
+                           map_service = "osm", 
+                           map_type = "streets",
+                           map_res = 1.0)
+
+loc_path
+```
+
+```{r}
+loc_basemap <- raster::stack(loc_path)
+
+loc_basemap
+```
+```{r}
+map_full <- tm_shape(loc_basemap) + 
+  tm_rgb() + 
+  tm_shape(county_schenectady) + 
+  tm_borders(col = "red") 
+
+map_full
 ```
 
 
