@@ -1,0 +1,32 @@
+{
+    "id": "C0B11854",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1676560609596.0,
+    "source_on_save": false,
+    "relative_order": 17,
+    "properties": {
+        "expression": "cities_world_sf",
+        "caption": "cities_world_sf",
+        "totalObservations": 230,
+        "displayedObservations": 230,
+        "variables": 5,
+        "cacheKey": "D5E61676",
+        "object": "cities_world_sf",
+        "environment": "",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=cities_world_sf&cache_key=D5E61676&max_cols=50",
+        "preview": 0
+    },
+    "folds": "",
+    "lastKnownWriteTime": 7954801838394599027,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1676560609596,
+    "read_only": false,
+    "read_only_alternatives": []
+}

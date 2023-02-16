@@ -1,1 +1,1 @@
-"0","a <- sum(climate_raster$terraclim_19812010_prcp)"
+"0","lesotho_tot_prcp <- sum(climate_raster)"

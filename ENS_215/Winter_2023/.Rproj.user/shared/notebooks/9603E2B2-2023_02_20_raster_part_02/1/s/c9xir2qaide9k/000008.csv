@@ -1,0 +1,9 @@
+"0",""
+"0","map_full <- tm_shape(loc_basemap) + "
+"0","  tm_rgb() +"
+"0","  tm_shape(borders_hires) +"
+"0","  tm_borders(col = ""red"") "
+"0",""
+"0","map_full"
+"2","Error in dirname(to) : path too long
+"

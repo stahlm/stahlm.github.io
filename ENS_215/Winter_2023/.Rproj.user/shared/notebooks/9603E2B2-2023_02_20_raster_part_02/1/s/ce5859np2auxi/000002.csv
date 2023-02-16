@@ -1,6 +1,0 @@
-"0","a$layer %>% "
-"0","  tm_shape() +"
-"0","  tm_raster() +"
-"0","  "
-"0","  tm_shape(borders_hires) +"
-"0","  tm_borders()"

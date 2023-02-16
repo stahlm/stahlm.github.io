@@ -1,0 +1,8 @@
+"0","raster_elev %>% "
+"0","  tm_shape() +"
+"0","  tm_raster(style = ""cont"", palette = terrain.colors(n = 10)) +"
+"0","  "
+"0","  tm_shape(borders_hires) +"
+"0","  tm_borders()"
+"2","stars object downsampled to 1080 by 926 cells. See tm_shape manual (argument raster.downsample)
+"

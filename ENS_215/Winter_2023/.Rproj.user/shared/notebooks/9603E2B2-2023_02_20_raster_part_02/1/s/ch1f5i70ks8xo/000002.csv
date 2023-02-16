@@ -1,0 +1,3 @@
+"0","p <- raster::crop(p, border_NY)"
+"0",""
+"0","p <- raster::mask(p, border_NY)"

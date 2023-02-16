@@ -1,0 +1,32 @@
+{
+    "id": "5A8C1125",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1676560290370.0,
+    "source_on_save": false,
+    "relative_order": 15,
+    "properties": {
+        "expression": "world.cities",
+        "caption": "world.cities",
+        "totalObservations": 43645,
+        "displayedObservations": 43645,
+        "variables": 6,
+        "cacheKey": "E9986D7C",
+        "object": "world.cities",
+        "environment": "",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=world.cities&cache_key=E9986D7C&max_cols=50",
+        "preview": 0
+    },
+    "folds": "",
+    "lastKnownWriteTime": 3471765531124723821,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1676560290370,
+    "read_only": false,
+    "read_only_alternatives": []
+}

@@ -1,0 +1,469 @@
+---
+title: "Rasters Part II: Analyzing and obtaining environmental rasters "
+author: "ENS-215"
+date: "20-Feb-2023"
+output:
+  html_document:
+    df_print: paged
+    theme: spacelab
+    toc: yes
+    toc_float: yes
+---
+
+<br/>
+
+Let's load in the packages that we will use today.  Note that while we will be using the `raster` package throughout our analysis today we will not load in the raster package.  Instead when we want to use a function from the `raster` package we will use the double-colon notation, for example, `raster::plot()` allows us to call the `plot()` function from the `raster` package.  The reason we do this is because a number of the functions in the `raster` package has names that are identical to functions in the `tidyverse`packages. This can create conflicts/issues with your code and we can avoid these issues by calling `raster` functions using the double-colon notation.  
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+library(tmap)
+library(sf)
+```
+
+<br/>
+
+## Get elevation rasters in R
+https://cran.r-project.org/web/packages/elevatr/vignettes/introduction_to_elevatr.html
+
+Land surface elevation (topographic) data is frequently useful/required for environmental and geoscience projects.  Obtaining research-quality topographic data can be somewhat time consuming and cumbersome, however there are packages that allow you to seamlessly download this data directly into R.  Today you'll be introduced to the `elevatr` package, which allows you to seamlessly download elevation rasters for anywhere in the world.  This package pulls data from several, research-quality datasets.  More information on the package and the underlying datasets is [available here](https://cran.r-project.org/web/packages/elevatr/vignettes/introduction_to_elevatr.html)  
+
+
+First let's load in the `elevatr` package.  Let's also load in the `tigris` package, which we've used in the past.  The `tigris` package will be handy for getting borders (e.g., US state, US county), that we will use to define the area of interest for which we would like to download elevation rasters.  
+
+```{r}
+library(elevatr)
+library(tigris)
+```
+
+<br/> 
+
+Let's get the county boundaries for NY state and then use `filter()` to get just Schenectady county.  
+```{r}
+NY_counties <- counties(state = "NY",
+                        cb = TRUE) 
+```
+
+```{r}
+county_schenectady <- NY_counties %>% 
+  filter(NAME == "Schenectady")
+```
+
+
+<br/> 
+
+Now that we have the area of interest, let's obtain the elevation raster for that area.  We will use the `get_elev_raster()` function from the `elevatr` package.  The first argument in the function is a sf object that represents our area of interest (i.e., Schenectady county).  The second argument `z` species the resolution of the raster data that we would like to download.  A value of 1 specifies the lowest resolution and a value of 14 is the highest resolution available.  Note that downloading a very high resolution raster for a large area will take much longer (and be a much larger file size).  The `clip` argument specifies if your want to clip the raster to the spatial object.  By specifying `clip = "locations"` the elevation raster will be clipped to the boundaries of Schenectady county.  FYI, when you run the code you will see a download progress bar in your console.  
+
+```{r}
+raster_elev <- get_elev_raster(county_schenectady,
+                               z = 12,
+                               clip = "locations")
+```
+
+
+<br/>
+
+Let's quickly plot the data to confirm that we've downloaded what we expected.  
+```{r}
+raster::plot(raster_elev)
+```
+
+<br/> 
+
+Pretty cool - we've quickly and seamlessly obtained raster elevation data for our area of interest.  You can try to modify the code above to test out the `get_elev_raster()` function some more and to try it on different areas.  
+
+
+<br/>
+
+The `get_elev_raster()` can be used for any location around the world.  To demonstrate this let's obtain raster elevation data for the country of Lesotho (located in southern Africa).  
+
+To obtain high resolution border data we will use the package `rnaturalearth`.  This package let's you easily download a range of spatial data into R.  More info on the package can be found here.  FYI, you will need to install `rnaturalearth` if you haven't yet installed it.  
+
+```{r}
+library(rnaturalearth)
+```
+
+
+Now let's download the country border for Lesotho.  
+```{r}
+borders_hires <- ne_countries(country = "Lesotho",
+                              scale = "large", 
+                              returnclass = "sf")
+```
+
+
+<br/> 
+
+Following the same approach as we did with Schenectady county, we will now get elevation data for the country of Lesotho.  
+```{r}
+raster_elev <- get_elev_raster(borders_hires,
+                               z = 9, 
+                               clip = "locations")
+```
+
+<br/>
+
+Let's use `tmap` to make a quick map of the topography of Lesotho.  
+```{r}
+raster_elev %>% 
+  tm_shape() +
+  tm_raster(style = "cont", palette = terrain.colors(n = 10)) +
+  
+  tm_shape(borders_hires) +
+  tm_borders()
+```
+
+
+<br/>  
+
+## Get climate rasters in R
+
+In addition to elevation data, we frequently need gridded (raster) climatic/meteorological data for environmental projects.  Once again, R comes to the rescue and allows you to seamlessly query and download a range of research-quality gridded climatic/meteorological datasets.  One package that is particularly useful in this area is `climateR`.  The `climateR` package gives you access to data from a host of datasets including PRISM (US meteorological data) and TerraClim (global meteorological data).  Each of these datasets has their particular set of variables (e.g., precipitation, temperature, barometric pressure,...) and their particular characteristics (e.g., spatial and temporal resolution, underlying data used to generated the gridded data product).  When conducting research you would want to be aware of these technical details and you would choose the best available data for your application.  To learn more about the `climateR` package and the data it can query you can go to the following website, which provides a general overview.  
+
+```{r}
+library(climateR)
+```
+
+
+```{r}
+sf::sf_use_s2(FALSE)
+```
+### PRISM data (US meteorological data)
+```{r}
+border_NY <- USAboundaries::us_states(states = "NY",
+                                      resolution = "high")
+```
+
+
+
+```{r}
+p = getPRISM(border_NY,
+             param = c('tmin'), 
+             startDate = "2023-02-04")
+```
+
+```{r}
+p <- p$prism_tmin
+```
+
+```{r}
+p <- raster::crop(p, border_NY)
+
+p <- raster::mask(p, border_NY)
+```
+
+
+
+```{r}
+p %>% 
+  tm_shape() + 
+  tm_raster(palette = "-RdBu", n = 10) +
+  
+  tm_shape(border_NY) +
+  tm_borders()
+```
+
+### Terraclim (Global meteorological data)
+
+```{r}
+borders_hires <- rnaturalearth::ne_countries(country = "Lesotho", 
+                                             scale = "large", 
+                                             returnclass = "sf")
+```
+
+```{r}
+climate_raster <- getTerraClimNormals(AOI = borders_hires, 
+                                      param = "prcp", 
+                                      period = "19812010", month = 1:12)
+```
+
+```{r}
+climate_raster <- climate_raster$terraclim_19812010_prcp
+```
+
+```{r}
+climate_raster <- raster::crop(climate_raster, borders_hires)
+
+climate_raster <- raster::mask(climate_raster, borders_hires)
+```
+
+
+
+
+```{r}
+climate_raster %>% 
+  tm_shape() +
+  tm_raster(palette = "RdBu", n = 10) +
+  
+  tm_shape(borders_hires) +
+  tm_borders()
+  
+```
+
+```{r}
+lesotho_tot_prcp <- sum(climate_raster)
+```
+
+
+```{r}
+lesotho_tot_prcp$layer %>% 
+  tm_shape() +
+  tm_raster(palette = "RdBu", n = 10) + 
+  
+  tm_shape(borders_hires) +
+  tm_borders()
+  
+```
+
+## Basemaps
+```{r}
+library(basemaps)
+```
+
+
+```{r}
+loc_path <- basemap_geotif(borders_hires, 
+                           map_service = "esri", 
+                           map_type = "world_imagery",
+                           map_res = 1.0)
+
+loc_path
+```
+
+
+
+
+
+
+```{r}
+loc_basemap <- raster::stack(loc_path)
+
+loc_basemap
+
+#raster::plotRGB(loc_basemap)
+```
+
+```{r}
+
+map_full <- tm_shape(loc_basemap) + 
+  tm_rgb() +
+  tm_shape(borders_hires) +
+  tm_borders(col = "red") 
+
+map_full
+```
+
+```{r}
+loc_path <- basemap_geotif(county_schenectady, 
+                           map_service = "osm", 
+                           map_type = "streets",
+                           map_res = 1.0)
+
+loc_path
+```
+
+```{r}
+loc_basemap <- raster::stack(loc_path)
+
+loc_basemap
+```
+```{r}
+map_full <- tm_shape(loc_basemap) + 
+  tm_rgb() + 
+  tm_shape(county_schenectady) + 
+  tm_borders(col = "red") 
+
+map_full
+```
+
+
+## Terrain analysis: Schenectady example
+I want to introduce you to the `terrain()` function from the raster package.  This function computes terrain characteristics on an elevation raster.  In particular, you can use the `terrain()` function to compute the slope and aspect (i.e., direction a sloped surface faces) at each pixel.  The `terrain` function also allows for the calculation of a number of other terrain characteristics (see the help file for additional info).  
+
+
+First let's load in a raster with elevation data for Schenectady.  
+
+```{r}
+elevation <- raster::raster("https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Winter_2022/Lectures/Data/elevation_schdy.tif")
+```
+
+<br/>
+
+Slope and aspect have a wide range of hydrologic, ecologic, and engineering applications, so let's go ahead and calculate these values for the Schenectady elevation data.  
+
+
+To calculate the slope, we pass the `elevation` raster to the `terrain()` function.  You'll see that to compute the slope we set the `opt = "slope"`.  Also note that we've set the units to degrees, so that the values returned for the slope are in degrees.  
+```{r}
+r_schdy_slope <- raster::terrain(elevation, opt = "slope", unit = "degrees")
+```
+
+
+Now let's compute the aspect.  We do this by setting `opt = "aspect"`  
+```{r}
+r_schdy_aspect <- raster::terrain(elevation, opt = "aspect", unit = "degrees")
+```
+
+
+Let's  plot the slope and aspect rasters to see what they look like
+```{r}
+tm_shape(r_schdy_slope) +
+  tm_raster(style = "quantile", n = 10) +
+  tm_layout(legend.outside = T)
+```
+
+<br/>
+
+
+```{r}
+tm_shape(r_schdy_aspect) +
+  tm_raster(n = 10) +
+  tm_layout(legend.outside = T)
+```
+
+
+<br/>
+
+
+Note that an aspect of 0 degrees indicates that the surface faces north, an aspect of 90 degrees is east, 180 is west,...   
+
+Since the aspect is the direction that a sloping face is pointed, the aspect is less meaningful in relatively flat areas.  Let's create a new raster that has values equal to the aspect when the slope is above a threshold of 1 degree and has a value of `NA` when the slope is less than 1 degree.  
+
+To do this we will first create a raster that has a binary flag (1 if slope >= 1 degree, 0 if slope < 1 degree).  Recall how we replaced raster values in the world elevation raster at the beginning of the lecture.  We'll apply that same approach to create a raster with this binary flag.  
+
+```{r}
+r_schdy_slope_flag <- r_schdy_slope
+
+r_schdy_slope_flag[r_schdy_slope_flag < 1] <- NA
+r_schdy_slope_flag[r_schdy_slope_flag >= 1] <- 1
+
+
+```
+
+
+Let's take a look at the binary flag raster that we've created
+
+```{r}
+tm_shape(r_schdy_slope_flag) +
+  tm_raster(colorNA = "grey") +
+  tm_layout(legend.outside = T)
+```
+
+
+You can see that the areas with a slope < 1 degree (flat areas) have NA values (show up grey) and areas with slopes greater than 1 degree all have a value of 1 (show up as tan).  
+
+Now let's create a raster that has the aspect for all pixels with slopes > 1 degree and has values of NA for all other pixels.  This is easy to do since we can simply multiply our `r_schdy_aspect` raster by the `r_schdy_slope_flag` raster.  
+
+```{r}
+r_schdy_aspect_steep <- r_schdy_slope_flag*r_schdy_aspect
+```
+
+
+<br/> 
+
+
+```{r}
+tm_shape(r_schdy_aspect_steep) +
+  tm_raster(n = 12, colorNA = "grey") +
+  tm_layout(legend.outside = T)
+```
+
+
+
+
+<br/>
+
+
+### Additional activities  
+
+We will see some additional topics in spatial and raster analysis in the coming lectures, though this is a large topic and we will just scratch the surface in this class.  Let me know if you want to try something else but aren't sure how to move forward.  I can also point you to additional data.  A great place to quickly find some interesting rasters is at [NASA Earth Observation website](https://neo.gsfc.nasa.gov/dataset_index.php).  You can quickly view rasters and download data for preliminary analysis at this site.  The site also provides information and links to the research quality versions of the data if you are interested (though for most initial analysis the data on the link I provide are sufficient).  
+
+
+
+ 
+```{r echo=FALSE, eval=FALSE}
+#https://neo.sci.gsfc.nasa.gov/view.php?datasetId=MOD_LSTD_CLIM_M
+```
+
+
+```{r echo=FALSE, eval=FALSE}
+#load(url(("https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Winter_2020/Lectures/Spatial_data/MODIS_NPP_2016_07.TIFF")))
+```
+
+
+```{r echo=FALSE, eval=FALSE}
+#load(url("https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Winter_2020/Lectures/testa.RData"))
+```
+
+
+```{r echo=FALSE, eval=FALSE}
+raster_npp_july <- raster::raster("./Spatial_data/MODIS_NPP_2016_07.TIFF")
+raster_npp_jan <- raster::raster("./Spatial_data/MODIS_NPP_2016_01.TIFF")
+```
+
+```{r echo=FALSE, eval=FALSE}
+raster_npp_july
+raster_npp_jan
+```
+
+
+```{r echo=FALSE, eval=FALSE}
+raster_npp_jan[raster_npp_jan > 50] <- NA
+raster_npp_july[raster_npp_july > 50] <-NA
+```
+
+
+```{r echo=FALSE, eval=FALSE}
+raster::maxValue(raster_npp_jan)
+```
+
+
+```{r echo=FALSE, eval=FALSE}
+raster::plot(raster_npp_jan)
+raster::plot(raster_npp_july)
+```
+
+```{r echo=FALSE, eval=FALSE}
+world_borders <- spData::world
+```
+
+
+
+```{r echo=FALSE, eval=FALSE}
+tm_shape(raster_npp_july) +
+  tm_raster() +
+  tm_shape(world_borders) +
+  tm_borders() +
+  tm_layout(legend.position = c("LEFT","BOTTOM"))
+```
+
+
+```{r echo=FALSE, eval=FALSE}
+country_npp_july <- raster::extract(raster_npp_july, world_borders, 
+                                    fun = mean, na.rm = TRUE, weights = TRUE, sp = TRUE)
+```
+
+
+
+```{r echo=FALSE, eval=FALSE}
+raster_npp_diff_july_jan <- raster_npp_july < raster_npp_jan
+```
+
+```{r echo=FALSE, eval=FALSE}
+raster::plot(raster_npp_diff_july_jan)
+```
+
+
+```{r echo=FALSE, eval=FALSE}
+country_npp_july <- st_as_sf(country_npp_july)
+```
+
+
+```{r echo=FALSE, eval=FALSE}
+km2_to_m2 <- 1000*1000
+
+country_npp_july %>% 
+  group_by(name_long) %>% 
+  summarize(tot_npp = MODIS_NPP_2016_07*area_km2*km2_to_m2) %>% 
+  arrange(-tot_npp)
+```
+
+

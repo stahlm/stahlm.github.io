@@ -1,0 +1,3 @@
+"0","climate_raster <- raster::crop(climate_raster, borders_hires)"
+"0",""
+"0","climate_raster <- raster::mask(climate_raster, borders_hires)"

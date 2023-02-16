@@ -1,0 +1,1 @@
+"0","raster_temps_diff <- raster_day_temps - raster_night_temps"
