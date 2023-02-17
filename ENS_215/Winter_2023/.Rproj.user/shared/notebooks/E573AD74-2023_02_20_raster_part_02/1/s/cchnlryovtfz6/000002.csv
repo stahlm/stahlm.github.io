@@ -1,0 +1,6 @@
+"0","NY_counties <- counties(state = ""NY"","
+"0","                        cb = TRUE) "
+"2","Retrieving data for the year 2020
+"
+"2","Using FIPS code '36' for state 'NY'
+"
