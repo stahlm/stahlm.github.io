@@ -1,2 +1,0 @@
-"0","cities_world <- cities_world %>% "
-"0","  filter(capital == 1)"

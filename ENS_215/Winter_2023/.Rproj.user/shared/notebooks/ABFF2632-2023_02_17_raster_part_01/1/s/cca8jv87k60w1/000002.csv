@@ -1,2 +1,0 @@
-"0","cities_world_sf <- cities_world %>% "
-"0","  st_as_sf(coords = c(""long"", ""lat""))"

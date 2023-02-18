@@ -1,1 +1,0 @@
-"0","cities_world_sf$elev__m <- raster::extract(raster_world_elev, cities_world_sf)"

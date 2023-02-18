@@ -1,0 +1,4 @@
+"0","climate_raster_monthly <- getTerraClim(AOI = borders_hires, "
+"0","                                       param = ""prcp"", "
+"0","                                       startDate = ""2018-01-01"""
+"0","                                       )"
