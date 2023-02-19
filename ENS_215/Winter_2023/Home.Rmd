@@ -157,7 +157,9 @@ output:
 
 + Lab 4 -- **Final project kick-off** [(html)](https://stahlm.github.io/ENS_215/Winter_2023/Labs/Lab_Final_Project.html)  
 
-+ Lab 5 -- **Final project: post-proposal consultations and analysis** [(html)](https://stahlm.github.io/ENS_215/Winter_2023/Labs/Lab_Final_Project_Second_Meeting.html)
++ Lab 5 -- **Final project: post-proposal consultations and analysis** [(html)](https://stahlm.github.io/ENS_215/Winter_2023/Labs/Lab_Final_Project_Second_Meeting.html)  
+
++ Lab 6 -- **Project formatting, organization, and additional project work** [(html)](https://stahlm.github.io/ENS_215/Winter_2023/Labs/RMarkdown_formatting_basics.html) 
 
 ```{r eval = F, echo = F}
 [(html)](https://stahlm.github.io/ENS_215/Winter_2023/Labs/Lab_Global_Dams.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Labs/Lab_Global_Dams.Rmd)  
