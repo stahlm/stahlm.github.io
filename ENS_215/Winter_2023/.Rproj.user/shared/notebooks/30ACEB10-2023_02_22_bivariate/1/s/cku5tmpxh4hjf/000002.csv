@@ -1,0 +1,5 @@
+"0","library(openair)"
+"0",""
+"0","flow <- flow %>% "
+"0","  rename(date = Date) %>% # rename ""Date"" to ""date"" as the calendarPlot function looks for a ""date"" column"
+"0","  mutate(log10_flow_cfs = log10(flow_cfs)) # add a column of log10 flows"
