@@ -13,6 +13,8 @@ output:
 <br/>
 
 Let's load in the packages that we will use today.  You will need to install the `raster` package.  
+
+
 ```{r message=FALSE, warning=FALSE}
 library(tidyverse)
 library(tmap)

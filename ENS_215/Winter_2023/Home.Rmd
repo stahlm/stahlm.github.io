@@ -48,6 +48,9 @@ output:
 + Mon (20-Feb) -- **Rasters continued: Obtaining and analyzing raster data**
 [(html)](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_02_20_raster_part_02.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Lectures/2023_02_20_raster_part_02.Rmd)  
 
++ Wed (22-Feb) -- **Bivariate data and time-series analysis**
+[(html)](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_02_22_bivariate.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Lectures/2023_02_22_bivariate.Rmd)    
+
 
 ***
 
