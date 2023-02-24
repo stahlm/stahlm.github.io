@@ -1,0 +1,13 @@
+23 02 06 12 0  
+1                  
+40.836000 -80.522700 10.0      
+0                  
+0                  
+10000.0            
+3                #NUMBER nextfile mfile OF INPUT DATA GRIDS
+/pub/archives/gdas1/
+gdas1.feb23.w1
+/pub/archives/gdas1/
+gdas1.jan23.w5
+/pub/archives/gdas1/
+gdas1.feb23.w2

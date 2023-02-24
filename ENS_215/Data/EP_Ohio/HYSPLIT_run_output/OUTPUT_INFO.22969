@@ -1,0 +1,29 @@
+1       number of output levels
+100   output levels in meters
+0    Time method
+1   con mutliplier
+1   dep multiplier
+NO     Plot deposition
+Yes    Sum Deposition
+0    projection
+120    gsize
+Yes    contour
+0    Zoom Factor
+-1  circle
+1     gis
+No  psfile
+Yes pdffile
+arlmap  county
+1        color
+mass   emission rate unit
+0.0      USER1
+0.0      USER2
+0.0      USER3
+mass  Contour Units
+0     convert to concentration to ppm (1=YES/0=NO)?
+USER    type of concentration threshold
+293.0    pollutant temperature (K)
+1000.0   pollutant pressure (hPa)
+0.0     pollutant molecular weight (g/mol)
+No    prescribed burn (Yes/No)
+Forward     direction

@@ -1,0 +1,4 @@
+"0","nwis_ep_sites_sw <- whatNWISsites(countyCd = c(""39029"",""42007""), "
+"0","                             parameterCd = c(""00060"",""00065""),"
+"0","                             service = ""dv"""
+"0","                             )"

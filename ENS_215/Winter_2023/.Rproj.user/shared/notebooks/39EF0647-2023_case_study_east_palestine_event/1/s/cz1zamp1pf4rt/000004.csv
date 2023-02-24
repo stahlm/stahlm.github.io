@@ -1,0 +1,11 @@
+"0","map_gsod <- isd_history  %>% leaflet() %>% "
+"0","  addProviderTiles(providers$OpenStreetMap) %>% "
+"0","  addMarkers(~ LON, ~ LAT, popup = ~ STNID, clusterOptions = T)"
+"0",""
+"0","map_gsod"
+"2","over-long path"
+"2","over-long path"
+"2","over-long path"
+"2","over-long path"
+"2","Error in dirname(to) : path too long
+"

@@ -1,0 +1,197 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+### Wind direction
+worldmet (hourly)
+
+### Temperature and precipitation (and other met variables)
+worldmet
+GSODR
+PRISM (climateR package)
+
+### Nearby waterbodies
+tigris
+
+
+### Roads, railways, schools
+tigris
+
+
+### Air mass trajectories
+HYSPLIT (splitr package)
+
+### Topography
+elevatr
+
+
+### Streamflow and groundwater levels
+dataRetrieval
+
+
+
+```{r}
+library(tidyverse)
+library(tigris)
+library(USAboundaries)
+library(elevatr)
+library(sf)
+
+library(tmap)
+library(leaflet)
+```
+
+## Loction of site
+```{r}
+ep_lat <- 40.8360
+ep_lon <- -80.5227
+
+```
+
+```{r}
+ep_site <- data.frame(lat = ep_lat, 
+                      lon = ep_lon,
+                      site_desc = "Location of train derailment (Feb 3, 2023)"
+                      )
+```
+
+
+```{r}
+ep_site <- st_as_sf(ep_site, coords = c("lon", "lat"))
+```
+
+## Map of area
+```{r}
+tmap_mode("view")
+
+base_usgs_topo <- "https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}"
+
+ep_site %>% 
+  tm_shape() +
+  tm_markers() +
+  
+  tm_basemap(c("OpenStreetMap.Mapnik", "Stamen.Terrain",
+               "Esri.WorldImagery", base_usgs_topo))
+
+tmap_mode("plot")
+```
+
+
+## Get nearby met stations
+```{r}
+library(GSODR)
+```
+```{r}
+ep_met_stations <- nearest_stations(LAT = ep_lat,
+                                    LON = ep_lon,
+                                    distance = 50)
+
+ep_met_stations
+```
+
+```{r}
+load(system.file("extdata", "isd_history.rda", package = "GSODR"))
+```
+
+
+```{r}
+isd_history %>% 
+  filter(STNID %in% ep_met_stations)
+```
+
+
+```{r}
+map_gsod <- isd_history  %>% leaflet() %>% 
+  addProviderTiles(providers$OpenStreetMap) %>% 
+  addMarkers(~ LON, ~ LAT, popup = ~ STNID, clusterOptions = T)
+
+map_gsod
+```
+
+725124-64705
+```{r}
+met_df <- get_GSOD(years = 2023, station = "725124-64705")
+```
+
+
+
+## Map (tigris)
+```{r}
+EP_counties <- counties(state = c("OH", "PA"),
+                        cb = TRUE) # cb = TRUE specifies to download a lower resolution file (faster download)
+```
+
+Mahoning
+Lawrence
+
+```{r}
+tmap_mode("plot")
+
+ep_map <- EP_counties %>% 
+  filter(NAME %in% c("Columbiana", "Beaver")) %>% 
+  tm_shape() +
+  tm_polygons(col = "lightgrey", border.col = "black") +
+  
+  tm_shape(ep_site) +
+  tm_markers() +
+  
+  tm_scale_bar(breaks = c(0, 5, 10), size = 1, position = c("LEFT", "BOTTOM"))     # add a scale bar
+
+ep_map
+```
+
+
+
+## NWIS data
+```{r}
+library(dataRetrieval)
+```
+
+
+```{r}
+nwis_ep_sites_sw <- whatNWISsites(countyCd = c("39029","42007"), 
+                             parameterCd = c("00060","00065"),
+                             service = "dv"
+                             )
+```
+
+
+## Air mass trajectory
+```{r}
+library(splitr)
+library(here)
+```
+
+```{r}
+getwd()
+```
+
+```{r}
+trajectory_model <-
+  create_trajectory_model() %>%
+  add_trajectory_params(
+    lat = 43.45,
+    lon = -79.70,
+    height = 50,
+    duration = 24,
+    days = "2015-07-01",
+    daily_hours = c(0, 10),
+    direction = "forward",
+    met_type = "reanalysis",
+    met_dir = "met",
+    exec_dir = "out"
+  ) %>%
+  run_model()
+```
+
+```{r}
+# Get a data frame containing the model results
+trajectory_tbl <- trajectory_model %>% run_model()
+
+trajectory_tbl
+```
+
+
+

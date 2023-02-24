@@ -1,0 +1,8 @@
+"0","EP_counties <- counties(state = c(""OH"", ""PA""),"
+"0","                        cb = TRUE) # cb = TRUE specifies to download a lower resolution file (faster download)"
+"2","Retrieving data for the year 2020
+"
+"2","Using FIPS code '39' for state 'OH'
+"
+"2","Using FIPS code '42' for state 'PA'
+"

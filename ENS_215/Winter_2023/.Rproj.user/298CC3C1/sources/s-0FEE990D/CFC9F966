@@ -1,0 +1,32 @@
+{
+    "id": "CFC9F966",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1677000180393.0,
+    "source_on_save": false,
+    "relative_order": 17,
+    "properties": {
+        "expression": "nwis_ep_sites",
+        "caption": "nwis_ep_sites",
+        "totalObservations": "9",
+        "displayedObservations": "9",
+        "variables": "8",
+        "cacheKey": "EA656573",
+        "object": "nwis_ep_sites",
+        "environment": "",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=nwis_ep_sites&cache_key=EA656573&max_cols=50",
+        "preview": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 12948304202498162,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1677000180393,
+    "read_only": false,
+    "read_only_alternatives": []
+}

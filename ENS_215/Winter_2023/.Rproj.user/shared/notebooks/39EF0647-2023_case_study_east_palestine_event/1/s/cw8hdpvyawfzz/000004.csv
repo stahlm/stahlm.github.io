@@ -1,0 +1,6 @@
+"0","ep_met_stations <- nearest_stations(LAT = ep_lat,"
+"0","                                    LON = ep_lon,"
+"0","                                    distance = 50, return_full = T)"
+"2","Error in nearest_stations(LAT = ep_lat, LON = ep_lon, distance = 50, return_full = T) : 
+  unused argument (return_full = T)
+"

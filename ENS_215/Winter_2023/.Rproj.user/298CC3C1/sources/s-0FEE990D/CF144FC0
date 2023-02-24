@@ -1,0 +1,32 @@
+{
+    "id": "CF144FC0",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1676991526248.0,
+    "source_on_save": false,
+    "relative_order": 16,
+    "properties": {
+        "expression": "met_df",
+        "caption": "met_df",
+        "totalObservations": 51,
+        "displayedObservations": 51,
+        "variables": 47,
+        "cacheKey": "F74C3AA3",
+        "object": "met_df",
+        "environment": "",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=met_df&cache_key=F74C3AA3&max_cols=50",
+        "preview": 0
+    },
+    "folds": "",
+    "lastKnownWriteTime": 22518311674839107,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1676991526248,
+    "read_only": false,
+    "read_only_alternatives": []
+}

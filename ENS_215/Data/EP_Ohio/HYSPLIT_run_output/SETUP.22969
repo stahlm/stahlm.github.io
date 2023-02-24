@@ -1,0 +1,8 @@
+&SETUP
+NUMPAR = 22000,
+MAXPAR = 23000,
+INITD = 0,
+ndump = 2,
+ncycl = 2,
+poutf = 'PARDUMP.22969',
+/
