@@ -1,0 +1,1 @@
+"0","lm_1 <- lm(data = Dhaka_gw, formula = As_ugL ~ P__mgL)"

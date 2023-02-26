@@ -8,6 +8,23 @@ Found this cool climate dataset
 726130-14755
 
 ```{r}
+df_iso <- data.frame(x = c(-20, 10), y = c(-150,0))
+```
+
+```{r fig.width= 3, fig.height= 3}
+
+df_iso %>% 
+  ggplot(aes(x = x, y = y)) +
+  geom_point() +
+  geom_abline(slope = 8, intercept = 10) +
+  
+  theme_classic() +
+  
+  theme()
+```
+
+
+```{r}
 library(GSODR)
 library(tidyverse)
 ```

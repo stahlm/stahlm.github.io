@@ -1,0 +1,348 @@
+---
+title: "Interactive graphics"
+author: "ENS-215"
+date: "27-Feb-2023"
+output:
+  html_document:
+    df_print: paged
+    theme: spacelab
+    toc: yes
+    toc_float: yes
+---
+
+<br/>
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+library(lubridate)
+```
+
+Throughout the term we have been creating visualizations of our data to understand, explain, and communicate our data and findings.  However, all of the graphics have been static, thus presenting a fixed graphical representation.  While static graphics can serve our purposes much of the time, there are nonetheless many scenarios where you would like to be able to dynamically interact with your graphic.  In particular during the exploratory phases of data analysis you often want to do things such as zoom, pan, select subsets of data, and turn on and off layers -- these types of interactivity can often speed up the process of exploratory data analysis.  Interactive graphics also allow you to share a graphic with colleagues and allow them to explore the data without the need for the person creating the graphic (you) to create a new version everytime they would like to focus in on a particular section of the graphic or subset of data.  Interactive graphics are also an excellent tool for communication and education purposes as they allow the user of the graphic to explore the data and extract insight in ways that are not possible with static graphics.  
+
+<br/>
+
+
+
+
+## Interactive graphics with `plotly`
+
+The **plotly** package allows you to easily create a wide variety of interactive graphics in R.  Plotly is a very well developed package with a large user base and many detailed examples available on the web.  A great feature of plotly is that in addition to using the built-in plotting features, you can also convert **ggplot2** graphics into interactive ones -- thus allowing you to create interactive graphics without having to learn/master a new package.  
+
+Let's load in the plotly package (if you haven't yet installed it, go to you package pane and do so first).
+```{r message = FALSE}
+library(plotly)
+```
+
+Let's load NOAA monthly temperature data for the each US state from 1895 to 2017.  
+```{r message = FALSE}
+state_temps <- read_csv("https://stahlm.github.io/ENS_215/Data/NOAA_State_Temp_Lab_Data.csv")
+```
+
+
+
+Now let's use `ggplot()` to create a boxplot summarizing monthly temperatures in the state of California.  
+```{r}
+fig_1<- state_temps %>% 
+  filter(state_cd == "CA") %>% 
+  ggplot(aes(x = factor(Month), y = Avg_Temp_F)) +
+  geom_boxplot() +
+  theme_classic() +
+  labs(title = "CA Monthly temperatures",
+       x = "Month",
+       y = "Temperature (F)")
+
+
+fig_1
+```
+
+We have a nice static graphic here, but it would be great to have an interactive version to allow us to dynamically explore this data.
+
+
+We can easily create an interactive graphic by passing our `ggplot2` figure object `fig_1` to the function `ggploty()` from the `plotly` package.  
+
+This will now convert your static `ggplot2` graphic to an interactive graphic.  When you run this code, the interactive graphic will appear in your viewer pane.  You can view and interact with the graphic in the viewer pane, however I reccomend that you show the graphic in a new window by clicking the window with an arrow icon at the top toolbar of your viewer pane.  This opens the graphic in your web browser and makes it much easier to interact with.  
+
+When you create the graphic spend a few minutes exploring and learning how to use the plotly interface.  You will notice that in your plotly window there is a toolbar that has some useful functionality.  
+```{r}
+ggplotly(fig_1)
+```
+
+<br/>
+
+For our first example we converted a ggplot2 boxplot to an interactive graphic using the plotly `ggplotly()` function.  We can similarly apply this function to convert any other ggplot2 graphic to an interactive version.   
+
+Let's load in the atmospheric CO~2~ data from Mauna Loa to use in the following example.
+```{r message=FALSE, warning=FALSE}
+mauna_loa <- read_csv("https://stahlm.github.io/ENS_215/Data/Mauna_Loa_CO2.csv", skip = 2)
+```
+
+
+First we will use `ggplot()` to generate a static figure showing the monthly CO~2~ concentrations from 2010 to 2018, where each year is its own line.
+```{r}
+fig_mauna_loa <- mauna_loa %>% 
+  filter(Year >= 2010) %>% 
+  ggplot(aes(x = Month, y = CO2_ppm, group = Year, color = Year)) +
+  geom_line() +
+  scale_color_gradient(low = "blue", high = "red") +
+  theme_classic() +
+  labs(title = "Atmospheric CO2",
+       subtitle = "Measured at Mauna Loa, Hawaii",
+       x = "Month",
+       y = "CO2 (ppm)",
+       caption = "Data source: NOAA/ESRL") +
+  scale_x_continuous(breaks = seq(1:12))
+
+
+fig_mauna_loa
+```
+
+
+Now let's generate an interactive graphic using `ggplotly()`
+```{r}
+ggplotly(fig_mauna_loa)
+```
+
+As you can see we can easily convert any of our ggplot2 graphics to an interactive version.  
+
+
+Let's see another example to highlight a few additional features of plotly.  In this example we'll use the gapminder data.  
+```{r message = FALSE}
+library(gapminder)
+my_gap <- gapminder
+```
+
+
+
+```{r}
+fig_gap <- my_gap %>% 
+  ggplot(aes(x = gdpPercap, y = lifeExp, fill = continent, group = country)) +
+  geom_point(shape = 21, alpha = 0.75, color = "black", size = 2) +
+  scale_x_log10() +
+  theme_classic() 
+  
+
+fig_gap
+```
+
+Now let's use `ggplotly()` to create an interactive version of the above scatter plot.  
+
+Note, that we are specifying `tooltip = ...` in our `ggplotly()` function call.  The `tooltip` argument allows us to control the information that is displayed when we place our mouse cursor over a data point.  You can specify the variables that you would like to display.  When specifying the variable you can either use its name or the aesthetic it maps to (e.g. color, x, y, fill, ...).    
+```{r}
+ggplotly(fig_gap, tooltip = c("group","x","y"))
+```
+
+Another important feature of plotly is the ability to turn on and off plotted layers.  If you click on the continent items in the legend of you plotly graphic, this will allow you to toggle that layer on or off.  
+
+
+
+For our final plotly example we will use the BGS Bangladesh groundwater chemistry data.
+```{r message = FALSE}
+bangladesh_gw <- read_csv("https://stahlm.github.io/ENS_215/Data/NationalSurveyData_DPHE_BGS_LabData.csv")
+```
+
+
+For this example we will directly create our graphic using the `plot_ly()` function as opposed to creating a `ggplot2` graphic and then converting it to a plotly object.  
+
+Note that when mapping a variable to an aesthetic you use `= ~` in `plot_ly()`.  The figure below will plot each of the groundwater samples in 3-dimensions, where the x and y coordinates are the longitute and latitude and the z coordinate is the well's depth.  This will allow us to "see" into the subsurface and view all of the samples.  We are also color coloring the well by it's log~10~ arsenic concentration.  
+```{r}
+color_ramp <- colorRamp(c("blue", "yellow", "red"))
+
+plot_ly(bangladesh_gw, x = ~LONG_DEG, y = ~LAT_DEG, z = ~-WELL_DEPTH_m, name = ~DIVISION) %>%
+  add_markers(color = ~log10(As_ugL), colors = color_ramp, text = ~paste("As =", As_ugL))
+```
+
+Take a minute or two to explore the 3D graphic. 
+
+<br/>
+
+### Exercise
+1. Create an interactive graphic of your choosing using plotly.
+
+<br/>
+
+
+
+## Interactive time-series with `dygraph`
+It is often very helpful to add interactivity to time-series data.  Often we would like to zoom in on a particular time period within a longer times-series.  
+
+The [dygraphs](https://rstudio.github.io/dygraphs/index.html) package provides excellent functionality for creating interactive time-series graphics.  
+
+Let's first load in the `dygraphs` package and the `xts` package, which we will also use along with dygraphs (you will probably need to first install these packages).  
+```{r message = FALSE}
+library(dygraphs)
+library(xts)
+```
+
+<br/>
+
+
+Now let's load in some streamflow data from the USGS streamgage at Schoharie Creek (01351500).  This will give us a nice time-series dataset to work with in dygraphs.  
+```{r message=FALSE}
+flow <- read_csv("https://stahlm.github.io/ENS_215/Data/USGS_flow_01351500.csv") %>% 
+  drop_na() %>% 
+  filter(Year >= 1940 & Year <= 2016) %>%  # select years 1940 through 2016
+  mutate(Date = make_date(Year, Month, Day)) %>% # create a Date column that has the dates as an R date object
+  select(Date, flow_cfs)
+```
+
+<br/>
+
+It is important to point out that dygraphs require your data to be an **xts** object.  The xts format is an effective way of storing time-series data.  It is easy to convert you standard R date object into an **xts** object using the `xts()` function from the `xts` package.  
+
+Let's now convert our `flow` data frame into an xts object.  You can see that the syntax is `xts(data_to_convert, order.by = dates)`.  Thus we use the Date column from `flow` to order the `flow_cfs` column from `flow` when performing the conversion to xts.  
+```{r}
+flow_ts <- xts(flow[,"flow_cfs"], order.by = flow$Date)
+```
+
+
+Now that we have an xts object `flow_ts`, we are ready to use the `dygraph()` function to plot our time series data.  Just like with the plotly graphics, it is easier to view dygraph graphics in your browser (click the icon to pop out the graphic to a new window).
+```{r}
+dygraph(flow_ts) 
+```
+
+You'll see that you can zoom by selecting a region of the time-series.  Also note that at the top of the graphic there is text that displays the date and y-value of the data corresponding to your cursor location.  Take a few minutes to explore the graphic and learn about the dyrgraph functionality.
+
+
+
+Let's create another dygraph using the same data, but this time let's add additional formatting and features.  You can see in the code below, that we updated the series info with the `dySeries()` function.  The y-axis label (`ylab`) and used `label = ` to update the name of the series from `"flow_cfs"` to `"Schoharie Creek"`.  We also added a range selector bar to the bottom of the figure using the `dyRangeSelector()`.  We made a few other formatting changes as well -- you can learn more about additional dygraph features [here](https://rstudio.github.io/dygraphs/index.html).   
+```{r}
+dygraph(flow_ts, ylab = "Flow (cfs)") %>% 
+  dySeries("flow_cfs", label = "Schoharie Creek") %>% 
+  dyRangeSelector(height = 50) %>% 
+  dyHighlight(highlightCircleSize = 5, 
+              highlightSeriesBackgroundAlpha = 0.5,
+              hideOnMouseOut = FALSE) %>%
+  dyOptions(drawGrid = FALSE)
+```
+
+
+<br/>
+
+## Animations with `gganimate`
+Animations are another way of presenting data in a more dynamic fashion.  We can create animations in R using the `gganimate` package.  We will go through a few basic examples, though you can learn more [here](https://gganimate.com/articles/gganimate.html).
+
+
+Let's first load in the `gganimate` package (you will probably need to first install this package).  You will also need the `gifski` package, so you should install that package and load it in as well.  
+```{r message = FALSE, warning = FALSE}
+library(gganimate)
+library(gifski)
+```
+
+<br/>
+
+The `gganimate` package allows you to take your `ggplot2` graphic and create an animation by simply breaking your graphic up into frames that progress through time (or some other variable that defines breaks in the data). 
+
+First let's generate a static graphic showing the atmospheric CO~2~ concentration for each year since 1980, where there each year is represented by its own line. 
+```{r}
+fig_mauna_loa <- mauna_loa %>% 
+  filter(Year >= 1980) %>% 
+  ggplot(aes(x = Month, y = CO2_ppm, group = Year, color = Year)) +
+  geom_line() +
+  scale_color_gradient(low = "blue", high = "red") +
+  theme_classic() +
+  labs(title = "Atmospheric CO2",
+       subtitle = "Year: {frame_along}",
+       x = "Month",
+       y = "CO2 (ppm)",
+       caption = "Data source: NOAA/ESRL") +
+  scale_x_continuous(breaks = seq(1:12)) 
+  
+
+fig_mauna_loa
+```
+
+
+
+<br/> 
+
+It would be interesting and informative to create an animation of the above graphic where the lines appear one by one, in order of their year.  All this requires is a single function from `gganimate`.  In the example below we use the `transition_reveal()` function and specify that the variable to use when splitting the graphic into frames is the `Year` variable from the `mauna_loa` data frame.  
+
+When you run the code below the animation will be generated.  Note that this may take a minute or so.  Similar to before, you can pop the graphic out to a new window to allow for easier viewing.  
+```{r echo = FALSE, eval = FALSE}
+fig_mauna_loa + transition_reveal(Year) 
+```
+
+
+Let's create essentially the same animation as above, though this time let's show all the years from 1958 onwards.  Let's also save the animation as a **gif** so that you have a permanent copy that can be viewed and shared.  
+```{r}
+mauna_loa %>% 
+  filter(Year >= 1958) %>% 
+  mutate(Year = round(Year,2)) %>%  # round the years to the 2nd decimal place (makes dynamic plot title nicer)
+  ggplot(aes(x = Month, y = CO2_ppm, group = Year, color = Year)) +
+  geom_line() +
+  scale_color_gradient(low = "blue", high = "red") +
+  theme_classic() +
+  labs(title = "Atmospheric CO2",
+       subtitle = "Year: {frame_along}",
+       x = "Month",
+       y = "CO2 (ppm)",
+       caption = "Data source: NOAA/ESRL") +
+  scale_x_continuous(breaks = seq(1:12)) +
+  transition_reveal(Year) # create the animation
+  
+
+anim_save("./Mauna_Loa_seasonal.gif") # save the animation to your current directory
+```
+
+<br/>
+
+As our final example, let's create an animation of the famous "hockey stick" graphic of atmospheric CO~2~ concentrations.  
+```{r}
+fig_mauna_loa_ts <- mauna_loa %>% 
+  ggplot(aes(x = make_date(Year, Month, 15), y = CO2_ppm)) + 
+  geom_line(size = 1) +
+  theme_bw() +
+  labs(title = expression("Atmospheric CO"[2]),
+       subtitle = "Measured at Mauna Loa, Hawaii",
+       x = "",
+       y = expression("CO"[2]* " (ppm)"),
+       caption = "Data source: NOAA/ESRL") 
+
+fig_mauna_loa_ts
+```
+
+Now let's use `gganimate` to create an animation.  We will use `transition_reveal()` to have the line appear on monthly time-steps (_i.e._ in each frame the next month of data will be added).
+```{r}
+fig_mauna_loa_ts + transition_reveal(make_date(Year, Month, 15)) # create the animation
+
+anim_save("./Mauna_Loa_ts.gif") # save the animation to your current directory
+```
+
+<br/>
+
+## Learning more
+There are many more features in `plotly`, `dygraphs`, and `gganimate`.  I encourage you to explore some more of these features/functionality at the following links:
+
+[plotly](https://plotly-book.cpsievert.me/index.html)  
+
+[dygraphs](https://rstudio.github.io/dygraphs/index.html)  
+
+[gganimate](https://gganimate.com/index.html)  
+
+
+If you have additional time today, try making some more graphics that implement some of these additional features.  Also think of ways that you might integrate these graphics into your final projects.   
+
+
+
+```{r echo=FALSE, eval=FALSE}
+## Interactive tables
+library(DT)
+```
+
+```{r echo=FALSE, eval=FALSE}
+state_temps %>% 
+  filter(state_cd == "NY") %>% 
+  datatable()
+```
+
+
+
+```{r echo=FALSE, eval=FALSE}
+state_temps %>% 
+  filter(state_cd %in% c("MA","NY")) %>% 
+  datatable(rownames = FALSE, filter = "top")
+```
+
+
+
+

@@ -42,6 +42,13 @@ output:
 
 ## Lectures 
 
+### Week 9  
+
++ Mon (27-Feb) -- **Interactive graphics**
+[(html)](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_02_27.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Lectures/2023_02_27.Rmd)  
+
+***
+
 ### Week 8  
 **Note:** ESPE Winter Seminar Series [Talk on Wed (Feb 22^nd^, 6 PM in the Nott)](https://www.union.edu/espe/2023-winter-seminar-series).  Extra credit for attending the talk.  
 
