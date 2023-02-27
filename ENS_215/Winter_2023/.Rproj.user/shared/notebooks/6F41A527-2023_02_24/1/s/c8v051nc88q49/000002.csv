@@ -1,5 +1,0 @@
-"0","Dhaka_gw %>% "
-"0","  ggplot(aes(x = P__mgL, y = As_ugL)) +"
-"0","  geom_point(alpha = 0.5) + "
-"0","  geom_smooth(method = ""lm"") +"
-"0","  theme_classic() "

@@ -1,0 +1,4 @@
+"0","lm_mauna_loa_points %>% "
+"0","  ggplot(aes(x = Date, y = residual)) +"
+"0","  geom_point() +"
+"0","  theme_classic()"

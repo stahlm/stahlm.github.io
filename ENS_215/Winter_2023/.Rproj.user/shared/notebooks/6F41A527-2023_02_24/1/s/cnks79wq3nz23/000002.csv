@@ -1,0 +1,1 @@
+"0","lm_mauna_loa <- lm(CO2_ppm ~ Date, data = mauna_loa)"

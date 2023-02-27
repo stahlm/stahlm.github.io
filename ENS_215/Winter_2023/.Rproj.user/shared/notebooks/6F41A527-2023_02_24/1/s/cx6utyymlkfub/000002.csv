@@ -1,0 +1,3 @@
+"0","lm_mauna_loa_points <- get_regression_points(lm_mauna_loa)"
+"0",""
+"0","head(lm_mauna_loa_points)"

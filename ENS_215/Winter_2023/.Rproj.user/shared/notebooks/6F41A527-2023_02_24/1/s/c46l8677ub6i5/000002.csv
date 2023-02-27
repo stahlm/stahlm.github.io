@@ -1,0 +1,1 @@
+"0","loess_mauna_loa <- loess(CO2_ppm ~ Date, data = mauna_loa, span = 1/4)"

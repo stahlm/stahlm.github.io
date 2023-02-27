@@ -1,0 +1,10 @@
+"0",""
+"0","loess_mauna_loa_residuals <- bind_cols(as.tibble(loess_mauna_loa$x), as.tibble(loess_mauna_loa$residuals)) %>% "
+"0","  rename(residual = value)"
+"2","`as.tibble()` was deprecated in tibble 2.0.0.
+Please use `as_tibble()` instead.
+The signature and semantics have changed, see `?as_tibble`."
+"0","loess_mauna_loa_residuals %>% "
+"0","  ggplot(aes(x = Date, y = residual)) +"
+"0","  geom_point() +"
+"0","  theme_classic()"
