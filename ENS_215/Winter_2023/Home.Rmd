@@ -47,6 +47,9 @@ output:
 + Mon (27-Feb) -- **Interactive graphics**
 [(html)](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_02_27.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Lectures/2023_02_27.Rmd)  
 
++ Wed (1-Mar) -- **Writing functions**
+[(html)](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_03_01.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Lectures/2023_03_01.Rmd)  
+
 ***
 
 ### Week 8  
