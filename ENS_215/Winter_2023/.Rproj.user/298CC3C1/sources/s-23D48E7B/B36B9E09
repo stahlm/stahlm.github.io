@@ -3,22 +3,22 @@
     "path": "~/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2023/Lectures/case_study_seasonality_indices.Rmd",
     "project_path": "Lectures/case_study_seasonality_indices.Rmd",
     "type": "r_markdown",
-    "hash": "0",
+    "hash": "1542735426",
     "contents": "",
     "dirty": false,
     "created": 1678033783384.0,
     "source_on_save": false,
     "relative_order": 15,
     "properties": {
-        "cursorPosition": "239,106",
-        "scrollLine": "240"
+        "cursorPosition": "258,49",
+        "scrollLine": "250"
     },
     "folds": "",
-    "lastKnownWriteTime": 1678034235,
+    "lastKnownWriteTime": 1678107898,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1678034235567,
+    "last_content_update": 1678107898772,
     "read_only": false,
     "read_only_alternatives": []
 }

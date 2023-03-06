@@ -256,7 +256,7 @@ df_seasonality_bos_sfo %>%
 
 I am now going to introduce the mathematical implementation of the seasonality metrics from Markham (1970): Seasonality Index (SI) and Seasonal Concentration (SC).  
 
-> $$ SI = \frac{(V_x^2 + V_y^2)^2}{V_{tot}}$$
+> $$ SI = \frac{(V_x^2 + V_y^2)^{1/2}}{V_{tot}}$$
 
  > $$ SC = tan^{-1}(\frac{V_y}{V_x})* \frac{180}{\pi} + a$$
 
