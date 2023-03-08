@@ -1,0 +1,29 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is my **bold** text
+
+Our notes should be in here and this is *italics*  
+
+
+
+
+This is a new line 
+
+```{r}
+2+5
+```
+
+
+```{r}
+
+```
+
+
+
+```{r}
+
+```
+
