@@ -1,0 +1,38 @@
+---
+title: "Final project: readme"
+output: html_notebook
+---
+
+These notes describe the final project directory
+
+## Folder (Data)
+This folder
+
+
+## Final_analysis.Rmd
+This file is the file that you should run to perf
+
+```{r fig.height = 4, fig.width = 4}
+
+# Your code for your figure
+```
+
+```{r}
+G20_countries <- c("US",
+                   "China",
+                   "Germany",
+                   "Canada",
+                   "UK"
+                   )
+```
+
+```{r}
+my_data  %>% filter(country %in% G20_countries)
+```
+
+```{r}
+map_data %>% 
+  mutate(CoalTWh = if_else(Entity %in% G20, CoalTwh, NA_real_))
+```
+
+

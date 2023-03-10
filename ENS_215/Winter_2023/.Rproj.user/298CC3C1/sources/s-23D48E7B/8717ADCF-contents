@@ -47,7 +47,9 @@ output:
 + Mon (6-Mar) -- **Seasonality indices: Environmental applications**
 [(html)](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/case_study_seasonality_indices.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Lectures/case_study_seasonality_indices.Rmd)  
 
-+ Wed (8-Mar) -- **Final projects**
++ Wed (8-Mar) -- **Final projects**  
+
++ Fri (10-Mar) -- **Final project presentations**  
 
 *** 
 
@@ -188,6 +190,8 @@ output:
 + Lab 6 -- **Project formatting, organization, and additional project work** [(html)](https://stahlm.github.io/ENS_215/Winter_2023/Labs/RMarkdown_formatting_basics.html) 
 
 + Lab 7 -- **Final projects: progress updates and additional analysis**
+
++ Lab 8 -- **Final project presentations**
 
 ```{r eval = F, echo = F}
 [(html)](https://stahlm.github.io/ENS_215/Winter_2023/Labs/Lab_Global_Dams.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Labs/Lab_Global_Dams.Rmd)  
