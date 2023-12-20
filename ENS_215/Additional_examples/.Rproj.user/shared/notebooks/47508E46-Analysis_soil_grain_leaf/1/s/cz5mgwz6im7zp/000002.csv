@@ -1,0 +1,4 @@
+"0","```r
+df_chem_corr <- df_chem_cambodia %>% 
+  select_if(is.numeric)
+```"

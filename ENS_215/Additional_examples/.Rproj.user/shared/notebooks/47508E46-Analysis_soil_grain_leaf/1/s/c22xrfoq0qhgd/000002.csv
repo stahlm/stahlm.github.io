@@ -1,0 +1,10 @@
+"0","```r
+df_chem_cambodia %>% 
+  filter(!is.na(Soil_texture_category)) %>% 
+  ggplot(aes(x = Soil_texture_category, y = Th_Soil)) +
+  geom_boxplot(fill = \"lightgrey\", outlier.shape = NA) +
+  
+  geom_jitter(width = 0.1, height = 0) +
+  
+  theme_classic()
+```"

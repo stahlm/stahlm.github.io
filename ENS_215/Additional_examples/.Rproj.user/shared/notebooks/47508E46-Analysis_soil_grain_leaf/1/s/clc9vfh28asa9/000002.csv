@@ -1,0 +1,4 @@
+"0","```r
+table_cluster <- df_chem_cambodia %>% 
+  select(Site, contains(\"Grain\"))
+```"

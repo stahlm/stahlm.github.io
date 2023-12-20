@@ -1,0 +1,6 @@
+"0","```r
+rf_formula <- as.formula(As_Grain ~ 
+                           Ba_Soil +
+                           Th_Soil
+                           )
+```"

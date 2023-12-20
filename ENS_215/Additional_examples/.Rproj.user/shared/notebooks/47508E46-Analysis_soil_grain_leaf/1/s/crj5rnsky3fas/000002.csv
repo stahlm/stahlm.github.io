@@ -1,0 +1,4 @@
+"0","```r
+df_chem_cambodia <- df_chem_cambodia %>% 
+   mutate(across(4:last_col(), ~ as.numeric(.)))
+```"

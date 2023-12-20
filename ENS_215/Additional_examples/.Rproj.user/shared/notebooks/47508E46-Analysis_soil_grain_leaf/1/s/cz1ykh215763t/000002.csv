@@ -1,0 +1,6 @@
+"0","```r
+occur_recur <- sf_chem_cambodia %>% 
+  st_drop_geometry() %>% 
+  select(Site, occur_value, recurr_value, seasonal_value, transitions_value)
+  
+```"

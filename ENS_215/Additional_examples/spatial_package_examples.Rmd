@@ -1,0 +1,37 @@
+---
+title: "R Notebook"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r}
+library(tidyverse)
+```
+
+## Getting areas of interest (AOIs) and borders
+
+### AOI package
+```{r}
+library(AOI)
+```
+
+
+
+## AOI and climateR
+
+```{r}
+library(AOI)
+library(climateR)
+```
+
+```{r}
+aoi_to_use <- aoi_get(state = "MA")
+```
+
+```{r}
+a <- aoi_map(aoi_to_use,returnMap = T)
+a
+```
+
+

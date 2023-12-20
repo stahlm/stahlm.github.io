@@ -1,0 +1,6 @@
+"0","```r
+plot(clust.pam, type = \"sc\")
+```"
+"1","Error in xy.coords(x, y, xlabel, ylabel, log) : 
+  'x' is a list, but does not have components 'x' and 'y'
+"

@@ -1,0 +1,6 @@
+"0","a <- aoi_map(aoi_to_use,returnMap = T)"
+"0","a"
+"2","Warning: over-long path"
+"2","Warning: over-long path"
+"2","Error in dirname(destfiles) : path too long
+"

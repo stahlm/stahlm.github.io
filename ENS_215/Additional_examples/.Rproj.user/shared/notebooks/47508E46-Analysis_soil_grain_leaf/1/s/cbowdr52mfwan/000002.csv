@@ -1,0 +1,22 @@
+"0","rf_formula <- as.formula(As_Grain ~ 
+                           Ag_Soil +
+                           As_Soil +
+                           Au_Soil +
+                           Ba_Soil +
+                           Ca_Soil +
+                           Cd_Soil +
+                           Co_Soil +
+                           Cr_Soil +
+                           Cs_Soil +
+                           Cu_Soil +
+                           Fe_Soil +
+                           Hg_Soil +
+                           K_Soil +
+                           Mn_Soil +
+                           Mo_Soil +
+                           Ni_Soil +
+                           Pb_Soil +
+                           Pd_Soil +
+                           Rb_Soil +
+                           S_Soil
+                           )"

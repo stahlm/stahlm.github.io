@@ -1,0 +1,3 @@
+"0","reg_cube %>%"
+"0","  dplyr::filter(tile == reg_cube$tile) %>%"
+"0","  plot(red = ""B12"", green = ""B8A"", blue = ""B05"", date = sits_timeline(reg_cube)[4])"

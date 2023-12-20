@@ -1,0 +1,5 @@
+"0","```r
+res <- cor(df_chem_corr, use = \"pairwise.complete.obs\")
+```"
+"1","Warning: the standard deviation is zero
+"

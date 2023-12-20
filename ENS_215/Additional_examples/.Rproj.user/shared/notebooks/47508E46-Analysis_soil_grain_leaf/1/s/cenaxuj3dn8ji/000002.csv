@@ -1,0 +1,12 @@
+"0","```r
+sf_chem_cambodia_long %>% 
+  
+  filter(str_detect(chem_param, \"Grain\") ) %>% 
+  drop_na() %>% 
+  ggplot(aes(x = reorder(chem_param, conc), y = conc)) +
+  geom_boxplot(fill = \"lightgrey\") +
+  
+  scale_y_log10() +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 60, hjust = 1)) 
+```"

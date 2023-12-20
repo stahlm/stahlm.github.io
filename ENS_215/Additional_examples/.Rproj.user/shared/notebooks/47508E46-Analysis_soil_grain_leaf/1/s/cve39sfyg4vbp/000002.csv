@@ -1,0 +1,15 @@
+"0","```r
+sf_chem_cambodia_long %>% 
+  filter(chem_param %in% c(\"As_Soil\", \"soil_pH\", \"soil_SPC__uScm\")) %>% 
+  
+  tm_shape() +
+  tm_dots(col = \"conc\", palette = \"viridis\", size = 0.2, style = \"quantile\") +
+  
+  tm_mouse_coordinates() +
+  tm_basemap(server = c(\"Esri.WorldImagery\", \"OpenStreetMap\")) +
+  tm_scale_bar() +
+  
+  tm_facets(by = \"chem_param\", free.scales.symbol.col = T) 
+```"
+"1","Warning: Currect projection of shape . unknown. Long-lat (WGS84) is assumed.
+"

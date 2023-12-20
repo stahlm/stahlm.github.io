@@ -1,0 +1,9 @@
+"0","```r
+df_chem_cambodia %>% 
+  filter(!is.na(Soil_texture_category)) %>% 
+  
+  ggplot(aes(x = Fe_Grain, y = As_Grain, fill = Soil_texture_category, color = Soil_texture_category)) +
+  geom_point(shape = 21, size = 5) +
+  geom_smooth(method = sen, se = F) +
+  theme_classic()
+```"

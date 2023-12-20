@@ -1,0 +1,15 @@
+"0","```r
+df_chem_cambodia %>% 
+  mutate(cluster_id_leaf = as.factor(cluster_id_leaf)) %>% 
+  
+  filter(!is.na(cluster_id_leaf)) %>% 
+  
+  ggplot(aes(x = cluster_id_leaf, y = As_Grain, fill = cluster_id_leaf)) +
+  geom_boxplot(outlier.shape = NA) +
+  
+  #scale_fill_viridis_d() +
+  geom_jitter(width = 0.1, height = 0, shape = 21,
+              fill = \"lightgrey\") +
+  
+  theme_classic()
+```"

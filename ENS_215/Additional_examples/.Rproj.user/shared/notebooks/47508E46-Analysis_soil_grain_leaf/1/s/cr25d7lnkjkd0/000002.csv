@@ -1,0 +1,11 @@
+"0","```r
+df_chem_cambodia %>% 
+  ggplot(aes(x = cluster_id_soil, y = cluster_id_leaf, fill = factor(cluster_id_grain))) +
+  
+  geom_jitter(width = 0.1, height = 0.1, shape = 21,
+              alpha = 0.5, size = 3) +
+  
+  theme_classic() +
+  
+  coord_equal() 
+```"

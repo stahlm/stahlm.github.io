@@ -1,0 +1,8 @@
+"0","```r
+df_chem_cambodia %>% 
+  ggplot(aes(x = Ba_Soil, y = Zn_Soil, fill = As_Grain)) +
+  geom_point(shape = 21, size = 3) +
+  
+  scale_fill_viridis_c() +
+  theme_classic()
+```"

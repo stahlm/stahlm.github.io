@@ -1,0 +1,9 @@
+"0","```r
+df_chem_corr <- df_chem_cambodia %>% 
+  select_if(is.numeric)
+  
+data_cor <- cor(df_chem_corr,  # Calculate correlations
+                df_chem_corr$As_Leaf, use = \"pairwise.complete.obs\")
+```"
+"1","Warning: the standard deviation is zero
+"

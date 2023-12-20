@@ -1,0 +1,250 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r}
+library(tidyverse)
+library(dtwclust)
+```
+
+
+```{r}
+base_path = "../Data/Remote_sensing/EVI2_NDWI/Planet_FieldROIs/"
+```
+
+```{r}
+file_list <- list.files(path = base_path, full.names = F)
+```
+
+## load in files
+
+
+```{r message=F, warning=F}
+i_loop <- 1
+
+for (i_file in file_list) {
+  
+  if (str_detect(i_file, pattern = "EVI2.txt")) {
+    header_names = c("DATE", "EVI2_min", "EVI2_mean_minus_std", "EVI2_mean", "EVI2_mean_plus_std", "EVI2_max")
+  }
+  
+  if (str_detect(i_file, pattern = "NDWI.txt")) {
+    header_names = c("DATE", "NDWI_min", "NDWI_mean_minus_std", "NDWI_mean", "NDWI_mean_plus_std", "NDWI_max")
+  }
+  
+  i_site <- str_remove(i_file, "_EVI2.txt")
+  i_site <- str_remove(i_site, "_NDWI.txt")
+  
+  fpath <- paste(base_path, i_file, sep = "") 
+  
+  i_table <- read_table(fpath, skip = 7, col_names = header_names)
+  
+  #colnames(i_table) <- header_names
+  
+  i_table$site_id <- i_site
+  
+  
+  i_table <- i_table %>% 
+    pivot_longer(cols = c(-DATE, -site_id), names_to = "stat_name", values_to = "stat_value")
+  
+  i_table <- i_table %>% 
+    group_by(DATE, site_id,stat_name) %>% 
+    summarize(stat_value = mean(stat_value)) %>% 
+    ungroup()
+  
+  if (i_loop == 1) {
+    all_table <- i_table
+  }
+  
+  if (i_loop > 1) {
+    all_table <- bind_rows(all_table, i_table)
+  }
+  
+  
+  i_loop <- 2
+}
+```
+
+
+
+```{r}
+all_table_wide <- all_table %>% 
+  pivot_wider(names_from = stat_name, values_from = stat_value)
+```
+
+
+```{r}
+all_table_wide %>% 
+  filter(DATE > 2020) %>% 
+  ggplot(aes(x = DATE, y = NDWI_mean, group = site_id)) +
+  geom_line()
+```
+
+
+```{r}
+unique(all_table$stat_name)
+```
+
+
+
+
+## Cluster
+```{r}
+cluster_table <- all_table %>% 
+  filter(stat_name == "EVI2_mean") %>% 
+  select(DATE, site_id, stat_value)
+```
+
+Dates as columns
+```{r}
+cluster_table <- cluster_table %>% 
+  #pivot_wider(names_from = site_id, values_from = stat_value)
+  pivot_wider(names_from = DATE, values_from = stat_value) %>% 
+  ungroup()
+```
+
+Pivot longer again to get a identical set of dates for all time series
+```{r}
+cluster_table <- cluster_table %>% 
+  pivot_longer(cols = c(-site_id), names_to = "DATE", values_to = "stat_value")
+```
+
+
+
+```{r}
+i_loop <- 1
+
+for (i_site in unique(cluster_table$site_id)) {
+  
+  i_interp <- cluster_table %>% 
+    filter(site_id == i_site) %>% 
+    select(site_id, DATE) %>% 
+    arrange(DATE)
+  
+  i_data <- cluster_table %>% 
+    filter(site_id == i_site) %>% 
+    filter(!is.na(stat_value)) %>% 
+    arrange(DATE) 
+  
+  i_interp$interp_val <- approx(x = i_data$DATE, 
+                       y = i_data$stat_value, 
+                       xout = i_interp$DATE)$y
+  
+  if (i_loop == 1) {
+    cluster_table_interp <- i_interp
+  }
+  
+  if (i_loop > 1) {
+    cluster_table_interp <- cluster_table_interp %>% 
+      bind_rows(i_interp)
+  }
+
+  i_loop <- 2
+}
+```
+
+
+
+
+
+
+
+Keep date range such min date at all sites is the maximum min date across all sites and such that max date at all sites is the min max date across all sites
+
+
+
+
+```{r}
+date_limits_table <- cluster_table_interp %>% 
+  filter(!is.na(interp_val)) %>% 
+  group_by(site_id) %>% 
+  summarize(DATE_min = min(DATE),
+            DATE_max = max(DATE)
+            )
+```
+
+```{r}
+date_limits <- date_limits_table %>% 
+  summarize(min_DATE = max(DATE_min),
+            max_DATE = min(DATE_max)
+            )
+```
+
+
+Pivot wider to make the dates the columns and the rows the sites
+```{r}
+cluster_table_interp <- cluster_table_interp %>% 
+  filter(DATE >= date_limits$min_DATE, DATE <= date_limits$max_DATE) %>% 
+  select(site_id, DATE, interp_val)
+```
+
+```{r}
+cluster_table_interp <- cluster_table_interp %>% 
+  pivot_wider(names_from = DATE, values_from = interp_val)
+```
+
+
+
+```{r}
+#cluster_table <- column_to_rownames(cluster_table, var = "DATE")
+cluster_table_interp <- column_to_rownames(cluster_table_interp, var = "site_id")
+```
+
+
+## Cluster the data
+```{r}
+#D3 <- diss(cluster_table, "DTWARP")
+
+c1 <- tsclust(cluster_table_interp, k = 5)
+```
+
+```{r}
+cvi(c1)
+```
+
+
+
+```{r}
+plot(c1)
+```
+
+
+
+```{r}
+clust.pam <- tsclust(cluster_table_interp,
+                     type="partitional",
+                     k=2L:17L, distance="dtw", centroid="pam")
+```
+
+
+```{r}
+cvi(clust.pam[[7]])
+```
+
+```{r}
+interactive_clustering(cluster_table_interp)
+```
+
+
+```{r}
+plot(clust.pam, type = "sc")
+```
+
+
+```{r}
+D3 <- diss(stocks, "DTWARP")
+
+```
+
+
+
+
+
+
+
+
+
+
+

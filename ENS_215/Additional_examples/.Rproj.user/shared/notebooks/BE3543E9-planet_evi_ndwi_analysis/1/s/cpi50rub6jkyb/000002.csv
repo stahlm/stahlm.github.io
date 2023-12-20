@@ -1,0 +1,5 @@
+"0","```r
+cluster_table <- all_table %>% 
+  filter(stat_name == \"EVI2_mean\") %>% 
+  select(DATE, site_id, stat_value)
+```"

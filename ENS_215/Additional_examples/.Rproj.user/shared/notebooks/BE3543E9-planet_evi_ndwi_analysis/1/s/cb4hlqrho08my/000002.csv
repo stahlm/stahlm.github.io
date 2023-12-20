@@ -1,0 +1,31 @@
+"0","```r
+i_loop <- 1
+
+for (i_site in unique(cluster_table$site_id)) {
+  
+  i_interp <- cluster_table %>% 
+    filter(site_id == i_site) %>% 
+    select(site_id, DATE) %>% 
+    arrange(DATE)
+  
+  i_data <- cluster_table %>% 
+    filter(site_id == i_site) %>% 
+    filter(!is.na(stat_value)) %>% 
+    arrange(DATE) 
+  
+  i_interp$interp_val <- approx(x = i_data$DATE, 
+                       y = i_data$stat_value, 
+                       xout = i_interp$DATE)$y
+  
+  if (i_loop == 1) {
+    cluster_table_interp <- i_interp
+  }
+  
+  if (i_loop > 1) {
+    cluster_table_interp <- cluster_table_interp %>% 
+      bind_rows(i_interp)
+  }
+
+  i_loop <- 2
+}
+```"

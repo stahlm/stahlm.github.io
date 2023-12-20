@@ -1,0 +1,6 @@
+"0","```r
+score_model_interaction <- lm(As_Grain ~ Ba_Soil + Soil_texture_category, 
+                              data = df_chem_cambodia)
+
+get_regression_table(score_model_interaction)
+```"

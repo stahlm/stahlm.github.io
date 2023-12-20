@@ -1,0 +1,5 @@
+"0","```r
+df_rf <- df_chem_cambodia %>% 
+  select(As_Grain, contains(\"Soil\")) %>% 
+  drop_na()
+```"

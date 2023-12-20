@@ -1,0 +1,7 @@
+"0","```r
+df_chem_cambodia <- df_chem_cambodia %>% 
+  mutate(Site = if_else(is.na(Site_letter),
+                        Site,
+                        paste(Site, Site_letter, sep = \" \")
+                        ))
+```"

@@ -1,0 +1,8 @@
+"0","```r
+date_limits_table <- cluster_table_interp %>% 
+  filter(!is.na(interp_val)) %>% 
+  group_by(site_id) %>% 
+  summarize(DATE_min = min(DATE),
+            DATE_max = max(DATE)
+            )
+```"

@@ -1,0 +1,4 @@
+"0","```r
+df_chem_cambodia <- df_chem_cambodia %>% 
+  mutate(Soil_texture_category = if_else(str_detect(Site, \"BET-41\"), \"Clay\", Soil_texture_category))
+```"

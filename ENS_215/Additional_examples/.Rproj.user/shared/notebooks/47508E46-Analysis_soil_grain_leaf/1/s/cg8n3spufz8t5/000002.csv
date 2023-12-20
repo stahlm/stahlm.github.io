@@ -1,0 +1,6 @@
+"0","```r
+raster_occur <- raster::raster(x = \"./5508540/spatial_data/occurrence_100E_20Nv1_4_2021.tif\")
+raster_season <- raster::raster(x = \"./5508540/spatial_data/seasonality_100E_20Nv1_4_2021.tif\")
+raster_recurr <- raster::raster(x = \"./5508540/spatial_data/recurrence_100E_20Nv1_4_2021.tif\")
+raster_transitions <- raster::raster(x = \"./5508540/spatial_data/transitions_100E_20Nv1_4_2021.tif\")
+```"

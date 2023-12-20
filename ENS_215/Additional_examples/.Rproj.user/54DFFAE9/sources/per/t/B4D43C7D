@@ -1,0 +1,33 @@
+{
+    "id": "B4D43C7D",
+    "path": "~/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Additional_examples/remote_sensing_resources.Rmd",
+    "project_path": "remote_sensing_resources.Rmd",
+    "type": "r_markdown",
+    "hash": "3156507139",
+    "contents": "",
+    "dirty": false,
+    "created": 1693244419236.0,
+    "source_on_save": false,
+    "relative_order": 4,
+    "properties": {
+        "tempName": "Untitled1",
+        "chunk_output_type": "inline",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "46,37",
+        "scrollLine": "0",
+        "rmdVisualMode": "false",
+        "rmdVisualWrapConfigured": "true",
+        "docOutlineVisible": "0",
+        "rmdVisualCollapsedChunks": "",
+        "rmdVisualModeLocation": "1471:400"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1693347063,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1693347063,
+    "read_only": false,
+    "read_only_alternatives": []
+}

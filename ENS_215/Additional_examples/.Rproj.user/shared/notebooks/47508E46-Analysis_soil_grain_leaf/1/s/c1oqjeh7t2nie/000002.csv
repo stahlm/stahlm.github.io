@@ -1,0 +1,9 @@
+"0","```r
+df_chem_cambodia <- df_chem_cambodia %>% 
+  mutate(Site = if_else(str_detect(str_sub(Site, -1,-1), \"^[:alpha:]\"),
+                               str_sub(Site, 1,-2),
+                               Site
+                               )
+         
+         )
+```"

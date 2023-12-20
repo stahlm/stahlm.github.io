@@ -1,0 +1,8 @@
+"0","```r
+
+n_clust = 6
+#k_n <- kmeans(table_cluster_scaled, centers = n_clust, nstart = 100, iter.max = 15000)
+
+
+k_n = cluster::pam(table_cluster_scaled, k = n_clust)
+```"

@@ -1,0 +1,8 @@
+"0","```r
+df_chem_cambodia %>% 
+  filter(!is.na(Soil_texture_category)) %>% 
+  ggplot(aes(x = Soil_texture_category, y = Si_Leaf, fill = Soil_texture_category)) +
+  
+  geom_boxplot() +
+  theme_classic()
+```"

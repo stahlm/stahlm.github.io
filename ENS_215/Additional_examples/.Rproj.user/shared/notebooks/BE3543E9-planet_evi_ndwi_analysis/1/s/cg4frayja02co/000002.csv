@@ -1,0 +1,6 @@
+"0","```r
+cluster_table <- cluster_table %>% 
+  #pivot_wider(names_from = site_id, values_from = stat_value)
+  pivot_wider(names_from = DATE, values_from = stat_value) %>% 
+  ungroup()
+```"

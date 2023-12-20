@@ -1,0 +1,7 @@
+"0","## Load a Landsat 8 collection."
+"0","collection <- ee$ImageCollection('LANDSAT/LC08/C01/T1') %>% "
+"0","  ## Filter by date and location."
+"0","  ee$ImageCollection$filterBounds(ee$Geometry$Point(-122.262, 37.8719)) %>% "
+"0","  ee$ImageCollection$filterDate('2014-01-01', '2014-12-31') %>% "
+"0","  ## Sort by increasing cloudiness."
+"0","  ee$ImageCollection$sort('CLOUD_COVER')"

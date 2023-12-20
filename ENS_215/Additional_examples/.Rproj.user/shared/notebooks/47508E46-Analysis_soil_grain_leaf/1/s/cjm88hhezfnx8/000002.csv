@@ -1,0 +1,4 @@
+"0","```r
+res_long <- res_long %>% 
+  mutate(coeff_abs_val = abs(coeff))
+```"

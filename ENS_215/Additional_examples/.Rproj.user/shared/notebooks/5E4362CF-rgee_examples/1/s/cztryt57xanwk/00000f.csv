@@ -1,0 +1,4 @@
+"0","filteredCollection <- ee$ImageCollection(""LANDSAT/LC08/C01/T1"") %>% "
+"0","  ee$ImageCollection$filterDate(start, finish) %>% "
+"0","  ee$ImageCollection$filterBounds(point) %>% "
+"0","  ee$ImageCollection$sort('CLOUD_cOVER')"

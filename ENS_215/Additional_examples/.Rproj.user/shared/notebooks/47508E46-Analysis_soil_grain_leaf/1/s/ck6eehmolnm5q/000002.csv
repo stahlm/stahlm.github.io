@@ -1,0 +1,8 @@
+"0","```r
+table_cluster <- table_cluster %>% 
+  select(Site, As_Leaf, Cd_Leaf, Fe_Leaf, Mn_Leaf,
+         P_Leaf, Pb_Leaf, S_Leaf, Sb_Leaf, Si_Leaf, Sn_Leaf, U_Leaf, Zn_Leaf
+         ) %>% 
+  
+  drop_na()
+```"

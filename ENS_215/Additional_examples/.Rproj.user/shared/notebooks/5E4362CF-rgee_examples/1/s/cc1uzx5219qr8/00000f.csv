@@ -1,0 +1,2 @@
+"0","## Compute the median of each pixel for each band of the 5 least cloudy scenes."
+"0","median <- collection[[1:5]]$reduce(ee$Reducer$median())"

@@ -1,0 +1,28 @@
+{
+    "id": "DDC82284",
+    "path": "~/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Additional_examples/sits_package_examples.Rmd",
+    "project_path": "sits_package_examples.Rmd",
+    "type": "r_markdown",
+    "hash": "3521849502",
+    "contents": "",
+    "dirty": false,
+    "created": 1692982905234.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "tempName": "Untitled1",
+        "chunk_output_type": "inline",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "54,83",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1693493974,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1693493974970,
+    "read_only": false,
+    "read_only_alternatives": []
+}

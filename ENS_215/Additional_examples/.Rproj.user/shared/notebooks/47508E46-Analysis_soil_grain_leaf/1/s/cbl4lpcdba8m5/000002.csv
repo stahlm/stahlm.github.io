@@ -1,0 +1,13 @@
+"0","```r
+rf_classifier
+```"
+"1","
+Call:
+ randomForest(formula = rf_formula, data = df_rf, ntree = 500,      localImp = TRUE) 
+               Type of random forest: regression
+                     Number of trees: 500
+No. of variables tried at each split: 1
+
+          Mean of squared residuals: 0.009811794
+                    % Var explained: -9.38
+"

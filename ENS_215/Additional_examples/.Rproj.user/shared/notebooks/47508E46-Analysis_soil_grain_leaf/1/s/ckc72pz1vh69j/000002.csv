@@ -1,0 +1,10 @@
+"0","```r
+df_chem_cambodia %>% 
+  filter(!is.na(As_Grain)) %>% 
+  ggplot(aes(x = As_Soil, y = As_Grain, fill = factor(transitions_value))) +
+  geom_jitter(shape = 21, size = 4) +
+  
+  #scale_fill_viridis_c() +
+  
+  theme_classic()
+```"

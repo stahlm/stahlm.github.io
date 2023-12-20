@@ -1,0 +1,2 @@
+"0","a <- sits_get_data(cube = reg_cube, samples = shape_fields[1:4,], pol_id = ""Name"","
+"0","                   pol_avg = T, n_sam_pol = 1)"

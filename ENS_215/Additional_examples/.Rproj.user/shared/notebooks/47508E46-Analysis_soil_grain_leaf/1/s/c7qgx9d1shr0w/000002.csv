@@ -1,0 +1,5 @@
+"0","```r
+df_chem_cambodia %>% 
+  ggplot(aes(x = Ba_Soil/K_Soil)) +
+  geom_histogram()
+```"

@@ -1,0 +1,16 @@
+"0","```r
+tmap_mode(\"view\")
+```"
+"1","tmap mode set to interactive viewing
+"
+"0","```r
+shape_fields %>% 
+  tm_shape() +
+  tm_polygons(col = \"purple\") +
+  
+  tm_mouse_coordinates() +
+  
+  tm_basemap(server = c(\"OpenStreetMap\", \"Esri.WorldImagery\")) +
+  
+  tm_scale_bar()
+```"

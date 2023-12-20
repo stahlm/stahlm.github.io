@@ -1,0 +1,9 @@
+"0","```r
+df_chem_cambodia %>% 
+  ggplot(aes(x = Fe_Soil, y = As_Soil, fill = percent_rank(As_Grain))) +
+  geom_point(size = 3, shape = 21) +
+  
+  scale_fill_viridis_c() +
+  
+  theme_classic()
+```"

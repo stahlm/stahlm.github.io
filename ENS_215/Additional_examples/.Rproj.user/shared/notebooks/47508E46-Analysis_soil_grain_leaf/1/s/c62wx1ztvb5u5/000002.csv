@@ -1,0 +1,12 @@
+"0","```r
+df_chem_cambodia %>% 
+  filter(!is.na(As_Grain)) %>% 
+  ggplot(aes(x = Ba_Soil, y = Th_Soil, fill = (As_Grain))) +
+  geom_jitter(shape = 21, color = \"black\", size = 5, width = 2, alpha = 0.8) +
+  
+  #geom_smooth(method = sen, se = F) +
+  scale_fill_viridis_c(option = \"B\") +
+  #facet_wrap(~ Soil_texture_category) +
+  
+  theme_bw() 
+```"

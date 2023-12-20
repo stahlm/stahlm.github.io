@@ -1,0 +1,25 @@
+{
+    "id": "C6CC109C",
+    "path": "~/Research_Projects/SITS_rice/Analysis/planet_evi_ndwi_analysis.Rmd",
+    "project_path": null,
+    "type": "r_markdown",
+    "hash": "566974861",
+    "contents": "",
+    "dirty": false,
+    "created": 1693426935998.0,
+    "source_on_save": false,
+    "relative_order": 4,
+    "properties": {
+        "chunk_output_type": "inline",
+        "source_window_id": "",
+        "Source": "Source"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1693346251,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1693346251,
+    "read_only": false,
+    "read_only_alternatives": []
+}

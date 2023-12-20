@@ -1,0 +1,7 @@
+"0","```r
+df_chem_cambodia %>% 
+  ggplot(aes(x = Fe_Soil, y = As_Soil)) +
+  geom_point(size = 3, shape = 21, fill = \"lightgrey\") +
+  
+  theme_classic()
+```"

@@ -1,0 +1,4 @@
+"0","getNDVI <- function(image) {"
+"0","  return(image$normalizedDifference('B4', 'B3'))"
+"0","}"
+"0",""

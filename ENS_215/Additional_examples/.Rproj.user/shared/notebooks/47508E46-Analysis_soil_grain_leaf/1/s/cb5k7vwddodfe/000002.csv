@@ -1,0 +1,15 @@
+"0","```r
+fig_1 <- df_chem_cambodia %>% 
+  ggplot(aes(x = occur_value, y = recurr_value, fill = percent_rank(As_Grain), group = Site )) +
+  geom_jitter(shape = 21, color = \"black\", size = 4) +
+  
+  #geom_smooth(method = sen, se = F) +
+  
+  scale_fill_viridis_b(option = \"C\") +
+  
+  #facet_wrap(~ Soil_texture_category) +
+  
+  theme_bw() 
+  
+fig_1
+```"

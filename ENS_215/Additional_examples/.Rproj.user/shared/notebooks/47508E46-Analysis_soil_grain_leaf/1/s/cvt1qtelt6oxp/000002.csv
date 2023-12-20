@@ -1,0 +1,8 @@
+"0","```r
+df_chem_cambodia %>% 
+  #filter(!is.na(Soil_texture_category)) %>% 
+  ggplot(aes(x = Ba_Soil, y = As_Grain, fill = Soil_texture_category)) +
+  geom_point(shape = 21, size = 3) +
+  
+  theme_classic()
+```"

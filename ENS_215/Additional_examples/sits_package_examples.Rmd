@@ -1,0 +1,86 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+
+```{r}
+library(tidyverse)
+library(sits)
+library(sf)
+```
+
+
+```{r}
+# Create a directory to store files
+if (!file.exists("../../../tempdir/")) {
+  dir.create("../../../tempdir/")
+}
+# Create an irregular data cube from MSPC
+s2_cube <- sits_cube(
+  source = "AWS",
+  collection = "SENTINEL-S2-L2A-COGS",
+  tiles = "48PVU",
+  bands = c(
+    "B02", "B03", "B04",
+    "B05", "B06", "B07",
+    "B08", "B8A", "B11",
+    "B12", "CLOUD"
+  ),
+  start_date = as.Date("2018-07-01"),
+  end_date = as.Date("2018-08-31")
+)
+
+```
+
+
+```{r}
+# Regularize the cube to 15 day intervals
+reg_cube <- sits_regularize(
+  cube       = s2_cube,
+  output_dir = "../../../tempdir/",
+  res        = 60,
+  period     = "P15D",
+  multicores = 4
+)
+```
+```{r}
+sits_timeline(reg_cube)
+```
+
+```{r}
+reg_cube %>%
+  dplyr::filter(tile == reg_cube$tile) %>%
+  plot(red = "B12", green = "B8A", blue = "B05", date = sits_timeline(reg_cube)[4])
+```
+C:/Users/stahlm/Documents/Research_Projects/SITS_rice/Data
+
+```{r}
+shape_fields <- st_read("C:/Users/stahlm/Documents/Research_Projects/SITS_rice/Data/Fields/sites_fields_locations/Cambodia Jan 2023 Field Sites.kml")  #st_read("./spatial_data/fields.shp")
+```
+
+```{r}
+a <- sits_get_data(cube = reg_cube, samples = shape_fields[1:4,], pol_id = "Name",
+                   pol_avg = T, n_sam_pol = 1)
+```
+
+
+## Extra
+
+```{r}
+# Calculate NDVI index using bands B08 and B04
+reg_cube <- sits_apply(reg_cube,
+  NDVI = (B08 - B04) / (B08 + B04),
+  output_dir = "../../../tempdir/",
+  multicores = 4,
+  memsize = 12
+)
+
+```
+
+```{r}
+plot(reg_cube, date = sits_timeline(reg_cube)[4], band = "NDVI", palette = "RdYlGn") 
+```
+
+

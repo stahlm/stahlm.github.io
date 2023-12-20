@@ -1,0 +1,11 @@
+"0","```r
+shape_fields <- st_read(\"../Data/Fields/sites_fields_locations/Cambodia Jan 2023 Field Sites.kml\")  #st_read(\"./spatial_data/fields.shp\")
+```"
+"1","Reading layer `Cambodia Jan 2023 Field Sites' from data source 
+  `C:\Users\stahlm\Documents\Research_Projects\SITS_rice\Data\Fields\sites_fields_locations\Cambodia Jan 2023 Field Sites.kml' using driver `KML'
+Simple feature collection with 102 features and 2 fields
+Geometry type: POLYGON
+Dimension:     XY
+Bounding box:  xmin: 104.6551 ymin: 11.65436 xmax: 104.8878 ymax: 11.93672
+Geodetic CRS:  WGS 84
+"

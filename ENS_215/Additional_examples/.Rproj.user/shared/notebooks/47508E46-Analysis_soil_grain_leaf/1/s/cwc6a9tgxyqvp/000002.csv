@@ -1,0 +1,11 @@
+"0","```r
+df_chem_cambodia %>% 
+  ggplot(aes(x = Sr_Soil, y = As_Grain, fill = percent_rank(Ba_Soil))) +
+  geom_point(shape = 21, color = \"black\", size = 3) +
+  
+  #geom_smooth(method = sen, se = F) +
+  scale_fill_viridis_c(option = \"B\") +
+  facet_wrap(~ Soil_texture_category) +
+  
+  theme_bw() 
+```"

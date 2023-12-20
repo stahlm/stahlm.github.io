@@ -1,0 +1,7 @@
+"0","```r
+df_soil_properties <- df_soil_properties %>% 
+  rename(soil_pH = pH,
+         soil_SPC__uScm = `Specific Conductivity (uS/cm)`) %>% 
+  select(Site = `Sample ID`, Soil_description = `Soil description`,
+         soil_pH, soil_SPC__uScm, Soil_texture_category)
+```"

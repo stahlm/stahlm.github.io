@@ -1,0 +1,5 @@
+"0","my_gap <- gapminder"
+"0","nested_data <- my_gap %>% "
+"0","  group_by(continent) %>% "
+"0","  nest() %>% "
+"0","  ungroup()"

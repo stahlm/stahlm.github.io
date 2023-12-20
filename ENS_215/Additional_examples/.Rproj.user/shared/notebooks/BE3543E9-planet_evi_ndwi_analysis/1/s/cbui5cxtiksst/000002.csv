@@ -1,0 +1,50 @@
+"0","```r
+interactive_clustering(cluster_table_interp)
+```"
+"1","
+Listening on http://127.0.0.1:6453
+"
+"1","
+	Precomputing distance matrix...
+
+Iteration 1: Changes / Distsum = 61 / 1023.71
+Iteration 2: Changes / Distsum = 3 / 968.7217
+Iteration 3: Changes / Distsum = 0 / 968.7217
+
+	Elapsed time is 0.22 seconds.
+
+
+	Distance matrix provided...
+
+Iteration 1: Changes / Distsum = 61 / 917.4622
+Iteration 2: Changes / Distsum = 4 / 836.8553
+Iteration 3: Changes / Distsum = 0 / 836.8523
+
+	Elapsed time is 0.01 seconds.
+
+
+Distance matrix provided...
+Performing hierarchical clustering...
+Extracting centroids...
+
+	Elapsed time is 0.03 seconds.
+
+
+	Distance matrix provided...
+
+Iteration 1: Changes / Distsum = 61 / 861.0142
+Iteration 2: Changes / Distsum = 18 / 828.6112
+Iteration 3: Changes / Distsum = 5 / 824.6747
+Iteration 4: Changes / Distsum = 0 / 824.6747
+
+	Elapsed time is 0.02 seconds.
+
+
+Distance matrix provided...
+Performing hierarchical clustering...
+Extracting centroids...
+
+	Elapsed time is 0.03 seconds.
+"
+"1","NA
+"

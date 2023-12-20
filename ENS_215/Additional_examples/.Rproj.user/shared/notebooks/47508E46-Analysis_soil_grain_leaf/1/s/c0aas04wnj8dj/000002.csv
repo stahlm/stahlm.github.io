@@ -1,0 +1,12 @@
+"0","```r
+table_cluster <- table_cluster %>% 
+  select(Site, As_Soil, Ba_Soil, Ca_Soil, Cd_Soil, 
+         Co_Soil, Cr_Soil,Fe_Soil,
+         K_Soil, Mn_Soil, Pb_Soil, Pd_Soil,
+         Rb_Soil, S_Soil, Sr_Soil, Th_Soil, Ti_Soil, V_Soil,
+         Zn_Soil, Zr_Soil
+         #soil_pH, soil_SPC__uScm
+         ) %>% 
+  
+  drop_na()
+```"

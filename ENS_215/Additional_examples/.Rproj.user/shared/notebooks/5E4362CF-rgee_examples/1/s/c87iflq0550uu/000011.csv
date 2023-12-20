@@ -1,0 +1,15 @@
+"0","## This function gets NDVI from Landsat 5 imagery."
+"0","getNDVI <- function(image) {"
+"0","  return(image$normalizedDifference('B4', 'B3'))"
+"0","}"
+"0",""
+"0","## Load two Landsat 5 images, 20 years apart."
+"0","image1 = ee$Image('LANDSAT/LT05/C01/T1_TOA/LT05_044034_19900604')"
+"0","image2 = ee$Image('LANDSAT/LT05/C01/T1_TOA/LT05_044034_20100611')"
+"0",""
+"0","## Compute NDVI from the scenes."
+"0","ndvi1 = getNDVI(image1)"
+"2","Error in py_call_impl(callable, call_args$unnamed, call_args$named) : 
+  AttributeError: 'ApiFunction' object has no attribute 'name'
+[90mRun ]8;;rstudio:run:reticulate::py_last_error()`reticulate::py_last_error()`]8;; for details.[39m
+"

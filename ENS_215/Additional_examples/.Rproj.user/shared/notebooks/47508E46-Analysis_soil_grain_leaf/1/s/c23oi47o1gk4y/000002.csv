@@ -1,0 +1,8 @@
+"0","```r
+table_cluster <- table_cluster %>% 
+  select(Site, As_Grain, Cd_Grain, Fe_Grain, Mn_Grain, 
+         P_Grain, Pb_Grain, S_Grain, Sb_Grain, Si_Grain, Sn_Grain, U_Grain, Zn_Grain
+         ) %>% 
+  
+  drop_na()
+```"

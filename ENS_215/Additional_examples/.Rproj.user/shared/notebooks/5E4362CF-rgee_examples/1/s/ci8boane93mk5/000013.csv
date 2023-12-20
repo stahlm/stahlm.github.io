@@ -1,0 +1,5 @@
+"0","ndvi1 = getNDVI(first)"
+"2","Error in py_call_impl(callable, call_args$unnamed, call_args$named) : 
+  AttributeError: 'ApiFunction' object has no attribute 'name'
+[90mRun ]8;;rstudio:run:reticulate::py_last_error()`reticulate::py_last_error()`]8;; for details.[39m
+"

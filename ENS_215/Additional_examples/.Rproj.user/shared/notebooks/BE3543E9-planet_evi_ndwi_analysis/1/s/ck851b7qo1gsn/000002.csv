@@ -1,0 +1,6 @@
+"0","```r
+date_limits <- date_limits_table %>% 
+  summarize(min_DATE = max(DATE_min),
+            max_DATE = min(DATE_max)
+            )
+```"

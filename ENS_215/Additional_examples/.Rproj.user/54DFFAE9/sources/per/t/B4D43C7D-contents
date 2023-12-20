@@ -1,0 +1,74 @@
+---
+title: "Remote sensing, spatial, and environmental data resources"
+output: html_notebook
+---
+
+## Web applications/tools
+
+### [**EO Browser (Sentinel Hub)**](https://apps.sentinel-hub.com/eo-browser/)
+
+Web application that allows for search and interactive visualization of a range of satellite data products, including Sentinel, Landsat, and MODIS data. You visualize a range of precomputed spectral indices as well as compute your own indices for viewing. You can also get time series and histograms of the data for specified areas and points of interest. Another great feature is the time-lapse feature which allows for the easy creation of time-lapse satellite imagery.
+
+Search features allow you to filter on the data product, date, and cloud cover.
+
+### [**Open Soil Spectral Library**](https://explorer.soilspectroscopy.org/)
+
+Database of soil spectroscopy (Vis-NIR-MIR) measurements from around the world. Web application allows for easy searching (including search using an interactive map), visualization, and downloading of soil spectra. There is also a web-tool for training and running a machine learning model to predict soil properties (e.g., org C content) based of measured soil spectra.
+
+### [**USGS Spectral Library (Version 7)**](https://crustal.usgs.gov/speclab/QueryAll07a.php)
+
+Reference spectra (UV, Vis, SWIR, MIR) for a thousands of specific minerals, plants, chemical compounds, and manmade materials. There is also the option to resample the data to terrestrial multispectral sensors (including Landsat and Sentinel) so that you can see how the material would appear as sensed from these satellites.
+
+### [**USGS Spectral Characteristics Viewer**](https://landsat.usgs.gov/spectral-characteristics-viewer)
+
+Interactive viewer that allows you to view the spectral characteristics of sensors from different satellites along with a range of target spectra (i.e., materials).
+
+https://soilgrids.org/
+
+https://casoilresource.lawr.ucdavis.edu/soilweb-apps/
+
+https://geojson.io/#map=2/0/20
+
+https://mghydro.com/watersheds/
+
+https://www.fao.org/faostat/en/#data
+
+## R packages
+
+https://docs.ropensci.org/rnaturalearth/
+rnoaa
+gsodr
+worldmet
+USAboundaries
+
+https://mikejohnson51.github.io/climateR/index.html  
+https://cran.r-project.org/web/packages/dataRetrieval/vignettes/dataRetrieval.html  
+https://github.com/jhollist/elevatr/  
+https://docs.ropensci.org/terrainr/  
+https://jakob.schwalb-willmann.de/basemaps/index.html  
+https://whiteboxr.gishub.org/  
+https://doi-usgs.github.io/nhdplusTools/index.html  
+https://docs.ropensci.org/MODIStsp/index.html  
+https://ncss-tech.github.io/AQP/  
+https://docs.ropensci.org/osmdata/index.html  
+https://github.com/walkerke/tigris  
+https://e-sensing.github.io/sitsbook/index.html  
+https://r-tmap.github.io/tmap/    
+https://rspatial.github.io/terra/index.html  
+https://mps9506.github.io/echor/index.html  
+https://tsamsonov.github.io/grwat/index.html  
+
+## Textbooks and websites with learning materials
+
+https://r.geocompx.org/
+https://e-sensing.github.io/sitsbook/index.html
+https://jakubnowosad.com/
+https://www.youtube.com/@middleburyremotesensing3639
+https://r-spatial.org/book/
+https://geobgu.xyz/r/index.html
+https://bookdown.org/mcwimberly/gdswr-book/
+
+https://eo-college.org/
+https://opengeohub.org/
+https://github.com/Nowosad/OGH_summer_school_2023
+<https://opengeohub.org/> <https://av.tib.eu/publisher/OpenGeoHub_Foundation> <https://av.tib.eu/series/1328/opengeohub+summer+school+2022+kiste+project+workshop>

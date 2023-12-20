@@ -1,0 +1,4 @@
+"0","```r
+df_chem_cambodia <- df_chem_cambodia %>% 
+  separate(col = Cordinates, into = c(\"Lat\", \"Long\"), sep = \",\")
+```"

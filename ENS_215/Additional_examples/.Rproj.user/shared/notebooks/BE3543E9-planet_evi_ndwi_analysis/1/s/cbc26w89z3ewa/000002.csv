@@ -1,0 +1,5 @@
+"0","```r
+cluster_table_interp <- cluster_table_interp %>% 
+  filter(DATE >= date_limits$min_DATE, DATE <= date_limits$max_DATE) %>% 
+  select(site_id, DATE, interp_val)
+```"

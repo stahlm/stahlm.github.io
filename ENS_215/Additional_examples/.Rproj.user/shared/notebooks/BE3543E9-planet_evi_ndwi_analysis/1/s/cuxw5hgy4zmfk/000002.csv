@@ -1,0 +1,4 @@
+"0","```r
+cluster_table_interp <- cluster_table_interp %>% 
+  pivot_wider(names_from = DATE, values_from = interp_val)
+```"

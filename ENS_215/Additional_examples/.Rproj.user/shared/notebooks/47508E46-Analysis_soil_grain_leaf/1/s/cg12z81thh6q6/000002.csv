@@ -1,0 +1,12 @@
+"0","```r
+sf_chem_cambodia %>% 
+  
+  tm_shape() +
+  tm_dots(col = \"cluster_id_grain\", palette = \"viridis\", size = 0.2) +
+  
+  tm_mouse_coordinates() +
+  tm_basemap(server = c(\"Esri.WorldImagery\", \"OpenStreetMap\")) +
+  tm_scale_bar() 
+```"
+"1","Warning: Currect projection of shape . unknown. Long-lat (WGS84) is assumed.
+"

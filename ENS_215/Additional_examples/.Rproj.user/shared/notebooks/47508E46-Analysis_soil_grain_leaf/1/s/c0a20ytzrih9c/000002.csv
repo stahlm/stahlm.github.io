@@ -1,0 +1,8 @@
+"0","```r
+df_chem_cambodia %>% 
+  filter(!is.na(Soil_texture_category)) %>% 
+  ggplot(aes(x = Ba_Soil, y = As_Grain, color = Soil_texture_category)) +
+  geom_point(size = 2) +
+  
+  geom_parallel_slopes(se = FALSE)# +
+```"

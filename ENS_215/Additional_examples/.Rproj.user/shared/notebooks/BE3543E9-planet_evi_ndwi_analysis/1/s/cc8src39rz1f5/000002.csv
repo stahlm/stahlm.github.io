@@ -1,0 +1,8 @@
+"0","```r
+unique(all_table$stat_name)
+```"
+"1"," [1] \"EVI2_max\"            \"EVI2_mean\"           \"EVI2_mean_minus_std\"
+ [4] \"EVI2_mean_plus_std\"  \"EVI2_min\"            \"NDWI_max\"           
+ [7] \"NDWI_mean\"           \"NDWI_mean_minus_std\" \"NDWI_mean_plus_std\" 
+[10] \"NDWI_min\"           
+"

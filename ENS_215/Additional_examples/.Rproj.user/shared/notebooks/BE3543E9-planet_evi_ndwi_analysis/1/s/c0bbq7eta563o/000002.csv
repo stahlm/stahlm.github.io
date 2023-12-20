@@ -1,0 +1,5 @@
+"0","```r
+clust.pam <- tsclust(cluster_table_interp,
+                     type=\"partitional\",
+                     k=2L:17L, distance=\"dtw\", centroid=\"pam\")
+```"

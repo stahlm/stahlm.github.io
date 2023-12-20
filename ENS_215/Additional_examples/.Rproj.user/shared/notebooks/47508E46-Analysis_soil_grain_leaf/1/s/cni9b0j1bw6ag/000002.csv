@@ -1,0 +1,14 @@
+"0","```r
+extract_occur <- raster::extract(raster_occur, sf_chem_cambodia, df = T, fun = mean)
+sf_chem_cambodia$occur_value <- extract_occur$value
+
+
+extract_season <- raster::extract(raster_season, sf_chem_cambodia, df = T, fun = mean)
+sf_chem_cambodia$seasonal_value <- extract_season$value
+
+extract_recurr <- raster::extract(raster_recurr, sf_chem_cambodia, df = T, fun = mean)
+sf_chem_cambodia$recurr_value <- extract_recurr$value
+
+extract_transitions <- raster::extract(raster_transitions, sf_chem_cambodia, df = T, fun = mean)
+sf_chem_cambodia$transitions_value <- extract_transitions$value
+```"

@@ -1,0 +1,6 @@
+"0","```r
+all_table_wide %>% 
+  filter(DATE > 2020) %>% 
+  ggplot(aes(x = DATE, y = NDWI_mean, group = site_id)) +
+  geom_line()
+```"

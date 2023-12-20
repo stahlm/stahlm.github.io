@@ -1,0 +1,45 @@
+"0","```r
+i_loop <- 1
+
+for (i_file in file_list) {
+  
+  if (str_detect(i_file, pattern = \"EVI2.txt\")) {
+    header_names = c(\"DATE\", \"EVI2_min\", \"EVI2_mean_minus_std\", \"EVI2_mean\", \"EVI2_mean_plus_std\", \"EVI2_max\")
+  }
+  
+  if (str_detect(i_file, pattern = \"NDWI.txt\")) {
+    header_names = c(\"DATE\", \"NDWI_min\", \"NDWI_mean_minus_std\", \"NDWI_mean\", \"NDWI_mean_plus_std\", \"NDWI_max\")
+  }
+  
+  i_site <- str_remove(i_file, \"_EVI2.txt\")
+  i_site <- str_remove(i_site, \"_NDWI.txt\")
+  
+  fpath <- paste(base_path, i_file, sep = \"\") 
+  
+  i_table <- read_table(fpath, skip = 7, col_names = header_names)
+  
+  #colnames(i_table) <- header_names
+  
+  i_table$site_id <- i_site
+  
+  
+  i_table <- i_table %>% 
+    pivot_longer(cols = c(-DATE, -site_id), names_to = \"stat_name\", values_to = \"stat_value\")
+  
+  i_table <- i_table %>% 
+    group_by(DATE, site_id,stat_name) %>% 
+    summarize(stat_value = mean(stat_value)) %>% 
+    ungroup()
+  
+  if (i_loop == 1) {
+    all_table <- i_table
+  }
+  
+  if (i_loop > 1) {
+    all_table <- bind_rows(all_table, i_table)
+  }
+  
+  
+  i_loop <- 2
+}
+```"

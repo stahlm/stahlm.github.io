@@ -1,0 +1,10 @@
+"0","## Instantiate an image with the Image constructor."
+"0","image <- ee$Image(""CGIAR/SRTM90_V4"")"
+"0",""
+"0","## Zoom to a location."
+"0","Map$setCenter(-112.8598, 36.2841, 9) ## Center on the Grand Canyon."
+"0",""
+"0","## Display the image on the map."
+"0","Map$addLayer(image)"
+"2","Error in dirname(to) : path too long
+"

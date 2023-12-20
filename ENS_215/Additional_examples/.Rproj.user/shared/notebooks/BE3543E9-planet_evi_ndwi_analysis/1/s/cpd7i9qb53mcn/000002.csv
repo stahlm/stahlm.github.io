@@ -1,0 +1,4 @@
+"0","```r
+all_table_wide <- all_table %>% 
+  pivot_wider(names_from = stat_name, values_from = stat_value)
+```"

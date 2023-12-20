@@ -1,0 +1,5 @@
+"0","```r
+sen <- function(..., weights = NULL) {
+  mblm::mblm(...)
+}
+```"

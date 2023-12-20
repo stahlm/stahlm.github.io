@@ -1,0 +1,4 @@
+"0","```r
+res_long <- res_long %>% 
+  pivot_longer(cols = -c(var), names_to = \"var_b\", values_to = \"coeff\")
+```"

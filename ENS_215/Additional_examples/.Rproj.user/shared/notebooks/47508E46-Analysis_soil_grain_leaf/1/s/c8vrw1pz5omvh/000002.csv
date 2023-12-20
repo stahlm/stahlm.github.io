@@ -1,0 +1,9 @@
+"0","```r
+sf_chem_cambodia_long <- df_chem_cambodia %>% 
+  #select(-Notes) %>% 
+  pivot_longer(cols = -c(Site, Notes, Lat, Long, Soil_description, Soil_texture_category), 
+               names_to = \"chem_param\", values_to = \"conc\") %>% 
+  
+  filter(!is.na(Lat), !is.na(Long)) %>% 
+  st_as_sf(coords = c(\"Long\", \"Lat\"))
+```"
