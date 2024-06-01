@@ -1,0 +1,27 @@
+{
+    "id": "4E7E3919",
+    "path": "~/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Additional_examples/cluster_analysis_usgs_soil.Rmd",
+    "project_path": "cluster_analysis_usgs_soil.Rmd",
+    "type": "r_markdown",
+    "hash": "827006271",
+    "contents": "",
+    "dirty": false,
+    "created": 1709834236698.0,
+    "source_on_save": false,
+    "relative_order": 8,
+    "properties": {
+        "chunk_output_type": "inline",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "186,0",
+        "scrollLine": "180"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1709916669,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1709916669209,
+    "read_only": false,
+    "read_only_alternatives": []
+}

@@ -1,0 +1,3 @@
+"0","q1 <- opq(bbox = 'Boston, MA') %>%"
+"0","    add_osm_feature(key = 'historic', value = ""building"")"
+"0",""

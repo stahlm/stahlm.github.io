@@ -1,0 +1,12 @@
+"0","tmap_mode(""view"")"
+"2","tmap mode set to interactive viewing
+"
+"0","fig_map <- q_sf1$osm_polygons %>% "
+"0","  tm_shape() +"
+"0","  tm_polygons(col = ""purple"") +"
+"0","  "
+"0","  tm_basemap(server = c(""Esri.WorldImagery"", ""OpenStreetMap.Mapnik"","
+"0","                        ""Esri.WorldShadedRelief""),"
+"0","             group = c(""Satellite"",""OSM"", ""Topo""))"
+"0",""
+"0",""

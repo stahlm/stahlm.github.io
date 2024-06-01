@@ -1,0 +1,8 @@
+"0","fviz_nbclust("
+"0","  table_cluster_scaled,"
+"0","  pam,"
+"0","  k.max = 15,"
+"0","  method = ""wss"","
+"0","  diss = get_dist(table_cluster, method = ""spearman"")"
+"0","  #diss = get_dist(table_cluster, method = ""euclidean"")"
+"0",") "

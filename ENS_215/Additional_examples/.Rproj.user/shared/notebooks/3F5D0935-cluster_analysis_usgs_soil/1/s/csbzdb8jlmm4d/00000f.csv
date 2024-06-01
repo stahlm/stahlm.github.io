@@ -1,0 +1,11 @@
+"0","table_cluster <- column_to_rownames(table_cluster, var = ""SiteID"")"
+"0",""
+"0","table_cluster <- table_cluster %>% mutate_all(as.numeric)"
+"2","Warning: [1m[22mThere were 10 warnings in `mutate()`.
+The first warning was:
+[1m[22m[36mℹ[39m In argument: `C_Al = .Primitive(""as.double"")(C_Al)`.
+Caused by warning:
+[33m![39m NAs introduced by coercion
+[1m[22m[36mℹ[39m Run ]8;;ide:run:dplyr::last_dplyr_warnings()dplyr::last_dplyr_warnings()]8;; to see the 9 remaining warnings."
+"0","table_cluster <- table_cluster %>% "
+"0","  drop_na()"

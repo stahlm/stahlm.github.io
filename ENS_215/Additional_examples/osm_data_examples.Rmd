@@ -1,0 +1,97 @@
+---
+title: "Open Street Maps data"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(sf)
+library(osmdata)
+library(tmap)
+```
+
+## Map of natural springs for a particular AOI
+
+```{r}
+q <- opq(bbox = 'Florida') %>%
+    add_osm_feature(key = 'natural', value = 'spring')
+```
+
+```{r}
+q_sf <- osmdata_sf(q)
+```
+
+
+```{r}
+tmap_mode("view")
+
+fig_map <- q_sf$osm_points %>% 
+  tm_shape() +
+  tm_dots(col = "purple") +
+  
+  tm_basemap(server = c("Esri.WorldImagery", "OpenStreetMap.Mapnik",
+                        "Esri.WorldShadedRelief"),
+             group = c("Satellite","OSM", "Topo"))
+```
+
+## Map of historic buildings in Boston, MA
+
+https://wiki.openstreetmap.org/wiki/Map_features#Water
+```{r}
+q1 <- opq(bbox = 'Boston, MA') %>%
+    add_osm_feature(key = 'historic', value = "building")
+
+```
+
+```{r}
+q_sf1 <- osmdata_sf(q1)
+```
+
+
+```{r}
+tmap_mode("view")
+
+fig_map <- q_sf1$osm_polygons %>% 
+  tm_shape() +
+  tm_polygons(col = "purple") +
+  
+  tm_basemap(server = c("Esri.WorldImagery", "OpenStreetMap.Mapnik",
+                        "Esri.WorldShadedRelief"),
+             group = c("Satellite","OSM", "Topo"))
+
+
+```
+
+## Map of roads in Charleston, SC
+```{r}
+
+bbox_charleston <- getbb("Charleston, SC")
+
+# retrieving data of streets in Charleston
+SC_streets <- bbox_charleston %>%
+  opq() %>%
+  add_osm_feature("highway", c("motorway", "primary", "secondary", "tertiary")) %>%
+  osmdata_sf()
+
+# retrieving data of small streets in Charleston
+SC_small_streets <- bbox_charleston %>%
+  opq() %>%
+  add_osm_feature(key = "highway", value = c("residential", "living_street", "unclassified", "service", "footway")) %>%
+  osmdata_sf()
+
+```
+
+
+```{r}
+tmap_mode("plot")
+
+SC_streets$osm_lines %>% 
+  tm_shape() +
+  tm_lines(lwd = 1, col = "white") +
+  
+  tm_shape(SC_small_streets$osm_lines) +
+  tm_lines(lwd = 0.1, col = "white") +
+  
+  tm_layout(bg.color = "black")
+```
+

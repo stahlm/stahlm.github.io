@@ -1,0 +1,1 @@
+{"height":2.472187886279357,"width":4.0,"size_behavior":1,"conditions":[[1,"Warning: \u001B[1m\u001B[22mTransformation introduced infinite values in continuous y-axis"],[1,"Warning: \u001B[1m\u001B[22mRemoved 2796 rows containing non-finite values (`stat_boxplot()`)."]]}

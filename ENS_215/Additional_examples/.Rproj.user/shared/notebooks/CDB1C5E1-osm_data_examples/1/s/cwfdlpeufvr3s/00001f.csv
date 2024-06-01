@@ -1,0 +1,11 @@
+"0","tmap_mode(""plot"")"
+"2","tmap mode set to plotting
+"
+"0","SC_streets$osm_lines %>% "
+"0","  tm_shape() +"
+"0","  tm_lines(lwd = 1, col = ""white"") +"
+"0","  "
+"0","  tm_shape(SC_small_streets$osm_lines) +"
+"0","  tm_lines(lwd = 0.1, col = ""white"") +"
+"0","  "
+"0","  tm_layout(bg.color = ""black"")"

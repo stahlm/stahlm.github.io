@@ -1,0 +1,3 @@
+"0","usgs_soil <- readxl::read_xlsx(path = ""C:/Users/stahlm/Desktop/soil_usgs/Appendix_4a_Chorizon_18Sept2013.xlsx"","
+"0","                               sheet = ""C_Horizon_formatted"", skip = 12"
+"0","                               )"

@@ -1,0 +1,10 @@
+"0","tmap_mode(""view"")"
+"2","tmap mode set to interactive viewing
+"
+"0","fig_map <- q_sf$osm_points %>% "
+"0","  tm_shape() +"
+"0","  tm_dots(col = ""purple"") +"
+"0","  "
+"0","  tm_basemap(server = c(""Esri.WorldImagery"", ""OpenStreetMap.Mapnik"","
+"0","                        ""Esri.WorldShadedRelief""),"
+"0","             group = c(""Satellite"",""OSM"", ""Topo""))"

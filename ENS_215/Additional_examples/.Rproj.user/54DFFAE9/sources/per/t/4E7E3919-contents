@@ -1,0 +1,354 @@
+---
+title: "Cluster analysis examples"
+output: html_notebook
+---
+
+
+## Load in packages
+```{r}
+library(tidyverse)
+
+library(cluster)    # clustering algorithms
+library(factoextra) # clustering algorithms & visualization
+library(FactoMineR)
+
+library(tmap)
+library(sf)
+```
+
+```{r}
+set.seed(123)
+```
+
+
+
+## Load in data to use
+```{r}
+usgs_soil <- readxl::read_xlsx(path = "C:/Users/stahlm/Desktop/soil_usgs/Appendix_4a_Chorizon_18Sept2013.xlsx",
+                               sheet = "C_Horizon_formatted", skip = 12
+                               )
+```
+## Prepare data for clustering
+
+### Select variables to use in clustering
+```{r}
+table_cluster <- usgs_soil %>% 
+  select(SiteID,
+         C_Al, C_Ba, C_Ca, C_C_Org, C_Fe, C_K, C_Mg, C_Na, C_Ti, C_S
+         ) 
+
+```
+
+
+### Name the rows with the SAMPLE_ID variable 
+```{r}
+table_cluster <- column_to_rownames(table_cluster, var = "SiteID")
+
+table_cluster <- table_cluster %>% mutate_all(as.numeric)
+
+table_cluster <- table_cluster %>% 
+  drop_na()
+```
+
+### Rescale the data
+```{r}
+table_cluster_scaled <- scale(table_cluster)
+```
+
+
+## PCA
+```{r}
+res.pca <- PCA(table_cluster_scaled,  graph = FALSE)
+```
+
+```{r}
+# Control variable colors using their contributions
+fviz_pca_var(res.pca, col.var="contrib",
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+             repel = TRUE # Avoid text overlapping
+             )
+```
+
+
+## Cluster the data
+```{r}
+fviz_nbclust(
+  table_cluster_scaled,
+  pam,
+  k.max = 15,
+  method = "wss",
+  diss = get_dist(table_cluster, method = "spearman")
+  #diss = get_dist(table_cluster, method = "euclidean")
+) 
+```
+
+
+
+```{r}
+n_clust = 6
+#k_n <- kmeans(table_cluster_scaled, centers = n_clust, nstart = 100, iter.max = 15000)
+
+
+k_n = cluster::pam(table_cluster_scaled, k = n_clust)
+```
+
+
+```{r}
+fig_cluster <- fviz_cluster(k_n, data = table_cluster_scaled, ellipse = T, palette = "Set2",
+                            geom = "point") +
+  theme_classic()
+```
+
+
+```{r}
+fig_cluster
+```
+
+### Create a data frame with the pixel coordinates and the cluster assigned to that pixel
+```{r}
+df_cluster_info <- tibble(SiteID = row.names(table_cluster_scaled),
+                          cluster_id = k_n$cluster) %>% 
+  mutate(SiteID = as.numeric(SiteID))
+```
+
+
+```{r}
+usgs_soil <- usgs_soil %>% 
+  left_join(df_cluster_info)
+```
+
+
+
+```{r}
+usgs_soil <- usgs_soil %>% 
+  mutate(cluster_id = factor(cluster_id))
+```
+
+```{r}
+usgs_soil <- usgs_soil %>% 
+  mutate(across(starts_with("C_"), as.numeric))
+```
+
+
+```{r fig.width= 4}
+usgs_soil %>% 
+  filter(!is.na(cluster_id)) %>% 
+  
+  ggplot(aes(x = cluster_id, y = C_As, fill = cluster_id)) +
+  geom_boxplot() +
+  scale_fill_brewer(type = "qual", palette = "Set2") +
+  
+  scale_y_log10() +
+  
+  theme_classic() +
+  theme(legend.position = "none")
+
+
+
+usgs_soil %>% 
+  filter(!is.na(cluster_id)) %>% 
+  
+  ggplot(aes(x = cluster_id, y = C_Fe, fill = cluster_id)) +
+  geom_boxplot() +
+  scale_fill_brewer(type = "qual", palette = "Set2") +
+  
+  scale_y_log10() +
+  
+  theme_classic() +
+  theme(legend.position = "none")
+
+
+usgs_soil %>% 
+  filter(!is.na(cluster_id)) %>% 
+  
+  ggplot(aes(x = cluster_id, y = C_S, fill = cluster_id)) +
+  geom_boxplot() +
+  scale_fill_brewer(type = "qual", palette = "Set2") +
+  
+  scale_y_log10() +
+  
+  theme_classic() +
+  theme(legend.position = "none")
+
+
+usgs_soil %>% 
+  filter(!is.na(cluster_id)) %>% 
+  
+  ggplot(aes(x = cluster_id, y = C_Ca, fill = cluster_id)) +
+  geom_boxplot() +
+  scale_fill_brewer(type = "qual", palette = "Set2") +
+  
+  scale_y_log10() +
+  
+  theme_classic() +
+  theme(legend.position = "none")
+
+
+
+
+usgs_soil %>% 
+  filter(!is.na(cluster_id)) %>% 
+  
+  ggplot(aes(x = cluster_id, y = C_Tot_Carb, fill = cluster_id)) +
+  geom_boxplot() +
+  scale_fill_brewer(type = "qual", palette = "Set2") +
+  
+  scale_y_log10() +
+  
+  theme_classic() +
+  theme(legend.position = "none")
+
+
+
+usgs_soil %>% 
+  filter(!is.na(cluster_id)) %>% 
+  
+  ggplot(aes(x = cluster_id, y = C_Tot_Clay, fill = cluster_id)) +
+  geom_boxplot() +
+  scale_fill_brewer(type = "qual", palette = "Set2") +
+  
+  scale_y_log10() +
+  
+  theme_classic() +
+  theme(legend.position = "none")
+
+
+usgs_soil %>% 
+  filter(!is.na(cluster_id)) %>% 
+  
+  ggplot(aes(x = cluster_id, y = C_Tot_Carb, fill = cluster_id)) +
+  geom_boxplot() +
+  scale_fill_brewer(type = "qual", palette = "Set2") +
+  
+  scale_y_log10() +
+  
+  theme_classic() +
+  theme(legend.position = "none")
+
+
+usgs_soil %>% 
+  filter(!is.na(cluster_id)) %>% 
+  
+  ggplot(aes(x = cluster_id, y = C_Amorph, fill = cluster_id)) +
+  geom_boxplot() +
+  scale_fill_brewer(type = "qual", palette = "Set2") +
+  
+  scale_y_log10() +
+  
+  theme_classic() +
+  theme(legend.position = "none")
+
+
+
+usgs_soil %>% 
+  filter(!is.na(cluster_id)) %>% 
+  
+  ggplot(aes(x = cluster_id, y = C_Pb, fill = cluster_id)) +
+  geom_boxplot() +
+  scale_fill_brewer(type = "qual", palette = "Set2") +
+  
+  scale_y_log10() +
+  
+  theme_classic() +
+  theme(legend.position = "none")
+
+
+usgs_soil %>% 
+  filter(!is.na(cluster_id)) %>% 
+  
+  ggplot(aes(x = cluster_id, y = C_U, fill = cluster_id)) +
+  geom_boxplot() +
+  scale_fill_brewer(type = "qual", palette = "Set2") +
+  
+  scale_y_log10() +
+  
+  theme_classic() +
+  theme(legend.position = "none")
+
+
+
+usgs_soil %>% 
+  filter(!is.na(cluster_id)) %>% 
+  mutate(C_C_Org = as.numeric(C_C_Org)) %>% 
+  
+  ggplot(aes(x = cluster_id, y = C_U, fill = cluster_id)) +
+  geom_boxplot() +
+  scale_fill_brewer(type = "qual", palette = "Set2") +
+  
+  scale_y_log10() +
+  
+  theme_classic() +
+  theme(legend.position = "none")
+
+```
+
+```{r}
+summary(usgs_soil$cluster_id)
+```
+
+
+```{r}
+sf_usgs_soil <- usgs_soil %>% 
+  st_as_sf(coords = c("Longitude", "Latitude"))
+```
+
+
+```{r}
+tmap_mode("view")
+
+fig_map <- sf_usgs_soil %>% 
+  filter(!is.na(cluster_id)) %>% 
+  
+  tm_shape() +
+  tm_dots(col = "cluster_id", palette = "Set2",
+          popup.vars = c("cluster_id")
+          ) +
+
+  tm_mouse_coordinates() +
+  
+  tm_basemap(server = c("Esri.WorldImagery", "OpenStreetMap", "Esri.WorldShadedRelief")) +
+  
+  tm_scale_bar() 
+```
+```{r}
+fig_map
+```
+
+
+```{r}
+sf_usgs_soil %>% 
+  filter(!is.na(cluster_id)) %>% 
+  mutate(C_C_Org = as.numeric(C_C_Org)) %>% 
+  
+  tm_shape() +
+  tm_dots(col = "C_C_Org", palette = "viridis", style = "quantile", n = 8,
+          popup.vars = c("cluster_id", "C_C_Org")
+          ) +
+
+  tm_mouse_coordinates() +
+  
+  tm_basemap(server = c("Esri.WorldImagery", "OpenStreetMap", "Esri.WorldShadedRelief")) +
+  
+  tm_scale_bar() 
+```
+
+
+
+```{r}
+sf_bangladesh_gw %>% 
+  filter(!is.na(cluster_id)) %>% 
+  
+  tm_shape() +
+  tm_dots(col = "As_ugL", palette = "viridis", breaks = c(0,5,10,50,100,200),
+          popup.vars = c("cluster_id", "WELL_DEPTH_m", "As_ugL")
+          ) +
+
+  tm_mouse_coordinates() +
+  
+  tm_basemap(server = c("Esri.WorldImagery", "OpenStreetMap", "Esri.WorldShadedRelief")) +
+  
+  tm_scale_bar() + 
+  tm_facets(by = "cluster_id", sync = T)
+```
+
+

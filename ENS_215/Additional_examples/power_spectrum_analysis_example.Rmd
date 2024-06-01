@@ -1,0 +1,133 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(dataRetrieval)
+library(astsa)
+```
+
+
+
+```{r}
+sites_schdy <- whatNWISsites(countyCd = "36093", 
+                             parameterCd = c("00060","00065"),
+                             service = "dv"
+                             )
+
+
+sites_schdy
+```
+
+
+```{r}
+sites_what_data <- whatNWISdata(siteNumber = sites_schdy$site_no, 
+                            service = "dv", 
+                            parameterCd = c("00060"),
+                            statCd = "00003")
+
+sites_what_data
+```
+
+
+```{r}
+df_stream_data <- readNWISdv(siteNumbers = sites_what_data$site_no,
+                             parameterCd = c("00060"),
+                             statCd = "00003")
+```
+
+
+```{r}
+df_ts <- df_stream_data %>% 
+  filter(site_no == "01351500")
+```
+
+```{r}
+df_ts %>% 
+  ggplot(aes(x =Date, y = X_00060_00003)) +
+  geom_line()
+```
+
+
+## Spectral analysis 
+```{r}
+list_spectrum <- spectrum(df_ts$X_00060_00003)
+```
+
+```{r}
+df_spectrum <- tibble(freq = list_spectrum$freq, 
+                      spec = list_spectrum$spec
+                      )
+
+```
+
+
+
+
+```{r}
+df_spectrum <- df_spectrum %>% 
+  mutate(period_val_num_obs = 1/freq)
+```
+
+
+```{r}
+df_spectrum <- df_spectrum %>% 
+  mutate(period_in_years = period_val_num_obs/365)
+```
+
+
+```{r}
+df_spectrum %>% 
+  filter(period_in_years <= 25) %>% 
+  
+  ggplot(aes(x = period_in_years, y = spec)) +
+  geom_line() +
+  #geom_smooth() +
+  
+  scale_y_log10() +
+  scale_x_log10() +
+  
+  theme_bw()
+```
+
+```{r}
+b <- mvspec(df_ts$X_00060_00003, spans=20, log="no")
+```
+```{r}
+df_spectrum_b <- tibble(freq = b$freq, 
+                        spec = b$spec
+                      )
+```
+
+
+
+
+```{r}
+df_spectrum_b <- df_spectrum_b %>% 
+  mutate(period_val_num_obs = 1/freq)
+```
+
+
+```{r}
+df_spectrum_b <- df_spectrum_b %>% 
+  mutate(period_in_years = period_val_num_obs/365)
+```
+
+
+
+
+```{r}
+df_spectrum_b %>% 
+  filter(period_in_years <= 25) %>% 
+  
+  ggplot(aes(x = period_in_years, y = spec)) +
+  geom_line() +
+  #geom_smooth() +
+  
+  scale_y_log10() +
+  scale_x_log10() +
+  
+  theme_bw()
+```
