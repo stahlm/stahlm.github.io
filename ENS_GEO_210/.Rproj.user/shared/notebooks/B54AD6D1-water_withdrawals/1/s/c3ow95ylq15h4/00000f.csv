@@ -1,0 +1,4 @@
+"0","df_water <- df_water %>% "
+"0","  filter(Variable %in% c(""Total freshwater withdrawal"",""Fresh groundwater withdrawal"","
+"0","                         ""Fresh surface water withdrawal"") "
+"0","         )"

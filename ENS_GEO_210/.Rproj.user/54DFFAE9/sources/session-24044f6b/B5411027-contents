@@ -1,0 +1,83 @@
+---
+title: "Water withdrawals by country"
+output:
+  html_document:
+    theme: journal
+
+---
+
+<br/>  
+<br/>  
+
+```{r echo = F}
+knitr::opts_chunk$set(warning=FALSE, message=FALSE, echo = F, fig.width = 8.5, fig.height = 3.5)
+```
+
+```{r}
+library(tidyverse)
+library(readxl)
+library(DT)
+```
+
+```{r}
+df_water <- read_xlsx("../data/AQUASTAT_water_withdrawals_by_country_2021.xlsx", sheet = "Data")
+```
+
+```{r}
+df_water <- df_water %>% 
+  filter(Variable %in% c("Total freshwater withdrawal","Fresh groundwater withdrawal",
+                         "Fresh surface water withdrawal") 
+         )
+```
+
+```{r}
+df_water <- df_water %>% 
+  group_by(Area) %>% 
+  filter(n() == 3)
+```
+
+```{r}
+df_water_wide <- df_water %>% 
+  dplyr::select(Area, Variable, Value) %>% 
+  pivot_wider(names_from = Variable, values_from = Value) %>% 
+  
+  rename(Fresh_GW = "Fresh groundwater withdrawal",
+         Fresh_SW = "Fresh surface water withdrawal",
+         Fresh_Total = "Total freshwater withdrawal")
+```
+
+
+```{r}
+df_water_wide <- df_water_wide %>% 
+  mutate(percent_GW = 100*(Fresh_GW/Fresh_Total),
+         percent_SW = 100*(Fresh_SW/Fresh_Total)
+         ) %>% 
+  
+  mutate(Fresh_GW = round(Fresh_GW, 2),
+         Fresh_SW = round(Fresh_SW, 2),
+         Fresh_Total = round(Fresh_Total, 2),
+         percent_GW = round(percent_GW, 1),
+         percent_SW = round(percent_SW, 1)
+         )
+
+
+```
+
+
+```{r}
+datatable(df_water_wide, rownames = F)
+```
+**Fresh_GW**, **Fresh_SW**, and **Fresh_Total** are the water withdrawals for groundwater, surface water, and total withdrawals in units of billions of cubic meters per year.  
+
+**percent_GW** and **percent_SW** are the percentage of total withdrawals from groundwater and surface water respectively.  
+
+<br/> 
+
+**Data source:** FAO Aquastat (data for 2021)
+
+<br/> 
+
+***
+| | |
+|--|--|
+| _Mason Stahl (Union College)_ |  |

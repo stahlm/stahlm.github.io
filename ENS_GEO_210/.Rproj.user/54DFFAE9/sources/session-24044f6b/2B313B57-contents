@@ -1,0 +1,158 @@
+---
+title: "Streamflow generation"
+output:
+  prettydoc::html_pretty:
+    theme: cayman
+    highlight: github
+    toc: no
+---
+
+
+```{r echo = F}
+knitr::opts_chunk$set(warning=FALSE, message=FALSE, echo = F, fig.width = 8.5, fig.height = 3.5)
+```
+
+```{r}
+# https://docs.ropensci.org/rnoaa/
+
+library(rnoaa)
+library(tidyverse)
+library(dataRetrieval)
+library(dygraphs)
+
+options(noaakey = "ySScowvUvSoxSXYVKOXDnyOJSCKnUiEo")
+```
+
+```{r}
+date_start <- "2005-01-01"
+date_end <- "2005-12-31"
+```
+
+
+
+```{r}
+# Download precipitation data from Albany Airport (GHCND:USW00014735)
+
+with_units <- ncdc(datasetid='GHCND', stationid='GHCND:USW00014735', datatypeid='PRCP', 
+                   startdate = date_start, enddate = date_end, 
+                   limit=500, add_units = TRUE)
+
+data_met <- with_units$data
+```
+
+
+```{r}
+# Download daily USGS streamflow data for Lisha Kill (01356190)
+
+data_streamflow <- dataRetrieval::readNWISdv(siteNumbers = "01356190", 
+                                        parameterCd  ="00060",
+                                        startDate = date_start, endDate = date_end)
+
+```
+
+
+
+```{r}
+data_streamflow <- data_streamflow %>% 
+  rename(flow_cfs = X_00060_00003)
+```
+
+```{r}
+# Perform baseflow separation on streamflow data 
+
+data_baseflow <- EcoHydRology::BaseflowSeparation(streamflow = data_streamflow$flow_cfs)
+```
+
+```{r}
+data_streamflow$baseflow_cfs <- data_baseflow$bt
+```
+
+```{r}
+data_streamflow <- data_streamflow %>% 
+  select(Date, flow_cfs, baseflow_cfs)
+```
+
+
+```{r eval = F}
+data_streamflow %>% 
+  ggplot() +
+  geom_line(aes(x = Date, y = flow_cfs), 
+            color = "blue", size = 0.75) +
+  geom_line(aes(x = Date, y = baseflow_cfs),
+            color = "darkgreen", size = 0.75) +
+  theme_bw()
+
+
+```
+
+
+```{r}
+ts_flow <- xts::xts(data_streamflow[,2:3], order.by = data_streamflow$Date)
+```
+
+
+## Streamflow at Lisha Kill
+```{r}
+dygraph(ts_flow, ylab = "Flow [cfs]", group = "streamflow") %>% 
+  dySeries("flow_cfs", label = "Streamflow") %>% 
+  dySeries("baseflow_cfs", label = "Baseflow") %>% 
+  dyRangeSelector(height = 40) %>% 
+  dyOptions(drawGrid = T)
+```
+
+
+```{r}
+data_met <- data_met %>% 
+  mutate(prcp__inches = (value/10)*0.0393701) %>% 
+  select(date, prcp__inches)
+```
+
+```{r}
+data_met <- data_met %>% 
+  mutate(date = as.Date(date))
+```
+
+
+```{r}
+ts_met <- xts::xts(data_met[,2], order.by = data_met$date)
+```
+
+<br/>
+
+## Streamflow and Precipitation at Lisha Kill
+```{r eval = F}
+dygraph(ts_met, ylab = "Precipitation [inches]", group = "streamflow") %>% 
+  dySeries("prcp__inches", label = "Precipitation", stepPlot = T) %>% 
+  dyRangeSelector(height = 40) %>% 
+  dyOptions(drawGrid = T)
+```
+
+
+
+```{r}
+ts_flow_prcp <- cbind(ts_flow[,1], ts_met)
+
+
+
+dygraph(ts_flow_prcp) %>% 
+  dySeries("prcp__inches", label = "Precipitation",
+           axis = 'y2', stepPlot = T, fillGraph = T) %>% 
+  dySeries("flow_cfs", label = "Flow", stepPlot = F) %>% 
+  dyAxis("y", label = "Flow [cfs]") %>%
+  dyAxis("y2", label = "Precipitation [inches]", independentTicks = F) %>%
+  dyRangeSelector(height = 40) %>% 
+  dyOptions(drawGrid = T)
+  
+```
+
+<br/>
+
+***
+**Streamflow data source:** [USGS gage (01356190)](https://waterdata.usgs.gov/nwis/nwismap/?site_no=01356190&agency_cd=USGS)  
+
+**Precipitation data source:** NOAA station GHCND:USW00014735
+
+***
+| | |
+|--|--|
+| _Mason Stahl (Union College)_ |  |

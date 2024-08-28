@@ -1,0 +1,77 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+‘hubeau’ is an R-package proposing a collection of function to help retrieve data from the French national databases on water: https://hubeau.eaufrance.fr
+
+
+
+https://inrae.github.io/hubeau/index.html
+
+
+```{r}
+library(tidyverse)
+library(hubeau)
+library(mapview)
+library(sf)
+```
+
+
+
+```{r}
+my_water_table_code <- "GG063"
+```
+
+```{r}
+list_endpoints(api = "niveaux_nappes")
+```
+```{r}
+list_params(api = "niveaux_nappes",
+            endpoint = "stations")
+```
+
+```{r}
+stations <- get_niveaux_nappes_stations(
+  codes_masse_eau_edl = my_water_table_code
+)
+```
+
+
+```{r}
+param_chroniques <- paste(
+    list_params(api = "niveaux_nappes",
+                endpoint = "chroniques"),
+    collapse = ","
+)
+```
+
+```{r}
+water_table_level <- map_df(
+  .x = stations$code_bss,
+  .f = function(x)
+    get_niveaux_nappes_chroniques(code_bss = x,
+                                  date_debut_mesure = "2015-01-01")
+)
+```
+
+
+
+```{r}
+water_table_level <- water_table_level %>% 
+  mutate(date_mesure = lubridate::ymd(date_mesure),
+         year = lubridate::year(date_mesure),
+         month = lubridate::month(date_mesure))
+```
+
+```{r}
+water_table_level %>% 
+  filter(qualification == "Correcte") %>% 
+  ggplot(aes(x = date_mesure, y = niveau_nappe_eau)) +
+  
+  geom_line() +
+  
+  facet_wrap(~code_bss, scales = "free_y")
+```
+
+

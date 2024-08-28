@@ -1,0 +1,7 @@
+"0","water_table_level %>% "
+"0","  filter(qualification == ""Correcte"") %>% "
+"0","  ggplot(aes(x = date_mesure, y = niveau_nappe_eau)) +"
+"0","  "
+"0","  geom_line() +"
+"0","  "
+"0","  facet_wrap(~code_bss, scales = ""free_y"")"

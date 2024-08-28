@@ -100,6 +100,21 @@ raster_nlcd <- vrt_crop_get(
 ```
 
 
+```{r}
+raster_tc_ppt <- climateR::dap(
+  URL= "http://thredds.northwestknowledge.net:8080/thredds/dodsC/agg_terraclimate_ppt_1958_CurrentYear_GLOBE.nc",
+    catalog = NULL,
+  AOI = my_aoi,
+  grid = NULL,
+  varname = NULL,
+  start = "2023-01-01",
+  end = "2018-05-01",
+  toptobottom = FALSE,
+  verbose = TRUE
+  
+  
+)
+```
 
 
 
