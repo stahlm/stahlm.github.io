@@ -11,6 +11,8 @@ output:
 # Supporting material/resources
 Supporting material related to our class is found below.  Additional material/resources will be added as the term progresses.  
 
+## [Water withdrawals by country](https://stahlm.github.io/ENS_GEO_210/material/water_withdrawals.html)
+
 ## [US aquifer maps](https://stahlm.github.io/ENS_GEO_210/material/principal_aquifers.html)  
 
 
