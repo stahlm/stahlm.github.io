@@ -3,7 +3,7 @@
     "path": "~/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_GEO_210/ENS_GEO_210.Rmd",
     "project_path": "ENS_GEO_210.Rmd",
     "type": "r_markdown",
-    "hash": "1757431816",
+    "hash": "0",
     "contents": "",
     "dirty": false,
     "created": 1725452356505.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "15,94",
-        "scrollLine": "6"
+        "cursorPosition": "17,100",
+        "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1725453955,
+    "lastKnownWriteTime": 1726424222,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1725453955687,
+    "last_content_update": 1726424222145,
     "read_only": false,
     "read_only_alternatives": []
 }
