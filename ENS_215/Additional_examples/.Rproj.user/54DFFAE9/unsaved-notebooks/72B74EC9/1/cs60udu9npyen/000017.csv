@@ -1,0 +1,69 @@
+"0","MODIStsp(gui             = FALSE,"
+"0","         out_folder      = ""data"","
+"0","         out_folder_mod  = ""data"","
+"0","         selprod         = ""LandCover_Type_Yearly_500m (MCD12Q1)"","
+"0","         bandsel         = ""LC1"", "
+"0","         user            = ""stahlm"" ,"
+"0","         password        = ""@THF$73rZUv8cx!"","
+"0","         start_date      = ""2019.01.01"", "
+"0","         end_date        = ""2019.12.31"", "
+"0","         verbose         = FALSE,"
+"0","         spatmeth        = ""file"","
+"0","         spafile         = ""./data/map_boundary.shp"","
+"0","         out_format      = ""GTiff"")"
+"2","Request failed [404]. Retrying in 1 seconds...
+"
+"2","Request failed [404]. Retrying in 1 seconds...
+"
+"2","Request failed [404]. Retrying in 1 seconds...
+"
+"2","Request failed [404]. Retrying in 1.1 seconds...
+"
+"2","[Fri Oct 25 15:15:34 2024] Error: http server seems to be down! Please try again later. Aborting!
+"
+"0","MODIStsp(gui             = FALSE,"
+"0","         out_folder      = ""data"","
+"0","         out_folder_mod  = ""data"","
+"0","         selprod         = ""LandCover_Type_Yearly_500m (MCD12Q1)"","
+"0","         bandsel         = ""LC1"", "
+"0","         user            = ""stahlm"" ,"
+"0","         password        = ""@THF$73rZUv8cx!"","
+"0","         start_date      = ""2019.01.01"", "
+"0","         end_date        = ""2019.12.31"", "
+"0","         verbose         = FALSE,"
+"0","         spatmeth        = ""file"","
+"0","         spafile         = ""./data/map_boundary.shp"","
+"0","         out_format      = ""GTiff"")"
+"2","Request failed [404]. Retrying in 1 seconds...
+"
+"2","Request failed [404]. Retrying in 1 seconds...
+"
+"2","Request failed [404]. Retrying in 1 seconds...
+"
+"2","Request failed [404]. Retrying in 1 seconds...
+"
+"2","[Fri Oct 25 15:15:42 2024] Error: http server seems to be down! Please try again later. Aborting!
+"
+"0","MODIStsp(gui             = FALSE,"
+"0","         out_folder      = ""data"","
+"0","         out_folder_mod  = ""data"","
+"0","         selprod         = ""LandCover_Type_Yearly_500m (MCD12Q1)"","
+"0","         bandsel         = ""LC1"", "
+"0","         user            = ""stahlm"" ,"
+"0","         password        = ""@THF$73rZUv8cx!"","
+"0","         start_date      = ""2020.01.01"", "
+"0","         end_date        = ""2020.12.31"", "
+"0","         verbose         = FALSE,"
+"0","         spatmeth        = ""file"","
+"0","         spafile         = ""./data/map_boundary.shp"","
+"0","         out_format      = ""GTiff"")"
+"2","Request failed [404]. Retrying in 1 seconds...
+"
+"2","Request failed [404]. Retrying in 1 seconds...
+"
+"2","Request failed [404]. Retrying in 1 seconds...
+"
+"2","Request failed [404]. Retrying in 1.5 seconds...
+"
+"2","[Fri Oct 25 15:16:14 2024] Error: http server seems to be down! Please try again later. Aborting!
+"

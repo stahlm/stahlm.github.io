@@ -1,0 +1,9 @@
+"0","```r
+table_summary_stats %>% 
+  filter(!is.na(cluster_id)) %>% 
+  
+  ggplot(aes(x = factor(cluster_id), y = WL_span)) +
+  geom_boxplot() +
+  
+  coord_cartesian(ylim = c(0,10))
+```"

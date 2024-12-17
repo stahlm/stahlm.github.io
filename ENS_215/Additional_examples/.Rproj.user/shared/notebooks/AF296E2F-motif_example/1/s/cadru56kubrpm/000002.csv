@@ -1,0 +1,7 @@
+"0","```r
+lc_coma$ent = vapply(lc_coma$signature, comat::it_metric,
+       FUN.VALUE = numeric(1), metric = \"ent\")
+
+lc_coma$relmutinf = vapply(lc_coma$signature, comat::it_metric,
+       FUN.VALUE = numeric(1), metric = \"relmutinf\")
+```"

@@ -1,0 +1,6 @@
+"0","library(diffeR)"
+"0","ndvi_mad = MAD(ndvi2023_tartu, ndvi2018_tartu, eval = ""multiple"")"
+"1","[1]"
+"1"," ""The mean of grid1 is less than the mean of grid2"""
+"1","
+"

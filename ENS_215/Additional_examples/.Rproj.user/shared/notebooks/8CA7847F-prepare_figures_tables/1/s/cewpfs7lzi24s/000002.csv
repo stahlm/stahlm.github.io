@@ -1,0 +1,6 @@
+"0","```r
+month_palette <- c(\"darkblue\",\"blue\",\"darkseagreen2\",
+                   \"green2\",\"green\",\"lightcoral\",
+                   \"red1\",\"firebrick\",\"orange\",
+                   \"darkorange3\",\"lightblue1\",\"blue3\")
+```"

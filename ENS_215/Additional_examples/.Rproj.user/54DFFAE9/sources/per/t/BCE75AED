@@ -1,0 +1,28 @@
+{
+    "id": "BCE75AED",
+    "path": "~/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Additional_examples/supercells_example.Rmd",
+    "project_path": "supercells_example.Rmd",
+    "type": "r_markdown",
+    "hash": "33789563",
+    "contents": "",
+    "dirty": false,
+    "created": 1729807294219.0,
+    "source_on_save": false,
+    "relative_order": 12,
+    "properties": {
+        "tempName": "Untitled1",
+        "chunk_output_type": "inline",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "4,89",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1730045059,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1730141092688,
+    "read_only": false,
+    "read_only_alternatives": []
+}

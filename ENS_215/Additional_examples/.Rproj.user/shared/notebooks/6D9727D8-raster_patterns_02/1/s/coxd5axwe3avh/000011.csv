@@ -1,0 +1,2 @@
+"0","ndvi_diff = ndvi2023_tartu - ndvi2018_tartu"
+"0","terra::plot(ndvi_diff)"

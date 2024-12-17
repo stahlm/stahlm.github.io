@@ -1,0 +1,3 @@
+"0","df_rf <- bangladesh_gw %>% "
+"0","  drop_na()"
+"0","  "

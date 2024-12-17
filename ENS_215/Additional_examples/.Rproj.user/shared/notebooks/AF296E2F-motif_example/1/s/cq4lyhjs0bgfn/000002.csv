@@ -1,0 +1,9 @@
+"0","```r
+lc_coma_sf_subset = lc_coma_sf[pam$id.med, ]
+for (i in seq_len(nrow(lc_coma_sf_subset))){
+  ent_sel = round(lc_coma_sf_subset[i, \"ent\", drop = TRUE], 2)
+  relmutinf_sel = round(lc_coma_sf_subset[i, \"relmutinf\", drop = TRUE], 2)
+  plot(crop(raster_LULC, lc_coma_sf_subset[i, ]), 
+       main = paste0(i, \" ent: \",  ent_sel, \" relmutinf: \", relmutinf_sel))
+}
+```"

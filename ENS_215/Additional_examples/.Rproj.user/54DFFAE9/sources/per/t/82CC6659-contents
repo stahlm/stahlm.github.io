@@ -1,0 +1,179 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+
+library(terra)
+library(sf)
+library(supercells)
+library(tidyverse)
+#library(rgeoda)
+library(purrr)
+library(tmap)
+```
+
+# create helper functions -------------------------------------------------
+```{r}
+
+
+get_dtw2d = function(x){
+  dist_mat = matrix(nrow = nrow(x), ncol = nrow(x))
+  for (i in seq_len(nrow(x))){
+    mat1 = matrix(unlist(x[i, ]), ncol = 2)
+    for (j in seq_len(nrow(x))){
+      mat2 = matrix(unlist(x[j, ]), ncol = 2)
+      dist_mat[i, j] = dtwclust::dtw_basic(mat1, mat2, norm = "L2", step.pattern = dtw::symmetric2)
+    }
+  }
+  stats::as.dist(dist_mat)
+}
+dtw_2d = function(x, y){
+  dtw2ddistance = dtwclust::dtw_basic(x = matrix(x, ncol = 2), y = matrix(y, ncol = 2),
+                                      norm = "L2", step.pattern = dtw::symmetric2,
+                                      error.check = FALSE)
+  return(dtw2ddistance)
+}
+regionalize_dtw_2d = function(k, superpixels, ...){
+  weight_df = st_drop_geometry(superpixels[, !colnames(superpixels) %in% c("supercells", "x", "y")])
+  weight_dist = get_dtw2d(weight_df)
+  rook_w = rook_weights(superpixels)
+  skater_results = skater(k, rook_w, weight_df, random_seed = 1, cpu_threads = 1, scale_method = "raw",
+                          rdist = weight_dist)
+  superpixels$cluster = skater_results$Clusters
+  regions = aggregate(superpixels, by = list(superpixels$cluster), mean)
+  regions = st_cast(regions, "POLYGON")
+  regions$k = k
+  return(regions)
+}
+```
+
+# read scaled time-series of temperature and precipitation ----------------
+
+
+```{r}
+aoi2use <- AOI::aoi_get(country = "Cambodia")
+#aoi2use <- AOI::aoi_get(state = "New York")
+```
+
+```{r}
+plot(aoi2use)
+```
+
+
+## Precipitation
+```{r}
+precip_raster <- climateR::getTerraClimNormals(AOI = aoi2use, varname = "ppt")
+```
+
+```{r}
+precip_raster <- precip_raster$ppt
+```
+
+```{r}
+ppt_min <- min(global(precip_raster, fun="min", na.rm = T))
+ppt_max <- max(global(precip_raster, fun="max", na.rm = T))
+
+raster_ppt_s <- (precip_raster - ppt_min)/(ppt_max - ppt_min)
+```
+
+
+## Temperature
+```{r}
+tmin_raster <- climateR::getTerraClimNormals(AOI = aoi2use, varname = "tmin")
+tmax_raster <- climateR::getTerraClimNormals(AOI = aoi2use, varname = "tmax")
+
+tmean_raster <- (tmin_raster$tmin + tmax_raster$tmax)/2
+```
+
+
+```{r}
+t_min <- min(global(tmean_raster, fun="min", na.rm = T))
+t_max <- max(global(tmean_raster, fun="max", na.rm = T))
+
+raster_tmean_s <- (tmean_raster - t_min)/(t_max - t_min)
+```
+
+```{r}
+plot(raster_tmean_s)
+```
+
+
+```{r}
+ta = raster_tmean_s
+pr = raster_ppt_s
+
+tmap_mode("plot")
+
+tm_shape(ta) + 
+  tm_raster(style = "cont")
+tm_shape(pr) + 
+  tm_raster(style = "cont")
+```
+
+
+# create supercells based on the 2D time-series ---------------------------
+```{r}
+sp = supercells(c(ta, pr), step = 15, compactness = 0.01, dist_fun = dtw_2d, verbose = 1)
+
+```
+
+```{r}
+tmap_mode("view")
+
+tm_shape(sp) +
+  tm_polygons(col = "grey", alpha = 0.1) +
+  
+  tm_shape(sp) +
+  tm_borders(col = "blue")
+```
+
+
+## Look at time-series of T and P for each superpixel
+
+```{r}
+df_sp_long <- sp %>% 
+  pivot_longer(cols = starts_with(c("tmin", "ppt")), names_to = "climvar", values_to = "climval")
+```
+
+```{r}
+df_sp_long <- df_sp_long %>% 
+  mutate(name_var = if_else(str_detect(climvar, "tmin"), "tmean", "ppt")) %>% 
+  
+  group_by(supercells, name_var) %>% 
+  mutate(MONTH = row_number())
+```
+
+```{r}
+df_sp_wide <- df_sp_long %>% 
+  dplyr::select(-climvar) %>% 
+  
+  pivot_wider(names_from = "name_var", values_from = "climval")
+```
+
+
+```{r}
+df_sp_wide %>% 
+  filter(supercells %in% c(19, 23, 13, 39, 31)) %>% 
+  ggplot(aes(x = ppt, y = tmean, group = supercells)) +
+  geom_path() +
+  geom_point(aes(color = MONTH)) +
+  
+  facet_wrap(~supercells)
+```
+
+
+
+
+# create 3, 7, 11, and 15 regions based on the 2D time-series -------------
+
+```{r}
+sp_regions = map_dfr(c(3, 7, 11, 15), regionalize_dtw_2d, sp)
+
+tm_shape(sp_regions) +
+  tm_polygons() +
+  tm_facets("k")
+```
+
+

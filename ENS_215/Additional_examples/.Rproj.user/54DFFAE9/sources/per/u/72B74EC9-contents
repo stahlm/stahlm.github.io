@@ -1,0 +1,29 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r}
+library(MODIStsp)
+MODIStsp_get_prodlayers("MCD12Q1")
+```
+
+```{r}
+map_boundary <- rnaturalearth::ne_countries(scale = "medium",
+                                            country = "Cambodia", returnclass = "sf")
+```
+
+
+```{r}
+#sf::st_write(obj = map_boundary,"./data/map_boundary.shp")
+```
+
+```{r}
+library(geodata)
+```
+
+```{r}
+geodata::landcover()
+```
+

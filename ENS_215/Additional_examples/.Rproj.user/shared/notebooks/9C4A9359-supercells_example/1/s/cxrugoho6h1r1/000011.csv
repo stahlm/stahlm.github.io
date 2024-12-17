@@ -1,0 +1,2 @@
+"0","supercell_raster <- supercells(x = precip_raster, k = 7, "
+"0","                               dist_fun = ""dtw"", compactness = 0.01, clean = F)"

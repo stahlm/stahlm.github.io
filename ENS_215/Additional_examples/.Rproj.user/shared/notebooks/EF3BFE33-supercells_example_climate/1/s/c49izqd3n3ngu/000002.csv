@@ -1,0 +1,6 @@
+"0","```r
+df_sp_wide <- df_sp_long %>% 
+  dplyr::select(-climvar) %>% 
+  
+  pivot_wider(names_from = \"name_var\", values_from = \"climval\")
+```"

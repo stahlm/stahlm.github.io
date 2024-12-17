@@ -1,0 +1,10 @@
+"0","```r
+list_sites <- unique(data_FDA$site_id)
+
+sites_no_cluster <- base::setdiff(list_sites, df_cluster_info$site_id)
+
+sf_sites_no_cluster <- df_site_info_all %>% 
+  filter(site_id %in% sites_no_cluster) %>% 
+  
+  st_as_sf(coords = c(\"Long\", \"Lat\"))
+```"

@@ -1,0 +1,24 @@
+"0","```r
+pal2use <- \"Set1\"
+
+data_FDA %>% 
+  filter(is.na(cluster_id)) %>% 
+  
+  ggplot() +
+  geom_line(aes(x = DOY, y = -DTW_rescaled, group = site_id),
+            color = \"black\", alpha = 0.05) +
+  
+  geom_smooth(aes(x = DOY, 
+                  y = -DTW_rescaled),
+              color = \"black\",     
+              size = 1.5) +
+  
+  #scale_color_brewer(palette = \"Set1\") + 
+
+  #facet_wrap(~ cluster_id) +
+  #scale_y_reverse() +
+  coord_cartesian(ylim = c(-2,2)) +
+  theme_bw() +
+  
+  theme(legend.position = \"none\")
+```"

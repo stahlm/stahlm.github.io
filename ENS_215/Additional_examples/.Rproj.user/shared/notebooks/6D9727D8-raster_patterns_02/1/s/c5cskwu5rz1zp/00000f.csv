@@ -1,0 +1,2 @@
+"0","ndvi_diff = ndvi2023_tartu - ndvi2018_tartu"
+"0","hist(ndvi_diff)"

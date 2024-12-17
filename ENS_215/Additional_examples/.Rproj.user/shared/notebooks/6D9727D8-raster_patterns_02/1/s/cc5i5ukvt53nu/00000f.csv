@@ -1,0 +1,56 @@
+"0","library(waywiser)"
+"0","cell_sizes = seq(50, 300, by = 50)"
+"0","ndvi_multi_scale = ww_multi_scale(truth = ndvi2018_tartu, estimate = ndvi2023_tartu,"
+"0","                                 metrics = list(yardstick::rmse), "
+"0","                                 cellsize = cell_sizes,"
+"0","                                 progress = FALSE)"
+"1","[34mℹ[39m The package ""exactextractr"" is required.
+[31m✖[39m Would you like to install it?
+"
+"1",""
+"1","
+"
+"1","1: Yes"
+"1","
+"
+"1","2: No"
+"1","
+"
+"1",""
+"1","
+"
+"0","1"
+"2","Installing package into ‘C:/Users/stahlm/AppData/Local/R/win-library/4.2’
+(as ‘lib’ is unspecified)
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.2/exactextractr_0.10.0.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 1448767 bytes (1.4 MB)
+"
+"2","downloaded 1.4 MB
+
+"
+"1","package ‘exactextractr’ successfully unpacked and MD5 sums checked
+"
+"1","
+"
+"1",""
+"1","The downloaded binary packages are in
+	C:\Users\stahlm\AppData\Local\Temp\RtmpWCibE9\downloaded_packages"
+"1",""
+"1","
+"
+"2","Warning: No CRS specified for polygons; assuming they have the same CRS as the raster."
+"2","Warning: No CRS specified for polygons; assuming they have the same CRS as the raster."
+"2","Warning: No CRS specified for polygons; assuming they have the same CRS as the raster."
+"2","Warning: No CRS specified for polygons; assuming they have the same CRS as the raster."
+"2","Warning: No CRS specified for polygons; assuming they have the same CRS as the raster."
+"2","Warning: No CRS specified for polygons; assuming they have the same CRS as the raster."
+"2","Warning: No CRS specified for polygons; assuming they have the same CRS as the raster."
+"2","Warning: No CRS specified for polygons; assuming they have the same CRS as the raster."
+"2","Warning: No CRS specified for polygons; assuming they have the same CRS as the raster."
+"2","Warning: No CRS specified for polygons; assuming they have the same CRS as the raster."
+"2","Warning: No CRS specified for polygons; assuming they have the same CRS as the raster."
+"2","Warning: No CRS specified for polygons; assuming they have the same CRS as the raster."
+"0","ndvi_multi_scale"

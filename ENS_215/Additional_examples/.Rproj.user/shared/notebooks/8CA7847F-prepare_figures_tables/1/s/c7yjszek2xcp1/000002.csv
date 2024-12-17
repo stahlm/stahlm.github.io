@@ -1,0 +1,10 @@
+"0","```r
+us_state_borders %>% 
+  tm_shape(projection = 2163) +
+  tm_polygons(col = \"grey99\") +
+  
+  tm_shape(sf_sites_no_cluster) +
+  tm_symbols(col = \"darkgrey\", size = 0.25) 
+```"
+"1","Warning: Currect projection of shape sf_sites_no_cluster unknown. Long-lat (WGS84) is assumed.
+"

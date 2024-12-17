@@ -1,0 +1,2 @@
+"0","sf_bangladesh_gw <- bangladesh_gw %>% "
+"0","  st_as_sf(coords = c(""LONG_DEG"", ""LAT_DEG""))"

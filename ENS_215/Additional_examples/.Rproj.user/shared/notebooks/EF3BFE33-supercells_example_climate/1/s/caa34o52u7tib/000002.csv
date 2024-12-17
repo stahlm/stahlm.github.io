@@ -1,0 +1,6 @@
+"0","```r
+tmin_raster <- climateR::getTerraClimNormals(AOI = aoi2use, varname = \"tmin\")
+tmax_raster <- climateR::getTerraClimNormals(AOI = aoi2use, varname = \"tmax\")
+
+tmean_raster <- (tmin_raster$tmin + tmax_raster$tmax)/2
+```"

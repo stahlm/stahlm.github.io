@@ -1,0 +1,6 @@
+"0","```r
+t_min <- min(global(tmean_raster, fun=\"min\", na.rm = T))
+t_max <- max(global(tmean_raster, fun=\"max\", na.rm = T))
+
+raster_tmean_s <- (tmean_raster - t_min)/(t_max - t_min)
+```"

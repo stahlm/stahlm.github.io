@@ -1,0 +1,4 @@
+"0","```r
+df_sp_long <- sp %>% 
+  pivot_longer(cols = starts_with(c(\"tmin\", \"ppt\")), names_to = \"climvar\", values_to = \"climval\")
+```"

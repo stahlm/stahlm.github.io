@@ -1,0 +1,6 @@
+"0","```r
+fig_map_clusters +
+  tm_facets(by = \"cluster_id\", free.coords = F)
+```"
+"1","Warning: Currect projection of shape df_cluster_info unknown. Long-lat (WGS84) is assumed.
+"

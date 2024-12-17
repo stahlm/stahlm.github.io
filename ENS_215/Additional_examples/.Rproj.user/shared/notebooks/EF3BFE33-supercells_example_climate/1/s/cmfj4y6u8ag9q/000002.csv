@@ -1,0 +1,10 @@
+"0","```r
+
+library(terra)
+library(sf)
+library(supercells)
+library(tidyverse)
+#library(rgeoda)
+library(purrr)
+library(tmap)
+```"

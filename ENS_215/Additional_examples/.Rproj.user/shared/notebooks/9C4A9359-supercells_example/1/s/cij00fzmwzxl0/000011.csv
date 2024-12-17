@@ -1,0 +1,1 @@
+"0","precip_raster <- climateR::getTerraClimNormals(AOI = aoi2use, varname = ""ppt"")"

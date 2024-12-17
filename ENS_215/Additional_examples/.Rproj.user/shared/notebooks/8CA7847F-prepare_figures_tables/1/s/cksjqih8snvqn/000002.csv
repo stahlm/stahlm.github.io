@@ -1,0 +1,13 @@
+"0","```r
+library(tidyverse)
+library(sf)
+```"
+"1","Linking to GEOS 3.9.3, GDAL 3.5.2, PROJ 8.2.1; sf_use_s2() is TRUE
+"
+"0","```r
+library(tmap)
+```"
+"1","Registered S3 method overwritten by 'htmlwidgets':
+  method           from         
+  print.htmlwidget tools:rstudio
+"

@@ -1,0 +1,13 @@
+"0","```r
+sp_regions = map_dfr(c(3, 7, 11, 15), regionalize_dtw_2d, sp)
+```"
+"1","Error in `map()`:
+ℹ In index: 1.
+Caused by error in `rook_weights()`:
+! could not find function \"rook_weights\"
+Backtrace:
+ 1. purrr::map_dfr(c(3, 7, 11, 15), regionalize_dtw_2d, sp)
+ 2. purrr::map(.x, .f, ...)
+ 3. purrr:::map_(\"list\", .x, .f, ..., .progress = .progress)
+ 7. global .f(.x[[i]], ...)
+"

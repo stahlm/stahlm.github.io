@@ -1,0 +1,2 @@
+"0","df_location_01 <- df_locations[1:5000,]"
+"0","df_location_02 <- df_locations[5001:nrow(df_locations),]"

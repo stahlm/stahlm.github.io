@@ -1,0 +1,4 @@
+"0","```r
+lc_coma_sf$cluster = pam$clustering
+plot(lc_coma_sf[\"cluster\"], border = NA, pal = palette.colors(5))
+```"

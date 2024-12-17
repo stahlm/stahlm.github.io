@@ -1,0 +1,246 @@
+---
+title: "Useful environmental and geoscience datasets"
+output:
+  html_document:
+    df_print: paged
+    theme: united
+    toc: yes
+    toc_float: yes
+
+---
+
+List of useful datasets and where applicable R packages for accessing those data.
+
+## USGS Nation Water Information System (NWIS) 
+
+#### Description
+Access to USGS and EPA (as well as several other agencies) water data. In particular NWIS provides access to a vast database of groundwater levels, stream flow, and water quality data for many thousands of sites across the US. Real-time (or ongoing) data is available for thousands of sites and historic data is available for many tens of thousands of sites.  Sites can be queried based on a wide-range of characteristics/features (e.g., watershed, state, county, site type)
+
+#### Coverage area
+US and US territories
+
+#### Data access
+-   [NWIS website](https://waterdata.usgs.gov/nwis?)
+-   [R Package: dataRetrieval](https://doi-usgs.github.io/dataRetrieval/)
+
+#### Tags
+Groundwater levels, streamflow, water quality, water use
+
+<br/>
+
+
+## US National Groundwater Monitoring Network (NGWMN)
+
+#### Description
+Access to many USGS monitoring well sites as well as many state agency monitoring well sites. Also has well-log data for many wells. Sites can be queried based on well network (e.g. climate response), aquifer system (e.g., High Plains Aquifer), and aquifer type (confined, unconfined), as well as a range of other search parameters.  
+
+####Coverage area
+US and US territories 
+
+####Data access
+-   [NGWMN website](https://cida.usgs.gov/ngwmn/) provides an interactive map tool for querying the database.  Large data requests are best done with the **dataRetrieval** package. 
+-   [R Package: dataRetrieval](https://doi-usgs.github.io/dataRetrieval/) can also be used to access the NGWMN data.
+
+#### Tags
+Groundwater levels, water quality, lithology 
+
+
+<br/>
+
+## Environment Agency UK hydrologic data
+
+#### Description
+Provides access to groundwater levels, streamflow, groundwater and surface water quality data, and precipitation data for thousands of monitoring sites across England.  Real-time (often 15-min or daily) and historic data are available.  
+
+#### Coverage area
+England (UK)
+
+#### Data access
+- [Hydrology Data Explorer](https://environment.data.gov.uk/hydrology/explore) provides an interactive map for querying the database and for viewing time-series data (one site at a time).  
+- [API](https://environment.data.gov.uk/hydrology/doc/reference) is also available for making batch queries and downloads.  The API does not require registration and can be relatively easily implemented in R or other programming languages.  
+
+#### Tags
+Groundwater levels, streamflow, water quality, precipitation
+
+<br/>
+
+## French national databases on water (Hubeau)
+
+#### Description
+https://hubeau.eaufrance.fr 
+https://inrae.github.io/hubeau/index.html 
+
+#### Coverage area
+
+#### Data access
+
+#### Tags
+
+<br/>
+
+## World Soil Information System (WoSIS) and ISRIC SoilGrids
+
+#### Description
+https://soilgrids.org/ 
+https://www.isric.org/explore/wosis 
+
+#### Coverage area
+
+#### Data access
+
+#### Tags
+
+<br/>
+
+
+## Digital elevation model data (DEM)
+
+#### Description
+
+#### Coverage area
+
+#### Data access
+- USGS 3DEP data: very high-resolution DEM dataset for the US only.
+     - [Map viewer with download capabilities](https://apps.nationalmap.gov/3depdem/) 
+     - [elevatr R package](https://github.com/USEPA/elevatr) allows for extremely easy download of USGS 3DEP data as well as a host of other DEMs which are available at the global scale.  
+- Global SRTM, ALOS and other DEMS
+    - - [elevatr R package](https://github.com/USEPA/elevatr) allows for extremely easy download of DEMs which are available at the global scale.  
+    
+#### Tags
+
+<br/>
+
+
+
+## FAO Aquastat water data
+
+#### Description
+A wide range of summary data about water resources, water use, irrigation, and population data at the country level.  Time-series data is available for many variables.
+
+#### Coverage area
+Global (at the country level) 
+
+#### Data access
+- [AQUASTAT database](https://data.apps.fao.org/aquastat/?lang=en) can be accessed through this interactive table and map query and data viewing system.  Data can easily be downloaded directly through this database system.  
+
+#### Tags
+Water resources, water use, irrigation
+
+<br/>
+
+
+## Springs Stewardship Institute database (Springs and springs-dependent database)
+
+#### Description
+
+#### Coverage area
+
+#### Data access
+https://springsdata.org/
+
+#### Tags
+Springs
+
+<br/>
+
+
+## Inventory of water bottling facilities in the United States
+
+#### Description
+
+#### Coverage area
+
+#### Data access
+https://www.sciencebase.gov/catalog/item/649d8a39d34ef77fcb03f8a6 
+https://labs.waterdata.usgs.gov/visualizations/bottled-water/index.html 
+
+#### Tags
+Water use, bottled water
+
+<br/>
+
+
+## EPA ATTAINS database (Clean Water Act assessments and TMDLs data)
+
+#### Description
+
+#### Coverage area
+
+#### Data access
+https://mps9506.github.io/rATTAINS/index.html
+
+#### Tags
+
+<br/>
+
+
+## USGS Mineral Resources dataset
+
+#### Description
+
+#### Coverage area
+US, Global
+
+#### Data access
+https://mrdata.usgs.gov/ 
+https://pubs.usgs.gov/sir/2017/5118/
+
+#### Tags
+
+<br/>
+
+
+## U.S. Geological Survey National Produced Waters Geochemical Database
+
+#### Description
+Contains geochemical and other information for tens of thousands of produced water and other deep formation water samples of the United States 
+
+#### Coverage area
+
+
+#### Data access
+https://www.sciencebase.gov/catalog/item/64fa1e71d34ed30c2054ea11
+https://tableau.usgs.gov/views/USGSPWDBv3_0/USGSPWDBv3_0Dashboard
+
+#### Tags
+
+<br/>
+
+
+## USGS Principal Aquifers boundaries (and secondary hydrogeologic regions) and reference codes
+
+#### Description
+Spatial boundaries and identifying reference codes for the principal aquifer systems of the US. Secondary hydrogeologic region spatial boundaries are also available.  
+
+#### Coverage area
+US
+
+#### Data access
+https://water.usgs.gov/GIS/metadata/usgswrd/XML/aquifers_us.xml
+https://water.usgs.gov/GIS/metadata/usgswrd/XML/alluvial_and_glacial_aquifers.xml
+https://www.usgs.gov/mission-areas/water-resources/science/national-aquifer-code-reference-list
+
+https://www.sciencebase.gov/catalog/item/5a5643b6e4b01e7be24449fc
+#### Tags
+
+<br/>
+
+
+
+## Dataset
+
+#### Description
+
+#### Coverage area
+
+#### Data access
+
+#### Tags
+
+<br/>
+
+
+
+## Data dashboards
+
+## Hydrologic data

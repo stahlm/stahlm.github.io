@@ -1,0 +1,17 @@
+"0","```r
+
+us_state_borders %>% 
+  tm_shape(projection = 2163) +
+  tm_borders() +
+  
+  tm_shape(df_cluster_info) +
+  tm_symbols(col = \"angle_max_WL\", 
+             pal = month_palette, 
+             border.col = \"black\", border.lwd = 1,
+             size = 0.25,
+             breaks = seq(0,360, by = 360/12)) +
+  
+  tm_layout(legend.show = F, frame = F)
+```"
+"1","Warning: Currect projection of shape df_cluster_info unknown. Long-lat (WGS84) is assumed.
+"

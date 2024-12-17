@@ -1,0 +1,7 @@
+"0","```r
+df_sp_long <- df_sp_long %>% 
+  mutate(name_var = if_else(str_detect(climvar, \"tmin\"), \"tmean\", \"ppt\")) %>% 
+  
+  group_by(supercells, name_var) %>% 
+  mutate(MONTH = row_number())
+```"

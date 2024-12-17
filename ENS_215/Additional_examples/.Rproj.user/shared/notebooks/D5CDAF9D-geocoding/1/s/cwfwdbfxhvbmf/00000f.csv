@@ -1,0 +1,5 @@
+"0","df_coords <- geocode(.tbl = c, address = addr, method = 'census')"
+"2","Passing 2 addresses to the US Census batch geocoder
+"
+"2","Query completed in: 0.4 seconds
+"

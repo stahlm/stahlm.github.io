@@ -1,0 +1,33 @@
+{
+    "id": "9558B9B8",
+    "path": "~/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Additional_examples/data_resources.Rmd",
+    "project_path": "data_resources.Rmd",
+    "type": "r_markdown",
+    "hash": "3643486711",
+    "contents": "",
+    "dirty": false,
+    "created": 1732398638726.0,
+    "source_on_save": false,
+    "relative_order": 4,
+    "properties": {
+        "tempName": "Untitled2",
+        "chunk_output_type": "inline",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "222,65",
+        "scrollLine": "0",
+        "rmdVisualMode": "false",
+        "rmdVisualWrapConfigured": "true",
+        "docOutlineVisible": "1",
+        "rmdVisualCollapsedChunks": "",
+        "rmdVisualModeLocation": "126:0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1732417402,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1732417402020,
+    "read_only": false,
+    "read_only_alternatives": []
+}

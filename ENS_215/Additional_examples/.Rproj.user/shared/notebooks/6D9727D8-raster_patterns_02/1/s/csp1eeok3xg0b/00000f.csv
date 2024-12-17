@@ -1,0 +1,6 @@
+"0","library(terra)"
+"2","terra 1.7.23
+"
+"0","ndvi2018_tartu = rast(""https://github.com/Nowosad/comparing-spatial-patterns-2024/raw/refs/heads/main/data/ndvi2018_tartu.tif"")"
+"0","ndvi2023_tartu = rast(""https://github.com/Nowosad/comparing-spatial-patterns-2024/raw/refs/heads/main/data/ndvi2023_tartu.tif"")"
+"0","plot(ndvi2018_tartu, main = ""Tartu (2000)"")"

@@ -1,0 +1,17 @@
+"0","library(geodiv)"
+"2","
+Attaching package: ‘geodiv’
+
+"
+"2","The following objects are masked from ‘package:terra’:
+
+    rotate, sds
+
+"
+"0","window = matrix(1, nrow = 5, ncol = 5)"
+"0","ndvi2018_tartu_sa_mw = focal_metrics(ndvi2018_tartu, window = window,"
+"0","                               metric = ""sa"", progress = FALSE)"
+"0","ndvi2023_tartu_sa_mw = focal_metrics(ndvi2023_tartu, window = window,"
+"0","                               metric = ""sa"", progress = FALSE)"
+"0","ndvi_diff_sa_mw = ndvi2023_tartu_sa_mw$sa - ndvi2018_tartu_sa_mw$sa"
+"0","plot_div(ndvi_diff_sa_mw)"

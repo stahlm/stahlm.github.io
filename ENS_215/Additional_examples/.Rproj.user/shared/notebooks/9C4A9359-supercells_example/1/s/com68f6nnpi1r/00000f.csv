@@ -1,0 +1,7 @@
+"0","tmap_mode(""view"")"
+"2","tmap mode set to interactive viewing
+"
+"0","tm_shape(supercell_raster) +"
+"0","  tm_polygons(col = ""supercells"")"
+"2","Error in dirname(to) : path too long
+"

@@ -1,0 +1,6 @@
+"0","set.seed(123)"
+"0",""
+"0","rf_classifier = randomForest(rf_formula, data = df_rf, ntree= 1000, keep.forest = T,"
+"0","                             localImp = T,"
+"0","                             mtry = 4"
+"0","                             )"

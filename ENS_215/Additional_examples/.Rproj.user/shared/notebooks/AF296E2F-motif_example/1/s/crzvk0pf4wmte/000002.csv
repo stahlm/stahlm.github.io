@@ -1,0 +1,8 @@
+"0","```r
+
+tm_shape(raster_LULC) +
+  tm_raster() +
+  
+  tm_shape(aoi2use) +
+  tm_borders(col = \"red\", lwd = 2) 
+```"

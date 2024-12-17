@@ -1,0 +1,7 @@
+"0","library(yardstick)"
+"0","ndvi_rmse = rmse_vec(values(ndvi2023_tartu)[, 1], values(ndvi2018_tartu)[, 1])"
+"0","ndvi_rmse"
+"1","[1]"
+"1"," 0.2191853"
+"1","
+"

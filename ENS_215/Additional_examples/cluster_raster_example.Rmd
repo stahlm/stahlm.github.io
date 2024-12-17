@@ -1,0 +1,167 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+https://github.com/Nowosad/supercells-examples
+```{r}
+library(tidyverse)
+library(terra)
+library(climateR)
+library(AOI)
+library(sf)
+#library(rgeoda)
+library(supercells)
+library(elevatr)
+
+library(MultiscaleDTM)
+library(tmap)
+```
+
+
+
+```{r}
+country_border <- rnaturalearth::ne_countries(scale = "large", 
+                                              country = "Cambodia",
+                                              returnclass = "sf")
+```
+
+```{r}
+country_elevation <- elevatr::get_elev_raster(locations = country_border, 
+                                              z = 7, clip = "bbox")
+```
+```{r}
+country_elevation <- rast(country_elevation)
+```
+
+
+```{r}
+country_elevation <- terra::crop(x = country_elevation, y = country_border, mask = T)
+```
+
+```{r}
+terra::plot(country_elevation)
+```
+
+
+```{r}
+# S4 method for class 'SpatRaster'
+
+TPI_raster <- terrain(country_elevation, v="flowdir", unit="degrees")
+```
+
+```{r}
+TPI_raster %>% 
+  tm_shape() +
+  tm_raster()
+```
+
+
+
+
+```{r}
+slope <- terrain(country_elevation, "slope", unit="radians")
+aspect <- terrain(country_elevation, "aspect", unit="radians")
+hill <- shade(slope, aspect, 40, 270)
+plot(hill, col=grey(0:100/100), legend=FALSE, mar=c(2,2,1,4))
+plot(country_elevation, col=rainbow(25, alpha=0.35), add=TRUE)
+```
+
+
+
+```{r}
+
+tm_shape(hill) +
+ tm_raster(palette = gray(0:100 / 100), n = 100, legend.show = FALSE)  +
+  tm_shape(country_elevation) +
+  tm_raster(alpha = 0.4, palette = terrain.colors(25),
+            legend.show = FALSE)
+```
+
+
+
+```{r}
+km <- k_means(country_elevation, centers=5)
+```
+
+
+```{r}
+plot(km)
+```
+
+
+## Precip
+```{r}
+precip_raster <- climateR::getTerraClimNormals(AOI = country_border,
+                                               varname = "ppt")
+```
+
+```{r}
+precip_raster <- precip_raster$ppt
+```
+
+```{r}
+precip_raster <- terra::crop(x = precip_raster, y = country_border, mask = T)
+```
+
+
+```{r}
+terra::plot(precip_raster)
+```
+
+
+```{r}
+km_precip <- k_means(precip_raster, centers= 7)
+```
+
+```{r}
+
+```
+
+
+
+```{r}
+terra::plot(km_precip)
+```
+```{r}
+df_km_precip <- terra::as.data.frame(km_precip, xy = T)
+```
+
+```{r}
+df_precip_raster <- terra::as.data.frame(precip_raster, xy = T)
+```
+
+```{r}
+df_precip_raster <- df_precip_raster %>% 
+  left_join(df_km_precip)
+```
+```{r}
+df_precip_raster_long <- df_precip_raster %>% 
+  pivot_longer(cols = starts_with("ppt_"),
+               names_to = "Month_layer", 
+               values_to = "precip_mm")
+```
+
+
+```{r}
+df_precip_raster_long <- df_precip_raster_long %>% 
+  group_by(x, y) %>% 
+  mutate(MONTH = row_number(),
+         cell_id = paste(x, y, sep = "-")
+         )
+  
+```
+
+```{r}
+df_precip_raster_long %>% 
+  ggplot(aes(x = MONTH, y = precip_mm, group = cell_id)) +
+  geom_line() +
+  
+  facet_wrap(~lyr1)
+```
+
+```{r}
+km_precip %>% 
+  tm_shape() +
+  tm_raster(style = "cat", palette = "Set2")
+```
+

@@ -1,0 +1,22 @@
+"0","```r
+table_summary_stats <- df_levels_all %>% 
+  group_by(site_id, YEAR) %>% 
+  
+  summarise(WL_max = min(DTW__ft),
+            WL_min = max(DTW__ft),
+            WL_mean = mean(DTW__ft),
+            WL_span = max(DTW__ft) - min(DTW__ft)
+            ) %>% 
+  
+  ungroup() %>% 
+  
+  group_by(site_id) %>% 
+  summarise(WL_mean = mean(WL_mean),
+            WL_span = mean(WL_span),
+            WL_min_sd = sd(WL_min),
+            WL_max_sd = sd(WL_max)
+    
+  )
+```"
+"1","`summarise()` has grouped output by 'site_id'. You can override using the `.groups` argument.
+"

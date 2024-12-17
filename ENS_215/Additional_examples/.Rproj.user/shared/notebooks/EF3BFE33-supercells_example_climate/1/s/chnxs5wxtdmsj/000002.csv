@@ -1,0 +1,12 @@
+"0","```r
+ta = raster_tmean_s
+pr = raster_ppt_s
+
+tmap_mode(\"plot\")
+```"
+"1","tmap mode set to plotting
+"
+"0","```r
+tm_shape(ta) + 
+  tm_raster(style = \"cont\")
+```"

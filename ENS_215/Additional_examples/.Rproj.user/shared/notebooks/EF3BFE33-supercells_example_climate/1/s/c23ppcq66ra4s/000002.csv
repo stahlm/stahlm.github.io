@@ -1,0 +1,4 @@
+"0","```r
+aoi2use <- AOI::aoi_get(country = \"Cambodia\")
+#aoi2use <- AOI::aoi_get(state = \"New York\")
+```"

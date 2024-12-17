@@ -1,0 +1,10 @@
+"0","```r
+a <- climateR::dap(URL = \"/vsicurl/https://storage.googleapis.com/feddata-r/nlcd/2019_Land_Cover_L48.tif\",
+              AOI = aoi2use
+              )
+```"
+"1","
+|---------|---------|---------|---------|
+=========================================
+                                          
+"

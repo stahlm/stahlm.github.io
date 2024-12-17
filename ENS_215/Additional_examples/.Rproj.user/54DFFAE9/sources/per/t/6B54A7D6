@@ -1,0 +1,25 @@
+{
+    "id": "6B54A7D6",
+    "path": "C:/Users/stahlm/Desktop/landscapes/motif_example.Rmd",
+    "project_path": null,
+    "type": "r_markdown",
+    "hash": "1147517164",
+    "contents": "",
+    "dirty": false,
+    "created": 1729883310209.0,
+    "source_on_save": false,
+    "relative_order": 15,
+    "properties": {
+        "chunk_output_type": "inline",
+        "source_window_id": "",
+        "Source": "Source"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1702673442,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1702673442,
+    "read_only": false,
+    "read_only_alternatives": []
+}

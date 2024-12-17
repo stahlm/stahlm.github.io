@@ -1,0 +1,16 @@
+"0","MODIStsp(gui             = FALSE,"
+"0","         out_folder      = ""LandCoverData"","
+"0","         out_folder_mod  = ""LandCoverData"","
+"0","         selprod         = ""LandCover_Type_Yearly_500m (MCD12Q1)"","
+"0","         bandsel         = ""LC1"", "
+"0","         user            = ""stahlm"" ,"
+"0","         password        = ""@THF$73rZUv8cx!"","
+"0","         start_date      = ""2019.01.01"", "
+"0","         end_date        = ""2019.12.31"", "
+"0","         verbose         = FALSE,"
+"0","         spatmeth        = ""file"","
+"0","         spafile         = ""./data/map_boundary"","
+"0","         out_format      = ""GTiff"")"
+"2","Error in bbox_from_file(spafile, crs_out = proc_opts$output_proj) : 
+  Specified file path does not exist. Aborting!
+"

@@ -1,0 +1,17 @@
+"0","```r
+pal2use <- RColorBrewer::brewer.pal(6, \"Set1\")
+
+fig_map_clusters <- us_state_borders %>% 
+  tm_shape(projection = 2163) +
+  tm_polygons(col = \"grey99\") +
+  
+  tm_shape(df_cluster_info) +
+  
+  tm_symbols(col = \"cluster_id\", palette = pal2use, size = 0.25) +
+  
+  tm_layout(legend.show = F, frame = F)
+
+fig_map_clusters
+```"
+"1","Warning: Currect projection of shape df_cluster_info unknown. Long-lat (WGS84) is assumed.
+"

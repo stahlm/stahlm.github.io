@@ -1,0 +1,2 @@
+"0","df_coords_with_lat_long <- df_coords %>% "
+"0","  filter(!is.na(lat), !is.na(long))"

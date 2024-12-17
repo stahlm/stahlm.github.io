@@ -1,0 +1,12 @@
+"0","```r
+tmap_mode(\"view\")
+```"
+"1","tmap mode set to interactive viewing
+"
+"0","```r
+tm_shape(sp) +
+  tm_polygons(col = \"grey\", alpha = 0.1) +
+  
+  tm_shape(sp) +
+  tm_borders(col = \"blue\")
+```"

@@ -1,0 +1,6 @@
+"0","```r
+ppt_min <- min(global(precip_raster, fun=\"min\", na.rm = T))
+ppt_max <- max(global(precip_raster, fun=\"max\", na.rm = T))
+
+raster_ppt_s <- (precip_raster - ppt_min)/(ppt_max - ppt_min)
+```"

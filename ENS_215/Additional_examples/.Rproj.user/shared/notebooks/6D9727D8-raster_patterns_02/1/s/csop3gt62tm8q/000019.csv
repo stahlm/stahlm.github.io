@@ -1,0 +1,15 @@
+"0","library(rasterdiv)"
+"0","ndvi2018_tartu_int = as.int(ndvi2018_tartu * 100)"
+"0","ndvi2023_tartu_int = as.int(ndvi2023_tartu * 100)"
+"0","ndvi2018_tartu_rao = paRao(ndvi2018_tartu_int, window = 5, progBar = FALSE)"
+"2","Warning: Simplify=0. Rounding data to 0 decimal places."
+"2","
+
+Processing alpha: 1 Moving Window: 5
+"
+"2","
+
+Processing alpha: 1 Moving Window: 5
+"
+"2","Error in utils::combn(p, m = 2, FUN = prod, na.rm = TRUE) : n < m
+"

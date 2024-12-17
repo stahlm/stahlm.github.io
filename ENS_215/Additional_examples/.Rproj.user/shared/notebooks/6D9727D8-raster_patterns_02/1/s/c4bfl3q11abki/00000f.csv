@@ -1,0 +1,6 @@
+"0","library(SSIMmap)"
+"0","ssim_raster(ndvi2018_tartu, ndvi2023_tartu, global = TRUE)"
+"1","SSIM: 0.63845 SIM: 0.90432 SIV: 0.90778 SIP: 0.75671"
+"1"," "
+"1","
+"

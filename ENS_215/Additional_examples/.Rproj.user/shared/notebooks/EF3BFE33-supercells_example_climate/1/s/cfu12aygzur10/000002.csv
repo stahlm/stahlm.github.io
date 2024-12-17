@@ -1,0 +1,9 @@
+"0","```r
+df_sp_wide %>% 
+  filter(supercells %in% c(19, 23, 13, 39, 31)) %>% 
+  ggplot(aes(x = ppt, y = tmean, group = supercells)) +
+  geom_path() +
+  geom_point(aes(color = MONTH)) +
+  
+  facet_wrap(~supercells)
+```"

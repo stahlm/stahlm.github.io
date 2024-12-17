@@ -1,0 +1,2 @@
+"0","map_boundary <- rnaturalearth::ne_countries(scale = ""medium"","
+"0","                                            country = ""Cambodia"", returnclass = ""sf"")"

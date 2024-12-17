@@ -1,0 +1,126 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+based on:
+https://jakubnowosad.com/posts/2023-11-18-motif-bp7/
+
+```{r}
+library(tidyverse)
+library(climateR)
+library(sf)
+library(tmap)
+library(terra)
+library(motif)
+library(cluster)
+```
+
+
+
+```{r}
+df_params <- climateR::params
+```
+
+```{r}
+aoi2use <- AOI::aoi_get(state = "South Dakota")
+```
+
+
+```{r}
+a <- climateR::dap(URL = "/vsicurl/https://storage.googleapis.com/feddata-r/nlcd/2019_Land_Cover_L48.tif",
+              AOI = aoi2use
+              )
+```
+
+```{r}
+raster_LULC <- a$`NLCD Land Cover Class`
+```
+
+```{r}
+aoi2use <- st_transform(aoi2use, crs = st_crs(raster_LULC))
+```
+
+
+```{r}
+raster_LULC <- terra::mask(raster_LULC, aoi2use)
+```
+
+```{r}
+raster_LULC <- terra::crop(raster_LULC, aoi2use)
+```
+
+
+
+```{r}
+terra::plot(raster_LULC)
+```
+
+```{r}
+
+tm_shape(raster_LULC) +
+  tm_raster() +
+  
+  tm_shape(aoi2use) +
+  tm_borders(col = "red", lwd = 2) 
+```
+
+
+
+```{r}
+lc_coma = lsp_signature(raster_LULC, type = "coma", window = 300)
+```
+
+
+```{r}
+lc_coma$ent = vapply(lc_coma$signature, comat::it_metric,
+       FUN.VALUE = numeric(1), metric = "ent")
+
+lc_coma$relmutinf = vapply(lc_coma$signature, comat::it_metric,
+       FUN.VALUE = numeric(1), metric = "relmutinf")
+```
+
+
+```{r}
+plot(lc_coma$ent, lc_coma$relmutinf)
+```
+
+```{r}
+lc_coma$signature = NULL
+lc_coma_sf = lsp_add_sf(lc_coma)
+plot(lc_coma_sf["ent"], border = NA)
+plot(lc_coma_sf["relmutinf"], border = NA)
+```
+
+```{r}
+pam = pam(scale(lc_coma[, c("ent", "relmutinf")]), 5)
+```
+
+```{r}
+lc_coma_sf$cluster = pam$clustering
+plot(lc_coma_sf["cluster"], border = NA, pal = palette.colors(5))
+```
+
+
+
+
+
+```{r}
+lc_coma_sf_subset = lc_coma_sf[pam$id.med, ]
+for (i in seq_len(nrow(lc_coma_sf_subset))){
+  ent_sel = round(lc_coma_sf_subset[i, "ent", drop = TRUE], 2)
+  relmutinf_sel = round(lc_coma_sf_subset[i, "relmutinf", drop = TRUE], 2)
+  plot(crop(raster_LULC, lc_coma_sf_subset[i, ]), 
+       main = paste0(i, " ent: ",  ent_sel, " relmutinf: ", relmutinf_sel))
+}
+```
+
+
+
+
+
+
+
+
+
+

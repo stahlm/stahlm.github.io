@@ -1,0 +1,14 @@
+"0","```r
+df_cluster_info %>% 
+  ggplot(aes(x = factor(cluster_id), fill = factor(cluster_id))) +
+  geom_bar() +
+  
+  scale_fill_manual(values = pal2use) +
+  
+  theme_classic() +
+  theme(legend.position = \"none\") +
+  
+  xlab(\"\") +
+  ylab(\"Count\")
+
+```"

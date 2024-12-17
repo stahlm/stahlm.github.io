@@ -1,0 +1,4 @@
+"0","fig_map <- df_coords_with_lat_long %>% "
+"0","  leaflet() %>% "
+"0","  addTiles() %>% "
+"0","  addMarkers(lng = ~long, lat = ~lat)"
