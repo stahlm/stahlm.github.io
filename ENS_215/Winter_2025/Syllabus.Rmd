@@ -47,8 +47,8 @@ At the start of each class you will be given a packet with the days work.  You s
 The three texts that we will primarily rely on are listed below.  All three are freely available on the web.  Print versions of all three books are also available.  
 
  + [**R for Data Science**](https://r4ds.hadley.nz/): Excellent textbook on using R for data science. 
- + [**ModernDive**](https://moderndive.com/): Introductory textbook on data science and stats in R, that presents the material in a clear and concise manner.  This book is freely available online.  
- + [**Geocomputation with R**](https://r.geocompx.org/: Excellent textbook on geospatial analysis using R.  
+ + [**ModernDive**](https://moderndive.com/v2/): Introductory textbook on data science and stats in R, that presents the material in a clear and concise manner.  This book is freely available online.  
+ + [**Geocomputation with R**](https://r.geocompx.org/): Excellent textbook on geospatial analysis using R.  
  
  
 ## Course sites
