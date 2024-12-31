@@ -1,0 +1,8 @@
+"0","```r
+mk_all_1981_2020 <- mk_all_1981_2020 %>% 
+  left_join(site_info) %>% 
+  left_join(df_WL_annual_summary) %>% 
+  st_as_sf(coords = c(\"long\", \"lat\"))
+```"
+"1","Joining with `by = join_by(site_id)`Joining with `by = join_by(site_id)`
+"

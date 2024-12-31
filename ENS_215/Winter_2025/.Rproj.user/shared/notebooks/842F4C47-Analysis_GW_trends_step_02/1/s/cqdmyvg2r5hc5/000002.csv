@@ -1,0 +1,6 @@
+"0","```r
+make_map(mk_all = mk_all_1981_2020)
+```"
+"1","tmap mode set to interactive viewing
+Warning: Currect projection of shape . unknown. Long-lat (WGS84) is assumed.Warning: Values have found that are higher than the highest breakVariable(s) \"Z.Value\" contains positive and negative values, so midpoint is set to 0. Set midpoint = NA to show the full spectrum of the color palette.
+"

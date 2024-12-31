@@ -1,0 +1,34 @@
+"0","```r
+do_mktest <- function(site_list, df_WL_annual){
+  
+  j_loop <- 1
+
+for (i_site in site_list) {
+  
+    df_current <- df_WL_annual %>% 
+      filter(site_id == i_site)
+    
+    mk_current <- mkttest(df_current$WL_mean_annual)
+    
+    mk_current <- data.frame(as.list(mk_current))
+    
+    mk_current$site_id <- i_site
+    
+    if (j_loop == 1) {
+      mk_all <- mk_current
+      
+      
+    }else{
+      
+      mk_all <- mk_all %>% 
+        bind_rows(mk_current)
+    }
+    
+    j_loop <- j_loop + 1
+  }
+  
+  
+  return(mk_all)
+}
+
+```"

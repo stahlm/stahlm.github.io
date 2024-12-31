@@ -1,0 +1,11 @@
+"0","```r
+df_WL_annual_summary <- df_WL_annual %>% 
+  arrange(site_id, YEAR) %>% 
+  group_by(site_id) %>% 
+  
+  summarize(n_years = n(),
+            diff_last_first = last(WL_mean_annual) - first(WL_mean_annual),
+            year_first = first(YEAR),
+            year_last = last(YEAR)
+            )
+```"

@@ -1,0 +1,11 @@
+"0","```r
+site_list_1981_2020 <- df_WL_annual_summary %>% 
+  filter(abs(diff_last_first) <= 200, 
+         year_first <= YR_start,
+         year_last >= YR_end,
+         n_years >= 5
+         
+         ) 
+
+site_list_1981_2020 <- site_list_1981_2020$site_id
+```"

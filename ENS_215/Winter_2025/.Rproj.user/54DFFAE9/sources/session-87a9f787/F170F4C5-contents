@@ -1,0 +1,70 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r}
+library(tidyverse)
+library(tmap)
+library(sf)
+```
+
+
+```{r}
+shape_deps <- st_read("../../Data/USGS_OFR_20051294/ofr20051294/ofr20051294.shp")
+```
+
+
+## Known gold deposits
+
+
+```{r}
+tmap_mode(mode = "view")
+
+fig_map <- shape_deps %>% 
+  
+  filter(tolower(CATEGORY) == "gold") %>% 
+  
+  tm_shape() +
+  tm_dots(col = "DEP_TYPE", size = 0.25,
+          popup.vars = c("CATEGORY", "COMMODITY", "DEP_TYPE", "DEP_NAME") 
+          ) +
+  
+  tm_mouse_coordinates() +
+  tm_basemap(server = c("Esri.WorldImagery", "OpenStreetMap", "Esri.WorldShadedRelief")) 
+
+fig_map %>%   
+  tmap_leaflet %>% 
+  leaflet.extras::addFullscreenControl() 
+
+```
+
+
+
+## Known copper deposits
+
+
+```{r}
+tmap_mode(mode = "view")
+
+fig_map <- shape_deps %>% 
+  
+  filter(tolower(CATEGORY) == "copper") %>% 
+  
+  tm_shape() +
+  tm_dots(col = "DEP_TYPE", size = 0.25,
+          popup.vars = c("CATEGORY", "COMMODITY", "DEP_TYPE", "DEP_NAME") 
+          ) +
+  
+  tm_mouse_coordinates() +
+  tm_basemap(server = c("Esri.WorldImagery", "OpenStreetMap", "Esri.WorldShadedRelief")) 
+
+fig_map %>%   
+  tmap_leaflet %>% 
+  leaflet.extras::addFullscreenControl() 
+
+```
+
+
+

@@ -1,0 +1,29 @@
+"0","```r
+make_map <- function(mk_all){
+  
+tmap_mode(\"view\")
+
+pal2use <- \"Set1\"
+fig_map <- mk_all %>% 
+  #filter(DTW_span >= 2) %>% 
+  #filter(DEPTH__feet <= 150) %>% 
+  #filter(r2_val >= 0.5) %>% 
+  
+  tm_shape() +
+  tm_dots(col = \"Z.Value\", size = 0.075, border.col = \"black\", border.lwd = 0.5, style = \"cont\", 
+          palette = \"RdBu\", 
+          breaks = seq(-5,5, by = 0.5),
+          popup.vars = c(\"site_id\", \"label\", \"Z.Value\", \"year_first\", \"year_last\", \"n_years\", \"diff_last_first\"
+                         , \"boreholeDepth\", \"aquifer\")
+             ) +
+  
+  tm_mouse_coordinates() +
+  tm_basemap(server = c(\"Esri.WorldImagery\", \"OpenStreetMap\", \"Esri.WorldShadedRelief\")) 
+
+
+fig_map %>%   
+  tmap_leaflet %>% 
+  leaflet.extras::addFullscreenControl() 
+
+}
+```"

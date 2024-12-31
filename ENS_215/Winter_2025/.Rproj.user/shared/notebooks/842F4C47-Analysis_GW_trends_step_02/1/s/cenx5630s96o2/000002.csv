@@ -1,0 +1,10 @@
+"0","```r
+df_WL_annual <- read_csv(file = \"./Data/output/df_water_levels_annual_for_trend_analysis.csv\")
+```"
+"1","Rows: 78241 Columns: 4── Column specification ───────────────────────────────────────────────────────────────────────────────────────────────────────────────
+Delimiter: \",\"
+chr (1): site_id
+dbl (3): YEAR, WL_mean_annual, n_months
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+"

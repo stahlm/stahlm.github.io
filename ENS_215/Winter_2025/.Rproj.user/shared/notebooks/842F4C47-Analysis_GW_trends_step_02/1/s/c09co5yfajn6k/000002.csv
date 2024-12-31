@@ -1,0 +1,4 @@
+"0","```r
+site_info <- site_info %>% 
+  dplyr::select(site_id, lat, long, label, aquifer, boreholeDepth, datum)
+```"

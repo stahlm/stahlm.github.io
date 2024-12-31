@@ -1,0 +1,4 @@
+"0","```r
+site_info <- site_info %>% 
+  mutate(site_id = str_remove(site_id, \"http://environment.data.gov.uk/hydrology/id/stations/\"))
+```"

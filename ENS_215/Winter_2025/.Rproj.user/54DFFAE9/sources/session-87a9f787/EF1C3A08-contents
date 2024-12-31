@@ -1,0 +1,186 @@
+---
+title: "Welcome to ENS-215"
+date: "Winter 2025"
+output: slidy_presentation
+footer: "ENS-215 (Winter 2025)"
+theme: united
+---
+
+```{r setup, include=FALSE, warning=FALSE, message=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+```{r echo = FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(readxl)
+library(ggthemes)
+library(sf)
+library(tmap)
+
+Heard_of <- read_xlsx("../../Data/Class_survey_2023.xlsx", sheet = "Heard_of")
+
+Class_yr <- read_xlsx("../../Data/Class_survey_2023.xlsx", sheet = "Class_yr")
+
+Class_yr$Year <- ordered(Class_yr$Year, levels = c("FR","SO","JR","SR","Other"))
+
+Majors <- read_xlsx("../../Data/Class_survey_2023.xlsx", sheet = "Major")
+
+My_age <- read_xlsx("../../Data/Class_survey_2023.xlsx", sheet = "My_age")
+
+States <- read_xlsx("../../Data/Class_survey_2023.xlsx", sheet = "Home_state")
+```
+
+
+
+# Lecture overview
+
+- Introductions
+- Class survey
+- Why learn data science?
+- Syllabus and class website
+
+
+---
+
+# About me
+
+<div style="float: right; width: 50%;">
+
+![](C:/Users/stahlm/Documents/Website_Union/Photos_for_website/Vietnam_River_Sampling_2018.jpg){width=450px}
+
+</div>
+
+-  Prof. Mason Stahl
+-  Department of Geology and ESPE
+-  Office: Olin 102A
+-  Email: stahlm@union.edu
+
+My research is on hydrogeology and water resources. I work in across the US and SE-Asia.
+
+---
+
+# Have you heard of...
+- R
+- RStudio
+- DataCamp
+- Data Science
+- Machine Learning
+- Big Data
+
+---
+
+# About you
+- Name
+- Year
+- Major
+- Hometown/region
+- Anything else you'd like to share
+
+---
+
+# What is data science/analytics?
+![](C:/Users/stahlm/Documents/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2020/Supporting_Material/DS_VennDiagram.png){width=750px}
+
+---
+
+# Why learn data science?
+
+![Image source: R4DS](C:/Users/stahlm/Documents/Teaching_UnionCollege/Environmental_Data_Analysis/Lectures/Images/data_science_wf.png){width=750px}
+---
+
+
+# Our class
+Summary info about the students in our class
+
+---
+
+## Where we are from
+```{r echo = FALSE, message=FALSE, warning=FALSE, eval = F}
+map_data_usa <- map_data("state")
+
+States <- read_xlsx("../../Data/Class_survey_2022.xlsx", sheet = "Home_state")
+
+map_data_usa <- left_join(map_data_usa, States)
+
+map_data_usa %>% 
+  ggplot() + 
+  geom_polygon(aes(long, lat, group = group, fill = count), color = "black") +
+  scale_fill_gradient(low = "blue", high = "red") +
+  coord_map(projection = "bonne", lat0 = 50) +
+  theme_void() 
+```
+
+```{r echo = FALSE, message=FALSE, warning=FALSE}
+sf_states <- spData::us_states %>% 
+  filter(NAME %in% c("New York", "Maine", "New Hampshire", "Massachusetts",
+                     "Rhode Island"
+                     
+                     )
+         ) %>% 
+  
+  dplyr::select(name_long = NAME)
+
+sf_countries <- spData::world %>% 
+  filter(name_long %in% c("China")) %>% 
+  dplyr::select(name_long) %>% 
+  rename(geometry = geom)
+
+
+```
+
+``
+
+```{r echo = FALSE, message=FALSE, warning=FALSE}
+sf_all <- bind_rows(sf_countries, sf_states)
+```
+
+
+```{r echo = FALSE, message=FALSE, warning=FALSE}
+loc_map <-   tm_shape(sf_all) +
+  tm_polygons(col = "blue") +
+  
+  tm_shape(sf_all) +
+  tm_polygons(col = "blue") 
+  
+tmap_mode("view")
+
+loc_map 
+```
+
+
+
+---
+
+## Class composition by year
+```{r}
+ggplot(Class_yr) + 
+  geom_col(aes(x = Year, y = Count), fill = "mediumseagreen") +
+  
+  theme_bw()
+```
+
+---
+
+## Class composition by major
+```{r}
+ggplot(Majors) + 
+  geom_col(aes(x = reorder(Major, Count), y = Count), fill = "mediumseagreen") +
+  
+  labs(x = "Major") +
+  
+  theme_bw()
+```
+
+---
+
+## What we've heard of
+```{r}
+ggplot(Heard_of) + 
+  geom_col(aes(x = reorder(Topic, Count), y = Count), fill = "mediumseagreen") +
+  
+  labs(x = "Topic") +
+  
+  theme_bw()
+```
+

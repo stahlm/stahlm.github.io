@@ -1,0 +1,7 @@
+"0","tmap_mode(""plot"")"
+"2","tmap mode set to plotting
+"
+"0","map_income <- tm_shape(Schdy) +"
+"0","  tm_polygons(col = ""estimate"", alpha = 1)"
+"0",""
+"0","map_income"

@@ -1,0 +1,188 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+https://www.sciencebase.gov/catalog/item/66d761a6d34eef5af66ca76b
+
+```{r}
+library(tidyverse)
+library(data.table)
+library(fst)
+library(modifiedmk)
+library(tmap)
+library(sf)
+#library(arrow)
+```
+
+
+## Load in time-series' of annual mean water level for all sites
+
+All sites meet the criteria set forth in **Screening_GW_level_data_step_02.Rmd**
+
+```{r}
+df_WL_annual <- read_csv(file = "./Data/output/df_water_levels_annual_for_trend_analysis.csv")
+```
+## Load in site info
+```{r}
+site_info <- readRDS("./Data/site_info.RDS")
+```
+
+```{r}
+site_info <- site_info %>% 
+  rename(site_id = `@id`)
+```
+
+
+```{r}
+site_info <- site_info %>% 
+  dplyr::select(site_id, lat, long, label, aquifer, boreholeDepth, datum)
+```
+
+```{r}
+site_info <- site_info %>% 
+  mutate(site_id = str_remove(site_id, "http://environment.data.gov.uk/hydrology/id/stations/"))
+```
+
+
+
+## Trend analysis 
+```{r}
+df_WL_annual_summary <- df_WL_annual %>% 
+  arrange(site_id, YEAR) %>% 
+  group_by(site_id) %>% 
+  
+  summarize(n_years = n(),
+            diff_last_first = last(WL_mean_annual) - first(WL_mean_annual),
+            year_first = first(YEAR),
+            year_last = last(YEAR)
+            )
+```
+
+
+## Loop over all sites and perform Mann-Kendall trend test
+
+```{r}
+do_mktest <- function(site_list, df_WL_annual){
+  
+  j_loop <- 1
+
+for (i_site in site_list) {
+  
+    df_current <- df_WL_annual %>% 
+      filter(site_id == i_site)
+    
+    mk_current <- mkttest(df_current$WL_mean_annual)
+    
+    mk_current <- data.frame(as.list(mk_current))
+    
+    mk_current$site_id <- i_site
+    
+    if (j_loop == 1) {
+      mk_all <- mk_current
+      
+      
+    }else{
+      
+      mk_all <- mk_all %>% 
+        bind_rows(mk_current)
+    }
+    
+    j_loop <- j_loop + 1
+  }
+  
+  
+  return(mk_all)
+}
+
+```
+
+
+```{r}
+make_map <- function(mk_all){
+  
+tmap_mode("view")
+
+pal2use <- "Set1"
+fig_map <- mk_all %>% 
+  #filter(DTW_span >= 2) %>% 
+  #filter(DEPTH__feet <= 150) %>% 
+  #filter(r2_val >= 0.5) %>% 
+  
+  tm_shape() +
+  tm_dots(col = "Z.Value", size = 0.075, border.col = "black", border.lwd = 0.5, style = "cont", 
+          palette = "RdBu", 
+          breaks = seq(-5,5, by = 0.5),
+          popup.vars = c("site_id", "label", "Z.Value", "year_first", "year_last", "n_years", "diff_last_first"
+                         , "boreholeDepth", "aquifer")
+             ) +
+  
+  tm_mouse_coordinates() +
+  tm_basemap(server = c("Esri.WorldImagery", "OpenStreetMap", "Esri.WorldShadedRelief")) 
+
+
+fig_map %>%   
+  tmap_leaflet %>% 
+  leaflet.extras::addFullscreenControl() 
+
+}
+```
+
+
+### Trend 1981-2020
+```{r}
+YR_start <- 2000
+YR_end <- 2020
+```
+
+```{r}
+df_WL_annual_summary <- df_WL_annual %>% 
+  filter(YEAR %in% YR_start:YR_end) %>% 
+  
+  arrange(site_id, YEAR) %>% 
+  group_by(site_id) %>% 
+  
+  summarize(n_years = n(),
+            diff_last_first = last(WL_mean_annual) - first(WL_mean_annual),
+            year_first = first(YEAR),
+            year_last = last(YEAR)
+            )
+```
+
+
+```{r}
+site_list_1981_2020 <- df_WL_annual_summary %>% 
+  filter(abs(diff_last_first) <= 200, 
+         year_first <= YR_start,
+         year_last >= YR_end,
+         n_years >= 5
+         
+         ) 
+
+site_list_1981_2020 <- site_list_1981_2020$site_id
+```
+
+```{r}
+df_WL_annual_1981_2020 <- df_WL_annual %>% 
+  filter(YEAR %in% YR_start:YR_end) 
+```
+
+
+```{r}
+mk_all_1981_2020 <- do_mktest(site_list = site_list_1981_2020, df_WL_annual = df_WL_annual_1981_2020)
+```
+
+```{r}
+mk_all_1981_2020 <- mk_all_1981_2020 %>% 
+  left_join(site_info) %>% 
+  left_join(df_WL_annual_summary) %>% 
+  st_as_sf(coords = c("long", "lat"))
+```
+
+
+
+```{r}
+make_map(mk_all = mk_all_1981_2020)
+```
+

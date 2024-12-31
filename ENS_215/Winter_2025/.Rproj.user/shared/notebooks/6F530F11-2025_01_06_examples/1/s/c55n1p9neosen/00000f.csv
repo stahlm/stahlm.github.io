@@ -1,0 +1,3 @@
+"0","springs_data <- opq(bb_values) %>% "
+"0","  add_osm_feature(key = 'natural', value = 'spring') %>% "
+"0","  osmdata_sf()"

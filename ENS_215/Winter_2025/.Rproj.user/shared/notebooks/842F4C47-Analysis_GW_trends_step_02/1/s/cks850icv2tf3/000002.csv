@@ -1,0 +1,4 @@
+"0","```r
+site_info <- site_info %>% 
+  rename(site_id = `@id`)
+```"
