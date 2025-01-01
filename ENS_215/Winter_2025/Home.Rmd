@@ -56,7 +56,11 @@ output:
 <br/>
 
 ## Labs
-+ Lab 1 -- **Intro and EPA Fuel Economy Data** [(html)](https://stahlm.github.io/ENS_215/Winter_2023/Labs/Lab_EPA_Fuel_Economy.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Labs/Lab_EPA_Fuel_Economy.Rmd)  
++ Lab 1 -- **Intro and EPA Fuel Economy Data** 
+```{r eval = F, echo = F}
+[(html)](https://stahlm.github.io/ENS_215/Winter_2025/Labs/Lab_EPA_Fuel_Economy.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2025/Labs/Lab_EPA_Fuel_Economy.Rmd)  
+```
+
 
 <br/> 
 
