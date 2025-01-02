@@ -1,0 +1,6 @@
+"0","locs_country %>% "
+"0","  tm_shape() +"
+"0","  tm_polygons(col = ""orange"", border.col = ""black"") +"
+"0","  "
+"0","  tm_shape(locs_state) +"
+"0","  tm_polygons(col = ""orange"", border.col = ""black"") "
