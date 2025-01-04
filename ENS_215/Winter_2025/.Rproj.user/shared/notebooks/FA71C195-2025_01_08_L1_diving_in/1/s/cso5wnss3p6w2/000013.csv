@@ -1,2 +1,0 @@
-"0","ggplot(met_data) + "
-"0","  geom_line(aes(x = DATE, y = PRCP),color = ""blue"") "
