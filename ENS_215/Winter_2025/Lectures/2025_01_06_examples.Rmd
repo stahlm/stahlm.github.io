@@ -4,6 +4,7 @@ author: "ENS-215"
 date: "Winter 2025"
 output:
   html_document:
+    df_print: paged
     theme: journal
     toc: yes
     toc_float: yes
@@ -44,7 +45,7 @@ AOI = AOI::geocode(loc2use,
 
 ts  = getGridMET(AOI, varname = c("tmmx","tmmn", "pr"),
                  startDate = "2024-01-01", 
-                 endDate = "2024-12-25")
+                 endDate = "2024-12-31")
 ```
 
 ```{r}
@@ -217,8 +218,12 @@ library(sf)
 library(tmaptools)
 library(OpenStreetMap)
 
-Sys.setenv(MAPBOX_API_KEY = "pk.eyJ1Ijoic3RhaGxtIiwiYSI6ImNrZnJiMDMxbDA0aGsyenFlajhvMzZ4bXUifQ.I7l7fJBAHCQWRwyYozq4ZQ")
 
+
+```
+
+```{r echo = F}
+Sys.setenv(MAPBOX_API_KEY = "pk.eyJ1Ijoic3RhaGxtIiwiYSI6ImNrZnJiMDMxbDA0aGsyenFlajhvMzZ4bXUifQ.I7l7fJBAHCQWRwyYozq4ZQ")
 ```
 
 
@@ -377,7 +382,8 @@ Schdy <- get_acs(
   geography = "tract",
   variables = "B19013_001",
   geometry = TRUE,
-  year = 2020
+  year = 2020, 
+  progress_bar = F
 )
 ```
 

@@ -1,0 +1,587 @@
+---
+title: "Cambodia SITS Project: Maps"
+output: html_document
+---
+```{r message= FALSE}
+library(tidyverse)
+library(sf)
+library(terra)
+library(tmap)
+library(moderndive)
+library(patchwork)
+library(readxl)
+
+library(plotly)
+library(GWalkR)
+
+library(GGally)
+```
+
+## Load in data
+```{r message=FALSE, warning=FALSE}
+#df_chem_cambodia <- read_csv("./output/Soil_leaf_grain_all_2024_08_23.csv")
+df_chem_cambodia <- read_csv("./output/Soil_leaf_grain_all_2024_10_21.csv")
+
+shape_fields <- st_read("../Data/Fields/sites_fields_locations/Fieldmargin_export_2024_07_03/Cambodia Field Sites (NSF SiTS).kml")
+```
+
+## Compare grain As between years at sites with multiple years of data
+```{r}
+fig <- df_chem_cambodia %>% 
+  filter(Sampling_campaign %in% c("JAN-2023", "JAN-2024")) %>% 
+  group_by(Site_ID) %>% 
+  filter(n() > 1) %>% 
+  
+  mutate(Sampling_campaign = ordered(Sampling_campaign, c("JAN-2023", "JUN-2023", "JAN-2024", "JUN-2024"))) %>% 
+  ungroup() %>% 
+  
+  ggplot(aes(x = Sampling_campaign, y = As_Grain, color = Site_ID, group = Site_ID)) +
+  geom_line() +
+  geom_point() +
+  
+  theme_bw() 
+  
+  ggplotly(fig)
+  
+```
+
+
+<br/> 
+
+```{r}
+fig <- df_chem_cambodia %>% 
+  filter(Sampling_campaign %in% c("JUN-2023", "JAN-2024")) %>% 
+  group_by(Site_ID) %>% 
+  filter(n() > 1) %>% 
+  
+  mutate(Sampling_campaign = ordered(Sampling_campaign, c("JAN-2023", "JUN-2023", "JAN-2024", "JUN-2024"))) %>% 
+  ungroup() %>% 
+  
+  ggplot(aes(x = Sampling_campaign, y = As_Grain, color = Site_ID, group = Site_ID)) +
+  geom_line() +
+  geom_point() +
+  
+  theme_bw() 
+  
+  ggplotly(fig)
+```
+
+filter(Sampling_campaign %in% c("JAN-2023", "JUN-2023", "JAN-2024", "JUN-2024")) %>% 
+
+```{r}
+campaign_levels <- c("JAN-2023", "JAN-2024")
+
+df_changes <- df_chem_cambodia %>% 
+  filter(Sampling_campaign %in% campaign_levels) %>% 
+  filter(!is.na(As_Grain)) %>% 
+  
+  dplyr::select(Site_ID, Sampling_campaign, As_Grain,
+                occur_value, recurr_value) %>% 
+  
+  group_by(Site_ID, Sampling_campaign) %>% 
+  mutate(n = n()) %>% 
+  
+  filter(n <= 1)
+
+df_changes <- df_changes %>% 
+  pivot_wider(names_from = Sampling_campaign, values_from = As_Grain) %>% 
+  mutate(As_grain_2024_01_minus_2023_01 = `JAN-2024` - `JAN-2023`)
+```
+
+
+```{r}
+site_coords <- df_chem_cambodia %>% 
+  dplyr::select(Site_ID, Lat, Long)
+```
+
+```{r}
+df_changes <- df_changes %>% 
+  left_join(site_coords)
+```
+
+```{r}
+sf_changes <- df_changes %>% 
+  filter(!is.na(Lat)) %>% 
+  st_as_sf(coords = c("Long", "Lat"))
+```
+
+
+```{r}
+sf_chem_cambodia <- df_chem_cambodia %>% 
+  filter(!is.na(Lat)) %>% 
+  st_as_sf(coords = c("Long", "Lat"))
+```
+
+
+## Grain arsenic map 
+Concentrations in ppm  
+
+
+
+```{r}
+tmap_options(check.and.fix = TRUE)
+sf::sf_use_s2(FALSE)
+
+sf_grain_as <- sf_chem_cambodia %>% 
+  filter(!is.na(As_Grain)) 
+
+fig_map <- shape_fields %>% 
+  tm_shape() +
+  tm_polygons(alpha = 0.5) +
+  
+  tm_shape(sf_grain_as) +
+  tm_dots(col = "As_Grain", palette = "viridis", size = 0.2, style = "quantile") +
+  
+  tm_mouse_coordinates() +
+  tm_basemap(server = c("Esri.WorldImagery", "OpenStreetMap", "Esri.WorldShadedRelief")) +
+  
+  tm_tiles("https://storage.googleapis.com/global-surface-water/tiles2021/occurrence/{z}/{x}/{y}.png", 
+           group = "Occur") +
+  
+  tm_tiles("https://storage.googleapis.com/global-surface-water/tiles2021/recurrence/{z}/{x}/{y}.png", 
+           group = "Reccur") +
+  
+  tm_tiles("https://storage.googleapis.com/global-surface-water/tiles2021/seasonality/{z}/{x}/{y}.png", 
+           group = "Seasonality") +
+  
+  tm_tiles("https://wms.gebco.net/2024/mapserv?", 
+           group = "Topo") +
+  
+  tm_scale_bar() 
+
+fig_map <-  fig_map %>% 
+    tmap_leaflet %>% 
+    leaflet.extras::addFullscreenControl()
+
+```
+
+
+```{r}
+fig_map
+```
+
+
+## Soil C map (quantile binning)
+```{r}
+tmap_options(check.and.fix = TRUE)
+sf::sf_use_s2(FALSE)
+
+sf_grain_as <- sf_chem_cambodia %>% 
+  filter(!is.na(C_percent_soil_acid)) 
+
+fig_map <- shape_fields %>% 
+  tm_shape() +
+  tm_polygons(alpha = 0.5) +
+  
+  tm_shape(sf_grain_as) +
+  tm_dots(col = "C_percent_soil_acid", palette = "viridis", size = 0.2, style = "quantile") +
+  
+  tm_mouse_coordinates() +
+  tm_basemap(server = c("Esri.WorldImagery", "OpenStreetMap", "Esri.WorldShadedRelief")) +
+  
+  tm_tiles("https://storage.googleapis.com/global-surface-water/tiles2021/occurrence/{z}/{x}/{y}.png", 
+           group = "Occur") +
+  
+  tm_tiles("https://storage.googleapis.com/global-surface-water/tiles2021/recurrence/{z}/{x}/{y}.png", 
+           group = "Reccur") +
+  
+  tm_tiles("https://storage.googleapis.com/global-surface-water/tiles2021/seasonality/{z}/{x}/{y}.png", 
+           group = "Seasonality") +
+  
+  tm_tiles("https://wms.gebco.net/2024/mapserv?", 
+           group = "Topo") +
+  
+  tm_scale_bar() 
+
+fig_map <-  fig_map %>% 
+    tmap_leaflet %>% 
+    leaflet.extras::addFullscreenControl()
+
+fig_map
+```
+
+
+<br/> 
+
+
+## Soil C map (even spaced bins in color scale)
+```{r}
+tmap_options(check.and.fix = TRUE)
+sf::sf_use_s2(FALSE)
+
+sf_grain_as <- sf_chem_cambodia %>% 
+  filter(!is.na(C_percent_soil_acid)) 
+
+fig_map <- shape_fields %>% 
+  tm_shape() +
+  tm_polygons(alpha = 0.5) +
+  
+  tm_shape(sf_grain_as) +
+  tm_dots(col = "C_percent_soil_acid", palette = "viridis", size = 0.2) +
+  
+  tm_mouse_coordinates() +
+  tm_basemap(server = c("Esri.WorldImagery", "OpenStreetMap", "Esri.WorldShadedRelief")) +
+  
+  tm_tiles("https://storage.googleapis.com/global-surface-water/tiles2021/occurrence/{z}/{x}/{y}.png", 
+           group = "Occur") +
+  
+  tm_tiles("https://storage.googleapis.com/global-surface-water/tiles2021/recurrence/{z}/{x}/{y}.png", 
+           group = "Reccur") +
+  
+  tm_tiles("https://storage.googleapis.com/global-surface-water/tiles2021/seasonality/{z}/{x}/{y}.png", 
+           group = "Seasonality") +
+  
+  tm_tiles("https://wms.gebco.net/2024/mapserv?", 
+           group = "Topo") +
+  
+  tm_scale_bar() 
+
+fig_map <-  fig_map %>% 
+    tmap_leaflet %>% 
+    leaflet.extras::addFullscreenControl()
+
+fig_map
+```
+
+## All sites with grain As change data (i.e., sites with 2 harvest years of data)
+```{r}
+#campaign_levels <- c("JAN-2023", "JAN-2024")
+
+df_changes_all <- df_chem_cambodia %>% 
+  filter(!is.na(As_Grain)) %>% 
+  
+  dplyr::select(Site_ID, Sampling_campaign, As_Grain,
+                occur_value, recurr_value) %>% 
+  
+  group_by(Site_ID, Sampling_campaign) %>% 
+  mutate(n = n()) %>% 
+  
+  filter(n <= 1)
+
+df_changes_all <- df_changes_all %>% 
+  pivot_wider(names_from = Sampling_campaign, values_from = As_Grain) %>% 
+  mutate(As_grain_2024_01_minus_2023_01 = `JAN-2024` - `JAN-2023`) %>% 
+  mutate(As_grain_2024_01_minus_2023_06 = `JAN-2024` - `JUN-2023`) %>% 
+  
+  mutate(As_grain_2024_minus_2023 = case_when(!is.na(As_grain_2024_01_minus_2023_01) ~ As_grain_2024_01_minus_2023_01,
+                                              !is.na(As_grain_2024_01_minus_2023_06) ~ As_grain_2024_01_minus_2023_06
+    
+  )
+         )
+```
+
+
+```{r}
+site_coords <- df_chem_cambodia %>% 
+  dplyr::select(Site_ID, Lat, Long) %>% 
+  group_by(Site_ID) %>% 
+  summarize(Lat = first(Lat),
+            Long = first(Long))
+```
+
+```{r}
+df_changes_all <- df_changes_all %>% 
+  left_join(site_coords)
+```
+
+```{r}
+sf_changes_all <- df_changes_all %>% 
+  filter(!is.na(Lat)) %>% 
+  st_as_sf(coords = c("Long", "Lat"))
+```
+
+
+
+```{r}
+sf_changes_all <- sf_changes_all %>% 
+  filter(!is.na(As_grain_2024_minus_2023))
+```
+
+```{r}
+sf_changes_all <- sf_changes_all %>% 
+  mutate(Abs_As_grain_2024_minus_2023 = abs(As_grain_2024_minus_2023))
+```
+
+
+### Grain As Change (All field with 2 harvest years of data)
+```{r}
+fig_map <- shape_fields %>% 
+  tm_shape() +
+  tm_polygons(alpha = 0.5) +
+  
+  tm_shape(sf_changes_all) +
+  tm_dots(col = "As_grain_2024_minus_2023", size = 0.2, style = "cont", breaks = c(-0.2,-0.1,0,0.1,0.2)) +
+  
+  tm_mouse_coordinates() +
+  tm_basemap(server = c("Esri.WorldImagery", "OpenStreetMap", "Esri.WorldShadedRelief")) +
+  
+    tm_tiles("https://storage.googleapis.com/global-surface-water/tiles2021/occurrence/{z}/{x}/{y}.png", 
+           group = "Occur") +
+  
+  tm_tiles("https://storage.googleapis.com/global-surface-water/tiles2021/recurrence/{z}/{x}/{y}.png", 
+           group = "Reccur") +
+  
+  tm_tiles("https://storage.googleapis.com/global-surface-water/tiles2021/seasonality/{z}/{x}/{y}.png", 
+           group = "Seasonality") +
+  
+  tm_tiles("https://wms.gebco.net/2024/mapserv?", 
+           group = "Topo") +
+  
+  tm_scale_bar() 
+
+fig_map <-  fig_map %>% 
+    tmap_leaflet %>% 
+    leaflet.extras::addFullscreenControl()
+```
+```{r}
+fig_map 
+```
+
+
+```{r}
+sf_changes_all %>% 
+  ggplot(aes(x = recurr_value, y = As_grain_2024_minus_2023)) +
+  geom_jitter(height = 0)
+
+```
+
+```{r}
+my_theme <- theme(legend.position = "none",
+        axis.text.x = element_text(size = 12),
+        axis.text.y = element_text(size = 12),
+        
+        axis.title.x = element_text(size = 14),
+        axis.title.y = element_text(size = 14)
+        )
+```
+
+```{r}
+sf_changes_all %>% 
+  mutate(recurr_cat = if_else(recurr_value <=25, "Low recurrence", "High recurrence")) %>% 
+  mutate(occur_cat = if_else(occur_value <= 0, "Never floods", "Flooding occurs")) %>% 
+  
+  ggplot(aes(x = occur_cat, y = Abs_As_grain_2024_minus_2023)) +
+  
+  geom_boxplot(outlier.shape = NA, fill = "grey60") +
+  geom_jitter(width = 0.15, height = 0, shape = 21, fill = "grey90", color = "black") +
+  
+  xlab("Flooding occurrence") +
+  ylab(expression(paste("|", " Grain As change (2023-2024) ", "|"))) +
+  theme_classic() +
+  my_theme
+
+
+ggsave("./Figures_AGU_2024/Boxtplot_flooding_occur_Grain_As_change.svg", width = 4, height = 6)
+```
+
+
+### Absolute value of the change
+```{r}
+fig_map <- shape_fields %>% 
+  tm_shape() +
+  tm_polygons(alpha = 0.5) +
+  
+  tm_shape(sf_changes_all) +
+  tm_dots(col = "Abs_As_grain_2024_minus_2023", size = 0.2, style = "cont", 
+          palette = "Reds", breaks = c(0,0.05,0.1,0.15,0.2,0.25)) +
+  
+  tm_mouse_coordinates() +
+  tm_basemap(server = c("Esri.WorldImagery", "OpenStreetMap", "Esri.WorldShadedRelief")) +
+  
+  tm_tiles("https://storage.googleapis.com/global-surface-water/tiles2021/occurrence/{z}/{x}/{y}.png", 
+           group = "Occur") +
+  
+  tm_tiles("https://storage.googleapis.com/global-surface-water/tiles2021/recurrence/{z}/{x}/{y}.png", 
+           group = "Reccur") +
+  
+  tm_tiles("https://storage.googleapis.com/global-surface-water/tiles2021/seasonality/{z}/{x}/{y}.png", 
+           group = "Seasonality") +
+  
+  tm_tiles("https://wms.gebco.net/2024/mapserv?", 
+           group = "Topo") +
+  
+  tm_scale_bar() 
+
+fig_map <-  fig_map %>% 
+    tmap_leaflet %>% 
+    leaflet.extras::addFullscreenControl()
+```
+
+```{r}
+fig_map
+
+```
+
+
+
+
+
+## Change in grain As (Jan 2024 - Jan 2023)
+
+
+```{r}
+fig_map <- shape_fields %>% 
+  tm_shape() +
+  tm_polygons(alpha = 0.5) +
+  
+  tm_shape(sf_changes) +
+  tm_dots(col = "As_grain_2024_01_minus_2023_01", size = 0.2, style = "cont") +
+  
+  tm_mouse_coordinates() +
+  tm_basemap(server = c("Esri.WorldImagery", "OpenStreetMap", "Esri.WorldShadedRelief")) +
+  tm_scale_bar() 
+
+fig_map <-  fig_map %>% 
+    tmap_leaflet %>% 
+    leaflet.extras::addFullscreenControl()
+```
+
+```{r}
+fig_map
+```
+
+<br/> 
+
+## Change in Grain As (Jan 2024 - Jun 2023)
+
+```{r}
+campaign_levels <- c("JUN-2023", "JAN-2024")
+
+df_changes <- df_chem_cambodia %>% 
+  filter(Sampling_campaign %in% campaign_levels) %>% 
+  filter(!is.na(As_Grain)) %>% 
+  
+  dplyr::select(Site_ID, Sampling_campaign, As_Grain,
+                occur_value, recurr_value) %>% 
+  
+  group_by(Site_ID, Sampling_campaign) %>% 
+  mutate(n = n()) %>% 
+  
+  filter(n <= 1)
+
+df_changes <- df_changes %>% 
+  pivot_wider(names_from = Sampling_campaign, values_from = As_Grain) %>% 
+  mutate(As_grain_2024_01_minus_2023_06 = `JAN-2024` - `JUN-2023`)
+```
+
+
+```{r}
+site_coords <- df_chem_cambodia %>% 
+  dplyr::select(Site_ID, Lat, Long)
+```
+
+```{r}
+df_changes <- df_changes %>% 
+  left_join(site_coords)
+```
+
+```{r}
+sf_changes <- df_changes %>% 
+  filter(!is.na(Lat)) %>% 
+  st_as_sf(coords = c("Long", "Lat"))
+```
+
+
+```{r}
+sf_changes <- sf_changes %>% 
+  filter(!is.na(As_grain_2024_01_minus_2023_06)) 
+```
+
+
+```{r}
+fig_map <- shape_fields %>% 
+  tm_shape() +
+  tm_polygons(alpha = 0.5) +
+  
+  tm_shape(sf_changes) +
+  tm_dots(col = "As_grain_2024_01_minus_2023_06", size = 0.2, style = "cont") +
+  
+  tm_mouse_coordinates() +
+  tm_basemap(server = c("Esri.WorldImagery", "OpenStreetMap", "Esri.WorldShadedRelief")) +
+  tm_scale_bar() 
+
+fig_map <-  fig_map %>% 
+    tmap_leaflet %>% 
+    leaflet.extras::addFullscreenControl()
+```
+
+```{r}
+fig_map
+```
+
+
+## Soil moisture data
+```{r}
+df_soil_moisture <- read_csv(file = "./output/WAPOR_soilmoisture_cambodia_fields.csv")
+```
+```{r}
+df_soil_moisture_summary_monthly <- df_soil_moisture %>% 
+  group_by(Site_ID, YEAR, MONTH) %>% 
+  
+  summarize(RSM_mean = mean(RSM, na.rm = T),
+            RSM_median = median(RSM, na.rm = T),
+            RSM_n = n()
+            
+            )
+  
+```
+
+```{r}
+sf_soil_moisture_summary_monthly <- sf_changes_all %>% 
+  right_join(df_soil_moisture_summary_monthly)
+```
+```{r}
+sf_soil_moisture_summary_monthly_wide <- sf_soil_moisture_summary_monthly %>% 
+  dplyr::select(-RSM_median, RSM_n) %>% 
+  pivot_wider(names_from = "YEAR", values_from = "RSM_mean")
+```
+
+
+
+
+```{r}
+sf_soil_moisture_summary_monthly_wide %>% 
+  filter(!is.na(Abs_As_grain_2024_minus_2023)) %>% 
+  ggplot(aes(x = `2022`, y = `2023`, fill = Abs_As_grain_2024_minus_2023)) +
+  geom_point(shape = 21) +
+  
+  geom_abline(slope = 1, intercept = 0, color = "red", size = 1) +
+  facet_wrap(~MONTH)
+```
+
+```{r}
+sf_soil_moisture_summary_monthly_wide %>% 
+  filter(!is.na(Abs_As_grain_2024_minus_2023)) %>% 
+  
+  group_by(Site_ID) %>% 
+  mutate(RSM_2022_mean = mean(`2022`),
+         RSM_2023_mean = mean(`2023`)) %>% 
+
+  ggplot(aes(x = `RSM_2022_mean`, y = `RSM_2023_mean`, fill = Abs_As_grain_2024_minus_2023)) +
+  geom_point(shape = 21, size = 4) +
+  
+  scale_fill_viridis_c() +
+  
+  geom_abline(slope = 1, intercept = 0, color = "red", size = 1) 
+
+
+
+
+sf_soil_moisture_summary_monthly_wide %>% 
+  filter(!is.na(Abs_As_grain_2024_minus_2023)) %>% 
+  
+  group_by(Site_ID) %>% 
+  mutate(RSM_2022_mean = mean(`2022`),
+         RSM_2023_mean = mean(`2023`)) %>% 
+
+  ggplot(aes(x = `RSM_2022_mean`, y = `RSM_2023_mean`, fill = As_grain_2024_minus_2023)) +
+  geom_point(shape = 21, size = 4) +
+  
+  scale_fill_gradientn(colours = colorspace::diverge_hcl(7)) +
+  
+  geom_abline(slope = 1, intercept = 0, color = "red", size = 1) 
+```
+
+
+
+<br/>

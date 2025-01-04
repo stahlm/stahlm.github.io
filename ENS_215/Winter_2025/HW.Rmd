@@ -168,7 +168,7 @@ Once you've downloaded and installed R, then you will need to get RStudio.  Go t
 **2. Accept the invite to our DataCamp class and complete "_Introduction to R_"**  
 
   + Assigned: 6-Jan
-  + Due: 8-Jan (accept invite); 12-Jan (complete "Introduction to R" assignment)  
+  + Due: 8-Jan (accept invite); 13-Jan (complete "Introduction to R" assignment)  
   + **Note:** You should accept the DataCamp invitation immediately 
 
 
