@@ -39,12 +39,12 @@ Now we'll load in the data from the web and clean it up a bit.  FYI, note how I 
 
 ```{r warning=FALSE}
 ## Load in data
-met_data <- read_csv('http://stahlm.github.io/ENS_215/Data/Blue_Hills_MA_Precip_Temp_Data_1.csv')
+met_data <- read_csv('http://stahlm.github.io/ENS_215/Data/Blue_Hills_MA_Precip_Temp_Data_1893_2024.csv',skip = 3)
                      
 
-met_data <- mutate(met_data, DATE = parse_date_time(DATE,"mdy")) # convert date into computable format
+met_data <- mutate(met_data, DATE = ymd(DATE)) # convert date into computable format
 
-met_data <- select(met_data, -c(TOBS)) # remove the TOBS column, since we won't use it
+#met_data <- select(met_data, -c(TOBS)) # remove the TOBS column, since we won't use it
 ```
 
 
