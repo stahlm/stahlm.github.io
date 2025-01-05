@@ -20,7 +20,7 @@ Outlines below highlight some key topics to cover prior to beginning with the co
 
 ### Diving into R
 - Go over RStudio/R basics, panes in R studio
-- Have students set up folder for this course and create a "lectures" project  
+- Have students set up folder for this course and create a "lectures" project   
 
 ### R Programming and Markdown Basics
 - Refresh students on the RStudio/R basics, console in R, R studio panes

@@ -46,7 +46,7 @@ output:
  
 ### Week 1
 + Mon (6-Jan) -- **Course introduction** 
-[(html)](https://stahlm.github.io/ENS_215/Winter_2025/Lectures/2025_01_06_L1.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Lectures/2025_01_06_L1.Rmd), [In-class examples](https://stahlm.github.io/ENS_215/Winter_2025/Lectures/2025_01_06_examples.html)
+[(html)](https://stahlm.github.io/ENS_215/Winter_2025/Lectures/2025_01_06_L1.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2025/Lectures/2025_01_06_L1.Rmd), [In-class examples](https://stahlm.github.io/ENS_215/Winter_2025/Lectures/2025_01_06_examples.html)
 
 
 ```{r eval = F, echo = F}
