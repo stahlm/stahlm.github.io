@@ -1,0 +1,40 @@
+---
+title: "R Programming and Markdown Basics"
+author: "ENS-215"
+date: "Winter 2025"
+output:
+  html_document:
+    theme: journal
+    toc: TRUE
+    toc_float: TRUE
+---
+
+Outlines below highlight some key topics to cover prior to beginning with the coding/analysis portion of the day's lecture.  
+<br/> 
+
+## Lectures
+
+### Course introduction
+- Go over syllabus and course logistics
+- Present in-class examples to highlight what you can do with R
+
+### Diving into R
+- Go over RStudio/R basics, panes in R studio
+- Have students set up folder for this course and create a "lectures" project  
+
+### R Programming and Markdown Basics
+- Refresh students on the RStudio/R basics, console in R, R studio panes
+- Highlight to students how you "knit" documents and point out the difference between an ".Rmd" and ".html" file  
+- Go over the basic data types and data structures.  Emphasize the importance of properly structuring/organizing data (highlight that we will cover this topic in much greater detail in coming lectures)  
+
+
+### Relational and logical operators, if/else/else if 
+
+<br/> 
+
+## Labs  
+
+
+
+
+

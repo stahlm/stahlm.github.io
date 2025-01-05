@@ -158,14 +158,24 @@ You should Knit your proposal to an `.html` file and submit it on Nexus.
 
 #### Assignments
 **1. Download R and RStudio:**
-You will first need to download R and then RStudio.  To download R go to [this link](https://cran.rstudio.com/) and download R.  You will see links for Mac and Windows users (make sure to select the appropriate one for your computer).  Download the program and then install it.
+You will first need to download R and then RStudio.  To download R go to [this link](https://cran.rstudio.com/) and download R.  You will see links for Mac and Windows users (*see screenshot below*).  Make sure to select the appropriate one for your computer.  Download the program and then install it.
 
-Once you've downloaded and installed R, then you will need to get RStudio.  Go to [this link](https://posit.co/download/rstudio-desktop/) and download the "Installer for Supported Platform" that corresponds to your computer (i.e. Mac or Windows).  Download and install the software.
+![](C:/Users/stahlm/Documents/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2025/Images/RDownload_screenshot.png){width=1000px}
+
+<br/> 
+
+Once you've downloaded and installed R, then you will need to get RStudio.  Go to [this link](https://posit.co/download/rstudio-desktop/) scroll down a bit and then you will see links for Mac and Windows users (*see screenshot below*).  Make sure to select the appropriate one for your computer.  Download and install the software.
+
+![](C:/Users/stahlm/Documents/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2025/Images/RStudioDownload_screenshot.png){width=1000px}
+
+<br/> 
+
 
   + Assigned: 6-Jan
   + Due: 8-Jan  
 
 **2. Accept the invite to our DataCamp class and complete "_Introduction to R_"**  
+Click the [invite link here](https://www.datacamp.com/groups/shared_links/6a909b0c1667d6808a8e1a372ed075d8c3f613d07ed679e7b6360f4c22815200) and join our class group.  You will need to use you **union.edu** email address when creating your account.  
 
   + Assigned: 6-Jan
   + Due: 8-Jan (accept invite); 13-Jan (complete "Introduction to R" assignment)  

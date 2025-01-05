@@ -51,7 +51,7 @@ States <- read_xlsx("../../Data/Class_survey_2025.xlsx", sheet = "Home_state")
 </div>
 
 -  Prof. Mason Stahl
--  Department of Geology and ESPE
+-  Department of Geosciences and ESPE
 -  Office: Olin 102A
 -  Email: stahlm@union.edu
 
