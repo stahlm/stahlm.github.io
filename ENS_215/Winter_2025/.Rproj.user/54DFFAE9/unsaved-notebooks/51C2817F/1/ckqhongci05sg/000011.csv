@@ -1,5 +1,0 @@
-"0","remotes::install_gitlab(url = url, build_vignettes = TRUE)
-"
-"2","Error in lapply(repo, gitlab_remote, subdir = subdir, auth_token = auth_token,  : 
-  argument ""repo"" is missing, with no default
-"

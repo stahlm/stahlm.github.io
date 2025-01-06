@@ -1,8 +1,0 @@
-"0","census_example_df <- get_acs(geography = ""county"", "
-"0","                             variables = c(medincome = ""B19013_001""), "
-"0","                             state = ""NY"", "
-"0","                             year = 2021)"
-"2","Getting data from the 2017-2021 5-year ACS
-"
-"2","Using FIPS code '36' for state 'NY'
-"

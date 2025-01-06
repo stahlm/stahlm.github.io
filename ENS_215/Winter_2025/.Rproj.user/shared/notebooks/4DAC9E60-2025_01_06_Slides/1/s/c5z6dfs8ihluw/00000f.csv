@@ -1,0 +1,2 @@
+"0","locs_all <- locs_state %>% "
+"0","  bind_rows(locs_country)"
