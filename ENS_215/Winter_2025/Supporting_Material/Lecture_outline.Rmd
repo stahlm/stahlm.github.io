@@ -23,7 +23,9 @@ Outlines below highlight some key topics to cover prior to beginning with the co
 - Have students set up folder for this course and create a "lectures" project   
 - Describe what a function is
 - Help them open a new R Notebook and save the notebook to the appropriate folder prior to getting started with the lesson
-- 
+- Work through the first few lines of code together and view the `met_data` data frame together.  
+- Once students have viewed the data frame, have a "think-pair-share" where they discuss (1) what the data consists of, (2) potential issues with the data, (3) any additional info they might need in order to interpret the data, (4) consider how the data may have been collected/measured and what potential issues/considerations that might raise.
+- Remind students to always keep an eye out for questionable/incorrect data.  
 
 ### R Programming and Markdown Basics
 - Refresh students on the RStudio/R basics, console in R, R studio panes
