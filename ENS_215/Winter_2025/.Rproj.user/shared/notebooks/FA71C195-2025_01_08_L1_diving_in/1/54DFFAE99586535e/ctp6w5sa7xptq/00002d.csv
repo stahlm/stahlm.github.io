@@ -1,5 +1,0 @@
-"0","## Load in data"
-"0","met_data <- read_csv('http://stahlm.github.io/ENS_215/Data/Blue_Hills_MA_Precip_Temp_Data_1893_2024_v2.csv',"
-"0","                     skip = 3)"
-"2","Error in open.connection(4L, ""rb"") : HTTP error 404.
-"
