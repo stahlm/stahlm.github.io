@@ -48,8 +48,10 @@ output:
 + Mon (6-Jan) -- **Course introduction** 
 [(html)](https://stahlm.github.io/ENS_215/Winter_2025/Lectures/2025_01_06_L1.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2025/Lectures/2025_01_06_L1.Rmd), [In-class examples](https://stahlm.github.io/ENS_215/Winter_2025/Lectures/2025_01_06_examples.html), [Slides](https://stahlm.github.io/ENS_215/Winter_2025/Lectures/2025_01_06_Slides.html)  
 
++ Wed (8-Jan) -- **Diving into R** [(html)](https://stahlm.github.io/ENS_215/Winter_2025/Lectures/2025_01_08_L1_diving_in.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2025/Lectures/2025_01_08_L1_diving_in.Rmd), [Slides](https://stahlm.github.io/ENS_215/Winter_2025/Lectures/2025_01_08_Slides.html), [Cheatsheets](https://stahlm.github.io/ENS_215/Resources/cheatsheets_2025/R_cheatsheets_all.pdf)  
+
 ```{r echo = F, eval = F}
-+ Wed (8-Jan) -- **Diving into R** [(html)](https://stahlm.github.io/ENS_215/Winter_2025/Lectures/2025_01_08_L1_diving_in.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2025/Lectures/2025_01_08_L1_diving_in.Rmd), [Slides](https://stahlm.github.io/ENS_215/Winter_2025/Lectures/2025_01_08_Slides.html), [Cheatsheets](https://stahlm.github.io/ENS_215/Resources/cheatsheets_2025/R_Cheatsheets_all.pdf)  
++ Wed (8-Jan) -- **Diving into R** [(html)](https://stahlm.github.io/ENS_215/Winter_2025/Lectures/2025_01_08_L1_diving_in.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2025/Lectures/2025_01_08_L1_diving_in.Rmd), [Slides](https://stahlm.github.io/ENS_215/Winter_2025/Lectures/2025_01_08_Slides.html), [Cheatsheets](https://stahlm.github.io/ENS_215/Resources/cheatsheets_2025/R_cheatsheets_all.pdf)  
 ```
 
 
