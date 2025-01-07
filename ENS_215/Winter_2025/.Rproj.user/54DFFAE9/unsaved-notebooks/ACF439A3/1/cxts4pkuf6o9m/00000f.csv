@@ -1,0 +1,2 @@
+"0","r_ortho <- terra::rast(""C:/Users/stahlm/Downloads/ortho.tif"")"
+"0","r_dsm <- terra::rast(""C:/Users/stahlm/Downloads/dsm.tif"")"
