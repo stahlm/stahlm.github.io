@@ -19,8 +19,11 @@ Outlines below highlight some key topics to cover prior to beginning with the co
 - Present in-class examples to highlight what you can do with R
 
 ### Diving into R
-- Go over RStudio/R basics, panes in R studio
+- Go over RStudio/R basics, panes in R studio (begin with slides)
 - Have students set up folder for this course and create a "lectures" project   
+- Describe what a function is
+- Help them open a new R Notebook and save the notebook to the appropriate folder prior to getting started with the lesson
+- 
 
 ### R Programming and Markdown Basics
 - Refresh students on the RStudio/R basics, console in R, R studio panes
