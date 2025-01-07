@@ -39,7 +39,7 @@ Now we'll load in the data from the web and clean it up a bit.  FYI, note how I 
 
 ```{r warning=FALSE}
 ## Load in data
-met_data <- read_csv('http://stahlm.github.io/ENS_215/Data/Blue_Hills_MA_Precip_Temp_Data_1893_2024.csv',
+met_data <- read_csv('http://stahlm.github.io/ENS_215/Data/Blue_Hills_MA_Precip_Temp_Data_1893_2024_v2.csv',
                      skip = 3)
                      
 met_data <- met_data[,1:4]
