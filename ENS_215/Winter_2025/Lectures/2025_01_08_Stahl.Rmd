@@ -1,0 +1,27 @@
+---
+title: "ENS-215: 8-Jan-2025"
+author: "Mason Stahl"
+output: html_notebook
+---
+
+This is my first class **notebook**!
+
+### Load in packages
+```{r}
+library(tidyverse)
+library(lubridate)
+```
+
+
+```{r}
+met_data <- read_csv('http://stahlm.github.io/ENS_215/Data/Blue_Hills_MA_Precip_Temp_Data_1893_2024.csv', skip = 3)
+```
+
+What was the hottest temp recorded?
+ 
+
+```{r}
+# here is text
+```
+
+

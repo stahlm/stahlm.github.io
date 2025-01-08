@@ -1,0 +1,5 @@
+"0","met_data <- mutate(met_data,year_val = year(DATE), month_val = month(DATE), day_val = day(DATE)) # add columns for year, month, and day"
+"0",""
+"0","annual_precip <- group_by(met_data,year_val) # group the data by year"
+"0",""
+"0","annual_precip<- summarise(annual_precip,tot_precip = sum(PRCP,na.rm = TRUE)) # create a new data frame that has the total annual precipitation (inches)"

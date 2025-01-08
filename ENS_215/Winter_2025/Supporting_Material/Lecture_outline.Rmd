@@ -1,5 +1,5 @@
 ---
-title: "R Programming and Markdown Basics"
+title: "Lecture overview notes"
 author: "ENS-215"
 date: "Winter 2025"
 output:
