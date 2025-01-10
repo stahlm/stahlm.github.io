@@ -1,0 +1,402 @@
+---
+title: "R Programming Basics (Continued)"
+author: "ENS-215"
+date: "13-Jan-2025"
+output:
+  html_document:
+    theme: journal
+    toc: TRUE
+    toc_float: TRUE
+    highlight: textmate
+---
+
+<br/>
+
+In this lesson we will continue learning some important foundational concepts in programming.  These concepts will help you understand how to develop your own programs and to solve a wide-range of problems that you are likely to encounter as scientists, engineers, or any other role where you are dealing with data.  
+
+It's worth noting that essentially all of the fundamental concepts you are learning in this class are not specific to R (we are just implementing them in R).  This is great, since it means that you can apply these concepts/tools to any of your future work, whether it is in R or some other programming language (Python, Matlab, C,...).  
+
+As always take the time to carefully work through the examples here.  Also try out anything related that may pop into your head.  If you are wondering if something is possible, just give it a try.  Also remember to chat with your classmates about the work -- you will learn more and much faster this way (plus it will be more fun).  
+
+Also now that you've learned some Markdown syntax, you are able to add some fancier formatting to your Notebooks.  You should now start implementing these formatting tools in your work.  This will make all of your work much easier to read and also look much prettier. 
+
+
+
+## Relational and Logical operators
+
+When you are writing code you will frequently need to make use of **relational** and **logical** operators.  We use relational operators to compare values and logical operators to combine/blend these operations together.  These concepts play a very important role in programming and allow us to control the flow of our code.  Let's take a look at **relational operators**
+
+### Relational operators
+```{r message = FALSE, warning=F}
+library(tidyverse)
+```
+
+
+To test for equality you use TWO EQUALS signs `==`.
+```{r}
+a <- 5
+b <- 3
+
+a == b # test if a is equal to b 
+a == a # test if a is equal to a
+```
+Notice how R returns a TRUE or FALSE value depending on the truth of the evaluated statement.  
+
+<br/>
+
+To test if an objects value is **greater than** $>$ or **greater than or equal to** $\ge$ you do the following.  Before you run the code, write down what you anticipate the results to be.
+```{r}
+
+a <- 5 
+b <- 3
+c <- 10
+
+a > b # test if a > b
+a > c # test if a > c
+a > a # test if a > a
+a >= a # test if a >= a
+
+```
+
+<br/>
+
+Now let's test if an objects value is **less than** $<$ or **less than or equal to** $\le$.
+```{r}
+a <- 5 
+b <- 3
+c <- 10
+
+a < b # test if a < b
+a < c # test if a < c
+a < a # test if a < a
+a <= a # test if a <= a
+```
+
+<br/>
+
+### Logical operators
+Often we want to test for some comination of conditions.  That's where **logical operators** AND, OR, NOT come into play.  
+
+Here's how we use the **AND** operator, which is implemented in R using `&`.  Before running the code, make a prediction about whether the test is TRUE or FALSE.
+
+```{r eval= FALSE} 
+a <- 5 
+b <- 3
+c <- 10
+
+a > b & a < c # test if a > b AND a < c.
+
+c > a & c < b # test if c > a AND c < b.
+```
+Notice that when using AND,  a value of TRUE will only be returned if ALL of the conditions tested are TRUE.   
+
++ Create your own code block and try out some more tests with the AND operator
+```{r}
+# Your code here
+```
+
+
+<br/>
+
+We can use the **OR** operator `|` to see if any of the evaluated conditions are true.  Before running the code, make a prediction about whether the test is TRUE or FALSE.
+```{r eval = FALSE}
+
+a <- 5 
+b <- 3
+c <- 10
+
+a > b | a < c # test if a > b or a < c.
+
+c > a | c < b # test if c > a or c < b.
+
+b > a | b == c # test if b > a or if b is equal to c
+
+```
+
+If one or more of the tested conditions is TRUE then OR will return a value of TRUE
+
+You can string together as many tests as you want.  For example something like `(a > b) & (a < 2*c) | (a > b-2 + c)` is completely acceptable.  
+
+I recommend using parentheses to make your code more readable, especially when the set of tests grows and the code becomes more complex.  
+
++ Create your own code block and try out some more tests with the OR operator
+
+```{r}
+# Your code here
+```
+
+<br/>
+
+The **NOT** operator is implemented in R using `!`.  This changes the truth of an evaluated statement.  Try to predict the results of the code below before you run it.
+```{r eval = FALSE}
+a <- 5 
+b <- 3
+c <- 10
+
+a > c # test if a > c
+
+!(a > c) # test if a is NOT greater than c (i.e. tests if a <= c)
+
+a != b # test if a is NOT equal to b
+```
+
+<br/>
+
+### Apply relational and logical operators to vectors
+We can also apply these operations on an element-by-element basis to a vector.  A vector of logical values (i.e. TRUE or FALSE) is returned.  Predict what the results will be before you run the code.  If it helps, use a piece of scratch paper to write out some of the values in each vector.  
+
+```{r eval = FALSE}
+a_vec <- seq(1,10, by = 1.0)
+b_vec <- rep(5,10)
+
+a_vec <= 7
+a_vec > b_vec
+a_vec == b_vec
+```
+Once you run the code spend some time making sure you really understand what is going on.  
+
+Vector operations are incredibly useful and we will apply these all the time in our work.  Often the save us from writing a ton of code, since we can perform many operations in a single line of code.  
+
+<br/>
+
+**You can also use relational and logical operators to access parts of vectors (or data frames)**.  For example we might have a vectors of data and we only want to access values that meet some criteria.  I'll give an example below
+```{r}
+lake_pH <- c(7.2, 7.4, 6.1, 8.2, 8.5, 4.3, 7.2, 5.8, 7.8, 3.9) # a vector that has pH measurements from several lakes
+```
+
+
+Imagine we are just interested in the data from lakes that are acidic.  We can use relational operation to identify the indices that meet this criteria and then pass those indices to the `lake_pH` vector and it will return those values that met our criteria.  
+
+```{r}
+pH_threshold <- 7.0 # threshold below which we will consider a lake acidic
+
+lake_pH[lake_pH < pH_threshold]
+```
+
++ Make sure you understand what is happening in the code above
++ Now create your own example similar to the one I gave above  
+
+<br/>
+
+We can apply this sampe approach to accessing data in a data frame.  Let's give it a try on the `mpg` dataset that is built-in `tidyverse`.  
+
+You've seen this dataset before, but you should refamiliarize yourself with it.  In your console type `?mpg` to get more info on the dataset.  Next type `View(mpg)` in your console and familiarize yourself with the dataset.  
+
+Once you understand what you are working with then run the code block below.  In this code block we are going to create a new data frame that just contains the cars that get good highway gas mileage (hwy >= 30).  
+
+```{r}
+cars_good_hwy <- mpg[mpg$hwy >= 30, ]
+```
+
+Remember we can access data in a data frame by specifying the rows and columns we want (see last week's lecture for notes/examples on this).  In the above code, we used a logical vector to specify the rows we wanted to select and we selected all of the columns (as indicated by the blank after the comma in the brackets).  When the value in a logical vector is TRUE then that index is selected and the value is FALSE that index is not selected.  
+
++ Create a new dataframe that contains data for all of the cars that get good highway gas mileage (hwy >= 30) and are model year 2008.  
+
++ Create a new object that just contains the model names for cars whose class is `compact`  
+
++ Test out some other cases where you select only a subset of the `mpg` dataset based on a set of criteria.  
+
+```{r}
+# Your code here
+```
+
+
+```{r echo = FALSE, eval=FALSE}
+# Below are the solutions to the problems stated directly above
+
+# New dataframe for 2008 model year vehicles that get good hwy mileage
+cars_good_hwy_2008 <- cars_good_hwy <- mpg[(mpg$hwy >= 30) & (mpg$year == 2008), ]
+
+# Just the model names for cars whose class is compact
+models_compact <- mpg$model[mpg$class == "compact"]
+```
+
+<br/>
+
+## Conditional programming
+We often want to perform an operation only when certain conditions are met.  To do this we rely on **if/else** statements.  For example,
+
+**if** you have completed the above work AND you understand it  
+
+  * Proceed on with the material below
+  
+**else if** you have completed the above work AND YOU DO NOT understand it  
+  
+  * Come tell me what you don't understand and I can help to explain it
+
+**else**  
+  
+  * Come tell me why you haven't been able to complete the work and we'll figure out a solution.  
+  
+<br/>
+
+### IF statements  
+An **If Statement** in R is constructed with the following syntax
+```{r eval=FALSE}
+
+if(Logical Test Goes Here){
+  
+  # Here is the code that you want to run when the above test is TRUE
+  
+}
+
+```
+
+Pay very careful attention to the syntax above.  In particular note:
++ The parentheses `()` around the logical test
++ The brackets `{}` wrapped around the code within the IF statement.  The first `{` should be directly after the logical test and on the same line as the `if` 
+
+  
+Ok, now let's implement these concepts in R.  First go to [National Weather Service (NWS)](https://www.weather.gov/) and get the current temperature (in deg F) for a city of your choosing.  
+
+```{r eval = FALSE}
+city_temp <- ... # type the temperature here
+
+if(city_temp >= 85){
+  print("Wow it's pretty hot out!")
+} 
+```
+Pay very close attention to the syntax used.  
+
++ Try another temperature to get a different response as your original run.  
+
+<br/>
+
+### IF/ELSE statements
+We can add more conditions to our if statement using `else`
+```{r eval = FALSE}
+city_temp <- ... # type the temperature here
+
+if(city_temp >= 85){
+  print("Wow it's pretty hot out!")
+} else { 
+  print("It's not hot today")
+}
+```
+
+Again, pay close attention to the syntax used.  Note how the `else` keyword is on the same line as the closing bracket of the previous part of the control construct.    
+
+<br/>
+
++ Think of a scenario where you would want to use an if/else statement and create one below.
+
+```{r}
+# Your code here 
+```
+
+<br/>
+
+You can even **nest** if statements within another if statement.  For example,
+```{r eval = FALSE}
+city_temp <- ... # type the temperature here
+
+if(city_temp >= 85){
+  if(city_temp > 100){
+    print("It is very hot")
+    
+  }
+  } else{
+    print("It is hot")
+    
+  }
+```
+
+<br/>
+
+### IF/ELSE IF/ELSE statements
+We can add even more conditions using `else if`.  Not how the `else` statement comes at the very end and catches anything that was not caught in the above tests.
+```{r eval = FALSE}
+city_temp <- ... # type the temperature here
+
+if(city_temp >= 85){
+  print("Wow it's pretty hot out!")
+  
+} else if(city_temp >= 50){
+  print("The temperature is nice and comfortable")
+  
+} else if (city_temp >= 32){
+  print("It's pretty cold outside")
+  
+} else {
+  print("It's freezing out!")
+  
+}
+```
+
+<br/>
+
+Notice how in the example above, I "hard-coded" the temperature thresholds into the if/else-if statements.  This is not a very good practice.  Imagine I decide that `85` degress is not the best value to use as a cut-off for hot weather.  If I want to change that threshold then I have to go into my if/else-if statement and find each place where I've got an `85` and change it.  As your code gets longer and more complex this is a difficult/time consuming and error prone task.  
+
+To make your code much more robust and easy to modify, you could assign the temperature thresholds to an object in R and then when you want to modify the threshold you only need to modify one line of code where you've made the object assignment.  
+
++ Recreate the code block above, but this time assign all of the threshold temperatures to their own R object
+
+```{r}
+# Your code here 
+```
+
+<br/>
+
+
+Now you should try putting all of this work together.  You'd like to modify the above example to take in both temperature and humidity data and then check both the temperature and humidity status and output a message warning people when it is hot and humid (heatstroke danger) or cold and damp (hypothermia risk).
+
++ Using some combination of if, else, else/if statements create a code block that evaluates health risks associated with weather conditions.  
+    + For cold and humid weather print "hypothermia risk"
+    + For cold weather print "it is cold"
+    + For hot and humid weather print "heatstroke risk"
+    + For hot and dry weather print "it is hot"
+    + For our purposes, cold is when temperature < 50 and hot >= 50 (degrees F)
+    + For our purposes, humid is when humidity >= 60 and dry < 60 (relative humidity %)
+
+In the above exercise you should get your temperature and humidity data for today's conditions in a city of your choosing.  You can find this data at [National Weather Service (NWS)](https://www.weather.gov/).  
+
+Note that there are many ways you can implement a solution to the problem above
+```{r}
+# Your code here 
+```
+You should test your solution to make sure it is working properly for each of possible cases.  
+
+Once you've implemented your solution, talk with your neighbors and see how they did it.  Were there more efficient ways of implementing the solution?  
+
+
+```{r echo = FALSE, eval = FALSE}
+# My solution to the above exercise is below
+city_temp <- 80
+city_humid <- 40
+
+if(city_temp >= 50){
+  
+  if(city_humid >= 60){
+    print("Be advised: heatstroke risk")
+  } else{
+    print("Be advised: it is hot")
+  }
+  
+} else if(city_humid >= 60){
+  print("Be advised: hypothermia risk")
+} else{
+  print("Be advised: it is cold")
+}
+
+
+```
+
+
++ If you finish this exercise, then you should make your solution even better, by trying to catch any problems with user input of temperature data.  
+    + Nest your above solution in an if/else structure where you test to see if the user input reasonable temperature values.  IF they input a temperature > 150 or < -100, you should print a statment "these temperature values seem incorrect", ELSE run the solution as normal.  
+
+
+
+### Additional exercises
+
++ If you have additional time, practice more with the concepts you learned today.  Try implementing more complex/difficult versions of some of the examples you've seen in the above Notebook.
+
++ Also try some additional Markdown formatting.  A few cool things you might want to try
+    + Change the document `theme` in the header at the top
+        + Options are: `cerulean; journal; flatly; readable; spacelab; united; cosmo; lumen; paper; sandstone; simplex; yeti`
+    + Change the code `highlight` setting in the document header
+        + Options are: `tango; pygments; kate; monochrome; espresso; zenburn; haddock; textmate`
+    + Try putting in web-links or images (see your **Markdown** cheatsheet for examples)
+        
+
+
