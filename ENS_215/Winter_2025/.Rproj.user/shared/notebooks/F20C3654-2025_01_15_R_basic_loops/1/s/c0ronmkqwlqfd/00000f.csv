@@ -1,0 +1,10 @@
+"0","library(readr)"
+"0","Alb_temps <- read_csv(""https://stahlm.github.io/ENS_215/Data/Albany_Temperatures_Nov_2018.csv"","
+"0","                      skip = 3)"
+"2","[1mRows: [22m[34m30[39m [1mColumns: [22m[34m4[39m"
+"2","[36m──[39m [1mColumn specification[22m [36m────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[32mdbl[39m (4): Day, Max, Avg, Min"
+"2","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message."
