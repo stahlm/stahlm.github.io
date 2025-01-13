@@ -48,6 +48,10 @@ output:
 + Mon (13-Jan) -- **Relational and logical operators, if/else/else if** 
 [(html)](https://stahlm.github.io/ENS_215/Winter_2025/Lectures/2025_01_13_R_basics_cont.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2025/Lectures/2025_01_13_R_basics_cont.Rmd)  
 
++ Extra credit events -- [ESPE Winter Seminar Series](https://www.union.edu/espe/2025-winter-seminar-series) 
+    + Feb 3rd, 6:00 PM (Nott Auditorium)  
+    + Feb 11th, 6:00 PM (Nott Auditorium)  
+    + Feb 24th, 6:00 PM (Nott Auditorium)
 
 ***
 

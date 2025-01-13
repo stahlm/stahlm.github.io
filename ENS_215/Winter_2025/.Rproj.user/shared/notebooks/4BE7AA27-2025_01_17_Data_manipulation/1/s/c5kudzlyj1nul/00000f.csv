@@ -1,0 +1,1 @@
+"0","arrange(filter(gap_data, year == 2007, continent == ""Asia""), gdpPercap) # without using pipe operator"

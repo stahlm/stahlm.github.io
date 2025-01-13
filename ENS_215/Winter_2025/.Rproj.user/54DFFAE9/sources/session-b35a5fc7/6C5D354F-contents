@@ -36,6 +36,11 @@ Outlines below highlight some key topics to cover prior to beginning with the co
 
 
 ### Relational and logical operators, if/else/else if 
+- Functions and objects (functions have parenthesis around their arguments, index objects with brackets)
+- Go over indexing of data objects (e.g., data frames, lists, vectors,...)
+- Relational operators (equal to, less than, greater than,...)
+- Logical operators (and, or, not) and combinations of logical operators
+- if/else statements
 
 <br/> 
 

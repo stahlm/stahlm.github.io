@@ -41,7 +41,7 @@ Pay very close attention to the syntax of the loop.  If the syntax is incorrect 
 
 Ok, now let's try looping over a list of some majors available at Union. Here's the list. 
 ```{r}
-majors_union <- c("Environmental Science","Geology","English",
+majors_union <- c("Environmental Science","Geosciences","English",
                   "Chemistry","Math","History","Computer Science")
 ```
 
