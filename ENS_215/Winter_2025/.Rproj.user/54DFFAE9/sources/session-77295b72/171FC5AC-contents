@@ -1,0 +1,37 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(terra)
+library(tmap)
+library(sf)
+```
+
+
+```{r}
+dsm_raster <- rast("C:/Users/stahlm/Downloads/dsm.tif")
+ortho_raster <- rast("C:/Users/stahlm/Downloads/ortho.tif")
+```
+
+```{r}
+plot(dsm_raster)
+plot(ortho_raster)
+```
+```{r}
+tmap_mode("view")
+tm_shape(dsm_raster) +
+  tm_raster(breaks = c(0,2.5,5,10,15,20), style = "cont") +
+  tm_shape(ortho_raster) +
+  tm_rgb() +
+  tm_basemap(server = c("Esri.WorldImagery", "OpenStreetMap", "Esri.WorldShadedRelief"))
+```
+```{r}
+  tm_shape(ortho_raster, raster.downsample = F) +
+  tm_rgb() +
+  tm_basemap(server = c("Esri.WorldImagery", "OpenStreetMap", "Esri.WorldShadedRelief"))
+```
+
+

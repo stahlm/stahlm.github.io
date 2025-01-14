@@ -1,0 +1,2 @@
+"0","dsm_raster <- rast(""C:/Users/stahlm/Downloads/dsm.tif"")"
+"0","ortho_raster <- rast(""C:/Users/stahlm/Downloads/ortho.tif"")"

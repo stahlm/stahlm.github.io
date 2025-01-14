@@ -1,0 +1,40 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r}
+vec_seq <- seq(0,99, by = 1)
+
+```
+
+
+```{r}
+vec_num <- 0:99
+vec_denom <- 1:100
+```
+
+```{r}
+vec_fracs <- vec_num/vec_denom
+
+print(vec_fracs)
+```
+
+```{r}
+vec_fracs[seq(2,length(vec_fracs), by = 2)]
+```
+
+```{r}
+vec_first <- c("a","b","c")
+vec_last <- c("d","e","f")
+```
+
+```{r}
+vec_both <- c(vec_first, vec_last)
+vec_both
+```
+```{r}
+paste(vec_last, vec_first, sep = ", ")
+```
+

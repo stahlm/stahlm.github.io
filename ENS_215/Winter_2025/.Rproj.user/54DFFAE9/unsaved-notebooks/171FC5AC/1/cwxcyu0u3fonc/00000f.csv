@@ -1,0 +1,21 @@
+"0","library(tidyverse)"
+"0","library(terra)"
+"2","terra 1.7.83
+"
+"2","
+Attaching package: ‘terra’
+
+"
+"2","The following object is masked from ‘package:tidyr’:
+
+    extract
+
+"
+"0","library(tmap)"
+"2","Registered S3 method overwritten by 'htmlwidgets':
+  method           from         
+  print.htmlwidget tools:rstudio
+"
+"0","library(sf)"
+"2","Linking to GEOS 3.9.3, GDAL 3.5.2, PROJ 8.2.1; sf_use_s2() is TRUE
+"
