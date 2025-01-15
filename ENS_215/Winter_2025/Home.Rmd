@@ -92,6 +92,8 @@ output:
 
 ## Labs
 + Lab 1 -- **Intro and EPA Fuel Economy Data** [(html)](https://stahlm.github.io/ENS_215/Winter_2025/Labs/Lab_EPA_Fuel_Economy.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2025/Labs/Lab_EPA_Fuel_Economy.Rmd) 
+
++ Lab 2 -- **Dams and reservoirs: A global analysis** [(html)](https://stahlm.github.io/ENS_215/Winter_2025/Labs/Lab_Global_Dams.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2025/Labs/Lab_Global_Dams.Rmd) 
 ```{r eval = F, echo = F}
  
 ```

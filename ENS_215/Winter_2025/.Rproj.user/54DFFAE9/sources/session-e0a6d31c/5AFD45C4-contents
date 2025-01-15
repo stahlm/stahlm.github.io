@@ -41,7 +41,13 @@ Outlines below highlight some key topics to cover prior to beginning with the co
 - Go over indexing of data objects (e.g., data frames, lists, vectors,...)
 - Relational operators (equal to, less than, greater than,...)
 - Logical operators (and, or, not) and combinations of logical operators
-- if/else statements
+- if/else statements  
+
+
+### Loops (for, while)
+- Go over exercises from last lecture.  In particular focus on how to index data frames based on data criteria  
+- Overview of looping.  Discuss the structure of loops and the looping variable  
+- Overview of counter variables
 
 <br/> 
 
