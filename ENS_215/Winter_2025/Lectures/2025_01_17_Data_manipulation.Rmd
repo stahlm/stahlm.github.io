@@ -4,6 +4,7 @@ author: "ENS-215"
 date: "17-Jan-2025"
 output:
   html_document:
+    df_print: paged
     theme: journal
     toc: TRUE
     toc_float: TRUE

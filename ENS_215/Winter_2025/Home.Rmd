@@ -51,6 +51,8 @@ output:
 + Wed (15-Jan) -- **Control flow (for and while loops)** 
 [(html)](https://stahlm.github.io/ENS_215/Winter_2025/Lectures/2025_01_15_R_basic_loops.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2025/Lectures/2025_01_15_R_basic_loops.Rmd)  
 
++ Fri (17-Jan) -- **Data wrangling intro** [(html)](https://stahlm.github.io/ENS_215/Winter_2025/Lectures/2025_01_17_Data_manipulation.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2025/Lectures/2025_01_17_Data_manipulation.Rmd)  
+
 ```{r echo = F, eval = F}
 + Fri (17-Jan) -- **Data wrangling intro** [(html)](https://stahlm.github.io/ENS_215/Winter_2025/Lectures/2025_01_17_Data_manipulation.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2025/Lectures/2025_01_17_Data_manipulation.Rmd)  
 ```

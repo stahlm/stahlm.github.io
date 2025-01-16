@@ -50,6 +50,13 @@ Outlines below highlight some key topics to cover prior to beginning with the co
 - Overview of counter variables
 - In the middle of class it is useful to go over the loop that prints the days in each month
 
+### Data wrangling (intro)
+- Remind class about the need for discussion in their lab reports  
+- When writing text in Rmd after a figure you should put in two line breaks.  This prevent the text from wrapping around the side of the figure  
+- Remind class that when submitting the HTML files they should submit the *.html* and not the *.nb.html*  
+- Go over `filter()` and piping  
+
+
 <br/> 
 
 ## Labs  
