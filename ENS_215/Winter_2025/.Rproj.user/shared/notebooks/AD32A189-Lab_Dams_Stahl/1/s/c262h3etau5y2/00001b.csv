@@ -1,0 +1,8 @@
+"0","table_summary <- dams_data %>% "
+"0","  group_by(Continent) %>% "
+"0","  summarize(avg_height = mean(Dam_height_m, na.rm = T),"
+"0","            avg_area = mean(Reservoir_area_km2, na.rm = T),"
+"0","            avg_storage = mean(Reservoir_capacity_million_m3, na.rm = T)"
+"0","            )"
+"0",""
+"0","table_summary"

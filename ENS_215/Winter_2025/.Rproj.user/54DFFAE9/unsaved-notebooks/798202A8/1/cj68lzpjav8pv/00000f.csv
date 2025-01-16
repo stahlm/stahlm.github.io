@@ -1,9 +1,0 @@
-"0","df_dams <- read_csv(file = ""../../../Class_Data/GDW_reservoirs/GDW_v1_0_shp/GDW_barriers_v1_0.txt"")"
-"2","[1mRows: [22m[34m41145[39m [1mColumns: [22m[34m71[39m"
-"2","[36m──[39m [1mColumn specification[22m [36m────────────────────────────────────────────────────────────────────────────────────────────[39m
-[1mDelimiter:[22m "",""
-[31mchr[39m (38): RES_NAME, DAM_NAME, ALT_NAME, DAM_TYPE, LAKE_CTRL, RIVER, ALT_RIVER, MAIN_BASIN, SUB_BASIN, COUNTRY, S...
-[32mdbl[39m (33): GDW_ID, YEAR_DAM, PRE_YEAR, ALT_YEAR, REM_YEAR, DAM_HGT_M, ALT_HGT_M, DAM_LEN_M, ALT_LEN_M, AREA_SKM, ..."
-"2","
-[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
-[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message."

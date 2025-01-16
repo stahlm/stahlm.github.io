@@ -1826,7 +1826,8 @@ operator</strong>. The pipe operator will make your code much easier to
 write and read. It allows you to carry out a sequence of operations
 without having to nest the operations within one another.</p>
 <ul>
-<li>The pipe operator is <code>%&gt;%</code></li>
+<li>The pipe operator is <code>%&gt;%</code> (you can also use
+<code>|&gt;</code> as the pipe operator)</li>
 <li>Prounced “<em>then</em>” when reading code in “English”</li>
 <li>Shortcut to insert <code>%&gt;%</code> is
 <ul>
@@ -1840,7 +1841,8 @@ without having to nest the operations within one another.</p>
 <strong>pipes</strong> to create a single chain of operations</p>
 <p><br /></p>
 <p>Let’s take a look at an example</p>
-<pre class="r"><code>filter(gap_data, year == 2007, continent == &quot;Asia&quot;) %&gt;% arrange(gdpPercap)</code></pre>
+<pre class="r"><code>filter(gap_data, year == 2007, continent == &quot;Asia&quot;) %&gt;% 
+  arrange(gdpPercap)</code></pre>
 <pre><code>## # A tibble: 33 × 6
 ##    country          continent  year lifeExp        pop gdpPercap
 ##    &lt;fct&gt;            &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;      &lt;int&gt;     &lt;dbl&gt;
@@ -1866,7 +1868,9 @@ necessarily the input to the <code>arrange()</code> function.</p>
 <p><br /></p>
 <p>We could have piped the <code>gap_data</code> to the
 <code>filter()</code> function to make it even easier to read.</p>
-<pre class="r"><code>gap_data %&gt;% filter(year == 2007, continent == &quot;Asia&quot;) %&gt;% arrange(gdpPercap)</code></pre>
+<pre class="r"><code>gap_data %&gt;% 
+  filter(year == 2007, continent == &quot;Asia&quot;) %&gt;% 
+  arrange(gdpPercap)</code></pre>
 <pre><code>## # A tibble: 33 × 6
 ##    country          continent  year lifeExp        pop gdpPercap
 ##    &lt;fct&gt;            &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;      &lt;int&gt;     &lt;dbl&gt;
@@ -1963,7 +1967,8 @@ want to keep.</p>
 <p>Imagine we want all of the columns in <code>gap_data</code> except
 for <code>pop</code> (population) and <code>continent</code>. It is less
 typing to specify the ones we don’t want. We can do this as follows</p>
-<pre class="r"><code>gap_data %&gt;% select(-pop,-continent)</code></pre>
+<pre class="r"><code>gap_data %&gt;% 
+  select(-pop,-continent)</code></pre>
 <pre><code>## # A tibble: 1,704 × 4
 ##    country      year lifeExp gdpPercap
 ##    &lt;fct&gt;       &lt;int&gt;   &lt;dbl&gt;     &lt;dbl&gt;

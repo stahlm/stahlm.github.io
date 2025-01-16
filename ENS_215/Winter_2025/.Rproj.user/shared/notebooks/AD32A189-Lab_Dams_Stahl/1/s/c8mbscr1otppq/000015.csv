@@ -1,0 +1,7 @@
+"0","dams_data %>% "
+"0","  ggplot(aes(x = Continent,"
+"0","             y = Reservoir_capacity_million_m3,"
+"0","             fill = Continent)) +"
+"0","  geom_boxplot() +"
+"0","  "
+"0","  scale_y_log10()"
