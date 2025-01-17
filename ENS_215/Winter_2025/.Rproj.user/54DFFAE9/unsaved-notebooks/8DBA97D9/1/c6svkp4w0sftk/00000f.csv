@@ -1,0 +1,2 @@
+"0","gap_data %>% "
+"0","  filter(country %in% c(""China"", ""Spain""))"

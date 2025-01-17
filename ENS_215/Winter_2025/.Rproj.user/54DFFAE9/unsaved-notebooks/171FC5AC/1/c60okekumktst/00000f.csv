@@ -1,3 +1,0 @@
-"0","  tm_shape(ortho_raster, raster.downsample = F) +"
-"0","  tm_rgb() +"
-"0","  tm_basemap(server = c(""Esri.WorldImagery"", ""OpenStreetMap"", ""Esri.WorldShadedRelief""))"
