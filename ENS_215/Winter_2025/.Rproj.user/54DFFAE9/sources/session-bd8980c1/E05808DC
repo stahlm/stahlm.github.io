@@ -1,14 +1,14 @@
 {
-    "id": "20FE3CBF",
-    "path": "~/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2025/Lectures/2025_01_24_Intro_data_viz.Rmd",
-    "project_path": "Lectures/2025_01_24_Intro_data_viz.Rmd",
+    "id": "E05808DC",
+    "path": "~/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2025/Lectures/2025_01_27_Intro_data_viz_cont.Rmd",
+    "project_path": "Lectures/2025_01_27_Intro_data_viz_cont.Rmd",
     "type": "r_markdown",
     "hash": "0",
     "contents": "",
     "dirty": false,
-    "created": 1737224004134.0,
+    "created": 1737227824786.0,
     "source_on_save": false,
-    "relative_order": 8,
+    "relative_order": 9,
     "properties": {
         "source_window_id": "",
         "Source": "Source",
@@ -17,11 +17,11 @@
         "docOutlineVisible": "1"
     },
     "folds": "",
-    "lastKnownWriteTime": 1737224247,
+    "lastKnownWriteTime": 1737228475,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1737224247518,
+    "last_content_update": 1737228475943,
     "read_only": false,
     "read_only_alternatives": []
 }
