@@ -1,0 +1,4 @@
+"0","my_gap %>% filter(year == 2007) %>%"
+"0","  select(country, gdpPercap, lifeExp) %>% "
+"0","  kable() %>%"
+"0","  kable_styling(bootstrap_options = c(""striped"", ""hover"", ""condensed""), full_width = FALSE)"

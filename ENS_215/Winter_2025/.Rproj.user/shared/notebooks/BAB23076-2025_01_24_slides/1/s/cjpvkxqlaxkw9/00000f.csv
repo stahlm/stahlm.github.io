@@ -1,0 +1,7 @@
+"0",""
+"0","my_gap %>% filter(year == 2007) %>%"
+"0","  ggplot() + "
+"0","  geom_point(aes(x = gdpPercap, y = lifeExp , color = continent), size = 3) +"
+"0","  scale_x_continuous(name=""GDP per capita (dollars)"", labels = comma) +"
+"0","  ylab(""Life expectancy (yrs)"") + "
+"0","  theme_classic()"

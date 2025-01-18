@@ -1,0 +1,1 @@
+"0","summarize(my_gap_2007, min_life = min(lifeExp), mean_life = mean(lifeExp), max_life = max(lifeExp))"

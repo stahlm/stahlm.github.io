@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+<script src="lib/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="lib/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="lib/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="lib/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="lib/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="lib/kePrint-0.0.1/kePrint.js"></script>
+<link href="lib/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+</head>
+<body>
+<table class="table table-striped table-hover table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> country </th>
+   <th style="text-align:right;"> gdpPercap </th>
+   <th style="text-align:right;"> lifeExp </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Afghanistan </td>
+   <td style="text-align:right;"> 974.5803 </td>
+   <td style="text-align:right;"> 43.828 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Albania </td>
+   <td style="text-align:right;"> 5937.0295 </td>
+   <td style="text-align:right;"> 76.423 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Algeria </td>
+   <td style="text-align:right;"> 6223.3675 </td>
+   <td style="text-align:right;"> 72.301 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Angola </td>
+   <td style="text-align:right;"> 4797.2313 </td>
+   <td style="text-align:right;"> 42.731 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Argentina </td>
+   <td style="text-align:right;"> 12779.3796 </td>
+   <td style="text-align:right;"> 75.320 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Australia </td>
+   <td style="text-align:right;"> 34435.3674 </td>
+   <td style="text-align:right;"> 81.235 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Austria </td>
+   <td style="text-align:right;"> 36126.4927 </td>
+   <td style="text-align:right;"> 79.829 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Bahrain </td>
+   <td style="text-align:right;"> 29796.0483 </td>
+   <td style="text-align:right;"> 75.635 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Bangladesh </td>
+   <td style="text-align:right;"> 1391.2538 </td>
+   <td style="text-align:right;"> 64.062 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Belgium </td>
+   <td style="text-align:right;"> 33692.6051 </td>
+   <td style="text-align:right;"> 79.441 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Benin </td>
+   <td style="text-align:right;"> 1441.2849 </td>
+   <td style="text-align:right;"> 56.728 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Bolivia </td>
+   <td style="text-align:right;"> 3822.1371 </td>
+   <td style="text-align:right;"> 65.554 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Bosnia and Herzegovina </td>
+   <td style="text-align:right;"> 7446.2988 </td>
+   <td style="text-align:right;"> 74.852 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Botswana </td>
+   <td style="text-align:right;"> 12569.8518 </td>
+   <td style="text-align:right;"> 50.728 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Brazil </td>
+   <td style="text-align:right;"> 9065.8008 </td>
+   <td style="text-align:right;"> 72.390 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Bulgaria </td>
+   <td style="text-align:right;"> 10680.7928 </td>
+   <td style="text-align:right;"> 73.005 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Burkina Faso </td>
+   <td style="text-align:right;"> 1217.0330 </td>
+   <td style="text-align:right;"> 52.295 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Burundi </td>
+   <td style="text-align:right;"> 430.0707 </td>
+   <td style="text-align:right;"> 49.580 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Cambodia </td>
+   <td style="text-align:right;"> 1713.7787 </td>
+   <td style="text-align:right;"> 59.723 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Cameroon </td>
+   <td style="text-align:right;"> 2042.0952 </td>
+   <td style="text-align:right;"> 50.430 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Canada </td>
+   <td style="text-align:right;"> 36319.2350 </td>
+   <td style="text-align:right;"> 80.653 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Central African Republic </td>
+   <td style="text-align:right;"> 706.0165 </td>
+   <td style="text-align:right;"> 44.741 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Chad </td>
+   <td style="text-align:right;"> 1704.0637 </td>
+   <td style="text-align:right;"> 50.651 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Chile </td>
+   <td style="text-align:right;"> 13171.6388 </td>
+   <td style="text-align:right;"> 78.553 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> China </td>
+   <td style="text-align:right;"> 4959.1149 </td>
+   <td style="text-align:right;"> 72.961 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Colombia </td>
+   <td style="text-align:right;"> 7006.5804 </td>
+   <td style="text-align:right;"> 72.889 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Comoros </td>
+   <td style="text-align:right;"> 986.1479 </td>
+   <td style="text-align:right;"> 65.152 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Congo, Dem. Rep. </td>
+   <td style="text-align:right;"> 277.5519 </td>
+   <td style="text-align:right;"> 46.462 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Congo, Rep. </td>
+   <td style="text-align:right;"> 3632.5578 </td>
+   <td style="text-align:right;"> 55.322 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Costa Rica </td>
+   <td style="text-align:right;"> 9645.0614 </td>
+   <td style="text-align:right;"> 78.782 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Cote d'Ivoire </td>
+   <td style="text-align:right;"> 1544.7501 </td>
+   <td style="text-align:right;"> 48.328 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Croatia </td>
+   <td style="text-align:right;"> 14619.2227 </td>
+   <td style="text-align:right;"> 75.748 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Cuba </td>
+   <td style="text-align:right;"> 8948.1029 </td>
+   <td style="text-align:right;"> 78.273 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Czech Republic </td>
+   <td style="text-align:right;"> 22833.3085 </td>
+   <td style="text-align:right;"> 76.486 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Denmark </td>
+   <td style="text-align:right;"> 35278.4187 </td>
+   <td style="text-align:right;"> 78.332 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Djibouti </td>
+   <td style="text-align:right;"> 2082.4816 </td>
+   <td style="text-align:right;"> 54.791 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Dominican Republic </td>
+   <td style="text-align:right;"> 6025.3748 </td>
+   <td style="text-align:right;"> 72.235 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Ecuador </td>
+   <td style="text-align:right;"> 6873.2623 </td>
+   <td style="text-align:right;"> 74.994 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Egypt </td>
+   <td style="text-align:right;"> 5581.1810 </td>
+   <td style="text-align:right;"> 71.338 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> El Salvador </td>
+   <td style="text-align:right;"> 5728.3535 </td>
+   <td style="text-align:right;"> 71.878 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Equatorial Guinea </td>
+   <td style="text-align:right;"> 12154.0897 </td>
+   <td style="text-align:right;"> 51.579 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Eritrea </td>
+   <td style="text-align:right;"> 641.3695 </td>
+   <td style="text-align:right;"> 58.040 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Ethiopia </td>
+   <td style="text-align:right;"> 690.8056 </td>
+   <td style="text-align:right;"> 52.947 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Finland </td>
+   <td style="text-align:right;"> 33207.0844 </td>
+   <td style="text-align:right;"> 79.313 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> France </td>
+   <td style="text-align:right;"> 30470.0167 </td>
+   <td style="text-align:right;"> 80.657 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Gabon </td>
+   <td style="text-align:right;"> 13206.4845 </td>
+   <td style="text-align:right;"> 56.735 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Gambia </td>
+   <td style="text-align:right;"> 752.7497 </td>
+   <td style="text-align:right;"> 59.448 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Germany </td>
+   <td style="text-align:right;"> 32170.3744 </td>
+   <td style="text-align:right;"> 79.406 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Ghana </td>
+   <td style="text-align:right;"> 1327.6089 </td>
+   <td style="text-align:right;"> 60.022 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Greece </td>
+   <td style="text-align:right;"> 27538.4119 </td>
+   <td style="text-align:right;"> 79.483 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Guatemala </td>
+   <td style="text-align:right;"> 5186.0500 </td>
+   <td style="text-align:right;"> 70.259 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Guinea </td>
+   <td style="text-align:right;"> 942.6542 </td>
+   <td style="text-align:right;"> 56.007 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Guinea-Bissau </td>
+   <td style="text-align:right;"> 579.2317 </td>
+   <td style="text-align:right;"> 46.388 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Haiti </td>
+   <td style="text-align:right;"> 1201.6372 </td>
+   <td style="text-align:right;"> 60.916 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Honduras </td>
+   <td style="text-align:right;"> 3548.3308 </td>
+   <td style="text-align:right;"> 70.198 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Hong Kong, China </td>
+   <td style="text-align:right;"> 39724.9787 </td>
+   <td style="text-align:right;"> 82.208 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Hungary </td>
+   <td style="text-align:right;"> 18008.9444 </td>
+   <td style="text-align:right;"> 73.338 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Iceland </td>
+   <td style="text-align:right;"> 36180.7892 </td>
+   <td style="text-align:right;"> 81.757 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> India </td>
+   <td style="text-align:right;"> 2452.2104 </td>
+   <td style="text-align:right;"> 64.698 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Indonesia </td>
+   <td style="text-align:right;"> 3540.6516 </td>
+   <td style="text-align:right;"> 70.650 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Iran </td>
+   <td style="text-align:right;"> 11605.7145 </td>
+   <td style="text-align:right;"> 70.964 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Iraq </td>
+   <td style="text-align:right;"> 4471.0619 </td>
+   <td style="text-align:right;"> 59.545 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Ireland </td>
+   <td style="text-align:right;"> 40675.9964 </td>
+   <td style="text-align:right;"> 78.885 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Israel </td>
+   <td style="text-align:right;"> 25523.2771 </td>
+   <td style="text-align:right;"> 80.745 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Italy </td>
+   <td style="text-align:right;"> 28569.7197 </td>
+   <td style="text-align:right;"> 80.546 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Jamaica </td>
+   <td style="text-align:right;"> 7320.8803 </td>
+   <td style="text-align:right;"> 72.567 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Japan </td>
+   <td style="text-align:right;"> 31656.0681 </td>
+   <td style="text-align:right;"> 82.603 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Jordan </td>
+   <td style="text-align:right;"> 4519.4612 </td>
+   <td style="text-align:right;"> 72.535 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Kenya </td>
+   <td style="text-align:right;"> 1463.2493 </td>
+   <td style="text-align:right;"> 54.110 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Korea, Dem. Rep. </td>
+   <td style="text-align:right;"> 1593.0655 </td>
+   <td style="text-align:right;"> 67.297 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Korea, Rep. </td>
+   <td style="text-align:right;"> 23348.1397 </td>
+   <td style="text-align:right;"> 78.623 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Kuwait </td>
+   <td style="text-align:right;"> 47306.9898 </td>
+   <td style="text-align:right;"> 77.588 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Lebanon </td>
+   <td style="text-align:right;"> 10461.0587 </td>
+   <td style="text-align:right;"> 71.993 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Lesotho </td>
+   <td style="text-align:right;"> 1569.3314 </td>
+   <td style="text-align:right;"> 42.592 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Liberia </td>
+   <td style="text-align:right;"> 414.5073 </td>
+   <td style="text-align:right;"> 45.678 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Libya </td>
+   <td style="text-align:right;"> 12057.4993 </td>
+   <td style="text-align:right;"> 73.952 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Madagascar </td>
+   <td style="text-align:right;"> 1044.7701 </td>
+   <td style="text-align:right;"> 59.443 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Malawi </td>
+   <td style="text-align:right;"> 759.3499 </td>
+   <td style="text-align:right;"> 48.303 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Malaysia </td>
+   <td style="text-align:right;"> 12451.6558 </td>
+   <td style="text-align:right;"> 74.241 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Mali </td>
+   <td style="text-align:right;"> 1042.5816 </td>
+   <td style="text-align:right;"> 54.467 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Mauritania </td>
+   <td style="text-align:right;"> 1803.1515 </td>
+   <td style="text-align:right;"> 64.164 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Mauritius </td>
+   <td style="text-align:right;"> 10956.9911 </td>
+   <td style="text-align:right;"> 72.801 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Mexico </td>
+   <td style="text-align:right;"> 11977.5750 </td>
+   <td style="text-align:right;"> 76.195 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Mongolia </td>
+   <td style="text-align:right;"> 3095.7723 </td>
+   <td style="text-align:right;"> 66.803 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Montenegro </td>
+   <td style="text-align:right;"> 9253.8961 </td>
+   <td style="text-align:right;"> 74.543 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Morocco </td>
+   <td style="text-align:right;"> 3820.1752 </td>
+   <td style="text-align:right;"> 71.164 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Mozambique </td>
+   <td style="text-align:right;"> 823.6856 </td>
+   <td style="text-align:right;"> 42.082 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Myanmar </td>
+   <td style="text-align:right;"> 944.0000 </td>
+   <td style="text-align:right;"> 62.069 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Namibia </td>
+   <td style="text-align:right;"> 4811.0604 </td>
+   <td style="text-align:right;"> 52.906 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Nepal </td>
+   <td style="text-align:right;"> 1091.3598 </td>
+   <td style="text-align:right;"> 63.785 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Netherlands </td>
+   <td style="text-align:right;"> 36797.9333 </td>
+   <td style="text-align:right;"> 79.762 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> New Zealand </td>
+   <td style="text-align:right;"> 25185.0091 </td>
+   <td style="text-align:right;"> 80.204 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Nicaragua </td>
+   <td style="text-align:right;"> 2749.3210 </td>
+   <td style="text-align:right;"> 72.899 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Niger </td>
+   <td style="text-align:right;"> 619.6769 </td>
+   <td style="text-align:right;"> 56.867 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Nigeria </td>
+   <td style="text-align:right;"> 2013.9773 </td>
+   <td style="text-align:right;"> 46.859 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Norway </td>
+   <td style="text-align:right;"> 49357.1902 </td>
+   <td style="text-align:right;"> 80.196 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Oman </td>
+   <td style="text-align:right;"> 22316.1929 </td>
+   <td style="text-align:right;"> 75.640 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Pakistan </td>
+   <td style="text-align:right;"> 2605.9476 </td>
+   <td style="text-align:right;"> 65.483 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Panama </td>
+   <td style="text-align:right;"> 9809.1856 </td>
+   <td style="text-align:right;"> 75.537 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Paraguay </td>
+   <td style="text-align:right;"> 4172.8385 </td>
+   <td style="text-align:right;"> 71.752 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Peru </td>
+   <td style="text-align:right;"> 7408.9056 </td>
+   <td style="text-align:right;"> 71.421 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Philippines </td>
+   <td style="text-align:right;"> 3190.4810 </td>
+   <td style="text-align:right;"> 71.688 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Poland </td>
+   <td style="text-align:right;"> 15389.9247 </td>
+   <td style="text-align:right;"> 75.563 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Portugal </td>
+   <td style="text-align:right;"> 20509.6478 </td>
+   <td style="text-align:right;"> 78.098 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Puerto Rico </td>
+   <td style="text-align:right;"> 19328.7090 </td>
+   <td style="text-align:right;"> 78.746 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Reunion </td>
+   <td style="text-align:right;"> 7670.1226 </td>
+   <td style="text-align:right;"> 76.442 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Romania </td>
+   <td style="text-align:right;"> 10808.4756 </td>
+   <td style="text-align:right;"> 72.476 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Rwanda </td>
+   <td style="text-align:right;"> 863.0885 </td>
+   <td style="text-align:right;"> 46.242 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Sao Tome and Principe </td>
+   <td style="text-align:right;"> 1598.4351 </td>
+   <td style="text-align:right;"> 65.528 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Saudi Arabia </td>
+   <td style="text-align:right;"> 21654.8319 </td>
+   <td style="text-align:right;"> 72.777 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Senegal </td>
+   <td style="text-align:right;"> 1712.4721 </td>
+   <td style="text-align:right;"> 63.062 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Serbia </td>
+   <td style="text-align:right;"> 9786.5347 </td>
+   <td style="text-align:right;"> 74.002 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Sierra Leone </td>
+   <td style="text-align:right;"> 862.5408 </td>
+   <td style="text-align:right;"> 42.568 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Singapore </td>
+   <td style="text-align:right;"> 47143.1796 </td>
+   <td style="text-align:right;"> 79.972 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Slovak Republic </td>
+   <td style="text-align:right;"> 18678.3144 </td>
+   <td style="text-align:right;"> 74.663 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Slovenia </td>
+   <td style="text-align:right;"> 25768.2576 </td>
+   <td style="text-align:right;"> 77.926 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Somalia </td>
+   <td style="text-align:right;"> 926.1411 </td>
+   <td style="text-align:right;"> 48.159 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> South Africa </td>
+   <td style="text-align:right;"> 9269.6578 </td>
+   <td style="text-align:right;"> 49.339 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Spain </td>
+   <td style="text-align:right;"> 28821.0637 </td>
+   <td style="text-align:right;"> 80.941 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Sri Lanka </td>
+   <td style="text-align:right;"> 3970.0954 </td>
+   <td style="text-align:right;"> 72.396 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Sudan </td>
+   <td style="text-align:right;"> 2602.3950 </td>
+   <td style="text-align:right;"> 58.556 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Swaziland </td>
+   <td style="text-align:right;"> 4513.4806 </td>
+   <td style="text-align:right;"> 39.613 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Sweden </td>
+   <td style="text-align:right;"> 33859.7484 </td>
+   <td style="text-align:right;"> 80.884 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Switzerland </td>
+   <td style="text-align:right;"> 37506.4191 </td>
+   <td style="text-align:right;"> 81.701 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Syria </td>
+   <td style="text-align:right;"> 4184.5481 </td>
+   <td style="text-align:right;"> 74.143 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Taiwan </td>
+   <td style="text-align:right;"> 28718.2768 </td>
+   <td style="text-align:right;"> 78.400 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Tanzania </td>
+   <td style="text-align:right;"> 1107.4822 </td>
+   <td style="text-align:right;"> 52.517 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Thailand </td>
+   <td style="text-align:right;"> 7458.3963 </td>
+   <td style="text-align:right;"> 70.616 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Togo </td>
+   <td style="text-align:right;"> 882.9699 </td>
+   <td style="text-align:right;"> 58.420 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Trinidad and Tobago </td>
+   <td style="text-align:right;"> 18008.5092 </td>
+   <td style="text-align:right;"> 69.819 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Tunisia </td>
+   <td style="text-align:right;"> 7092.9230 </td>
+   <td style="text-align:right;"> 73.923 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Turkey </td>
+   <td style="text-align:right;"> 8458.2764 </td>
+   <td style="text-align:right;"> 71.777 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Uganda </td>
+   <td style="text-align:right;"> 1056.3801 </td>
+   <td style="text-align:right;"> 51.542 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> United Kingdom </td>
+   <td style="text-align:right;"> 33203.2613 </td>
+   <td style="text-align:right;"> 79.425 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> United States </td>
+   <td style="text-align:right;"> 42951.6531 </td>
+   <td style="text-align:right;"> 78.242 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Uruguay </td>
+   <td style="text-align:right;"> 10611.4630 </td>
+   <td style="text-align:right;"> 76.384 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Venezuela </td>
+   <td style="text-align:right;"> 11415.8057 </td>
+   <td style="text-align:right;"> 73.747 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Vietnam </td>
+   <td style="text-align:right;"> 2441.5764 </td>
+   <td style="text-align:right;"> 74.249 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> West Bank and Gaza </td>
+   <td style="text-align:right;"> 3025.3498 </td>
+   <td style="text-align:right;"> 73.422 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Yemen, Rep. </td>
+   <td style="text-align:right;"> 2280.7699 </td>
+   <td style="text-align:right;"> 62.698 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Zambia </td>
+   <td style="text-align:right;"> 1271.2116 </td>
+   <td style="text-align:right;"> 42.384 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Zimbabwe </td>
+   <td style="text-align:right;"> 469.7093 </td>
+   <td style="text-align:right;"> 43.487 </td>
+  </tr>
+</tbody>
+</table> <script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [["$","$"]]}})</script><script async src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

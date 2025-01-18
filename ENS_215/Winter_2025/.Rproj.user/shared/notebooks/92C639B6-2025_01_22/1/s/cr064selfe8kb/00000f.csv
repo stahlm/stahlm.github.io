@@ -1,0 +1,1 @@
+"0","summarize(my_gap_2007, avg_life = mean(lifeExp), avg_gdp_per_cap = mean(gdpPercap) )"
