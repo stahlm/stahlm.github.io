@@ -1,0 +1,4 @@
+"0","fig_life +"
+"0","  scale_x_log10(breaks = c(250, 1000, 5000, 25000, 50000, 90000)) "
+"2","[38;5;232mScale for [32mx[38;5;232m is already present.
+Adding another scale for [32mx[38;5;232m, which will replace the existing scale.[39m"

@@ -1,0 +1,4 @@
+"0","fig_1 <- fig_1 + "
+"0","  theme(axis.text.x = element_text(angle = 60, hjust = 1))"
+"0",""
+"0","fig_1"

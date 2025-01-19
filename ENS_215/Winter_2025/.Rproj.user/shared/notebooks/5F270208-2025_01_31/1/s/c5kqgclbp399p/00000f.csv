@@ -1,0 +1,4 @@
+"0","ggplot(my_gap, aes(x = gdpPercap, y = lifeExp, color = continent)) + "
+"0","  geom_point() +"
+"0","  scale_x_log10() + "
+"0","  scale_color_brewer(palette = ""Dark2"")"

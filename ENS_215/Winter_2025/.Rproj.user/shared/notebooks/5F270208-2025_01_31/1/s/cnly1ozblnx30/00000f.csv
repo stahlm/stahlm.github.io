@@ -1,0 +1,7 @@
+"0",""
+"0","fig_life <- ggplot(my_gap, aes(x = gdpPercap, y = lifeExp)) + "
+"0","  geom_point() + "
+"0","  theme_classic() +"
+"0","  scale_x_log10()"
+"0",""
+"0","fig_life"

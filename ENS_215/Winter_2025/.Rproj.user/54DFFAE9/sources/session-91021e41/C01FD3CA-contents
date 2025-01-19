@@ -1,0 +1,200 @@
+---
+title: "Exploring Environmental Data (ENS-215)"
+date: "Winter 2023"
+output:
+  html_document:
+    theme: spacelab
+    toc: yes
+    toc_float: yes
+---
+
+
+
+
+***
+
+| [ENS-215](https://stahlm.github.io/ENS_215/Winter_2023/Home.html)  | [Homework](https://stahlm.github.io/ENS_215/Winter_2023/HW.html)  | [Syllabus](https://stahlm.github.io/ENS_215/Winter_2023/Syllabus.html)  |
+|:-------:|:------:|:--------:|
+|      |     |        |       |
+
+```{r echo = F, eval = F}
+### Week 8
+#### Readings
+* [**ModernDive Ch: 6**](https://moderndive.com/)
+* [**R for Data Science (R4DS) Ch: 27 and 28**](https://r4ds.had.co.nz)
+
+#### Assignments 
+1. DataCamp **_Modeling with Data in the Tidyverse_** chapters **3** ("Modeling with Multiple Regression
+") and **4** ("Model Assessment and Selection")
+    + Assigned: 22-Feb
+    + Due: 1-Mar
+
+***
+```
+
+
+### Week 8
+#### Readings
+* [**ModernDive Ch: 6**](https://moderndive.com/)
+* [**R for Data Science (R4DS) Ch: 27 and 28**](https://r4ds.had.co.nz)
+
+#### Assignments 
+1. DataCamp **_Modeling with Data in the Tidyverse_** chapters **3** ("Modeling with Multiple Regression
+") and **4** ("Model Assessment and Selection")
+    + Assigned: 22-Feb
+    + Due: 1-Mar
+
+***
+
+
+### Week 7
+#### Readings
+* [**ModernDive Ch: 5**](https://moderndive.com/)
+
+#### Assignments 
+1. DataCamp **_Modeling with Data in the Tidyverse_** chapters **1** ("Introduction to Modeling") and **2** ("Modeling with Basic Regression")
+    + Assigned: 15-Feb
+    + Due: 22-Feb
+
+***
+
+### Week 6
+#### Readings
+* [**Tidyverse style guide, Chapters 1, 2, 4, 5**](https://style.tidyverse.org/)
+    + Excellent guide to proper usage of style, formatting, and syntax in R.  Read this with care and where applicable you should begin implementing these style tips in your code.  Note that "style" is more than just cosmetic -- good style makes your code human readable and makes sharing and editing code significantly more efficient and less prone to error.  
+
+#### Assignments 
+1. Final project proposal
+    + Due: 12-Feb (by 5PM)
+    
+You should Knit your proposal to an `.html` file and submit it on Nexus.  
+
+
+***
+
+### Week 5
+#### Readings
+* [**ModernDive Ch: 3.7**](https://moderndive.com/)
+* [**ModernDive Ch: 4**](https://moderndive.com/)
+
+#### Assignments 
+1. DataCamp **_Reshaping Data with tidyr_** chapters **1** ("Tidy data"), **2** ("From wide to long and back")
+    + Assigned: 1-Feb
+    + Due: 6-Feb  
+
+2. DataCamp **_Joining Data with dplyr_** chapters **1** ("Joining Tables"), **2** ("Left and Right Joins")
+    + Assigned: 1-Feb
+    + Due: 8-Feb
+    
+  
+
+***
+
+
+
+
+### Week 4
+#### Readings
+* [**ModernDive Ch: 2**](https://moderndive.com/)
+* [**R for Data Science (R4DS) Ch: 3**](https://r4ds.had.co.nz/) 
+
+#### Assignments 
+1. DataCamp **_Introduction to Data Visualization with ggplot2_** chapters **1** ("Introduction"), **2** ("Aesthetics"), **3** ("Geometries")
+    + Assigned: 25-Jan
+    + Due: 1-Feb
+    
+  
+
+***
+
+
+### Week 3
+#### Readings
+* [**ModernDive Ch: 3**](https://moderndive.com/)
+* [**R for Data Science (R4DS) Ch: 5**](https://r4ds.had.co.nz/) (the R4DS reading is optional, though I strongly recommend it as it is very helpful) 
+
+#### Assignments
+1. DataCamp **_Introduction to the Tidyverse_** chapters **1** ("Data wrangling") and **2** ("Data visualization")
+
+    + Assigned: 18-Jan
+    + Due: 25-Jan  
+    
+
+2. DataCamp **_Introduction to the Tidyverse_** chapter **3** ("Grouping and summarizing")
+
+    + Assigned: 18-Jan
+    + Due: 25-Jan
+  
+***
+
+
+### Week 2
+
+#### Assignments
+**1. Complete the "_Conditionals and Control Flow_" and "_Loops_" lessons in the DataCamp "_Intermediate R course_" **  
+
+  + Assigned: 11-Jan
+  + Due: 16-Jan 
+  
+**2. Complete the "_Functions_" lesson in the DataCamp "_Intermediate R course_" **
+
+  + Assigned: 11-Jan
+  + Due: 18-Jan
+
+
+
+***
+
+
+### Week 1
+#### Readings
+* [**ModernDive Ch: 1, 2**](https://moderndive.com/)
+* [**R for Data Science (R4DS) Ch: 1**](https://r4ds.had.co.nz/)  
+
+
+#### Assignments
+**1. Download R and RStudio:**
+You will first need to download R and then RStudio.  To download R go to [this link](https://cran.rstudio.com/) and download R.  You will see links for Mac and Windows users (make sure to select the appropriate one for your computer).  Download the program and then install it.
+
+Once you've downloaded and installed R, then you will need to get RStudio.  Go to [this link](https://www.rstudio.com/products/rstudio/download/#download) and download the "Installer for Supported Platform" that corresponds to your computer (i.e. Mac or Windows).  Download and install the software.
+
+  + Assigned: 4-Jan
+  + Due: 6-Jan  
+
+**2. Accept the invite to our DataCamp class and complete "_Introduction to R_"**  
+
+  + Assigned: 4-Jan
+  + Due: 6-Jan (accept invite); 11-Jan (complete "Introduction to R" assignment)  
+  + **Note:** You should accept the DataCamp invitation immediately 
+
+
+**3.  Get a binder to hold your course notes and bring to all future classes**  
+
+  + Assigned: 4-Jan
+  + Due: 9-Jan  
+
+
+**4.  Sign up for Posit (RStudio) Cloud**  
+
+You will receive an email invitation to join our Posit (RStudio) Cloud group. You should accept this invitation and create an account if you haven’t done so already.  
+
+  + Assigned: 4-Jan  
+  + Due: 6-Jan  
+
+
+**5.  Complete course intro survey**  
+
+  + [Survey link here](https://forms.gle/PrSAHb1LcE6siNwb9)  
+  + Assigned: 4-Jan  
+  + Due: 6-Jan  
+
+
+<br/>  
+
+***
+
+
+_Mason Stahl (2023)_  
+_Union College_ 
+
+![](C:/Users/stahlm/Documents/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2023/Images/logo_ens_215.png){width=100px}

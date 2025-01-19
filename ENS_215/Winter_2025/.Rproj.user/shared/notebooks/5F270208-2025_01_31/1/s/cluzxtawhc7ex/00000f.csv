@@ -1,0 +1,8 @@
+"0","fig_1 <- my_gap %>% "
+"0","  filter(year == 2007, continent == ""Asia"") %>% "
+"0","  ggplot(aes(x = reorder(country, gdpPercap), y = gdpPercap)) + "
+"0","  geom_point() +"
+"0","  theme_classic()"
+"0",""
+"0","fig_1"
+"0",""
