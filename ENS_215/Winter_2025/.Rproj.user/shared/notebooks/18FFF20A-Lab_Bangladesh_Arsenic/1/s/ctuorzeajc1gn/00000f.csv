@@ -1,0 +1,5 @@
+"0","# Fe vs. depth"
+"0","bangladesh_gw %>% "
+"0","  ggplot() + "
+"0","  geom_point(aes(x = Fe_mgL, y = WELL_DEPTH_m), alpha = 0.25) + "
+"0","  scale_y_reverse()"

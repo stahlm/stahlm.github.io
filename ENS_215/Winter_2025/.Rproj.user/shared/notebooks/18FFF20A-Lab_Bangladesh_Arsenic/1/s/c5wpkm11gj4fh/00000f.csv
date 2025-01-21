@@ -1,0 +1,5 @@
+"0","# As vs. depth"
+"0","bangladesh_gw %>% "
+"0","  ggplot() + geom_point(aes(x = As_ugL, y = WELL_DEPTH_m), alpha = 0.25) + "
+"0","  scale_y_reverse() + "
+"0","  facet_wrap(~DIVISION)"

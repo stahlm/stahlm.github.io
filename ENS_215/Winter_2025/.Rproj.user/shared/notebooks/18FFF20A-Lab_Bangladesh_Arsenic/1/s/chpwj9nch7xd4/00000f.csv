@@ -1,0 +1,7 @@
+"0",""
+"0","summary_table_2 <- bangladesh_gw %>% "
+"0","  group_by(DIVISION) %>% "
+"0","  summarise_at(vars(WELL_DEPTH_m, YEAR_CONSTRUCTION, As_ugL, Fe_mgL, Mn_mgL, SO4_mgL), "
+"0","               lst(mean, median), "
+"0","               na.rm = TRUE) %>% "
+"0","  arrange(desc(As_ugL_mean))"
