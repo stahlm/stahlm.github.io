@@ -399,7 +399,7 @@ It is important to realize that my expectations for each of the graded criteria 
 
 Make sure you are familiar with the expectations and evaluation criteria presented in the links below:
 
-+ [Evaluation rubric](https://stahlm.github.io/ENS_215/Winter_2022/Syllabus.html#Evaluation_rubric)
++ [Evaluation rubric](https://stahlm.github.io/ENS_215/Winter_2025/Syllabus.html#Evaluation_rubric)
 + Template for lab and homework assignments: [(html)](https://stahlm.github.io/ENS_215/Homework/Template_Assignments.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Homework/Template_Assignments.Rmd)
 + [Lab report guidelines](https://stahlm.github.io/ENS_215/Labs/Lab_Guidelines.html)
 
