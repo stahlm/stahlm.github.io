@@ -2872,7 +2872,9 @@ syntax is the
 British English spelling <code>summarise()</code> will work. If you want
 to make your code a bit classier, I suggest you use the British
 English.</p>
-<pre class="r"><code>summarize(my_gap_2007, avg_life = mean(lifeExp), avg_gdp_per_cap = mean(gdpPercap) )</code></pre>
+<pre class="r"><code>summarize(my_gap_2007, 
+          avg_life = mean(lifeExp), 
+          avg_gdp_per_cap = mean(gdpPercap) )</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["avg_life"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["avg_gdp_per_cap"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"67.00742","2":"11680.07"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -2909,7 +2911,10 @@ each continent in the year 2007. So first let’s group our
 <p><br /></p>
 <p>Now, let’s apply the <code>summarize()</code> function to our
 “grouped” dataset</p>
-<pre class="r"><code>summarize(my_gap_2007, min_life = min(lifeExp), mean_life = mean(lifeExp), max_life = max(lifeExp))</code></pre>
+<pre class="r"><code>summarize(my_gap_2007, 
+          min_life = min(lifeExp), 
+          mean_life = mean(lifeExp), 
+          max_life = max(lifeExp))</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["continent"],"name":[1],"type":["fct"],"align":["left"]},{"label":["min_life"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["mean_life"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["max_life"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"Africa","2":"39.613","3":"54.80604","4":"76.442"},{"1":"Americas","2":"60.916","3":"73.60812","4":"80.653"},{"1":"Asia","2":"43.828","3":"70.72848","4":"82.603"},{"1":"Europe","2":"71.777","3":"77.64860","4":"81.757"},{"1":"Oceania","2":"80.204","3":"80.71950","4":"81.235"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -2928,7 +2933,10 @@ statistics by continent have changed over time. In this case we would
 group by continent and year before applying the <code>summarize()</code>
 function.</p>
 <pre class="r"><code>my_gap &lt;- group_by(my_gap, continent, year) # group by continent then year</code></pre>
-<pre class="r"><code>summarize(my_gap, min_life = min(lifeExp), mean_life = mean(lifeExp), max_life = max(lifeExp))</code></pre>
+<pre class="r"><code>summarize(my_gap, 
+          min_life = min(lifeExp), 
+          mean_life = mean(lifeExp), 
+          max_life = max(lifeExp))</code></pre>
 <pre><code>## `summarise()` has grouped output by &#39;continent&#39;. You can override using the
 ## `.groups` argument.</code></pre>
 <div data-pagedtable="false">

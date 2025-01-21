@@ -1,0 +1,7 @@
+"2","Warning in gzfile(file, ""wb"") :"
+"2","
+ "
+"2"," cannot open compressed file 'C:/Users/stahlm/Documents/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2025/.Rproj.user/shared/notebooks/FAB2F877-Holzer, Addyson_1243635_assignsubmission_file_EPA_Fuel_Lab_Holzer/1/s/czbvlj3ooxyhk_t/7be36cbe1d5e4c6d83361fcd54dd3720.snapshot', probable reason 'No such file or directory'
+"
+"2","Error in gzfile(file, ""wb"") : cannot open the connection
+"

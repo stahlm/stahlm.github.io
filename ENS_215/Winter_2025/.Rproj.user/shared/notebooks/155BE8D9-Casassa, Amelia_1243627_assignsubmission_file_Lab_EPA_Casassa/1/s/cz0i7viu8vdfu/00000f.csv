@@ -1,0 +1,2 @@
+"0","fuel_data <- mutate(fuel_data, "
+"0","                    Simple_Trans = if_else(trans %in% automatic_trans, ""auto"", ""manuel""))"

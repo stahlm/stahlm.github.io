@@ -1503,6 +1503,15 @@ border-radius: 0px;
 </div>
 
 
+<style type="text/css">
+.tocify .tocify-header {
+position: float;
+top: 50px;
+left: 50px;
+width: 150px;
+height: 200px;
+}
+</style>
 <p>Outlines below highlight some key topics to cover prior to beginning
 with the coding/analysis portion of the day’s lecture.<br />
 <br /></p>
@@ -1584,8 +1593,8 @@ variable<br />
 the days in each month</li>
 </ul>
 </div>
-<div id="data-manipulation-intro" class="section level3">
-<h3>Data manipulation (intro)</h3>
+<div id="data-wrangling-intro" class="section level3">
+<h3>Data wrangling (intro)</h3>
 <ul>
 <li>Remind class about the need for discussion in their lab
 reports<br />
@@ -1597,7 +1606,41 @@ figure<br />
 <li>Remind class that when submitting the HTML files they should submit
 the <em>.html</em> and not the <em>.nb.html</em><br />
 </li>
-<li>Go over <code>filter()</code> and piping</li>
+<li>Go over <code>filter()</code> and piping<br />
+</li>
+<li>Give an example of why
+<code>filter(Country == &quot;China&quot;, Country == &quot;Spain&quot;)</code> would not
+return any rows</li>
+</ul>
+</div>
+<div id="data-wrangling-continued" class="section level3">
+<h3>Data wrangling (continued)</h3>
+<ul>
+<li>HW reminder<br />
+</li>
+<li>Go over the exercises from last class<br />
+</li>
+<li>Review dplyr verbs we’ve learned thus far <code>filter()</code>,
+<code>arrange()</code>, <code>select()</code> and also piping
+<code>%&gt;%</code><br />
+</li>
+<li>Introduce new verbs <code>mutate()</code>, <code>rename()</code>,
+<code>top_n()</code>, <code>summarize()</code><br />
+</li>
+<li>Introduce <code>if_else()</code> and <code>case_when()</code> which
+are very useful with <code>mutate()</code><br />
+</li>
+<li>Remind class that when you apply a function it will only permanently
+alter the data frame if you overwrite the original object (i.e., use the
+<code>&lt;-</code> operator to save the object)</li>
+</ul>
+</div>
+<div id="group_by-and-summarize" class="section level3">
+<h3>group_by() and summarize()</h3>
+<ul>
+<li>Revisit the looping challenge from the end of the lecture on
+(2025-01-15) and demonstrate how easy this same analysis is using
+<code>group_by()</code> and <code>summarize()</code></li>
 </ul>
 <p><br /></p>
 </div>

@@ -1,0 +1,7 @@
+"0","table_summary_dams %>% "
+"0","  filter(!is.na(Year_completed), Year_completed >= 1750) %>% "
+"0","  ggplot(aes(x= Year_completed, y = n_dam, fill = log(tot_capacity))) +"
+"0","  geom_point(shape = 21) +"
+"0","  "
+"0","  scale_fill_viridis_c() +"
+"0","  facet_wrap(~Continent)"

@@ -1,3 +1,4 @@
-"0","df_rubric <- tibble::tibble(score = c(0,1,1.5,2,2.25,2.5,2.75,3),"
-"0","                            grade = c(0,50,67.5,85,88.75,92.5,96.25,100)"
+"0","# Rubric score to grade conversion"
+"0","df_rubric <- tibble::tibble(score = c(0,1,1.5,1.75,2,2.25,2.5,2.75,3),"
+"0","                            grade = c(0,50,67.5,76.25,85,88.75,92.5,96.25,100)"
 "0","                            )"

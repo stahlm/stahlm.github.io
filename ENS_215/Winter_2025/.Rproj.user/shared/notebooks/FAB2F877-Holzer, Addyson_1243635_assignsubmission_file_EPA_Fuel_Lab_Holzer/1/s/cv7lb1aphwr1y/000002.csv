@@ -1,0 +1,2 @@
+"0","n_col <- ncol(fuel_data)"
+"0","n_row <- nrow(fuel_data)"

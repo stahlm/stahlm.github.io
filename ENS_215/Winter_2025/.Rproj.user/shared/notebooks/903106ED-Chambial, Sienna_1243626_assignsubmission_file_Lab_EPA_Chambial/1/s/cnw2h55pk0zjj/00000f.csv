@@ -1,0 +1,8 @@
+"0","n_rows <- nrow(fuel_data)"
+"0","n_cols <- ncol(fuel_data)"
+"0","dim(fuel_data)"
+"1","[1]"
+"1"," 234"
+"1","  11"
+"1","
+"

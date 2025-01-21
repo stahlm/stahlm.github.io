@@ -1,0 +1,4 @@
+"0","df_student <- tibble::tibble(score = c(score_code, score_results, score_achieve, score_discuss, score_access))"
+"0",""
+"0","df_student <- df_student %>% "
+"0","  left_join(df_rubric)"

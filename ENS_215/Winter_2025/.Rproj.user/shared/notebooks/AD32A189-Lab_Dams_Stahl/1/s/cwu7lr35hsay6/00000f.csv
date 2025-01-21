@@ -1,0 +1,4 @@
+"0","dams_canada %>% "
+"0","  mutate(Hydroelectricity = factor(Hydroelectricity)) %>% "
+"0","  ggplot(aes(x = Longitude, y = Latitude, fill = Hydroelectricity))  +"
+"0","  geom_point(shape = 21)"

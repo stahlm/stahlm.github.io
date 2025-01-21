@@ -1,0 +1,2 @@
+"0","ggplot(data = fuel_data) +"
+"0","  geom_point(aes(x = trans, y = hwy, color = region))"

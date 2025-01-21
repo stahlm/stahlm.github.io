@@ -1,0 +1,4 @@
+"0","gap_data %>% "
+"0","  filter(year == 1977) %>% "
+"0","  arrange(lifeExp) %>% "
+"0","  slice(1)"
