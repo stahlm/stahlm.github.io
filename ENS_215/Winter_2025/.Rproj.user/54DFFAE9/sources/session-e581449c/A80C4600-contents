@@ -1,0 +1,208 @@
+---
+title: "Exploring Environmental Data (ENS-215)"
+date: "Winter 2023"
+output:
+  html_document:
+    theme: spacelab
+    toc: yes
+    toc_float: yes
+---
+
+
+
+```{r eval = F, echo = F}
+<style>
+#TOC {
+  background: url("https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Images/logo_ens_215.png");
+  background-size: contain;
+  padding-top: 280px !important;
+  background-repeat: no-repeat;
+}
+</style>
+```
+
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-137229217-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-137229217-1');
+</script>
+
+***
+
+
+| [ENS-215](https://stahlm.github.io/ENS_215/Winter_2023/Home.html)  | [Homework](https://stahlm.github.io/ENS_215/Winter_2023/HW.html)  | [Syllabus](https://stahlm.github.io/ENS_215/Winter_2023/Syllabus.html)  |
+|:-------:|:------:|:--------:|
+|      |     |        |       |
+
+## Lectures 
+
+### Week 10   
+
++ Mon (6-Mar) -- **Seasonality indices: Environmental applications**
+[(html)](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/case_study_seasonality_indices.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Lectures/case_study_seasonality_indices.Rmd)  
+
++ Wed (8-Mar) -- **Final projects**  
+
++ Fri (10-Mar) -- **Final project presentations**  
+
+*** 
+
+### Week 9  
+
++ Mon (27-Feb) -- **Interactive graphics**
+[(html)](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_02_27.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Lectures/2023_02_27.Rmd)  
+
++ Wed (1-Mar) -- **Writing functions**
+[(html)](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_03_01.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Lectures/2023_03_01.Rmd)  
+
++ Fri (3-Mar) -- **No class: use this time to work on final projects**  
+
+***
+
+### Week 8  
+**Note:** ESPE Winter Seminar Series [Talk on Wed (Feb 22^nd^, 6 PM in the Nott)](https://www.union.edu/espe/2023-winter-seminar-series).  Extra credit for attending the talk.  
+
++ Mon (20-Feb) -- **Rasters continued: Obtaining and analyzing raster data**
+[(html)](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_02_20_raster_part_02.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Lectures/2023_02_20_raster_part_02.Rmd)  
+
++ Wed (22-Feb) -- **Bivariate data and time-series analysis**
+[(html)](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_02_22_bivariate.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Lectures/2023_02_22_bivariate.Rmd)    
+
++ Fri (24-Feb) -- **Introduction to data modeling**
+[(html)](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_02_24.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Lectures/2023_02_24.Rmd)    
+
+***
+
+### Week 7  
+**Note:** ESPE Winter Seminar Series [Talk on Wed (Feb 15^th^, 5 PM in the Nott)](https://www.union.edu/espe/2023-winter-seminar-series).  Extra credit for attending the talk.  
+
++ Mon (13-Feb) -- **Making maps in R**
+[(html)](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_02_13.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Lectures/2023_02_13.Rmd)  
+
++ Wed (15-Feb) -- **Making maps in R: Additional topics**
+[(html)](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_02_15.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Lectures/2023_02_15.Rmd)  
+
++ Fri (17-Feb) -- **Spatial analysis continued: Introduction to rasters**
+[(html)](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_02_17_raster_part_01.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Lectures/2023_02_17_raster_part_01.Rmd)  
+
+
+***
+
+### Week 6
++ Mon (6-Feb)  -- **Descriptive statistics and univariate data** [(html)](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_02_06.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Lectures/2023_02_06.Rmd) and **Loading data into R** [(html)](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_02_06_load_data_into_R.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Lectures/2023_02_06_load_data_into_R.Rmd)  
+
++ Wed (8-Feb) -- **Visualizing and interpreting data distributions** 
+[(html)](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_02_08.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Lectures/2023_02_08.Rmd) and **Graphical display of data distributions: Examples** [(html)](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_02_08_distributions_examples.html)  
+
++ Fri (10-Feb) -- **Finding and accessing environmental data in R**
+[(html)](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_data_access_packages.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Lectures/2023_data_access_packages.Rmd)  
+
+
+### Week 5
+
+**Note:** ESPE Winter Seminar Series [Talk on Wed (Feb 1st, 6 PM in the Nott)](https://www.union.edu/espe/2023-winter-seminar-series).  Extra credit for attending the talk.  
+
++ Mon (30-Jan) -- **Presentation quality graphics**
+[(html)](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_01_30.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Lectures/2023_01_30.Rmd), [(Slides)](https://stahlm.github.io/ENS_215/Documents/Data_vis_slides.pdf), [Article by Kelleher and Wagener (2011)](https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Documents/ems2011%20kelleher%20and%20wagener.pdf)
+
++ Wed (1-Feb) -- **Reshaping, cleaning, and tidying data**
+[(html)](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_02_01.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Lectures/2023_02_01.Rmd)  
+
++ Fri (3-Feb) -- **Combining/joining data**
+[(html)](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_02_03.html)  [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Lectures/2023_02_03.Rmd)  
+
+***
+
+### Week 4
++ Mon (23-Jan) -- **Intro to data visualization** [(html)](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_01_23_Intro_data_viz.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Lectures/2023_01_23_Intro_data_viz.Rmd), [Slides](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_01_23_slides.html) 
+
++ Wed (25-Jan) -- **Intro to data visualization (continued)** [(html)](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_01_25_Intro_data_viz.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Lectures/2023_01_25_Intro_data_viz.Rmd) 
+
++ Fri (27-Jan) -- **Data visualization (additional topics)** [(html)](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_01_27_Data_viz.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Lectures/2023_01_27_Data_viz.Rmd) 
+
+
+
+```{r eval = F, echo = F}
+
+```
+
+***
+
+### Week 3
++ Mon (16-Jan) -- **Data wrangling intro** [(html)](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_01_16_Data_manipulation.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Lectures/2023_01_16_Data_manipulation.Rmd)  
+
++ Wed (18-Jan) -- **Data wrangling continued** [(html)](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_01_18_Data_manipulation_cont.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Lectures/2023_01_18_Data_manipulation_cont.Rmd)  
+
++ Fri (20-Jan) -- **Data wrangling `group_by()` and `summarize()`** [(html)](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_01_20.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Lectures/2023_01_20.Rmd)  
+  
+```{r eval = F, echo = F}
+### Week 3
+ 
+[(html)](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_01_16_Data_manipulation.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Lectures/2023_01_16_Data_manipulation.Rmd)  
+```
+
+***  
+
+
+### Week 2
++ Mon (9-Jan) -- **R Programming and Markdown Basics** 
+[(html)](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_01_09_R_basics.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Lectures/2023_01_09_R_basics.Rmd)  
+
++ Wed (11-Jan) -- **Relational and logical operators, if/else/else if** 
+[(html)](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_01_11_R_basics_cont.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Lectures/2023_01_11_R_basics_cont.Rmd)  
+
++ Fri (13-Jan) -- **Control flow (for and while loops)** 
+[(html)](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_01_13_R_basic_loops.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Lectures/2023_01_13_R_basic_loops.Rmd)  
+
+
+
+
+*** 
+ 
+### Week 1
++ Wed (4-Jan) -- **Course introduction** 
+[(html)](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_01_04_L1.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Lectures/2023_01_04_L1.Rmd), [In-class examples](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_01_04_examples.html), [Slides](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_01_04_Slides.html)  
+
++ Fri (6-Jan) -- **Diving into R** [(html)](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_01_06_L1_diving_in.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Lectures/2023_01_06_L1_diving_in.Rmd), [Slides](https://stahlm.github.io/ENS_215/Winter_2023/Lectures/2023_01_06_Slides.html), [Cheatsheets](https://stahlm.github.io/ENS_215/Resources/Cheatsheets_all.pdf)  
+
+
+
+***
+<br/>
+
+## Labs
++ Lab 1 -- **Intro and EPA Fuel Economy Data** [(html)](https://stahlm.github.io/ENS_215/Winter_2023/Labs/Lab_EPA_Fuel_Economy.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Labs/Lab_EPA_Fuel_Economy.Rmd)  
+
++ Lab 2 -- **Dams and Reservoirs: A global analysis** [(html)](https://stahlm.github.io/ENS_215/Winter_2023/Labs/Lab_Global_Dams.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Labs/Lab_Global_Dams.Rmd)    
+
++ Lab 3 -- **Groundwater Arsenic in Bangladesh** [(html)](https://stahlm.github.io/ENS_215/Winter_2023/Labs/Lab_Bangladesh_Arsenic.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Labs/Lab_Bangladesh_Arsenic.Rmd)      
+
++ Lab 4 -- **Final project kick-off** [(html)](https://stahlm.github.io/ENS_215/Winter_2023/Labs/Lab_Final_Project.html)  
+
++ Lab 5 -- **Final project: post-proposal consultations and analysis** [(html)](https://stahlm.github.io/ENS_215/Winter_2023/Labs/Lab_Final_Project_Second_Meeting.html)  
+
++ Lab 6 -- **Project formatting, organization, and additional project work** [(html)](https://stahlm.github.io/ENS_215/Winter_2023/Labs/RMarkdown_formatting_basics.html) 
+
++ Lab 7 -- **Final projects: progress updates and additional analysis**
+
++ Lab 8 -- **Final project presentations**
+
+```{r eval = F, echo = F}
+[(html)](https://stahlm.github.io/ENS_215/Winter_2023/Labs/Lab_Global_Dams.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2023/Labs/Lab_Global_Dams.Rmd)  
+```
+
+
+<br/> 
+
+***
+
+_Mason Stahl (2023)_  
+_Union College_ 
+
+![](C:/Users/stahlm/Documents/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2023/Images/logo_ens_215.png){width=100px}

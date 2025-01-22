@@ -68,7 +68,9 @@ Outlines below highlight some key topics to cover prior to beginning with the co
 - Remind class that when you apply a function it will only permanently alter the data frame if you overwrite the original object (i.e., use the `<-` operator to save the object) 
 
 ### group_by() and summarize()
-- Revisit the looping challenge from the end of the lecture on (2025-01-15) and demonstrate how easy this same analysis is using `group_by()` and `summarize()`
+- Revisit the looping challenge from the end of the lecture on (2025-01-15) and demonstrate how easy this same analysis is using `group_by()` and `summarize()`  
+- Review all of the "verbs" in dplyr that we have seen thus far.  Have the gapminder data frame open in viewer, pose questions to students about each verb, and then in my console carry out an example with that verb (saving output to a new df) and examine the new df to highlight the steps we've taken.  
+
 
 <br/> 
 
