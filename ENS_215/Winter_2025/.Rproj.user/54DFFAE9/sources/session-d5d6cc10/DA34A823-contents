@@ -1,0 +1,1068 @@
+---
+output: word_document
+---
+
+```{r echo = F, warning= F, message= F}
+library(tidyverse)
+```
+
+```{r echo = F}
+name_assign <- "Lab 01 (EPA Fuel Efficiency)"
+```
+
+```{r echo = F}
+# Rubric score to grade conversion
+df_rubric <- tibble::tibble(score = c(0,1,1.5,1.75,2,2.25,2.5,2.75,3),
+                            grade = c(0,50,67.5,76.25,85,88.75,92.5,96.25,100)
+                            )
+```
+
+ 
+## Amelia	Casassa
+```{r echo = F}
+# Student's grade table
+
+score_code <- 2
+score_results <- 2.5
+score_achieve <- 2.5
+score_discuss <- 1.5
+score_access <- 3
+```
+
+### Assignment: `r name_assign`
+
+### Code style and strategy: 
+Clear and correct implementation of your code.  Not overly necessary in this lab, but make sure to comment your code (especially in future labs as the code gets more involved).  
+
+I noticed that some of the code in your Rmd file does not appear in your knit HTML document.  I tested your code and it all runs, so it appears that you did not knit your final Rmd document (thus your knit file only has some of the code and output that you intended to include).  Always make sure to knit your Rmd file once you've finished all of your coding and then submit the HTML file that is generated.  
+
+**`r (paste0(score_code,"/",3))`**
+
+### Presentation of results:
+Results are reasonably clear in their presentation.  In future labs you will want to incorporate additional text/document formatting (e.g., bullet points, bold/italics, additional line breaks between sections) to help make presentation even clearer/more organized.  
+
+**`r (paste0(score_results,"/",3))`**  
+
+### Achievement, mastery, creativity:
+Good application of the tools/skills learned thus far.  You work collapsing the transmission types into two groups was a good idea (however this code only appeared in your Rmd file and was not in the HTML file you submitted).  
+
+FYI, in the coming lecture we will see how to use geom_jitter() to help minimize overlapping of points on scatter plots.  
+
+**`r (paste0(score_achieve,"/",3))`**  
+
+### Discussion:
+You correctly answered some of the lab prompts, however you did not have any additional discussion.  In particular, you had no discussion associated with your additional analysis.  Make sure to include a much more thorough discussion section in future labs.  It is important that you interpret and discuss your results.  
+
+A short introduction providing some background on the research topic and the motivation for your analysis would further strengthen your lab.
+
+**`r (paste0(score_discuss,"/",3))`**  
+
+### Ease of access for instructor:
+Correct files submitted and files run properly.  
+
+**`r (paste0(score_access,"/",3))`**  
+
+### Overall Grade: 
+```{r echo = F, message= F, warning= F}
+df_student <- tibble::tibble(score = c(score_code, score_results, score_achieve, score_discuss, score_access))
+
+df_student <- df_student %>% 
+  left_join(df_rubric)
+```
+
+`r round(mean(df_student$grade), 1)`%
+
+***
+**Rubric grade scale**  
+Incomplete: 0 – 0%  
+Needs work: 1 – 50%  
+Good: 2 – 85%  
+Excellent: 3 – 100%  
+
+\newpage
+
+
+## Sienna	Chambial
+```{r echo = F}
+# Student's grade table
+
+score_code <- 3
+score_results <- 2.75
+score_achieve <- 2.5
+score_discuss <- 1.5
+score_access <- 3
+```
+
+### Assignment: `r name_assign`
+
+### Code style and strategy: 
+Code is clearly organized and correctly and efficiently implemented.  Not overly necessary in this lab, but make sure to comment your code (especially in future labs as the code gets more involved).  Good use of line breaks in your ggplot code - helps to make the code much easier to read.  
+
+**`r (paste0(score_code,"/",3))`**
+
+### Presentation of results:
+Results are clearly organized and presented.  Good use of color aesthetic to represent a third variable within your scatter plots.  Figures are informative and properly constructed.
+
+Your "Displacement vs. CTY with Color-Coded Types of Transmission" figure probably is pushing the limit of the number of colors that can easily be discerned by a reader.  Try collapsing the transmission variable into a smaller set of categories.  
+
+Good use of numbering/bullets to highlight your responses to questions.  
+
+**`r (paste0(score_results,"/",3))`**  
+
+### Achievement, mastery, creativity:
+Good application of the skills learned thus far in class.  Good use of faceting when making your figures.  
+
+**`r (paste0(score_achieve,"/",3))`**  
+
+### Discussion:
+You correctly answered the lab prompts, however you did not have any additional discussion.  In particular, you had no discussion associated with your additional analysis.  Make sure to include a much more thorough discussion section in future labs.  It is important that you interpret and discuss your results.  
+
+A short introduction providing some background on the research topic and the motivation for your analysis would further strengthen your lab.  
+
+**`r (paste0(score_discuss,"/",3))`**  
+
+### Ease of access for instructor:  
+Correct files submitted and files run properly.  
+
+**`r (paste0(score_access,"/",3))`**  
+
+### Overall Grade: 
+```{r echo = F, message= F, warning= F}
+df_student <- tibble::tibble(score = c(score_code, score_results, score_achieve, score_discuss, score_access))
+
+df_student <- df_student %>% 
+  left_join(df_rubric)
+```
+
+`r round(mean(df_student$grade), 1)`%
+
+***
+**Rubric grade scale**  
+Incomplete: 0 – 0%  
+Needs work: 1 – 50%  
+Good: 2 – 85%  
+Excellent: 3 – 100%  
+
+\newpage
+
+
+## Ava	DuBoff
+```{r echo = F}
+# Student's grade table
+
+score_code <- 2.75
+score_results <- 3
+score_achieve <- 2.75
+score_discuss <- 3
+score_access <- 3
+```
+
+### Assignment: `r name_assign`
+
+### Code style and strategy: 
+Code is clearly organized and correctly and efficiently implemented.  Not overly necessary in this lab, but make sure to comment your code (especially in future labs as the code gets more involved).  Good use of line breaks in your ggplot code - helps to make the code much easier to read.  
+
+**`r (paste0(score_code,"/",3))`**
+
+
+### Presentation of results:
+Results are clearly organized.  Good choice and design of figures.  Excellent use of sections and sub-sections to structure your report.  
+
+Note: to prevent the text from wrapping around the side of your figures in your knit html file, you will want to add a line break between code blocks and your text within your Rmd file.  
+
+**`r (paste0(score_results,"/",3))`**  
+
+### Achievement, mastery, creativity:
+Good application of the skills learned thus far in class.  Good use of faceting when making your figures.   
+
+**`r (paste0(score_achieve,"/",3))`**  
+
+### Discussion:
+Very good discussion of your results.  Discussion was thorough and generally accurate.  Very good introduction section and correct usage of citations within your text.  
+
+**`r (paste0(score_discuss,"/",3))`**  
+
+### Ease of access for instructor:  
+Correct files submitted and files run properly.  
+
+**`r (paste0(score_access,"/",3))`**  
+
+### Overall Grade: 
+```{r echo = F, message= F, warning= F}
+df_student <- tibble::tibble(score = c(score_code, score_results, score_achieve, score_discuss, score_access))
+
+df_student <- df_student %>% 
+  left_join(df_rubric)
+```
+
+`r round(mean(df_student$grade), 1)`%
+
+***
+**Rubric grade scale**  
+Incomplete: 0 – 0%  
+Needs work: 1 – 50%  
+Good: 2 – 85%  
+Excellent: 3 – 100%  
+
+\newpage
+
+
+## Ilana	Goldner
+```{r echo = F}
+# Student's grade table
+
+score_code <- 2.75
+score_results <- 2.5
+score_achieve <- 2.5
+score_discuss <- 1.5
+score_access <- 3
+```
+
+### Assignment: `r name_assign`
+
+### Code style and strategy: 
+Clear and correct implementation of your code.  Not overly necessary in this lab, but make sure to comment your code (especially in future labs as the code gets more involved).  
+
+**`r (paste0(score_code,"/",3))`**
+
+### Presentation of results:
+Results are reasonably clear in their presentation.  Good use of section headers to organize your results in a clear and readable fashion.  Good use of bulletting to highlight your answers to questions.  
+
+Note that there were 11 variables in the data frame [you answered 13 in your section "**1) Answers**"]  
+
+Note: to prevent the text from wrapping around the side of your figures in your knit html file, you will want to add a line break between code blocks and your text within your Rmd file.  
+
+**`r (paste0(score_results,"/",3))`**  
+
+### Achievement, mastery, creativity:  
+Good application of the skills learned thus far in class.  Good use of faceting when making your figures.  Good use of captions on your figures.  
+
+**`r (paste0(score_achieve,"/",3))`**  
+
+### Discussion: 
+You correctly answered some of the lab prompts, however you did not have much additional discussion.  In particular, you had very little discussion associated with your additional analysis.  Make sure to include a much more thorough discussion section in future labs.  It is important that you interpret and discuss your results.  The additional analysis section of the lab is where you can develop new and insightful analysis and demonstrate your ability to draw meaningful conclusions.  
+
+A short introduction providing some background on the research topic and the motivation for your analysis would further strengthen your lab.  
+
+**`r (paste0(score_discuss,"/",3))`**  
+
+### Ease of access for instructor: 
+Correct files submitted and files run properly.  
+
+**`r (paste0(score_access,"/",3))`**  
+
+### Overall Grade: 
+```{r echo = F, message= F, warning= F}
+df_student <- tibble::tibble(score = c(score_code, score_results, score_achieve, score_discuss, score_access))
+
+df_student <- df_student %>% 
+  left_join(df_rubric)
+```
+
+`r round(mean(df_student$grade), 1)`%
+
+***
+**Rubric grade scale**  
+Incomplete: 0 – 0%  
+Needs work: 1 – 50%  
+Good: 2 – 85%  
+Excellent: 3 – 100%  
+
+\newpage
+
+
+## Max	Helfrich
+```{r echo = F}
+# Student's grade table
+
+score_code <- 2.75
+score_results <- 2.5
+score_achieve <- 2.5
+score_discuss <- 1.5
+score_access <- 1.5
+```
+
+### Assignment: `r name_assign`
+
+### Code style and strategy: 
+Code is correctly implemented.  Not overly necessary in this lab, but make sure to comment your code (especially in future labs as the code gets more involved).  Good use of line breaks in ggplot statements and in piped statements (helps to make code more readable).  
+
+**`r (paste0(score_code,"/",3))`** 
+
+### Presentation of results:
+Results are clearly presented and properly organized.  Good use of section headers to organize your report.  In future labs you should consider using additional formatting such as bullets, bold/italics, etc. to help highlight answers/draw the readers attention to key points.  
+
+Figures are properly made and clearly presented.  
+
+Note: to prevent the text from wrapping around the side of your figures in your knit html file, you will want to add a line break between code blocks and your text within your Rmd file.  
+
+**`r (paste0(score_results,"/",3))`**  
+
+### Achievement, mastery, creativity:
+Good implementation of what we have learned thus far.  Nice work using group_by and summarize to create a summary table (which you then used to create an informative graphic).  
+
+**`r (paste0(score_achieve,"/",3))`**  
+
+### Discussion:
+You correctly answered the lab prompts, however you did not have much additional discussion.  In particular, you had very little discussion associated with your additional analysis.  Make sure to include a much more thorough discussion section in future labs.  It is important that you interpret and discuss your results.  The additional analysis section of the lab is where you can develop new and insightful analysis and demonstrate your ability to draw meaningful conclusions.  
+
+A short introduction providing some background on the research topic and the motivation for your analysis would further strengthen your lab.  
+
+**`r (paste0(score_discuss,"/",3))`**  
+
+### Ease of access for instructor:  
+You did not submit your Rmd file.  Remember that you need to submit both your HTML file and you Rmd file when submitting your labs.  
+
+**`r (paste0(score_access,"/",3))`**  
+
+### Overall Grade: 
+```{r echo = F, message= F, warning= F}
+df_student <- tibble::tibble(score = c(score_code, score_results, score_achieve, score_discuss, score_access))
+
+df_student <- df_student %>% 
+  left_join(df_rubric)
+```
+
+`r round(mean(df_student$grade), 1)`%
+
+***
+**Rubric grade scale**  
+Incomplete: 0 – 0%  
+Needs work: 1 – 50%  
+Good: 2 – 85%  
+Excellent: 3 – 100%  
+
+\newpage
+
+
+## Addyson	Holzer
+```{r echo = F}
+# Student's grade table
+
+score_code <- 3
+score_results <- 2.25
+score_achieve <- 2.75
+score_discuss <- 2
+score_access <- 2
+```
+
+### Assignment: `r name_assign`
+
+### Code style and strategy: 
+Code is correctly implemented.  Not overly necessary in this lab, but make sure to comment your code (especially in future labs as the code gets more involved).  Good use of line breaks in ggplot statements (helps to make code more readable).  
+
+**`r (paste0(score_code,"/",3))`** 
+
+### Presentation of results:
+Results are presented clearly.  Good use of section headers to organize your report.  For your additional work it would be very helpful if you had a section header to indicate this section (could also use sub-sections to further organize your additional work).  Figures are properly constructed.  
+
+Try using bullets and/or bold font to help highlight answers to questions.  
+
+**`r (paste0(score_results,"/",3))`**  
+
+### Achievement, mastery, creativity:
+Good application of the skills learned thus far in class.  Good use of faceting when making your figures.  Good use of colors and symbols to represent additional variables on your figures.  
+
+Good use of multiple layers (e.g. plotting hwy and city data) on the same figure.  
+
+**`r (paste0(score_achieve,"/",3))`**  
+
+### Discussion:
+You correctly answered the lab prompts, however you did not have much additional discussion.  In particular, you had very little discussion associated with your additional analysis.  Make sure to include a much more thorough discussion section in future labs.  It is important that you interpret and discuss your results.  The additional analysis section of the lab is where you can develop new and insightful analysis and demonstrate your ability to draw meaningful conclusions.  
+
+A short introduction providing some background on the research topic and the motivation for your analysis would further strengthen your lab.  
+
+**`r (paste0(score_discuss,"/",3))`**  
+
+### Ease of access for instructor:  
+Correct files submitted and files run properly.  
+
+
+**`r (paste0(score_access,"/",3))`**  
+
+### Overall Grade: 
+```{r echo = F, message= F, warning= F}
+df_student <- tibble::tibble(score = c(score_code, score_results, score_achieve, score_discuss, score_access))
+
+df_student <- df_student %>% 
+  left_join(df_rubric)
+```
+
+`r round(mean(df_student$grade), 1)`%
+
+***
+**Rubric grade scale**  
+Incomplete: 0 – 0%  
+Needs work: 1 – 50%  
+Good: 2 – 85%  
+Excellent: 3 – 100%  
+
+\newpage
+
+## Andrea	Kaufer
+```{r echo = F}
+# Student's grade table
+
+score_code <- 3
+score_results <- 2.75
+score_achieve <- 2.75
+score_discuss <- 2
+score_access <- 1.5
+```
+
+### Assignment: `r name_assign`
+
+### Code style and strategy: 
+Code is correctly implemented.  Not overly necessary in this lab, but make sure to comment your code (especially in future labs as the code gets more involved).  Good use of line breaks in ggplot statements (helps to make code more readable).  
+
+**`r (paste0(score_code,"/",3))`** 
+
+### Presentation of results:
+Excellent presentation of your results!  
+
+Your report is clearly organized (good use of section headers).  Good use of bullets to organize some of your responses.  I would suggest adding a section header to indicate where your additional analysis section begins.  
+
+Good use of code styling (e.g., black code blocks with light text) to make your code blocks easier to read.  
+
+Figures are well made and appropriately chosen for your particular analysis.  I would suggest not coloring points by manufacturer (too many categories and thus too many colors, which are hard for the reader to differentiate between).  
+
+Note: to prevent the text from wrapping around the side of your figures in your knit html file, you will want to add a line break between code blocks and your text within your Rmd file.  
+
+**`r (paste0(score_results,"/",3))`**  
+
+### Achievement, mastery, creativity:
+Very good application of the material we have learned thus far.  
+Good use of manual color scales to specify colors in your figures.  
+
+**`r (paste0(score_achieve,"/",3))`**  
+
+### Discussion:
+You correctly answered the lab prompts, and you had some additional discussion.  However, in future labs you should have a much more thorough discussion section. It is important that you interpret and discuss your results.  The additional analysis section of the lab is where you can develop new and insightful analysis and demonstrate your ability to draw meaningful conclusions.  
+
+A short introduction providing some background on the research topic and the motivation for your analysis would further strengthen your lab.  
+
+**`r (paste0(score_discuss,"/",3))`**  
+
+### Ease of access for instructor:  
+You did not submit your Rmd file.  Remember that you need to submit both your HTML file and you Rmd file when submitting your labs.  
+
+**`r (paste0(score_access,"/",3))`**  
+
+### Overall Grade: 
+```{r echo = F, message= F, warning= F}
+df_student <- tibble::tibble(score = c(score_code, score_results, score_achieve, score_discuss, score_access))
+
+df_student <- df_student %>% 
+  left_join(df_rubric)
+```
+
+`r round(mean(df_student$grade), 1)`%
+
+***
+**Rubric grade scale**  
+Incomplete: 0 – 0%  
+Needs work: 1 – 50%  
+Good: 2 – 85%  
+Excellent: 3 – 100%  
+
+\newpage
+
+## Nora	Kliczewski
+```{r echo = F}
+# Student's grade table
+
+score_code <- 3
+score_results <- 2.5
+score_achieve <- 2.5
+score_discuss <- 2.25
+score_access <- 2.75
+```
+
+### Assignment: `r name_assign`
+
+### Code style and strategy: 
+Code is correctly implemented.  Not overly necessary in this lab, but make sure to comment your code (especially in future labs as the code gets more involved).  Good use of line breaks in ggplot statements (helps to make code more readable).  
+
+**`r (paste0(score_code,"/",3))`** 
+
+### Presentation of results:
+Results are presented clearly and figures are properly made.  Good use of italics to highlight your figure captions.
+
+You should make additional use of section headers, in particular use section headers to identify the section(s) with your additional analysis.  
+
+When using color for categorical values (e.g., manufacturer) in figures it can become difficult to interpret the colors when there are a large number of categories (> 7 or so).  In cases where you have many categories you may want to reconsider the use of color to represent the categories or you might consider re-categorizing the data into a smaller number of categories (when applicable).  
+
+
+**`r (paste0(score_results,"/",3))`**  
+
+### Achievement, mastery, creativity:
+Your work demonstrates clear understanding and application of the concepts we've covered thus far.  Good use of faceting in some of your figures.  Also good use of color to represent year in your hwy vs. displ figure.
+
+FYI, there was an error in one of your faceting attempts.  When you tried to facet by *class* it looks like you forgot the "+" sign after your geom_point() and thus the faceting did not work.  
+
+
+**`r (paste0(score_achieve,"/",3))`**  
+
+### Discussion:
+You correctly answered the lab prompts, and you had some additional discussion.  However, in future labs you should have a much more thorough discussion section. It is important that you interpret and discuss your results.  The additional analysis section of the lab is where you can develop new and insightful analysis and demonstrate your ability to draw meaningful conclusions.  
+
+A short introduction providing some background on the research topic and the motivation for your analysis would further strengthen your lab.  
+
+**`r (paste0(score_discuss,"/",3))`**  
+
+### Ease of access for instructor:  
+Your code ran on my computer.  Note that you submitted your ".nb.html" file, though you should actually be submitting your ".html" file.  
+
+**`r (paste0(score_access,"/",3))`**  
+
+### Overall Grade: 
+```{r echo = F, message= F, warning= F}
+df_student <- tibble::tibble(score = c(score_code, score_results, score_achieve, score_discuss, score_access))
+
+df_student <- df_student %>% 
+  left_join(df_rubric)
+```
+
+`r round(mean(df_student$grade), 1)`%
+
+***
+**Rubric grade scale**  
+Incomplete: 0 – 0%  
+Needs work: 1 – 50%  
+Good: 2 – 85%  
+Excellent: 3 – 100%  
+
+\newpage
+
+## Rosalind	Lampert
+```{r echo = F}
+# Student's grade table
+
+score_code <- 3
+score_results <- 2.5
+score_achieve <- 2.5
+score_discuss <- 2.25
+score_access <- 3
+```
+
+### Assignment: `r name_assign`
+
+### Code style and strategy: 
+Code is correctly implemented and easy to read/follow.  Not overly necessary in this lab, but make sure to comment your code (especially in future labs as the code gets more involved).  Good use of line breaks in ggplot statements (helps to make code more readable).  
+
+**`r (paste0(score_code,"/",3))`** 
+
+### Presentation of results:
+Results are clearly presented.  Good use of section headers to organize your report.  Figures are correctly made. 
+
+When using color for categorical values (e.g., manufacturer) in figures it can become difficult to interpret the colors when there are a large number of categories (> 7 or so).  In cases where you have many categories you may want to reconsider the use of color to represent the categories or you might consider re-categorizing the data into a smaller number of categories (when applicable).  
+
+Note: to prevent the text from wrapping around the side of your figures in your knit html file, you will want to add a line break between code blocks and your text within your Rmd file.  
+
+**`r (paste0(score_results,"/",3))`**  
+
+### Achievement, mastery, creativity:
+Good application of the material learned thus far in class.  Good use of some more advanced techniques including facet_wrap(), if_else() nested within mutate().  Nice work with the boxplot showing hwy mileage for foreign and US vehicles - interesting and insightful analysis.  
+
+
+**`r (paste0(score_achieve,"/",3))`**  
+
+### Discussion:
+You correctly answered the lab prompts, and you had some additional discussion.  However, in future labs you should have a much more thorough discussion section. It is important that you interpret and discuss your results.  The additional analysis section of the lab is where you can develop new and insightful analysis and demonstrate your ability to draw meaningful conclusions.  
+
+A short introduction providing some background on the research topic and the motivation for your analysis would further strengthen your lab.  
+
+**`r (paste0(score_discuss,"/",3))`**  
+
+### Ease of access for instructor:  
+Code runs properly.  Correct files were submitted.  
+
+**`r (paste0(score_access,"/",3))`**  
+
+### Overall Grade: 
+```{r echo = F, message= F, warning= F}
+df_student <- tibble::tibble(score = c(score_code, score_results, score_achieve, score_discuss, score_access))
+
+df_student <- df_student %>% 
+  left_join(df_rubric)
+```
+
+`r round(mean(df_student$grade), 1)`%
+
+***
+**Rubric grade scale**  
+Incomplete: 0 – 0%  
+Needs work: 1 – 50%  
+Good: 2 – 85%  
+Excellent: 3 – 100%  
+
+\newpage
+
+## Keith	Lawless
+```{r echo = F}
+# Student's grade table
+
+score_code <- 3
+score_results <- 3
+score_achieve <- 2.75
+score_discuss <- 2.5
+score_access <- 3
+```
+
+### Assignment: `r name_assign`
+
+### Code style and strategy: 
+Code is correctly implemented and easy to read/follow.  Not overly necessary in this lab, but make sure to comment your code (especially in future labs as the code gets more involved).  Good use of line breaks in ggplot statements (helps to make code more readable).  Also good use of line breaks to visually separate out the different function arguments (e.g., as you did within some of your mutate() function calls).  
+
+**`r (paste0(score_code,"/",3))`** 
+
+### Presentation of results:
+Results were well organized and clearly presented.  Figures were made correctly and are clear/easy to read.  Good use of section headers and sub-section headers to clearly organize your report.  
+
+**`r (paste0(score_results,"/",3))`**  
+
+### Achievement, mastery, creativity:
+You work demonstrates clear understanding and application of what we have learned thus far.  Good work applying some more advanced features within your figures (e.g., uses of shape aesthetic) and nice work creating boxplots.
+
+**`r (paste0(score_achieve,"/",3))`**  
+
+### Discussion:
+Correctly answered question prompts.  
+
+Your discussion was thoughtful and sufficiently thorough.  You did a good interpreting your results.  For future labs you will want to continue to develop even more thorough and in-depth discussions.  
+
+A short introduction providing some background on the research topic and the motivation for your analysis would further strengthen your lab.  
+
+**`r (paste0(score_discuss,"/",3))`**  
+
+### Ease of access for instructor:  
+Code runs properly.  Correct files were submitted.  
+
+**`r (paste0(score_access,"/",3))`**  
+
+### Overall Grade: 
+```{r echo = F, message= F, warning= F}
+df_student <- tibble::tibble(score = c(score_code, score_results, score_achieve, score_discuss, score_access))
+
+df_student <- df_student %>% 
+  left_join(df_rubric)
+```
+
+`r round(mean(df_student$grade), 1)`%
+
+***
+**Rubric grade scale**  
+Incomplete: 0 – 0%  
+Needs work: 1 – 50%  
+Good: 2 – 85%  
+Excellent: 3 – 100%  
+
+\newpage
+
+## Michael	McKenna
+```{r echo = F}
+# Student's grade table
+
+score_code <- 3
+score_results <- 2
+score_achieve <- 2
+score_discuss <- 1.5
+score_access <- 3
+```
+
+### Assignment: `r name_assign`
+
+### Code style and strategy: 
+Code is correctly implemented and easy to read/follow.  Good job using line breaks in your ggplot statements (helps to make the code easier to read).  
+
+**`r (paste0(score_code,"/",3))`** 
+
+### Presentation of results:
+Results are reasonably clearly presented/organized.  I would suggest making greater use of section/sub-section headers to clearly identify sections.  By making greater use of headers your report will be easier to read.  
+
+Note: to prevent the text from wrapping around the side of your figures in your knit html file, you will want to add a line break between code blocks and your text within your Rmd file.  
+
+Your figure where the points are colored by "model" is interesting, however the color is not really readable since there are so many colors.  When using color for categorical values (e.g., model) in figures it can become difficult to interpret the colors when there are a large number of categories (> 7 or so).  In cases where you have many categories you may want to reconsider the use of color to represent the categories or you might consider re-categorizing the data into a smaller number of categories (when applicable).  
+
+**`r (paste0(score_results,"/",3))`**  
+
+### Achievement, mastery, creativity:
+Your work demonstrates understanding of the topics covered thus far.  
+
+**`r (paste0(score_achieve,"/",3))`**  
+
+### Discussion:
+You correctly answered the lab prompts, however you had essentially no further discussion.  In particular, you had very no discussion associated with your additional analysis.  Make sure to include a much more thorough discussion section in future labs.  It is important that you interpret and discuss your results.  The additional analysis section of the lab is where you can develop new and insightful analysis and demonstrate your ability to draw meaningful conclusions.  
+
+A short introduction providing some background on the research topic and the motivation for your analysis would further strengthen your lab.  
+
+**`r (paste0(score_discuss,"/",3))`**  
+
+### Ease of access for instructor:  
+Code runs properly.  Correct files were submitted.  
+
+**`r (paste0(score_access,"/",3))`**  
+
+### Overall Grade: 
+```{r echo = F, message= F, warning= F}
+df_student <- tibble::tibble(score = c(score_code, score_results, score_achieve, score_discuss, score_access))
+
+df_student <- df_student %>% 
+  left_join(df_rubric)
+```
+
+`r round(mean(df_student$grade), 1)`%
+
+***
+**Rubric grade scale**  
+Incomplete: 0 – 0%  
+Needs work: 1 – 50%  
+Good: 2 – 85%  
+Excellent: 3 – 100%  
+
+\newpage
+
+## Caroline	Monaco
+```{r echo = F}
+# Student's grade table
+
+score_code <- 2
+score_results <- 2
+score_achieve <- 2
+score_discuss <- 2
+score_access <- 2
+```
+
+### Assignment: `r name_assign`
+
+### Code style and strategy: 
+
+
+**`r (paste0(score_code,"/",3))`** 
+
+### Presentation of results:
+
+
+**`r (paste0(score_results,"/",3))`**  
+
+### Achievement, mastery, creativity:
+
+
+**`r (paste0(score_achieve,"/",3))`**  
+
+### Discussion:
+
+
+**`r (paste0(score_discuss,"/",3))`**  
+
+### Ease of access for instructor:  
+
+
+**`r (paste0(score_access,"/",3))`**  
+
+### Overall Grade: 
+```{r echo = F, message= F, warning= F}
+df_student <- tibble::tibble(score = c(score_code, score_results, score_achieve, score_discuss, score_access))
+
+df_student <- df_student %>% 
+  left_join(df_rubric)
+```
+
+`r round(mean(df_student$grade), 1)`%
+
+***
+**Rubric grade scale**  
+Incomplete: 0 – 0%  
+Needs work: 1 – 50%  
+Good: 2 – 85%  
+Excellent: 3 – 100%  
+
+\newpage
+
+## Sathvik	Narayana
+```{r echo = F}
+# Student's grade table
+
+score_code <- 2
+score_results <- 2
+score_achieve <- 2
+score_discuss <- 2
+score_access <- 2
+```
+
+### Assignment: `r name_assign`
+
+### Code style and strategy: 
+
+
+**`r (paste0(score_code,"/",3))`** 
+
+### Presentation of results:
+
+
+**`r (paste0(score_results,"/",3))`**  
+
+### Achievement, mastery, creativity:
+
+
+**`r (paste0(score_achieve,"/",3))`**  
+
+### Discussion:
+
+
+**`r (paste0(score_discuss,"/",3))`**  
+
+### Ease of access for instructor:  
+
+
+**`r (paste0(score_access,"/",3))`**  
+
+### Overall Grade: 
+```{r echo = F, message= F, warning= F}
+df_student <- tibble::tibble(score = c(score_code, score_results, score_achieve, score_discuss, score_access))
+
+df_student <- df_student %>% 
+  left_join(df_rubric)
+```
+
+`r round(mean(df_student$grade), 1)`%
+
+***
+**Rubric grade scale**  
+Incomplete: 0 – 0%  
+Needs work: 1 – 50%  
+Good: 2 – 85%  
+Excellent: 3 – 100%  
+
+\newpage
+
+## Georgia	Pool
+```{r echo = F}
+# Student's grade table
+
+score_code <- 2
+score_results <- 2
+score_achieve <- 2
+score_discuss <- 2
+score_access <- 2
+```
+
+### Assignment: `r name_assign`
+
+### Code style and strategy: 
+
+
+**`r (paste0(score_code,"/",3))`** 
+
+### Presentation of results:
+
+
+**`r (paste0(score_results,"/",3))`**  
+
+### Achievement, mastery, creativity:
+
+
+**`r (paste0(score_achieve,"/",3))`**  
+
+### Discussion:
+
+
+**`r (paste0(score_discuss,"/",3))`**  
+
+### Ease of access for instructor:  
+
+
+**`r (paste0(score_access,"/",3))`**  
+
+### Overall Grade: 
+```{r echo = F, message= F, warning= F}
+df_student <- tibble::tibble(score = c(score_code, score_results, score_achieve, score_discuss, score_access))
+
+df_student <- df_student %>% 
+  left_join(df_rubric)
+```
+
+`r round(mean(df_student$grade), 1)`%
+
+***
+**Rubric grade scale**  
+Incomplete: 0 – 0%  
+Needs work: 1 – 50%  
+Good: 2 – 85%  
+Excellent: 3 – 100%  
+
+\newpage
+
+## Kevin	Ramos
+```{r echo = F}
+# Student's grade table
+
+score_code <- 2
+score_results <- 2
+score_achieve <- 2
+score_discuss <- 2
+score_access <- 2
+```
+
+### Assignment: `r name_assign`
+
+### Code style and strategy: 
+
+
+**`r (paste0(score_code,"/",3))`** 
+
+### Presentation of results:
+
+
+**`r (paste0(score_results,"/",3))`**  
+
+### Achievement, mastery, creativity:
+
+
+**`r (paste0(score_achieve,"/",3))`**  
+
+### Discussion:
+
+
+**`r (paste0(score_discuss,"/",3))`**  
+
+### Ease of access for instructor:  
+
+
+**`r (paste0(score_access,"/",3))`**  
+
+### Overall Grade: 
+```{r echo = F, message= F, warning= F}
+df_student <- tibble::tibble(score = c(score_code, score_results, score_achieve, score_discuss, score_access))
+
+df_student <- df_student %>% 
+  left_join(df_rubric)
+```
+
+`r round(mean(df_student$grade), 1)`%
+
+***
+**Rubric grade scale**  
+Incomplete: 0 – 0%  
+Needs work: 1 – 50%  
+Good: 2 – 85%  
+Excellent: 3 – 100%  
+
+\newpage
+
+## Louis	Savarino
+```{r echo = F}
+# Student's grade table
+
+score_code <- 2
+score_results <- 2
+score_achieve <- 2
+score_discuss <- 2
+score_access <- 2
+```
+
+### Assignment: `r name_assign`
+
+### Code style and strategy: 
+
+
+**`r (paste0(score_code,"/",3))`** 
+
+### Presentation of results:
+
+
+**`r (paste0(score_results,"/",3))`**  
+
+### Achievement, mastery, creativity:
+
+
+**`r (paste0(score_achieve,"/",3))`**  
+
+### Discussion:
+
+
+**`r (paste0(score_discuss,"/",3))`**  
+
+### Ease of access for instructor:  
+
+
+**`r (paste0(score_access,"/",3))`**  
+
+### Overall Grade: 
+```{r echo = F, message= F, warning= F}
+df_student <- tibble::tibble(score = c(score_code, score_results, score_achieve, score_discuss, score_access))
+
+df_student <- df_student %>% 
+  left_join(df_rubric)
+```
+
+`r round(mean(df_student$grade), 1)`%
+
+***
+**Rubric grade scale**  
+Incomplete: 0 – 0%  
+Needs work: 1 – 50%  
+Good: 2 – 85%  
+Excellent: 3 – 100%  
+
+\newpage
+
+## Bayley	Sbardellati
+```{r echo = F}
+# Student's grade table
+
+score_code <- 2
+score_results <- 2
+score_achieve <- 2
+score_discuss <- 2
+score_access <- 2
+```
+
+### Assignment: `r name_assign`
+
+### Code style and strategy: 
+
+
+**`r (paste0(score_code,"/",3))`** 
+
+### Presentation of results:
+
+
+**`r (paste0(score_results,"/",3))`**  
+
+### Achievement, mastery, creativity:
+
+
+**`r (paste0(score_achieve,"/",3))`**  
+
+### Discussion:
+
+
+**`r (paste0(score_discuss,"/",3))`**  
+
+### Ease of access for instructor:  
+
+
+**`r (paste0(score_access,"/",3))`**  
+
+### Overall Grade: 
+```{r echo = F, message= F, warning= F}
+df_student <- tibble::tibble(score = c(score_code, score_results, score_achieve, score_discuss, score_access))
+
+df_student <- df_student %>% 
+  left_join(df_rubric)
+```
+
+`r round(mean(df_student$grade), 1)`%
+
+***
+**Rubric grade scale**  
+Incomplete: 0 – 0%  
+Needs work: 1 – 50%  
+Good: 2 – 85%  
+Excellent: 3 – 100%  
+
+
+
+
+

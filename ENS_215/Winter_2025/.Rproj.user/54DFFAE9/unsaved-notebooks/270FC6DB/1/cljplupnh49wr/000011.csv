@@ -1,0 +1,7 @@
+"0","bangladesh_gw <- bangladesh_gw %>% "
+"0","  mutate(depth_cat = factor(depth_cat, "
+"0","                            ordered = T, "
+"0","                            levels = c(""shallow"", ""intermed"", ""deep"")"
+"0","                            )"
+"0","         "
+"0","         )"

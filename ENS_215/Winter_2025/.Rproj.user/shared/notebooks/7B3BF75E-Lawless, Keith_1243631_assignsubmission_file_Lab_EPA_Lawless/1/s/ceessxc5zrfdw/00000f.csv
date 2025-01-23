@@ -1,0 +1,4 @@
+"0","dodge_data <- fuel_data[38:74,]"
+"0","ggplot(data = dodge_data) +"
+"0","  geom_point(aes(x = displ, y = hwy, shape = fl, color = cyl)) +"
+"0","  facet_wrap(~model)"

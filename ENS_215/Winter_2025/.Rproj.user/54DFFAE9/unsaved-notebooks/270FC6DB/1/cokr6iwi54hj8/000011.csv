@@ -1,0 +1,7 @@
+"0","bangladesh_gw %>% "
+"0","  summarize(mean_depth = mean(WELL_DEPTH_m, na.rm = T),"
+"0","            median_depth = median(WELL_DEPTH_m, na.rm = T),"
+"0","            "
+"0","            mean_year = mean(YEAR_CONSTRUCTION, na.rm = T)"
+"0","            "
+"0","            )"

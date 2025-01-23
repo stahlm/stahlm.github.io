@@ -1,0 +1,27 @@
+"0","  facet_wrap(~class) "
+"1","<ggproto object: Class FacetWrap, Facet, gg>
+    compute_layout: function
+    draw_back: function
+    draw_front: function
+    draw_labels: function
+    draw_panels: function
+    finish_data: function
+    init_scales: function
+    map_data: function
+    params: list
+    setup_data: function
+    setup_params: function
+    shrink: TRUE
+    train_scales: function
+    vars: function
+    super:  <ggproto object: Class FacetWrap, Facet, gg>"
+"1",""
+"1","
+"
+"2","Warning in gzfile(file, ""wb"") :"
+"2","
+ "
+"2"," cannot open compressed file 'C:/Users/stahlm/Documents/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2025/.Rproj.user/shared/notebooks/4AE090D4-Kliczewski, Nora_1243630_assignsubmission_file_Lab_EPA_Kliczewski/1/s/ccyxdfhqgreq9_t/6e6e5306e1554c79a182900a2c78024a.snapshot', probable reason 'No such file or directory'
+"
+"2","Error in gzfile(file, ""wb"") : cannot open the connection
+"

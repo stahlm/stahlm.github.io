@@ -1,0 +1,11 @@
+"0","
+AZ_sites_gw <- readWQPsummary(
+  statecode = ""AZ"",
+  siteType = ""Well""
+)
+"
+"2","NEWS: Data does not include USGS data newer than March 11, 2024. More details:
+https://doi-usgs.github.io/dataRetrieval/articles/Status.html
+"
+"2","GET: https://www.waterqualitydata.us/data/summary/monitoringLocation/search?statecode=US%3A04&siteType=Well&dataProfile=periodOfRecord&mimeType=csv
+"

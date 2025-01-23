@@ -1,0 +1,8 @@
+"0","exp_table <- bangladesh_gw %>% "
+"0","  group_by(DIVISION) %>% "
+"0","  summarize(num_wells = n(),"
+"0","            percent_low_As = 100*sum(As_cat == ""low As"")/n()"
+"0","            "
+"0","            )"
+"0",""
+"0","exp_table  "

@@ -1,0 +1,157 @@
+---
+title: "EPA Fuel Economy Lab"
+author: "Nora Kliczewski"
+output: html_document
+---
+
+### Load in Packages
+```{r}
+library(tidyverse)
+```
+
+### Load in our data
+```{r}
+fuel_data <- mpg
+```
+
+### Examine our data
+```{r}
+str(fuel_data)
+```
+There are 11 variables and 234 observations.
+Chr refers to the variables being characters/ text
+int refers to the variables being integers
+num refers to the variables being numerials (having decimals)
+
+Disp refers to the engine displacement, in litres
+Cyl refers to the number of cylinders 
+Cty refers to the city miles per gallon
+This data was obtained from the US EPA and made available on the https://fueleconomy.gov/ website 
+
+```{r}
+n_rows <- nrow(fuel_data)
+n_cols <- ncol(fuel_data)
+```
+
+There are 234 rows and 11 columns
+
+Let's go ahead and summarize the data
+```{r}
+summary(fuel_data)
+```
+
+For highway driving how many miles per gallon does
+    The most fuel efficient vehicle get? 44 miles per gallon 
+    The least fuel efficient vehicle get? 12 miles per gallon 
+What is the average miles per gallon for city driving? 16.86 miles per gallon 
+
+### Add a new column (hwy/cty)
+
+first way
+```{r}
+fuel_data$hwy2cty <- fuel_data$hwy/fuel_data$cty
+```
+
+second way
+```{r}
+fuel_data <- mutate(fuel_data, hwy2cty = hwy/cty )
+```
+
+```{r}
+summary(fuel_data)
+```
+
+
+Examine this new variable
+  Is there any vehicle that gets better gas mileage in the city as compared to the highway? No, there is no value less than 1
+  Is there any vehicle that has twice as good gas mileage on the highway relative to the city? No, there is no value above 1.6 (not over 2)
+  What is the largest ratio between highway and city gas mileage? 1.66
+  
+### Examine Factors: Displacement 
+```{r}
+ggplot(data = fuel_data) +
+  geom_point(aes(x = displ, y = hwy)) 
+```
+*Fig 1* There is a downward trend meaning with an increase in displacement comes a decrease in highway gas milage.
+  How does displacement influence the fuel economy? The larger the engine the smaller the fuel efficiency
+  Do any points appear to be outliers from the observed relationship? Any thoughts on what might explain these outliers? Yes there are outliers observed, Engine manufacturers could explain these outliers.
+  
+```{r}
+ggplot(data = fuel_data) +
+  geom_point(aes(x = displ, y = hwy, color = class))
+```
+*Fig 2* There is a downward trend in highway gas milage based on displacement and a clustering in car type.
+  What new information did this provide us with? We can clearly see that suvs and pickups have the worst fuel efficiency when compared to the other classes. We can also see that subcompacts and compact have some of the better fuel efficiencys. 
+  Can we say more about factors affecting fuel economy? We can see how car class affects the fuel efficiency. There seems to be a cluster patten throughout graph that places class with fuel efficiency. SUV's, pickups, midsize, and compact more specifically seemed to be grouped together throughout the graph. 
+  Can we explain some of the outliers? One of the outliers we see is the 2 seater cars have a higher fuel efficiency even though it has a higher displacement. This is because it is an overall light car even with the heavier engine. 
+
+```{r}
+ggplot(data = fuel_data) +
+  geom_point(aes(x = displ, y = hwy, color = year))
+```
+*Fig 3* There is a downward trend in highway gas milage based on displacement. Year range is displayed from 1999 to 2008.
+
+```{r}
+ggplot(data = fuel_data) +
+  geom_point(aes(x = displ, y = hwy)) 
+  facet_wrap(~class) 
+```
+*Fig 4* The trend of highway gas milage based on displacement broken down by car type.
+  
+#### Let's add one more variable
+```{r}
+us_makes <- c("chevrolet", "dodge", "ford", "jeep", "lincoln", "mercury", "pontiac")
+```
+  
+```{r}
+fuel_data <- mutate(fuel_data, region = if_else (manufacturer %in% us_makes, "US","Foreign"))
+```
+
+What is the variable region telling us? It is pulling from our us_makes vector and telling us whether the car was made in the United States or not.
+Can you briefly explain the logic and steps taken to create the variable region? We used the if_else function that tells the computer if the manufactuer is listed within the us_makes vector then it should be classified as US or else should be classified as foreign.
+
+
+```{r}
+ggplot(data = fuel_data) +
+  geom_point(aes(x = cyl, y = hwy, color = manufacturer)) 
+```
+*Fig 5* The downward trend in highway gas milage based on number of cylinders in the car, manufacturer is displayed based on color.  
+
+```{r}
+ggplot(data = fuel_data) +
+  geom_point(aes(x = displ, y = cty, color = class))
+```
+*Fig 6* There is a downward trend in city gas milage based on displacement, car type is displayed based on color. 
+
+```{r}
+ggplot(data = fuel_data) +
+  geom_point(aes(x = year, y = trans))
+```
+*Fig 7* There is no correlation between year of production and transmission type.
+
+
+```{r}
+ggplot(data = fuel_data) +
+  geom_point(aes(x = displ, y = cyl, color = class)) 
+
+```
+*Fig 8* There is a increasing trend in displacement based on number of cyliners, car type is displayed based on color.
+
+```{r}
+ggplot(data = fuel_data) +
+  geom_point(aes(x = manufacturer, y = hwy)) 
+```
+*Fig 9* There is a correlation between manufactuer and highway gas milage when compared seperately.
+
+```{r}
+ggplot(data = fuel_data) +
+  geom_point(aes(x = manufacturer, y = cty, color = class)) 
+```
+*Fig 10* There is a correlation between manufactuer and highway gas milage when compared seperately, car type is displayed in color.
+
+```{r}
+ggplot(data = fuel_data) +
+  geom_point(aes(x = class, y = hwy)) +
+  facet_wrap(~manufacturer) 
+```
+*Fig 11* The comparison of car type to highway gas milage broken up by manufacturer.

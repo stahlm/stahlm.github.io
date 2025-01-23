@@ -1,0 +1,9 @@
+"0","data_sites <- readWQPdata(siteid = ""USGS-04024315"","
+"0","                          characteristicName = ""pH"","
+"0","                          service = ""StationWQX3"")"
+"2","GET: https://www.waterqualitydata.us/wqx3/Station/search?siteid=USGS-04024315&characteristicName=pH&mimeType=csv
+"
+"2","GET: https://www.waterqualitydata.us/wqx3/Station/search?siteid=USGS-04024315&characteristicName=pH&mimeType=csv
+"
+"2","WQX3 services are in-development, use with caution.
+"

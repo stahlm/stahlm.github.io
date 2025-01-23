@@ -1,0 +1,1 @@
+"0","fuel_data$hwy2cty <- fuel_data$hwy / fuel_data$cty"
