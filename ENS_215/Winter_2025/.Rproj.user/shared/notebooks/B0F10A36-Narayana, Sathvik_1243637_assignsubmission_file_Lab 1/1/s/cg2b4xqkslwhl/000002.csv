@@ -1,0 +1,16 @@
+"1","
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGltKGZ1ZWxfZGF0YSlbMl1cblxuYGBgIn0= -->
+
+```r
+dim(fuel_data)[2]
+
+```
+
+<!-- rnb-source-end -->
+"
+"0","```r
+dim(fuel_data)[2]
+
+```"
+"1","[1] 11
+"

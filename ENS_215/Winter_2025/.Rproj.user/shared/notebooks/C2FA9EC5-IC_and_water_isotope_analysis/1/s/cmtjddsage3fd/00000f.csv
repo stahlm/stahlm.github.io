@@ -1,0 +1,2 @@
+"0","df_water_isotopes <- df_water_isotopes %>% "
+"0","  dplyr::select(-Source_data, -Sample_list)"

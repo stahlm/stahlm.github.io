@@ -1,0 +1,14 @@
+"1","
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2dwbG90KGRhdGEgPSBmdWVsX2RhdGEpICsgXG4gIGdlb21fcG9pbnQoYWVzKHggPSBkaXNwbCwgeSA9IGh3eSwgY29sb3IgPSBjbGFzcykpXG5gYGAifQ== -->
+
+```r
+ggplot(data = fuel_data) + 
+  geom_point(aes(x = displ, y = hwy, color = class))
+```
+
+<!-- rnb-source-end -->
+"
+"0","```r
+ggplot(data = fuel_data) + 
+  geom_point(aes(x = displ, y = hwy, color = class))
+```"

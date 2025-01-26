@@ -1,0 +1,3 @@
+"0","fuel_data <- mutate(fuel_data,"
+"0","                    region = if_else(manufacturer %in% "
+"0","us_makes, ""US"", ""Foreign""))"

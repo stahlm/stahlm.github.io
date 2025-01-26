@@ -1,0 +1,7 @@
+"0",""
+"0","us_makes <- c(""chevrolet"", ""dodge"", ""ford"", ""jeep"", ""lincoln"", ""mercury"", ""pontiac"")"
+"0","fuel_data <- mutate(fuel_data, region = if_else(manufacturer %in% us_makes, ""US"", ""Foreign""))"
+"0",""
+"0",""
+"0","ggplot(data = fuel_data)+"
+"0","  geom_point(aes(x = cty, y = hwy , color = region))"

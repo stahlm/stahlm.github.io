@@ -1,0 +1,2 @@
+"0","df_ICPMS <- df_ICPMS %>% "
+"0","  mutate(flag_count = bottle_letter_flag == ""A"" | bottle_letter_flag == ""B"" | bottle_letter_flag == ""C"" | bottle_letter_flag == ""D"" | bottle_letter_flag == ""E"" | bottle_letter_flag == ""F"")"

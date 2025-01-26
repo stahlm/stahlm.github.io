@@ -1,6 +1,0 @@
-"0","df_q5 <- gap_data %>% "
-"0","  filter(year == 2007, continent == ""Europe"") %>% "
-"0","  arrange(lifeExp) %>% "
-"0","  select(-pop, -gdpPercap)"
-"0",""
-"0","df_q5"

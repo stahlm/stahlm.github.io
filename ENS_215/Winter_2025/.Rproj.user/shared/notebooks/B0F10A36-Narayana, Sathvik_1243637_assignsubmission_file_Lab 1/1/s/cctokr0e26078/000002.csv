@@ -1,0 +1,12 @@
+"1","
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZnVlbF9kYXRhIDwtIG11dGF0ZShmdWVsX2RhdGEsIGh3eTJjdHkgPSBod3kvY3R5KVxuYGBgIn0= -->
+
+```r
+fuel_data <- mutate(fuel_data, hwy2cty = hwy/cty)
+```
+
+<!-- rnb-source-end -->
+"
+"0","```r
+fuel_data <- mutate(fuel_data, hwy2cty = hwy/cty)
+```"

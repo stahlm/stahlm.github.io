@@ -1,0 +1,2 @@
+"0","df_all <- df_all %>% "
+"0","  mutate(dexcess = d2H_calibrated - 8*d18O_calibrated)"

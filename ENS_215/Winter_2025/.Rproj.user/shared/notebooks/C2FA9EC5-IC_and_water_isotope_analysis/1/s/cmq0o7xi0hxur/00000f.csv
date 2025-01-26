@@ -1,0 +1,2 @@
+"0","df_all <- df_all %>% "
+"0","  mutate(Sample_ID = str_sub(Sample_name, start = 1, end = -2))"

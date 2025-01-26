@@ -1,0 +1,14 @@
+"1","
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudXNfbWFrZXMgPC0gYyhcImNoZXZyb2xldFwiLCBcImRvZGdlXCIsIFwiZm9yZFwiLCBcImplZXBcIiwgXG4gICAgICAgICAgICAgIFwibGluY29sblwiLCBcIm1lcmN1cnlcIiwgXCJwb250aWFjXCIpXG5gYGAifQ== -->
+
+```r
+us_makes <- c(\"chevrolet\", \"dodge\", \"ford\", \"jeep\", 
+              \"lincoln\", \"mercury\", \"pontiac\")
+```
+
+<!-- rnb-source-end -->
+"
+"0","```r
+us_makes <- c(\"chevrolet\", \"dodge\", \"ford\", \"jeep\", 
+              \"lincoln\", \"mercury\", \"pontiac\")
+```"

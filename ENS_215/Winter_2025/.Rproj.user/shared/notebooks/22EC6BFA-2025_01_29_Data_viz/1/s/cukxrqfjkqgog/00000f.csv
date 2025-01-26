@@ -1,0 +1,4 @@
+"0","my_gap %>% ggplot(aes(x = gdpPercap, y = lifeExp)) + "
+"0","  geom_point() +"
+"0","  theme_bw() + "
+"0","  facet_wrap(~ continent)"

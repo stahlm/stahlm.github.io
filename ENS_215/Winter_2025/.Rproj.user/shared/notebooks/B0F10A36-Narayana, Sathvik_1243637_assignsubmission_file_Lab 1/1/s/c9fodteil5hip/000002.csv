@@ -1,0 +1,12 @@
+"1","
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZnVlbF9kYXRhJGh3eTJjdHkgPC0gZnVlbF9kYXRhJGh3eS9mdWVsX2RhdGEkY3R5XG5gYGAifQ== -->
+
+```r
+fuel_data$hwy2cty <- fuel_data$hwy/fuel_data$cty
+```
+
+<!-- rnb-source-end -->
+"
+"0","```r
+fuel_data$hwy2cty <- fuel_data$hwy/fuel_data$cty
+```"

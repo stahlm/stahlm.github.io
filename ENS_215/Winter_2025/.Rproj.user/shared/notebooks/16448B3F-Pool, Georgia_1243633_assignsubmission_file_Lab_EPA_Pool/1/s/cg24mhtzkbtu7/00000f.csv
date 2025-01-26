@@ -1,0 +1,1 @@
+"0","fuel_data <- mutate(fuel_data, trans_type = if_else(str_detect(trans, ""auto""), ""automatic"", ""manual"" ))"

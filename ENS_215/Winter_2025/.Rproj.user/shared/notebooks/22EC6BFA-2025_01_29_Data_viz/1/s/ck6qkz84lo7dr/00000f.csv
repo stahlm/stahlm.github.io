@@ -1,0 +1,6 @@
+"0","fig_gap <- my_gap %>% "
+"0","  ggplot(aes(x = gdpPercap, y = lifeExp)) +"
+"0","  geom_point() +"
+"0","  theme_bw() # let's save our ""base/template"" figure to an object so we can easily adapt it while typing less code"
+"0",""
+"0","fig_gap"

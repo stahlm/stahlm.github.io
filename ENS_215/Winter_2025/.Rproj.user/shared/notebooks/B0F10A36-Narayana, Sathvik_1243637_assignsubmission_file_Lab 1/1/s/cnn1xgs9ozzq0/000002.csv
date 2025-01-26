@@ -1,0 +1,14 @@
+"1","
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubl9yb3dzIDwtIG5yb3coZnVlbF9kYXRhKVxubl9jb2xzIDwtIG5jb2woZnVlbF9kYXRhKVxuYGBgIn0= -->
+
+```r
+n_rows <- nrow(fuel_data)
+n_cols <- ncol(fuel_data)
+```
+
+<!-- rnb-source-end -->
+"
+"0","```r
+n_rows <- nrow(fuel_data)
+n_cols <- ncol(fuel_data)
+```"

@@ -1,0 +1,4 @@
+"0","twowheel <- c(""f"", ""r"")"
+"0","fuel_data <- mutate(fuel_data, drv_type = if_else(drv %in% twowheel, ""2"", ""4"" ))"
+"0","ggplot(data = fuel_data) + "
+"0","  geom_point(aes(x = displ, y = hwy, color = drv_type))"

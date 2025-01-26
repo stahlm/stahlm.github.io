@@ -1629,15 +1629,20 @@ alter the data frame if you overwrite the original object (i.e., use the
 <div id="group_by-and-summarize" class="section level3">
 <h3>group_by() and summarize()</h3>
 <ul>
-<li>Revisit the looping challenge from the end of the lecture on
+<li><p>Revisit the looping challenge from the end of the lecture on
 (2025-01-15) and demonstrate how easy this same analysis is using
 <code>group_by()</code> and <code>summarize()</code><br />
-</li>
-<li>Review all of the “verbs” in dplyr that we have seen thus far. Have
-the gapminder data frame open in viewer, pose questions to students
+</p></li>
+<li><p>Review all of the “verbs” in dplyr that we have seen thus far.
+Have the gapminder data frame open in viewer, pose questions to students
 about each verb, and then in my console carry out an example with that
 verb (saving output to a new df) and examine the new df to highlight the
-steps we’ve taken.</li>
+steps we’ve taken.</p></li>
+<li><p><strong>FIX:</strong> <code>summarize_at()</code> has been
+replaced with a newer implementation, which is <code>summarize()</code>
+with the <code>across()</code> function nested within. Update this
+lecture and update the line telling students to refer the the dplyr
+cheatsheet, which no longer shows <code>summarize_at()</code>.</p></li>
 </ul>
 <p><br /></p>
 </div>

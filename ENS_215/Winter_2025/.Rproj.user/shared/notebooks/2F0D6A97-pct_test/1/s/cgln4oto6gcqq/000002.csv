@@ -1,0 +1,12 @@
+"0","```r
+library(sf)
+library(tidyverse)
+library(leaflet)
+```"
+"1","package 㤼㸱leaflet㤼㸲 was built under R version 4.0.5
+"
+"0","```r
+library(elevatr)
+```"
+"1","package 㤼㸱elevatr㤼㸲 was built under R version 4.0.5
+"

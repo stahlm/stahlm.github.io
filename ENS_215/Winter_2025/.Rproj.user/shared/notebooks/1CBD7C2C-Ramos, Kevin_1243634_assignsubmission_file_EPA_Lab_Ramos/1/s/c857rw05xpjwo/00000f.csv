@@ -1,0 +1,5 @@
+"0","ggplot(data = fuel_data) + "
+"0","  geom_point(aes(x = displ, y = hwy ))"
+"2","Error in (function (filename = ""Rplot%03d.png"", width = 480, height = 480,  : 
+  unable to start png() device
+"

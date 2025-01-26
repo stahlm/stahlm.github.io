@@ -1,0 +1,2 @@
+"0","df_ICPMS <- df_ICPMS %>% "
+"0","  mutate(region_ID = str_sub(Sample_ID, start = 1, end = 2))"

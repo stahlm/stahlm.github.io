@@ -1,0 +1,6 @@
+"0","my_gap %>% "
+"0","  filter(year%in% c(1952, 1972, 1992, 2002)) %>% "
+"0","  ggplot(aes(x = gdpPercap, y = lifeExp)) + "
+"0","  geom_point() + "
+"0","  theme_bw() +"
+"0","  facet_grid(continent ~ year)"

@@ -1,0 +1,2 @@
+"0","ggplot(data = fuel_data) + "
+"0","  geom_boxplot(aes(x=region,y=hwy))"

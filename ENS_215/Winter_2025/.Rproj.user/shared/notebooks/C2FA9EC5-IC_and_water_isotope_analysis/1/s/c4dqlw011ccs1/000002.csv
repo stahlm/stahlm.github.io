@@ -1,0 +1,1 @@
+"0","df_ICPMS_p1 <- read_xlsx(""./Data/ICP_MS/2023_2024_Project_1_Groundwater_ICP-MS_data.xlsx"", sheet = ""all data"")"
