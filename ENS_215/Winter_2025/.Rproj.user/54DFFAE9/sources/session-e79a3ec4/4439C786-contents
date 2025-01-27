@@ -1,11 +1,11 @@
 ---
-title: "Data Visualization"
+title: "Data Visualization: additional topics"
 author: "ENS-215"
-date: "27-Jan-2023"
+date: "29-Jan-2025"
 output:
   html_document:
-    theme: spacelab
     df_print: paged
+    theme: journal
     toc: TRUE
     toc_float: TRUE
 ---

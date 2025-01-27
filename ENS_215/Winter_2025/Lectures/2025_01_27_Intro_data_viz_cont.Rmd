@@ -387,7 +387,7 @@ The available shapes are shown below.  We can use the number corresponding to sp
 ```{r}
 my_gap %>% 
   ggplot(aes(x = gdpPercap, y = lifeExp)) + 
-  geom_point(shape = 24)
+  geom_point(shape = 21)
 ```
 
 <br/>
@@ -396,7 +396,7 @@ my_gap %>%
 
 The `fill` aesthetic specifies the fill color of a symbol.  Fill only applies to symbols that allow you to specify the `color` and `fill` independently.  For these symbols `fill` determines the fill color and `color` determines the color of the symbol border.  
 
-We can map a variable to the `fill` aesthetic.  However, only shapes 15-25 allow you to specify the fill.  We'll use shape 21.  
+We can map a variable to the `fill` aesthetic.  However, only shapes 15-25 allow you to specify the fill.  We'll use shape 24.  
 
 Let's map the continent to the `fill` aesthetic.
 ```{r}
