@@ -11,7 +11,7 @@ output:
 ---
 
 ```{r echo=FALSE}
-knitr::opts_chunk$set(comment=NA, fig.width=5.5, fig.height=4.5)
+knitr::opts_chunk$set(comment=NA, fig.width=4.5, fig.height=4.5)
 
 ```
 
@@ -293,9 +293,9 @@ Some examples are below.  After you try these examples, feel free to test out so
 
 The **dutchmasters** is a set palettes based on famous paintings by the Dutch Masters (Dutch painters such as Vermeer and Rembrandt).  
 
-The palette used below is based off of the colors use in Vermeer's famous painting  
+The palette used below is based off of the colors use in Vermeer's famous painting _Girl with a Pearl Earring_  
 
-![_Girl with a Pearl Earring_](C:/Users/stahlm/Documents/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2025/Images/Meisje_met_de_parel.jpg){width=150px}  
+![](C:/Users/stahlm/Documents/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2025/Images/Meisje_met_de_parel.jpg){width=150px}  
 
 
 ```{r}
@@ -305,6 +305,8 @@ ggplot(my_gap, aes(x = gdpPercap, y = lifeExp, color = continent)) +
   scale_color_paletteer_d("dutchmasters::pearl_earring")
 ```
 
+<br/> 
+
 There are also a range of palettes inspired by different US National Parks.  
 ```{r}
 ggplot(my_gap, aes(x = gdpPercap, y = lifeExp, color = continent)) + 
@@ -312,6 +314,7 @@ ggplot(my_gap, aes(x = gdpPercap, y = lifeExp, color = continent)) +
   scale_x_log10() + 
   scale_color_paletteer_d("nationalparkcolors::Yellowstone")
 ```
+<br/> 
 
 There are palettes inspired by a range of environments (e.g., wetland, desert)
 ```{r}
@@ -320,7 +323,7 @@ ggplot(my_gap, aes(x = gdpPercap, y = lifeExp, color = continent)) +
   scale_x_log10() + 
   scale_color_paletteer_d("calecopal::wetland")
 ```
-
+<br/> 
 
 Palettes based off of NBA teams.  
 ```{r}
@@ -330,6 +333,7 @@ ggplot(my_gap, aes(x = gdpPercap, y = lifeExp, color = continent)) +
   scale_color_paletteer_d("nbapalettes::celtics")
 ```
 
+<br/> 
 
 Many additional palettes inspired by famous painters.  
 ```{r}
@@ -338,7 +342,7 @@ ggplot(my_gap, aes(x = gdpPercap, y = lifeExp, color = continent)) +
   scale_x_log10() + 
   scale_color_paletteer_d("MetBrewer::Monet")
 ```
-
+<br/> 
 
 ```{r}
 ggplot(my_gap, aes(x = gdpPercap, y = lifeExp, color = continent)) + 
@@ -493,6 +497,7 @@ ggplot(my_gap, aes(x = gdpPercap, y = lifeExp)) +
        y = "Life Expectancy",
        caption = "Data source: gapminder")
 ```
+
 
 Now we'll use the `ggsave()` function to save our last graphic to an image file (.png in this example).
 ```{r}

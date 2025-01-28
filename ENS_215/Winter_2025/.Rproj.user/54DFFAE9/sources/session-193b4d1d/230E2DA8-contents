@@ -13,7 +13,7 @@ output:
 <br/>
 
 ```{r echo=FALSE}
-knitr::opts_chunk$set(comment=NA, fig.width=5.5, fig.height=4.5)
+knitr::opts_chunk$set(comment=NA, fig.width=4.25, fig.height=3.75)
 
 ```
 
