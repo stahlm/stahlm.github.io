@@ -1,5 +1,0 @@
-"0","my_gap %>% "
-"0","  filter(continent == ""Americas"" , year == 2007) %>% "
-"0","  ggplot(aes(y = reorder(country, gdpPercap), x = gdpPercap, color = lifeExp)) + "
-"0","  geom_point(size = 3) +"
-"0","  scale_color_gradient2(low = ""red"", mid = ""green"", high = ""blue"", midpoint = 70)"
