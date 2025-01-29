@@ -244,3 +244,55 @@ gap_data %>%
 
 
 
+## 29-Jan-2025
+```{r}
+library(tidyverse)
+library(gapminder)
+```
+
+```{r}
+gap_data <- gapminder
+```
+
+
+```{r}
+gap_data %>% 
+  ggplot(aes(x = year, y = lifeExp, 
+             fill = continent, size = pop)) +
+  geom_jitter(height = 0, width = 0.7, shape = 21)
+```
+
+
+
+```{r}
+gap_data %>% 
+  filter(year == 2007) %>% 
+  ggplot(aes(x = continent, y = lifeExp)) +
+  
+  geom_boxplot(fill = "lightblue") +
+  geom_jitter(alpha = 0.5, width = 0.2, height = 0)
+```
+
+```{r}
+top_2 <- gap_data %>% 
+  filter(year == 2007) %>% 
+  top_n(2, lifeExp)
+
+top_2
+
+bottom_2 <- gap_data %>% 
+  filter(year == 2007) %>% 
+  top_n(-2, lifeExp)
+
+bottom_2
+```
+
+```{r}
+gap_data %>% 
+  filter(country %in% top_2$country | country %in% bottom_2$country) %>% 
+  ggplot(aes(x = year, y = lifeExp, color = country)) +
+  geom_point() +
+  geom_line()
+```
+
+

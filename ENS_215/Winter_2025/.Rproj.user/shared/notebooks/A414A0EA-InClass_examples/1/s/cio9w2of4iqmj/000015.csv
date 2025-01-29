@@ -1,0 +1,4 @@
+"0","gap_data %>% "
+"0","  ggplot(aes(x = year, y = lifeExp, "
+"0","             fill = continent, size = pop)) +"
+"0","  geom_jitter(height = 0, width = 0.7, shape = 21)"

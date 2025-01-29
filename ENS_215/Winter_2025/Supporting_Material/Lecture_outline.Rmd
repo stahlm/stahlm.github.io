@@ -75,6 +75,16 @@ Outlines below highlight some key topics to cover prior to beginning with the co
 
 <br/> 
 
+
+### Data Visualization: additional topics
+- Review exercises from last class
+- Check with class if anyone tried anything interesting with respect to geoms (i.e., exercise 4 from prior lecture)  
+- Group aesthetic in figures
+- Reordering axes with categorical variables 
+- geom_smooth(), explanation/discussion 
+- Faceting
+- After ~25 min review today's faceting challenge with the class  
+
 ## Labs  
 
 
