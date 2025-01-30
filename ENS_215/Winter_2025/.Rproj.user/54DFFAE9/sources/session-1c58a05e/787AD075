@@ -1,0 +1,28 @@
+{
+    "id": "787AD075",
+    "path": "C:/Users/stahlm/Documents/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Additional_examples/dataRetrieval_wqp.Rmd",
+    "project_path": null,
+    "type": "r_markdown",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1737564111094.0,
+    "source_on_save": false,
+    "relative_order": 6,
+    "properties": {
+        "tempName": "Untitled1",
+        "chunk_output_type": "inline",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "38,39",
+        "scrollLine": "9"
+    },
+    "folds": "18|6|22|0|\n",
+    "lastKnownWriteTime": 1738188002,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1738188002770,
+    "read_only": false,
+    "read_only_alternatives": []
+}

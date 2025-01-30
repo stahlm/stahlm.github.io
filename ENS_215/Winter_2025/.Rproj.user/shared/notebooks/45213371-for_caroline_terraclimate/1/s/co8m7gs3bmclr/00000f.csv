@@ -1,0 +1,1 @@
+"0","aoi2use <- rnaturalearth::ne_countries(continent = ""Europe"", returnclass = ""sf"")"

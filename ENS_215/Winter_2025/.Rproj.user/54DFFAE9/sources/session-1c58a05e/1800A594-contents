@@ -1,0 +1,55 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+##Header 
+```{r}
+library(tidyverse)
+library(gapminder)
+```
+
+```{r}
+my_gap <- gapminder
+```
+
+
+```{r}
+my_gap %>% 
+  mutate(tot_gdp = pop*gdpPercap) %>% 
+  
+  group_by(country) %>% 
+  summarize(tot_ratio = last(tot_gdp)/first(tot_gdp),
+            percap_ratio = last(gdpPercap)/first(gdpPercap)
+            )
+```
+
+
+```{r}
+precip_data <- read_csv("https://stahlm.github.io/ENS_215/Data/NOAA_State_Precip_LabData.csv")
+```
+
+```{r}
+precip_state <- precip_data %>% 
+  filter(state_cd == "VT")
+```
+
+
+```{r}
+precip_state %>% 
+  group_by(Month) %>% 
+  summarise(avg_precip = mean(Precip_inches),
+            min_precip = min(Precip_inches),
+            max_precip = max(Precip_inches)
+            )
+```
+
+
+```{r}
+my_gap %>% 
+  ggplot(aes(y = lifeExp)) +
+  geom_boxplot()
+```
+
+
+

@@ -1,0 +1,2 @@
+"0","precip_state <- precip_data %>% "
+"0","  filter(state_cd == ""VT"")"
