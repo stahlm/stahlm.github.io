@@ -3,7 +3,7 @@
     "path": "~/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2025/HW.Rmd",
     "project_path": "HW.Rmd",
     "type": "r_markdown",
-    "hash": "0",
+    "hash": "2547553254",
     "contents": "",
     "dirty": false,
     "created": 1738348211263.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "20,10",
-        "scrollLine": "0"
+        "cursorPosition": "33,4",
+        "scrollLine": "20"
     },
     "folds": "",
-    "lastKnownWriteTime": 1738348556,
+    "lastKnownWriteTime": 1738512134,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1738348556971,
+    "last_content_update": 1738512134311,
     "read_only": false,
     "read_only_alternatives": []
 }
