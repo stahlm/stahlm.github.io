@@ -1752,29 +1752,13 @@ display: none;
 
 
 <!-- rnb-text-begin -->
+<p><a href="https://doi-usgs.github.io/dataRetrieval/articles/qwdata_changes.html" class="uri">https://doi-usgs.github.io/dataRetrieval/articles/qwdata_changes.html</a></p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5gYGAifQ== -->
-<pre class="r"><code>library(tidyverse)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5saWJyYXJ5KGRhdGFSZXRyaWV2YWwpXG5gYGAifQ== -->
+<pre class="r"><code>library(tidyverse)
+library(dataRetrieval)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoi4pSA4pSAIEF0dGFjaGluZyBjb3JlIHRpZHl2ZXJzZSBwYWNrYWdlcyDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIAgdGlkeXZlcnNlIDIuMC4wIOKUgOKUgFxu4pyUIGRwbHlyICAgICAxLjEuMSAgICAg4pyUIHJlYWRyICAgICAyLjEuNFxu4pyUIGZvcmNhdHMgICAxLjAuMCAgICAg4pyUIHN0cmluZ3IgICAxLjUuMFxu4pyUIGdncGxvdDIgICAzLjUuMSAgICAg4pyUIHRpYmJsZSAgICAzLjIuMVxu4pyUIGx1YnJpZGF0ZSAxLjkuMyAgICAg4pyUIHRpZHlyICAgICAxLjMuMFxu4pyUIHB1cnJyICAgICAxLjAuMSAgICAg4pSA4pSAIENvbmZsaWN0cyDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIAgdGlkeXZlcnNlX2NvbmZsaWN0cygpIOKUgOKUgFxu4pyWIGRwbHlyOjpmaWx0ZXIoKSBtYXNrcyBzdGF0czo6ZmlsdGVyKClcbuKcliBkcGx5cjo6bGFnKCkgICAgbWFza3Mgc3RhdHM6OmxhZygpXG7ihLkgVXNlIHRoZSBcdTAwMWJdODs7aHR0cDovL2NvbmZsaWN0ZWQuci1saWIub3JnL1x1MDAwN2NvbmZsaWN0ZWQgcGFja2FnZVx1MDAxYl04OztcdTAwMDcgdG8gZm9yY2UgYWxsIGNvbmZsaWN0cyB0byBiZWNvbWUgZXJyb3JzXG4ifQ== -->
-<pre><code>── Attaching core tidyverse packages ─────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.1     ✔ readr     2.1.4
-✔ forcats   1.0.0     ✔ stringr   1.5.0
-✔ ggplot2   3.5.1     ✔ tibble    3.2.1
-✔ lubridate 1.9.3     ✔ tidyr     1.3.0
-✔ purrr     1.0.1     ── Conflicts ───────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the ]8;;http://conflicted.r-lib.org/conflicted package]8;; to force all conflicts to become errors</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShkYXRhUmV0cmlldmFsKVxuYGBgIn0= -->
-<pre class="r"><code>library(dataRetrieval)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiZGF0YVJldHJpZXZhbCAyLjcuMTdcbkV4dGVuZGVkIERvY3VtZW50YXRpb246IGh0dHBzOi8vZG9pLXVzZ3MuZ2l0aHViLmlvL2RhdGFSZXRyaWV2YWxcbiJ9 -->
-<pre><code>dataRetrieval 2.7.17
-Extended Documentation: https://doi-usgs.github.io/dataRetrieval</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
@@ -1795,31 +1779,69 @@ data_full &lt;- readWQPdata(siteid = &quot;USGS-04024315&quot;,
                           characteristicName = &quot;pH&quot;,
                           service = &quot;StationWQX3&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiR0VUOiBodHRwczovL3d3dy53YXRlcnF1YWxpdHlkYXRhLnVzL3dxeDMvU3RhdGlvbi9zZWFyY2g/c2l0ZWlkPVVTR1MtMDQwMjQzMTUmY2hhcmFjdGVyaXN0aWNOYW1lPXBIJm1pbWVUeXBlPWNzdlxuR0VUOiBodHRwczovL3d3dy53YXRlcnF1YWxpdHlkYXRhLnVzL3dxeDMvU3RhdGlvbi9zZWFyY2g/c2l0ZWlkPVVTR1MtMDQwMjQzMTUmY2hhcmFjdGVyaXN0aWNOYW1lPXBIJm1pbWVUeXBlPWNzdlxuV1FYMyBzZXJ2aWNlcyBhcmUgaW4tZGV2ZWxvcG1lbnQsIHVzZSB3aXRoIGNhdXRpb24uXG4ifQ== -->
-<pre><code>GET: https://www.waterqualitydata.us/wqx3/Station/search?siteid=USGS-04024315&amp;characteristicName=pH&amp;mimeType=csv
-GET: https://www.waterqualitydata.us/wqx3/Station/search?siteid=USGS-04024315&amp;characteristicName=pH&amp;mimeType=csv
-WQX3 services are in-development, use with caution.</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5BWl9zaXRlc19ndyA8LSByZWFkV1FQc3VtbWFyeShcbiAgc3RhdGVjb2RlID0gXCJBWlwiLFxuICBzaXRlVHlwZSA9IFwiV2VsbFwiXG4pXG5cbmBgYCJ9 -->
-<pre class="r"><code>
-AZ_sites_gw &lt;- readWQPsummary(
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuQVpfc2l0ZXNfZ3cgPC0gcmVhZFdRUHN1bW1hcnkoXG4gIHN0YXRlY29kZSA9IFwiQVpcIixcbiAgc2l0ZVR5cGUgPSBcIldlbGxcIlxuKVxuXG5hel9waG9zX3N1bW1hcnkgPC0gQVpfc2l0ZXMgfD4gXG4gIG11dGF0ZShSZXN1bHRDb3VudCA9IGFzLm51bWVyaWMoUmVzdWx0Q291bnQpLFxuICAgICAgICAgTGF0ID0gYXMubnVtZXJpYyhNb25pdG9yaW5nTG9jYXRpb25MYXRpdHVkZSksXG4gICAgICAgICBMb24gPSBhcy5udW1lcmljKE1vbml0b3JpbmdMb2NhdGlvbkxvbmdpdHVkZSkpIHw+IFxuICByZW5hbWUoU2l0ZSA9IE1vbml0b3JpbmdMb2NhdGlvbklkZW50aWZpZXIpIHw+IFxuICBncm91cF9ieShTaXRlLCBMYXQsIExvbikgfD4gXG4gIHN1bW1hcmlzZShtaW5feWVhciA9IG1pbihZZWFyU3VtbWFyaXplZCksXG4gICAgICAgICAgICBtYXhfeWVhciA9IG1heChZZWFyU3VtbWFyaXplZCksXG4gICAgICAgICAgICBjb3VudCA9IHN1bShSZXN1bHRDb3VudCkpIHw+IFxuICBtdXRhdGUoUE9SID0gbWF4X3llYXIgLSBtaW5feWVhcikgfD4gXG4gIGZpbHRlcihjb3VudCA+IDEwMCxcbiAgICAgICAgIFBPUiA+PSAyMCkgfD4gXG4gIGFycmFuZ2UoZGVzYyhjb3VudCkpIHw+IFxuICB1bmdyb3VwKClcbmBgYCJ9 -->
+<pre class="r"><code>AZ_sites_gw &lt;- readWQPsummary(
   statecode = &quot;AZ&quot;,
   siteType = &quot;Well&quot;
 )
-</code></pre>
+
+az_phos_summary &lt;- AZ_sites |&gt; 
+  mutate(ResultCount = as.numeric(ResultCount),
+         Lat = as.numeric(MonitoringLocationLatitude),
+         Lon = as.numeric(MonitoringLocationLongitude)) |&gt; 
+  rename(Site = MonitoringLocationIdentifier) |&gt; 
+  group_by(Site, Lat, Lon) |&gt; 
+  summarise(min_year = min(YearSummarized),
+            max_year = max(YearSummarized),
+            count = sum(ResultCount)) |&gt; 
+  mutate(POR = max_year - min_year) |&gt; 
+  filter(count &gt; 100,
+         POR &gt;= 20) |&gt; 
+  arrange(desc(count)) |&gt; 
+  ungroup()</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiTkVXUzogRGF0YSBkb2VzIG5vdCBpbmNsdWRlIFVTR1MgZGF0YSBuZXdlciB0aGFuIE1hcmNoIDExLCAyMDI0LiBNb3JlIGRldGFpbHM6XG5odHRwczovL2RvaS11c2dzLmdpdGh1Yi5pby9kYXRhUmV0cmlldmFsL2FydGljbGVzL1N0YXR1cy5odG1sXG5HRVQ6IGh0dHBzOi8vd3d3LndhdGVycXVhbGl0eWRhdGEudXMvZGF0YS9zdW1tYXJ5L21vbml0b3JpbmdMb2NhdGlvbi9zZWFyY2g/c3RhdGVjb2RlPVVTJTNBMDQmc2l0ZVR5cGU9V2VsbCZkYXRhUHJvZmlsZT1wZXJpb2RPZlJlY29yZCZtaW1lVHlwZT1jc3ZcbiJ9 -->
-<pre><code>NEWS: Data does not include USGS data newer than March 11, 2024. More details:
-https://doi-usgs.github.io/dataRetrieval/articles/Status.html
-GET: https://www.waterqualitydata.us/data/summary/monitoringLocation/search?statecode=US%3A04&amp;siteType=Well&amp;dataProfile=periodOfRecord&amp;mimeType=csv</code></pre>
-<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuQ1Rfc2l0ZXNfZ3cgPC0gcmVhZFdRUHN1bW1hcnkoXG4gIHN0YXRlY29kZSA9IFwiQ1RcIixcbiAgc2l0ZVR5cGUgPSBcIldlbGxcIlxuKVxuYGBgIn0= -->
+<pre class="r"><code>CT_sites_gw &lt;- readWQPsummary(
+  statecode = &quot;CT&quot;,
+  siteType = &quot;Well&quot;
+)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGF0YV9zaXRlcyA8LSByZWFkV1FQZGF0YShzaXRlaWQgPSBcIlVTR1MtMDQwMjQzMTVcIixcbiAgICAgICAgICAgICAgICAgICAgICAgICAgY2hhcmFjdGVyaXN0aWNOYW1lID0gXCJwSFwiLFxuICAgICAgICAgICAgICAgICAgICAgICAgICBzZXJ2aWNlID0gXCJTdGF0aW9uV1FYM1wiKVxuYGBgIn0= -->
+<pre class="r"><code>data_sites &lt;- readWQPdata(siteid = &quot;USGS-04024315&quot;,
+                          characteristicName = &quot;pH&quot;,
+                          service = &quot;StationWQX3&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudDIgPC0gd2hhdFdRUHNpdGVzKGxlZ2FjeSA9IEYsIHN0YXRlY29kZSA9IFwiQ1RcIiwgc2l0ZVR5cGUgPSBcIldlbGxcIilcbmBgYCJ9 -->
+<pre class="r"><code>t2 &lt;- whatWQPsites(legacy = F, statecode = &quot;CT&quot;, siteType = &quot;Well&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudDMgPC0gdDIgJT4lIFxuICBmaWx0ZXIoc3RyX2RldGVjdChMb2NhdGlvbl9JZGVudGlmaWVyLCBcIlVTR1NcIikgKVxuXG5kYXRhX2Z1bGwgPC0gcmVhZFdRUGRhdGEoc2l0ZWlkID0gdDMkTG9jYXRpb25fSWRlbnRpZmllclsxODA6MjAwXSxcbiAgICAgICAgICAgICAgICAgICAgICAgICBjaGFyYWN0ZXJpc3RpY05hbWUgPSBcIkNhbGNpdW1cIixcbiAgICAgICAgICAgICAgICAgICAgICAgICBkYXRhUHJvZmlsZSA9IFwibmFycm93XCIsXG4gICAgICAgICAgICAgICAgICAgICAgICAgc2VydmljZSA9IFwiUmVzdWx0V1FYM1wiKVxuYGBgIn0= -->
+<pre class="r"><code>t3 &lt;- t2 %&gt;% 
+  filter(str_detect(Location_Identifier, &quot;USGS&quot;) )
+
+data_full &lt;- readWQPdata(siteid = t3$Location_Identifier[180:200],
+                         characteristicName = &quot;Calcium&quot;,
+                         dataProfile = &quot;narrow&quot;,
+                         service = &quot;ResultWQX3&quot;)</code></pre>
+<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpgYGB7cn0NCmxpYnJhcnkodGlkeXZlcnNlKQ0KbGlicmFyeShkYXRhUmV0cmlldmFsKQ0KYGBgDQoNCmBgYHtyfQ0KDQpkYXRhX2Z1bGwgPC0gcmVhZFdRUGRhdGEoc2l0ZWlkID0gIlVTR1MtMDQwMjQzMTUiLA0KICAgICAgICAgICAgICAgICAgICAgICAgIGNoYXJhY3RlcmlzdGljTmFtZSA9ICJDYWxjaXVtIiwNCiAgICAgICAgICAgICAgICAgICAgICAgICBkYXRhUHJvZmlsZSA9ICJuYXJyb3ciLA0KICAgICAgICAgICAgICAgICAgICAgICAgIHNlcnZpY2UgPSAiUmVzdWx0V1FYMyIpDQpgYGANCg0KYGBge3J9DQpkYXRhX3NpdGVzIDwtIHJlYWRXUVBkYXRhKHNpdGVpZCA9ICJVU0dTLTA0MDI0MzE1IiwNCiAgICAgICAgICAgICAgICAgICAgICAgICAgY2hhcmFjdGVyaXN0aWNOYW1lID0gInBIIiwNCiAgICAgICAgICAgICAgICAgICAgICAgICAgc2VydmljZSA9ICJTdGF0aW9uV1FYMyIpDQpgYGANCmBgYHtyfQ0KQVpfc2l0ZXNfZ3cgPC0gcmVhZFdRUHN1bW1hcnkoDQogIHN0YXRlY29kZSA9ICJBWiIsDQogIHNpdGVUeXBlID0gIldlbGwiDQopDQoNCmF6X3Bob3Nfc3VtbWFyeSA8LSBBWl9zaXRlcyB8PiANCiAgbXV0YXRlKFJlc3VsdENvdW50ID0gYXMubnVtZXJpYyhSZXN1bHRDb3VudCksDQogICAgICAgICBMYXQgPSBhcy5udW1lcmljKE1vbml0b3JpbmdMb2NhdGlvbkxhdGl0dWRlKSwNCiAgICAgICAgIExvbiA9IGFzLm51bWVyaWMoTW9uaXRvcmluZ0xvY2F0aW9uTG9uZ2l0dWRlKSkgfD4gDQogIHJlbmFtZShTaXRlID0gTW9uaXRvcmluZ0xvY2F0aW9uSWRlbnRpZmllcikgfD4gDQogIGdyb3VwX2J5KFNpdGUsIExhdCwgTG9uKSB8PiANCiAgc3VtbWFyaXNlKG1pbl95ZWFyID0gbWluKFllYXJTdW1tYXJpemVkKSwNCiAgICAgICAgICAgIG1heF95ZWFyID0gbWF4KFllYXJTdW1tYXJpemVkKSwNCiAgICAgICAgICAgIGNvdW50ID0gc3VtKFJlc3VsdENvdW50KSkgfD4gDQogIG11dGF0ZShQT1IgPSBtYXhfeWVhciAtIG1pbl95ZWFyKSB8PiANCiAgZmlsdGVyKGNvdW50ID4gMTAwLA0KICAgICAgICAgUE9SID49IDIwKSB8PiANCiAgYXJyYW5nZShkZXNjKGNvdW50KSkgfD4gDQogIHVuZ3JvdXAoKQ0KYGBgDQoNCg0K</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQoNCmh0dHBzOi8vZG9pLXVzZ3MuZ2l0aHViLmlvL2RhdGFSZXRyaWV2YWwvYXJ0aWNsZXMvcXdkYXRhX2NoYW5nZXMuaHRtbA0KDQpgYGB7cn0NCmxpYnJhcnkodGlkeXZlcnNlKQ0KbGlicmFyeShkYXRhUmV0cmlldmFsKQ0KYGBgDQoNCmBgYHtyfQ0KDQpkYXRhX2Z1bGwgPC0gcmVhZFdRUGRhdGEoc2l0ZWlkID0gIlVTR1MtMDQwMjQzMTUiLA0KICAgICAgICAgICAgICAgICAgICAgICAgIGNoYXJhY3RlcmlzdGljTmFtZSA9ICJDYWxjaXVtIiwNCiAgICAgICAgICAgICAgICAgICAgICAgICBkYXRhUHJvZmlsZSA9ICJuYXJyb3ciLA0KICAgICAgICAgICAgICAgICAgICAgICAgIHNlcnZpY2UgPSAiUmVzdWx0V1FYMyIpDQpgYGANCg0KYGBge3J9DQpkYXRhX3NpdGVzIDwtIHJlYWRXUVBkYXRhKHNpdGVpZCA9ICJVU0dTLTA0MDI0MzE1IiwNCiAgICAgICAgICAgICAgICAgICAgICAgICAgY2hhcmFjdGVyaXN0aWNOYW1lID0gInBIIiwNCiAgICAgICAgICAgICAgICAgICAgICAgICAgc2VydmljZSA9ICJTdGF0aW9uV1FYMyIpDQpgYGANCmBgYHtyfQ0KQVpfc2l0ZXNfZ3cgPC0gcmVhZFdRUHN1bW1hcnkoDQogIHN0YXRlY29kZSA9ICJBWiIsDQogIHNpdGVUeXBlID0gIldlbGwiDQopDQoNCmF6X3Bob3Nfc3VtbWFyeSA8LSBBWl9zaXRlcyB8PiANCiAgbXV0YXRlKFJlc3VsdENvdW50ID0gYXMubnVtZXJpYyhSZXN1bHRDb3VudCksDQogICAgICAgICBMYXQgPSBhcy5udW1lcmljKE1vbml0b3JpbmdMb2NhdGlvbkxhdGl0dWRlKSwNCiAgICAgICAgIExvbiA9IGFzLm51bWVyaWMoTW9uaXRvcmluZ0xvY2F0aW9uTG9uZ2l0dWRlKSkgfD4gDQogIHJlbmFtZShTaXRlID0gTW9uaXRvcmluZ0xvY2F0aW9uSWRlbnRpZmllcikgfD4gDQogIGdyb3VwX2J5KFNpdGUsIExhdCwgTG9uKSB8PiANCiAgc3VtbWFyaXNlKG1pbl95ZWFyID0gbWluKFllYXJTdW1tYXJpemVkKSwNCiAgICAgICAgICAgIG1heF95ZWFyID0gbWF4KFllYXJTdW1tYXJpemVkKSwNCiAgICAgICAgICAgIGNvdW50ID0gc3VtKFJlc3VsdENvdW50KSkgfD4gDQogIG11dGF0ZShQT1IgPSBtYXhfeWVhciAtIG1pbl95ZWFyKSB8PiANCiAgZmlsdGVyKGNvdW50ID4gMTAwLA0KICAgICAgICAgUE9SID49IDIwKSB8PiANCiAgYXJyYW5nZShkZXNjKGNvdW50KSkgfD4gDQogIHVuZ3JvdXAoKQ0KYGBgDQoNCmBgYHtyfQ0KQ1Rfc2l0ZXNfZ3cgPC0gcmVhZFdRUHN1bW1hcnkoDQogIHN0YXRlY29kZSA9ICJDVCIsDQogIHNpdGVUeXBlID0gIldlbGwiDQopDQpgYGANCmBgYHtyfQ0KZGF0YV9zaXRlcyA8LSByZWFkV1FQZGF0YShzaXRlaWQgPSAiVVNHUy0wNDAyNDMxNSIsDQogICAgICAgICAgICAgICAgICAgICAgICAgIGNoYXJhY3RlcmlzdGljTmFtZSA9ICJwSCIsDQogICAgICAgICAgICAgICAgICAgICAgICAgIHNlcnZpY2UgPSAiU3RhdGlvbldRWDMiKQ0KYGBgDQpgYGB7cn0NCnQyIDwtIHdoYXRXUVBzaXRlcyhsZWdhY3kgPSBGLCBzdGF0ZWNvZGUgPSAiQ1QiLCBzaXRlVHlwZSA9ICJXZWxsIikNCmBgYA0KDQpgYGB7cn0NCnQzIDwtIHQyICU+JSANCiAgZmlsdGVyKHN0cl9kZXRlY3QoTG9jYXRpb25fSWRlbnRpZmllciwgIlVTR1MiKSApDQoNCmRhdGFfZnVsbCA8LSByZWFkV1FQZGF0YShzaXRlaWQgPSB0MyRMb2NhdGlvbl9JZGVudGlmaWVyWzE4MDoyMDBdLA0KICAgICAgICAgICAgICAgICAgICAgICAgIGNoYXJhY3RlcmlzdGljTmFtZSA9ICJDYWxjaXVtIiwNCiAgICAgICAgICAgICAgICAgICAgICAgICBkYXRhUHJvZmlsZSA9ICJuYXJyb3ciLA0KICAgICAgICAgICAgICAgICAgICAgICAgIHNlcnZpY2UgPSAiUmVzdWx0V1FYMyIpDQpgYGANCg0K</div>
 
 
 

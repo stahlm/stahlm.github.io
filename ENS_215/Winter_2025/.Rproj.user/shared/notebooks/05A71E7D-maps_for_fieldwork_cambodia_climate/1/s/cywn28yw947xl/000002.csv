@@ -1,0 +1,10 @@
+"0","```r
+df_coords <- read_csv(\"../data/Fields/sites_fields_locations/field_centroids_2024_04_02.csv\")
+```"
+"1","Rows: 124 Columns: 4── Column specification ──────────────────────────────────────────────────────────────────────────────────────────────
+Delimiter: \",\"
+chr (2): site_name, site_name_clean
+dbl (2): Longitude, Latitude
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+"

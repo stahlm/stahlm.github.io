@@ -1,0 +1,4 @@
+"0","```r
+a_long <- a_long %>% 
+  mutate(Month = str_remove(Month, \"month_\"))
+```"

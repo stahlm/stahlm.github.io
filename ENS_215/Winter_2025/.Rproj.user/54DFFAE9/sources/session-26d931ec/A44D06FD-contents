@@ -1,0 +1,35 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(sf)
+library(rnaturalearth)
+library(tmap)
+```
+
+```{r}
+borders_districts <- rnaturalearth::ne_states(
+  country = "France",
+  returnclass =  "sf"
+)
+```
+
+```{r}
+borders_districts <- borders_districts %>% 
+  filter(type_en == "Metropolitan department")
+```
+
+
+```{r}
+borders_districts %>% 
+  tm_shape() +
+  tm_borders()
+```
+
+
+
+
+

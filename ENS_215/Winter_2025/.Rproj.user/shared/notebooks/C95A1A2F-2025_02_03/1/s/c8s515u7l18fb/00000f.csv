@@ -1,0 +1,5 @@
+"0","flow_table <- streamflows %>% "
+"0","  group_by(site_no, Year) %>% "
+"0","  summarize(flow_mean = round(mean(flow_cfs, na.rm = T))) "
+"2","`summarise()` has grouped output by 'site_no'. You can override using the `.groups` argument."
+"0","flow_table "

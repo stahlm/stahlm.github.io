@@ -1,0 +1,4 @@
+"0","Rivers_to_clean <- Rivers_to_clean %>% "
+"0","  separate(col = Length_Drainage_Ratio, into = c(""Length_km"", ""Area_km2""), sep = ""/"")"
+"0",""
+"0","Rivers_to_clean "

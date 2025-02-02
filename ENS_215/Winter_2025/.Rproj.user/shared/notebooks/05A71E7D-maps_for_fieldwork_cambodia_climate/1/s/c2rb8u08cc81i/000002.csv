@@ -1,0 +1,36 @@
+"0","```r
+map_ppt_SC <-  tm_shape(raster_SC) +
+  tm_raster(palette = \"viridis\", style = \"cont\") + 
+  
+  #tm_shape(raster_SI) +
+  #tm_raster(palette = \"viridis\", style = \"equal\", n = 6) + 
+  
+  
+  tm_shape(borders_hires) +
+  tm_borders() + 
+  
+  tm_shape(shape_fields) +
+  tm_polygons(alpha = 0.5, border.col = \"black\") +
+  
+  tm_shape(df_coords) +
+  tm_dots(size = 0.1, col = \"purple\") +
+  
+  tm_scale_bar() +
+  tm_basemap(server = c(\"Esri.WorldImagery\", \"OpenStreetMap\", \"Esri.WorldTopoMap\")) 
+
+
+map_ppt_SC %>% 
+  tmap_leaflet %>% 
+  activateGPS() %>% 
+  leaflet.extras::addFullscreenControl() %>% 
+  addControlGPS(
+    options = gpsOptions(
+      position = \"topleft\",
+      activate = T, 
+      autoCenter = F,
+      setView = T)) %>% 
+
+activateGPS()
+```"
+"1","Warning: Currect projection of shape raster_SC unknown. Long lat (epsg 4326) coordinates assumed.Warning: The shape shape_fields is invalid. See sf::st_is_validWarning: Currect projection of shape df_coords unknown. Long-lat (WGS84) is assumed.
+"

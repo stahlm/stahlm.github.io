@@ -1,0 +1,13 @@
+"0","t3 <- t2 %>% "
+"0","  filter(str_detect(Location_Identifier, ""USGS"") )"
+"0",""
+"0","data_full <- readWQPdata(siteid = t3$Location_Identifier[180:200],"
+"0","                         characteristicName = ""Calcium"","
+"0","                         dataProfile = ""narrow"","
+"0","                         service = ""ResultWQX3"")"
+"2","GET: https://www.waterqualitydata.us/wqx3/Result/search?siteid=USGS-415631072433801&siteid=USGS-412505072515801&siteid=USGS-415632071570301&siteid=USGS-415633072041401&siteid=USGS-415634072490801&siteid=USGS-415634072500401&siteid=USGS-415635072462901&siteid=USGS-415635073031401&siteid=USGS-415637072035501&siteid=USGS-415637072423301&siteid=USGS-415637072435301&siteid=USGS-415637073182101&siteid=USGS-415638073211601&siteid=USGS-415640071582001&siteid=USGS-415640072275801&siteid=USGS-415640072500401&siteid=USGS-415641072441301&siteid=USGS-415641072313701&siteid=USGS-412506072341901&siteid=USGS-412506072515201&siteid=USGS-412506073164801&characteristicName=Calcium&dataProfile=narrow&mimeType=csv
+"
+"2","GET: https://www.waterqualitydata.us/wqx3/Station/search?siteid=USGS-415631072433801&siteid=USGS-412505072515801&siteid=USGS-415632071570301&siteid=USGS-415633072041401&siteid=USGS-415634072490801&siteid=USGS-415634072500401&siteid=USGS-415635072462901&siteid=USGS-415635073031401&siteid=USGS-415637072035501&siteid=USGS-415637072423301&siteid=USGS-415637072435301&siteid=USGS-415637073182101&siteid=USGS-415638073211601&siteid=USGS-415640071582001&siteid=USGS-415640072275801&siteid=USGS-415640072500401&siteid=USGS-415641072441301&siteid=USGS-415641072313701&siteid=USGS-412506072341901&siteid=USGS-412506072515201&siteid=USGS-412506073164801&characteristicName=Calcium&mimeType=csv
+"
+"2","WQX3 services are in-development, use with caution.
+"

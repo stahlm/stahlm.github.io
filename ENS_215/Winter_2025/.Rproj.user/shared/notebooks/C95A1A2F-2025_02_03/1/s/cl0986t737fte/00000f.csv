@@ -1,0 +1,5 @@
+"0","flow_table %>% "
+"0","  mutate(flow_mean = round(flow_mean)) %>% "
+"0","  pivot_wider(names_from = Year, values_from = flow_mean) %>% "
+"0","  kableExtra::kable() %>% "
+"0","  kableExtra::kable_styling(bootstrap_options = c(""striped"", ""hover"", ""condensed""), full_width = F)"

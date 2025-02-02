@@ -1,0 +1,2 @@
+"0","Rivers_to_clean %>% "
+"0","  unite(Length_km, Area_km2, col = ""Length_Area_Ratio"", sep = ""/"")"

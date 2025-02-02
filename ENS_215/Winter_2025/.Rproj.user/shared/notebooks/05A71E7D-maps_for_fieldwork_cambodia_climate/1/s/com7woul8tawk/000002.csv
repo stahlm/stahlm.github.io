@@ -1,0 +1,9 @@
+"0","```r
+a_long_coords <- a_long %>% 
+  select(x, y, group_name) %>% 
+  
+  group_by(group_name) %>% 
+  summarize(x = first(x),
+            y = first(y)
+            )
+```"

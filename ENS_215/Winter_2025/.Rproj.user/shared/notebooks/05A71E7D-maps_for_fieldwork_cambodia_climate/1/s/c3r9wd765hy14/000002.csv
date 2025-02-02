@@ -1,0 +1,5 @@
+"0","```r
+raster_TC_normals_ppt <- raster::crop(raster_TC_normals_ppt, borders_hires)
+
+raster_TC_normals_ppt <- raster::mask(raster_TC_normals_ppt, borders_hires)
+```"

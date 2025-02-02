@@ -1,0 +1,42 @@
+"0","```r
+tmap_mode(\"view\")
+```"
+"1","tmap mode set to interactive viewing
+"
+"0","```r
+map_annual_ppt <- cambodia_tot_prcp$sum %>% 
+  tm_shape() +
+  tm_raster(palette = \"RdBu\", style = \"cont\") + 
+  
+  tm_shape(cambodia_tot_prcp$sum) +
+  tm_raster(palette = \"RdBu\", style = \"equal\", n = 8) + 
+  
+  
+  tm_shape(borders_hires) +
+  tm_borders() + 
+  
+  tm_shape(shape_fields) +
+  tm_polygons(alpha = 0.5, border.col = \"black\") +
+  
+  tm_shape(df_coords) +
+  tm_dots(size = 0.1, col = \"purple\") +
+  
+  tm_scale_bar() +
+  tm_basemap(server = c(\"Esri.WorldImagery\", \"OpenStreetMap\")) 
+
+
+map_annual_ppt %>% 
+  tmap_leaflet %>% 
+  activateGPS() %>% 
+  leaflet.extras::addFullscreenControl() %>% 
+  addControlGPS(
+    options = gpsOptions(
+      position = \"topleft\",
+      activate = T, 
+      autoCenter = F,
+      setView = T)) %>% 
+
+activateGPS()
+```"
+"1","Warning: The shape shape_fields is invalid. See sf::st_is_validWarning: Currect projection of shape df_coords unknown. Long-lat (WGS84) is assumed.
+"

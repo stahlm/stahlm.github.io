@@ -1,0 +1,2 @@
+"0","borders_districts <- borders_districts %>% "
+"0","  filter(type_en == ""Metropolitan department"")"

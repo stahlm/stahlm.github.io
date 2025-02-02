@@ -1,0 +1,4 @@
+"0","```r
+df_coords <- df_coords %>% 
+  st_as_sf(coords = c(\"Long\", \"Lat\"))
+```"

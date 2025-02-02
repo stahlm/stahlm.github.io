@@ -1,0 +1,7 @@
+"0","```r
+df_SC <- season_out %>% 
+  select(x, y, SC)
+
+df_SI <- season_out %>% 
+  select(x, y, SI)
+```"

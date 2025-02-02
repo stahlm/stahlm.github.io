@@ -1,0 +1,3 @@
+"0","t2 <- whatWQPsites(legacy = F, statecode = ""CT"", siteType = ""Well"")"
+"2","GET: https://www.waterqualitydata.us/wqx3/Station/search?statecode=US%3A09&siteType=Well&mimeType=csv
+"

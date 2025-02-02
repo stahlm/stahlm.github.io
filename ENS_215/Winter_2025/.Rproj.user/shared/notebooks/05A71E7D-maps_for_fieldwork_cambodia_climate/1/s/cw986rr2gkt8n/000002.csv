@@ -1,0 +1,4 @@
+"0","```r
+df_coords <- df_coords %>% 
+  dplyr::select(Site = site_name_clean, Lat = Latitude, Long = Longitude)
+```"

@@ -1,0 +1,8 @@
+"0","streamflows %>% "
+"0","  ggplot(aes(x = dateTime, y = flow_cfs)) +"
+"0","  geom_line() +"
+"0","  scale_y_log10(labels = scales::trans_format('log10', scales::math_format(10^.x)) ) +"
+"0","  theme_bw() +"
+"0","  labs(y = ""Flow (cfs)"","
+"0","       x = """") +"
+"0","  facet_wrap(~site_no, ncol = 1)"

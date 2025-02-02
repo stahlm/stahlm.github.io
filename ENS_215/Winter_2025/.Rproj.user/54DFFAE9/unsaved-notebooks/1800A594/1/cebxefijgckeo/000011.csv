@@ -1,6 +1,0 @@
-"0","precip_state %>% "
-"0","  group_by(Month) %>% "
-"0","  summarise(avg_precip = mean(Precip_inches),"
-"0","            min_precip = min(Precip_inches),"
-"0","            max_precip = max(Precip_inches)"
-"0","            )"

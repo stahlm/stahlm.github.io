@@ -1,0 +1,12 @@
+"0","```r
+raster_SC %>% 
+  tm_shape() +
+  tm_raster(palette = \"viridis\", style = \"cont\") + 
+  
+  tm_shape(borders_hires) +
+  tm_borders() +
+  
+  tm_layout(legend.outside = T)
+```"
+"1","Warning: Currect projection of shape . unknown. Long lat (epsg 4326) coordinates assumed.
+"

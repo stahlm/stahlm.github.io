@@ -1,0 +1,9 @@
+"0","CT_sites_gw <- readWQPsummary("
+"0","  statecode = ""CT"","
+"0","  siteType = ""Well"""
+"0",")"
+"2","NEWS: Data does not include USGS data newer than March 11, 2024. More details:
+https://doi-usgs.github.io/dataRetrieval/articles/Status.html
+"
+"2","GET: https://www.waterqualitydata.us/data/summary/monitoringLocation/search?statecode=US%3A09&siteType=Well&dataProfile=periodOfRecord&mimeType=csv
+"

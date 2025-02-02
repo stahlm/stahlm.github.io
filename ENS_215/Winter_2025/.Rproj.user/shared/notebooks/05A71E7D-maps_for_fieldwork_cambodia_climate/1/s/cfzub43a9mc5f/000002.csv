@@ -1,0 +1,8 @@
+"0","```r
+df_coords <- df_coords %>% 
+  group_by(Site) %>% 
+  summarize(Lat = mean(Lat, na.rm = T),
+            Long = mean(Long, na.rm = T)
+            ) %>% 
+  ungroup()
+```"

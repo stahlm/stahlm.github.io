@@ -1,0 +1,4 @@
+"0","```r
+a_long <- a %>% 
+  pivot_longer(cols = starts_with(\"month\"), names_to = \"Month\", values_to = \"observation_value\")
+```"
