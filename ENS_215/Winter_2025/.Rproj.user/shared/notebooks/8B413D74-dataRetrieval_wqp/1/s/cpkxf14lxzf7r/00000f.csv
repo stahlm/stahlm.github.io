@@ -1,0 +1,9 @@
+"0","NY_NO3_recent_data <- readWQPqw(siteNumbers = NY_NO3_sites$MonitoringLocationIdentifier,"
+"0","                                parameterCd = pCode,"
+"0","                                startDate = ""2015-01-01"", legacy = T"
+"0","                                )"
+"2","POST: https://www.waterqualitydata.us/data/Result/search
+"
+"2","NEWS: Data does not include USGS data newer than March 11, 2024. More details:
+https://doi-usgs.github.io/dataRetrieval/articles/Status.html
+"

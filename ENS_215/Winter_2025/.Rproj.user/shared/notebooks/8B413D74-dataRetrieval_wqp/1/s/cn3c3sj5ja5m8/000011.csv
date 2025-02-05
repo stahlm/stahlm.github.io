@@ -1,0 +1,7 @@
+"0","df_stream_data %>% "
+"0","  filter(!is.na(Flow), year(Date) > 2020) %>% "
+"0","  "
+"0","  ggplot(aes(x =Date, y = Flow)) +"
+"0","  geom_line() +"
+"0","  "
+"0","  facet_wrap(~ site_no, scales = ""free"")"

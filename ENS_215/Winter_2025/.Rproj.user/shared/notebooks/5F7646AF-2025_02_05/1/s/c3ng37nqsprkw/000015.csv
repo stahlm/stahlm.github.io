@@ -1,0 +1,6 @@
+"0",""
+"0","head(temperature_data) %>% "
+"0","  kable() %>% "
+"0","  kable_styling(bootstrap_options = ""condensed"", position = ""center"") %>% "
+"0","  column_spec(column = c(1,2,4), background = ""yellow"") %>% "
+"0","  column_spec(column = c(3), background = ""lightgrey"") "

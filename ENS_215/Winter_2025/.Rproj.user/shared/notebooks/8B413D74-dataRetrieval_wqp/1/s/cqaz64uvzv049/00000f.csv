@@ -1,0 +1,2 @@
+"0","CT_usgs_sites <- CT_sites_gw %>% "
+"0","  filter(Provider == ""NWIS"", CharacteristicName == ""Chloride"")"

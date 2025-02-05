@@ -1,0 +1,2 @@
+"0","regions_data <- mutate(regions_data, state_cd = State_abb)"
+"0","a <- left_join(climate_data, regions_data)"

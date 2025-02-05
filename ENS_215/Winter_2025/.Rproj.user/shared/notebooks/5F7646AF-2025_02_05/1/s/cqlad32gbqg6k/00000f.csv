@@ -1,0 +1,3 @@
+"0","precip_switched <- select(precip_MA, state_cd, everything())"
+"0",""
+"0","a <- bind_rows(precip_switched, precip_NY)"

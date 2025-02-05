@@ -1,0 +1,7 @@
+"0","precip_tidy_MA <- precip_untidy_MA %>% "
+"0","  pivot_longer(cols = month.abb, "
+"0","               names_to = ""Month"","
+"0","               values_to = ""Precip_inches"""
+"0","               )"
+"0",""
+"0","precip_tidy_MA"
