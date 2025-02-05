@@ -35,7 +35,7 @@ Now, let's learn how we do these types of operations.
 ### Combine rows (observations)
 You may have multiple related datasets that have the same variables (columns).  Dealing with a single, combined dataset is much easier, so in this case you want to combine rows (observations).  
 
-You've already seen the product of this type of operation -- the precipitation data used in Lab 2, was originally 50 individual files (one for each US state) that I then combined into a single large dataset.  Working with a single dataset is much easier than if we had worked with 50 individual ones.  This combined dataset had the exact same columns (variables) as each of the individual datasets, though it had many more rows (observations).  
+Imagine you downloaded precipitation data for each of the 50 US states, with data for each state coming in its own individual files (i.e., one for each US state).  If you wanted to conduct analysis you would likely want to create a single combined dataset.  Working with a single dataset is much easier than if we had worked with 50 individual ones.  This combined dataset would have the exact same columns (variables) as each of the individual datasets, though it had many more rows (observations).  
 
 <br/>
 
