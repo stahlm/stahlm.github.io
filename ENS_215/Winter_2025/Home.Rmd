@@ -134,6 +134,9 @@ output:
 
 + Lab 4 -- **Final project kick-off** [(html)](https://stahlm.github.io/ENS_215/Winter_2025/Labs/Lab_Final_Project.html) 
 
++ Lab 5 -- **Final project: post-proposal consultations and analysis** [(html)](https://stahlm.github.io/ENS_215/Winter_2025/Labs/Lab_Final_Project_Second_Meeting.html)  
+  + Loading data into R [(html)](https://stahlm.github.io/ENS_215/Winter_2025/Lectures/2025_02_05_load_data_into_R.html) [(Rmd)](2025_02_05_load_data_into_R.Rmd)  
+
 ```{r eval = F, echo = F}
  
 ```
