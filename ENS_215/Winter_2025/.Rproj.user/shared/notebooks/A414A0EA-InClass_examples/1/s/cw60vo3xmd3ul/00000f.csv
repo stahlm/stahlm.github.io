@@ -1,0 +1,6 @@
+"0","precip_temp_tidy_CA <- precip_temp_untidy_CA %>% "
+"0","  pivot_wider(names_from = measurement_type,"
+"0","              values_from = measurement"
+"0","              )"
+"0",""
+"0","precip_temp_tidy_CA"

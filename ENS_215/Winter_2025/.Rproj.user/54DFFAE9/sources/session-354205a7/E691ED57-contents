@@ -1,0 +1,31 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+# This is my title
+
+## This is a sub-header
+
+### This is a smaller subheader
+```{r}
+library(tidyverse)
+```
+
+load in the file 
+```{r}
+CO2_data <- read_csv(file = "./Lectures/Mauna_Loa_CO2.txt",
+                     skip = 2)
+```
+```{r}
+library(readxl)
+```
+
+```{r}
+
+```
+
+
+
+

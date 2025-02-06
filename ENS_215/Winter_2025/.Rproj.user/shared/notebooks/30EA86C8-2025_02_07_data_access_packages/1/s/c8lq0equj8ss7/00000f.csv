@@ -1,0 +1,5 @@
+"0","library(GSODR)"
+"2","Registered S3 method overwritten by 'data.table':
+  method           from
+  print.data.table     
+"

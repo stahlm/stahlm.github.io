@@ -1,0 +1,14 @@
+"0","precip_tidy_MA <- precip_untidy_MA %>% "
+"0","  pivot_longer(cols = month.abb, "
+"0","               names_to = ""Month"","
+"0","               values_to = ""Precip_inches"")"
+"2","Warning: Using an external vector in selections was deprecated in tidyselect 1.1.0.
+Please use `all_of()` or `any_of()` instead.
+# Was:
+data %>% select(month.abb)
+
+# Now:
+data %>% select(all_of(month.abb))
+
+See <https://tidyselect.r-lib.org/reference/faq-external-vector.html>."
+"0","precip_tidy_MA"

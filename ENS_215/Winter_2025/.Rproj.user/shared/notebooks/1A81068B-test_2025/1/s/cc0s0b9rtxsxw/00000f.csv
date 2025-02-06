@@ -1,0 +1,9 @@
+"0","CO2_data <- read_csv(file = ""./Lectures/Mauna_Loa_CO2.txt"","
+"0","                     skip = 2)"
+"2","[1mRows: [22m[34m731[39m [1mColumns: [22m[34m3[39m"
+"2","[36m──[39m [1mColumn specification[22m [36m─────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[32mdbl[39m (3): Year, Month, CO2_ppm"
+"2","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message."

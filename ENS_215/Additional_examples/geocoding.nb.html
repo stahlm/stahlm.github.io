@@ -5795,12 +5795,27 @@ display: none;
 <h2>Load in Packages</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShBT0kpXG5saWJyYXJ5KHRpZHl2ZXJzZSlcbmxpYnJhcnkodGlkeWdlb2NvZGVyKVxubGlicmFyeShsZWFmbGV0KVxuYGBgIn0= -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShBT0kpXG5saWJyYXJ5KHRpZHl2ZXJzZSlcbmxpYnJhcnkodGlkeWdlb2NvZGVyKVxuYGBgIn0= -->
 <pre class="r"><code>library(AOI)
 library(tidyverse)
-library(tidygeocoder)
-library(leaflet)</code></pre>
+library(tidygeocoder)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5BdHRhY2hpbmcgcGFja2FnZTog4oCYdGlkeWdlb2NvZGVy4oCZXG5cblRoZSBmb2xsb3dpbmcgb2JqZWN0IGlzIG1hc2tlZCBmcm9tIOKAmHBhY2thZ2U6QU9J4oCZOlxuXG4gICAgZ2VvY29kZVxuIn0= -->
+<pre><code>
+Attaching package: ‘tidygeocoder’
+
+The following object is masked from ‘package:AOI’:
+
+    geocode</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShsZWFmbGV0KVxuYGBgIn0= -->
+<pre class="r"><code>library(leaflet)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiUmVnaXN0ZXJlZCBTMyBtZXRob2Qgb3ZlcndyaXR0ZW4gYnkgJ2h0bWx3aWRnZXRzJzpcbiAgbWV0aG9kICAgICAgICAgICBmcm9tICAgICAgICAgXG4gIHByaW50Lmh0bWx3aWRnZXQgdG9vbHM6cnN0dWRpb1xuIn0= -->
+<pre><code>Registered S3 method overwritten by &#39;htmlwidgets&#39;:
+  method           from         
+  print.htmlwidget tools:rstudio</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -5818,9 +5833,18 @@ b &lt;- c(&quot;loc 1&quot;, &quot;loc 2&quot;)</code></pre>
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYyA8LSBkYXRhLmZyYW1lKG5hbWUgPSBiLCBhZGRyID0gYSlcbmBgYCJ9 -->
-<pre class="r"><code>c &lt;- data.frame(name = b, addr = a)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYyA8LSBkYXRhLmZyYW1lKG5hbWUgPSBiLCBhZGRyID0gYSlcblxuY1xuYGBgIn0= -->
+<pre class="r"><code>c &lt;- data.frame(name = b, addr = a)
+
+c</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6MiwibmNvbCI6Miwic3VtbWFyeSI6eyJEZXNjcmlwdGlvbiI6WyJkZiBbMiA8VSswMEQ3PiAyXSJdfX0sInJkZiI6Ikg0c0lBQUFBQUFBQUJsMVJ5MDdETUJEY1BBeHFKQjRTZDJUdVRVUUtpSDRBNHRoRFNxVnlOTGFoVm9OZE9RN1FueS9ZcVkxYW4zWjNQTE03a3pSUHk3dGlXUUJBQm5tYVFZWnNDMmp4OGx4T3dTSjJTQ0NIa2FzL2xuUmxHd2RlRG5YL2dGcEZjWDA0VENMR3pmVDJFUytrVUJMUGplYmNqUEdjcnJqazFCQzJIZVBacXlkZVQrcUhHamZpaTJ2Y0tNTHNrK2pXWk50TE1yQ09IU0ZKUG5rWDNjb2RHSHJDbUk1RUk2MitxeUE4ODNHU2ZUM2VUbHZTaGUwQkxCZ3hwSHJYN2diQUxwS2NxbzJ4SWEwb2RSOEtSZUpFUjhCRkw1MFRWdEpWTDlmbHZUdmczWUIzNTUwZDl1NWsrdXRYSWIvcWhNc1BJZm4vWHlCdnZQWER1VTA4Qks0MldrZ1RrbGkwcTR3eUpQQUtxdHFBRE5sZzl3Zmx5MWRwSHdJQUFBPT0ifQ== -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["addr"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"loc 1","2":"807 Union Street, Schenectady, NY"},{"1":"loc 2","2":"2151 River Road, Niskayuna, NY"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[2]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -5831,10 +5855,20 @@ b &lt;- c(&quot;loc 1&quot;, &quot;loc 2&quot;)</code></pre>
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGZfY29vcmRzIDwtIGdlb2NvZGUoLnRibCA9IGMsIGFkZHJlc3MgPSBhZGRyLCBtZXRob2QgPSAnY2Vuc3VzJylcbmBgYCJ9 -->
 <pre class="r"><code>df_coords &lt;- geocode(.tbl = c, address = addr, method = &#39;census&#39;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiUGFzc2luZyAyIGFkZHJlc3NlcyB0byB0aGUgVVMgQ2Vuc3VzIGJhdGNoIGdlb2NvZGVyXG5RdWVyeSBjb21wbGV0ZWQgaW46IDAuNCBzZWNvbmRzXG4ifQ== -->
+<!-- rnb-output-begin eyJkYXRhIjoiUGFzc2luZyAyIGFkZHJlc3NlcyB0byB0aGUgVVMgQ2Vuc3VzIGJhdGNoIGdlb2NvZGVyXG5RdWVyeSBjb21wbGV0ZWQgaW46IDAuMiBzZWNvbmRzXG4ifQ== -->
 <pre><code>Passing 2 addresses to the US Census batch geocoder
-Query completed in: 0.4 seconds</code></pre>
+Query completed in: 0.2 seconds</code></pre>
 <!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGZfY29vcmRzXG5gYGAifQ== -->
+<pre class="r"><code>df_coords</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6MiwibmNvbCI6NCwic3VtbWFyeSI6eyJBIHRpYmJsZSI6WyIyIHggNCJdfX0sInJkZiI6Ikg0c0lBQUFBQUFBQUJsMVJUVXNETVJCTjkwUHBRcXZneVl0RVBJalNMcllpOVdaRmUrakZ3eGFoSHRQZDJDNWRrNUpOdGNXTC8wSHdMdjBqRlFwZS9BVmUvUmxDMTJTYlNNbENkdCs4ZVRNdk14dGNkMCs5cmdjQXNJRmoyY0IyQlFUdVplZXEzUWFDRVVFQk9LQW92eE1oMmhIQUVXZGJIRXNsM0lTR3NMWWUxQTNGL3ZsSkE5NlNtQkxZNFF4alhvR2RjSUFKRGptS3BoVjRjNmVFZS9YYVdRMEc4U05tTUtBb0VxazRIYUxwbUtCY0JVQlp0bTIyQmhlejQ4L2RaaXYrUGZoYXZHbCtIankvZm4vMGZ1YkJaUEYrTkRzMEpuQUplc0NwdXB1alNFZVNHcU1vWWdyYkNlS2FUaWpwRzcyS2pENzV1bDlKbXIrSVY1WmxTOU0wVEZDcVRUWHBSWWdqLzU1SmF3RE1razA2NG1KWG9zaVMrM2FONGdJemlLMHhrVGVKcXVGZ1RJYlZoalRJMDZ1bnBMQzFocDJWcFpXcFZxNXF0WUZKUHliNC8yZWlIazVVVUJZVDV3UDdJeFlUdlJ0UHNLblBLVWRhNTRVMDBVdytHMWorQVhubEY1Um1BZ0FBIn0= -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["addr"],"name":[2],"type":["chr"],"align":["left"]},{"label":["lat"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["long"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"loc 1","2":"807 Union Street, Schenectady, NY","3":"42.81444","4":"-73.9309"},{"1":"loc 2","2":"2151 River Road, Niskayuna, NY","3":"42.82798","4":"-73.8870"}],"options":{"columns":{"min":{},"max":[10],"total":[4]},"rows":{"min":[10],"max":[10],"total":[2]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -5852,10 +5886,10 @@ Query completed in: 0.4 seconds</code></pre>
 <!-- rnb-htmlwidget-begin eyJkZXBlbmRlbmNpZXMiOlt7Im5hbWUiOiJodG1sd2lkZ2V0cyIsInZlcnNpb24iOiIxLjYuMiIsInNyYyI6eyJmaWxlIjoid3d3In0sIm1ldGEiOltdLCJzY3JpcHQiOiJodG1sd2lkZ2V0cy5qcyIsInN0eWxlc2hlZXQiOltdLCJoZWFkIjpbXSwiYXR0YWNobWVudCI6W10sInBhY2thZ2UiOiJodG1sd2lkZ2V0cyIsImFsbF9maWxlcyI6dHJ1ZX0seyJuYW1lIjoianF1ZXJ5IiwidmVyc2lvbiI6IjEuMTIuNCIsInNyYyI6eyJmaWxlIjoiaHRtbHdpZGdldHMvbGliL2pxdWVyeSJ9LCJtZXRhIjpbXSwic2NyaXB0IjoianF1ZXJ5Lm1pbi5qcyIsInN0eWxlc2hlZXQiOltdLCJoZWFkIjpbXSwiYXR0YWNobWVudCI6W10sInBhY2thZ2UiOiJsZWFmbGV0IiwiYWxsX2ZpbGVzIjp0cnVlfSx7Im5hbWUiOiJsZWFmbGV0IiwidmVyc2lvbiI6IjEuMy4xIiwic3JjIjp7ImZpbGUiOiJodG1sd2lkZ2V0cy9saWIvbGVhZmxldCJ9LCJtZXRhIjpbXSwic2NyaXB0IjoibGVhZmxldC5qcyIsInN0eWxlc2hlZXQiOiJsZWFmbGV0LmNzcyIsImhlYWQiOltdLCJhdHRhY2htZW50IjpbXSwicGFja2FnZSI6ImxlYWZsZXQiLCJhbGxfZmlsZXMiOnRydWV9LHsibmFtZSI6ImxlYWZsZXRmaXgiLCJ2ZXJzaW9uIjoiMS4wLjAiLCJzcmMiOnsiZmlsZSI6Imh0bWx3aWRnZXRzL2xpYi9sZWFmbGV0Zml4In0sIm1ldGEiOltdLCJzY3JpcHQiOltdLCJzdHlsZXNoZWV0IjoibGVhZmxldGZpeC5jc3MiLCJoZWFkIjpbXSwiYXR0YWNobWVudCI6W10sInBhY2thZ2UiOiJsZWFmbGV0IiwiYWxsX2ZpbGVzIjp0cnVlfSx7Im5hbWUiOiJwcm9qNCIsInZlcnNpb24iOiIyLjYuMiIsInNyYyI6eyJmaWxlIjoiaHRtbHdpZGdldHMvcGx1Z2lucy9Qcm9qNExlYWZsZXQifSwibWV0YSI6W10sInNjcmlwdCI6InByb2o0Lm1pbi5qcyIsInN0eWxlc2hlZXQiOltdLCJoZWFkIjpbXSwiYXR0YWNobWVudCI6W10sInBhY2thZ2UiOiJsZWFmbGV0IiwiYWxsX2ZpbGVzIjpmYWxzZX0seyJuYW1lIjoiUHJvajRMZWFmbGV0IiwidmVyc2lvbiI6IjEuMC4xIiwic3JjIjp7ImZpbGUiOiJodG1sd2lkZ2V0cy9wbHVnaW5zL1Byb2o0TGVhZmxldCJ9LCJtZXRhIjpbXSwic2NyaXB0IjoicHJvajRsZWFmbGV0LmpzIiwic3R5bGVzaGVldCI6W10sImhlYWQiOltdLCJhdHRhY2htZW50IjpbXSwicGFja2FnZSI6ImxlYWZsZXQiLCJhbGxfZmlsZXMiOmZhbHNlfSx7Im5hbWUiOiJyc3R1ZGlvX2xlYWZsZXQiLCJ2ZXJzaW9uIjoiMS4zLjEiLCJzcmMiOnsiZmlsZSI6Imh0bWx3aWRnZXRzL2xpYi9yc3R1ZGlvX2xlYWZsZXQifSwibWV0YSI6W10sInNjcmlwdCI6W10sInN0eWxlc2hlZXQiOiJyc3R1ZGlvX2xlYWZsZXQuY3NzIiwiaGVhZCI6W10sImF0dGFjaG1lbnQiOltdLCJwYWNrYWdlIjoibGVhZmxldCIsImFsbF9maWxlcyI6dHJ1ZX0seyJuYW1lIjoibGVhZmxldC1iaW5kaW5nIiwidmVyc2lvbiI6IjIuMS4yIiwic3JjIjp7ImZpbGUiOiJodG1sd2lkZ2V0cyJ9LCJtZXRhIjpbXSwic2NyaXB0IjoibGVhZmxldC5qcyIsInN0eWxlc2hlZXQiOltdLCJoZWFkIjpbXSwiYXR0YWNobWVudCI6W10sInBhY2thZ2UiOiJsZWFmbGV0IiwiYWxsX2ZpbGVzIjpmYWxzZX1dLCJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImxlYWZsZXQiLCJodG1sd2lkZ2V0Il0sInNpemluZ1BvbGljeSI6eyJkZWZhdWx0V2lkdGgiOlsiMTAwJSJdLCJkZWZhdWx0SGVpZ2h0IjpbNDAwXSwicGFkZGluZyI6WzBdLCJmaWxsIjpbXSwidmlld2VyIjp7ImRlZmF1bHRXaWR0aCI6W10sImRlZmF1bHRIZWlnaHQiOltdLCJwYWRkaW5nIjpbXSwiZmlsbCI6W3RydWVdLCJzdXBwcmVzcyI6W2ZhbHNlXSwicGFuZUhlaWdodCI6W119LCJicm93c2VyIjp7ImRlZmF1bHRXaWR0aCI6W10sImRlZmF1bHRIZWlnaHQiOltdLCJwYWRkaW5nIjpbXSwiZmlsbCI6W3RydWVdLCJleHRlcm5hbCI6W2ZhbHNlXX0sImtuaXRyIjp7ImRlZmF1bHRXaWR0aCI6W10sImRlZmF1bHRIZWlnaHQiOltdLCJmaWd1cmUiOlt0cnVlXX0sInZpZXdlci5wYWRkaW5nIjpbMF0sInZpZXdlci5maWxsIjpbdHJ1ZV19fX0= -->
 
 <!-- htmlwidget-container-begin -->
-<div class="leaflet html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-f73c179f135263451d37" style="width:500px;height:500px;"></div>
+<div class="leaflet html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-f8f8c6f84cb99d44bada" style="width:500px;height:500px;"></div>
 <!-- htmlwidget-container-end -->
-<script type="application/json" data-for="htmlwidget-f73c179f135263451d37">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[[42.8144420584559,42.8279766797865],[-73.9308993233241,-73.8870013147935],null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[42.8144420584559,42.8279766797865],"lng":[-73.9308993233241,-73.8870013147935]}},"evals":[],"jsHooks":[]}</script>
-<!-- htmlwidget-sizing-policy-base64 PHNjcmlwdCB0eXBlPSJhcHBsaWNhdGlvbi9odG1sd2lkZ2V0LXNpemluZyIgZGF0YS1mb3I9Imh0bWx3aWRnZXQtZjczYzE3OWYxMzUyNjM0NTFkMzciPnsidmlld2VyIjp7IndpZHRoIjoiMTAwJSIsImhlaWdodCI6NDAwLCJwYWRkaW5nIjowLCJmaWxsIjp0cnVlfSwiYnJvd3NlciI6eyJ3aWR0aCI6IjEwMCUiLCJoZWlnaHQiOjQwMCwicGFkZGluZyI6MCwiZmlsbCI6dHJ1ZX19PC9zY3JpcHQ+ -->
+<script type="application/json" data-for="htmlwidget-f8f8c6f84cb99d44bada">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[[42.814442058456,42.827976679787],[-73.930899323324,-73.887001314794],null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[42.814442058456,42.827976679787],"lng":[-73.930899323324,-73.887001314794]}},"evals":[],"jsHooks":[]}</script>
+<!-- htmlwidget-sizing-policy-base64 PHNjcmlwdCB0eXBlPSJhcHBsaWNhdGlvbi9odG1sd2lkZ2V0LXNpemluZyIgZGF0YS1mb3I9Imh0bWx3aWRnZXQtZjhmOGM2Zjg0Y2I5OWQ0NGJhZGEiPnsidmlld2VyIjp7IndpZHRoIjoiMTAwJSIsImhlaWdodCI6NDAwLCJwYWRkaW5nIjowLCJmaWxsIjp0cnVlfSwiYnJvd3NlciI6eyJ3aWR0aCI6IjEwMCUiLCJoZWlnaHQiOjQwMCwicGFkZGluZyI6MCwiZmlsbCI6dHJ1ZX19PC9zY3JpcHQ+ -->
 
 <!-- rnb-htmlwidget-end -->
 
@@ -5864,7 +5898,7 @@ Query completed in: 0.4 seconds</code></pre>
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQojIyBMb2FkIGluIFBhY2thZ2VzDQpgYGB7cn0NCmxpYnJhcnkoQU9JKQ0KbGlicmFyeSh0aWR5dmVyc2UpDQpsaWJyYXJ5KHRpZHlnZW9jb2RlcikNCmxpYnJhcnkobGVhZmxldCkNCmBgYA0KDQojIyBFeGFtcGxlIGRhdGFzZXQNCmBgYHtyfQ0KYSA8LSBjKCI4MDcgVW5pb24gU3RyZWV0LCBTY2hlbmVjdGFkeSwgTlkiLCANCiAgICAgICAiMjE1MSBSaXZlciBSb2FkLCBOaXNrYXl1bmEsIE5ZIikNCg0KYiA8LSBjKCJsb2MgMSIsICJsb2MgMiIpDQpgYGANCg0KYGBge3J9DQpjIDwtIGRhdGEuZnJhbWUobmFtZSA9IGIsIGFkZHIgPSBhKQ0KYGBgDQoNCiMjIEdlb2NvZGUNCmBgYHtyfQ0KZGZfY29vcmRzIDwtIGdlb2NvZGUoLnRibCA9IGMsIGFkZHJlc3MgPSBhZGRyLCBtZXRob2QgPSAnY2Vuc3VzJykNCmBgYA0KIyMgTWFrZSBhIG1hcA0KYGBge3J9DQpkZl9jb29yZHMgJT4lIA0KICBsZWFmbGV0KCkgJT4lIA0KICBhZGRUaWxlcygpICU+JSANCiAgYWRkTWFya2VycyhsbmcgPSB+bG9uZywgbGF0ID0gfmxhdCkNCmBgYA0KDQo=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQojIyBMb2FkIGluIFBhY2thZ2VzDQpgYGB7cn0NCmxpYnJhcnkoQU9JKQ0KbGlicmFyeSh0aWR5dmVyc2UpDQpsaWJyYXJ5KHRpZHlnZW9jb2RlcikNCmxpYnJhcnkobGVhZmxldCkNCmBgYA0KDQojIyBFeGFtcGxlIGRhdGFzZXQNCmBgYHtyfQ0KYSA8LSBjKCI4MDcgVW5pb24gU3RyZWV0LCBTY2hlbmVjdGFkeSwgTlkiLCANCiAgICAgICAiMjE1MSBSaXZlciBSb2FkLCBOaXNrYXl1bmEsIE5ZIikNCg0KYiA8LSBjKCJsb2MgMSIsICJsb2MgMiIpDQpgYGANCg0KDQpgYGB7cn0NCmMgPC0gZGF0YS5mcmFtZShuYW1lID0gYiwgYWRkciA9IGEpDQoNCmMNCmBgYA0KDQoNCg0KIyMgR2VvY29kZQ0KYGBge3J9DQpkZl9jb29yZHMgPC0gZ2VvY29kZSgudGJsID0gYywgYWRkcmVzcyA9IGFkZHIsIG1ldGhvZCA9ICdjZW5zdXMnKQ0KDQpkZl9jb29yZHMNCmBgYA0KIyMgTWFrZSBhIG1hcA0KYGBge3J9DQpkZl9jb29yZHMgJT4lIA0KICBsZWFmbGV0KCkgJT4lIA0KICBhZGRUaWxlcygpICU+JSANCiAgYWRkTWFya2VycyhsbmcgPSB+bG9uZywgbGF0ID0gfmxhdCkNCmBgYA0KDQo=</div>
 
 
 
