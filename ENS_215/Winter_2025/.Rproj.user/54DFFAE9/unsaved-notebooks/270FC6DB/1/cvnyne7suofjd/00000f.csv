@@ -1,7 +1,0 @@
-"0","summary_table_1 <- bangladesh_gw %>% "
-"0","  summarise_at(vars(WELL_DEPTH_m, YEAR_CONSTRUCTION),"
-"0","               lst(mean, median),"
-"0","               na.rm = T"
-"0","               )"
-"0",""
-"0","summary_table_1"

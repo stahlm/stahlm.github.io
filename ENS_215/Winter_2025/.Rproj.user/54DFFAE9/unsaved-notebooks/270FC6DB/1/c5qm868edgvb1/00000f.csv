@@ -1,7 +1,0 @@
-"0","shallow <- 50 # threshold for shallow wells (meters)"
-"0","intermed <- 100 # threshold for intermed wells (meters)"
-"0",""
-"0","bangladesh_gw <- bangladesh_gw %>% "
-"0","  mutate(depth_cat = case_when(WELL_DEPTH_m <= shallow ~""shallow"","
-"0","                               WELL_DEPTH_m > shallow & WELL_DEPTH_m <= intermed ~ ""intermed"","
-"0","                               WELL_DEPTH_m > intermed ~ ""deep""))"
