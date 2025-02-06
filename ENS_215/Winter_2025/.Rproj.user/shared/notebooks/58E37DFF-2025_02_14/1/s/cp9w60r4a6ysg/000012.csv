@@ -1,0 +1,5 @@
+"0","raster_world_elev_with_ocean <- rast(""https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Data/World_elev.TIFF"")"
+"0",""
+"0","raster_world_elev_with_ocean[raster_world_elev_with_ocean == 99999] <- 0"
+"0",""
+"0","terra::plot(raster_world_elev_with_ocean)"

@@ -13,7 +13,7 @@ output:
 
 <br/>
 
-Let's load in the packages that we will use today.  You will need to install the `raster` package.  
+Let's load in the packages that we will use today.  You will need to install the `terra` package.    
 
 
 ```{r message=FALSE, warning=FALSE}
@@ -22,7 +22,7 @@ library(tmap)
 library(sf)
 library(maps)
 
-library(raster) 
+library(terra) 
 ```
 
 <br/>
@@ -43,6 +43,8 @@ Today you'll be introduced to raster data.  The rasters we will deal with today 
 
 A great example of raster data would be global elevation data.  In this case you the world would be divided into grid cells (e.g. 1 degree latitude by 1 degree longitude) and for each grid cell an elevation value would be reported.  Below I'm showing a raster of elevation data for Schenectady.   
 
+We will be using the `terra` package to perform our analysis with rasters.  You can find additional info on the [terra package here](https://rspatial.github.io/terra/index.html).  
+
 
 
 ```{r message=FALSE, warning=FALSE, echo = F}
@@ -61,7 +63,7 @@ loc2use <- aoi_get(x = list("Schenectady, NY",5,5) )
 
 #writeRaster(elevation, "./elevation_schdy.tiff")
 
-elevation <- raster::raster("https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Winter_2022/Lectures/Data/elevation_schdy.tif")
+elevation <- rast("https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Winter_2022/Lectures/Data/elevation_schdy.tif")
 ```
 
 
@@ -71,7 +73,7 @@ elevation <- raster::raster("https://github.com/stahlm/stahlm.github.io/raw/mast
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 elevation %>% 
   tm_shape() +
-  tm_raster(style = "cont", palette = terrain.colors(10)) +
+  tm_raster(style = "cont", palette = terrain.colors(10), title = "Elev (m)") +
   tm_layout(legend.outside = T,
             main.title = "Schenectady elevation map") 
 ```
@@ -84,7 +86,7 @@ We often encounter geographic raster data in the environmental sciences -- in pa
 
 Let's load in a raster of the world's topography (elevation).  FYI, this raster reports elevation in units of meters. 
 ```{r}
-raster_world_elev <- raster("https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Data/World_elev.TIFF")
+raster_world_elev <- rast("https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Data/World_elev.TIFF")
 
 # Data was obtained from: https://neo.sci.gsfc.nasa.gov/view.php?datasetId=SRTM_RAMP2_TOPO
 ```
@@ -100,20 +102,20 @@ raster_world_elev
 
 This gives you a summary of the raster's attributes.  We see the dimensions (number of rows, columns, cells).  In this case we can see that the raster has 1,036,800 cells.  Thus there are 1,036,800 grid cells with elevation data.  We see that the resolution (i.e. the dimensions of each grid cell) is 0.25 degree lat and 0.25 degree long.  We also see the spatial extent of th raster and coordinate reference system info.  The summary above also reports the min and max values.  It is good to check that these values make sense -- in this case they do not look amiss.  
 
-We can take a quick look at the data by using the `plot()` function from the `raster` package 
+We can take a quick look at the data by using the `plot()` function from the `terra` package 
 ```{r}
-raster::plot(raster_world_elev)
+terra::plot(raster_world_elev)
 ```
 
 <br/>
 
 You can see that this doesn't look quiet right.  The issue here is that missing data is stored as a numeric value (in this case a very large one) and it is messing up the mapping of the values to a color scale.  Let's diagnose what exactly what is going on, that way we can identify a potential solution to the issue.
 
-Statistics on the raster values should allow us to determine the value that is being used as a placeholder for missing data.  We can get stats using the `cellStats()` function.  Note that the function takes the dataset as the first argument and the stat of interest as the second argument.  
+Statistics on the raster values should allow us to determine the value that is being used as a placeholder for missing data.  We can get stats using the `global()` function.  Note that the function takes the dataset as the first argument and the statistic of interest as the second argument.  In this case we will look at the maximum value across all of the cells in the raster.  
 
 ```{r}
-cellStats(raster_world_elev,
-          stat = max)
+global(raster_world_elev, 
+       fun = "max")
 ```
 
 
@@ -133,7 +135,7 @@ Discuss with your neighbor what this code is doing.  Make sure you understand wh
 
 Now let's plot the data again.  
 ```{r}
-raster::plot(raster_world_elev)
+terra::plot(raster_world_elev)
 ```
 
 You can see that we have fixed the issue.
@@ -147,17 +149,17 @@ You can see that we have fixed the issue.
     + Then compute the mean and maximum elevations of the Earth's topographic data.  
     
 ```{r echo=FALSE ,eval=FALSE}
-raster_world_elev_with_ocean <- raster::raster("https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Winter_2022/Lectures/Data/World_elev.TIFF")
+raster_world_elev_with_ocean <- rast("https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Data/World_elev.TIFF")
 
 raster_world_elev_with_ocean[raster_world_elev_with_ocean == 99999] <- 0
 
-raster::plot(raster_world_elev_with_ocean)
+terra::plot(raster_world_elev_with_ocean)
 ```
 
 ```{r echo=FALSE ,eval=FALSE}
-raster::cellStats(raster_world_elev_with_ocean, stat = max)
+global(raster_world_elev_with_ocean, fun = "max")
 
-raster::cellStats(raster_world_elev_with_ocean, stat = mean)
+global(raster_world_elev_with_ocean, fun = "mean")
 ```
 
 
@@ -176,8 +178,8 @@ raster_world_elev__ft <- raster_world_elev * 3.28084
 
 ```{r echo=FALSE, eval=FALSE}
 
-raster::cellStats(raster_world_elev__ft, stat = mean)
-raster::plot(raster_world_elev__ft)
+global(raster_world_elev__ft, fun = "mean")
+terra::plot(raster_world_elev__ft)
 ```
 
 <br/>
@@ -211,7 +213,7 @@ raster_atmos_pressure <- coeff_p0 * exp( -(coeff_g * raster_world_elev * coeff_M
  
 Now let's plot the raster we have created.   
 ```{r}
-raster::plot(raster_atmos_pressure)
+terra::plot(raster_atmos_pressure)
 ```
 
 
@@ -226,10 +228,10 @@ We also often need to compute values based on several rasters.  For instance we 
 
 Let's work with an example involving just two rasters.  Here we will load in a raster of the average daytime temperatures for March and a raster of the average nighttime temperatures for March (units are degrees C).  
 ```{r}
-raster_day_temps <- raster("https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Winter_2022/Lectures/Data/Day_temp_2001_march.tif")
+raster_day_temps <- rast("https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Data/Day_temp_2001_march.tif")
 raster_day_temps[raster_day_temps == 99999] <- NA
 
-raster_night_temps <- raster("https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Winter_2022/Lectures/Data/Night_temp_2001_march.TIFF")
+raster_night_temps <- rast("https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Data/Night_temp_2001_march.TIFF")
 
 raster_night_temps[raster_night_temps == 99999] <- NA
 
@@ -251,12 +253,12 @@ raster_temps_diff <- raster_day_temps - raster_night_temps
 
 Here's what your results should look like
 ```{r echo=FALSE}
-raster::plot(raster_temps_diff)
+terra::plot(raster_temps_diff)
 ```
 
 If you want to see how the data are distributed you can use the `hist()` function from the `raster` package.  Here's how the data distribution should look
 ```{r fig.height= 3, echo=FALSE}
-raster::hist(raster_temps_diff)
+terra::hist(raster_temps_diff)
 ```
 
 
@@ -298,14 +300,14 @@ reclass_m
 
 Now, we will use the `reclassify()` function to reclassify the raster.  
 ```{r}
-raster_temps_diff_reclass <- raster::reclassify(raster_temps_diff,
-                                                reclass_df)
+raster_temps_diff_reclass <- terra::classify(raster_temps_diff,
+                                             reclass_df)
 ```
 
 
 Plotting the raster, you can see that our reclassification works -- we now have four values (classes) in our raster.  
 ```{r}
-raster::plot(raster_temps_diff_reclass,
+terra::plot(raster_temps_diff_reclass,
              col = terrain.colors(4))
 ```
 
@@ -343,7 +345,7 @@ Now that we have an sf object with the world capitals, let's use the `raster::ex
 
 The `extract()` function takes the raster to use as the first argument and it takes the spatial object that has the locations of interest as the second argument.  Note that in the code below, we are going to add these extracted elevations as a new column called `elev__m` to our `cities_world_sf` object.  
 ```{r}
-cities_world_sf$elev__m <- raster::extract(raster_world_elev, cities_world_sf)
+cities_world_sf$elev__m <- extract(raster_world_elev, cities_world_sf)
 ```
 
 

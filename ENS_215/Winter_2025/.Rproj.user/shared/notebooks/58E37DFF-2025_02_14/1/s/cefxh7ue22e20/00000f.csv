@@ -2,4 +2,4 @@
 "0",""
 "0","#writeRaster(elevation, ""./elevation_schdy.tiff"")"
 "0",""
-"0","elevation <- raster::raster(""https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Winter_2022/Lectures/Data/elevation_schdy.tif"")"
+"0","elevation <- rast(""https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Winter_2022/Lectures/Data/elevation_schdy.tif"")"

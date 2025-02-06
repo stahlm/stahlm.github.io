@@ -3,7 +3,7 @@
     "path": "~/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2025/Lectures/2025_02_14.Rmd",
     "project_path": "Lectures/2025_02_14.Rmd",
     "type": "r_markdown",
-    "hash": "1346179651",
+    "hash": "0",
     "contents": "",
     "dirty": false,
     "created": 1738856466946.0,
@@ -14,15 +14,15 @@
         "chunk_output_type": "inline",
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "86,113",
-        "scrollLine": "77"
+        "cursorPosition": "347,27",
+        "scrollLine": "336"
     },
     "folds": "",
-    "lastKnownWriteTime": 1738856594,
+    "lastKnownWriteTime": 1738862045,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1738856614946,
+    "last_content_update": 1738862045130,
     "read_only": false,
     "read_only_alternatives": []
 }
