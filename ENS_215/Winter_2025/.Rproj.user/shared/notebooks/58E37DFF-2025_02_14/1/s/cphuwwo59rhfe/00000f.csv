@@ -1,0 +1,5 @@
+"0","raster_world_elev <- raster(""https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Data/World_elev.TIFF"")"
+"2","Warning: HTTP error code : 404 (GDAL error 1)"
+"2","Error in .rasterObjectFromFile(x, band = band, objecttype = ""RasterLayer"",  : 
+  Cannot create a RasterLayer object from this file. (file does not exist)
+"
