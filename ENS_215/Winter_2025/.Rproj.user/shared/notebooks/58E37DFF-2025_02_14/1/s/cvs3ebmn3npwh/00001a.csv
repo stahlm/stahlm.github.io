@@ -1,0 +1,2 @@
+"0","terra::plot(raster_temps_diff_reclass,"
+"0","             col = terrain.colors(4))"

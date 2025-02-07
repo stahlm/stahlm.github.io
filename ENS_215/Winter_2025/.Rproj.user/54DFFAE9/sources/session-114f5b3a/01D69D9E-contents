@@ -244,7 +244,8 @@ raster_night_temps[raster_night_temps == 99999] <- NA
 
 As an environmental scientist you might be interested in knowing the daily temperature range in March experienced at all locations on Earth as this would have many implications including: ecological/habitat suitability implications; energy requirements (e.g. heating and cooling demand); provide an indication of soil moisture (wetter areas would experience less fluctuation between day and night,...).  
 
-Go ahead and calculate the difference between day and night temperature and save this to a new raster called `raster_temps_diff`
+Go ahead and calculate the difference between day and night temperature and save this to a new raster called `raster_temps_diff`  
+
 ```{r}
 raster_temps_diff <- raster_day_temps - raster_night_temps
 ```
@@ -280,29 +281,22 @@ Now let's learn how to re-classify raster data.  This is where we reassign value
 
 <br/>
 
-To reclassify the raster we will need to define a matrix that has the upper and lower bounds of each class and the value that we will like to assign cells that fall into that class.  Let's define our reclassification raster below.  
+To reclassify the raster we will need to define a vector that has the upper and lower bounds of each class and the value that we will like to assign cells that fall into that class.  Let's define our reclassification raster below.  
 
-```{r}
-reclass_df <- c(-Inf, 3, 1,
-                3, 6, 2,
-                6, 15, 3,
-                15, Inf, 4
-                )
-
-reclass_m <- matrix(reclass_df,
-                    ncol = 3,
-                    byrow = TRUE)
-
-reclass_m
-```
 
 </br>
 
-Now, we will use the `reclassify()` function to reclassify the raster.  
 ```{r}
-raster_temps_diff_reclass <- terra::classify(raster_temps_diff,
-                                             reclass_df)
+reclass_vec <- c(-100,3,6,15,100)
 ```
+
+
+Now, we will use the `classify()` function to reclassify the raster.  
+```{r}
+
+raster_temps_diff_reclass <- classify(raster_temps_diff, reclass_vec)
+```
+
 
 
 Plotting the raster, you can see that our reclassification works -- we now have four values (classes) in our raster.  
@@ -316,7 +310,7 @@ terra::plot(raster_temps_diff_reclass,
 
 ### Extract values from a raster
 
-In many cases we will want to obtain the values of a raster at specified locations/points.  To do this we can use the `extract()` function from the `raster` package.  Let's test this out by extracting the land surface elevation values from our global elevation raster at the location of every capital city.
+In many cases we will want to obtain the values of a raster at specified locations/points.  To do this we can use the `extract()` function from the `terra` package.  Let's test this out by extracting the land surface elevation values from our global elevation raster at the location of every capital city.
 
 For we will need to load in a dataset that has world cities and their coordinates.  This information is found in the `world.cities` dataset from the `maps` package.  
 ```{r}
@@ -341,7 +335,7 @@ cities_world_sf <- cities_world %>%
 
 <br/>  
 
-Now that we have an sf object with the world capitals, let's use the `raster::extract()` function to extract the elevations at each of those locations.  
+Now that we have an sf object with the world capitals, let's use the `extract()` function to extract the elevations at each of those locations.  
 
 The `extract()` function takes the raster to use as the first argument and it takes the spatial object that has the locations of interest as the second argument.  Note that in the code below, we are going to add these extracted elevations as a new column called `elev__m` to our `cities_world_sf` object.  
 ```{r}
@@ -366,7 +360,7 @@ cities_world_sf %>%
 
 <br/>  
 
-Note that there are a number of other features/functionality that you can implement when extracting raster data.  For example, you can extract all the values within a buffer (radius) of each point, you can extract values along a lines feature, etc.  We won't cover those approaches today, but you can always ask me how to do this if you are interested and/or you can find great examples in the book [Geocomputation with R](https://geocompr.robinlovelace.net/) or elsewhere online.  
+Note that there are a number of other features/functionality that you can implement when extracting raster data.  For example, you can extract all the values within a buffer (radius) of each point, you can extract values along a lines feature, etc.  We won't cover those approaches today, but you can always ask me how to do this if you are interested and/or you can find great examples in the book [Geocomputation with R](https://r.geocompx.org/) or elsewhere online.  
 
 <br/>  
 
@@ -399,9 +393,10 @@ borders_data_southaf %>%
 
 Now we will go ahead and mask our elevation data to this region.  
 ```{r}
-raster_elev_southaf <- raster::mask(raster_world_elev,
-                                    borders_data_southaf)
+raster_elev_southaf <- mask(raster_world_elev,
+                            borders_data_southaf)
 ```
+
 
 Let's plot the masked raster
 ```{r fig.height= 5}
@@ -411,12 +406,12 @@ raster::plot(raster_elev_southaf)
 You can see that we now only have raster data that falls within South Africa.  However, the extent of the raster is still the extent of the original global raster.  We now need to `crop()` the raster to the bounds of South Africa.  
 
 ```{r}
-raster_elev_southaf <- raster::crop(raster_elev_southaf,
-                                    borders_data_southaf)
+raster_elev_southaf <- crop(raster_elev_southaf,
+                            borders_data_southaf)
 ```
 
 ```{r}
-raster::plot(raster_elev_southaf)
+terra::plot(raster_elev_southaf)
 ```
 
 Now we have our masked and clipped raster.  Note that the hole in the SW of the country is note an error, it is where the country of Lesotho is (this little detail makes South Africa a nice example to demonstrate masking and cropping).  

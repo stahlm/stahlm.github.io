@@ -1,7 +1,7 @@
 ---
-title: "Descriptive statistics and univariate data"
+title: "Finding and accessing environmental data in R"
 author: "ENS-215"
-date: "07-Feb-2025"
+date: "7-Feb-2025"
 output:
   html_document:
     df_print: paged
@@ -10,437 +10,550 @@ output:
     toc_float: TRUE
 ---
 
+
 <br/>
 
-```{r message=FALSE, warning=FALSE}
+
+In today's lecture we are going to learn how to make use of a number of R packages that allow you to directly query and access data from some notable environmental databases.  These data access packages are incredibly powerful as they allow you to streamline your workflow by combining the data identification and acquisition steps directly with your data analysis.  They also provide a highly efficient and reproducible approach to data identification and acquisition - allowing you to easily adapt or expand your research question with minimal additional effort.  
+
+There are many packages that have been developed for accessing data through R, including a wide range of packages for accessing environmental datasets.  Today we will look at a few notable packages and in the coming weeks we will explore some additional ones.  The packages below highlight a number of notable research-quality datasets that are likely to be useful in many of your class projects, theses, and future research/work.    
+
+
+Let's load in a few packages that we will use today.  It is likely that many of you may not yet have installed the `leaflet` package.  If so, you should go ahead and do so before proceeding.  FYI, the leaflet package allows you to make interactive maps.  You will learn how to do this in the upcoming lectures, however a few of the packages used today will automatically generate leaflet maps and so you will need this package for those maps to be automatically generated.  
+
+```{r message = F, warning = F}
 library(tidyverse)
+library(lubridate)
+library(leaflet)
 ```
 
 
-At this point in the term, you've  
-
-+ Established a foundation in programming and basic computer science concepts
-+ Learned key concepts and tools in data wrangling/manipulation
-+ Learned key concepts and tools in data visualization
-+ Manipulated, analyzed, visualized, and interpret many large datasets (often containing > 10,000 rows and tens of columns!) 
 
 
-Today and in upcoming lectures you will learn some foundational concepts and technical aspects related to the interpretation and statistical components of exploratory data analysis.  These tools and concepts will allow you extract greater information and understanding from your data and to make more rigorous and defensible statements related to your analysis.  
-
-We will begin this stage of the class with a refresher/introduction to basic statistics and deeper dive into univariate data.  
-
-<br/>
-
-## Univariate data
-**Univariate data** is data that consists of observations of a single _quantitative_ variable.  For instance when we examine a a set of temperature data we are dealing with univariate data (i.e. the single characteristic in this case is temperature).  Often we will break univariate data into categories (e.g. temperatures before year 1950 and temperatures after 1950) to see how the statistics and distributions of these groups differ.  
-
-When we compare two _quantitative_ variables (e.g. temperature and precipitation) together we are dealing with **bivariate data**, which we will dive into in a greater detail in upcoming lectures.  However, for today we will just focus on **univariate data**.  
-
-
-Before we move on, let's load in a univariate dataset that we can work with in today's lecture.  We'll load in the NOAA monthly precipitation dataset that we've worked with prior
-
-```{r warning=FALSE, message=FALSE}
-precip_data <- read_csv("https://stahlm.github.io/ENS_215/Data/NOAA_State_Precip_LabData.csv")
-```
-
-Take a quick look at the data to refamiliarize yourself with it.
-
-Now let's create a new dataset that just has the precipitation data for NY.
-```{r}
-ny_precip <- filter(precip_data, state_cd == "NY")
-```
-
-<br/>
-
-### Basic statistics refresher
-
-<br/>
-
-#### Kinds of data
-
-##### Nominal (categorical)
-Nominal variables are categorical data that have no inherent ordering/ranking.  For example:
-
-  + Country (US, Canada, China,...)
-  + Rock type (limestone, shale, basalt,...)
-  + Land use (agricultural, residential, forested,...)
-  + Species
-
-<br/>
-
-##### Ordinal
-Ordinal data is similar to categorical except that there is an inherent ordering/ranking to the data.  For example:
-
-  + Concentration categories (e.g. very low, low, medium, high, very high)
-  + Storm intensity categories (e.g. Category 1, Category 2, Category 3,...)
-  
-<br/>
-
-##### Continuous and discrete 
-Measurements can be described as either continuous or discrete.  
-
-**Continuous** variables have values that can take all possible intermediate values.  For example temperature, concentration, flow are all continuous variables.  
-
-**Discrete** variables can only take a certain set of values.  For example number of individuals is reported as integers and can only take integer values (e.g. number of individuals could be 500 people or 501 people but not 500.02524 people).  
-
-
-<br/>
-
-#### Population vs. sample
-A **population** (in statistics) refers to a the whole group of objects or values that exist.  Typically is it not possible to measure all possible objects, and thus a **sample**, which is a subset of the population is measured.  
-
-For instance, imagine you are a fisheries biologist and you would like to know the average mass of salmon in a river.  It is not feasible to capture and weigh every salmon (_i.e._ the population), so instead you collect measurements on a subset of the population (_i.e._ a sample) and make inferences based on this sample.  
-
-In the vast majority of cases where you deal with data, you will be dealing with samples and not populations.  In later lectures we will discuss how we can mathematically evaluate our degree of confidence for an estimate derived from a sample.  
-<br/>
-
-#### Measures of location
-
-##### Mean
-The mean is simply the sum of the all of the values in a sample divided by the sample size (number of values).  The mean of a population is typically denoted by the Greek letter $\mu$ (pronounced "mu") and the sample mean is denoted by $\bar x$ (pronounced "x bar").
-
-> $\mu = \frac{\sum_{i=1}^n x_i}{n}$
-
-As you are already well aware and have done hundreds of times by now, the mean is computed in R using the `mean()` function.  
-
-+ What is the monthly mean precipitation in New York? Before taking the means you should first add a new column to `ny_precip` whose values are "Pre-1950" if the year is before 1950 and "Post-1950" if the year is 1950 or later.  Then compute the following means.
-    + For all years
-    + For years before 1950
-    + For years $\ge$ 1950
-
-```{r}
-# Your code here 
+```{r warning= F, message= F, echo = F}
+# Let's also load in the `sf` and the `tmap` packages.  You will probably need to install these packages first.  FYI, both of these packages are used for spatial analysis and making maps.  We will learn much more about these topics in upcoming lectures.  
+library(sf)
+library(tmap)
 ```
 
 
-```{r eval=TRUE, echo=FALSE}
-ny_precip <- ny_precip %>% 
-  mutate(time_period = if_else(Year >= 1950,"Post-1950","Pre-1950")) 
+## Climate data
+
+In much of our environmental research we need to use climate/meteorological data.  While there are a host of organization/agencies that provide freely available research quality datasets, locating and accessing the data can often be time-consuming and difficult.  Furthermore, once you've located the data (generally through the website of the agency/organization collecting the data) you typically need to download the file (e.g., csv, Excel), load it into R, and reformat the data for your analysis.  The R packages below allow you to quickly locate the data of interest and directly load it into R in a format that is ready to use in R - typically all within a single function call!  
 
 
-```
+### GSODR package: access daily meteorological data from NOAA
 
-```{r eval=FALSE, echo=FALSE}
-ny_precip %>% group_by(time_period) %>% 
-  summarize(avg_precip = mean(Precip_inches))
+The [**Global Surface Summary of the Day - GSOD**](https://www.ncei.noaa.gov/access/metadata/landing-page/bin/iso?id=gov.noaa.ncdc:C00516) is a dataset from the National Oceanic and Atmospheric Administration (NOAA) that provides daily average values for a range of meteorological variables (e.g., air temperature, precipitation, wind speed, barometric pressure) at thousands of locations around the globe.  These daily average data are computed hourly observations at meteorological stations (i.e., they are actual observations and not model/simulation outputs) and the data goes back upwards of 90 years at some locations.  FYI, the hourly data is available through the Integrated Surface Hourly (ISH) dataset from NOAA, which we will learn how to access later in today's lecture.  
 
-mean(ny_precip$Precip_inches)
-```
+We will learn how to use the [`GSODR` package](https://docs.ropensci.org/GSODR/) to directly access this data.  
 
-
-+ Are the means between the two periods different?  
-
-FYI, we will learn later in the term, how to make more definitive and rigorous statements regarding the differences between sample means. 
-
-<br/>
-
-##### Quantiles
-Quantiles are an important way of describing a dataset.  The $f$ quantile, $q(f)$, of a set of data is the **value** in a dataset such that a fraction $f$ of the data are less than or equal to that value (_Cleveland, 1994_)[^1].  For example, the 0.25 quantile (also referred to ast the 25^th^ percentile) is the value in a given dataset where 25% of the data are less than that value.  
-
-To compute a quantile $q(f)$ for a given dataset, you first need to compute the percentile ranking of each value in a dataset.  Once the data have been ordered from smallest to largest, the percentile $f_i$ for the i^th^ value, $x_i$ is computed as follows:
-
-> $f_i = \frac{i-0.5}{n}$
-
-$q(f)$ is then the value of $x$ that has corresponds to $f$.  
-
-It is worth noting that there are other methods (_algorithms_) for computing quantiles, they are all generally similar though may differ in some of the finer detail (e.g. how tied values are treated,...)
-<br/>
-
-You are all likely familiar with quantiles as you have dealt with **medians** before.  The **median** of a dataset is the 0.50 quantile (50^th^ percentile).  The median, like the mean, is a measure of location.  However, the **median** is not skewed by outlier values like the **mean**.  
-
-
-You can use the `quantile()` function from the `stats` package to compute the value at specified quantiles for a given dataset.  In the example below, we compute the 5^th^, 25^th^, 50^th^, 75^th^, and 95^th^ percentiles for monthly rainfall in NY.  
+First let's load in the package (FYI, you will need to install the package first if you have not installed it before)
 
 
 ```{r}
-quantile(ny_precip$Precip_inches, probs = c(0.001, 0.25, 0.50, 0.75, 0.95))
-```
-
-<br/>
-
-**Exercise**
-
-+ Add a column called `frac` to the `ny_precip` data frame, which has the fraction $f$ (i.e. the percentile ranking) for each precipitation value in the dataset.  **Note**: you can compute it relatively easily using the equation shown above or you can rely on a function in `dplyr` that will do it for you.  
-
-You table should look similar the one below
-```{r echo=FALSE, eval=TRUE}
-ny_precip %>% 
-  mutate(frac = cume_dist(Precip_inches))
- #arrange(Precip_inches) %>%   
- #mutate(quant = (seq(1,nrow(ny_precip)) - 0.5)/nrow(ny_precip))
-  
-```
-
-<br/>
-
-#### Measures of spread
-The spread (or variablity) of a variable is an important property to consider when analyzing a dataset.  Among other things, the spread of a dataset gives us an idea of the range of possible values a variable can take as well as how confident we can be when making statements regarding the data when we have only a limited sample.  
-
-<br/>
-
-##### Variance and standard deviation
-The variance is the average of the of squared deviations from the mean for all of the observations.  The population variance is denoted by $\sigma^2$ and the sample variance is denoted by $s^2$. 
-
-> $\sigma^2 = \frac{1}{n}\sum_{i=1}^n (x_i-\mu)^2$
-
-The **standard deviation**, $\sigma$ (population) and $s$ (sample), is simply the square root of the the variance.  The **standard deviation** has the same units as the measurements.  
-
-
-So essentially, the variance and standard deviation are telling us on average how much the sample values deviate from the sample mean.  A sample with a variance of zero, implies that all of the measured values are equal to the mean (i.e. there is no sample variation).  As the variance grows it indicates that there is greater deviation from the mean (i.e. the samples are not tightly clustered about the mean).  
-
-<br/>
-
-In the graphic below I've created two samples (A and B) that have the exact same mean (mean = 5.0), though the variances differ.  The variance of Group A = 0.01, and the variance of Group B = 0.56.  
-```{r echo=FALSE, fig.width= 2.75, fig.height= 2, dpi = 700}
-var_example <- tibble(A = rnorm(200, 5, 0.10), B = rnorm(200, 5, 0.75)) %>% 
-  gather(`A`,`B`, key = "Group", value = "Measurement")
-
-var_example %>% ggplot(aes(x = Group, y = Measurement, fill = Group)) + 
-  geom_jitter(height = 0, width = 0.2, shape = 21, size = 1.5, color = "grey") +
-  
-  scale_fill_manual(values = c("red2","blue3")) +
-  
-  theme_classic() +
-  theme(axis.text = element_text(size = 8), axis.title = element_text(size = 10)) 
-```
-
-<br/>
-
-You can easily compute the variance using the `var()` function and the standard deviation using the `sd()` function.  
-
-**Exercise**
-
-+ Compute the variance and standard deviation of the NY precipitation data:  
-    + For all years
-    + For years before 1950
-    + For years $\ge$ 1950
-    
-Has the variance (and standard deviation) changed over time?  Conceptually what does this mean.  
-
-```{r echo=FALSE, eval=FALSE}
-ny_precip %>% 
-  group_by(time_period) %>% 
-  summarise(var_precip = var(Precip_inches), sd_precip = sd(Precip_inches))
+library(GSODR)
 ```
 
 
-<br/>
 
-##### Range and interquartile range
-The **range** is the difference between the largest and smallest value in a dataset.  One thing to note is that the range tends to increase as your sample size increases (due to the fact that you are more likely to eventually sample extreme values as you sample size grows).  
-
-The **interquartile range** (also denoted **IQR**) is the difference between the 25^th^ percentile and 75^th^ percentile values in a datset.  The **IQR** is useful in that it tells us the range in which we can expect to find the middle 50% of the sample.  
-
-You can compute the interquartile range either by using the `quartile()` function and taking the difference between the 75^th^ and 25^th^ percentile or by using the `IQR()` function 
+The package comes with a dataset that has all of the available meteorological stations and their location information/details (e.g., lat/long, country, state, period of data coverage).  We will load in this data below.  
 
 ```{r}
-
-quantile(ny_precip$Precip_inches, probs = 0.75) - quantile(ny_precip$Precip_inches, probs = 0.25) # using quantile
-IQR(ny_precip$Precip_inches) # using IQR function
-
+load(system.file("extdata", "isd_history.rda", package = "GSODR"))
 ```
 
 
-<br/>
+Take a look at the `isd_history` data frame to familiarize yourself with what it contains.  You'll see that you could use this information to easily identify sites of interest to your particular research question.  Below you can see a map of all of the available meteorological stations in the GSOD database.  
 
-#### Shape
-The shape of distribution helps us in part describe how symmetric (or asymmetric) the data distribution is as well as which portions of the distribution have the greatest density.  
+```{r warning= F, message= F, echo = F}
+library(leaflet)
 
-##### Modes
+map_gsod <- isd_history  %>% leaflet() %>% 
+  addProviderTiles(providers$OpenStreetMap) %>% 
+  addMarkers(~ LON, ~ LAT, popup = ~ STNID, clusterOptions = T)
 
-The **modes**, which are the most common values, are frequently used to describe a distribution.  The graphic below shows the distribution of a **unimodal** sample - one that has a single peak in its distribution.  
-
-```{r echo=FALSE}
-shape_symm <- tibble(x= rnorm(5*10^5, mean = 0, sd = 1)) 
-shape_symm %>% ggplot(aes(x)) +
-  geom_density(fill = "gray") +
-  theme_classic() +
-  labs(title = "Unimodal distribution",
-       x = "",
-       y = ""
-       )
-```
-
-<br/>
-
-The distribution below has two peaks and thus is described as **bimodal**
-```{r echo=FALSE}
-shape_symm <- tibble(x= c(rnorm(5*10^5, mean = -2, sd = 0.75), rnorm(5*10^5, mean = 2, sd = 0.75)) ) 
-shape_symm %>% ggplot(aes(x)) +
-  geom_density(fill = "gray") +
-  theme_classic() +
-  labs(title = "Bimodal distribution",
-       x = "",
-       y = ""
-       )
-```
-
-
-<br/>
-
-##### Skewness
-The **skewness** of a distribution describes its symmetry (or asymmetry).  The graphic below shows a **symmetric** distribution.
-
-
-```{r echo=FALSE, message=FALSE}
-
-shape_symm <- tibble(x= rnorm(5*10^5, mean = 0, sd = 1)) 
-shape_symm %>% ggplot(aes(x)) +
-  geom_density(fill = "gray") +
-  theme_classic() +
-  labs(title = "Symmetric distribution",
-       x = "",
-       y = ""
-       )
-```
-
-<br/>
-
-**Asymmetric** distributions are described as skewed.  
-
-A **right-skewed** distribution has a long-tail to the right.  These distributions are positively skewed, as they have extreme positive values that occur with low probability.
-```{r echo=FALSE}
-
-shape_right <- tibble(x = rgamma(5*10^5, shape = 2, rate = 10))
-
-shape_right %>% ggplot(aes(x)) +
-  geom_density(fill = "gray") +
-  theme_classic() +
-  labs(title = "Right-skewed",
-       x = "",
-       y = ""
-       )
-```
-
-<br/>
-
-A **left-skewed** distribution has a long-tail to the left.  These distributions are negatively skewed, as they have extreme negative values that occur with low probability.
-```{r echo=FALSE}
-
-shape_left <- tibble(x = rgamma(5*10^5, shape = 2, rate = 10))
-
-shape_left %>% ggplot(aes(-x)) +
-  geom_density(fill = "gray") +
-  theme_classic() +
-  labs(title = "Left-skewed",
-       x = "",
-       y = ""
-       )
+map_gsod
 ```
 
 
 
-<br/>
-
-### Visualizing and interpreting univariate distributions
-You've already been visualizing and also interpreting univariate distributions, however previously you were more focused on the programming and generating visuals as opposed to rigorously describing the data.  Now that you have a basic framework and language to begin characterizing data distributions, we will further expand your understanding by going into the technical details and approches to interpreting data distributions.  
-
-<br/>
+<br/>  
 
 
-#### Box plots
-Box plots provide a nice visual summary of a sample's distribution.  The box plot does not show all of the data points, but rather displays some key summary statistics that describe the distribution of the data.  
+If you identified a station(s) of interest you can download the data using the `get_GSOD()` function.  Let's try this out for Windhoek, which is the capital of the country of Namibia (located in SW Africa).  To download data for a given station, you need to supply the station ID (STNID) and the years of interest.  You can locate the STNID in the `isd_history` data frame.   
 
-The graphic below shows an example box plot, with the features of the graphic nicely annotated. 
-
-
-![Image source: _towardsdatascience.com_](https://stahlm.github.io/ENS_215/Lectures/Images/box_plot_explained.png){width=550}
-
-<br/>
-
-The `geom_boxplot()` function from the `ggplot2` package generates a box plot with the features shown above.
 
 ```{r}
-ny_precip %>% 
-  ggplot(aes(x = state_cd, y = Precip_inches)) + 
-  geom_boxplot(fill = "lightblue") + 
-  theme_classic()
+met_df <- get_GSOD(years = 2023:2024, station = "681100-99999")
 ```
 
-the box plot is helpful in that it succinctly displays the summary statistics related to the distribution of a given variable.  However, it does not display the data points themselves (_except for the outliers_), while this is often desired when summarizing data, we sometimes would like to see all of the data in addition to the box plot.  To do this we can simply add a `geom_jitter()` layer on top of our box plot.  
 
-<br/>
+Take a look at the `met_df` data frame.  The description of the variables can [be found here](https://docs.ropensci.org/GSODR/articles/GSODR.html#appendices).  
+
+Let's plot the a time-series of the daily minimum (blue line) and maximum (red line) air temperatures from 2023-2024 at the selected met station.  
+
+<br/>  
 
 ```{r}
-ny_precip %>% 
-  ggplot(aes(x = state_cd, y = Precip_inches)) + 
-  geom_boxplot(fill = "lightblue") + 
-  geom_jitter(alpha = 0.25, width = 0.15, height = 0) +
-  theme_classic()
-```
-
-+ Based on the graphic above:  
-    + Does the distribution of precip in NY appear symmetric or skewed?
-    + Does the distribution appear unimodal or multimodal?
-    + What is range of monthly precipitation values within which the middle 50% of samples fall? 
-    + What is the maximum monthly precipitation ever recorded in NY?
-
-Note, that we specified `height = 0` in the `geom_jitter()` function to prevent jittering in the y-direction (since this would jitter the y-values which is the variable of interest).  
-
-<br/>
-
-Box plots (and other graphics showing a variables distribution) are particularly useful when comparing univariate distributions between groups (e.g. precipitation pre-1950 and post-1950).  
-
-
-
-In past labs have used box plots to visualize distributions, however we hadn't gone into the the technical details of comparing distributions.  Let's look at the pre-1950 and post-1950 precipitation in NY and examine how the distributions compare with one another.  
-
-```{r}
-ny_precip %>% 
-  ggplot(aes(x = time_period, y = Precip_inches)) + 
-  geom_boxplot(fill = "lightblue", notch = TRUE) + 
-  theme_classic()
-```
-
-Notice how we specified `notch = TRUE` in the `geom_boxplot()` function.  The notches around the median values display _confidence intervals_ around the median.  Since we can't know the "true" median based on any given sample, these confidence intervals essentially tell us the range of plausible values that the "true" median is likely to fall within.  
-
-If the notches overlap between two groups then we do not have statistical confidence that the medians are truly different between the groups (_i.e._ difference may simply be due to chance based on limited sample sizes).  If the notches do not overlap then we can have statistical confidence that the medians differ.  
-
-We will cover confidence intervals in later lectures, though I am introducing them now so that are aware of the concept and can start to employ the concept in your project/lab work if you want.  
-
-
-**Exercise**
-
-1. Create a box plot comparing the precipitation distribution between months (just using the NY data)
-    i) Try adding additional features that help you interpret the data (e.g. jittered points, notches,...)
-    ii) Think about the features of the monthly distributions.  How do the distributions vary between months (with respect to medians, IQR, skewness,...)
-
-```{r echo=FALSE, eval=FALSE}
-ny_precip %>% 
-  ggplot(aes(x = factor(Month), y = Precip_inches)) +
-  geom_boxplot(fill = "lightblue", notch = TRUE) +
-  geom_jitter(alpha = 0.25, height = 0, width = 0.2) +
-  theme_classic()
-```
-
-
-2. Like we did with NY, use a box plot to compare the pre and post-1950 precipitation for another state of your choosing.  Examine the distributions and discuss how they compare and how they differ between time periods.  
-
-3. Choose a subset of 4 states from the full precipitation dataset `precip_data`.  Using this subset of states generate a box plot that compares the precipitation between the states.  Think about how the precipitation distribution varies across the states and discuss these features with your classmates.  
-
-4. Practice with the statistics functions.  Using the full precipitation dataset `precip_data` you should
-    i) Generate a summary table that has the 25^th^, 50^th^, and 75^th^ percentile monthly precipitation values and the standard deviation for each state.
-    ii) Generate  a dot plot showing these values 
-
-Your graphic will look similar to the one below
-
-```{r echo=FALSE, fig.height= 6.5, fig.width= 5}
-precip_data %>% group_by(state_cd) %>% 
-  summarize(p_25 = quantile(Precip_inches, probs = 0.25), p_50 = median(Precip_inches), 
-            p_75 = quantile(Precip_inches, probs = 0.75)) %>% 
+met_df %>% 
   ggplot() +
-  geom_point(aes(y = reorder(state_cd, p_50), x = p_50 )) +
-  geom_point(aes(y = state_cd, x = p_25), shape = 21, fill = "red") +
-  geom_point(aes(y = state_cd, x = p_75), shape = 21, fill = "blue") +
-  theme_classic() +
-  xlim(0,7) +
-  labs(title = "Monthly Precipition Quartiles",
-       subtitle = "US States",
-       y = "",
-       x = "Monthly precipitation (inches)",
-       caption = "25th (red), 50th (black), 75th (blue)")
+  geom_line(aes(x = YEARMODA, y = MIN), color = "blue") +
+  geom_line(aes(x = YEARMODA, y = MAX), color = "red") +
+  
+  labs(title = met_df$NAME[1],
+       x = "Date",
+       y = "Temperature (C)",
+       caption = paste("Data source GSOD station", met_df$STNID[1])
+       ) +
+  
+  theme_classic()
+```
+
+<br/> 
+
+Oftentimes you have a study location/area of interest and you would like to identify any/all meteorological stations that exist nearby your site.  The `GSODR` package has a really helpful function, `nearest_stations()` that does this.  You need to supply the lat/long of the area to query and the radial distance (in kilometers) from your search point.  The function will then return a list of the STNID with the station info for all stations that fall within your search radius.  
+
+Let's test this out by searching for all of the stations within 25 km of Schenectady.  
+
+```{r}
+schdy_met_stations <- nearest_stations(LAT = 42.81,
+                                  LON = -73.94,
+                                  distance = 25)
+
+
+schdy_met_stations
+```
+
+<br/>  
+
+We can see that there are `r length(schdy_met_stations)` meteorological stations within 25 km of Schenectady.  
+
++ Download the data from 2010-2015 for the stations nearby Schenectady  
++ Try downloading meteorological data for a location you are interested in.  Create some figures and/or tables that provide insight into that locations meteorological conditions.  
+
+
+<br/> 
+
+
+## worldmet: access hourly meteorological data from NOAA
+
+In the section above, we learned how to use the `GSODR` package to retrieve daily meteorological data from thousands of meteorological stations around the globe.  Now we will learn how to access the hourly data from NOAA's Integrated Surface Database using the [`worldmet` package](https://davidcarslaw.github.io/worldmet/index.html).  Note that this package is very similar to `GSODR` and in fact they access data from the same set of stations (with `GSODR` providing daily summaries and `worldmet` providing access to the hourly data).  
+
+
+Let's load in the `worldmet` package.  If you haven't yet installed `worldmet` you will need to go ahead and do so first.  
+
+```{r}
+library(worldmet)
+```
+
+The `worldmet` package is pretty straightforward to use - you simply need to specify the station you would like access and the year(s) you would like to download the data for.  
+
+We can use the `getMeta()` function to obtain a data frame containing information (e.g., station ID, name, lat/long,...) about each of the stations that have data available for download.  
+
+<br/>  
+
+```{r}
+worldmet_site_df <- getMeta(plot = F)
+
+```
+
+Take a look at the data frame you just obtained and you will see that the `code` column contains the station ID that is unique to each site.  The data frame also has a bunch of additional useful information about each site, including the time period over which data is available.  
+
+
+Note that I set in the function call above I set the `plot` argument to false.  If you set it equal to true (`T`), then an interactive map will be generated showing the location of all the sites.  To have the map show up when you knit your document you will also need to set the `returnMap` argument to `T`.  Let's make a map of all of the available sites.  
+
+```{r}
+getMeta(plot = T, returnMap = T)
+```
+
+
+Ok, now we can go ahead and use the `importNOAA()` function to download some hourly meteorological data.  This function requires two arguments.  The `code` argument is where you specify the station ID.  The year argument is where you specify the year(s) you would like to download.  To specify multiple years you would set the years argument as follows `years = 2010:2022`, which in that case would download hourly data from 2010 through 2022.  
+
+<br/>  
+
+Let's go ahead and download hourly data for Albany International Airport (station code: 725180-14735) for 2024 through the most recent reported measurement (~ 1 or 2 days prior to today).  
+
+```{r}
+worldmet_data <- importNOAA(code = "725180-14735", 
+                            year = 2024:2025)
+```
+
+Descriptions of all the variables and their units are [available here](https://davidcarslaw.github.io/worldmet/reference/importNOAA.html)
+
+**Important:** All data are reported in Greenwich Meantime (GMT) time zone format.  This means that you may want to convert the time data to the stations local time zone.  
+
+
+Let's quickly plot some of the data to see how it looks.  
+
+
+**Hourly temperature data** 
+```{r}
+worldmet_data %>% 
+  ggplot(aes(x = date, y = air_temp)) +
+  geom_line() +
+  
+  theme_bw()
+```
+
+<br/>    
+
+**Hourly relative humidity data**
+```{r}
+worldmet_data %>% 
+  ggplot(aes(x = date, y = RH)) +
+  geom_line() +
+  
+  theme_bw()
+```
+
+
+<br/> 
+
+
+## Hydrological data using the `dataRetrieval` package
+
+The USGS [National Water Information Service (NWIS)](https://waterdata.usgs.gov/nwis) is an incredible database containing physical and chemical data on the streams/rivers, lakes, and groundwater for nearly 2 million locations across the US and US territories.  From NWIS you can download data related to thousands of different parameters including streamflow, groundwater levels, and a wide range of water chemistry and physical conditions.  
+
+This data can be queried and retrieved using the `dataRetrieval` package that was developed and is maintained by the USGS.  Given the richness and volume of the data there are many functions and features within this package and some knowledge of how the available data is particularly helpful when using `dataRetrieval`.  Today we'll learn how to download daily streamflow data and also learn the basics of downloading water quality data.  For those interested in learning more I am helping to provide additional guidance and you can also explore the excellent [background](https://doi-usgs.github.io/dataRetrieval/index.html) and [tutorial](https://doi-usgs.github.io/dataRetrieval/articles/tutorial.html) articles that have been put together by the developers of the package.  
+
+
+When querying the NWIS database to find and/or download available data you generally need to specify a parameter (i.e., what was being measured) and a location/region of interest.  
+
+If you already know the USGS site number (the unique numeric identifier the USGS assigns to sampling sites) and you know that the parameter of interest was measured at the site you can proceed to the data acquisition step.  However, many times we don't know what/if available sites with the desired data exist and we need to first identify those sites.  Once you've identified the sites with the desired data, you can then directly acquire the data for the site(s) of interest.  
+
+Let's work through an example where we locate sites in Schenectady county that have mean daily streamflow and/or gauge height (i.e., stream water level) data.  Note that we could look for other parameters (e.g., turbidity, concentration of chloride, pH,...) if we were interested in those measurements.  
+
+<br/>  
+
+
+First let's load in the `dataRetrieval` package.  If you have never used this package before you will need to install it before proceeding.  
+```{r}
+library(dataRetrieval)
+```
+
+<br/> 
+
+### Identify sites with desired data  
+
+We are going to query the NWIS database for sites within Schenectady county (`countyCd = "36093"`) that have streamflow (00060) and/or gauge height (i.e., water level) (00065) data.  
+
+Note that every US county has a FIPS county code, which is a unique numeric code that the US has assigned to each county.  You can find a list of all the [county codes here](https://help.waterdata.usgs.gov/code/county_query?fmt=html).  
+
+You can also find a list of all of the [parameter codes used by the USGS here](https://help.waterdata.usgs.gov/codes-and-parameters/parameters).  
+
+You'll also note that we specified `service = "dv"`, this means to query for sites that have daily data reported.  
+
+```{r}
+sites_schdy <- whatNWISsites(countyCd = "36093", 
+                             parameterCd = c("00060","00065"),
+                             service = "dv"
+                             )
+
+
+sites_schdy
+```
+
+You can see that there are `r length(sites_schdy)` sites that meet the search criteria.  You'll also note that under the `site_tp_cd` column you see *ST*, which stand for stream.  If you queried for a parameter (e.g., water temperature) that could also apply to other site types, then you would likely see other `site_tp_cd` values listed too (e.g., *GW*).  
+
+
+<br/>  
+
+Now let's get information about the available data (e.g., the number of observations, the length of the data record).  
+
+```{r}
+sites_what_data <- whatNWISdata(siteNumber = sites_schdy$site_no, 
+                            service = "dv", 
+                            parameterCd = c("00060","00065"),
+                            statCd = "00003")
+
+sites_what_data
+```
+
+<br/> 
+
+In the above function call you see that we set the argument `statCd = "00003"`.  This specifies the statistic to download.  The code `00003` means to obtain the average value.  We need to specify this since we are downloading daily values and since most sites take sub-hourly readings we need to tell the function what type of daily value to return (e.g., minimum measurement, maximum, average,...).  If you want to obtain a different statistic than the average you can simply change the statistic code.  
+
+You can find a list of [USGS statistic codes here](https://help.waterdata.usgs.gov/stat_code).  
+
+
+We can see that we have information about the data records for the sites with available gauge height (parm_cd = 00065) and streamflow (parm_cd = 00060).  Below is a map of these sites.  
+
+```{r echo = F, message = F, warning = F}
+fig_map <- sites_what_data %>% 
+  leaflet() %>% 
+  addProviderTiles(providers$OpenStreetMap) %>% 
+  addMarkers(~ dec_long_va, ~ dec_lat_va, popup = ~ station_nm)
+
+fig_map
+```
+
+
+<br/> 
+
+
+Based on this information you might choose to acquire the data for some or all of these sites.  Since there are only a few sites, let's go ahead and download the water gauge height and streamflow data for all of these sites.  
+
+```{r}
+df_stream_data <- readNWISdv(siteNumbers = sites_what_data$site_no,
+                             parameterCd = c("00060","00065"),
+                             statCd = "00003")
+                               
+```
+
+
+<br/>  
+
+
+
+
+When you download the data it will have column names that refer to parameter codes and other data descriptors that are not particularly human readable.  Let's use the `renameNWISColumns()` function, which renames the columns with more human readable names.  
+
+
+```{r}
+df_stream_data <- df_stream_data %>%  
+  renameNWISColumns()
+```
+
+
+Now let's plot a time-series of the gauge heights for each of the sites.  
+
+```{r fig.width= 9, fig.height= 4}
+df_stream_data %>% 
+  filter(!is.na(GH)) %>% # remove NA gauge heights
+  
+  ggplot(aes(x =Date, y = GH)) +
+  geom_line() +
+  
+  facet_wrap(~ site_no, scales = "free")
+```
+
+
+<br/> 
+
+Now let's plot a time-series of the streamflow for each of the sites. 
+
+```{r fig.width= 9, fig.height= 4}
+
+df_stream_data %>% 
+  filter(!is.na(Flow)) %>% 
+  
+  ggplot(aes(x =Date, y = Flow)) +
+  geom_line() +
+  
+  facet_wrap(~ site_no, scales = "free")
+```
+
+
+<br/>
+
+
+### Water quality example
+
+The NWIS database has over 4.4 million water quality measurements across hundreds of thousands of locations throughout the US and US territories.  We can use the `dataRetrieval` package to query and access this data.  Furthermore, the `dataRetrieval` package also allows us to access water quality data from the Environmental Protection Agency (EPA) and the US Department of Agriculture (USDA).  As noted earlier, the `dataRetrieval` package and understanding NWIS data can take a bit of time to learn, though we'll work through an example to highlight just how powerful `dataRetrieval` is for obtaining research grade water quality measurements.  
+
+The key first step is to specify what water quality parameter(s) you are interested in obtaining.  You can find the list of the available [USGS parameter codes here](https://help.waterdata.usgs.gov/codes-and-parameters/parameters).  
+
+You can also obtain a data frame of the USGS, EPA, and USDA parameter codes directly in R, by calling `parameterCdFile`.  Let's do that now.  
+
+```{r eval = F, echo = F}
+# https://cran.r-project.org/web/packages/dataRetrieval/vignettes/qwdata_changes.html
+```
+
+
+```{r}
+parm_cd_df <- parameterCdFile 
+```
+
+
+Take a look at this data frame.  You'll see that there are more than 24,000 parameter codes!  You'll see that each parameter code is assigned to one 16 different groups (e.g., physical, microbiological, nutrient,...).  This makes it easier to located parameters by their group/type.  You'll also see that the full name and the units associated with each parameter are reported in the data frame.  
+
+Let's go ahead and obtain data for **Nitrate, water, filtered, milligrams per liter as nitrogen** which is parameter code (00618).
+
+Since there are likely 10's or hundreds of thousands on nitrate measurements in the NWIS database we are going to limit our query by location and by date.  
+
+<br/>  
+
+Let's use the `whatWQPdata()` function to find out what data is available for nitrate (see the `parameterCd` argument) in New York state (see the `stateCd` argument).  We will limit our query to sites that have at least some measurements that were collected after 1-Jan-2015 (see the `startDate` argument).  Note that the sites can have data collected before that date, however they must have at least one measurement after that date in order to satisfy our search criteria.  
+
+Note that we are filtering the data so that we only keep groundwater sites (i.e., wells and springs).  
+
+```{r}
+
+pCode <- c("00618")
+
+NY_NO3_sites <- whatWQPdata(stateCd = "NY", 
+                            parameterCd = pCode, 
+                            startDate = "2015-01-01"
+                            ) %>% 
+  
+  filter(ResolvedMonitoringLocationTypeName %in% c("Well", "Spring"))
+```
+
+
+<br/> 
+
+Take a look at the `NY_NO3_sites` data frame.  You'll see that this data frame has information on all of the available data based on the above query.  You'll see that each row represents a site with data.  The last three columns of this data frame are particularly useful - they contain the date of the first (`begin_date`), last (`end_date`) measurement, and the number of total measurements for that site (`count_nu`).  You'll see that some sites have multiple measurements, indicating that samples were collected on a number of different dates/times.  
+
+
+<br/>  
+
+Now, we will use the `readWQPqw()` function to acquire the data for the sites we have identified.  
+
+To do this we need to specify a site(s) to obtain.  We do this by providing the `siteNumbers` argument with a vector of sites numbers.  
+
+We also need to specify the time period for the measurements we would like to obtain.  We will limit ourselves to only downloading measurements that were taken from 1-Jan-2015 onward (see the `startDate` argument).  
+
+We also need to specify the parameter to download.  Since we are interested in nitrate data we set the `parameterCd` argument to be equal to the nitrate parameter code of interest (i.e., 00618).  
+
+
+```{r}
+NY_NO3_recent_data <- readWQPqw(siteNumbers = NY_NO3_sites$MonitoringLocationIdentifier,
+                                parameterCd = pCode,
+                                startDate = "2015-01-01"
+                                )
+```
+
+
+Now we've downloaded the data - take a look at the data frame.  You'll see the measurement values in the `ResultMeasureValue` column.  
+
+<br/>  
+
+Recall that some sites have multiple measurements (since measurements were taken on a number of different dates/times).  Let's summarize our data so that we can get the maximum nitrate concentration observed at each of the sites.  
+
+To do this we are going to group by `MonitoringLocationIdentifier` (i.e., group by the different sampling sites/locations) and then summarize the nitrate measurements to take the maximum value observed at each site.  
+
+```{r}
+NY_NO3_recent_data_summary <- NY_NO3_recent_data %>% 
+  filter(!is.na(ResultMeasureValue)) %>%  # remove rows with NA values for the measurement of interest
+  group_by(MonitoringLocationIdentifier) %>% 
+  summarize(NO3_max = max(ResultMeasureValue, na.rm = T)) %>% 
+  
+  left_join(attr(NY_NO3_recent_data, "siteInfo")) # joining our water quality data with the data frame that contains site information 
+```
+
+
+Take a look at this data frame to make sure you understand the steps above and what we have done.  
+
+Below is a map showing the data that we just summarized.  
+
+```{r echo = F, warning = F, message = F}
+
+tmap_mode("view")
+
+fig_map_NO3 <- NY_NO3_recent_data_summary %>% 
+  filter(!is.na(LatitudeMeasure), !is.na(LongitudeMeasure)) %>% 
+  st_as_sf(coords = c("LongitudeMeasure", "LatitudeMeasure")) %>% 
+  
+  tm_shape() +
+  tm_dots(col = "NO3_max", style = "quantile", size = 0.2, palette = "viridis")
+   
+
+fig_map_NO3  
+```
+
+<br/> 
+
+
+We will learn how to make these types of maps in upcoming lectures.  
+
+
+<br/> 
+
+```{r echo = F, eval = F}
+# "c2jlhls8h84c"
+```
+
+
+## Exercises
+
+Continue to experiment with the packages that we have learned how to use today.  Think about how you might apply these packages to your final projects.  Some possible things to explore include:
+
++ Try obtaining daily or hourly meteorological data for site(s) that you are interested in.  
+
++ Compare meteorological conditions between sites of interest.  
+
++ Perform some of the time-series visualization/analysis approaches to the meteorological data.  
+
++ Use the `dataRetrieval` package to obtain data for additional parameters and sites from the NWIS data base.  Spend some time exploring this data.  
+
+
+
+
+
+
+```{r echo = F, eval = F}
+## ebird
+#https://cran.r-project.org/web/packages/rebird/vignettes/rebird_vignette.html
+
+ebird_key <-  "c2jlhls8h84c" #your key here
+```
+
+
+```{r echo = F, eval = F}
+
+library(rebird)
+```
+
+
+```{r echo = F, eval = F}
+species_code('Accipiter cooperii')
+
+```
+
+```{r echo = F, eval = F}
+new_tax <- ebirdtaxonomy()
+```
+
+	
+
+```{r echo = F, eval = F}
+
+a <- ebirdgeo(species = species_code('Accipiter cooperii'), 
+              lat = 42.8, lng = -73.9, back = 30, dist = 50,
+              key = ebird_key)
+```
+
+```{r echo = F, eval = F}
+
+b <- ebirdgeo(lat = 42.8, lng = -73.9, back = 30,
+              key = ebird_key)
+
+```
+
+
+```{r echo = F, eval = F}
+
+fig_map <- a %>% 
+  leaflet() %>% 
+  addProviderTiles(providers$Esri.NatGeoWorldMap) %>% 
+  addMarkers(~ lng, ~ lat, popup = ~ paste(comName, "; n:", howMany))
+
 ```
 
 
 
-[^1]: _Visualizing Data_ (William S. Cleveland, 1993)        
+```{r echo = F, eval = F}
+## rnoaa
+# library(rnoaa)
+# a <- isd(usaf = "725180", wban = "14735", year = 2021)
+
+
+## stationaRy
+#library(stationaRy)
+#station_df <- get_station_metadata() 
+#station_met_data <- get_met_data(station_id = "725180-14735", years = 2020) 
+
+
+## rWBclimate
+#https://docs.ropensci.org/rWBclimate/
+```
+
+
+
+
+
+
+
+
+
