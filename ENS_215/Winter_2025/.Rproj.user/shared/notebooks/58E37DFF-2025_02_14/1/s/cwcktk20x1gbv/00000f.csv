@@ -1,0 +1,2 @@
+"0","raster_elev_southaf <- mask(raster_world_elev,"
+"0","                            borders_data_southaf)"

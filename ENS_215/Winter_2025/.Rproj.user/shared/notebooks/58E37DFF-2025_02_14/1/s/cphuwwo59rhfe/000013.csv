@@ -1,3 +1,4 @@
 "0","raster_world_elev <- rast(""https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Data/World_elev.TIFF"")"
 "0",""
+"0","raster_world_elev <- raster_world_elev$World_elev"
 "0","# Data was obtained from: https://neo.sci.gsfc.nasa.gov/view.php?datasetId=SRTM_RAMP2_TOPO"

@@ -1,0 +1,28 @@
+"0","system.time({"
+"0"," p = getPRISM(AOI, "
+"0","              varname = c('tmin','tmax'), "
+"0","              startDate = ""2018-10-29"")"
+"0","})"
+"2","N"
+"2","ote:Caching=1
+"
+"2","E"
+"2","rror:curl error: Couldn't connect to server
+curl error details: 
+Warning:oc_open: Could not read url
+"
+"2","N"
+"2","ote:Caching=1
+"
+"2","E"
+"2","rror:curl error: Couldn't connect to server
+curl error details: 
+Warning:oc_open: Could not read url
+"
+"1","[1m[33mError[39m in `bind_rows()`:[22m
+[38;5;232m[33m![38;5;232m Argument 1 must be a data frame or a named atomic vector.[39m
+Backtrace:
+[90m 1. [39m[1mbase[22m::system.time(...)
+[90m 2. [39m[1mclimateR[22m::getPRISM(AOI, varname = c(""tmin"", ""tmax""), startDate = ""2018-10-29"")
+[90m 4. [39m[1m[94mdplyr::bind_rows([39m[22mo[1m[94m)[39m[22m
+"

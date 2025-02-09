@@ -1,0 +1,14 @@
+"0",""
+"0",""
+"0",""
+"0","sites2use <- whatWQPdata(stateCd = state_code, "
+"0","                            parameterCd = pCode, "
+"0","                            startDate = date_start"
+"0","                            ) %>% "
+"0","  "
+"0","  filter(ResolvedMonitoringLocationTypeName %in% c(""Well"", ""Spring""))"
+"2","NEWS: Data does not include USGS data newer than March 11, 2024. More details:
+https://doi-usgs.github.io/dataRetrieval/articles/Status.html
+"
+"2","GET: https://www.waterqualitydata.us/data/Station/search?statecode=US%3A31&pCode=01130&startDateLo=01-01-1980&mimeType=geojson
+"

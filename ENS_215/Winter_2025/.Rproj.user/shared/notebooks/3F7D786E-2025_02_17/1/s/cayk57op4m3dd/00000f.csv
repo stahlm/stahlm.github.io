@@ -1,0 +1,6 @@
+"0","climate_raster_monthly <- getTerraClim(AOI = borders_hires, "
+"0","                                       varname = ""ppt"", "
+"0","                                       startDate = ""2021-01-01"")"
+"2","N"
+"2","ote:Caching=1
+"

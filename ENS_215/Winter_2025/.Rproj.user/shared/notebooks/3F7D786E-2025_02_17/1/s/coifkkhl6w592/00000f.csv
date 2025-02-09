@@ -1,0 +1,6 @@
+"0","climate_raster_monthly %>% "
+"0","  tm_shape() +"
+"0","  tm_raster(palette = ""RdBu"", n = 10) + "
+"0","  "
+"0","  tm_shape(borders_hires) +"
+"0","  tm_borders()"

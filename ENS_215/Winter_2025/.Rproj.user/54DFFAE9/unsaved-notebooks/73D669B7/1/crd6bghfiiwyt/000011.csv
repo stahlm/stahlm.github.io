@@ -1,0 +1,2 @@
+"0","AOI = aoi_get(state = ""NC"")"
+"0","plot(AOI$geometry)"

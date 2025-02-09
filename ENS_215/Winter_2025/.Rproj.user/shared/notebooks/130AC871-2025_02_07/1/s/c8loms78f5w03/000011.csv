@@ -1,3 +1,0 @@
-"0"," #arrange(Precip_inches) %>%   "
-"0"," #mutate(quant = (seq(1,nrow(ny_precip)) - 0.5)/nrow(ny_precip))"
-"0","  "

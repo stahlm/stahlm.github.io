@@ -1,1 +1,0 @@
-"0","ny_precip <- filter(precip_data, state_cd == ""NY"")"

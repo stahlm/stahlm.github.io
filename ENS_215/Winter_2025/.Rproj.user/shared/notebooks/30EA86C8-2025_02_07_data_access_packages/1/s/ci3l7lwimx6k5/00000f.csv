@@ -1,7 +1,0 @@
-"0","df_stream_data %>% "
-"0","  filter(!is.na(GH)) %>% # remove NA gauge heights"
-"0","  "
-"0","  ggplot(aes(x =Date, y = GH)) +"
-"0","  geom_line() +"
-"0","  "
-"0","  facet_wrap(~ site_no, scales = ""free"")"

@@ -1,0 +1,9 @@
+"0","wq_data <- readWQPqw(siteNumbers = sites2use$MonitoringLocationIdentifier,"
+"0","                                parameterCd = pCode,"
+"0","                                startDate = date_start"
+"0","                                )"
+"2","POST: https://www.waterqualitydata.us/data/Result/search
+"
+"2","NEWS: Data does not include USGS data newer than March 11, 2024. More details:
+https://doi-usgs.github.io/dataRetrieval/articles/Status.html
+"

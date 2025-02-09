@@ -1,4 +1,0 @@
-"0","ny_precip <- ny_precip %>% "
-"0","  mutate(time_period = if_else(Year >= 1950,""Post-1950"",""Pre-1950"")) "
-"0",""
-"0",""

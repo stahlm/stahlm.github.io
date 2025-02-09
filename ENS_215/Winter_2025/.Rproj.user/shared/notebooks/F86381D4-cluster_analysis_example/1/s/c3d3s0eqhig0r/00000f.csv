@@ -1,0 +1,10 @@
+"0","library(tidyverse)"
+"0",""
+"0","library(cluster)    # clustering algorithms"
+"0","library(factoextra) # clustering algorithms & visualization"
+"2","Welcome! Want to learn more? See two factoextra-related books at https://goo.gl/ve3WBa
+"
+"0","library(FactoMineR)"
+"0",""
+"0","library(tmap)"
+"0","library(sf)"
