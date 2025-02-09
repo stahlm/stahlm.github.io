@@ -1,0 +1,5 @@
+"0","state_cap_locs <- read_csv(""https://stahlm.github.io/ENS_215/Data/us_capitals_locs.csv"", skip = 2)"
+"0",""
+"0","state_cap_locs <- state_cap_locs %>% "
+"0","  filter(state_cd %in% state.abb) %>% # remove locations that aren't US state list (e.g. Puerto Rico, Guam, ...)"
+"0","  filter(state_cd != ""AK"", state_cd != ""HI"") # remove capitals of Alaska and Hawaii (our basemap only has the lower 48 states)"

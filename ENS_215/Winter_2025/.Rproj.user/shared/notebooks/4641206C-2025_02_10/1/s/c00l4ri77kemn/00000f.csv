@@ -1,0 +1,11 @@
+"0","map_world_data %>% "
+"0","  ggplot() +"
+"0","  geom_polygon(aes(long, lat, group = group), fill = ""white"", color = ""black"") +"
+"0","  "
+"0","  geom_polygon(data = data_lakes,aes(x= long, y = lat, group = group), fill = ""blue"", color = ""blue"") +"
+"0","  "
+"0","  coord_quickmap() +"
+"0","  theme_minimal() +"
+"0","  theme(panel.background = element_rect(fill = ""lightblue""))"
+"2","Error in ggplot(.) : object 'map_world_data' not found
+"

@@ -6,7 +6,7 @@
 "0","  scale_color_gradient(low = ""blue"", high = ""red"") +"
 "0","  "
 "0","  labs(title = ""Earthquakes > 2.5 magnitude since the start of 2025"","
-"0","       subtitle = ""Date window: 1-Jan to 4-Feb-2025"","
+"0","       subtitle = ""Date window: 1-Jan to 8-Feb-2025"","
 "0","       caption = ""Data source: USGS"") +"
 "0","  "
 "0","  theme_void() +"
