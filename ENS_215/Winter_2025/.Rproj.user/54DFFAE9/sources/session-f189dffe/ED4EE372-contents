@@ -17,7 +17,18 @@ output:
 |:-------:|:------:|:--------:|
 |      |     |        |       |
 
+
 *** 
+### Week 6
+#### Readings
+* [**Geocomputation with R, Chapter 9**](https://r.geocompx.org/adv-map)
+
+* [**Tidyverse style guide, Chapters 1, 2, 4, 5**](https://style.tidyverse.org/)
+    + Excellent guide to proper usage of style, formatting, and syntax in R.  Read this with care and where applicable you should begin implementing these style tips in your code.  Note that "style" is more than just cosmetic -- good style makes your code human readable and makes sharing and editing code significantly more efficient and less prone to error.  
+
+
+*** 
+
 ### Week 5
 #### Readings
 * [**ModernDive Ch: 3.7**](https://moderndive.com/v2/wrangling.html#joins)
