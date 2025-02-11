@@ -1,0 +1,2 @@
+"0","a <- get_usgs_earthquakes(start_date = ""2025-01-01"", end_date = ""2025-01-05"", min_magnitude = 3.5)"
+"0","a"

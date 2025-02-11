@@ -1,0 +1,29 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+
+```{r}
+get_usgs_earthquakes <- function(start_date, end_date, min_magnitude = 2.5, start_time = "0000:00:00", end_time = "23:59:59"){
+  
+  base_url <- "https://earthquake.usgs.gov/fdsnws/event/1/query.csv?"
+  
+  full_url <- paste0(base_url,"starttime=", start_date, "%", start_time, "&",
+                    "endtime=", end_date, "%20", end_time, "&",
+                    "minmagnitude=", min_magnitude, "&",
+                    "orderby=time"
+                    )
+  
+  df_earthquakes <- read.csv(full_url)
+  
+}
+```
+
+https://earthquake.usgs.gov/fdsnws/event/1/query.csv?starttime=2025-01-01%0000:00:00&endtime=2025-02-08%2023:59:59&minmagnitude=2.5&orderby=time
+```{r}
+a <- get_usgs_earthquakes(start_date = "2025-01-01", end_date = "2025-01-05", min_magnitude = 3.5)
+a
+```
+
