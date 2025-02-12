@@ -1,0 +1,4 @@
+"0","us <- gb_adm1(""Cambodia"")"
+"0","plot(st_geometry(us),"
+"0","     col = rgb(red = 1, green = 0, blue = 0, alpha = 0.5),"
+"0","     axes = TRUE, graticule = TRUE)"

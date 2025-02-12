@@ -1,0 +1,6 @@
+"0","library(rgeoboundaries)"
+"0","library(sf)"
+"2","Linking to GEOS 3.9.3, GDAL 3.5.2, PROJ 8.2.1; sf_use_s2() is TRUE
+"
+"0","mli_sen <- gb_adm0(c(""mali"", ""senegal""), type = ""sscgs"")"
+"0","plot(st_geometry(mli_sen))"
