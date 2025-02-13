@@ -1,0 +1,5 @@
+"0","```r
+site_stack <- getCHIRPS(AOI = my_aoi, 
+                         startDate = \"2022-01-01\", 
+                         endDate = \"2022-12-31\")
+```"

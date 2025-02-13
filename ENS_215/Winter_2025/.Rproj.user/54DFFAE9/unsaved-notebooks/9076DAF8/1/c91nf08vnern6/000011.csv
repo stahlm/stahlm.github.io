@@ -1,0 +1,8 @@
+"0","world_map <- map_world_data %>% "
+"0","  ggplot() +"
+"0","  geom_polygon(aes(x = long, y = lat, group = group), "
+"0","               color = ""black"", fill = ""lightgrey"") +"
+"0","  "
+"0","  coord_quickmap()"
+"0",""
+"0","world_map"

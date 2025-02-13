@@ -1,0 +1,128 @@
+---
+title: "Map examples (from 10-Feb-2025 class)"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+earthquakes <- read_csv("https://earthquake.usgs.gov/fdsnws/event/1/query.csv?starttime=2025-01-01%0000:00:00&endtime=2025-02-08%2023:59:59&minmagnitude=2.5&orderby=time")
+
+head(earthquakes)
+```
+
+
+```{r}
+map_world_data <- map_data("world")
+```
+
+
+```{r}
+world_map <- map_world_data %>% 
+  ggplot() +
+  geom_polygon(aes(x = long, y = lat, group = group), 
+               color = "black", fill = "lightgrey") +
+  
+  coord_quickmap()
+
+world_map
+```
+
+```{r}
+world_map +
+  geom_point(data = earthquakes, aes(x = longitude, y = latitude, 
+                                     color = mag),
+             shape = 21, fill = "NA"
+             ) +
+  scale_color_gradient(low = "blue", high = "red") +
+  
+  labs(title = "Earthquakes") +
+  theme_void()
+```
+
+```{r}
+state_temps <- read_csv("https://stahlm.github.io/ENS_215/Data/NOAA_State_Temp_Lab_Data.csv")
+
+head(state_temps)
+```
+
+
+```{r}
+state_name_table = tibble(state_name = tolower(state.name), 
+                          state_cd = state.abb, 
+                          us_region = state.region)
+
+state_name_table
+```
+
+
+```{r}
+map_data_usa <- map_data("state") # get data frame with the spatial data for borders of lower 48 states
+
+```
+
+
+
+```{r}
+state_mean_temps_pre <- state_temps %>% 
+  filter(Year <= 1960) %>% 
+  
+  group_by(state_cd) %>% 
+  summarize(mean_temp_pre = mean(Avg_Temp_F))
+
+state_mean_temps_pre
+```
+
+```{r}
+state_mean_temps_post <- state_temps %>% 
+  filter(Year > 1960) %>% 
+  
+  group_by(state_cd) %>% 
+  summarize(mean_temp_post = mean(Avg_Temp_F))
+
+state_mean_temps_post
+```
+
+```{r}
+state_mean_temps_change <- state_mean_temps_post %>% 
+  left_join(state_mean_temps_pre)
+
+state_mean_temps_change
+```
+
+```{r}
+state_mean_temps_change <- state_mean_temps_change %>% 
+  mutate(temp_change = mean_temp_post - mean_temp_pre)
+
+state_mean_temps_change
+```
+
+```{r}
+state_mean_temps_change <- state_mean_temps_change %>% 
+  left_join(state_name_table)
+```
+
+```{r}
+state_mean_temps_change <- state_mean_temps_change %>% 
+  rename(region = state_name)
+```
+
+
+```{r}
+map_data_usa_temps_change <- left_join(map_data_usa, state_mean_temps_change)
+```
+```{r}
+map_data_usa_temps_change %>% 
+  ggplot() + 
+  geom_polygon(aes(long, lat, group = group, fill = temp_change), color = "black") +
+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0) +
+  coord_map(projection = "bonne", lat0 = 50) +
+  labs(title = "Changes in mean temperature",
+       subtitle = "Difference between post and pre-1960 means",
+       caption = "Data source: NOAA",
+       fill = "Temp. increase (deg. F)") +
+  theme_void() 
+```
+

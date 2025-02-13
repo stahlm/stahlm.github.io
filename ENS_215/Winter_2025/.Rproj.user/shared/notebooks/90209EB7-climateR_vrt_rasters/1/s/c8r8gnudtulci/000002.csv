@@ -1,0 +1,9 @@
+"0","```r
+raster_soil_class %>% 
+  tm_shape() +
+  tm_raster(drop.levels = T, title = \"Soil group\") + 
+  
+  tm_mouse_coordinates() +
+  
+  tm_basemap(server = c(\"Esri.WorldImagery\", \"OpenStreetMap\"))
+```"

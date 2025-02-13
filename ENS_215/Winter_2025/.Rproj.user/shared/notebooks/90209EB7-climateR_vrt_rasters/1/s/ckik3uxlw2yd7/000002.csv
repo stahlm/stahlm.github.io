@@ -1,0 +1,13 @@
+"0","```r
+raster_nlcd <- vrt_crop_get(
+  URL = \"/vsicurl/https://storage.googleapis.com/feddata-r/nlcd/2019_Land_Cover_L48.tif\",
+  catalog = NULL,
+  AOI = my_aoi,
+  grid = NULL,
+  varname = NULL,
+  start = NULL,
+  end = NULL,
+  toptobottom = FALSE,
+  verbose = TRUE
+)
+```"

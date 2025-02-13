@@ -1,8 +1,0 @@
-"0","my_table <- my_gap %>% "
-"0","  filter(year %in% c(1952,2007)) %>% "
-"0","  group_by(country) %>% "
-"0","  arrange(country, year) %>% "
-"0","  summarize(continent = first(continent),"
-"0","            gdp_1952 = first(gdpPercap),"
-"0","            gdp_2007 = last(gdpPercap)"
-"0","            )"

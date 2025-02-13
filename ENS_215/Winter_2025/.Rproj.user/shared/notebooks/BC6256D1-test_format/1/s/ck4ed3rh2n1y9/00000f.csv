@@ -1,0 +1,1 @@
+"0","df_us <- rnaturalearth::ne_states(country = ""United States of America"", returnclass = ""sf"")"

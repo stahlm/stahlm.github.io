@@ -1,0 +1,29 @@
+---
+title: "R Notebook"
+output: html_document
+---
+
+```{r message = F, echo = F}
+library(tidyverse)
+library(rnaturalearth)
+library(sf)
+library(tmap)
+```
+
+```{r}
+df_us <- rnaturalearth::ne_states(country = "United States of America", returnclass = "sf")
+```
+
+
+```{r}
+df_nw <- df_us %>% 
+  filter(name %in% c("Alaska", "Washington", "California", "Oregon"))
+```
+
+
+```{r}
+df_nw %>% 
+  tm_shape() +
+  tm_borders() 
+```
+

@@ -1,8 +1,0 @@
-"0","my_table %>% "
-"0","  ggplot(aes(x = gdp_1952, y = gdp_2007)) +"
-"0","  geom_point(alpha = 0.5) +"
-"0","  "
-"0","  geom_abline(slope = 1, intercept = 0, color = ""red"") +"
-"0","  coord_equal(ratio = 1) +"
-"0","  "
-"0","  facet_wrap(~continent)"

@@ -1,0 +1,9 @@
+"0","```r
+raster_elev %>% 
+  tm_shape() +
+  tm_raster(style = \"cont\") +
+  
+  tm_mouse_coordinates() +
+  
+  tm_basemap(server = c(\"Esri.WorldImagery\", \"OpenStreetMap\"))
+```"

@@ -1,0 +1,3 @@
+"0","state_mean_temps_change <- state_mean_temps_change %>% "
+"0","  left_join(state_name_table)"
+"2","Joining with `by = join_by(state_cd)`"

@@ -1,0 +1,2 @@
+"0","df_nw <- df_us %>% "
+"0","  filter(name %in% c(""Alaska"", ""Washington"", ""California"", ""Oregon""))"
