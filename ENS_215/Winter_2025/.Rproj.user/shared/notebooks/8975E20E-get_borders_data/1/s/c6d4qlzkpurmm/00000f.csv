@@ -1,0 +1,3 @@
+"0","sf_nation <- tigris::nation(resolution = ""20m"")"
+"2","Retrieving data for the year 2021
+"

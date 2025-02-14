@@ -1,0 +1,4 @@
+"0","sf_borders <- st_as_sf(rnaturalearth::countries110) "
+"0",""
+"0",""
+"0","sf_borders <- ne_countries(scale = ""large"", type = ""countries"", returnclass = ""sf"")"

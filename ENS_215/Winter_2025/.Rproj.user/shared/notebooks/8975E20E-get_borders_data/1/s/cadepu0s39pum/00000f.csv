@@ -1,0 +1,13 @@
+"0","library(rgeoboundaries)"
+"2","Registered S3 method overwritten by 'hoardr':
+  method           from
+  print.cache_info httr
+"
+"0","library(sf)"
+"2","Linking to GEOS 3.9.3, GDAL 3.5.2, PROJ 8.2.1; sf_use_s2() is TRUE
+"
+"0","library(tmap)"
+"2","Registered S3 method overwritten by 'htmlwidgets':
+  method           from         
+  print.htmlwidget tools:rstudio
+"

@@ -1,0 +1,14 @@
+"0","library(tmap)"
+"0","library(terra)"
+"0","library(tmap)"
+"0","library(elevatr)"
+"0","library(AOI)"
+"2","
+Attaching package: ‘AOI’
+
+"
+"2","The following object is masked from ‘package:tigris’:
+
+    list_states
+
+"

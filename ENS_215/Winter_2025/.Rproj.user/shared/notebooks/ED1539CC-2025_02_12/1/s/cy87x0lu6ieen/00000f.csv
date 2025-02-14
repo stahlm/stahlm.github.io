@@ -1,0 +1,5 @@
+"0","Linear_water_Schenectady <- linear_water(state = ""NY"", county = ""Schenectady"")  # download the data
+"
+"2","Error in linear_water(state = ""NY"", county = ""Schenectady"") : 
+  could not find function ""linear_water""
+"
