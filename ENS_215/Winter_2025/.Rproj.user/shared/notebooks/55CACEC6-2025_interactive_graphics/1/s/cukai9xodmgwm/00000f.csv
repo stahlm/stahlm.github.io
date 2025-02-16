@@ -1,0 +1,6 @@
+"0","color_ramp <- colorRamp(c(""blue"", ""yellow"", ""red""))"
+"0",""
+"0","plot_ly(bangladesh_gw, x = ~LONG_DEG, y = ~LAT_DEG, z = ~-WELL_DEPTH_m, name = ~DIVISION) %>%"
+"0","  add_markers(color = ~log10(As_ugL), colors = color_ramp, text = ~paste(""As ="", As_ugL))"
+"2","Error in dirname(to) : path too long
+"

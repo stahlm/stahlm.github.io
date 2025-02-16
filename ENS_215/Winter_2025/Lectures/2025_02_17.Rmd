@@ -68,6 +68,23 @@ Let's quickly plot the data to confirm that we've downloaded what we expected.
 terra::plot(raster_elev)
 ```
 
+
+
+Just to highlight how the raster resolution makes a difference, below I am showing the raster for Schenectady County where `z = 6` (low resolution).  You can see it has much less detail than the raster above where `z = 12` (high resolution).  
+
+**Low resolution** 
+```{r message = F, echo= F}
+raster_elev_05 <- get_elev_raster(county_schenectady,
+                               z = 6,
+                               clip = "locations")
+```
+```{r echo = F} 
+terra::plot(raster_elev_05) 
+```
+
+
+
+
 <br/> 
 
 Pretty cool - we've quickly and seamlessly obtained raster elevation data for our area of interest.  You can try to modify the code above to test out the `get_elev_raster()` function some more and to try it on different areas.  

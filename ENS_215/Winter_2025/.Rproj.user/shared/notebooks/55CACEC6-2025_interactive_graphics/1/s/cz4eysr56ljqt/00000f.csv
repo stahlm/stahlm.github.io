@@ -1,0 +1,7 @@
+"0","dygraph(flow_ts, ylab = ""Flow (cfs)"") %>% "
+"0","  dySeries(""flow_cfs"", label = ""Schoharie Creek"") %>% "
+"0","  dyRangeSelector(height = 50) %>% "
+"0","  dyHighlight(highlightCircleSize = 5, "
+"0","              highlightSeriesBackgroundAlpha = 0.5,"
+"0","              hideOnMouseOut = FALSE) %>%"
+"0","  dyOptions(drawGrid = FALSE)"
