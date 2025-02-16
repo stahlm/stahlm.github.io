@@ -1,0 +1,4 @@
+"0","p <- getGridMET(AOI = border_NY,"
+"0","             varname = c(""tmmn""), "
+"0","             startDate = ""2023-02-04"""
+"0","             )"
