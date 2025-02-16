@@ -19,6 +19,19 @@ output:
 
 
 *** 
+### Week 7
+#### Readings
+* [**ModernDive, Chapter 5**](https://moderndive.com/v2/regression.html) 
+
+#### Assignments 
+1. DataCamp **_Modeling with Data in the Tidyverse_** chapters **1** ("Introduction to Modeling"), **2** ("Modeling with Basic Regression")
+    + Assigned: 17-Feb
+    + Due: 24-Feb  
+
+*** 
+
+
+*** 
 ### Week 6
 #### Readings
 * [**Geocomputation with R, Chapter 9**](https://r.geocompx.org/adv-map)
