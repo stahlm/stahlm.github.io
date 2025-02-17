@@ -101,6 +101,19 @@ library(rnaturalearth)
 ```
 
 
+You should also install the `rnaturalearthhires` package.  
+
+> To do this you will need to first run the following line of code **in your console**.
+
+> `install.packages("remotes")`  
+
+
+> Then you should run the following line of code **in your console**.  
+
+> `remotes::install_github("ropensci/rnaturalearthhires")`  
+
+
+
 Now let's download the country border for Lesotho  
 ```{r}
 borders_hires <- ne_countries(country = "Lesotho",
@@ -140,15 +153,10 @@ In addition to elevation data, we frequently need gridded (raster) climatic/mete
 
 <br/>
 
-In order to download the `climateR` package you will first need to install the `remotes` package.  Go ahead and install the `remotes` package.  Once you've installed the `remotes` package you should run the following code in your **Console**.  
 
-If you haven't already installed the `remotes` package you should first do that.  You can do so by running the following code in your console
+Once you have the remotes package installed (which you should have done earlier in today's lecture), you should then install the `climateR` package by running the following code **in your console**.  
 
-`install.packages("remotes")`  
-
-Once you have the remotes package installed, you should then install the `climateR` package by running the following code in your console.  
-
-`remotes::install_github("mikejohnson51/climateR")`
+> `remotes::install_github("mikejohnson51/climateR")`
 
 
 <br/>

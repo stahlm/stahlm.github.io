@@ -1,3 +1,0 @@
-"0","r_slope <- terra::terrain(x = raster_elev_mt, ""slope"", unit = ""degrees"")"
-"0",""
-"0","terra::plot(r_slope)"

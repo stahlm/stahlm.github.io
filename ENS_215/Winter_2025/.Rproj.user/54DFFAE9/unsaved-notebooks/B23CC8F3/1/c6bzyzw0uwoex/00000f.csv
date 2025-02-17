@@ -1,0 +1,2 @@
+"0","border_NY <- border_NY %>% "
+"0","  filter(NAME == ""New York"")"

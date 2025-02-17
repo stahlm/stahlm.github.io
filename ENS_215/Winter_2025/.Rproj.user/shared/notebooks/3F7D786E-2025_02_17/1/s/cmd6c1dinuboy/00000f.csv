@@ -1,3 +1,0 @@
-"0","climate_raster_monthly <- terra::mask(climate_raster_monthly, borders_hires)
-"
-"2","Warning: [mask] CRS do not match"
