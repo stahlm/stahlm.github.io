@@ -1,16 +1,4 @@
 "0","raster_elev_05 <- get_elev_raster(county_schenectady,"
 "0","                               z = 6,"
 "0","                               clip = ""locations"")"
-"2",""
-"2"," Accessing raster elevation [-------------------------]   0%"
-"2",""
-"2"," Accessing raster elevation [=========================] 100%"
-"2","
-"
 "1",""
-"2","Mosaicing & Projecting
-"
-"2","Clipping DEM to locations
-"
-"2","Note: Elevation units are in meters.
-"

@@ -1,4 +1,3 @@
-"0","climate_raster_monthly <- raster::crop(climate_raster_monthly, borders_hires)"
-"0",""
-"0","climate_raster_monthly <- raster::mask(climate_raster_monthly, borders_hires)"
+"0","climate_raster_monthly <- terra::mask(climate_raster_monthly, borders_hires)
+"
 "2","Warning: [mask] CRS do not match"
