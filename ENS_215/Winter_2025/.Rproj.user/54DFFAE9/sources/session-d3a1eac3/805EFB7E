@@ -1,0 +1,27 @@
+{
+    "id": "805EFB7E",
+    "path": "C:/Users/stahlm/Documents/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Additional_examples/NWIS_project_Amelia.Rmd",
+    "project_path": null,
+    "type": "r_markdown",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1739915114188.0,
+    "source_on_save": false,
+    "relative_order": 13,
+    "properties": {
+        "chunk_output_type": "inline",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "131,33",
+        "scrollLine": "129"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1739916717,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1739916717830,
+    "read_only": false,
+    "read_only_alternatives": []
+}

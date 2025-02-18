@@ -1,0 +1,8 @@
+"0","data_select_NO3 <- data_select_NO3 %>% "
+"0","  group_by(ActivityStartDate, MonitoringLocationIdentifier) %>% "
+"0","  summarize(CharacteristicName_NO3 = first(CharacteristicName_NO3),"
+"0","            USGSPCode_NO3 = first(USGSPCode_NO3),"
+"0","            ResultMeasureValue_NO3 = mean(ResultMeasureValue_NO3, na.rm = T),"
+"0","            ResultMeasure_MeasureUnitCode_NO3 = first(ResultMeasure_MeasureUnitCode_NO3)"
+"0","            )"
+"2","`summarise()` has grouped output by 'ActivityStartDate'. You can override using the `.groups` argument."
