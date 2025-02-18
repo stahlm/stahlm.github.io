@@ -1,0 +1,8 @@
+"0","data_Na_Cl %>% "
+"0","  filter(MonitoringLocationIdentifier %in% sites2plot$MonitoringLocationIdentifier) %>% "
+"0","  "
+"0","  ggplot(aes(x = ActivityStartDate, y = ResultMeasureValue_Na, group = MonitoringLocationIdentifier)) +"
+"0","  geom_point() +"
+"0","  geom_line() +"
+"0","  "
+"0","  facet_wrap(~MonitoringLocationIdentifier)"

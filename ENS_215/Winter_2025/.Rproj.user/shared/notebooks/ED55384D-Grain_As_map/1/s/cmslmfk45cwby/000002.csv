@@ -1,6 +1,0 @@
-"0","```r
-sf_chem_cambodia <- df_chem_cambodia %>% 
-  filter(!is.na(Long), !is.na(Lat)) %>% 
-  
-  st_as_sf(coords = c(\"Long\", \"Lat\"))
-```"

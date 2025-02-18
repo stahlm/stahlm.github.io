@@ -1,3 +1,0 @@
-"0","```r
-my_aoi <- AOI::aoi_get(county = \"Ulster\", state = \"NY\")
-```"

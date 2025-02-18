@@ -1,0 +1,1 @@
+"0","r_LCMAP <- getLCMAP(my_aoi, year = 2019, type = ""primary landcover"", ID = NULL)"

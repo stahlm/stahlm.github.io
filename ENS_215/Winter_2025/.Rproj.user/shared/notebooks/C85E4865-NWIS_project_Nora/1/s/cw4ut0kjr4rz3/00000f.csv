@@ -1,0 +1,6 @@
+"0","data_select_Cl <- data_Cl %>% "
+"0","  select(ActivityStartDate, MonitoringLocationIdentifier, "
+"0","         CharacteristicName_Cl = CharacteristicName, "
+"0","         USGSPCode_Cl = USGSPCode,"
+"0","         ResultMeasureValue_Cl = ResultMeasureValue, "
+"0","         ResultMeasure_MeasureUnitCode_Cl = ResultMeasure.MeasureUnitCode)"

@@ -1,0 +1,6 @@
+"0","data_select_Na <- data_Na %>% "
+"0","  select(ActivityStartDate, MonitoringLocationIdentifier, "
+"0","         CharacteristicName_Na = CharacteristicName, "
+"0","         USGSPCode_Na = USGSPCode,"
+"0","         ResultMeasureValue_Na = ResultMeasureValue, "
+"0","         ResultMeasure_MeasureUnitCode_Na = ResultMeasure.MeasureUnitCode)"

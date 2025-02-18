@@ -1,0 +1,13 @@
+"0","pCode <- c(""00940"")"
+"0",""
+"0","sites_Cl <- whatWQPdata(stateCd = ""CT"", "
+"0","                            parameterCd = pCode, "
+"0","                            startDate = start_date"
+"0","                            ) %>% "
+"0","  "
+"0","  filter(ResolvedMonitoringLocationTypeName %in% c(""Stream""))"
+"2","NEWS: Data does not include USGS data newer than March 11, 2024. More details:
+https://doi-usgs.github.io/dataRetrieval/articles/Status.html
+"
+"2","GET: https://www.waterqualitydata.us/data/Station/search?statecode=US%3A09&pCode=00940&startDateLo=01-01-1995&mimeType=geojson
+"
