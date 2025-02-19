@@ -1,8 +1,0 @@
-"0","shape_symm <- tibble(x= c(rnorm(5*10^5, mean = -2, sd = 0.75), rnorm(5*10^5, mean = 2, sd = 0.75)) ) "
-"0","shape_symm %>% ggplot(aes(x)) +"
-"0","  geom_density(fill = ""gray"") +"
-"0","  theme_classic() +"
-"0","  labs(title = ""Bimodal distribution"","
-"0","       x = """","
-"0","       y = """""
-"0","       )"

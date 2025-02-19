@@ -156,7 +156,7 @@ You can use the `quantile()` function from the `stats` package to compute the va
 
 
 ```{r}
-quantile(ny_precip$Precip_inches, probs = c(0.001, 0.25, 0.50, 0.75, 0.95))
+quantile(ny_precip$Precip_inches, probs = c(0.05, 0.25, 0.50, 0.75, 0.95))
 ```
 
 <br/>
@@ -245,6 +245,29 @@ IQR(ny_precip$Precip_inches) # using IQR function
 
 ```
 
+##### Coefficient of variation
+
+The coefficient of variation is a measure of spread and is defined as the ratio of the standard deviation to the mean.  
+
+> $CV =\frac{\sigma}{\mu}$ 
+
+The CV is widely used in chemistry and engineering (to characterize the precision/repeatability of a process or measurement).  
+
+The CV is particularly useful when comparing how meaningful the degree of variation (i.e., $\sigma$) is as compared against the central value (i.e., $\mu$) of a given dataset.  For instance consider a two different manufacturing process, where process A is making a part that should be 100 m in length and process B is making a part that should be 0.01 m in length.  As in any manufacturing process there is not perfect precision and thus there is some variation of the length of the parts made within each process.  Below are some statistics regarding the manufacture of 5000 parts from both Process A and B.
+
+Process A has a mean of 100.00 m and a standard deviation of 0.100 m.  
+Process B has a mean of 0.010 m and a standard deviation of 0.001 m.  
+
+As you can see the standard deviation is much lower in process B as compared to A.  However, this does not tell the whole story.  Let's take a look at the coefficient of variation for the two processes. 
+
+Process A has a $CV = \frac{0.100\, m}{100.00\, m}  = 0.001$  
+
+Process B has a $CV = \frac{0.001\, m}{0.010\, m}  = 0.1$   
+
+
+Thus, we can see that since the mean is also much smaller in process B, the standard deviation of B is a much greater proportion of the mean part length.  The CV helps to highlight this point.  
+
+**Important note:** The CV should only be calculated for data that is measured on measurement scales that have a meaningful zero value (i.e., ratio scale).  For instance, you would not want to compute CVs on temperature data that is measured in C or F, since their zero values do not actually represent a true physical minimum value.  Thus the computed CV would be dependent on the scale (units) used.  The example, I presented above makes sense since length does indeed have a true physical minimum of zero and thus our CV is independent of the units used (i.e., we could have used units of feet and we would get the same answer for the CV).  
 
 <br/>
 
