@@ -265,7 +265,7 @@ Process A has a $CV = \frac{0.100\, m}{100.00\, m}  = 0.001$
 Process B has a $CV = \frac{0.001\, m}{0.010\, m}  = 0.1$   
 
 
-Thus, we can see that since the mean is also much smaller in process B, the standard deviation of B is a much greater proportion of the mean part length.  The CV helps to highlight this point.  
+Thus, we can see that since the mean is also much smaller in process B, the standard deviation of B is a much greater proportion of the mean part length.  The CV helps to highlight that Process B has much greater variation in the part sizes relative to the average part size.  Thus, the manufacturer would see that the Process B parts are not particularly well manufactured since the variation amounts to 10% of the mean size.  
 
 **Important note:** The CV should only be calculated for data that is measured on measurement scales that have a meaningful zero value (i.e., ratio scale).  For instance, you would not want to compute CVs on temperature data that is measured in C or F, since their zero values do not actually represent a true physical minimum value.  Thus the computed CV would be dependent on the scale (units) used.  The example, I presented above makes sense since length does indeed have a true physical minimum of zero and thus our CV is independent of the units used (i.e., we could have used units of feet and we would get the same answer for the CV).  
 
