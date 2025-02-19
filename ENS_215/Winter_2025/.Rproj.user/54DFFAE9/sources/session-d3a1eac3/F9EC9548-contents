@@ -46,7 +46,7 @@ library(tidyverse)
 precip_data <- read_csv("https://stahlm.github.io/ENS_215/Data/NOAA_State_Precip_LabData.csv")
 ```
 
-Take a quick look at the data to refamiliarize yourself with it.
+Take a quick look at the data to re-familiarize yourself with it.
 
 Now let's create a new dataset that just has the precipitation data for NY.
 ```{r}
@@ -177,7 +177,7 @@ ny_precip %>%
 <br/>
 
 #### Measures of spread
-The spread (or variablity) of a variable is an important property to consider when analyzing a dataset.  Among other things, the spread of a dataset gives us an idea of the range of possible values a variable can take as well as how confident we can be when making statements regarding the data when we have only a limited sample.  
+The spread (or variability) of a variable is an important property to consider when analyzing a dataset.  Among other things, the spread of a dataset gives us an idea of the range of possible values a variable can take as well as how confident we can be when making statements regarding the data when we have only a limited sample.  
 
 <br/>
 
@@ -386,7 +386,7 @@ ny_precip %>%
 ```
 
 + Based on the graphic above:  
-    + Does the distribution of precip in NY appear symmetric or skewed?
+    + Does the distribution of precipitation in NY appear symmetric or skewed?
     + Does the distribution appear unimodal or multimodal?
     + What is range of monthly precipitation values within which the middle 50% of samples fall? 
     + What is the maximum monthly precipitation ever recorded in NY?

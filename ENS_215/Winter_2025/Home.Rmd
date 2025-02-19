@@ -69,7 +69,9 @@ output:
 ***
 
 ### Week 7
-+ Mon (17-Feb) -- **Spatial analysis: Analyzing and obtaining environmental rasters** [(html)](https://stahlm.github.io/ENS_215/Winter_2025/Lectures/2025_02_17.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2025/Lectures/2025_02_17.Rmd)
++ Mon (17-Feb) -- **Spatial analysis: Analyzing and obtaining environmental rasters** [(html)](https://stahlm.github.io/ENS_215/Winter_2025/Lectures/2025_02_17.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2025/Lectures/2025_02_17.Rmd) 
+
++ Wed (19-Feb) -- **Descriptive statistics and univariate data** [(html)](https://stahlm.github.io/ENS_215/Winter_2025/Lectures/2025_descriptive_statistics.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2025/Lectures/2025_descriptive_statistics.Rmd)
 
 ***
 
