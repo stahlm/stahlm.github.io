@@ -245,6 +245,8 @@ IQR(ny_precip$Precip_inches) # using IQR function
 
 ```
 
+<br/> 
+
 ##### Coefficient of variation
 
 The coefficient of variation is a measure of spread and is defined as the ratio of the standard deviation to the mean.  
