@@ -1,0 +1,3 @@
+"0","tmap_save(tm = fig_map_legend, ""./map_legend_only.svg"")"
+"2","stars object downsampled to 1250 by 801 cells. See tm_shape manual (argument raster.downsample)
+"

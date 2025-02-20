@@ -1,0 +1,8 @@
+"0","fig_map_legend <- tm_shape(r_glc) +"
+"0","  tm_raster(style = ""cat"", palette = pal2use, legend.show = T, title = """") +"
+"0","  "
+"0","  tm_layout(legend.only = T, legend.width = 1)"
+"0",""
+"0","fig_map_legend"
+"2","stars object downsampled to 1250 by 801 cells. See tm_shape manual (argument raster.downsample)
+"

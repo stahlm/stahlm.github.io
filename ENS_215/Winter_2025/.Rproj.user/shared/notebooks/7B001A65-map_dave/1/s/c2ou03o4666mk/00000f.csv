@@ -1,0 +1,1 @@
+"0","sf_locations <- st_as_sf(sf_locations, coords = c(""long"",""lat""))"

@@ -1,0 +1,4 @@
+"0","tmap_save(tm = fig_map, filename = ""./Map_watershed.svg"")"
+"2","stars object downsampled to 1250 by 801 cells. See tm_shape manual (argument raster.downsample)
+"
+"2","Warning: Currect projection of shape sf_locations unknown. Long-lat (WGS84) is assumed."
