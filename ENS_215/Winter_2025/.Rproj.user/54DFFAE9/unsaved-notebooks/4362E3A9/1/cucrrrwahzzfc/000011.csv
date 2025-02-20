@@ -1,5 +1,0 @@
-"0","sf_borders_adm1 <- ne_states(country = ""Cambodia"","
-"0","                        returnclass = ""sf"")"
-"0",""
-"0","sf_borders <- ne_countries(scale = 'large', country = ""Cambodia"", "
-"0","                          returnclass = ""sf"")"

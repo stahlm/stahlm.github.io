@@ -1,0 +1,6 @@
+"0","precip_data %>% "
+"0","  filter(state_cd %in% c(""NY"",""NH"",""VT"",""ME"")) %>% "
+"0","  ggplot(aes(x = Precip_inches, group = time_period, fill = time_period)) +"
+"0","  geom_density(alpha = 0.5) +"
+"0","  facet_wrap(~ state_cd, nrow = 3, ncol = 2) +"
+"0","  theme_bw()"

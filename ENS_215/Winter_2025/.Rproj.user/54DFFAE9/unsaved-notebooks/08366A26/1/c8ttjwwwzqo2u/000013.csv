@@ -1,0 +1,5 @@
+"0","terra::shade(terra::terrain(x = r_elev_mod, ""slope"", unit = ""radians""),"
+"0","             terra::terrain(x = r_elev_mod, ""aspect"", unit = ""radians""), 40, 270)"
+"2","Error in terra::shade(terra::terrain(x = r_elev_mod, ""slope"", unit = ""radians""),  : 
+  inherits(slope, ""SpatRaster"") is not TRUE
+"

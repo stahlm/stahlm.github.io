@@ -1,4 +1,0 @@
-"0",""
-"0","sf_borders_1 %>% "
-"0","  tm_shape() +"
-"0","  tm_borders()"

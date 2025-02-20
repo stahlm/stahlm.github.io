@@ -1,0 +1,243 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+## Load in packages
+```{r}
+library(tidyverse)
+
+library(cluster)    # clustering algorithms
+library(factoextra) # clustering algorithms & visualization
+library(FactoMineR)
+
+library(tmap)
+library(sf)
+```
+
+```{r}
+set.seed(123)
+```
+
+
+
+## Load in data to use
+```{r}
+srp_gw <- read_csv("./SRP_merged_IC_ICPMS_WaterIsotopes.csv")
+```
+## Prepare data for clustering
+
+### Select variables to use in clustering
+```{r}
+table_cluster <- srp_gw %>% 
+  select(Sample_ID, 
+         F_ppm, 
+         Cl_ppm,
+         Br_ppm, 
+         NO3_ppm, 
+         SO4_ppm, 
+         Fe, 
+         Ca, 
+         Mg, 
+         K, 
+         V
+         ) %>% 
+  
+  filter(Sample_ID != "CR4132") %>% 
+  
+  drop_na() # need to drop any samples with NA values since can't cluster sites with missing data
+```
+
+
+### Name the rows with the SAMPLE_ID variable 
+```{r}
+table_cluster <- column_to_rownames(table_cluster, var = "Sample_ID")
+
+```
+
+
+
+
+### Rescale the data
+```{r}
+table_cluster_scaled <- scale(table_cluster)
+```
+
+
+
+## PCA
+```{r}
+res.pca <- PCA(table_cluster_scaled,  graph = FALSE)
+```
+
+```{r}
+# Control variable colors using their contributions
+fviz_pca_var(res.pca, col.var="contrib",
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+             repel = TRUE # Avoid text overlapping
+             )
+```
+
+
+## Cluster the data
+```{r}
+fviz_nbclust(
+  table_cluster_scaled,
+  pam,
+  k.max = 10,
+  method = "wss",
+  diss = get_dist(table_cluster, method = "spearman")
+  #diss = get_dist(table_cluster, method = "euclidean")
+) 
+```
+
+
+
+```{r}
+n_clust = 7
+#k_n <- kmeans(table_cluster_scaled, centers = n_clust, nstart = 100, iter.max = 15000)
+
+
+k_n = cluster::pam(table_cluster_scaled, k = n_clust)
+```
+
+
+```{r}
+fig_cluster <- fviz_cluster(k_n, data = table_cluster_scaled, ellipse = T, palette = "Set2",
+                            geom = "point") +
+  theme_classic()
+```
+
+
+```{r}
+fig_cluster
+```
+
+
+
+```{r}
+df_cluster_info <- tibble(Sample_ID = row.names(table_cluster_scaled),
+                          cluster_id = k_n$cluster)
+```
+
+
+```{r}
+srp_gw <- srp_gw %>% 
+  left_join(df_cluster_info)
+```
+
+
+
+```{r}
+srp_gw <- srp_gw %>% 
+  mutate(cluster_id = factor(cluster_id))
+```
+
+
+
+```{r fig.width= 4}
+srp_gw %>% 
+  filter(!is.na(cluster_id)) %>% 
+  
+  ggplot(aes(x = cluster_id, y = As, fill = cluster_id)) +
+  geom_boxplot() +
+  scale_fill_brewer(type = "qual", palette = "Set2") +
+  
+  scale_y_log10() +
+  
+  theme_classic() +
+  theme(legend.position = "none")
+
+
+
+srp_gw %>% 
+  filter(!is.na(cluster_id)) %>% 
+  
+  ggplot(aes(x = cluster_id, y = Fe, fill = cluster_id)) +
+  geom_boxplot() +
+  scale_fill_brewer(type = "qual", palette = "Set2") +
+  
+  scale_y_log10() +
+  
+  theme_classic() +
+  theme(legend.position = "none")
+
+
+srp_gw %>% 
+  filter(!is.na(cluster_id)) %>% 
+  
+  ggplot(aes(x = cluster_id, y = SO4_ppm, fill = cluster_id)) +
+  geom_boxplot() +
+  scale_fill_brewer(type = "qual", palette = "Set2") +
+  
+  scale_y_log10() +
+  
+  theme_classic() +
+  theme(legend.position = "none")
+
+
+srp_gw %>% 
+  filter(!is.na(cluster_id)) %>% 
+  
+  ggplot(aes(x = cluster_id, y = Ca, fill = cluster_id)) +
+  geom_boxplot() +
+  scale_fill_brewer(type = "qual", palette = "Set2") +
+  
+  scale_y_log10() +
+  
+  theme_classic() +
+  theme(legend.position = "none")
+
+
+
+
+```
+
+```{r}
+summary(srp_gw$cluster_id)
+```
+
+
+```{r}
+sf_bangladesh_gw <- bangladesh_gw %>% 
+  st_as_sf(coords = c("LONG_DEG", "LAT_DEG"))
+```
+
+
+```{r}
+tmap_mode("view")
+
+sf_bangladesh_gw %>% 
+  filter(!is.na(cluster_id)) %>% 
+  
+  tm_shape() +
+  tm_dots(col = "cluster_id", palette = "Set2",
+          popup.vars = c("cluster_id", "WELL_DEPTH_m", "As_ugL")
+          ) +
+
+  tm_mouse_coordinates() +
+  
+  tm_basemap(server = c("Esri.WorldImagery", "OpenStreetMap", "Esri.WorldShadedRelief")) +
+  
+  tm_scale_bar() 
+```
+
+
+```{r}
+sf_bangladesh_gw %>% 
+  filter(!is.na(cluster_id)) %>% 
+  
+  tm_shape() +
+  tm_dots(col = "As_ugL", palette = "viridis", breaks = c(0,5,10,50,100,200),
+          popup.vars = c("cluster_id", "WELL_DEPTH_m", "As_ugL")
+          ) +
+
+  tm_mouse_coordinates() +
+  
+  tm_basemap(server = c("Esri.WorldImagery", "OpenStreetMap", "Esri.WorldShadedRelief")) +
+  
+  tm_scale_bar() + 
+  tm_facets(by = "cluster_id", sync = T)
+```
+
+

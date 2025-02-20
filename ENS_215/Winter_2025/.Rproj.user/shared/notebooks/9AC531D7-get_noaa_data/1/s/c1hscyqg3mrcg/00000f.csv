@@ -1,0 +1,3 @@
+"0","df_all <- df_all %>% "
+"0","  mutate(YEAR = str_sub(Date,1,4),"
+"0","         MONTH = str_sub(Date,5,6))"

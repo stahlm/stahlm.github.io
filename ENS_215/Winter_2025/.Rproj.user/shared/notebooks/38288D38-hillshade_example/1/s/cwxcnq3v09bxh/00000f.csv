@@ -1,0 +1,12 @@
+"0","library(AOI)"
+"0","library(elevatr)"
+"2","elevatr v0.99.0 NOTE: Version 0.99.0 of 'elevatr' uses 'sf' and 'terra'.  Use 
+of the 'sp', 'raster', and underlying 'rgdal' packages by 'elevatr' is being 
+deprecated; however, get_elev_raster continues to return a RasterLayer.  This 
+will be dropped in future versions, so please plan accordingly.
+"
+"0","library(tmap)"
+"2","Registered S3 method overwritten by 'htmlwidgets':
+  method           from         
+  print.htmlwidget tools:rstudio
+"

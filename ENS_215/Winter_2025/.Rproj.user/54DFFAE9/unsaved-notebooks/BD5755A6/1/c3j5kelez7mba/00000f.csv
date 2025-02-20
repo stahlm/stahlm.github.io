@@ -1,0 +1,2 @@
+"0","ny_precip <- ny_precip %>% "
+"0","  mutate(frac = cume_dist(Precip_inches))"

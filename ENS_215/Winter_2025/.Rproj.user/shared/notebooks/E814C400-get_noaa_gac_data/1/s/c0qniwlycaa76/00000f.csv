@@ -1,0 +1,3 @@
+"0","state_vec <- seq(1,48, by = 1) # contiguous states"
+"0",""
+"0","state_vec <- c(state_vec, 50, 51) # Hawaii (50)"

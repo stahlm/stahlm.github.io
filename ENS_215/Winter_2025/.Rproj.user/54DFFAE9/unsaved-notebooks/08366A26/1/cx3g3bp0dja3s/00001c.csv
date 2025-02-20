@@ -1,0 +1,5 @@
+"0","terra::plot(d)"
+"2","Warning: no non-missing arguments to min; returning Inf"
+"2","Warning: no non-missing arguments to max; returning -Inf"
+"2","Error in plot.window(...) : need finite 'ylim' values
+"

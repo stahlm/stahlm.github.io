@@ -1,0 +1,4 @@
+"0","terra::shade(a,b, 40, 270)"
+"2","Error in terra::shade(a, b, 40, 270) : 
+  inherits(slope, ""SpatRaster"") is not TRUE
+"

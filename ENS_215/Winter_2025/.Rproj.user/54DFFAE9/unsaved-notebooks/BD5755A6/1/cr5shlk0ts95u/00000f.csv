@@ -1,0 +1,3 @@
+"0","ny_precip %>% "
+"0","  group_by(time_period) %>% "
+"0","  summarize(avg_precip = mean(Precip_inches))"

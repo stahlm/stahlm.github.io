@@ -1,3 +1,0 @@
-"0","r_precip_normals <- getTerraClimNormals(AOI = sf_borders, varname = ""ppt"","
-"0","                                        scenario = ""19812010"""
-"0","                                        )"

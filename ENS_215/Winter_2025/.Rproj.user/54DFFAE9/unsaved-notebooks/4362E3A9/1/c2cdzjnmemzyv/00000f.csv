@@ -1,8 +1,0 @@
-"0","library(tidyverse)"
-"0","library(climateR)"
-"0","library(rnaturalearth)"
-"0","library(tmap)"
-"2","Registered S3 method overwritten by 'htmlwidgets':
-  method           from         
-  print.htmlwidget tools:rstudio
-"

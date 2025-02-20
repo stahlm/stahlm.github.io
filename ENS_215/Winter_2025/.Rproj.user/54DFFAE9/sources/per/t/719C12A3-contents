@@ -1,0 +1,112 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r}
+library(tidyverse)
+```
+
+
+https://www.ncei.noaa.gov/access/monitoring/climate-at-a-glance/county/time-series/CA-001/tavg/1/0/1895-2025/data.csv
+
+## Get temperatures
+```{r}
+base_url_a <- "https://www.ncei.noaa.gov/access/monitoring/climate-at-a-glance/county/time-series/CA-"
+
+base_url_b <- "/tavg/1/0/1895-2025/data.csv"
+```
+
+```{r}
+county_vec <- seq(1,115, by = 2)
+county_vec <- str_pad(county_vec, width = 3,side = "left", pad = "0")
+
+county_vec
+```
+
+```{r}
+i_loop <- 1 
+
+for (i_county in county_vec) {
+  
+  url_2_use <- paste0(base_url_a, i_county, base_url_b)
+  print(url_2_use)
+  
+  df_i <- read_csv(url_2_use, skip = 3)
+  
+  df_i$FIPS <- i_county
+  
+  if (i_loop == 1) {
+    df_all <- df_i
+    
+    i_loop <- 2
+  } else{
+    
+    df_all <- df_all %>% 
+      bind_rows(df_i)
+  }
+}
+```
+
+
+```{r}
+df_all <- df_all %>% 
+  mutate(YEAR = str_sub(Date,1,4),
+         MONTH = str_sub(Date,5,6))
+```
+
+```{r}
+write_csv(x = df_all, "./noaa_cag_temperatures.csv")
+```
+
+
+## Get precip
+```{r}
+base_url_a <- "https://www.ncei.noaa.gov/access/monitoring/climate-at-a-glance/county/time-series/CA-"
+
+base_url_b <- "/pcp/1/0/1895-2025/data.csv"
+```
+
+```{r}
+county_vec <- seq(1,115, by = 2)
+county_vec <- str_pad(county_vec, width = 3,side = "left", pad = "0")
+
+county_vec
+```
+
+```{r}
+i_loop <- 1 
+
+for (i_county in county_vec) {
+  
+  url_2_use <- paste0(base_url_a, i_county, base_url_b)
+  print(url_2_use)
+  
+  df_i <- read_csv(url_2_use, skip = 3)
+  
+  df_i$FIPS <- i_county
+  
+  if (i_loop == 1) {
+    df_all <- df_i
+    
+    i_loop <- 2
+  } else{
+    
+    df_all <- df_all %>% 
+      bind_rows(df_i)
+  }
+}
+```
+
+
+```{r}
+df_all <- df_all %>% 
+  mutate(YEAR = str_sub(Date,1,4),
+         MONTH = str_sub(Date,5,6))
+```
+
+```{r}
+write_csv(x = df_all, "./noaa_cag_precipitation.csv")
+```
+

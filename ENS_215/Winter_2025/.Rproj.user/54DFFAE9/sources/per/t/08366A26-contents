@@ -1,0 +1,70 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(AOI)
+library(elevatr)
+library(tmap)
+```
+
+```{r}
+# aoi2use <- aoi_get(x = "Rancho Palos Verdes, CA")
+aoi2use <- aoi_get(x = "Schenectady, NY")
+```
+
+```{r}
+r_elev <- get_elev_raster(locations = aoi2use, z = 14, clip = "locations")
+```
+
+
+
+```{r}
+r_elev_mod <- r_elev
+```
+
+```{r}
+r_elev_mod[r_elev_mod < 0] <- NA
+```
+
+
+```{r}
+terra::plot(r_elev_mod)
+```
+```{r}
+a <- terra::terrain(x = r_elev_mod, "slope", unit = "radians")
+a <- a$slope
+
+a <- terra::rast(a)
+```
+
+```{r}
+b <- terra::terrain(x = r_elev_mod, "aspect", unit = "radians")
+b <- b$aspect
+
+b <- terra::rast(b)
+```
+
+
+```{r}
+c <- terra::shade(slope = a,aspect = b, 40, 270)
+
+```
+
+
+
+```{r}
+terra::plot(c)
+
+```
+
+```{r}
+terra::plot(c, col=grey(0:100/100), legend=FALSE, mar=c(2,2,1,4))
+
+```
+```{r}
+
+```
+
+

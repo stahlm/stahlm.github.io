@@ -1,0 +1,11 @@
+"0","b <- terra::terrain(x = r_elev_mod, ""aspect"", unit = ""radians"")"
+"2","Warning message:
+"
+"2","In class(object) <- ""environment"" :"
+"2","
+ "
+"2"," Setting class(x) to ""environment"" sets attribute to NULL; result will no longer be an S4 object
+"
+"0","b <- b$aspect"
+"0",""
+"0","b <- terra::rast(b)"
