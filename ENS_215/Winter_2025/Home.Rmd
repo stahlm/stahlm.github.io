@@ -73,7 +73,7 @@ output:
 
 + Wed (19-Feb) -- **Descriptive statistics and univariate data** [(html)](https://stahlm.github.io/ENS_215/Winter_2025/Lectures/2025_descriptive_statistics.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2025/Lectures/2025_descriptive_statistics.Rmd)  
 
-+ Fri (21-Feb) -- **Visualizing and interpreting data distributions** [(html)](https://stahlm.github.io/ENS_215/Winter_2025/Lectures/2025_02_21.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2025/Lectures/2025_02_21.Rmd)
++ Fri (21-Feb) -- **Visualizing and interpreting data distributions** [(html)](https://stahlm.github.io/ENS_215/Winter_2025/Lectures/2025_02_21.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2025/Lectures/2025_02_21.Rmd) **Graphical display of data distributions: Examples**[(html)](https://stahlm.github.io/ENS_215/Winter_2025/Lectures/2025_02_21_distributions_examples.html)
 
 ```{r echo = F, eval = F}
 
