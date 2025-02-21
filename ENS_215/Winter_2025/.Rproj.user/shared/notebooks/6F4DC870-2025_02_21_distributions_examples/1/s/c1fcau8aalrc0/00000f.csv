@@ -1,0 +1,1 @@
+"0","vec_norm <- tibble(values = rnorm(n = 1*10^5, mean = 6, sd = 1))"
