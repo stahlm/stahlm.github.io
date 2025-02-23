@@ -1,2 +1,0 @@
-"0","ny_precip %>% "
-"0","  mutate(frac = round(cume_dist(Precip_inches), 3))"

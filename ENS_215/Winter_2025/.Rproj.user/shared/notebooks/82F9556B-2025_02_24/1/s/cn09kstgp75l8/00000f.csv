@@ -1,0 +1,7 @@
+"0","bangladesh_gw %>% "
+"0","  ggplot(aes(x = WELL_DEPTH_m, y = LAT_DEG)) +"
+"0","  geom_hex() + "
+"0","  "
+"0","  scale_fill_viridis_c() +"
+"0","  "
+"0","  theme_classic()"

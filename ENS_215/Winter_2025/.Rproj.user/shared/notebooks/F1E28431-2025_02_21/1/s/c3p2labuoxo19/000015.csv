@@ -1,2 +1,1 @@
-"0","#precip_data <- read_csv(""https://stahlm.github.io/ENS_215/Data/NOAA_State_Precip_LabData.csv"")"
 "0","precip_data <- read_csv(""https://stahlm.github.io/ENS_215/Data/noaa_cag_state_precipitation.csv"")"

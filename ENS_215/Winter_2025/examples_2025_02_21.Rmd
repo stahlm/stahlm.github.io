@@ -1,0 +1,65 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+```
+
+```{r warning=FALSE, message=FALSE}
+precip_data <- read_csv("https://stahlm.github.io/ENS_215/Data/NOAA_State_Precip_LabData.csv")
+```
+
+
+
+```{r}
+ny_precip <- filter(precip_data, state_cd == "NY")
+```
+
+
+```{r}
+ny_precip %>% 
+  mutate(Month = factor(Month)) %>% 
+  ggplot(aes(x = Month, y = Precip_inches)) +
+  
+  geom_boxplot(notch = T, fill = "lightgrey") +
+  
+  theme_classic()
+```
+
+
+```{r}
+table_precip_stats <- precip_data %>% 
+  group_by(state_cd) %>% 
+  summarize(p_25 = quantile(Precip_inches, probs = 0.25),
+            p_50 = quantile(Precip_inches, probs = 0.50),
+            p_75 = quantile(Precip_inches, probs = 0.75)
+            )
+
+table_precip_stats
+```
+
+```{r fig.height= 6.75, fig.width= 4.75}
+table_precip_stats %>% 
+  ggplot() +
+  geom_point(aes(y = reorder(state_cd, p_50), x = p_50), size = 2) +
+  
+  geom_point(aes(y = state_cd, x = p_25), 
+             shape = 21, fill = "red", size = 2) +
+  
+  geom_point(aes(y = state_cd, x = p_75), 
+             shape = 21, fill = "blue", size = 2) +
+  
+  theme_classic() +
+  xlim(0,7) +
+  
+  labs(title = "Monthly Precipitation Quantile",
+       subtitle = "US States",
+       y = "",
+       x = "Monthly precipitation (inches)",
+       caption = "25th (red), 50th (black), 75th (blue)"
+       )
+```
+
+

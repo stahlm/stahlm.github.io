@@ -1,0 +1,7 @@
+"0","df_stream_data <- df_stream_data %>% "
+"0","  rename(flow_cfs = X_00060_00003) %>% "
+"0","  "
+"0","  mutate(Year = year(Date),"
+"0","         Month = month(Date),"
+"0","         Day = day(Date)"
+"0","         )"

@@ -1,0 +1,5 @@
+"0","df_stream_data <- readNWISdv(siteNumbers = ""01351500"","
+"0","                             parameterCd = ""00060"","
+"0","                             statCd = ""00003"")"
+"2","GET: https://waterservices.usgs.gov/nwis/dv/?site=01351500&format=waterml,1.1&ParameterCd=00060&StatCd=00003&startDT=1851-01-01
+"
