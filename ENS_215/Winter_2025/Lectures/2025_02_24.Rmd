@@ -271,9 +271,10 @@ In many time-series data there are seasonal patterns (e.g. temperature, precipit
 
 Let's load in some data of atmospheric CO~2~ concentrations that have been recorded at Mauna Loa, Hawaii since the late-1950s.  The dataset has monthly average concentrations.
 ```{r message=FALSE, warning=FALSE}
-mauna_loa <- read_csv("https://stahlm.github.io/ENS_215/Data/Mauna_Loa_CO2.csv", skip = 2)
+mauna_loa <- read_csv("https://stahlm.github.io/ENS_215/Data/Mauna_loa_CO2_data.csv", skip = 2)
 
 ```
+
 
 Below I'm plotting a time-series of the monthly data.  This graphic may look familiar to you -- the data here is famous and often appears in discussions of climate change.  
 ```{r echo=FALSE}

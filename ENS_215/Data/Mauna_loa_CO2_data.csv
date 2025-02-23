@@ -1,6 +1,6 @@
 Source: https://gml.noaa.gov/ccgg/trends/data.html,,,
 ,,,
-Year,Month,decimal date,CO2_ppm
+Year,Month,decimal_date,CO2_ppm
 1958,3,1958.2027,315.71
 1958,4,1958.2877,317.45
 1958,5,1958.3699,317.51
