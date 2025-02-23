@@ -118,9 +118,9 @@ A common type of bivariate data is time-series data, where a numeric variable is
 
 First let's load in some streamflow data from the USGS streamgage at Schoharie Creek (01351500).
 ```{r message=FALSE}
-flow <- read_csv("https://stahlm.github.io/ENS_215/Data/USGS_flow_01351500.csv") %>% 
+flow <- read_csv("https://stahlm.github.io/ENS_215/Data/USGS_streamflow_01351500.csv") %>% 
   drop_na() %>% 
-  filter(Year >= 1940 & Year <= 2016) %>%  # select years 1940 through 2016
+  filter(Year >= 1940 & Year <= 2025) %>%  # select years 1940 through 2024
   mutate(Date = make_date(Year, Month, Day)) # create a Date column that has the dates as an R date object
 
 ```
@@ -184,7 +184,11 @@ Raster plots are an excellent way of displaying streamflow data.  When streamflo
 Let's use the `geom_tile()` function to create a raster hydrograph for the streamflow data at Schoharie Creek.  We'll plot the day of the year on the x-axis, the year on the y-axis, and we will fill the pixels with a color corresponding the the log~10~(flow).  We are using the log~10~(flow) to prevent the color mapping from being heavily skewed to the highest values (recall that streamflow is often log-normally distributed).
 ```{r}
 flow %>% 
-  ggplot(aes(x = yday(Date), y = Year, fill = log10(flow_cfs))) +
+  mutate(DOY = yday(Date)) %>% 
+  
+  ggplot(aes(x = DOY, y = Year, 
+             fill = log10(flow_cfs))) +
+  
   scale_fill_gradient2(low = "red", mid = "green", high = "blue", 
                        midpoint = median(log10(flow$flow_cfs))) +
   geom_tile() +
@@ -218,10 +222,16 @@ You can also use a raster plot to visualize other types of data.  In a similar v
 
 Let's load in the NOAA precipitation data that we've used in the past.  
 ```{r message=FALSE, warning=FALSE}
-precip_data <- read_csv("https://stahlm.github.io/ENS_215/Data/NOAA_State_Precip_LabData.csv")
+precip_data <- read_csv("https://stahlm.github.io/ENS_215/Data/noaa_cag_state_precipitation.csv")
 ```
 
-Take a quick look and refamiliarize yourself with the data.  
+```{r}
+precip_data <- precip_data %>% 
+  rename(Precip_inches = Value)
+```
+
+
+Take a quick look and re-familiarize yourself with the data.  
 
 Now, let's create a raster graphic of monthly precipitation for California.  We'll filter the data so that we have years 1960 onwards (otherwise we'll have too many years and the graphic will be difficult to read).  
 
@@ -230,8 +240,8 @@ Also note that in the code below we are filling the pixels according to the perc
 Take a look at the code below and make sure you understand what we are doing.  Also note, that we've put year on the x-axis and month on the y-axis (you are free to switch them as neither orientation is more correct). 
 ```{r fig.width= 8.25}
 precip_data %>% 
-  filter(state_cd == "CA", Year >= 1960) %>% 
-  ggplot(aes(y = factor(Month), x = Year)) +
+  filter(STATE == "California", YEAR >= 1960, YEAR < 2025) %>% 
+  ggplot(aes(y = factor(MONTH), x = YEAR)) + 
   geom_tile(aes(fill = percent_rank(Precip_inches)), color = "black") +
   scale_fill_gradient2(low = "red", mid = "white", high = "blue", midpoint = 0.5) +
   coord_equal() +
@@ -245,55 +255,6 @@ precip_data %>%
 + Remake the graphic above for another state of interest.  Examine the data and respond to the same questions above.
 
 
-
-
-<br/>
-
-#### Calendar plots
-Calendar plots are time-series plots that are presented in the format of a typical wall calendar.  These types of plots are helpful for displaying daily data across a year (or multiple years).  They are particularly helpful when the observed data might be expected to display weekly and/or monthly patterns.  For instance if you were to have a dataset of visitors to a state or national park you might expect to see peaks on weekends and holidays -- a calendar plot would make this much more obvious than a typical time-series plot.  
-
-The `openair` package has a function called `calendarPlot()` that allows you to easily make calendar plots.  
-
-First you'll need to install the `openair` package and then load it in.
-
-```{r message=FALSE, warning=FALSE}
-library(openair)
-
-flow <- flow %>% 
-  rename(date = Date) %>% # rename "Date" to "date" as the calendarPlot function looks for a "date" column
-  mutate(log10_flow_cfs = log10(flow_cfs)) # add a column of log10 flows
-```
-
-<br/> 
-
-To make a `calendarPlot` you need to specify the dataset (in this case our `flow` data) as well as the variable to color each day by and also the year of interest.  Note that we specify the data to color the days by using the `pollutant = ` argument.  This argument is called `pollutant` because this package was made by a group of researchers who were using it to analyze and visualize air quality data -- nonetheless we can apply it to any daily time-series data that we want to.  
-
-```{r fig.height= 4.5}
-calendarPlot(flow, pollutant = "log10_flow_cfs", year = 1965,
-             cols = RColorBrewer::brewer.pal(n = 10, name = "RdBu") )
-
-```
-
-
-
-<br/> 
-
-+ Test out `calendarPlot()` with some other years.  
-+ Make a calendar plot that shows the average flow for each day of the year (i.e. Jan 1 would show the average flow for all Jan 1 on record, Jan 2 for all Jan 2 on record,...).  You could also make a similar plot for the maximum flows observed on each day.  Examine the results and think about the implications -- discuss your findings with your neighbors.  
-
-```{r echo =FALSE, eval=FALSE}
-flow_summary <- flow %>% 
-  group_by(Month, Day) %>% 
-  summarize(mean_flow_cfs = mean(flow_cfs, na.rm = T)) %>% 
-  mutate(date = ymd(paste(2020, Month, Day))) 
-```
-
-```{r fig.height= 4.5, echo=FALSE, eval=FALSE}
-
-calendarPlot(flow_summary, pollutant = "mean_flow_cfs", year = 2020,
-             cols = RColorBrewer::brewer.pal(n = 10, name = "RdBu") )
-
-```
 
 
 <br/>
