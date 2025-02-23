@@ -13,11 +13,11 @@ output:
 <br/>
 
 ## Bivariate data: concepts/intro
-**Bivariate data** is data that has observations with two quantitative variables associated with each observation.  For example is we have a dataset where the temperature and precipitation are measured for each observation (_e.g._ US state) then we have a bivariate dataset.  This differs from univariate data where we only have one quantitative variable for each observation (_e.g._ just precipitation).  
+**Bivariate data** is data that has observations with two quantitative variables associated with each observation.  For example if we have a dataset where the temperature and precipitation are measured for each observation (_e.g._ US state) then we have a bivariate dataset.  This differs from univariate data where we only have one quantitative variable for each observation (_e.g._ just precipitation).  
 
-In many cases (_as you have already seen_) you will have datasets with many more than two quantitative variables for each observation (_e.g._ the BGS Groundwater Chemistry Dataset for Bangladesh).  In this case our dataset is multivariate, however we when we consider two quantitative variables at a time (_e.g._ arsenic and iron) then we are nonetheless performing **bivariate analysis**.  
+In many cases (_as you have already seen_) you will have datasets with many more than two quantitative variables for each observation (_e.g._ the BGS Groundwater Chemistry dataset for Bangladesh).  In this case our dataset is multivariate, however we when we consider two quantitative variables at a time (_e.g._ arsenic and iron) then we are nonetheless performing **bivariate analysis**.  
 
-While we've been dealing with **bivariate data** and performing **bivariate analysis** for much of the term, we haven't yet explicitly  covered a number of the more technical details and concepts.  In today's lecture we will:
+While we've been dealing with **bivariate data** and performing **bivariate analysis** for much of the term, we haven't yet explicitly  covered a number of the more technical details and concepts.  In today's and the upcoming lectures this week we will:
 
 + Refresh our memory on some basics of bivariate analysis
 + Introduce some additional ways of visualizing bivariate data
@@ -50,7 +50,7 @@ bangladesh_gw <- read_csv("https://stahlm.github.io/ENS_215/Data/NationalSurveyD
 
 <br/>
 
-Let's investigate if how well depth relates to the latitude of the location where the well is situated.  We are interested in this because it could potentially provide information that we can use to make inferences about the geology.  Typically well are installed at a depth where water can be extracted at sufficient quantity and quality.  If there geology allows for sufficient quantites of water to be extracted at shallow depth, then you would prefer to install a shallow well (all other things being equal) since it is cheaper to install shallow wells.  
+Let's investigate if how well depth relates to the latitude of the location where the well is situated.  We are interested in this because it could potentially provide information that we can use to make inferences about the geology.  Typically well are installed at a depth where water can be extracted at sufficient quantity and quality.  If the geology allows for sufficient quantities of water to be extracted at shallow depth, then you would prefer to install a shallow well (all other things being equal) since it is cheaper to install shallow wells.  
 
 Since there is not a clear dependent variable in this case, we could put either variable on either axis.  However, conceptually it is easier to interpret this plot with latitude on the y-axis, since latitude varies as you move north to south and people tend to conceptualize north to south as the vertical direction on a page.  
 ```{r}
@@ -88,7 +88,8 @@ fig_3
 
 <br/>
 
-Another way to show the density of points in each region of the graph is to use the `geom_hex()` function.  This function breaks up the plot area containing data into hexagonal sub-regions.  The sub-regions are color-coded according to the density of points in that area.  This achieves something similar to creating a scatter plot where the points are semi-transparent (using the alpha setting in `geom_point()`) -- though `geom_hex()` can help to reduce the "noise" in the graphic by reducing the number of points displayed.
+Another way to show the density of points in each region of the graph is to use the `geom_hex()` function.  This function breaks up the plot area containing data into hexagonal sub-regions.  The sub-regions are color-coded according to the density of points in that area.  This achieves something similar to creating a scatter plot where the points are semi-transparent (using the alpha setting in `geom_point()`) -- though `geom_hex()` can help to reduce the "noise" in the graphic by reducing the number of points displayed.  
+
 ```{r}
 bangladesh_gw %>% 
   ggplot(aes(x = WELL_DEPTH_m, y = LAT_DEG)) +
@@ -183,6 +184,8 @@ Raster plots are an excellent way of displaying streamflow data.  When streamflo
 
 Let's use the `geom_tile()` function to create a raster hydrograph for the streamflow data at Schoharie Creek.  We'll plot the day of the year on the x-axis, the year on the y-axis, and we will fill the pixels with a color corresponding the the log~10~(flow).  We are using the log~10~(flow) to prevent the color mapping from being heavily skewed to the highest values (recall that streamflow is often log-normally distributed).
 ```{r}
+midpoint2use <- median(log10(flow$flow_cfs))
+
 flow %>% 
   mutate(DOY = yday(Date)) %>% 
   
@@ -190,7 +193,7 @@ flow %>%
              fill = log10(flow_cfs))) +
   
   scale_fill_gradient2(low = "red", mid = "green", high = "blue", 
-                       midpoint = median(log10(flow$flow_cfs))) +
+                       midpoint = midpoint2use) +
   geom_tile() +
   theme_classic() +
   labs(title = "Schoharie Creek Flows",
@@ -241,9 +244,12 @@ Take a look at the code below and make sure you understand what we are doing.  A
 ```{r fig.width= 8.25}
 precip_data %>% 
   filter(STATE == "California", YEAR >= 1960, YEAR < 2025) %>% 
+  
   ggplot(aes(y = factor(MONTH), x = YEAR)) + 
   geom_tile(aes(fill = percent_rank(Precip_inches)), color = "black") +
+  
   scale_fill_gradient2(low = "red", mid = "white", high = "blue", midpoint = 0.5) +
+  
   coord_equal() +
   theme_classic() +
   labs(y = "Month",
