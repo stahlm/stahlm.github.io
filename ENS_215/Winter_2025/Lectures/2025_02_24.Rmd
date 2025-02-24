@@ -246,9 +246,9 @@ precip_data %>%
   filter(STATE == "California", YEAR >= 1960, YEAR < 2025) %>% 
   
   ggplot(aes(y = factor(MONTH), x = YEAR)) + 
-  geom_tile(aes(fill = percent_rank(Precip_inches)), color = "black") +
+  geom_tile(aes(fill = percent_rank(Precip_inches)), color = "black") + 
   
-  scale_fill_gradient2(low = "red", mid = "white", high = "blue", midpoint = 0.5) +
+  scale_fill_gradient2(low = "red", mid = "white", high = "blue", midpoint = 0.5) + 
   
   coord_equal() +
   theme_classic() +
@@ -358,7 +358,7 @@ flow %>%
 
 + Create a seasonal plot for the monthly mean flow using the `flow` data.  Try making the graphic with all of the years.  Also try making the graphic with just a subset of years.  
 
-```{r eval = F, echo=FALSE, message= FALSE, warning= F, fig.width= 8.25}
+```{r eval = F, echo=FALSE, message= FALSE, warning= F, fig.height= 3.75}
 
 
 flow %>% 
