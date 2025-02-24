@@ -121,7 +121,7 @@ First let's load in some streamflow data from the USGS streamgage at Schoharie C
 ```{r message=FALSE}
 flow <- read_csv("https://stahlm.github.io/ENS_215/Data/USGS_streamflow_01351500.csv") %>% 
   drop_na() %>% 
-  filter(Year >= 1940 & Year <= 2025) %>%  # select years 1940 through 2024
+  filter(Year >= 1940 & Year < 2025) %>%  # select years 1940 through 2024
   mutate(Date = make_date(Year, Month, Day)) # create a Date column that has the dates as an R date object
 
 ```
@@ -192,9 +192,10 @@ flow %>%
   ggplot(aes(x = DOY, y = Year, 
              fill = log10(flow_cfs))) +
   
+  geom_tile() +
+  
   scale_fill_gradient2(low = "red", mid = "green", high = "blue", 
                        midpoint = midpoint2use) +
-  geom_tile() +
   theme_classic() +
   labs(title = "Schoharie Creek Flows",
        subtitle = "USGS Gage 01351500", 
@@ -240,8 +241,9 @@ Now, let's create a raster graphic of monthly precipitation for California.  We'
 
 Also note that in the code below we are filling the pixels according to the percentile ranking of each precipitation observation.  This prevents the color-scale from being skewed by outlier data.  We could also fill the pixels according to the precipitation in inches (as opposed to the ranking) though a bit more tweaking of the color scheme would be required.  
 
-Take a look at the code below and make sure you understand what we are doing.  Also note, that we've put year on the x-axis and month on the y-axis (you are free to switch them as neither orientation is more correct). 
-```{r fig.width= 8.25}
+Take a look at the code below and make sure you understand what we are doing.  Also note, that we've put year on the x-axis and month on the y-axis (you are free to switch them as neither orientation is more correct).  
+
+```{r fig.width= 7.25, fig.height = 4}
 precip_data %>% 
   filter(STATE == "California", YEAR >= 1960, YEAR < 2025) %>% 
   
@@ -261,7 +263,20 @@ precip_data %>%
 + Remake the graphic above for another state of interest.  Examine the data and respond to the same questions above.
 
 
-
+```{r fig.width= 7.25, fig.height = 4, echo = F, eval = F}
+precip_data %>% 
+  filter(STATE == "New York", YEAR >= 1960, YEAR < 2025) %>% 
+  
+  ggplot(aes(y = factor(MONTH), x = YEAR)) + 
+  geom_tile(aes(fill = percent_rank(Precip_inches)), color = "black") + 
+  
+  scale_fill_gradient2(low = "red", mid = "white", high = "blue", midpoint = 0.5) + 
+  
+  coord_equal() +
+  theme_classic() +
+  labs(y = "Month",
+       fill = "Precip rank")
+```
 
 <br/>
 
@@ -307,7 +322,7 @@ In the plot below we are just plotting years 2010 onwards.
 mauna_loa %>% 
   filter(Year >= 2010) %>% 
   ggplot(aes(x = Month, y = CO2_ppm, group = Year, color = Year)) +
-  geom_line() +
+  geom_line(linewidth = 1) +
   scale_color_gradient(low = "blue", high = "red") +
   
   theme_classic() +
@@ -366,8 +381,10 @@ flow %>%
   summarize(mean_flow_cfs = mean(flow_cfs, na.rm = T)) %>% 
   ggplot(aes(x = Month, y = mean_flow_cfs, group = Year, color = Year)) +
   geom_line() +
+  
   scale_color_gradient(low = "blue", high = "red") +
   
+  scale_x_continuous(breaks = seq(1:12)) +
   scale_y_log10() +  # y scale log10
   theme_bw() 
 ```

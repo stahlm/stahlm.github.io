@@ -1,7 +1,7 @@
 "0","mauna_loa %>% "
 "0","  filter(Year >= 2010) %>% "
 "0","  ggplot(aes(x = Month, y = CO2_ppm, group = Year, color = Year)) +"
-"0","  geom_line() +"
+"0","  geom_line(linewidth = 1) +"
 "0","  scale_color_gradient(low = ""blue"", high = ""red"") +"
 "0","  "
 "0","  theme_classic() +"
