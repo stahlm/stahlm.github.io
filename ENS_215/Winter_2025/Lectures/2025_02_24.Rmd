@@ -24,7 +24,7 @@ While we've been dealing with **bivariate data** and performing **bivariate anal
 + Begin learning about fitting data (data models)
 
 
-<br/>
+<br/>  
 
 Let's load in the packages that we'll use today
 ```{r warning=FALSE, message=FALSE}
