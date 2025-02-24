@@ -1,2 +1,0 @@
-"0","county_schenectady <- NY_counties %>% "
-"0","  filter(NAME == ""Schenectady"")"

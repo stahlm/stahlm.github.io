@@ -1,3 +1,0 @@
-"0","p <- terra::crop(p, border_NY)"
-"0","p <- terra::mask(p, border_NY)"
-"2","Warning: [mask] CRS do not match"
