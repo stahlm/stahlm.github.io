@@ -73,6 +73,8 @@ output:
 
 + Mon (24-Feb) -- **Bivariate data and time-series analysis** [(html)](https://stahlm.github.io/ENS_215/Winter_2025/Lectures/2025_02_24.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2025/Lectures/2025_02_24.Rmd) 
 
++ Wed (26-Feb) -- **Writing functions** [(html)](https://stahlm.github.io/ENS_215/Winter_2025/Lectures/2025_02_26.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2025/Lectures/2025_02_26.Rmd)  
+
 
 ***
 
