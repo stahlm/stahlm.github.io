@@ -1,0 +1,10 @@
+"0","df_chem <- read_csv(""../Additional_examples/data_Na_Cl_2025_02_17.csv"")"
+"2","[1mRows: [22m[34m6952[39m [1mColumns: [22m[34m17[39m"
+"2","[36m──[39m [1mColumn specification[22m [36m───────────────────────────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m  (12): MonitoringLocationIdentifier, CharacteristicName_Na, USGSPCode_Na, ResultMeasure_MeasureUnitCode_Na,...
+[32mdbl[39m   (4): ResultMeasureValue_Na, ResultMeasureValue_Cl, lat, lon
+[34mdate[39m  (1): ActivityStartDate"
+"2","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message."

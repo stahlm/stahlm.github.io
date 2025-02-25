@@ -1,4 +1,4 @@
-"0","n_clust = 7"
+"0","n_clust = 3"
 "0","#k_n <- kmeans(table_cluster_scaled, centers = n_clust, nstart = 100, iter.max = 15000)"
 "0",""
 "0",""

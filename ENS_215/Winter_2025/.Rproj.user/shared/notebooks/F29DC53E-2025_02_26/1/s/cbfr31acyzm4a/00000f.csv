@@ -1,0 +1,1 @@
+"0","state_temps <- read_csv(""https://stahlm.github.io/ENS_215/Data/noaa_cag_state_temperatures.csv"")"

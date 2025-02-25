@@ -1,0 +1,5 @@
+"0","srp_gw %>% "
+"0","  filter(!is.na(cluster_id)) %>% "
+"0","  ggplot(aes(x = region_ID, fill = cluster_id)) +"
+"0","  scale_fill_brewer(type = ""qual"", palette = ""Set2"") +"
+"0","  geom_bar()"

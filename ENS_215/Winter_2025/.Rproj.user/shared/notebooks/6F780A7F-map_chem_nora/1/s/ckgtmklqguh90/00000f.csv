@@ -1,0 +1,8 @@
+"0","df_chem_summary <- df_chem %>% "
+"0","  group_by(MonitoringLocationIdentifier) %>% "
+"0","  "
+"0","  summarize(Na_median = median(ResultMeasureValue_Na, na.rm = T),"
+"0","            Cl_median = median(ResultMeasureValue_Cl, na.rm = T),"
+"0","            Lat = first(lat),"
+"0","            Lon = first(lon)"
+"0","            )"

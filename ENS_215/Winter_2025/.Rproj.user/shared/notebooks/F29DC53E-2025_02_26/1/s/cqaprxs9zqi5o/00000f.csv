@@ -1,0 +1,6 @@
+"0",""
+"0","worldmet_data_samwawah <- importNOAA(code = ""406740-99999"", "
+"0","                                     year = 2015)"
+"0",""
+"0","worldmet_data_samwawah <- worldmet_data_samwawah %>% "
+"0","  filter(!is.na(RH), !is.na(air_temp))   # remove observations that are missing RH and/or air temp data"

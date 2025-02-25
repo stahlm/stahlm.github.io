@@ -1,0 +1,27 @@
+{
+    "id": "C42281C4",
+    "path": "~/Teaching_UnionCollege/Environmental_Data_Analysis/tutorials/Bayley/cluster_analysis_bayley.Rmd",
+    "project_path": null,
+    "type": "r_markdown",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1740492742273.0,
+    "source_on_save": false,
+    "relative_order": 7,
+    "properties": {
+        "chunk_output_type": "inline",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "411,0",
+        "scrollLine": "411"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1740505615,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1740505615823,
+    "read_only": false,
+    "read_only_alternatives": []
+}

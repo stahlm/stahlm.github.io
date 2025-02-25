@@ -1,0 +1,13 @@
+"0",""
+"0","tmap_mode(mode = ""view"")"
+"2","tmap mode set to interactive viewing
+"
+"0","sf_ct_border %>% "
+"0","  tm_shape() +"
+"0","  tm_borders() +"
+"0","  "
+"0","  tm_shape(sf_chem_summary) +"
+"0","  tm_bubbles(col = ""Na_median"", size = 1, palette = ""viridis"", style = ""quantile"")"
+"2","Warning: Currect projection of shape sf_chem_summary unknown. Long-lat (WGS84) is assumed."
+"2","Error in dirname(to) : path too long
+"

@@ -1,0 +1,1 @@
+{"height":2.472187886279357,"width":4.0,"size_behavior":1,"conditions":[[1,"Warning: \u001B[38;5;232m\u001B[32mlog-10\u001B[38;5;232m transformation introduced infinite values.\u001B[39m"],[1,"Warning: \u001B[38;5;232mRemoved 36 rows containing non-finite outside the scale range (`stat_boxplot()`).\u001B[39m"]]}

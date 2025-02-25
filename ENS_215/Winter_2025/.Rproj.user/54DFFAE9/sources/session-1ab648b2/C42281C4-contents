@@ -1,0 +1,412 @@
+---
+title: "Cluster analysis: Bayley (SRP)"
+output: html_document
+---
+
+## Load in packages
+```{r}
+library(tidyverse)
+
+library(cluster)    # clustering algorithms
+library(factoextra) # clustering algorithms & visualization
+library(FactoMineR)
+
+library(tmap)
+library(sf)
+```
+
+```{r}
+set.seed(123)
+```
+
+
+
+## Load in data to use
+```{r}
+srp_gw <- read_csv("./SRP_merged_IC_ICPMS_WaterIsotopes.csv")
+```
+## Prepare data for clustering
+
+### Select variables to use in clustering
+```{r}
+table_cluster <- srp_gw %>% 
+  
+  filter(region_ID %in% c("CR", "OS", "SL")) %>% 
+  
+  select(Sample_ID, 
+         F_ppm, 
+         Cl_ppm,
+         Br_ppm, 
+         NO3_ppm, 
+         SO4_ppm, 
+         Fe, 
+         Ca, 
+         Mg, 
+         K, 
+         V,
+         Se
+         ) %>% 
+  
+  filter(Sample_ID != "CR4132") %>% 
+  
+  drop_na() # need to drop any samples with NA values since can't cluster sites with missing data
+```
+
+
+### Name the rows with the SAMPLE_ID variable 
+```{r}
+table_cluster <- column_to_rownames(table_cluster, var = "Sample_ID")
+
+```
+
+
+
+
+### Rescale the data
+```{r}
+table_cluster_scaled <- scale(table_cluster)
+```
+
+
+
+## PCA
+```{r}
+res.pca <- PCA(table_cluster_scaled,  graph = FALSE)
+```
+
+```{r}
+# Control variable colors using their contributions
+fviz_pca_var(res.pca, col.var="contrib",
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+             repel = TRUE # Avoid text overlapping
+             )
+```
+
+
+## Cluster the data
+```{r}
+fviz_nbclust(
+  table_cluster_scaled,
+  pam,
+  k.max = 25,
+  method = "wss",
+  diss = get_dist(table_cluster, method = "spearman")
+  #diss = get_dist(table_cluster, method = "euclidean")
+) 
+```
+
+
+
+```{r}
+n_clust = 3
+#k_n <- kmeans(table_cluster_scaled, centers = n_clust, nstart = 100, iter.max = 15000)
+
+
+k_n = cluster::pam(table_cluster_scaled, k = n_clust)
+```
+
+
+```{r}
+fig_cluster <- fviz_cluster(k_n, data = table_cluster_scaled, ellipse = T, palette = "Set2",
+                            geom = "point") +
+  theme_classic()
+```
+
+
+```{r}
+fig_cluster
+```
+
+
+
+```{r}
+df_cluster_info <- tibble(Sample_ID = row.names(table_cluster_scaled),
+                          cluster_id = k_n$cluster)
+```
+
+
+```{r}
+srp_gw <- srp_gw %>% 
+  left_join(df_cluster_info)
+```
+
+
+
+```{r}
+srp_gw <- srp_gw %>% 
+  mutate(cluster_id = factor(cluster_id))
+```
+
+
+
+```{r fig.width= 4}
+srp_gw %>% 
+  filter(!is.na(cluster_id)) %>% 
+  
+  ggplot(aes(x = cluster_id, y = As, fill = cluster_id)) +
+  geom_boxplot() +
+  scale_fill_brewer(type = "qual", palette = "Set2") +
+  
+  scale_y_log10() +
+  
+  theme_classic() +
+  theme(legend.position = "none")
+
+
+srp_gw %>% 
+  filter(!is.na(cluster_id)) %>% 
+  
+  ggplot(aes(x = cluster_id, y = U, fill = cluster_id)) +
+  geom_boxplot() +
+  scale_fill_brewer(type = "qual", palette = "Set2") +
+  
+  scale_y_log10() +
+  
+  theme_classic() +
+  theme(legend.position = "none")
+
+
+
+srp_gw %>% 
+  filter(!is.na(cluster_id)) %>% 
+  
+  ggplot(aes(x = cluster_id, y = Fe, fill = cluster_id)) +
+  geom_boxplot() +
+  scale_fill_brewer(type = "qual", palette = "Set2") +
+  
+  scale_y_log10() +
+  
+  theme_classic() +
+  theme(legend.position = "none")
+
+
+srp_gw %>% 
+  filter(!is.na(cluster_id)) %>% 
+  
+  ggplot(aes(x = cluster_id, y = SO4_ppm, fill = cluster_id)) +
+  geom_boxplot() +
+  scale_fill_brewer(type = "qual", palette = "Set2") +
+  
+  scale_y_log10() +
+  
+  theme_classic() +
+  theme(legend.position = "none")
+
+
+srp_gw %>% 
+  filter(!is.na(cluster_id)) %>% 
+  
+  ggplot(aes(x = cluster_id, y = Ca, fill = cluster_id)) +
+  geom_boxplot() +
+  scale_fill_brewer(type = "qual", palette = "Set2") +
+  
+  scale_y_log10() +
+  
+  theme_classic() +
+  theme(legend.position = "none")
+
+
+srp_gw %>% 
+  filter(!is.na(cluster_id)) %>% 
+  
+  ggplot(aes(x = cluster_id, y = V, fill = cluster_id)) +
+  geom_boxplot() +
+  scale_fill_brewer(type = "qual", palette = "Set2") +
+  
+  scale_y_log10() +
+  
+  theme_classic() +
+  theme(legend.position = "none")
+
+
+srp_gw %>% 
+  filter(!is.na(cluster_id)) %>% 
+  
+  ggplot(aes(x = cluster_id, y = Se, fill = cluster_id)) +
+  geom_boxplot() +
+  scale_fill_brewer(type = "qual", palette = "Set2") +
+  
+  scale_y_log10() +
+  
+  theme_classic() +
+  theme(legend.position = "none")
+
+
+
+```
+
+```{r fig.width= 4}
+srp_gw %>% 
+  filter(!is.na(cluster_id)) %>% 
+  
+  ggplot(aes(x = cluster_id, y = As, fill = region_ID)) +
+  geom_boxplot() +
+  scale_fill_brewer(type = "qual", palette = "Set1") +
+  
+  scale_y_log10() +
+  
+  theme_classic() +
+  theme(legend.position = "none")
+
+
+srp_gw %>% 
+  filter(!is.na(cluster_id)) %>% 
+  
+  ggplot(aes(x = cluster_id, y = U, fill = region_ID)) +
+  geom_boxplot() +
+  scale_fill_brewer(type = "qual", palette = "Set1") +
+  
+  scale_y_log10() +
+  
+  theme_classic() +
+  theme(legend.position = "none")
+
+
+
+srp_gw %>% 
+  filter(!is.na(cluster_id)) %>% 
+  
+  ggplot(aes(x = cluster_id, y = Fe, fill = region_ID)) +
+  geom_boxplot() +
+  scale_fill_brewer(type = "qual", palette = "Set1") +
+  
+  scale_y_log10() +
+  
+  theme_classic() +
+  theme(legend.position = "none")
+
+
+srp_gw %>% 
+  filter(!is.na(cluster_id)) %>% 
+  
+  ggplot(aes(x = cluster_id, y = SO4_ppm, fill = region_ID)) +
+  geom_boxplot() +
+  scale_fill_brewer(type = "qual", palette = "Set1") +
+  
+  scale_y_log10() +
+  
+  theme_classic() +
+  theme(legend.position = "none")
+
+
+srp_gw %>% 
+  filter(!is.na(cluster_id)) %>% 
+  
+  ggplot(aes(x = cluster_id, y = Ca, fill = region_ID)) +
+  geom_boxplot() +
+  scale_fill_brewer(type = "qual", palette = "Set1") +
+  
+  scale_y_log10() +
+  
+  theme_classic() +
+  theme(legend.position = "none")
+
+
+srp_gw %>% 
+  filter(!is.na(cluster_id)) %>% 
+  
+  ggplot(aes(x = cluster_id, y = V, fill = region_ID)) +
+  geom_boxplot() +
+  scale_fill_brewer(type = "qual", palette = "Set1") +
+  
+  scale_y_log10() +
+  
+  theme_classic() +
+  theme(legend.position = "none")
+
+
+srp_gw %>% 
+  filter(!is.na(cluster_id)) %>% 
+  
+  ggplot(aes(x = cluster_id, y = Se, fill = region_ID)) +
+  geom_boxplot() +
+  scale_fill_brewer(type = "qual", palette = "Set1") +
+  
+  scale_y_log10() +
+  
+  theme_classic() +
+  theme(legend.position = "none")
+
+
+
+```
+
+
+```{r}
+summary(srp_gw$cluster_id)
+```
+
+```{r}
+srp_gw %>% 
+  filter(!is.na(cluster_id)) %>% 
+  ggplot(aes(x = region_ID, fill = cluster_id)) +
+  scale_fill_brewer(type = "qual", palette = "Set2") +
+  geom_bar()
+```
+
+```{r fig.width= 7, fig.height= 3.25}
+srp_gw %>% 
+  filter(!is.na(cluster_id)) %>% 
+  
+  ggplot(aes(x = V, y = As, fill = region_ID)) +
+  geom_point(shape = 21, size = 2) +
+  
+  scale_fill_brewer(type = "qual", palette = "Set3") +
+  
+  scale_x_log10() +
+  scale_y_log10() +
+  
+  theme_classic() +
+  facet_wrap(~cluster_id) 
+
+
+srp_gw %>% 
+  filter(!is.na(cluster_id)) %>% 
+  
+  ggplot(aes(x = SO4_ppm, y = As, fill = region_ID)) +
+  geom_point(shape = 21, size = 2) +
+  
+  scale_fill_brewer(type = "qual", palette = "Set3") +
+  
+  scale_x_log10() +
+  scale_y_log10() +
+  
+  theme_classic() +
+  facet_wrap(~cluster_id) 
+```
+
+
+```{r}
+srp_gw %>% 
+  filter(!is.na(cluster_id)) %>% 
+  
+  ggplot(aes(x = V, y = As, fill = cluster_id)) +
+  geom_point(shape = 21, size = 2) +
+  
+  scale_fill_brewer(type = "qual", palette = "Set2") +
+  
+  scale_x_log10() +
+  scale_y_log10() +
+  
+  theme_classic() +
+  facet_wrap(~region_ID) 
+
+
+srp_gw %>% 
+  filter(!is.na(cluster_id)) %>% 
+  
+  ggplot(aes(x = Se, y = U, fill = cluster_id)) +
+  geom_point(shape = 21, size = 2) +
+  
+  scale_fill_brewer(type = "qual", palette = "Set2") +
+  
+  scale_x_log10() +
+  scale_y_log10() +
+  
+  theme_classic() +
+  facet_wrap(~region_ID) 
+
+
+
+```
+

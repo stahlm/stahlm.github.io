@@ -1,0 +1,7 @@
+"0",""
+"0","worldmet_data_chicago <- importNOAA(code = ""725300-94846"", "
+"0","                                    year = 1995) "
+"0","  "
+"0",""
+"0","worldmet_data_chicago <- worldmet_data_chicago %>% "
+"0","  filter(!is.na(RH), !is.na(air_temp))   # remove observations that are missing RH and/or air temp data"
