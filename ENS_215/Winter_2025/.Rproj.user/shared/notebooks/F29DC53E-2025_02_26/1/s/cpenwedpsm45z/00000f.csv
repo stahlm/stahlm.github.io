@@ -1,7 +1,0 @@
-"0","fig_2 <- worldmet_data_samwawah %>% "
-"0","  ggplot(aes(x = date, y = wet_bulb)) +"
-"0","  geom_line() +"
-"0","  "
-"0","  labs(x = """", y = ""Wet-bulb temperature (C)"") + "
-"0","  theme_bw()"
-"0",""

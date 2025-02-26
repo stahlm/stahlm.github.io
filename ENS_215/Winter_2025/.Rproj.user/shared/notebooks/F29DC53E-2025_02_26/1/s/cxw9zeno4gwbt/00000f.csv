@@ -1,8 +1,0 @@
-"0","all_met %>% "
-"0","  group_by(station) %>% "
-"0","  summarise(wetbulb_max = max(wet_bulb),"
-"0","            wetbul_mean = mean(wet_bulb),"
-"0","            wet_bulb_90th = quantile(wet_bulb, 0.90),"
-"0","            wet_bulb_95th = quantile(wet_bulb, 0.95),"
-"0","            wet_bulb_99th = quantile(wet_bulb, 0.99)"
-"0","            )"

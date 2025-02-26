@@ -1,6 +1,0 @@
-"0","worldmet_data_chicago <- worldmet_data_chicago %>% "
-"0","  mutate(wet_bulb = calc_wetbulb(air_temp, RH))"
-"0",""
-"0",""
-"0","worldmet_data_samwawah <- worldmet_data_samwawah %>% "
-"0","  mutate(wet_bulb = calc_wetbulb(air_temp, RH))"

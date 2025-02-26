@@ -1,5 +1,0 @@
-"0","get_stats_bad <- function(input_data){"
-"0","  min(input_data)"
-"0","  max(input_data)"
-"0","  mean(input_data)"
-"0","}"
