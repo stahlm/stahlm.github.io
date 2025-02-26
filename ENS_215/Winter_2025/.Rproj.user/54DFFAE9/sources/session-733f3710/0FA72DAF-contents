@@ -278,11 +278,11 @@ get_stats_bad <- function(input_data){
 Now, let's test this function on an example dataset
 
 ```{r}
-my_data <- tibble(x = runif(1000, min = 0, max = 50))  #generate a vector of 1000 random values between 0 and 50
+x = runif(1000, min = 0, max = 50) #generate a vector of 1000 random values between 0 and 50
 ```
 
 ```{r}
-get_stats_bad(my_data$x)
+get_stats_bad(x)
 ```
 
 Since the last statement evaluated in `get_stats_bad()` is the mean, then that is the only value that is returned by our function. However, we would like to have the min, max, and mean returned.
@@ -308,7 +308,7 @@ get_stats_good <- function(input_data){
 You can see in the function declaration above, the last evaluated statement is a vector containing all of the values we would like to return. Let's test out this function to demonstrate how it works.
 
 ```{r}
-get_stats_good(my_data$x)
+get_stats_good(x)
 ```
 
 You can see that the function performed as desired -- returning all three of the computed statistics (min, max, mean) in a single vector.
@@ -336,7 +336,7 @@ get_stats_good <- function(input_data){
 Let's run the function to demonstrate how it works.
 
 ```{r}
-get_stats_good(my_data$x)
+get_stats_good(x)
 ```
 
 <br/>
