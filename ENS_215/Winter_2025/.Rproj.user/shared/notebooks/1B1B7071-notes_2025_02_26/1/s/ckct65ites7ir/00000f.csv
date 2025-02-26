@@ -1,0 +1,8 @@
+"0","cube_it <- function(cube_me){"
+"0","  # This function cubes the number you give it"
+"0","  # inputs: cube_me is a number that should be cubed"
+"0","  # output: is the cube of cube_me"
+"0","  "
+"0","  cube_me^3"
+"0","  "
+"0","}"

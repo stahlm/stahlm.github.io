@@ -1,0 +1,5 @@
+"0","pow_it <- function(base_val, exp_val){"
+"0","  "
+"0","  base_val^exp_val"
+"0","  "
+"0","}"

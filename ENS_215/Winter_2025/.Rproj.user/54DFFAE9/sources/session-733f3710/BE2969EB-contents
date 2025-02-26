@@ -4,6 +4,147 @@ output: html_notebook
 ---
 
 ```{r}
+library(tidyverse)
+```
+
+```{r}
+cube_it <- function(cube_me){
+  # This function cubes the number you give it
+  # inputs: cube_me is a number that should be cubed
+  # output: is the cube of cube_me
+  
+  cube_me^3
+  
+}
+```
+
+
+
+```{r}
+cube_it(5)
+```
+```{r}
+cube_it(cube_me = 5)
+```
+
+```{r}
+pow_it <- function(base_val, exp_val){
+  
+  base_val^exp_val
+  
+}
+```
+
+
+```{r}
+pow_it(base_val = 2, exp_val = 3)
+```
+
+```{r}
+pow_it(base_val = 5, exp_val = 4)
+pow_it(5, 4)
+```
+```{r}
+pow_it(exp_val = 4, base_val = 5)
+```
+
+```{r}
+pow_it(base_val = 3)
+```
+```{r}
+pow_it <- function(base_val, exp_val = 1){
+  
+  base_val^exp_val
+}
+```
+
+```{r}
+pow_it(base_val = 3)
+```
+```{r}
+pow_it(base_val = 3, exp_val = 4)
+```
+
+```{r}
+test_num <- 5
+```
+
+
+```{r}
+add_something <- function(my_number){
+  add_number <- 1
+  my_number + add_number 
+}
+```
+
+
+```{r}
+get_stats_bad <- function(input_data){
+  min(input_data)
+  max(input_data)
+  mean(input_data)
+}
+```
+
+
+```{r}
+x <- runif(n = 1000, min = 0, max = 50)
 
 ```
+
+
+```{r}
+get_stats_bad(x)
+```
+
+```{r}
+get_stats_good <- function(input_data){
+  
+  stat_min <- min(input_data, na.rm = T)
+  stat_max <- max(input_data, na.rm = T)
+  stat_mean <- mean(input_data, na.rm = T)
+  
+  c(stat_min, stat_max, stat_mean)
+  
+}
+```
+
+```{r}
+get_stats_good(x)
+```
+
+```{r}
+get_stats_very_good <- function(input_data){
+
+  stat_min <- paste("The min is:", min(input_data, na.rm = T) )
+  stat_max <- max(input_data, na.rm = T)
+  stat_mean <- mean(input_data, na.rm = T)  
+  
+  fig_hist <- ggplot() +
+    geom_histogram(aes(x = input_data)) +
+    theme_classic()
+  
+  list(stat_min, 
+       stat_max, 
+       stat_mean, 
+       fig_hist)
+  
+}
+```
+
+
+```{r}
+get_stats_very_good(x)
+```
+https://earthquake.usgs.gov/fdsnws/event/1/query.csv?starttime=2025-02-19%2000:00:00&endtime=2025-02-26%2023:59:59&minmagnitude=2.5&orderby=time
+
+
+```{r}
+base_url <- "www.google"
+user_val <- ".com"
+
+my_url <- paste0(base_url, user_val)
+my_url  
+```
+
 
