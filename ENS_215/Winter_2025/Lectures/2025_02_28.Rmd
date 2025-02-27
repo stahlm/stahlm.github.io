@@ -1,5 +1,5 @@
 ---
-title: "Interactive graphics"
+title: "Time-series analysis (wrap-up) and interactive graphics"
 author: "ENS-215"
 date: "28-Feb-2025"
 output:
@@ -10,12 +10,119 @@ output:
     toc_float: yes
 ---
 
-<br/>
 
-```{r message=FALSE, warning=FALSE}
+At the beginning of the week we worked on some basics of time-series analysis.  Before we move on to interactive graphics I would like to first wrap-up our introduction to time-series data.  In particular, I would like to introduce you all to cycle plots.  
+
+<br/> 
+
+### Cycle plots 
+Another really useful way to examine data that may have both a seasonal and long-term trend is through the use of **cycle plots**.  The best way to understand cycle plots is through an example.  Let's consider precipitation in California.  There might be a seasonal pattern (there is as you will see shortly) and there could also be long-term trends in the data.  For instance it might be the case that some months have been getting wetter (or drier) over time.  Seeing both the seasonal pattern and the trends (in particular trends that apply only to some parts of the year) would be very difficult to see in a traditional time-series plot.  
+
+Let's look at a standard time-series plot to highlight the point.  
+
+First load in the NOAA precipitation data that we've used in the past.  
+
+```{r}
 library(tidyverse)
 library(lubridate)
 ```
+
+
+```{r message=FALSE, warning=FALSE}
+precip_data <- read_csv("https://stahlm.github.io/ENS_215/Data/noaa_cag_state_precipitation.csv")
+```
+
+
+```{r}
+precip_data <- precip_data %>% 
+  rename(Precip_inches = Value)
+```
+
+
+```{r fig.height= 3.5}
+precip_data %>% 
+  filter(YEAR >= 1980,
+         STATE == "California") %>% 
+  mutate(date = ymd(paste(YEAR, MONTH, 15)) ) %>% 
+  ggplot(aes(x = date, y = Precip_inches)) +
+  geom_line() +
+  geom_point() +
+  theme_classic() +
+  labs(x = "Year", 
+       y = "Precip (inches)")
+  
+```
+
+<br/>
+
+We can see the monthly precipitation for California from 1980-2017, however it is very difficult to see what the seasonal patterns are (e.g. wet vs. dry seasons) and also if there have been long-term trends in a given month (e.g. is February getting wetter?).  A cycle plot allows us to answer these types of questions.  
+
+In a cycle plot we will plot a time-series of each months data (e.g. All of the January data ordered from earliest to most recent year, all of the Feb data ordered from earliest to most recent year,... ).  
+
+Below is a cycle plot of the California monthly precipitation data from 1980 onward.  Thus the first panel (labeled "1") has the monthly precipitation for all of the Januaries on record, with the left-most point being Jan 1980, the next point Jan 1981,..., the last point Jan 2017.  
+
+```{r fig.height= 3.5, fig.width= 7.5}
+precip_data %>% 
+  filter(YEAR >= 1980,
+         STATE == "California") %>% 
+  ggplot(aes(x = YEAR, y = Precip_inches)) +
+  geom_point() +
+  geom_smooth(se = F, method = "lm") + 
+  facet_wrap(~ MONTH, ncol = 12) +
+  theme_classic() +
+  theme(axis.text.x = element_blank()) +
+  labs(x = "",
+       y = "Precip (inches)",
+       title = "California Monthly Precipitation",
+       subtitle = "1980-2017",
+       caption = "Data source: NOAA")
+```
+
+<br/>
+
+Look at the above figure.  
+
++ Can you identify any seasonal patterns (i.e. wet season vs. dry season) 
++ Can you identify any trends in particular months (i.e. are some months getting drier) 
+
+<br/>
+
++ Once you've done that, then create a cycle plot for the Schoharie Creek streamflow data.  Use this figure to identify season patterns (if they exist) and trends in particular months (if they exist).   Think about the implications of these results and discuss with your neighbor.  
+
+The Schoharie Creek streamflow data is here 
+```{r message=FALSE}
+flow <- read_csv("https://stahlm.github.io/ENS_215/Data/USGS_streamflow_01351500.csv") %>% 
+  drop_na() %>% 
+  filter(Year >= 1940 & Year < 2025) %>%  # select years 1940 through 2024
+  mutate(Date = make_date(Year, Month, Day)) # create a Date column that has the dates as an R date object
+```
+
+
+```{r fig.height= 3.5, fig.width= 7.5, eval = F, echo = F}
+flow %>% 
+  filter(Year >= 1980) %>% 
+  
+  group_by(Year, Month) %>% 
+  summarize(mean_flow_cfs = mean(flow_cfs, na.rm = T)) %>% 
+  
+  ggplot(aes(x = Year, y = mean_flow_cfs)) +
+  geom_point() +
+  
+  geom_smooth(se = F, method = "lm") + 
+  
+  facet_wrap(~ Month, ncol = 12) +
+  
+  theme_classic() +
+  theme(axis.text.x = element_blank()) +
+  labs(x = "",
+       y = "Flow (cfs)")
+```
+
+
+<br/>
+
+
+<br/>
 
 Throughout the term we have been creating visualizations of our data to understand, explain, and communicate our data and findings.  However, all of the graphics have been static, thus presenting a fixed graphical representation.  While static graphics can serve our purposes much of the time, there are nonetheless many scenarios where you would like to be able to dynamically interact with your graphic.  In particular during the exploratory phases of data analysis you often want to do things such as zoom, pan, select subsets of data, and turn on and off layers -- these types of interactivity can often speed up the process of exploratory data analysis.  Interactive graphics also allow you to share a graphic with colleagues and allow them to explore the data without the need for the person creating the graphic (you) to create a new version everytime they would like to focus in on a particular section of the graphic or subset of data.  Interactive graphics are also an excellent tool for communication and education purposes as they allow the user of the graphic to explore the data and extract insight in ways that are not possible with static graphics.  
 
@@ -31,9 +138,11 @@ As a reminder, we have previously learned how to make interactive maps.  You can
 The **plotly** package allows you to easily create a wide variety of interactive graphics in R.  Plotly is a very well developed package with a large user base and many detailed examples available on the web.  A great feature of plotly is that in addition to using the built-in plotting features, you can also convert **ggplot2** graphics into interactive ones -- thus allowing you to create interactive graphics without having to learn/master a new package.  
 
 Let's load in the plotly package (if you haven't yet installed it, go to you package pane and do so first).
-```{r message = FALSE}
+```{r message=FALSE, warning=FALSE}
 library(plotly)
+
 ```
+
 
 Let's load NOAA monthly temperature data for the each US state from 1895 through 2024.  
 ```{r message = FALSE}
@@ -186,13 +295,7 @@ library(xts)
 <br/>
 
 
-Now let's load in some streamflow data from the USGS streamgage at Schoharie Creek (01351500).  This will give us a nice time-series dataset to work with in dygraphs.  
-```{r message=FALSE}
-flow <- read_csv("https://stahlm.github.io/ENS_215/Data/USGS_streamflow_01351500.csv") %>% 
-  drop_na() %>% 
-  filter(Year >= 1940 & Year < 2025) %>%  # select years 1940 through 2024
-  mutate(Date = make_date(Year, Month, Day)) # create a Date column that has the dates as an R date object
-```
+Now let's return our focus to the streamflow data from the USGS streamgage at Schoharie Creek (01351500).  This will give us a nice time-series dataset to work with in dygraphs.  
 
 <br/>
 
