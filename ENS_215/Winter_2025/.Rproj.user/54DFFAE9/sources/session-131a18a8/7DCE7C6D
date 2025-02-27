@@ -1,0 +1,28 @@
+{
+    "id": "7DCE7C6D",
+    "path": "C:/Users/stahlm/Documents/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Additional_examples/get_rivers_lakes.Rmd",
+    "project_path": null,
+    "type": "r_markdown",
+    "hash": "3244836328",
+    "contents": "",
+    "dirty": false,
+    "created": 1740677767892.0,
+    "source_on_save": false,
+    "relative_order": 12,
+    "properties": {
+        "tempName": "Untitled1",
+        "chunk_output_type": "inline",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "22,13",
+        "scrollLine": "20"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1740680468,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1740680468838,
+    "read_only": false,
+    "read_only_alternatives": []
+}

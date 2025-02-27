@@ -1,0 +1,53 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(sf)
+library(rnaturalearth)
+```
+
+
+```{r}
+rivers10 <- ne_download(
+  scale = 10,
+  type = "rivers_lake_centerlines",
+  category = "physical",
+  returnclass = "sf"
+)
+```
+```{r}
+lakes10 <- ne_download(
+  scale = 10,
+  type = "lakes",
+  category = "physical",
+  returnclass = "sf"
+)
+```
+```{r}
+library(rgeoboundaries)
+```
+
+### Get borders
+```{r}
+sf_borders_0 <- gb_adm0("Cambodia") # Level 0 (country border)
+
+
+```
+
+```{r}
+tmap_options(check.and.fix = TRUE)
+
+tm_shape(sf_borders_0) +
+  tm_borders() +
+
+tm_shape(rivers10) +
+  tm_lines(col = "blue") +
+  
+  tm_shape(lakes10) +
+  tm_polygons(col = "blue")
+```
+
+

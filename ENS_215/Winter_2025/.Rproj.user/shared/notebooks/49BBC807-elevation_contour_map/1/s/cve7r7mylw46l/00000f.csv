@@ -1,0 +1,1 @@
+"0","aoi2use <- st_as_sf(aoi2use, coords = c(""lon"", ""lat""), crs = 4326)"

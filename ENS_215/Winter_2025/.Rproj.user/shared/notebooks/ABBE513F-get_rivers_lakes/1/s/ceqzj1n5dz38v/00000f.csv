@@ -1,0 +1,41 @@
+"0","lakes10 <- ne_download("
+"0","  scale = 10,"
+"0","  type = ""lakes"","
+"0","  category = ""physical"","
+"0","  returnclass = ""sf"""
+"0",")"
+"2","trying URL 'https://naturalearth.s3.amazonaws.com/10m_physical/ne_10m_lakes.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 2349685 bytes (2.2 MB)
+"
+"2","downloaded 2.2 MB
+
+"
+"1","Reading layer `"
+"1","ne_10m_lakes"
+"1","' from data source "
+"1","
+"
+"1","  "
+"1","`"
+"1","C:\Users\stahlm\AppData\Local\Temp\RtmpM7AM2k\ne_10m_lakes.shp"
+"1","' "
+"1","using driver `"
+"1","ESRI Shapefile"
+"1","'"
+"1","
+"
+"1","Simple feature collection with 1355 features and 41 fields"
+"1","
+"
+"1","Geometry type: MULTIPOLYGON
+"
+"1","Dimension:     XY
+"
+"1","Bounding box:  "
+"1","xmin: -165.9656 ymin: -50.66967 xmax: 177.1544 ymax: 81.95521"
+"1","
+"
+"1","Geodetic CRS:  WGS 84
+"

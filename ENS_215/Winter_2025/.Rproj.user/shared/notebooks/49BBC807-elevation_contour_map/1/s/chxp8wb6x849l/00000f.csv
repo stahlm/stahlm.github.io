@@ -1,0 +1,2 @@
+"0","c <- terra::shade(slope = a,aspect = b, 40, 270)"
+"0",""

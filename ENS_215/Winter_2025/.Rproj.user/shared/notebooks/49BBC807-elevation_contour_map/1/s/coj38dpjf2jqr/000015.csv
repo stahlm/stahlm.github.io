@@ -1,0 +1,4 @@
+"0","breaks2use <- seq(200,2000, by = 100)"
+"0",""
+"0","r_contours <- terra::as.contour(r_elev, levels = breaks2use)"
+"0",""

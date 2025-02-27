@@ -1,0 +1,5 @@
+"0","library(rgeoboundaries)"
+"2","Registered S3 method overwritten by 'hoardr':
+  method           from
+  print.cache_info httr
+"

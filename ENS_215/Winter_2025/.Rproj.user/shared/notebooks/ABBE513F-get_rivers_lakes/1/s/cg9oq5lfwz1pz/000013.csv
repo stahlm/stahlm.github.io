@@ -1,0 +1,41 @@
+"0","rivers10 <- ne_download("
+"0","  scale = 10,"
+"0","  type = ""rivers_lake_centerlines"","
+"0","  category = ""physical"","
+"0","  returnclass = ""sf"""
+"0",")"
+"2","trying URL 'https://naturalearth.s3.amazonaws.com/10m_physical/ne_10m_rivers_lake_centerlines.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 2079507 bytes (2.0 MB)
+"
+"2","downloaded 2.0 MB
+
+"
+"1","Reading layer `"
+"1","ne_10m_rivers_lake_centerlines"
+"1","' from data source "
+"1","
+"
+"1","  "
+"1","`"
+"1","C:\Users\stahlm\AppData\Local\Temp\RtmpM7AM2k\ne_10m_rivers_lake_centerlines.shp"
+"1","' "
+"1","using driver `"
+"1","ESRI Shapefile"
+"1","'"
+"1","
+"
+"1","Simple feature collection with 1473 features and 38 fields"
+"1","
+"
+"1","Geometry type: MULTILINESTRING
+"
+"1","Dimension:     XY
+"
+"1","Bounding box:  "
+"1","xmin: -164.9035 ymin: -52.15775 xmax: 177.5204 ymax: 75.79348"
+"1","
+"
+"1","Geodetic CRS:  WGS 84
+"

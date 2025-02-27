@@ -1,0 +1,10 @@
+"0","tmap_mode(""plot"")"
+"2","tmap mode set to plotting
+"
+"0","tm_shape(r_elev) +"
+"0","  tm_raster(style = ""cont"", title = ""Elev (m)"") +"
+"0","  "
+"0","  tm_shape(r_contours) +"
+"0","  tm_iso()"
+"2","stars object downsampled to 999 by 1000 cells. See tm_shape manual (argument raster.downsample)
+"

@@ -35,7 +35,7 @@ Let's load in the plotly package (if you haven't yet installed it, go to you pac
 library(plotly)
 ```
 
-Let's load NOAA monthly temperature data for the each US state from 1895 to 2017.  
+Let's load NOAA monthly temperature data for the each US state from 1895 through 2024.  
 ```{r message = FALSE}
 state_temps <- read_csv("https://stahlm.github.io/ENS_215/Data/noaa_cag_state_temperatures.csv")
 ```
