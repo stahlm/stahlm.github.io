@@ -10,12 +10,13 @@ output:
     toc_float: yes
 ---
 
+<br/> 
 
 At the beginning of the week we worked on some basics of time-series analysis.  Before we move on to interactive graphics I would like to first wrap-up our introduction to time-series data.  In particular, I would like to introduce you all to cycle plots.  
 
 <br/> 
 
-### Cycle plots 
+## Cycle plots 
 Another really useful way to examine data that may have both a seasonal and long-term trend is through the use of **cycle plots**.  The best way to understand cycle plots is through an example.  Let's consider precipitation in California.  There might be a seasonal pattern (there is as you will see shortly) and there could also be long-term trends in the data.  For instance it might be the case that some months have been getting wetter (or drier) over time.  Seeing both the seasonal pattern and the trends (in particular trends that apply only to some parts of the year) would be very difficult to see in a traditional time-series plot.  
 
 Let's look at a standard time-series plot to highlight the point.  
@@ -122,7 +123,7 @@ flow %>%
 <br/>
 
 
-<br/>
+## Interactive graphics
 
 Throughout the term we have been creating visualizations of our data to understand, explain, and communicate our data and findings.  However, all of the graphics have been static, thus presenting a fixed graphical representation.  While static graphics can serve our purposes much of the time, there are nonetheless many scenarios where you would like to be able to dynamically interact with your graphic.  In particular during the exploratory phases of data analysis you often want to do things such as zoom, pan, select subsets of data, and turn on and off layers -- these types of interactivity can often speed up the process of exploratory data analysis.  Interactive graphics also allow you to share a graphic with colleagues and allow them to explore the data without the need for the person creating the graphic (you) to create a new version everytime they would like to focus in on a particular section of the graphic or subset of data.  Interactive graphics are also an excellent tool for communication and education purposes as they allow the user of the graphic to explore the data and extract insight in ways that are not possible with static graphics.  
 
@@ -130,10 +131,7 @@ As a reminder, we have previously learned how to make interactive maps.  You can
 
 <br/>
 
-
-
-
-## Interactive graphics with `plotly`
+### Interactive graphics with `plotly`
 
 The **plotly** package allows you to easily create a wide variety of interactive graphics in R.  Plotly is a very well developed package with a large user base and many detailed examples available on the web.  A great feature of plotly is that in addition to using the built-in plotting features, you can also convert **ggplot2** graphics into interactive ones -- thus allowing you to create interactive graphics without having to learn/master a new package.  
 
@@ -274,14 +272,14 @@ Take a minute or two to explore the 3D graphic.
 
 <br/>
 
-### Exercise
+#### Exercise
 1. Create an interactive graphic of your choosing using plotly.
 
 <br/>
 
 
 
-## Interactive time-series with `dygraph`
+### Interactive time-series with `dygraph`
 It is often very helpful to add interactivity to time-series data.  Often we would like to zoom in on a particular time period within a longer times-series.  
 
 The [dygraphs](https://rstudio.github.io/dygraphs/index.html) package provides excellent functionality for creating interactive time-series graphics.  
@@ -331,7 +329,7 @@ dygraph(flow_ts, ylab = "Flow (cfs)") %>%
 
 <br/>
 
-## Animations with `gganimate`
+### Animations with `gganimate`
 Animations are another way of presenting data in a more dynamic fashion.  We can create animations in R using the `gganimate` package.  We will go through a few basic examples, though you can learn more [here](https://gganimate.com/articles/gganimate.html).
 
 
@@ -423,7 +421,7 @@ anim_save("./Mauna_Loa_ts.gif") # save the animation to your current directory
 
 <br/>
 
-## Learning more
+### Learning more
 There are many more features in `plotly`, `dygraphs`, and `gganimate`.  I encourage you to explore some more of these features/functionality at the following links:
 
 [plotly](https://plotly-book.cpsievert.me/index.html)  
