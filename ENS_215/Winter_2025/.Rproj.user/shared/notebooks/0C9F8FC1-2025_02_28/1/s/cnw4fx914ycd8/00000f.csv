@@ -1,0 +1,8 @@
+"0","fig_gap <- my_gap %>% "
+"0","  ggplot(aes(x = gdpPercap, y = lifeExp, fill = continent, group = country)) +"
+"0","  geom_point(shape = 21, alpha = 0.75, color = ""black"", size = 2) +"
+"0","  scale_x_log10() +"
+"0","  theme_classic() "
+"0","  "
+"0",""
+"0","fig_gap"

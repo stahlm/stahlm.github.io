@@ -1,0 +1,3 @@
+"0","state_temps %>% "
+"0","  filter(STATE == ""New York"") %>% "
+"0","  datatable()"

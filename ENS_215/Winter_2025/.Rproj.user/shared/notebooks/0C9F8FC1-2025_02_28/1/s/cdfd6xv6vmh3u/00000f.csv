@@ -1,0 +1,1 @@
+"0","mauna_loa <- read_csv(""https://stahlm.github.io/ENS_215/Data/Mauna_loa_CO2_data.csv"", skip = 2)"

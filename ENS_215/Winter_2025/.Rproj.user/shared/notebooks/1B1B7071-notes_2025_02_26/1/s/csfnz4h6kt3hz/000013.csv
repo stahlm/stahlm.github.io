@@ -1,0 +1,5 @@
+"0","df_eq <- get_usgs_earthquakes(start_date = ""2010-01-01"","
+"0","                     end_date = ""2010-01-20"","
+"0","                     min_magnitude = 4)"
+"0",""
+"0","df_eq"
