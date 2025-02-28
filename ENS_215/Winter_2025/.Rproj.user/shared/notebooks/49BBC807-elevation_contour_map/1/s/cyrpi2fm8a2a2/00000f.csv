@@ -1,4 +1,0 @@
-"0","b <- terra::terrain(x = r_elev_mod, ""aspect"", unit = ""radians"")"
-"0","b <- b$aspect"
-"0",""
-"0","b <- terra::rast(b)"

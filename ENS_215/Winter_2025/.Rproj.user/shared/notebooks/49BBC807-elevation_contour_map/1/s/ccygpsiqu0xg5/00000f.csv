@@ -1,4 +1,0 @@
-"0","a <- terra::terrain(x = r_elev_mod, ""slope"", unit = ""radians"")"
-"0","a <- a$slope"
-"0",""
-"0","a <- terra::rast(a)"

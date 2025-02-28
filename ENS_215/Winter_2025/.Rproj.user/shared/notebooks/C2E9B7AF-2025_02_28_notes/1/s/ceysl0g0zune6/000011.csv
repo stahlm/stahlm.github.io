@@ -1,0 +1,4 @@
+"0","flow_summary <- flow %>% "
+"0","  group_by(Year, Month) %>% "
+"0","  summarize(avg_flow = mean(flow_cfs, na.rm = T)) "
+"2","`summarise()` has grouped output by 'Year'. You can override using the `.groups` argument."

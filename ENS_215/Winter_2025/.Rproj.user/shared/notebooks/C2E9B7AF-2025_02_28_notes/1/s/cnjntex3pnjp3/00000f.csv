@@ -1,0 +1,2 @@
+"0","state_temps <- state_temps %>% "
+"0","  rename(Avg_Temp_F = Value)"

@@ -1,0 +1,106 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+
+```{r}
+
+library(tidyverse)
+library(raster)
+library(sf)
+library(whitebox)
+library(tmap)
+library(stars)
+library(elevatr)
+#library(rayshader)
+#library(rgl)
+
+whitebox::wbt_init()
+
+
+theme_set(theme_classic())
+```
+
+
+```{r}
+aoi_zoomed <- AOI::aoi_get(country = "West Asia")
+```
+
+
+
+```{r}
+raster_elev_zoomed <- get_elev_raster(aoi_zoomed, z = 3, clip = "locations")
+```
+```{r}
+raster::writeRaster(raster_elev_zoomed, "./additional_hydro/dem_raster.tif", overwrite = T)
+```
+
+
+https://www.whiteboxgeo.com/manual/wbt_book/available_tools/hydrological_analysis.html
+
+```{r}
+tmap_mode("plot")
+
+tm_shape(raster_elev_zoomed) +
+  tm_raster(midpoint = NA, n = 10, style = "cont") +
+  
+  tm_shape(aoi_zoomed) +
+  tm_borders() +
+  tm_layout(legend.outside = T)
+```
+
+
+```{r}
+wbt_sink(input = "./additional_hydro/dem_raster.tif", 
+         output = "./additional_hydro/raster_sink.tif"
+)
+```
+
+
+```{r}
+raster_sink <- raster::raster("./additional_hydro/raster_sink.tif")
+```
+
+
+```{r}
+tmap_mode("view")
+
+tm_shape(raster_sink) +
+  tm_raster() +
+  
+  tm_shape(aoi_zoomed) +
+  tm_borders()
+```
+
+
+
+
+```{r}
+wbt_depth_in_sink(dem = "./additional_hydro/dem_raster.tif", 
+                  output = "./additional_hydro/raster_sink_depth.tif"
+)
+```
+
+
+
+
+```{r}
+raster_sink_depth <- raster::raster("./additional_hydro/raster_sink_depth.tif")
+```
+
+
+```{r}
+tmap_mode("view")
+
+tm_shape(raster_sink_depth) +
+  tm_raster() +
+  
+  tm_shape(aoi_zoomed) +
+  tm_borders()
+```
+
+
+
+

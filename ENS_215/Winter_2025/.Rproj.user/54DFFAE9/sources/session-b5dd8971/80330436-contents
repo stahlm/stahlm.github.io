@@ -1,0 +1,137 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r}
+library(tidyverse)
+library(lubridate)
+```
+
+
+```{r}
+precip_data <- read_csv("https://stahlm.github.io/ENS_215/Data/noaa_cag_state_precipitation.csv")
+```
+
+
+```{r}
+precip_data <- precip_data %>% 
+  rename(Precip_inches = Value)
+```
+
+
+```{r}
+precip_data %>% 
+  filter(YEAR >= 1980,
+         STATE == "California"
+         ) %>% 
+  
+  mutate(date = ymd(paste(YEAR, MONTH, 15))) %>% 
+  
+  ggplot(aes(x = date, y = Precip_inches)) +
+  geom_line() +
+  geom_point() +
+  
+  theme_classic()
+  
+  
+```
+
+
+```{r fig.height= 3.5, fig.width= 7.5, message = F}
+precip_data %>% 
+  filter(YEAR >= 1980, YEAR < 2025, STATE == "California") %>% 
+  
+  ggplot(aes(x = YEAR, y = Precip_inches)) +
+  geom_point() +
+  
+  geom_smooth(se = F, method = "lm") +
+  
+  facet_wrap(~ MONTH, ncol = 12) +
+  theme_classic() +
+  
+  theme(axis.text.x = element_blank())
+```
+
+```{r}
+state_temps <- read_csv("https://stahlm.github.io/ENS_215/Data/noaa_cag_state_temperatures.csv")
+```
+```{r}
+state_temps <- state_temps %>% 
+  rename(Avg_Temp_F = Value)
+```
+
+
+```{r fig.height= 3.5, fig.width= 7.5, message = F}
+state_temps %>% 
+  filter(YEAR >= 1980, YEAR < 2025, STATE == "New York") %>% 
+  
+  ggplot(aes(x = YEAR, y = Avg_Temp_F)) +
+  geom_point() +
+  
+  geom_smooth(se = F, method = "lm") +
+  
+  facet_wrap(~ MONTH, ncol = 12) +
+  theme_classic() +
+  
+  theme(axis.text.x = element_blank())
+```
+
+
+
+```{r}
+flow <- read_csv("https://stahlm.github.io/ENS_215/Data/USGS_streamflow_01351500.csv") %>% 
+  drop_na() %>% 
+  filter(Year >= 1940 & Year < 2025) %>%  # select years 1940 through 2024
+  mutate(Date = make_date(Year, Month, Day)) # create a Date column that has the dates as an R date object
+
+```
+
+```{r}
+flow_summary <- flow %>% 
+  group_by(Year, Month) %>% 
+  summarize(avg_flow = mean(flow_cfs, na.rm = T)) 
+```
+
+```{r fig.width= 7.5, fig.height= 3.5, message= F}
+flow_summary %>% 
+  filter(Year >= 1980) %>% 
+  
+  ggplot(aes(x = Year, y = avg_flow)) +
+  geom_point() +
+  
+  geom_smooth(se = F, method = "lm") +
+  
+  scale_y_log10() + 
+  
+  facet_wrap(~ Month, ncol = 12) +
+  theme_classic() +
+  
+  theme(axis.text.x = element_blank())
+```
+
+
+```{r}
+source("https://stahlm.github.io/functions/get_usgs_earthquakes.R")
+```
+
+
+```{r}
+library(plotly)
+```
+
+
+```{r}
+df_eq <- get_usgs_earthquakes(start_date = "2024-01-01", 
+                              end_date = "2025-01-10", min_magnitude = 5)
+```
+
+
+```{r}
+color_ramp <- colorRamp(c("blue", "yellow", "red"))
+
+plot_ly(df_eq, x = ~longitude, y = ~latitude, z = ~-depth) %>%
+  add_markers(color = ~mag, size = ~mag, colors = color_ramp, text = ~paste("Mag =", mag))
+```
+
