@@ -1,7 +1,7 @@
 ---
 title: "Seasonality indices: Environmental applications"
 author: "ENS-215"
-date: "6-Mar-2023"
+date: "3-Mar-2025"
 output:
   html_document:
     df_print: paged
@@ -34,18 +34,18 @@ library(sf)
 
 
 
-
-```{r echo = F}
-source("https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2022/Lectures/compute_seasonality_indices.R")
-#source("compute_seasonality_indices.R")
+```{r}
+source("https://stahlm.github.io/functions/compute_seasonality_indices.R")
 ```
-
 
 
 ```{r echo = F, warning=F, message=F}
 
-met_sfo <- get_GSOD(years = 2011:2022, station = "724940-23234")
-met_bos <- get_GSOD(years = 2011:2022, station = "725090-14739")
+met_sfo <- read_csv("https://stahlm.github.io/ENS_215/Data/met_sfo.csv")
+met_bos <- read_csv("https://stahlm.github.io/ENS_215/Data/met_bos.csv")
+
+#met_sfo <- get_GSOD(years = 2011:2024, station = "724940-23234")
+#met_bos <- get_GSOD(years = 2011:2024, station = "725090-14739")
 ```
 
 
