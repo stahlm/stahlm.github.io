@@ -5,7 +5,7 @@ date: "3-Mar-2025"
 output:
   html_document:
     df_print: paged
-    theme: spacelab
+    theme: journal
     toc: yes
     toc_float: yes
 ---
@@ -34,15 +34,15 @@ library(sf)
 
 
 
-```{r}
+```{r echo = F}
 source("https://stahlm.github.io/functions/compute_seasonality_indices.R")
 ```
 
 
 ```{r echo = F, warning=F, message=F}
 
-met_sfo <- read_csv("https://stahlm.github.io/ENS_215/Data/met_sfo.csv")
-met_bos <- read_csv("https://stahlm.github.io/ENS_215/Data/met_bos.csv")
+met_sfo <- read_csv("https://stahlm.github.io/ENS_215/Data/gsod_sfo.csv")
+met_bos <- read_csv("https://stahlm.github.io/ENS_215/Data/gsod_bos.csv")
 
 #met_sfo <- get_GSOD(years = 2011:2024, station = "724940-23234")
 #met_bos <- get_GSOD(years = 2011:2024, station = "725090-14739")
@@ -96,7 +96,7 @@ monthly_met_bos_sfo %>%
   facet_wrap(~ loc_name) +
   
   labs(x = "Month", y = "Precipitation (mm)",
-       title = "Mean monthly precipitation (2011-2022)",
+       title = "Mean monthly precipitation (2011-2024)",
        caption = "Data source: NOAA GSOD"
        ) +
   theme_bw()
@@ -327,11 +327,21 @@ Now we are going to compute seasonality indices (SI and SC) for each US state us
 
 
 ```{r warning= F, message = F}
-precip_data <- read_csv("https://stahlm.github.io/ENS_215/Data/NOAA_State_Precip_LabData.csv")
+precip_data <- read_csv("https://stahlm.github.io/ENS_215/Data/noaa_cag_state_precipitation.csv")
 
+precip_data <- precip_data %>% 
+  rename(Year = YEAR, 
+         Month = MONTH, 
+         Precip_inches = Value)
 ```
 
-Take a look at the dataset to refresh your memory of what it contains.  You'll see that it has monthly values for precipitation for each state and each year from 1895 through 2017.  
+```{r}
+precip_data <- precip_data %>% 
+  mutate(Month = as.numeric(Month))
+```
+
+
+Take a look at the dataset to refresh your memory of what it contains.  You'll see that it has monthly values for precipitation for each state and each year from 1895 through 2024.  
 
 Using just the data from 1980 onward, let's compute the average precipitation in each month for each state.
 
@@ -339,10 +349,10 @@ Using just the data from 1980 onward, let's compute the average precipitation in
 df_monthly_normals <- precip_data %>% 
   filter(Year >= 1980) %>% 
   
-  group_by(state_cd, Month) %>% 
+  group_by(STATE, Month) %>% 
   summarize(observation_value = mean(Precip_inches)) %>% 
   
-  rename(group_name = state_cd)
+  rename(group_name = STATE)
 ```
 
 Take a look at the data frame you just created, which contains monthly precipitation normals for each state.  Make sure you understand what is in the data frame and that everything looks sensible.   
@@ -352,13 +362,13 @@ Take a look at the data frame you just created, which contains monthly precipita
 Since we want to compute the seasonality indices SI and SC on this data we are going to need some code to do that.  I've written a function in R to compute these indices.  Let's go ahead a load in this function from our class github site. 
 
 ```{r}
-source("https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2022/Lectures/compute_seasonality_indices.R")
+source("https://stahlm.github.io/functions/compute_seasonality_indices.R")
 ```
 
 You'll now see in your environment pane that you have a function called `compute_seasonality_indices()`.  This is the function we will use to compute the SI and SC indices.  If you click on the function in your environment pane the source code will pop up.  Go ahead and do this.  Make sure to read the comments within the function file as these comments explain what the function does, the inputs its requires, and the outputs it generates.  
 
 
-FYI, if you want you can also download the R file from my [github site](https://github.com/stahlm/stahlm.github.io/blob/master/ENS_215/Winter_2022/Lectures/compute_seasonality_indices.R).  
+FYI, if you want you can also download the R file from my [github site](https://stahlm.github.io/functions/compute_seasonality_indices.R).  
 
 
 <br/> 
@@ -411,7 +421,7 @@ To get a better sense of what the monthly precipitation looks like for different
 
 ```{r fig.width= 8, fig.height= 3}
 df_monthly_normals %>% 
-  filter(group_name %in% c("RI", "CA", "ID")) %>% 
+  filter(group_name %in% c("Rhode Island", "California", "Idaho")) %>% 
   
   ggplot() +
   geom_col(aes(x = factor(Month), y = observation_value)) +
@@ -439,7 +449,7 @@ state_dictionary <- tibble(NAME = state.name, state_cd = state.abb)
 
 ```{r}
 df_seasonality_precip <- df_seasonality_precip %>% 
-  rename(state_cd = group_name) %>% 
+  rename(NAME = group_name) %>% 
   left_join(state_dictionary)
 ```
 
@@ -464,13 +474,22 @@ sf_seasonality_precip <- sf_states %>%
   right_join(df_seasonality_precip)
 ```
 
+Let's remove Alaska and Hawaii since the borders dataset we downloaded doesn't have those states.  
+
+```{r}
+sf_seasonality_precip <- sf_seasonality_precip %>% 
+  filter(NAME != "Alaska", NAME != "Hawaii")
+```
+
 
 Now that our seasonality metrics data frame has the state borders associated with it, we can go ahead and make a map.  Let's make a map to see how uniformly or non-uniformly precipitation is distributed across months in each US state.  To do this we will color each state according to its SI value.  
 
 ```{r}
+tmap_mode("view")
+
 sf_seasonality_precip %>% 
   tm_shape(bbox = st_bbox(sf_states), projection = 5070) +
-  tm_polygons(col = "SI", style = "cont", palette = "viridis")+
+  tm_polygons(col = "SI", style = "cont", palette = "viridis") +
   
   tm_shape(sf_states) +
   tm_borders() 
@@ -520,11 +539,11 @@ df_stream_data <- df_stream_data %>%
 
 <br/> 
 
-Let's select data for 2012-2022 and then compute the mean flow by month (i.e., Jan mean flow, Feb mean flow,..., Dec mean flow) as our function that computes the seasonality indices requires monthly values as inputs.  Once you've computed these means take a look at the resulting data frame to confirm that everything makes sense to you and looks reasonable.  
+Let's select data for 2014-2024 and then compute the mean flow by month (i.e., Jan mean flow, Feb mean flow,..., Dec mean flow) as our function that computes the seasonality indices requires monthly values as inputs.  Once you've computed these means take a look at the resulting data frame to confirm that everything makes sense to you and looks reasonable.  
 
 ```{r message = F, warning  = F}
 df_stream_monthly_normals <- df_stream_data %>% 
-  filter(Year > 2011 & Year < 2023) %>% 
+  filter(Year > 2013 & Year < 2025) %>% 
   
   group_by(Month, site_no) %>% 
   summarize(observation_value = mean(Flow, na.rm = T)) %>% 
@@ -559,13 +578,13 @@ library(GSODR)
 
 
 ```{r}
-# Download data for 2012-2021 
+# Download data for 2014-2024
 
-met_df <- get_GSOD(years = 2012:2022, station = "725180-14735")
+met_df <- get_GSOD(years = 2014:2024, station = "725180-14735")
 ```
 
 
-You'll see in the `met_df` data frame that we have daily meteorological data for Albany International Airport for 2012-2022.  Let's go ahead and compute the monthly means so that we can use our `compute_seasonality_indices()` function to calculate SI and SC on the precipitation data.  
+You'll see in the `met_df` data frame that we have daily meteorological data for Albany International Airport for 2014-2024.  Let's go ahead and compute the monthly means so that we can use our `compute_seasonality_indices()` function to calculate SI and SC on the precipitation data.  
 
 ```{r message= F, warning= F}
 df_alb_precip_monthly_normals <- met_df %>% 

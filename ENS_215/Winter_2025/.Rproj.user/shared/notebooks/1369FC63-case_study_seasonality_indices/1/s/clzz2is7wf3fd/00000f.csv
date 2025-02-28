@@ -1,4 +1,0 @@
-"0",""
-"0","met_sfo <- read_csv(""https://stahlm.github.io/ENS_215/Data/met_sfo.csv"")"
-"2","Error in open.connection(3L, ""rb"") : HTTP error 404.
-"

@@ -1,0 +1,9 @@
+"0","sf_seasonality_precip %>% "
+"0","  tm_shape(bbox = st_bbox(sf_states)) +"
+"0","  tm_polygons(col = ""SI"", style = ""cont"", palette = ""viridis"") +"
+"0","  "
+"0","  tm_shape(sf_states) +"
+"0","  tm_borders() "
+"2","Warning: over-long path"
+"2","Error in dirname(destfiles) : path too long
+"

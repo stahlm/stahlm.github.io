@@ -1,0 +1,6 @@
+"0","precip_data <- read_csv(""https://stahlm.github.io/ENS_215/Data/noaa_cag_state_precipitation.csv"")"
+"0",""
+"0","precip_data <- precip_data %>% "
+"0","  rename(Year = YEAR, "
+"0","         Month = MONTH, "
+"0","         Precip_inches = Value)"

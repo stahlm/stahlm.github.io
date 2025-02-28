@@ -1,0 +1,7 @@
+"0","df_stream_monthly_normals <- df_stream_data %>% "
+"0","  filter(Year > 2013 & Year < 2025) %>% "
+"0","  "
+"0","  group_by(Month, site_no) %>% "
+"0","  summarize(observation_value = mean(Flow, na.rm = T)) %>% "
+"0","  "
+"0","  rename(group_name = site_no)"
