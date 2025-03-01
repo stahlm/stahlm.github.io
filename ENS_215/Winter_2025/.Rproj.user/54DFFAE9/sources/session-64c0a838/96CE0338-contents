@@ -1,0 +1,151 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r}
+library(tidyverse)
+library(moderndive)
+```
+
+
+## Data modeling: Basic regression
+As scientists and engineers (or anyone else who deals with data) we seek to better understand the processes recorded by our data.  Throughout the term, we have been exploring, summarizing, and visualizing data to help gain insight into the topic of interest and to understand the relationship between variables in our datasets.  
+
+Now we are at the point where we can advance into data modeling.  The ModernDive text (_excerpt below_), does a great job at describing the concept of data modeling:
+
+> The fundamental premise of data modeling is to make explicit the relationship between:  
+
+>  + an outcome variable $y$, also called a dependent variable and
+   + an explanatory/predictor variable $x$, also called an independent variable or covariate.  
+
+>Another way to state this is using mathematical terminology: we will model the outcome variable  
+$y$ as a function of the explanatory/predictor variable $x$. Why do we have two different labels, explanatory and predictor, for the variable $x$? That’s because roughly speaking data modeling can be used for two purposes:
+
+
+1. **Modeling for prediction:**  When we model for prediction we are interested in predicting the outcome of $y$ based on the information contained in the predictor variable(s).  Here we care less about understanding the fundamental relationship between $x$ and $y$ and more about making predictions of $y$ based on information from $x$.  For example, imagine you are a public official responsible for disaster response (e.g., FEMA) and you would like to be able to predict flooding based on the amount of precipitation that has fallen.  Here you don't really care about the fundamental reasons why/how flooding varies with precipitation amount, though you care very much about making accurate predictions of flooding.  
+
+2. **Modeling for explanation:** When modeling for explanation you want to describe and understand the conceptual/fundamental implications of the relationship between the outcome variable $y$ and the explanatory variable $x$.  Let's continue with the issue of flooding, but now we are a hydrologist and we would like to understand the scientific reasons why flooding varies as a function of precipitation amount.  Here you would like to interpret the significance of the relationship between these two variable and we might also want to understand how the relationship varies over time or between different seasons.  Thus, we are modeling in this case with the aim of more deeply understanding the underlying scientific processes.
+
+There are many techniques and approaches to data modeling, though in today's lecture we will focus first on **linear regression** and then move onto non-parametric regression.  
+
+
+<br/>
+
+
+### Linear regression
+Linear regression is one of the most commonly-used data models and is relatively easy to understand.  We will focus on _simple linear regression_ which is when we have a single numeric explanatory variable $x$ that we will use to explain/predict the outcome of the numeric dependent variable $y$.  
+
+A linear model is of the following form:
+
+$y = \beta_0 + \beta_1*x$
+
+
+Where $\beta_0$ represents the intercept and $\beta_1$ is the slope. 
+
+A linear regression finds the slope and intercept parameters that generate the best predictions (_i.e._ result in the minimum possible difference between the observed values of $y$ and the predicted values of $\hat{y}$).  
+
+
+
+
+
+```{r eval = F, echo = F}
+# Data prep can be found here
+"https://stahlm.github.io/ENS_215/Data/data_prep_intro_to_data_modeling_lecture.Rmd"
+```
+
+
+
+
+
+
+
+
+
+## Extra
+
+```{r}
+precip_mv <- read_csv("https://stahlm.github.io/ENS_215/Data/noaa_cag_division_mohawk_valley_precipitation.csv", skip = 4)
+```
+```{r}
+precip_mv <- precip_mv %>% 
+  rename(Year = YEAR, Month = MONTH) %>% 
+  filter(Year >= 1940, Year < 2025) %>% 
+  
+  mutate(Month = as.numeric(Month))
+```
+
+
+The Schoharie Creek streamflow data is here 
+```{r message=FALSE}
+flow <- read_csv("https://stahlm.github.io/ENS_215/Data/USGS_streamflow_01351500.csv") %>% 
+  drop_na() %>% 
+  filter(Year >= 1940 & Year < 2025) %>%  # select years 1940 through 2024
+  mutate(Date = make_date(Year, Month, Day)) # create a Date column that has the dates as an R date object
+```
+
+886 square miles
+
+```{r}
+flow_monthly <- flow %>% 
+  
+  mutate(flow_inches = flow_cfs/((5280^2)*886)*(365*24*60*60/12)*12 ) %>% 
+  
+  group_by(Year, Month) %>% 
+  summarize(flow_cfs = mean(flow_cfs, na.rm = T),
+            flow_inches = mean(flow_inches, na.rm = T),
+            n_obs = n()
+            )
+```
+
+Join the data
+```{r}
+df_precip_flow <- precip_mv %>% 
+  left_join(flow_monthly)
+```
+
+```{r}
+df_precip_flow %>% 
+  #filter(Month == 5) %>% 
+  ggplot(aes(x = Precip_inches, y = flow_inches)) +
+  geom_point() +
+  
+  geom_smooth(method = "lm") +
+  
+  geom_abline(slope = 1, intercept = 0, color = "red") +
+  #scale_y_log10() +
+  
+  facet_wrap(~Month)
+```
+
+```{r}
+lm_flow_precip <- lm(flow_inches ~ Precip_inches, data = df_precip_flow)
+```
+
+
+```{r}
+lm_flow_precip
+```
+
+```{r}
+get_regression_table(lm_flow_precip, digits = 5)
+```
+
+
+
+```{r}
+models <- df_precip_flow %>%
+  group_by(Month) %>%
+  do(model = lm(flow_inches ~ Precip_inches, data = .))
+
+```
+
+```{r}
+models
+```
+
+```{r}
+get_regression_table(models$model[[4]])
+```
+

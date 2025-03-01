@@ -1754,27 +1754,18 @@ display: none;
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShHU09EUilcbmBgYCJ9 -->
-<pre class="r"><code>library(GSODR)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShkYXRhUmV0cmlldmFsKVxuXG5gYGAifQ== -->
+<pre class="r"><code>library(dataRetrieval)
+</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiUmVnaXN0ZXJlZCBTMyBtZXRob2Qgb3ZlcndyaXR0ZW4gYnkgJ2RhdGEudGFibGUnOlxuICBtZXRob2QgICAgICAgICAgIGZyb21cbiAgcHJpbnQuZGF0YS50YWJsZSAgICAgXG4ifQ== -->
-<pre><code>Registered S3 method overwritten by &#39;data.table&#39;:
-  method           from
-  print.data.table     </code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5gYGAifQ== -->
-<pre class="r"><code>library(tidyverse)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoi4pSA4pSAIEF0dGFjaGluZyBjb3JlIHRpZHl2ZXJzZSBwYWNrYWdlcyDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIAgdGlkeXZlcnNlIDIuMC4wIOKUgOKUgFxu4pyUIGRwbHlyICAgICAxLjEuMSAgICAg4pyUIHJlYWRyICAgICAyLjEuNFxu4pyUIGZvcmNhdHMgICAxLjAuMCAgICAg4pyUIHN0cmluZ3IgICAxLjUuMFxu4pyUIGdncGxvdDIgICAzLjUuMSAgICAg4pyUIHRpYmJsZSAgICAzLjIuMVxu4pyUIGx1YnJpZGF0ZSAxLjkuMyAgICAg4pyUIHRpZHlyICAgICAxLjMuMFxu4pyUIHB1cnJyICAgICAxLjAuMSAgICAg4pSA4pSAIENvbmZsaWN0cyDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIAgdGlkeXZlcnNlX2NvbmZsaWN0cygpIOKUgOKUgFxu4pyWIGRwbHlyOjpmaWx0ZXIoKSBtYXNrcyBzdGF0czo6ZmlsdGVyKClcbuKcliBkcGx5cjo6bGFnKCkgICAgbWFza3Mgc3RhdHM6OmxhZygpXG7ihLkgVXNlIHRoZSBcdTAwMWJdODs7aHR0cDovL2NvbmZsaWN0ZWQuci1saWIub3JnL1x1MDAwN2NvbmZsaWN0ZWQgcGFja2FnZVx1MDAxYl04OztcdTAwMDcgdG8gZm9yY2UgYWxsIGNvbmZsaWN0cyB0byBiZWNvbWUgZXJyb3JzXG4ifQ== -->
-<pre><code>── Attaching core tidyverse packages ───────────────────────────────────────────────────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.1     ✔ readr     2.1.4
-✔ forcats   1.0.0     ✔ stringr   1.5.0
-✔ ggplot2   3.5.1     ✔ tibble    3.2.1
-✔ lubridate 1.9.3     ✔ tidyr     1.3.0
-✔ purrr     1.0.1     ── Conflicts ─────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the ]8;;http://conflicted.r-lib.org/conflicted package]8;; to force all conflicts to become errors</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiZGF0YVJldHJpZXZhbCAyLjcuMTdcbkV4dGVuZGVkIERvY3VtZW50YXRpb246IGh0dHBzOi8vZG9pLXVzZ3MuZ2l0aHViLmlvL2RhdGFSZXRyaWV2YWxcbldhcm5pbmcgbWVzc2FnZXM6XG4xOiBJbiBmb3IgKGkgaW4gc2VxX2Fsb25nKGNlbnYkZXh0cmEpKSB7IDpcbiAgY2xvc2luZyB1bnVzZWQgY29ubmVjdGlvbiA0IChodHRwczovL3N0YWhsbS5naXRodWIuaW8vRU5TXzIxNS9EYXRhL2dzb2RfYWxiLmNzdilcbjI6IEluIGZvciAoaSBpbiBzZXFfYWxvbmcoY2VudiRleHRyYSkpIHsgOlxuICBjbG9zaW5nIHVudXNlZCBjb25uZWN0aW9uIDMgKGh0dHBzOi8vc3RhaGxtLmdpdGh1Yi5pby9FTlNfMjE1L0RhdGEvZ3NvZF9hbGIuY3N2KVxuIn0= -->
+<pre><code>dataRetrieval 2.7.17
+Extended Documentation: https://doi-usgs.github.io/dataRetrieval
+Warning messages:
+1: In for (i in seq_along(cenv$extra)) { :
+  closing unused connection 4 (https://stahlm.github.io/ENS_215/Data/gsod_alb.csv)
+2: In for (i in seq_along(cenv$extra)) { :
+  closing unused connection 3 (https://stahlm.github.io/ENS_215/Data/gsod_alb.csv)</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1806,8 +1797,28 @@ write_csv(x = met_bos, file = &quot;./gsod_bos.csv&quot;)</code></pre>
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGZfc3RyZWFtX2RhdGEgPC0gcmVhZE5XSVNkdihzaXRlTnVtYmVycyA9IFwiMDEzNTQ1MDBcIixcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcGFyYW1ldGVyQ2QgPSBcIjAwMDYwXCIsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgIHN0YXRDZCA9IFwiMDAwMDNcIikgJT4lIFxuICByZW5hbWVOV0lTQ29sdW1ucygpXG5gYGAifQ== -->
+<pre class="r"><code>df_stream_data &lt;- readNWISdv(siteNumbers = &quot;01354500&quot;,
+                             parameterCd = &quot;00060&quot;,
+                             statCd = &quot;00003&quot;) %&gt;% 
+  renameNWISColumns()</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiR0VUOiBodHRwczovL3dhdGVyc2VydmljZXMudXNncy5nb3Yvbndpcy9kdi8/c2l0ZT0wMTM1NDUwMCZmb3JtYXQ9d2F0ZXJtbCwxLjEmUGFyYW1ldGVyQ2Q9MDAwNjAmU3RhdENkPTAwMDAzJnN0YXJ0RFQ9MTg1MS0wMS0wMVxuIn0= -->
+<pre><code>GET: https://waterservices.usgs.gov/nwis/dv/?site=01354500&amp;format=waterml,1.1&amp;ParameterCd=00060&amp;StatCd=00003&amp;startDT=1851-01-01</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxud3JpdGVfY3N2KHggPSBkZl9zdHJlYW1fZGF0YSwgZmlsZSA9IFwiLi9VU0dTXzAxMzU0NTAwX2Zsb3cuY3N2XCIpXG5gYGAifQ== -->
+<pre class="r"><code>write_csv(x = df_stream_data, file = &quot;./USGS_01354500_flow.csv&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpgYGB7cn0NCmxpYnJhcnkoR1NPRFIpDQpsaWJyYXJ5KHRpZHl2ZXJzZSkNCmBgYA0KDQoNCg0KYGBge3IgZWNobyA9IEYsIHdhcm5pbmc9RiwgbWVzc2FnZT1GfQ0KDQptZXRfc2ZvIDwtIGdldF9HU09EKHllYXJzID0gMjAxMToyMDI0LCBzdGF0aW9uID0gIjcyNDk0MC0yMzIzNCIpDQptZXRfYm9zIDwtIGdldF9HU09EKHllYXJzID0gMjAxMToyMDI0LCBzdGF0aW9uID0gIjcyNTA5MC0xNDczOSIpDQpgYGANCg0KYGBge3J9DQp3cml0ZV9jc3YoeCA9IG1ldF9zZm8sIGZpbGUgPSAiLi9nc29kX3Nmby5jc3YiKQ0Kd3JpdGVfY3N2KHggPSBtZXRfYm9zLCBmaWxlID0gIi4vZ3NvZF9ib3MuY3N2IikNCmBgYA0KDQpgYGB7cn0NCm1ldF9hbGIgPC0gZ2V0X0dTT0QoeWVhcnMgPSAyMDE0OjIwMjQsIHN0YXRpb24gPSAiNzI1MTgwLTE0NzM1IikNCmBgYA0KDQpgYGB7cn0NCndyaXRlX2Nzdih4ID0gbWV0X2FsYiwgZmlsZSA9ICIuL2dzb2RfYWxiLmNzdiIpDQoNCmBgYA0KDQoNCg==</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpgYGB7cn0NCmxpYnJhcnkoR1NPRFIpDQpsaWJyYXJ5KHRpZHl2ZXJzZSkNCmxpYnJhcnkoZGF0YVJldHJpZXZhbCkNCmBgYA0KDQoNCg0KYGBge3IgZWNobyA9IEYsIHdhcm5pbmc9RiwgbWVzc2FnZT1GfQ0KDQptZXRfc2ZvIDwtIGdldF9HU09EKHllYXJzID0gMjAxMToyMDI0LCBzdGF0aW9uID0gIjcyNDk0MC0yMzIzNCIpDQptZXRfYm9zIDwtIGdldF9HU09EKHllYXJzID0gMjAxMToyMDI0LCBzdGF0aW9uID0gIjcyNTA5MC0xNDczOSIpDQpgYGANCg0KYGBge3J9DQp3cml0ZV9jc3YoeCA9IG1ldF9zZm8sIGZpbGUgPSAiLi9nc29kX3Nmby5jc3YiKQ0Kd3JpdGVfY3N2KHggPSBtZXRfYm9zLCBmaWxlID0gIi4vZ3NvZF9ib3MuY3N2IikNCmBgYA0KDQpgYGB7cn0NCm1ldF9hbGIgPC0gZ2V0X0dTT0QoeWVhcnMgPSAyMDE0OjIwMjQsIHN0YXRpb24gPSAiNzI1MTgwLTE0NzM1IikNCmBgYA0KDQpgYGB7cn0NCndyaXRlX2Nzdih4ID0gbWV0X2FsYiwgZmlsZSA9ICIuL2dzb2RfYWxiLmNzdiIpDQoNCmBgYA0KDQoNCmBgYHtyfQ0KZGZfc3RyZWFtX2RhdGEgPC0gcmVhZE5XSVNkdihzaXRlTnVtYmVycyA9ICIwMTM1NDUwMCIsDQogICAgICAgICAgICAgICAgICAgICAgICAgICAgIHBhcmFtZXRlckNkID0gIjAwMDYwIiwNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgc3RhdENkID0gIjAwMDAzIikgJT4lIA0KICByZW5hbWVOV0lTQ29sdW1ucygpDQpgYGANCg0KYGBge3J9DQp3cml0ZV9jc3YoeCA9IGRmX3N0cmVhbV9kYXRhLCBmaWxlID0gIi4vVVNHU18wMTM1NDUwMF9mbG93LmNzdiIpDQpgYGANCg0KDQo=</div>
 
 
 

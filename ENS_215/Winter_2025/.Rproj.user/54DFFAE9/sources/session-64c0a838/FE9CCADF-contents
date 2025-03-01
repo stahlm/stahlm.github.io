@@ -1,13 +1,12 @@
 ---
-title: "R Notebook"
-output: html_notebook
+title: "Prepare date for Introduction to data modeling lecture"
+output: html_document
 ---
-
 
 ```{r}
 library(tidyverse)
-library(moderndive)
 ```
+
 
 ```{r}
 precip_mv <- read_csv("https://stahlm.github.io/ENS_215/Data/noaa_cag_division_mohawk_valley_precipitation.csv", skip = 4)
@@ -29,7 +28,7 @@ flow <- read_csv("https://stahlm.github.io/ENS_215/Data/USGS_streamflow_01351500
   mutate(Date = make_date(Year, Month, Day)) # create a Date column that has the dates as an R date object
 ```
 
-886 square miles
+Watershed area: 886 square miles
 
 ```{r}
 flow_monthly <- flow %>% 
@@ -49,47 +48,8 @@ df_precip_flow <- precip_mv %>%
   left_join(flow_monthly)
 ```
 
-```{r}
-df_precip_flow %>% 
-  #filter(Month == 5) %>% 
-  ggplot(aes(x = Precip_inches, y = flow_inches)) +
-  geom_point() +
-  
-  geom_smooth(method = "lm") +
-  
-  geom_abline(slope = 1, intercept = 0, color = "red") +
-  #scale_y_log10() +
-  
-  facet_wrap(~Month)
-```
 
 ```{r}
-lm_flow_precip <- lm(flow_inches ~ Precip_inches, data = df_precip_flow)
-```
-
-
-```{r}
-lm_flow_precip
-```
-
-```{r}
-get_regression_table(lm_flow_precip, digits = 5)
-```
-
-
-
-```{r}
-models <- df_precip_flow %>%
-  group_by(Month) %>%
-  do(model = lm(flow_inches ~ Precip_inches, data = .))
-
-```
-
-```{r}
-models
-```
-
-```{r}
-get_regression_table(models$model[[4]])
+write_csv("./precip_mv_flow_01351500.csv")
 ```
 
