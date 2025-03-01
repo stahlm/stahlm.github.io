@@ -17,7 +17,7 @@ output:
 ## Seasonality indices
 
 
-Many environmental processes/conditions (e.g., precipitation, temperature, vegetation abundance,...) experience distinct seasonal cycles.  Understanding the characteristics/dynamics of these seasonal cycles can shed light on the underlying processes that control these cycles as well as provide useful information for understanding their environmental and societal implications.  For example, seasonal variations in precipitation can have many important implications ranging from controlling the timing of floods and droughts, influencing the seasonal growth of vegetation/crops, affecting the transmission of waterborne diseases, and impacting the emergence of insect populations and associated diseases (e.g., Malaria).  
+Many environmental processes/conditions (e.g., precipitation, temperature, vegetation abundance,...) experience distinct seasonal cycles.  Understanding the characteristics/dynamics of these seasonal cycles can shed light on the underlying processes that control these cycles as well as provide useful information for understanding their environmental and societal implications.  For example, seasonal variations in precipitation can have many important implications ranging from controlling the timing of floods and droughts, influencing soil moisture seasonality, influencing the seasonal growth of vegetation/crops, affecting the transmission of waterborne diseases, and impacting the emergence of insect populations and associated diseases (e.g., Malaria).  
 
 In many of our classes thus far, we've explored data that have distinct seasonal dynamics and we've seen a few approaches to help visualize these cycles.  In today's class were are going to take this a step further and learn some quantitative approaches to characterizing seasonal cycles.  
 
@@ -104,8 +104,9 @@ monthly_met_bos_sfo %>%
 
 <br/> 
 
-What can we say about the seasonal cycles of precipitation in Boston and In San Francisco?  How would you describe these cycles?  What features stand out?  How do the cycles between the two locations compare and contrast?  Can you think of objective metrics that would quantitatively capture the features you observe?   
+>What can we say about the seasonal cycles of precipitation in Boston and In San Francisco?  How would you describe these cycles?  What features stand out?  How do the cycles between the two locations compare and contrast?  
 
+>Can you think of objective metrics that would quantitatively capture the features you observe?   
 
 
 To better understand both the drivers of seasonal cycles and their implications it is important to develop objective, quantitative metrics that summarize seasonal cycles.  While there are many possible metrics that can be used - each having different advantages/disadvantages - we will explore two particularly useful metrics that capture the seasonal timing and seasonal concentration of time-series data.  
@@ -114,9 +115,9 @@ To better understand both the drivers of seasonal cycles and their implications 
 The metrics we will use were first described in a paper by [Markham (1970)](http://www.tandfonline.com/doi/abs/10.1111/j.1467-8306.1970.tb00743.x).  These metrics have since been applied to many subsequent studies.  Furthermore, many other studies have developed very similar metrics that are also widely used.  
 
 
-The Seasonality Index (SI) describes how uniformly a given variable is spread across the months.  The SI ranges from 0 to 1, with a value of 0 indicating that the variable is evenly spread across the months and a value of 1 indicating that the variable is concentration within a single month.  
+The **Seasonality Index** (SI) describes how uniformly a given variable is spread across the months.  The SI ranges from 0 to 1, with a value of 0 indicating that the variable is evenly spread across the months and a value of 1 indicating that the variable is concentration within a single month.  
 
-The Seasonal Concentration (SC) describes the time of year that the values are most concentrated.  The SC is represented by an angular direction ranging from 0 to 360, thus a value of 0 would indicate the the variable is most focused in the month of January while a value of 180 would indicate the variable being most focused in June.  A bit further down I will introduce the mathematical approach to calculating SI and SC, though first let's continue to look at the Boston and San Francisco data to get a better conceptual understanding of these metrics.  
+The **Seasonal Concentration** (SC) describes the time of year that the values are most concentrated.  The SC is represented by an angular direction ranging from 0 to 360, thus a value of 0 would indicate the the variable is most focused in the month of January while a value of 180 would indicate the variable being most focused in June.  A bit further down I will introduce the mathematical approach to calculating SI and SC, though first let's continue to look at the Boston and San Francisco data to get a better conceptual understanding of these metrics.  
 
 
 
@@ -293,7 +294,7 @@ df_seasonality_bos_sfo %>%
 
 We can see that San Francisco has a relatively large Seasonality Index (SI) - indicating that precipitation is highly focused in a few months of the year.  Boston, however, has an SI close to zero, indicating that precipitation there is relatively uniformly distributed across all months.  
 
-The Seasonal Concentration (SC) indicates the time of year that the precipitation is most focused.  For San Francisco we see that $SC = 20$, indicating precipitation is focused around January.  Boston has a $SC = 251$ indicating precipitation most focused around August.  However, since Boston has its precipitation uniformly distributed throughout the year (i.e., SI is low), then the SC value is not as informative as it is for San Francisco (which has a large SI value).  
+The Seasonal Concentration (SC) indicates the time of year that the precipitation is most focused.  For San Francisco we see that $SC = 20$, indicating precipitation is focused around January.  Boston has a $SC = 264$ indicating precipitation most focused around August.  However, since Boston has its precipitation uniformly distributed throughout the year (i.e., SI is low), then the SC value is not as informative as it is for San Francisco (which has a large SI value).  
 
 
 Below I've presented the results of the two seasonality indices graphically.  Note that the angle of the arrow represents $SC$ and the length of the arrow represents $SI$.  Boston is shown in blue and San Francisco in black.  
@@ -516,7 +517,7 @@ library(lubridate)
 ```
 
 
-```{r}
+```{r message = F}
 df_stream_data <- readNWISdv(siteNumbers = "01354500",
                              parameterCd = "00060",
                              statCd = "00003") %>% 

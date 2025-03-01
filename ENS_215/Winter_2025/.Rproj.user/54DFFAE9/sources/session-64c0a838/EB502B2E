@@ -3,7 +3,7 @@
     "path": "C:/Users/stahlm/Documents/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Data/get_met_for_seasonality_case_study.Rmd",
     "project_path": null,
     "type": "r_markdown",
-    "hash": "60161284",
+    "hash": "847271692",
     "contents": "",
     "dirty": false,
     "created": 1740772535388.0,
@@ -14,15 +14,15 @@
         "chunk_output_type": "inline",
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "20,47",
-        "scrollLine": "0"
+        "cursorPosition": "28,47",
+        "scrollLine": "9"
     },
     "folds": "",
-    "lastKnownWriteTime": 1740772660,
+    "lastKnownWriteTime": 1740860215,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1740772660657,
+    "last_content_update": 1740860215690,
     "read_only": false,
     "read_only_alternatives": []
 }

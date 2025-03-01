@@ -42,6 +42,7 @@ output:
 
 ## Lectures 
 
+
 ```{r eval = F, echo = F}
 # Week 7
 ## 19-Feb: Descriptive statistics and univariate data
