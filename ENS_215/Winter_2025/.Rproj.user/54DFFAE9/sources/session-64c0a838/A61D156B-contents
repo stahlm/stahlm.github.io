@@ -509,15 +509,20 @@ As you are aware, the water that ultimately makes its way into the Mohawk River 
 
 <br/>  
 
-Let's go ahead and download streamflow data for the Mohawk River at Freeman's Bridge in Schenectady (USGS 01354500).  To do so we'll use the USGS `dataRetrieval` package, which we've used in past classes.  
+Let's go ahead and download streamflow data for the Mohawk River at Freeman's Bridge in Schenectady (USGS 01354500).  I have already obtained the data using the USGS `dataRetrieval` package, which we've used in past classes.  The data is stored on my Github site.  Let's go ahead and load it in.
 
-```{r warning = F, message = F}
+```{r}
+df_stream_data <-  read_csv("https://stahlm.github.io/ENS_215/Data/USGS_01354500_flow.csv")
+```
+
+
+```{r warning = F, message = F, echo = F, eval = F}
 library(dataRetrieval)
 library(lubridate)
 ```
 
 
-```{r message = F}
+```{r message = F, echo = F, eval = F}
 df_stream_data <- readNWISdv(siteNumbers = "01354500",
                              parameterCd = "00060",
                              statCd = "00003") %>% 
@@ -570,19 +575,19 @@ df_seasonality_flow <- df_seasonality_flow[[2]]
 
 Now that we have calculated the SI and SC seasonality indices on the Mohawk River streamflow data, let's do the same for local precipitation data.  
 
-We are going to obtain precipitation data from Albany International Airport (accessed through NOAA's Global Summary of the Day) using the `GSODR` package that we have used in prior classes.  
-
-```{r eval = F}
-library(GSODR)
-```
-
+We are going to obtain precipitation data from Albany International Airport (accessed through NOAA's Global Summary of the Day using the `GSODR` package).  I've already obtained this data and it is stored on my Github site.  Let's go ahead and load in this data.  
 
 
 ```{r}
-# Download data for 2014-2024
+# Data for 2014-2024
+met_sfo <- read_csv("https://stahlm.github.io/ENS_215/Data/gsod_alb.csv")
 
-met_df <- get_GSOD(years = 2014:2024, station = "725180-14735")
 ```
+
+```{r echo = F, eval = F}
+#met_df <- get_GSOD(years = 2014:2024, station = "725180-14735")
+```
+
 
 
 You'll see in the `met_df` data frame that we have daily meteorological data for Albany International Airport for 2014-2024.  Let's go ahead and compute the monthly means so that we can use our `compute_seasonality_indices()` function to calculate SI and SC on the precipitation data.  

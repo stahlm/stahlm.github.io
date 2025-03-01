@@ -6,6 +6,7 @@ output: html_notebook
 ```{r}
 library(GSODR)
 library(tidyverse)
+library(dataRetrieval)
 ```
 
 
@@ -28,6 +29,18 @@ met_alb <- get_GSOD(years = 2014:2024, station = "725180-14735")
 ```{r}
 write_csv(x = met_alb, file = "./gsod_alb.csv")
 
+```
+
+
+```{r}
+df_stream_data <- readNWISdv(siteNumbers = "01354500",
+                             parameterCd = "00060",
+                             statCd = "00003") %>% 
+  renameNWISColumns()
+```
+
+```{r}
+write_csv(x = df_stream_data, file = "./USGS_01354500_flow.csv")
 ```
 
 

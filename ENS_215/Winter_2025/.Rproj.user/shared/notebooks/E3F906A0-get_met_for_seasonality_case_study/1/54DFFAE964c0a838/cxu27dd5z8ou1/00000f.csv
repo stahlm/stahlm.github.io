@@ -1,0 +1,19 @@
+"0","library(dataRetrieval)
+"
+"2","dataRetrieval 2.7.17
+Extended Documentation: https://doi-usgs.github.io/dataRetrieval
+"
+"2","Warning messages:
+"
+"2","1: "
+"2","In for (i in seq_along(cenv$extra)) { :"
+"2","
+ "
+"2"," closing unused connection 4 (https://stahlm.github.io/ENS_215/Data/gsod_alb.csv)
+"
+"2","2: "
+"2","In for (i in seq_along(cenv$extra)) { :"
+"2","
+ "
+"2"," closing unused connection 3 (https://stahlm.github.io/ENS_215/Data/gsod_alb.csv)
+"
