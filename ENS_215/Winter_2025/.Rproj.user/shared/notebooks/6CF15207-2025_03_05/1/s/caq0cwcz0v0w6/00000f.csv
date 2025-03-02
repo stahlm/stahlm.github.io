@@ -1,5 +1,0 @@
-"0","precip_mv <- precip_mv %>% "
-"0","  rename(Year = YEAR, Month = MONTH) %>% "
-"0","  filter(Year >= 1940, Year < 2025) %>% "
-"0","  "
-"0","  mutate(Month = as.numeric(Month))"

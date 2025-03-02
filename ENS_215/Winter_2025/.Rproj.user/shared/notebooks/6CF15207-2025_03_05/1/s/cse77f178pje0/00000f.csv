@@ -1,4 +1,0 @@
-"0","models <- df_precip_flow %>%"
-"0","  group_by(Month) %>%"
-"0","  do(model = lm(flow_inches ~ Precip_inches, data = .))"
-"0",""

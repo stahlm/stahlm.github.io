@@ -1,0 +1,8 @@
+"0","df_flow_precip %>% "
+"0","  ggplot(aes(x = Precip_inches, y = flow_inches)) +"
+"0","  geom_point(alpha = 0.5) +"
+"0","  "
+"0","  geom_smooth(method = ""lm"") +"
+"0","  "
+"0","  coord_equal() +"
+"0","  theme_classic()"
