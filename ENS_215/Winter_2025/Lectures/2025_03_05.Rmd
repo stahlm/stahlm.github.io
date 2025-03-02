@@ -1,6 +1,13 @@
 ---
-title: "R Notebook"
-output: html_notebook
+title: "Data modeling: Linear regression"
+author: "ENS-215"
+date: "5-Mar-2025"
+output:
+  html_document:
+    df_print: paged
+    theme: journal
+    toc: yes
+    toc_float: yes
 ---
 
 
@@ -167,10 +174,11 @@ $$ {Sum\:of\:squared\:residuals} = \sum_{i=1}^{n}{r_i}$$
 
 The residuals $$r_i$$ are the differences between an observation and the model predicted value.  
 
+![Image source: Wikipedia](../Images/Linear_least_squares_example2.svg.png)  
 
+In the image above you can see an example figure showing a linear fit (blue line) to data (red points) and the residuals for each point (represented by the green lines).  If a model was a perfect fit then all of the data would fall exactly on the modeled line and the residuals would all be zero.  However, it is essentially never the case that a model is a perfect fit.
 
-
-When we fit a model to data we would like to know is does the model accurately reflect the data.  A model that bares no resemblance to the actual data would not be a good or useful model.  Oftentimes we can visually assess if the model is doing at least an OK job of reflecting the data, however we would really like to apply a more quantitative approach to evaluating the quality of our model than simply a qualitative visual assessment.  
+Thus, when we fit a model to data we would like to know is does the model accurately reflect the data.  A model that bares no resemblance to the actual data would not be a good or useful model.  Oftentimes we can visually assess if the model is doing at least an OK job of reflecting the data, however we would really like to apply a more quantitative approach to evaluating the quality of our model than simply a qualitative visual assessment.  
 
 There are many, many different metrics/statistics that have been developed for assessing model fits and this topic could fill many lectures in a statistics course.  For the purposes of today's lecture we will focus on a very commonly used statistic, known as **R-squared**.  While it is beyond the scope of this class to go into great depth on this topic, I will give a brief overview of this statistic and what it means.  
 

@@ -17,6 +17,10 @@ output:
 |:-------:|:------:|:--------:|
 |      |     |        |       |
 
+*** 
+### Week 8 and 9
+Work on your final projects.  
+
 
 *** 
 ### Week 7
