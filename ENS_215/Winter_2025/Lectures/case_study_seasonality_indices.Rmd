@@ -324,7 +324,13 @@ df_seasonality_bos_sfo %>%
 
 
 ## Precipitation seasonality across the US
-Now we are going to compute seasonality indices (SI and SC) for each US state using the method introduced above.  First let's load in monthly precipitation data for all of the states in the US (excluding AK and HI).  You'll recall working with this data, which comes from NOAA, in some prior class exercises.  
+Now we are going to compute seasonality indices (SI and SC) for each US state using the method introduced above.  First let's load in monthly precipitation data for all of the states in the US.  You'll recall working with this data, which comes from NOAA, in some prior class exercises.  
+
+```{r eval = F}
+library(tidyverse)
+
+```
+
 
 
 ```{r warning= F, message = F}
@@ -511,7 +517,7 @@ As you are aware, the water that ultimately makes its way into the Mohawk River 
 
 Let's go ahead and download streamflow data for the Mohawk River at Freeman's Bridge in Schenectady (USGS 01354500).  I have already obtained the data using the USGS `dataRetrieval` package, which we've used in past classes.  The data is stored on my Github site.  Let's go ahead and load it in.
 
-```{r}
+```{r message = F}
 df_stream_data <-  read_csv("https://stahlm.github.io/ENS_215/Data/USGS_01354500_flow.csv")
 ```
 
@@ -579,7 +585,7 @@ Now that we have calculated the SI and SC seasonality indices on the Mohawk Rive
 We are going to obtain precipitation data from Albany International Airport (accessed through NOAA's Global Summary of the Day using the `GSODR` package).  I've already obtained this data and it is stored on my Github site.  Let's go ahead and load in this data.  
 
 
-```{r}
+```{r message = F}
 # Data for 2014-2024
 met_df <- read_csv("https://stahlm.github.io/ENS_215/Data/gsod_alb.csv")
 
@@ -630,7 +636,7 @@ df_seasonality <- bind_rows(df_seasonality_alb_precip, df_seasonality_flow)
 <br/>
 
 Your results should look like this.  
-```{r}
+```{r echo = F}
 
 df_seasonality %>%
   mutate(group_name = if_else(obs_type == "Flow", "Mohawk River flow", "Precipitation")) %>% 
