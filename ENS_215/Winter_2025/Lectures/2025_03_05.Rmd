@@ -1,7 +1,7 @@
 ---
 title: "Data modeling: Linear regression"
 author: "ENS-215"
-date: "5-Mar-2025"
+date: "7-Mar-2025"
 output:
   html_document:
     df_print: paged
@@ -11,6 +11,7 @@ output:
 ---
 
 
+<br/> 
 
 ## Data modeling: Basic regression
 As scientists and engineers (or anyone else who deals with data) we seek to better understand the processes recorded by our data.  Throughout the term, we have been exploring, summarizing, and visualizing data to help gain insight into the topic of interest and to understand the relationship between variables in our datasets.  
@@ -22,8 +23,7 @@ Now we are at the point where we can advance into data modeling.  The ModernDive
 >  + an outcome variable $y$, also called a dependent variable and
    + an explanatory/predictor variable $x$, also called an independent variable or covariate.  
 
->Another way to state this is using mathematical terminology: we will model the outcome variable  
-$y$ as a function of the explanatory/predictor variable $x$. Why do we have two different labels, explanatory and predictor, for the variable $x$? That’s because roughly speaking data modeling can be used for two purposes:
+>Another way to state this is using mathematical terminology: we will model the outcome variable $y$ as a function of the explanatory/predictor variable $x$. Why do we have two different labels, explanatory and predictor, for the variable $x$? That’s because roughly speaking data modeling can be used for two purposes:
 
 
 1. **Modeling for prediction:**  When we model for prediction we are interested in predicting the outcome of $y$ based on the information contained in the predictor variable(s).  Here we care less about understanding the fundamental relationship between $x$ and $y$ and more about making predictions of $y$ based on information from $x$.  For example, imagine you are a public official responsible for disaster response (e.g., FEMA) and you would like to be able to predict flooding based on the amount of precipitation that has fallen.  Here you don't really care about the fundamental reasons why/how flooding varies with precipitation amount, though you care very much about making accurate predictions of flooding.  
@@ -138,7 +138,9 @@ Where, `y` is the dependent variable, `x` is the explanatory/predictive variable
 
 Let's compute the linear regression to determine the relationship between monthly streamflow and monthly precipitation.  In mathematical terms we are solving for the slope ($\beta_1$) and intercept ($\beta_0$) of the following equation:    
 
-$Streamflow = \beta_0 + \beta_1 * precipitation$
+$$Streamflow = \beta_0 + \beta_1 * precipitation$$
+
+<br/>
 
 ```{r}
 lm_flow <- lm(data = df_flow_precip, formula = flow_inches ~ Precip_inches)
@@ -153,7 +155,9 @@ You can see from out linear regression that the intercept $\beta_0$ = `r round(l
 
 Thus the equation is:
 
-$Flow = `r round(lm_flow$coefficients[1],2)` +`r round(lm_flow$coefficients[2],3)` * precipitation$ 
+$Streamflow = `r round(lm_flow$coefficients[1],2)` +`r round(lm_flow$coefficients[2],3)` * precipitation$  
+
+<br/>
 
 This means that for every increase of 1 inch of additional precipitation, there is a `r round(lm_flow$coefficients[2],3)` additional inches of streamflow.  As hydrologists this is useful from a _modeling for explanation_ perspective as it can help provide insight into the fundamental understanding of streamflow generation.  The linear model is also useful from a _modeling for prediction_ perspective as it can help us to streamflow (and thus flooding risk) if we have a forecast of upcoming precipitation and it can also help us to predict how streamflow (flooding) will change with any changes in precipitation amount (e.g., due to changing climate).    
 
@@ -172,6 +176,7 @@ get_regression_table(lm_flow, digits = 3)
 - Discuss the meaning of both the slope and intercept of the linear model we fit to the data. 
 - Would the model be improved if we were to examine only a subset of the data (e.g., subset of years, or subset of months).  
 
+<br/>
 
 ### Regression statistics/goodness-of-fit 
 When a linear model is being fit to data, the algorithm (function) that is performing the fit aims to find the "best" model, which in the case of least-squares linear regression means that the algorithm finds the linear model that minimizes the sum of the squared residuals.  
@@ -233,7 +238,9 @@ Let's first try at option A.
 
 <br/>  
 
-We can quickly perform 12 separate linear regression (i.e., one for each month) simply by faceting (by Month) a ggplot figure where we have fit a `geom_smooth(method = "lm")` to a scatter plot of streamflow vs. precipitation.  
+#### Option A: Regressing on groups/subsets
+
+We can quickly perform 12 separate linear regression (i.e., one for each month) simply by faceting (by Month) a ggplot figure where we have fit a `geom_smooth(method = "lm")` to a scatter plot of streamflow vs. precipitation.  In this case, faceting is essentially allowing us to account not only for how precipitation affects streamflow, but also how the time of year (Month) affects this relationship.  Thus, we are now accounting for two explanatory variables: preciptation and month.  
 
 
 
@@ -248,146 +255,124 @@ df_flow_precip %>%
               color = "red", 
               linetype = "dashed") + # one-to-one line to help with interpretation
   
-  facet_wrap(~Month) +
+  facet_wrap(~Month_group) +
   
   theme_bw()
 ```
 
-<br/>
+Note: The red dashed line is a one-to-one line which is there to help with the interpretation of the figure.  The regression line is the solid blue line.     
 
-Now we can see twelve individual linear regressions (one for each month) of streamflow and precipitation.  
+<br/>  
+
+>Now we can see twelve individual linear regressions (one for each month) of streamflow and precipitation.  
 
 >Do the monthly regressions look better than the regression from earlier where all of the data was combined?  
 
 >Compare and contrast the regressions for each month.  What do you observe?  What can we learn about the underlying environmental processes from these similarities and differences between the months? 
 
 
+<br/>
+
+The faceting approach is quick and easy, but it doesn't directly output the model coefficients (i.e., slope and intercept) or the model goodness-of-fit data.  If we want this data then we can simply run the linear regression for each of the individual months.  As an example, let's fit a linear model to just the April data.  To do this we `subset` our data with the `lm()` to only include May (i.e., `Month_group = "05"`).  
 
 ```{r}
-df_flow_precip <- df_flow_precip %>% 
-  mutate(Month = as.factor(Month))
+lm_flow_may <-   lm(formula = flow_inches ~ Precip_inches, 
+                    data = df_flow_precip, 
+                    subset = Month_group == "05")
+```
+
+<br/>
+
+Below are the regression coefficients for the linear regression of streamflow and precipitation for just the May data.  
+```{r}
+get_regression_table(lm_flow_may)
 ```
 
 
+<br/>
+
+Below is the regression summary statistics for the linear regression of streamflow and precipitation for just the May data.  
 ```{r}
-lm_interactions_months <- lm(data = df_flow_precip, formula = flow_inches ~ Precip_inches*Month_group)
+get_regression_summaries(lm_flow_may)
 ```
 
+<br/> 
+
+>Try the above approach for a different month.  How does that month compare to May?  What are the implications of any differences you observe between the May and your selected month.  
+
+
+<br/> 
+
+#### Option B: Linear regression with multiple explanatory variables
+
+The approach that we saw in our faceted figure which has a linear regression for each month (i.e., 12 regressions in total) can also be achieved using one multiple regression model.  
+
+
+In this case we are fitting a linear model that predicts (explains) streamflow as a function of precipitation (which is a continuous variable) and month (which is a categorical variable).  
+
+To implement this type of multiple linear regression model we will still use the `lm()` function, however when we define the `formula` we need to specify what is known as an **interaction** term.  In our case the month will act as the interaction term.  Essentially, what the interaction term does is specify an adjust to slope and intercept terms for each of the individual months.  
+
+<br/> 
+
+Let's go ahead and perform this regression.  
+
+
 ```{r}
-coef(lm_interactions_months)
+lm_interactions_months <- lm(data = df_flow_precip, 
+                             formula = flow_inches ~ Precip_inches*Month_group)
 ```
+
+<br/> 
+
+Now let's examine the model coefficients.  
+
 ```{r}
 get_regression_table(lm_interactions_months) 
+
+```
+
+<br/> 
+
+You can see there is an "intercept" term and a "Precip_inches" term.  These are the intercept and slope of the linear model for the _baseline level_, which is the month of January ("01").  
+
+Thus, $Streamflow_{Jan}= -0.097+0.504*precipitation$  
+
+By default, R used the first month (i.e., Jan) as the _baseline level_.  
+
+<br/>  
+
+To determine what the linear model is for any of the other months, we simply need to add that month's intercept interaction term to the baseline intercept and that month's slope interaction term to the baseline slope.  For example, to get the linear model for May we would take May's intercept interaction term (i.e., "Month_group: 05" in the table above) and May's slope interaction term (i.e., "Precip_inches:Month_group05") and add their to the baseline terms.  
+
+So, May's intercept would be (-0.097 + -0.075	= -0.172) and May's slope would be (0.504 + 0.019 = 0.523).  
+
+Thus, $Streamflow_{May}= -0.172+0.523*precipitation$
+
+
+<br/>  
+
+We can also take a look at the goodness-of-fit statistics for the multiple linear regression model.
+```{r}
 get_regression_summaries(lm_interactions_months)
 ```
 
+>How do the goodness-of-fit statistics for the multiple linear regression compare against those of the simple linear regression that did not account for the month variable (see example at the beginning of the lecture notes)?
 
 
-```{r}
-df_flow_precip %>% 
-  ggplot(aes(x = Precip_inches, y = flow_inches, group = Month)) +
-  geom_point() +
-  
-  geom_smooth(method = "lm", se = F) +
-  
-  geom_abline(slope = 1, intercept = 0, color = "red") +
-  #scale_y_log10() +
-  
-  #facet_wrap(~Month) +
-  
-  theme_bw()
-```
+<br/> 
+
+Today we just touched upon simple linear regression and multiple regression.  For a bit more depth on these topics take a look at [chapter 5 (Simple Linear Regression)](https://moderndive.com/v2/regression.html) and [chapter 6 (Multiple Regression)](https://moderndive.com/v2/multiple-regression.html) of the ModernDive textbook.  
 
 
 
 
 
-
-
-## Extra
-
-```{r}
-precip_mv <- read_csv("https://stahlm.github.io/ENS_215/Data/noaa_cag_division_mohawk_valley_precipitation.csv", skip = 4)
-```
-
-```{r}
-precip_mv <- precip_mv %>% 
-  rename(Year = YEAR, Month = MONTH) %>% 
-  filter(Year >= 1940, Year < 2025) %>% 
-  
-  mutate(Month = as.numeric(Month))
-```
-
-
-The Schoharie Creek streamflow data is here 
-```{r message=FALSE}
-flow <- read_csv("https://stahlm.github.io/ENS_215/Data/USGS_streamflow_01351500.csv") %>% 
-  drop_na() %>% 
-  filter(Year >= 1940 & Year < 2025) %>%  # select years 1940 through 2024
-  mutate(Date = make_date(Year, Month, Day)) # create a Date column that has the dates as an R date object
-```
-
-886 square miles
-
-```{r}
-flow_monthly <- flow %>% 
-  
-  mutate(flow_inches = flow_cfs/((5280^2)*886)*(365*24*60*60/12)*12 ) %>% 
-  
-  group_by(Year, Month) %>% 
-  summarize(flow_cfs = mean(flow_cfs, na.rm = T),
-            flow_inches = mean(flow_inches, na.rm = T),
-            n_obs = n()
-            )
-```
-
-Join the data
-```{r}
-df_precip_flow <- precip_mv %>% 
-  left_join(flow_monthly)
-```
-
-```{r}
-df_precip_flow %>% 
-  #filter(Month == 5) %>% 
-  ggplot(aes(x = Precip_inches, y = flow_inches)) +
-  geom_point() +
-  
-  geom_smooth(method = "lm") +
-  
-  geom_abline(slope = 1, intercept = 0, color = "red") +
-  #scale_y_log10() +
-  
-  facet_wrap(~Month)
-```
-
-```{r}
-lm_flow_precip <- lm(flow_inches ~ Precip_inches, data = df_precip_flow)
-```
-
-
-```{r}
-lm_flow_precip
-```
-
-```{r}
-get_regression_table(lm_flow_precip, digits = 5)
-```
-
-
-
-```{r}
+```{r echo = F, eval= F}
 models <- df_precip_flow %>%
   group_by(Month) %>%
   do(model = lm(flow_inches ~ Precip_inches, data = .))
 
-```
-
-```{r}
 models
-```
 
-```{r}
 get_regression_table(models$model[[4]])
 ```
 
