@@ -1,0 +1,8 @@
+"0","my_theme <-   theme_bw() +"
+"0","  theme(legend.position = ""none"","
+"0","        axis.text.x = element_text(size = 12.5),"
+"0","        axis.text.y = element_text(size = 12.5),"
+"0","        "
+"0","        axis.title.x = element_text(size = 16),"
+"0","        axis.title.y = element_text(size = 16)"
+"0","        )"

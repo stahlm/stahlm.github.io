@@ -1,0 +1,74 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r}
+library(tidyverse)
+```
+
+
+```{r}
+precip_data <- read_csv("https://stahlm.github.io/ENS_215/Data/noaa_cag_state_precipitation.csv")
+```
+
+
+```{r}
+precip_data <- precip_data %>% 
+  rename(Year = YEAR,
+         Month = MONTH,
+         Precip_inches = Value
+         ) 
+```
+
+
+```{r}
+precip_data <- precip_data %>% 
+  mutate(Month = as.numeric(Month))
+```
+
+
+```{r}
+df_monthly_normals <- precip_data %>% 
+  filter(Year >= 1980) %>% 
+  
+  group_by(STATE, Month) %>% 
+  summarise(observation_value = mean(Precip_inches)) %>% 
+  
+  rename(group_name = STATE)
+```
+
+
+```{r}
+source("https://stahlm.github.io/functions/compute_seasonality_indices.R")
+```
+
+
+```{r}
+df_seasonality_precip <- compute_seasonality_indices(df_monthly_normals)
+```
+
+
+```{r}
+df_seasonality_precip <- df_seasonality_precip[[2]]
+```
+
+
+```{r}
+df_seasonality_precip
+```
+
+
+```{r fig.height= 7.5, fig.width= 3.5}
+df_seasonality_precip %>% 
+  ggplot(aes(y = reorder(group_name, SI), x = SI)) +
+  geom_point(size = 2) +
+  
+  geom_segment(aes(x = 0, xend = SI, yend = group_name)) +
+  
+  theme_bw(base_size = 12)
+```
+
+
+

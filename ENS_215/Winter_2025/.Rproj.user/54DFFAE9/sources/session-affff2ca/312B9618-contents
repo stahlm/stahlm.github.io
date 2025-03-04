@@ -1,0 +1,1092 @@
+---
+title: "R Notebook"
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+library(readxl)
+library(GWalkR)
+
+library(scales)
+```
+
+
+## Read in merged water isotope data
+```{r}
+df_water_isotopes <- read_xlsx("./Data/water_isotopes/water_isotopes_data_SRP_merged.xlsx")
+```
+
+```{r}
+df_water_isotopes <- df_water_isotopes %>% 
+  dplyr::select(-Source_data, -Sample_list)
+```
+
+## Read in merged IC data
+
+```{r}
+df_IC <- read_xlsx("./Data/IC/IC_data_SRP_merged.xlsx")
+```
+
+
+## Join water isotope and IC data
+```{r}
+df_all <- df_water_isotopes %>% 
+  full_join(df_IC)
+```
+
+
+```{r}
+df_all <- df_all %>% 
+  mutate(Sample_ID = str_sub(Sample_name, start = 1, end = -2))
+```
+
+
+## Read in ICP-MS data
+```{r}
+df_ICPMS_p1 <- read_xlsx("./Data/ICP_MS/2023_2024_Project_1_Groundwater_ICP-MS_data.xlsx", sheet = "all data")
+```
+
+```{r}
+df_ICPMS_p1 <- df_ICPMS_p1 %>% 
+  rename(Sample_name = `Sample ID`) #%>% 
+  #mutate(Sample_ID = str_sub(Sample_name, start = 1, end = -2))
+```
+
+
+```{r}
+df_ICPMS_p3 <- read_xlsx("./Data/ICP_MS/2023_2024_StrongHeart_Project_3_ICP-MS_data.xlsx", sheet = "all data")
+```
+
+```{r}
+df_ICPMS_p3 <- df_ICPMS_p3 %>% 
+  rename(Sample_name = `Sample ID`) #%>% 
+  #mutate(Sample_ID = str_sub(Sample_name, start = 1, end = -2))
+```
+
+
+```{r}
+df_ICPMS <- df_ICPMS_p1 %>% 
+  bind_rows(df_ICPMS_p3)
+```
+
+```{r}
+df_ICPMS <- df_ICPMS %>% 
+  group_by(Sample_name) %>% 
+  summarise_if(is.numeric, mean, na.rm = TRUE)
+```
+
+
+```{r}
+df_ICPMS <- df_ICPMS %>% 
+  mutate(bottle_letter_flag = str_sub(Sample_name, start = -1, end = -1)) 
+
+```
+
+```{r}
+df_ICPMS <- df_ICPMS %>% 
+  mutate(flag_count = bottle_letter_flag == "A" | bottle_letter_flag == "B" | bottle_letter_flag == "C" | bottle_letter_flag == "D" | bottle_letter_flag == "E" | bottle_letter_flag == "F")
+```
+
+
+```{r}
+df_ICPMS <- df_ICPMS %>% 
+  mutate(Sample_ID = if_else(flag_count == T, 
+                             str_sub(Sample_name, start = 1, end = -2), Sample_name))
+```
+
+
+```{r}
+df_ICPMS <- df_ICPMS %>% 
+  select(-bottle_letter_flag, -flag_count)
+```
+
+```{r}
+df_ICPMS <- df_ICPMS %>% 
+  mutate(region_ID = str_sub(Sample_ID, start = 1, end = 2))
+```
+
+
+## Merge IC, isotope, and ICP-MS data
+```{r}
+df_all <- df_all %>% 
+  select(-Sample_name) %>% 
+  full_join(df_ICPMS, by = c("Sample_ID", "region_ID"))
+```
+
+
+```{r}
+df_all <- df_all %>% 
+  mutate(dexcess = d2H_calibrated - 8*d18O_calibrated)
+```
+
+
+## Save merged IC, ICP-MS, and water isotope data to an Excel file
+```{r}
+df_all <- df_all %>% 
+  dplyr::select(Sample_name, Sample_ID, region_ID,
+                d2H_calibrated, d18O_calibrated, dexcess, everything())
+```
+
+```{r}
+write_csv(x = df_all, "./Data/output/SRP_merged_IC_ICPMS_WaterIsotopes.csv")
+```
+
+
+
+
+## Figures for Bayley (AGU 2024)
+
+```{r}
+regions2use <- c("CR", "OK", "OS", "SL")
+```
+
+```{r}
+my_theme <-   theme_bw() +
+  theme(legend.position = "none",
+        axis.text.x = element_text(size = 12.5),
+        axis.text.y = element_text(size = 12.5),
+        
+        axis.title.x = element_text(size = 16),
+        axis.title.y = element_text(size = 16)
+        )
+```
+
+
+### d2H vs. d18O
+```{r}
+df2use <- df_all %>% 
+  filter(region_ID %in% regions2use)
+
+df2use %>% 
+  dplyr::select(-region_ID) %>% 
+  ggplot(aes(x = d18O_calibrated, y = d2H_calibrated)) +
+  geom_point(shape = 21, fill = "grey", alpha = 0.4) +
+  
+  
+  geom_point(data = df2use, aes(x = d18O_calibrated, y = d2H_calibrated, fill = region_ID),
+             shape = 21, size = 2) +
+  
+  scale_fill_brewer(palette = "Set1", type = "qual") +
+  
+  geom_abline(slope = 8, intercept = 10, 
+              color = "black", linetype = "dashed", linewidth = 1) +
+  
+  my_theme +
+  
+  facet_wrap(~region_ID)
+
+
+ggsave(filename = "./AGU_2024/Figures/d2H_vs_d18O.svg")
+```
+### As and U histograms and distribution
+```{r}
+
+df_all %>% 
+  filter(region_ID %in% regions2use) %>% 
+  filter(!is.na(As), !is.na(U)) %>% 
+  group_by(region_ID) %>% 
+  summarize(n_samples = n(),
+            As_above_10ppb_percent = round(100*sum(As>=10)/n(),1),
+            U_above_30ppb_percent = round(100*sum(U>=30)/n(),1),
+            As_and_U_above_percent = round(100*sum(U>=30 & As>=10)/n(),1),
+            ) %>% 
+  
+  kableExtra::kable()
+  
+```
+
+
+```{r}
+df_all %>% 
+  filter(region_ID %in% regions2use) %>% 
+  ggplot(aes(x = As, y = stat(width*density), fill = region_ID)) +
+  
+  geom_histogram() +
+  geom_vline(xintercept = 10) +
+  
+  scale_fill_brewer(palette = "Set1", type = "qual") +
+  facet_wrap(~region_ID) +
+  
+  my_theme
+```
+
+
+### As vs. U
+
+```{r}
+df_all %>% 
+  filter(region_ID %in% regions2use) %>% 
+  
+  ggplot(aes(x = U, y = As, fill = region_ID)) +
+  geom_point(shape = 21, size = 2) +
+  
+  scale_fill_brewer(palette = "Set1", type = "qual") +
+  
+  scale_x_log10(labels=trans_format('log10',math_format(10^.x))) +
+  scale_y_log10(labels=trans_format('log10',math_format(10^.x))) +
+  
+  geom_vline(xintercept = 30, linetype = "dashed") +
+  geom_hline(yintercept = 10, linetype = "dashed") +
+  
+  facet_wrap(~region_ID) +
+  
+  # labs(x = "U (ppb)",
+  #      y = "As (ppb)"
+  #      ) +
+  
+  my_theme
+
+ggsave(filename = "./AGU_2024/Figures/As_vs_U.svg")
+```
+
+### As vs. U (symbol size proportional to S)
+```{r}
+df_all %>% 
+  filter(region_ID %in% regions2use) %>% 
+  
+  ggplot(aes(x = U, y = As, fill = region_ID, size = S)) +
+  geom_point(shape = 21) +
+  
+  scale_fill_brewer(palette = "Set1", type = "qual") +
+  
+  scale_x_log10(labels=trans_format('log10',math_format(10^.x))) +
+  scale_y_log10(labels=trans_format('log10',math_format(10^.x))) +
+  
+  facet_wrap(~region_ID) +
+  
+  # labs(x = "V (ppb)",
+  #      y = "U (ppb)"
+  #      ) +
+  
+  my_theme
+```
+
+
+### As vs. V
+
+```{r}
+df_all %>% 
+  filter(region_ID %in% regions2use) %>% 
+  
+  ggplot(aes(x = V, y = As, fill = region_ID)) +
+  geom_point(shape = 21, size = 2) +
+  
+  scale_fill_brewer(palette = "Set1", type = "qual") +
+  
+  scale_x_log10(labels=trans_format('log10',math_format(10^.x))) +
+  scale_y_log10(labels=trans_format('log10',math_format(10^.x))) +
+  
+  facet_wrap(~region_ID) +
+  
+  # labs(x = "V (ppb)",
+  #      y = "As (ppb)"
+  #      ) +
+  
+  my_theme
+
+ggsave(filename = "./AGU_2024/Figures/As_vs_V.svg")
+```
+
+### V vs. Se (symbol size proportional to As)
+```{r}
+df_all %>% 
+  filter(region_ID %in% regions2use) %>% 
+  
+  ggplot(aes(x = V, y = Se, fill = region_ID, size = As)) +
+  geom_point(shape = 21) +
+  
+  scale_fill_brewer(palette = "Set1", type = "qual") +
+  
+  scale_x_log10(labels=trans_format('log10',math_format(10^.x))) +
+  scale_y_log10(labels=trans_format('log10',math_format(10^.x))) +
+  
+  facet_wrap(~region_ID) +
+  
+  # labs(x = "V (ppb)",
+  #      y = "U (ppb)"
+  #      ) +
+  
+  my_theme
+```
+
+### U vs. V
+
+```{r}
+df_all %>% 
+  filter(region_ID %in% regions2use) %>% 
+  
+  ggplot(aes(x = V, y = U, fill = region_ID)) +
+  geom_point(shape = 21, size = 2) +
+  
+  scale_fill_brewer(palette = "Set1", type = "qual") +
+  
+  scale_x_log10(labels=trans_format('log10',math_format(10^.x))) +
+  scale_y_log10(labels=trans_format('log10',math_format(10^.x))) +
+  
+  facet_wrap(~region_ID) +
+  
+  # labs(x = "V (ppb)",
+  #      y = "U (ppb)"
+  #      ) +
+  
+  my_theme
+
+ggsave(filename = "./AGU_2024/Figures/U_vs_V.svg")
+```
+### V vs. Se (symbol size proportional to U)
+```{r}
+df_all %>% 
+  filter(region_ID %in% regions2use) %>% 
+  
+  ggplot(aes(x = V, y = Se, fill = region_ID, size = U)) +
+  geom_point(shape = 21) +
+  
+  scale_fill_brewer(palette = "Set1", type = "qual") +
+  
+  scale_x_log10(labels=trans_format('log10',math_format(10^.x))) +
+  scale_y_log10(labels=trans_format('log10',math_format(10^.x))) +
+  
+  facet_wrap(~region_ID) +
+  
+  # labs(x = "V (ppb)",
+  #      y = "U (ppb)"
+  #      ) +
+  
+  my_theme
+```
+
+
+### As vs. Se
+```{r}
+df_all %>% 
+  filter(region_ID %in% regions2use) %>% 
+  #filter(V <= 0.1) %>% 
+  
+  ggplot(aes(x = Se, y = As, fill = region_ID)) +
+  geom_point(shape = 21, size = 2) +
+  
+  scale_fill_brewer(palette = "Set1", type = "qual") +
+  
+  scale_x_log10(labels=trans_format('log10',math_format(10^.x))) +
+  scale_y_log10(labels=trans_format('log10',math_format(10^.x))) +
+  
+  facet_wrap(~region_ID) +
+  
+
+  my_theme
+
+ggsave(filename = "./AGU_2024/Figures/As_vs_Se.svg")
+```
+
+
+### As vs. d-excess
+
+```{r}
+df_all %>% 
+  filter(region_ID %in% regions2use) %>% 
+  
+  ggplot(aes(x = dexcess, y = As, fill = region_ID)) +
+  geom_point(shape = 21, size = 2) +
+  
+  scale_fill_brewer(palette = "Set1", type = "qual") +
+  
+  #scale_x_log10(labels=trans_format('log10',math_format(10^.x))) +
+  scale_y_log10(labels=trans_format('log10',math_format(10^.x))) +
+  
+  facet_wrap(~region_ID) +
+ 
+  
+  my_theme
+
+ggsave(filename = "./AGU_2024/Figures/As_vs_dexcess.svg")
+```
+
+
+```{r}
+df_all %>% 
+  filter(region_ID %in% c("CR", "OS", "SL")) %>% 
+  
+  ggplot(aes(x = dexcess, y = As, fill = region_ID)) +
+  geom_point(shape = 21, size = 2) +
+  
+  scale_fill_brewer(palette = "Set1", type = "qual") +
+  
+  #scale_x_log10(labels=trans_format('log10',math_format(10^.x))) +
+  scale_y_log10(labels=trans_format('log10',math_format(10^.x))) +
+  
+  facet_wrap(~region_ID) +
+ 
+  
+  my_theme +
+  
+  labs(x = "d-excess (permil)", 
+       y = "As (ppm)" 
+       ) +
+  
+  xlim(-10,12)
+
+ggsave(filename = "./AGU_2024/Figures/As_vs_dexcess_CR_OS_SL_only.svg", width = 8, height = 3.25)
+ggsave(filename = "./AGU_2024/Figures/As_vs_dexcess_CR_OS_SL_only.png", width = 8, height = 3.25, dpi = 1000)
+```
+
+```{r}
+df_all %>% 
+  filter(region_ID %in% c("SL")) %>% 
+  
+  ggplot(aes(x = dexcess, y = As, fill = region_ID)) +
+  geom_point(shape = 21, size = 2) +
+  
+  scale_fill_brewer(palette = "Set1", type = "qual") +
+  
+  #scale_x_log10(labels=trans_format('log10',math_format(10^.x))) +
+  scale_y_log10(labels=trans_format('log10',math_format(10^.x))) +
+  
+  facet_wrap(~region_ID) +
+ 
+  
+  my_theme +
+  
+  labs(x = "d-excess (permil)", 
+       y = "As (ppm)" 
+       ) #+
+  
+  #xlim(-10,12)
+
+ggsave(filename = "./AGU_2024/Figures/As_vs_dexcess_SL__only.svg", width = 3.5, height = 3.5)
+ggsave(filename = "./AGU_2024/Figures/As_vs_dexcess_SL__only.png", width = 3.5, height = 3.5, dpi = 1000)
+```
+
+
+### U vs. d-excess
+
+```{r}
+df_all %>% 
+  filter(region_ID %in% regions2use) %>% 
+  
+  ggplot(aes(x = dexcess, y = U, fill = region_ID)) +
+  geom_point(shape = 21, size = 2) +
+  
+  scale_fill_brewer(palette = "Set1", type = "qual") +
+  
+  #scale_x_log10(labels=trans_format('log10',math_format(10^.x))) +
+  scale_y_log10(labels=trans_format('log10',math_format(10^.x))) +
+  
+  facet_wrap(~region_ID) +
+ 
+  
+  my_theme
+
+ggsave(filename = "./AGU_2024/Figures/U_vs_dexcess.svg")
+```
+
+
+### U vs. Li (also K[med], Se[v.strong], B[strong], Na[strong])
+
+```{r}
+df_all %>% 
+  filter(region_ID %in% regions2use) %>% 
+  #filter(V <= 0.1) %>% 
+  
+  ggplot(aes(x = Li, y = U, fill = region_ID)) +
+  geom_point(shape = 21, size = 2) +
+  
+  scale_fill_brewer(palette = "Set1", type = "qual") +
+  
+  scale_x_log10(labels=trans_format('log10',math_format(10^.x))) +
+  scale_y_log10(labels=trans_format('log10',math_format(10^.x))) +
+  
+  facet_wrap(~region_ID) +
+  
+
+  
+  my_theme
+
+ggsave(filename = "./AGU_2024/Figures/U_vs_Li.svg")
+```
+
+### U vs. Se
+```{r}
+df_all %>% 
+  filter(region_ID %in% regions2use) %>% 
+  #filter(V <= 0.1) %>% 
+  
+  ggplot(aes(x = Se, y = U, fill = region_ID)) +
+  geom_point(shape = 21, size = 2) +
+  
+  scale_fill_brewer(palette = "Set1", type = "qual") +
+  
+  scale_x_log10(labels=trans_format('log10',math_format(10^.x))) +
+  scale_y_log10(labels=trans_format('log10',math_format(10^.x))) +
+  
+  facet_wrap(~region_ID) +
+  
+
+  
+  my_theme
+
+ggsave(filename = "./AGU_2024/Figures/U_vs_Se.svg")
+```
+
+
+### U vs. S
+
+```{r}
+df_all %>% 
+  filter(region_ID %in% regions2use) %>% 
+  #filter(V <= 0.1) %>% 
+  
+  ggplot(aes(x = S, y = U, fill = region_ID)) +
+  geom_point(shape = 21, size = 2) +
+  
+  scale_fill_brewer(palette = "Set1", type = "qual") +
+  
+  scale_x_log10(labels=trans_format('log10',math_format(10^.x))) +
+  scale_y_log10(labels=trans_format('log10',math_format(10^.x))) +
+  
+  facet_wrap(~region_ID) +
+  
+
+  
+  my_theme
+
+ggsave(filename = "./AGU_2024/Figures/U_vs_S.svg")
+```
+
+### U vs. NO3
+
+```{r}
+df_all %>% 
+  filter(region_ID %in% regions2use) %>% 
+  #filter(V <= 0.1) %>% 
+  
+  ggplot(aes(x = NO3_ppm, y = U, fill = region_ID)) +
+  geom_point(shape = 21, size = 2) +
+  
+  scale_fill_brewer(palette = "Set1", type = "qual") +
+  
+  scale_x_log10(labels=trans_format('log10',math_format(10^.x))) +
+  scale_y_log10(labels=trans_format('log10',math_format(10^.x))) +
+  
+  facet_wrap(~region_ID) +
+  
+
+  
+  my_theme
+
+ggsave(filename = "./AGU_2024/Figures/U_vs_NO3.svg")
+```
+
+### As vs. S
+
+```{r}
+df_all %>% 
+  filter(region_ID %in% regions2use) %>% 
+  #filter(V <= 0.1) %>% 
+  
+  ggplot(aes(x = S, y = As, fill = region_ID)) +
+  geom_point(shape = 21, size = 2) +
+  
+  scale_fill_brewer(palette = "Set1", type = "qual") +
+  
+  scale_x_log10(labels=trans_format('log10',math_format(10^.x))) +
+  scale_y_log10(labels=trans_format('log10',math_format(10^.x))) +
+  
+  facet_wrap(~region_ID) +
+  
+
+  
+  my_theme
+
+ggsave(filename = "./AGU_2024/Figures/As_vs_S.svg")
+```
+
+
+### As vs. Li
+```{r}
+df_all %>% 
+  filter(region_ID %in% regions2use) %>% 
+  #filter(V <= 0.1) %>% 
+  
+  ggplot(aes(x = Li, y = As, fill = region_ID)) +
+  geom_point(shape = 21, size = 2) +
+  
+  scale_fill_brewer(palette = "Set1", type = "qual") +
+  
+  scale_x_log10(labels=trans_format('log10',math_format(10^.x))) +
+  scale_y_log10(labels=trans_format('log10',math_format(10^.x))) +
+  
+  facet_wrap(~region_ID) +
+  
+
+  
+  my_theme
+
+ggsave(filename = "./AGU_2024/Figures/As_vs_Li.svg")
+```
+
+
+### As vs. Cl/Br
+
+```{r}
+df_all %>% 
+  filter(region_ID %in% regions2use) %>% 
+  
+  
+  ggplot(aes(x = Cl_ppm, y = Na, fill = region_ID, size = As)) +
+  geom_point(shape = 21) +
+  
+  scale_fill_brewer(palette = "Set1", type = "qual") +
+  
+  scale_x_log10(labels=trans_format('log10',math_format(10^.x))) +
+  scale_y_log10(labels=trans_format('log10',math_format(10^.x))) +
+  
+  facet_wrap(~region_ID) +
+  
+
+  
+  my_theme
+
+#ggsave(filename = "./AGU_2024/Figures/U_vs_S.svg")
+```
+
+## Data analysis 
+
+
+
+
+```{r}
+gwalkr(df_all, dark = "dark")
+```
+
+
+```{r}
+df_all %>% 
+  ggplot(aes(x = V, y = U, fill = region_ID)) +
+  geom_point(shape = 21) +
+  
+  scale_x_log10() +
+  scale_y_log10() +
+  
+  scale_fill_brewer(type = "qual") +
+  
+  theme_classic() +
+  
+  facet_wrap(~region_ID)
+
+df_all %>% 
+  ggplot(aes(x = V, y = As, fill = region_ID)) +
+  geom_point(shape = 21) +
+  
+  scale_x_log10() +
+  scale_y_log10() +
+  
+  scale_fill_brewer(type = "qual") +
+  
+  theme_classic() +
+  
+  facet_wrap(~region_ID)
+
+
+df_all %>% 
+  ggplot(aes(x = As, y = U, fill = region_ID)) +
+  geom_point(shape = 21) +
+  
+  scale_x_log10() +
+  scale_y_log10() +
+  
+  scale_fill_brewer(type = "qual") +
+  
+  theme_classic() +
+  
+  facet_wrap(~region_ID)
+  
+
+
+
+  
+```
+```{r}
+df_all %>% 
+  ggplot(aes(x = Se, y = As, fill = region_ID)) +
+  geom_point(shape = 21) +
+  
+  scale_x_log10() +
+  scale_y_log10() +
+  
+  scale_fill_brewer(type = "qual") +
+  
+  theme_classic() +
+  
+  facet_wrap(~region_ID)
+
+df_all %>% 
+  ggplot(aes(x = Se, y = U, fill = region_ID)) +
+  geom_point(shape = 21) +
+  
+  scale_x_log10() +
+  scale_y_log10() +
+  
+  scale_fill_brewer(type = "qual") +
+  
+  theme_classic() +
+  
+  facet_wrap(~region_ID)
+```
+
+```{r}
+df_all %>% 
+  ggplot(aes(x = Mo, y = As, fill = region_ID)) +
+  geom_point(shape = 21) +
+  
+  scale_x_log10() +
+  scale_y_log10() +
+  
+  scale_fill_brewer(type = "qual") +
+  
+  theme_classic() +
+  
+  facet_wrap(~region_ID)
+
+df_all %>% 
+  ggplot(aes(x = Mo, y = U, fill = region_ID)) +
+  geom_point(shape = 21) +
+  
+  scale_x_log10() +
+  scale_y_log10() +
+  
+  scale_fill_brewer(type = "qual") +
+  
+  theme_classic() +
+  
+  facet_wrap(~region_ID)
+```
+
+
+```{r}
+df_all %>% 
+  filter(!is.na(d2H_calibrated)) %>% 
+  
+  ggplot(aes(x = d2H_calibrated, y = U, fill = region_ID)) +
+  geom_point(shape = 21) +
+  
+ # scale_x_log10() +
+  scale_y_log10() +
+  
+  scale_fill_brewer(type = "qual") +
+  
+  theme_classic() +
+  
+  facet_wrap(~region_ID, scales = "free_x")
+
+df_all %>% 
+  filter(!is.na(d2H_calibrated)) %>% 
+  
+  ggplot(aes(x = d2H_calibrated, y = As, fill = region_ID)) +
+  geom_point(shape = 21) +
+  
+#  scale_x_log10() +
+#  scale_y_log10() +
+  
+  scale_fill_brewer(type = "qual") +
+  
+  theme_classic() +
+  
+  facet_wrap(~region_ID, scales = "free")
+```
+
+
+
+```{r}
+df_all %>% 
+  ggplot(aes(x = S, y = As, fill = region_ID)) +
+  geom_point(shape = 21) +
+  
+  scale_x_log10() +
+  scale_y_log10() +
+  
+  scale_fill_brewer(type = "qual") +
+  
+  theme_classic() +
+  
+  facet_wrap(~region_ID)
+
+
+
+df_all %>% 
+  ggplot(aes(x = Mn, y = As, fill = region_ID)) +
+  geom_point(shape = 21) +
+  
+  scale_x_log10() +
+  scale_y_log10() +
+  
+  scale_fill_brewer(type = "qual") +
+  
+  theme_classic() +
+  
+  facet_wrap(~region_ID)
+```
+```{r}
+df_all %>% 
+  filter(!is.na(NO3_ppm))  %>% 
+  
+  ggplot(aes(x = NO2_ppm, y = U, fill = region_ID)) +
+  
+  geom_point(shape = 21) +
+  
+  scale_fill_brewer(type = "qual") +
+  
+  scale_x_log10() +
+  scale_y_log10() +
+  theme_classic() +
+  
+  facet_wrap(~region_ID)
+
+
+df_all %>% 
+  filter(!is.na(NO3_ppm))  %>% 
+  
+  ggplot(aes(x = NO3_ppm, y = U, fill = region_ID)) +
+  
+  geom_point(shape = 21) +
+  
+  scale_fill_brewer(type = "qual") +
+  
+  scale_x_log10() +
+  scale_y_log10() +
+  theme_classic() +
+  
+  facet_wrap(~region_ID)
+
+
+df_all %>% 
+  filter(!is.na(NO3_ppm))  %>% 
+  
+  ggplot(aes(x = NO3_ppm, y = NO2_ppm, fill = log2(As))) +
+  
+  geom_point(shape = 21) +
+  
+  scale_fill_viridis_c() +
+  
+  scale_x_log10() +
+  scale_y_log10() +
+  theme_classic() +
+  
+  facet_wrap(~region_ID)
+```
+
+
+```{r}
+df_all %>% 
+  ggplot(aes(x = P, y = As, fill = region_ID)) +
+  geom_point(shape = 21) +
+  
+  scale_x_log10() +
+  scale_y_log10() +
+  
+  scale_fill_brewer(type = "qual") +
+  
+  theme_classic() +
+  
+  facet_wrap(~region_ID)
+
+
+df_all %>% 
+  ggplot(aes(x = P, y = U, fill = region_ID)) +
+  geom_point(shape = 21) +
+  
+  scale_x_log10() +
+  scale_y_log10() +
+  
+  scale_fill_brewer(type = "qual") +
+  
+  theme_classic() +
+  
+  facet_wrap(~region_ID)
+```
+
+```{r}
+df_all %>% 
+  ggplot(aes(x = S, y = SO4_ppm, fill = region_ID)) +
+  geom_point(shape = 21) +
+  
+  scale_x_log10() +
+  scale_y_log10() +
+  
+  scale_fill_brewer(type = "qual") +
+  
+  theme_classic() +
+  
+  facet_wrap(~region_ID)
+```
+
+
+```{r}
+df_all %>% 
+  ggplot(aes(x = S, y = As, fill = region_ID)) +
+  geom_point(shape = 21) +
+  
+  scale_x_log10() +
+  scale_y_log10() +
+  
+  scale_fill_brewer(type = "qual") +
+  
+  theme_classic() +
+  
+  facet_wrap(~region_ID)
+
+
+df_all %>% 
+  ggplot(aes(x = S, y = U, fill = region_ID)) +
+  geom_point(shape = 21) +
+  #geom_smooth(method = "lm") +
+  
+  scale_x_log10() +
+  scale_y_log10() +
+  
+  scale_fill_brewer(type = "qual") +
+  
+  theme_classic() +
+  
+  facet_wrap(~region_ID)
+```
+
+
+```{r}
+df_all %>% 
+  ggplot(aes(x = dexcess, y = As, fill = region_ID)) +
+  
+  geom_point(shape = 21) +
+  
+  scale_fill_brewer(type = "qual") +
+  
+  scale_y_log10() +
+  theme_classic() +
+  
+  facet_wrap(~region_ID)
+```
+
+
+```{r}
+df_all %>% 
+  filter(!is.na(d2H_calibrated)) %>% 
+  ggplot(aes(x = d18O_calibrated, y = d2H_calibrated, fill = log2(As))) +
+  
+  geom_point(shape = 21) +
+  
+  scale_fill_viridis_c() +
+  
+  theme_classic() +
+  
+  facet_wrap(~region_ID, scales = "free")
+```
+
+
+```{r}
+df_all %>% 
+  ggplot(aes(x = d18O_calibrated, y = d2H_calibrated, fill = region_ID)) +
+  geom_point(shape = 21, size = 2.5) +
+  
+  scale_fill_brewer(type = "qual", palette = 1) +
+  
+  geom_abline(slope = 8, intercept = 10) +
+  
+  theme_classic() 
+```
+
+```{r}
+df_all %>% 
+  dplyr::select(-region_ID) %>% 
+  ggplot(aes(x = d18O_calibrated, y = d2H_calibrated)) +
+  geom_point(shape = 21, fill = "grey", alpha = 0.4) +
+  
+  
+  geom_point(data = df_all, aes(x = d18O_calibrated, y = d2H_calibrated, fill = region_ID),
+             shape = 21) +
+  
+  geom_abline(slope = 8, intercept = 10, 
+              color = "black", linetype = "dashed", linewidth = 1) +
+  
+  theme_bw() +
+  
+  facet_wrap(~region_ID)
+```
+
+
+
+```{r}
+df_all %>% 
+  ggplot(aes(x = d2H_calibrated, y = F_ppm)) +
+  geom_point(shape = 21, fill = "grey", color = "black") +
+  
+  theme_bw() + 
+  
+  facet_wrap(~region_ID, scales = "free_x")
+```
+
+
+```{r fig.width = 3, fig.height= 4}
+df_all %>% 
+  ggplot(aes(x = region_ID, y = dexcess, fill = region_ID)) +
+  geom_boxplot(outlier.shape = NA) +
+  
+  geom_jitter(height = 0, width = 0.2, shape = 21, size = 1, alpha = 0.5) +
+  
+  scale_fill_brewer(type = "qual", palette = 1) +
+  theme_classic() +
+  
+  theme(legend.position = "none")
+```
+
+```{r}
+df_all %>% 
+  ggplot(aes(x = dexcess, y = Cl_ppm)) +
+  geom_point(shape = 21, fill = "lightgrey") +
+  
+  scale_y_log10() +
+  theme_bw() +
+  
+  facet_wrap(~region_ID)
+```
+```{r}
+df_all %>% 
+  ggplot(aes(x = dexcess, y = Cl_ppm, fill = region_ID)) +
+  geom_point(shape = 21, color = "black", size = 2.5) +
+  
+  scale_fill_brewer(palette = 1, type = "qual") +
+  scale_y_log10() +
+  
+  theme_bw() 
+
+
+
+df_all %>% 
+  ggplot(aes(x = dexcess, y = As, fill = region_ID)) +
+  geom_point(shape = 21, color = "black", size = 2.5) +
+  
+  scale_fill_brewer(palette = 1, type = "qual") +
+  scale_y_log10() +
+  
+  theme_bw() +
+  facet_wrap(~region_ID)
+```
+
+```{r}
+df_all %>% 
+  ggplot(aes(x = SO4_ppm, y = Cl_ppm, fill = region_ID)) +
+  geom_point(shape = 21, color = "black", size = 2.5) +
+  
+  scale_fill_brewer(palette = 1, type = "qual") +
+  
+  scale_x_log10() +
+  scale_y_log10() +
+  
+  theme_bw() 
+```
+
+
+```{r}
+#gwalkr(df_all, dark = "dark")
+```
+
+

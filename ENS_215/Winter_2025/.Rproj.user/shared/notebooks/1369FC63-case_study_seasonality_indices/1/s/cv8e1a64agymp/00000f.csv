@@ -2,5 +2,3 @@
 "0","                             parameterCd = ""00060"","
 "0","                             statCd = ""00003"") %>% "
 "0","  renameNWISColumns()"
-"2","GET: https://waterservices.usgs.gov/nwis/dv/?site=01354500&format=waterml,1.1&ParameterCd=00060&StatCd=00003&startDT=1851-01-01
-"
