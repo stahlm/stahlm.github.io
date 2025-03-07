@@ -1,0 +1,9 @@
+"0","ch_raster3 %>% "
+"0","  tm_shape() +"
+"0","  tm_raster(palette = ""plasma"", style = ""quantile"") +"
+"0","  "
+"0","  tm_mouse_coordinates() +"
+"0","  tm_basemap(server = c(""Esri.WorldImagery"", ""OpenStreetMap"", ""Esri.WorldShadedRelief"")) +"
+"0","  tm_scale_bar() "
+"2","Error in dirname(destfiles) : path too long
+"

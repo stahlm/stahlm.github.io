@@ -1,0 +1,8 @@
+"0","fig_map <- df_agent_orange %>% "
+"0","  tm_shape() +"
+"0","  tm_dots(col = ""purple"") +"
+"0","  "
+"0","  tm_mouse_coordinates() +"
+"0","  tm_basemap(server = c(""Esri.WorldImagery"", ""OpenStreetMap"", ""Esri.WorldShadedRelief"")) +"
+"0","  tm_scale_bar() "
+"0",""

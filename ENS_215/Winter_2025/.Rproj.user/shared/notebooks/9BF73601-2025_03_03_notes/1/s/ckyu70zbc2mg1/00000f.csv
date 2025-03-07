@@ -1,0 +1,5 @@
+"0","df_stream_data <- df_stream_data %>% "
+"0","  mutate(Year = year(Date),"
+"0","         Month = month(Date),"
+"0","         Day = day(Date)"
+"0","         )"

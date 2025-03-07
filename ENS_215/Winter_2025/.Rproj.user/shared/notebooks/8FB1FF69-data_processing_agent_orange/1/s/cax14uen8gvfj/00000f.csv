@@ -1,0 +1,7 @@
+"0","df_agent_orange <- st_set_crs(df_agent_orange, ""EPSG:4326"") # set CRS"
+"0","df_agent_orange_projected = st_transform(df_agent_orange,"
+"0","                                         crs = ""+proj=tmerc +lat_0=0 +lon_0=111 +k=1 +x_0=19500000 +y_0=0 +ellps=krass +units=m +no_defs"")"
+"0",""
+"0","raster_template = rast(ext(df_agent_orange_projected), "
+"0","                       resolution = 20000, # in meters"
+"0","                       crs = crs(df_agent_orange_projected))"

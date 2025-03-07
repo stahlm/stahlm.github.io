@@ -1,6 +1,0 @@
-"0",""
-"0","met_sfo <- read_csv(""https://stahlm.github.io/ENS_215/Data/gsod_sfo.csv"")"
-"0","met_bos <- read_csv(""https://stahlm.github.io/ENS_215/Data/gsod_bos.csv"")"
-"0",""
-"0","#met_sfo <- get_GSOD(years = 2011:2024, station = ""724940-23234"")"
-"0","#met_bos <- get_GSOD(years = 2011:2024, station = ""725090-14739"")"

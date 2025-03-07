@@ -1,4 +1,0 @@
-"0","df_seasonality_precip <- df_seasonality_precip %>% "
-"0","  rename(NAME = group_name) %>% "
-"0","  left_join(state_dictionary)"
-"2","Joining with `by = join_by(NAME)`"

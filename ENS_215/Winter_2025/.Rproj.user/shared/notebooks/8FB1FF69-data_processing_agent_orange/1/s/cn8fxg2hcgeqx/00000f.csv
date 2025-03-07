@@ -1,0 +1,8 @@
+"0",""
+"0","fig_map <-  fig_map %>% "
+"0","    tmap_leaflet %>% "
+"0","    leaflet.extras::addFullscreenControl()"
+"2","Warning: Currect projection of shape . unknown. Long-lat (WGS84) is assumed."
+"0","fig_map"
+"2","Error in dirname(to) : path too long
+"

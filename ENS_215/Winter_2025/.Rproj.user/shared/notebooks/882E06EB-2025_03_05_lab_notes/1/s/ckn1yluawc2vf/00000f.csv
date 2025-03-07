@@ -1,0 +1,8 @@
+"0","tmap_mode(""view"")"
+"2","tmap mode set to interactive viewing
+"
+"0","a %>% "
+"0","  tm_shape() +"
+"0","  tm_borders()"
+"2","Error in dirname(to) : path too long
+"

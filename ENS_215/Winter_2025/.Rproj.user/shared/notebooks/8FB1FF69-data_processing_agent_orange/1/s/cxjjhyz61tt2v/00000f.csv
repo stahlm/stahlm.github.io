@@ -1,0 +1,2 @@
+"0","ch_raster3 = rasterize(df_agent_orange_projected, raster_template, "
+"0","                       field = ""Gallons"", fun = sum, na.rm = TRUE)"
