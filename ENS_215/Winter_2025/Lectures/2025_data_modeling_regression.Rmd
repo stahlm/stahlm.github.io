@@ -1,7 +1,7 @@
 ---
 title: "Data modeling: Linear regression"
 author: "ENS-215"
-date: "7-Mar-2025"
+date: "10-Mar-2025"
 output:
   html_document:
     df_print: paged
@@ -159,7 +159,7 @@ $Streamflow = `r round(lm_flow$coefficients[1],2)` +`r round(lm_flow$coefficient
 
 <br/>
 
-This means that for every increase of 1 inch of additional precipitation, there is a `r round(lm_flow$coefficients[2],3)` additional inches of streamflow.  As hydrologists this is useful from a _modeling for explanation_ perspective as it can help provide insight into the fundamental understanding of streamflow generation.  The linear model is also useful from a _modeling for prediction_ perspective as it can help us to streamflow (and thus flooding risk) if we have a forecast of upcoming precipitation and it can also help us to predict how streamflow (flooding) will change with any changes in precipitation amount (e.g., due to changing climate).    
+This means that for every increase of 1 inch of additional precipitation, the model predicts that there is `r round(lm_flow$coefficients[2],3)` additional inches of streamflow.  As hydrologists this is useful from a _modeling for explanation_ perspective as it can help provide insight into the fundamental understanding of streamflow generation.  The linear model is also useful from a _modeling for prediction_ perspective as it can help us to streamflow (and thus flooding risk) if we have a forecast of upcoming precipitation and it can also help us to predict how streamflow (flooding) will change with any changes in precipitation amount (e.g., due to changing climate).    
 
 <br/>  
 
