@@ -1,0 +1,2 @@
+"0","# Create combined address column"
+"0","Street_Trees <- mutate(Street_Trees, addr = paste(add_num, add_str, "", Burlington, VT""))"

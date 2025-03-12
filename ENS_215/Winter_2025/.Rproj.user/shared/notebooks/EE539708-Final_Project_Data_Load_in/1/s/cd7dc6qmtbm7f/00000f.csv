@@ -1,0 +1,6 @@
+"0","# Find coords for each tree from addresses"
+"0","tree_coords <- geocode(.tbl = Street_Trees[1:100,], address = addr, method = 'census')"
+"2","Passing 60 addresses to the US Census batch geocoder
+"
+"2","Query completed in: 0.5 seconds
+"

@@ -1,0 +1,5 @@
+"0","# Select Insect Cols"
+"0","Insect_data <- Insect_data %>% select(observed_on, quality_grade, num_identification_agreements, place_guess, latitude, longitude, scientific_name, common_name)"
+"2","Error in select(., observed_on, quality_grade, num_identification_agreements,  : 
+  object 'Insect_data' not found
+"
