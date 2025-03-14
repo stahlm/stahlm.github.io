@@ -1,0 +1,427 @@
+---
+title: "Final project start"
+author: "Ilana Goldner"
+output: html_document
+---
+
+
+
+
+
+```{r}
+library(tidyverse)
+library(GSODR)
+library(climateR)
+library(rnaturalearth)
+library(readxl)
+library(scales)
+```
+
+
+
+Load in air_lichen_queryFull.xlsx
+```{r}
+full_elementalAnalysis_data <- read_csv("./air_lichen_queryFull.csv")
+#got data from "https://gis.nacse.org/lichenair/index.php?page=query&type=analysis", selected all areas of interest, all tissue data, all plot data, all lichen names
+```
+
+
+Rename col:
+```{r}
+full_elementalAnalysis_data <- full_elementalAnalysis_data %>%   
+  rename(Species_Name= Name)
+```
+
+
+#### make char numeric from ele concentration
+(some N.D. was not defined- given that there were few of these and I didn't know what they were we made them NAs. (could have been "not determined" or "not detected" which are different))
+```{r}
+full_elementalAnalysis_data <- full_elementalAnalysis_data %>%
+  mutate(across(contains(" dw"), as.numeric)) %>%
+  mutate(`Distance from coast (miles)` = as.numeric(`Distance from coast (miles)`),
+         `Precipitation (cm/yr)` = as.numeric(`Precipitation (cm/yr)`)
+         
+         )
+```
+
+## Create a pivoted df
+```{r}
+full_elementalAnalysis_data_long <- full_elementalAnalysis_data %>% 
+  pivot_longer(cols = 13:48, names_to = "Element_name", values_to = "Concentration")
+```
+
+```{r}
+full_elementalAnalysis_data_long %>% 
+  filter(`U.S. state` %in% c("Oregon")) %>% 
+  filter(Element_name %in% c("Lead (ppm dw)", "Barium (ppm dw)")) %>% 
+  
+  ggplot(aes(x = Element_name, y = Concentration)) +
+  geom_boxplot() +
+  scale_y_log10()
+  
+  
+```
+
+
+
+
+#Preliminary searching of data in full_elementalAnalysis_data
+
+### Make a summary
+Use this info to see what kind of data your dealing with, also min, max, median, mean- basic stat info  
+```{r}
+summary(full_elementalAnalysis_data)
+```
+
+### Box and whisker plots for Potnetial elements of interest
+
+
+ 
+ 
+```{r}
+fig1_box_Pb_all <-  ggplot(full_elementalAnalysis_data, aes(x= Species_Name, y=`Lead (ppm dw)`))+
+  geom_boxplot()+
+  scale_y_log10(breaks = c(0.1,1, 10, 50, 100, 250),
+                labels=comma_format()) +
+  theme(axis.text.x = element_text(angle = 60, hjust = 1)) + #tilts x axis labels so visible
+  labs(title= "Lead concentration for all lichen sampled")
+
+fig1_box_Pb_all
+```
+fig1_box_Pb_all: NOTES: they all have about the same mean lead level (just by looking), the last box is samples tested but not assigned a species name ("NA")
+
+```{r}
+fig1_box_Al <-  ggplot(full_elementalAnalysis_data, aes(x= " ", y=`Aluminum (ppm dw)`))+
+  geom_boxplot()+
+  scale_y_log10() +
+  theme(axis.text.x = element_text(angle = 60, hjust = 1)) + #tilts x axis labels so visible
+  labs(title= "Aluminum concentration overall",
+       x=" ")
+
+fig1_box_Al
+```
+
+
+
+```{r}
+fig1_box_Al_all <-  full_elementalAnalysis_data %>% 
+  filter(!is.na(`Aluminum (ppm dw)`)) %>% 
+  
+  group_by(`U.S. state`) %>% 
+  mutate(n_obs = n()) %>% 
+  filter(n_obs >= 50) %>% 
+  
+  ggplot(aes(x= `U.S. state`, y=`Aluminum (ppm dw)`))+
+  geom_boxplot()+
+  scale_y_log10() +
+  theme(axis.text.x = element_text(angle = 60, hjust = 1)) + #tilts x axis labels so visible
+  labs(title= "Aluminum concentration for all lichen sampled")
+
+fig1_box_Al_all
+```
+
+```{r}
+fig1_box_Al_all <-  ggplot(full_elementalAnalysis_data, aes(x= Species_Name, y=`Aluminum (ppm dw)`))+
+  geom_boxplot()+
+  scale_y_log10() +
+  theme(axis.text.x = element_text(angle = 60, hjust = 1)) + #tilts x axis labels so visible
+  labs(title= "Aluminum concentration for all lichen sampled")
+
+fig1_box_Al_all
+```
+
+```{r}
+fig1_box_Cu_all <-  ggplot(full_elementalAnalysis_data, aes(x= Species_Name, y=`Copper (ppm dw)`))+
+  geom_boxplot()+
+  scale_y_log10(breaks = c(0.1,1, 10, 50, 100, 250),
+                labels=comma_format()) +
+  theme(axis.text.x = element_text(angle = 60, hjust = 1)) + #tilts x axis labels so visible
+  labs(title= "Copper concentration for all lichen sampled")
+
+fig1_box_Cu_all
+```
+
+```{r}
+fig1_box_Cd_all <-  ggplot(full_elementalAnalysis_data, aes(x= Species_Name, y=`Cadmium (ppm dw)`))+
+  geom_boxplot()+
+  scale_y_log10(breaks = c(0.1,1, 10, 50, 100, 250),
+                labels=comma_format()) +
+  theme(axis.text.x = element_text(angle = 60, hjust = 1)) + #tilts x axis labels so visible
+  labs(title= "Cadmium concentration for all lichen sampled")
+
+fig1_box_Cd_all
+```
+
+```{r}
+fig1_box_Fe_all <-  ggplot(full_elementalAnalysis_data, aes(x= Species_Name, y=`Iron (ppm dw)`))+
+  geom_boxplot()+
+  scale_y_log10(breaks = c(0.1,1, 10, 50, 100, 250),
+                labels=comma_format()) +
+  theme(axis.text.x = element_text(angle = 60, hjust = 1)) + #tilts x axis labels so visible
+  labs(title= "Iron concentration for all lichen sampled")
+
+fig1_box_Fe_all
+```
+
+```{r}
+fig1_box_Cr_all <-  ggplot(full_elementalAnalysis_data, aes(x= Species_Name, y=`Chromium (ppm dw)`))+
+  geom_boxplot()+
+  scale_y_log10(breaks = c(0.1,1, 10, 50, 100, 250),
+                labels=comma_format()) +
+  theme(axis.text.x = element_text(angle = 60, hjust = 1)) + #tilts x axis labels so visible
+  labs(title= "Chromium concentration for all lichen sampled")
+
+fig1_box_Cr_all
+```
+
+```{r}
+fig1_box_Mn_all <-  ggplot(full_elementalAnalysis_data, aes(x= Species_Name, y=`Manganese (ppm dw)`))+
+  geom_boxplot()+
+  scale_y_log10(breaks = c(0.1,1, 10, 50, 100, 250),
+                labels=comma_format()) +
+  theme(axis.text.x = element_text(angle = 60, hjust = 1)) + #tilts x axis labels so visible
+  labs(title= "Manganese concentration for all lichen sampled")
+
+fig1_box_Mn_all
+```
+
+
+
+
+
+
+## Maps of all lichens sampled 
+```{r}
+library(leaflet)
+
+```
+
+
+
+```{r}
+map_samples <- leaflet() %>% 
+  addProviderTiles(providers$Esri.NatGeoWorldMap)
+```
+
+```{r}
+library(geojsonio)
+```
+
+```{r}
+state_borders <- geojson_read("https://stahlm.github.io/ENS_215/Data/gz_2010_us_040_00_5m.geojson", what = "sp")
+```
+
+
+-----
+```{r}
+library(tmap)
+library(spData)
+library(sf)
+library(rnaturalearth)
+```
+
+```{r}
+borders_world <- ne_countries(returnclass = "sf")
+```
+
+
+```{r}
+borders_us <- borders_world %>% 
+  filter(name=="United States of America")
+
+```
+
+
+
+```{r}
+samples_full <- full_elementalAnalysis_data %>% 
+  filter(!is.na(`Latitude (decimal degrees)`)) %>% 
+  filter(!is.na(`Longitude (decimal degrees)`))
+
+samples_full <- st_as_sf(samples_full,
+                       
+                         coords = c("Longitude (decimal degrees)", "Latitude (decimal degrees)"))
+```
+
+```{r}
+tmap_mode("view")
+  samples_full %>% 
+    select(`Sample number`) %>% 
+    tm_shape() +
+    tm_dots()
+```
+
+### Note: missing coordinates for some samples 
+
+
+
+Aluminum
+```{r}
+tmap_mode("view")
+
+    samples_full %>% 
+    select(`Aluminum (ppm dw)`) %>% 
+    tm_shape() +
+  tm_dots(col="Aluminum (ppm dw)", style = "quantile", n = 10, palette = "viridis")
+```
+
+Cadmium
+```{r eval = F}
+tmap_mode("view")
+
+
+  samples_full %>% 
+  select(`Cadmium (ppm dw)`) %>% 
+    tm_shape() +
+  tm_dots(col="Cadmium (ppm dw)", style = "quantile", n = 10, palette = "viridis") 
+```
+
+
+
+
+Iron
+```{r}
+tmap_mode("view")
+  samples_full %>% 
+    select(`Iron (ppm dw)`) %>% 
+    tm_shape() +
+    tm_dots(col="Iron (ppm dw)", style = "quantile", n = 10, palette = "viridis")
+```
+
+
+
+
+Manganese
+```{r}
+tmap_mode("view")
+  samples_full %>% 
+    select(`Manganese (ppm dw)`) %>% 
+    tm_shape() +
+  tm_dots(col="Manganese (ppm dw)", style = "quantile", n = 10, palette = "viridis")  #quantile bins for color scale 
+  
+  
+```
+
+
+Lead
+```{r eval = F}
+tmap_mode("view")
+  
+  tm_shape(samples_full) +
+  tm_dots(col="Lead (ppm dw)", style = "quantile", n = 10, palette = "viridis") #quantile bins for color scale
+```
+
+
+# Wind direction
+```{r}
+catalog %>% 
+  filter(id == "gridmet") %>% 
+  select(varname, units, description)
+```
+
+get wind data:
+```{r}
+wind_UT <- get_GSOD(years = 1997:2003, station = "725720-24127")
+```
+
+
+
+
+# Scatter plots comparing elements
+
+
+```{r}
+full_elementalAnalysis_data %>% 
+  filter(`Cadmium (ppm dw)` >= 0) %>% 
+  ggplot(aes(x = `Lead (ppm dw)`, y = `Cadmium (ppm dw)`)) +
+  scale_y_log10() +
+  scale_x_log10() +
+  geom_point(alpha=.3)
+```
+
+
+
+# add images:
+
+![My caption here (or put bkank braket no space)](./Final_project_Data/figures and pics/Lichen-forest.jpg)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

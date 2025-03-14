@@ -1,0 +1,9 @@
+"0","tmap_mode(""view"")"
+"2","tmap mode set to interactive viewing
+"
+"0","  "
+"0","  tm_shape(samples_full) +"
+"0","  tm_dots()"
+"2","Warning: Currect projection of shape samples_full unknown. Long-lat (WGS84) is assumed."
+"2","Error in dirname(to) : path too long
+"

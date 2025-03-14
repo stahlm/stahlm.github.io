@@ -1,0 +1,1 @@
+"0","state_borders <- geojson_read(""https://stahlm.github.io/ENS_215/Data/gz_2010_us_040_00_5m.geojson"", what = ""sp"")"

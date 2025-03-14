@@ -1,0 +1,7 @@
+"0","samples_full <- full_elementalAnalysis_data %>% "
+"0","  filter(!is.na(`Latitude (decimal degrees)`)) %>% "
+"0","  filter(!is.na(`Longitude (decimal degrees)`))"
+"0",""
+"0","samples_full <- st_as_sf(samples_full,"
+"0","                       "
+"0","                         coords = c(""Longitude (decimal degrees)"", ""Latitude (decimal degrees)""))"

@@ -1,0 +1,7 @@
+"0","full_elementalAnalysis_data_long %>% "
+"0","  filter(`U.S. state` %in% c(""Oregon"")) %>% "
+"0","  filter(Element_name %in% c(""Lead (ppm dw)"", ""Barium (ppm dw)"")) %>% "
+"0","  "
+"0","  ggplot(aes(x = Element_name, y = Concentration)) +"
+"0","  geom_boxplot() +"
+"0","  scale_y_log10()"

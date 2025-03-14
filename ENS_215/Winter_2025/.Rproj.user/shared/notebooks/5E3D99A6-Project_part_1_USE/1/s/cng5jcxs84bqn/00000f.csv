@@ -1,0 +1,2 @@
+"0","map_samples <- leaflet() %>% "
+"0","  addProviderTiles(providers$Esri.NatGeoWorldMap)"

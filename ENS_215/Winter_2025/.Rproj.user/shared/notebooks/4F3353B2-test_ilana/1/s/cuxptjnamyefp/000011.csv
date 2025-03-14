@@ -1,0 +1,3 @@
+"0","leaflet() %>% "
+"0","  addProviderTiles(provider = providers$Esri.NatGeoWorldMap) %>% "
+"0","  addGlPoints(data = samples_full, fillColor = ""Lead (ppm dw)"")"

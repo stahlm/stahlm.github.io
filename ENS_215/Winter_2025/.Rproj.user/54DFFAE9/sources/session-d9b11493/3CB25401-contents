@@ -1,0 +1,104 @@
+## inputs
+# data_in: data frame with data to map
+
+Make_interactive_map_As_styling_bgs <- function(data_in){
+
+  ## Define color scheme
+  bgs_color_scheme_As = c("#003deeff",
+                          "#2498ffff",
+                          "#4cbeffff",
+                          "#89ddffff",
+                          "#67ff4dff",
+                          "#ffb578ff",
+                          "#ffb675ff",
+                          "#ff9813ff",
+                          "#ff1200ff",
+                          "#d80000ff")
+  
+  
+  
+  
+  ## Define colors for interactive map
+  
+  water_quality_data <- water_quality_data %>% 
+    mutate(As_fill_color_r = case_when(
+      Category_As_many == "<1 ppb As" ~ col2rgb(bgs_color_scheme_As[1])[1],
+      Category_As_many == "1-5" ~ col2rgb(bgs_color_scheme_As[2])[1],
+      Category_As_many == "5-10" ~ col2rgb(bgs_color_scheme_As[3])[1],
+      Category_As_many == "10-20" ~ col2rgb(bgs_color_scheme_As[4])[1],
+      Category_As_many == "20-50" ~ col2rgb(bgs_color_scheme_As[5])[1],
+      Category_As_many == "50-75" ~ col2rgb(bgs_color_scheme_As[6])[1],
+      Category_As_many == "75-100" ~ col2rgb(bgs_color_scheme_As[7])[1],
+      Category_As_many == "100-200" ~ col2rgb(bgs_color_scheme_As[8])[1],
+      Category_As_many == "200-300" ~ col2rgb(bgs_color_scheme_As[9])[1],
+      Category_As_many == ">300 ppb As" ~ col2rgb(bgs_color_scheme_As[10])[1]
+    )
+    )
+
+  water_quality_data <- water_quality_data %>% 
+    mutate(As_fill_color_g = case_when(
+      Category_As_many == "<1 ppb As" ~ col2rgb(bgs_color_scheme_As[1])[2],
+      Category_As_many == "1-5" ~ col2rgb(bgs_color_scheme_As[2])[2],
+      Category_As_many == "5-10" ~ col2rgb(bgs_color_scheme_As[3])[2],
+      Category_As_many == "10-20" ~ col2rgb(bgs_color_scheme_As[4])[2],
+      Category_As_many == "20-50" ~ col2rgb(bgs_color_scheme_As[5])[2],
+      Category_As_many == "50-75" ~ col2rgb(bgs_color_scheme_As[6])[2],
+      Category_As_many == "75-100" ~ col2rgb(bgs_color_scheme_As[7])[2],
+      Category_As_many == "100-200" ~ col2rgb(bgs_color_scheme_As[8])[2],
+      Category_As_many == "200-300" ~ col2rgb(bgs_color_scheme_As[9])[2],
+      Category_As_many == ">300 ppb As" ~ col2rgb(bgs_color_scheme_As[10])[2]
+    )
+    )
+  
+  water_quality_data <- water_quality_data %>% 
+    mutate(As_fill_color_b = case_when(
+      Category_As_many == "<1 ppb As" ~ col2rgb(bgs_color_scheme_As[1])[3],
+      Category_As_many == "1-5" ~ col2rgb(bgs_color_scheme_As[2])[3],
+      Category_As_many == "5-10" ~ col2rgb(bgs_color_scheme_As[3])[3],
+      Category_As_many == "10-20" ~ col2rgb(bgs_color_scheme_As[4])[3],
+      Category_As_many == "20-50" ~ col2rgb(bgs_color_scheme_As[5])[3],
+      Category_As_many == "50-75" ~ col2rgb(bgs_color_scheme_As[6])[3],
+      Category_As_many == "75-100" ~ col2rgb(bgs_color_scheme_As[7])[3],
+      Category_As_many == "100-200" ~ col2rgb(bgs_color_scheme_As[8])[3],
+      Category_As_many == "200-300" ~ col2rgb(bgs_color_scheme_As[9])[3],
+      Category_As_many == ">300 ppb As" ~ col2rgb(bgs_color_scheme_As[10])[3]
+    )
+    )
+  
+  
+  ## Make interactive map
+  
+  map_pts <- water_quality_data %>% 
+    dplyr::select(Lat, Long, Study_ID, 
+                  Country, Category_As_many, As__ppb, Category_Depth, Depth__m,
+                  As_fill_color_r, As_fill_color_g, As_fill_color_b) %>% 
+    filter(!is.na(Lat),
+           !is.na(Long)) 
+  
+  map_pts <- map_pts %>% 
+    mutate(As__ppb = round(As__ppb, 1),
+           Info_string = paste("Depth (m) = ", round(Depth__m, 1),
+                               "; As (ug/L) = ", As__ppb, sep = "") )
+  
+  map_colors <- dplyr::select(map_pts, 
+                              As_fill_color_r, As_fill_color_g, As_fill_color_b)
+  
+  map_colors <- data.matrix(map_colors/255)
+  
+  map_pts <- st_as_sf(map_pts, coords = c("Long","Lat"), crs = 4326)
+  
+  
+  map_leaflet <- leaflet() %>% 
+    addProviderTiles(providers$Esri.NatGeoWorldMap, group = "Map") %>%
+    addProviderTiles(providers$Esri.WorldImagery, group = "Satellite") %>%
+    addGlPoints(data = map_pts, group = "Locations",
+                popup = "Info_string", color = map_colors) %>% 
+    addLayersControl(baseGroups = c("Map", "Satellite"),
+                     overlayGroups = "Locations"
+    )
+  
+  
+  
+  saveWidget(map_leaflet, file="Powell_Database_As_Map.html", selfcontained=F)
+
+}
