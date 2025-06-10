@@ -1,0 +1,7 @@
+"0","```r
+param_chroniques <- paste(
+    list_params(api = \"niveaux_nappes\",
+                endpoint = \"chroniques\"),
+    collapse = \",\"
+)
+```"

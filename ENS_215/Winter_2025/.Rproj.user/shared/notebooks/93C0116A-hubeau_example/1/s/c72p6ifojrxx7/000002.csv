@@ -1,0 +1,6 @@
+"0","```r
+water_table_level <- water_table_level %>% 
+  mutate(date_mesure = lubridate::ymd(date_mesure),
+         year = lubridate::year(date_mesure),
+         month = lubridate::month(date_mesure))
+```"

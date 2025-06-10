@@ -1,0 +1,8 @@
+"0","```r
+water_table_level <- map_df(
+  .x = stations$code_bss,
+  .f = function(x)
+    get_niveaux_nappes_chroniques(code_bss = x,
+                                  date_debut_mesure = \"2015-01-01\")
+)
+```"

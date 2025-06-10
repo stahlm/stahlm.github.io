@@ -36,6 +36,7 @@ library(ggExtra)
 <br/>
 
 
+
 ### Scatter plots: additional concepts
 Scatter plots, which we've been using throughout the term, are a commonly used to visualize bivariate data.  While at this point in the term you are very familiar with this type of graphic, there are a few additional concepts and techniques that are worth pointing in our discussion of bivariate data.  In particular, when using a scatter plot to display bivariate data you should consider whether one of the variables is **dependent** on the other.  When there is a **dependent** variable it is generally plotted in the y-axis, while the independent variable is on the x-axis.  For instance imagine you had a dataset of recording the heights and ages of trees.  Conceptually, the height of the tree depends on the tree's age -- as the tree gets older it has had more time to grow and will increase in height -- while the age does not depend on the height.  Thus you would plot age on the x-axis and height on the y-axis.  In cases, where there is not a clear dependence then the choice of what axis to plot each variable on will depend on preference, aesthetics, and the goal of the figure. 
 
