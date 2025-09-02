@@ -88,6 +88,7 @@ sf_counties %>%
 ```{r}
 library(spData)
 ```
+
 ```{r}
 sf_world <- spData::world
 ```
@@ -97,6 +98,14 @@ sf_world %>%
   tm_shape() + 
   tm_borders()
 ```
+
+```{r}
+sf_world %>% 
+  filter(subregion == "South-Eastern Asia") %>% 
+  tm_shape() + 
+  tm_borders()
+```
+
 
 
 ```{r}
@@ -125,15 +134,16 @@ library(rnaturalearth)
 sf_borders <- st_as_sf(rnaturalearth::countries110) 
 
 
-sf_borders <- ne_countries(scale = "large", 
-                           country = "United States of America", 
-                           returnclass = "sf")
+# sf_borders <- ne_countries(scale = "large", 
+#                            country = "United States of America", 
+#                            returnclass = "sf")
 
 
 ```
 
 ```{r}
 sf_borders %>% 
+  filter(REGION_WB == "East Asia & Pacific") %>% 
   tm_shape() + 
   tm_borders()
 ```
