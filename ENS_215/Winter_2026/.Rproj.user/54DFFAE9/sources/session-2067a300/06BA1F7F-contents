@@ -1,0 +1,30 @@
+---
+title: "Exploring Environmental Data (ENS-215)"
+date: "Winter 2026"
+output:
+  html_document:
+    theme: journal
+    toc: yes
+    toc_float: yes
+---
+
+
+
+```{r eval = F, echo = F}
+<style>
+#TOC {
+  background: url("https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2026/Images/logo_ens_215.png");
+  background-size: contain;
+  padding-top: 280px !important;
+  background-repeat: no-repeat;
+}
+</style>
+```
+
+
+
+| [Lectures and Labs](https://stahlm.github.io/ENS_215/Winter_2026/Home.html)  | [Homework](https://stahlm.github.io/ENS_215/Winter_2026/HW.html)  | [Syllabus](https://stahlm.github.io/ENS_215/Winter_2026/Syllabus.html)  |
+|:-------:|:------:|:--------:|
+|      |     |        |       |
+
+## Lectures 

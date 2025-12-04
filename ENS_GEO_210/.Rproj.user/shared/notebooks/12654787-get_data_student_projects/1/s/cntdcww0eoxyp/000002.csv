@@ -1,0 +1,11 @@
+"0","```r
+library(tidyverse)
+library(dataRetrieval)
+library(climateR)
+library(AOI)
+library(GSODR)
+```"
+"1","Registered S3 method overwritten by 'data.table':
+  method           from
+  print.data.table     
+"

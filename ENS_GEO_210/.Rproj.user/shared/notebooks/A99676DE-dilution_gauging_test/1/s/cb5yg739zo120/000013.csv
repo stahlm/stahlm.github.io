@@ -1,0 +1,1 @@
+"0","forecasted_values <- predict(loess_model, newdata = future_time_points)"

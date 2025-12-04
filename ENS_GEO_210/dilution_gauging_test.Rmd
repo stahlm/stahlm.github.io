@@ -1,0 +1,75 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r}
+library(tidyverse)
+library(forecast)
+
+library(readxl)
+```
+
+```{r}
+df_lab <- read_xlsx("C:/Users/stahlm/Desktop/dilution_gauging_2025.xlsx", sheet = "data")
+```
+
+```{r}
+df_lab <- df_lab %>% 
+  rename(time_seconds = Seconds, SpCond_uscm = `Specific Conductance (uS/cm)`)
+```
+
+```{r}
+df_lab %>% 
+  ggplot(aes(x = time_seconds, y = SpCond_uscm)) +
+  geom_line() +
+  geom_smooth(span = 0.15)
+```
+
+## loess
+```{r}
+loess_model <- loess(SpCond_uscm ~ time_seconds, data = df_lab, span = 0.15,
+                     control = loess.control(surface = "direct")) 
+```
+
+```{r}
+smoothed_values <- predict(loess_model)
+```
+
+```{r}
+future_time_points <- data.frame(time_seconds = seq(max(df_lab$time_seconds) + 5, 
+                                                    by = 5, length.out = 500))
+
+```
+
+```{r}
+forecasted_values <- predict(loess_model, newdata = future_time_points)
+```
+
+```{r}
+forecasted_values
+```
+
+
+## arima
+
+```{r}
+ts_lab <- ts(df_lab$SpCond_uscm)
+```
+
+```{r}
+model_arima <- auto.arima(ts_lab)
+```
+
+
+```{r}
+forecast_results <- forecast(model_arima, h = 250)
+```
+
+```{r}
+plot(forecast_results)
+
+```
+
+

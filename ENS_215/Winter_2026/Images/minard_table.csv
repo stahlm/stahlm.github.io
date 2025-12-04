@@ -1,0 +1,7 @@
+Where?,data variable,aes(),geom_
+top map,longitude,x,path
+"""",latitude,y,path
+"""",army size,size,path
+"""",army direction (forward vs retreat),color,path
+bottom graph,date,x,line and text
+"""",temperature,y,line and text

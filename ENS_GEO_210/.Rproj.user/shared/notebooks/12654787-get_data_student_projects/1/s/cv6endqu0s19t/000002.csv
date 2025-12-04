@@ -1,0 +1,30 @@
+"0","```r
+raster_chirps <- dap( 
+  #URL = \"https://coastwatch.pfeg.noaa.gov/erddap/griddap/chirps20GlobalDailyP05\",
+  #URL = \"https://upwell.pfeg.noaa.gov/erddap/griddap/chirps20GlobalAnnualP05\",
+  URL = \"https://upwell.pfeg.noaa.gov/erddap/griddap/chirps20GlobalDailyP05\",
+  catalog = NULL,
+  AOI = aoi2use,#cambodia_pt,
+  grid = NULL,
+  varname = NULL, 
+  startDate = \"2023-01-01\",
+  endDate = \"2023-12-31\", 
+  toptobottom = F,
+  verbose = TRUE
+)
+```"
+"1","source:	 https://upwell.pfeg.noaa.gov/erddap/griddap/chirps20GlobalDa... 
+varname(s):
+   > precip [mm/day] (Precipitation)
+==================================================
+diminsions:  1, 1, 365 (names: longitude,latitude,time)
+resolution:  0.05, 0.05, 1 days
+extent:      -66.53, -66.53, 18.42, 18.42 (xmin, xmax, ymin, ymax)
+crs:         +proj=longlat +a=6378137 +f=0.00335281066474748 +p...
+time:        2023-01-01 to 2023-12-31
+==================================================
+values: 365 (vars*X*Y*T)
+"
+"1","syntax error, unexpected $end, expecting SCAN_ATTR or SCAN_DATASET or SCAN_ERROR
+context: ^
+"

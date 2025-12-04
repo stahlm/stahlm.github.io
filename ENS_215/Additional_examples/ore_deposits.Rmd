@@ -12,7 +12,7 @@ library(sf)
 
 
 ```{r}
-shape_deps <- st_read("../../Data/USGS_OFR_20051294/ofr20051294/ofr20051294.shp")
+shape_deps <- st_read("../Data/USGS_OFR_20051294/ofr20051294/ofr20051294.shp")
 ```
 
 
@@ -25,6 +25,7 @@ tmap_mode(mode = "view")
 fig_map <- shape_deps %>% 
   
   filter(tolower(CATEGORY) == "gold") %>% 
+  #filter(str_detect(tolower(COMMODITY), "gold")) %>% 
   
   tm_shape() +
   tm_dots(col = "DEP_TYPE", size = 0.25,
@@ -66,5 +67,28 @@ fig_map %>%
 
 ```
 
+
+## Known lithium deposits
+```{r}
+tmap_mode(mode = "view")
+
+fig_map <- shape_deps %>% 
+  
+  
+  filter(str_detect(tolower(COMMODITY), "lithium")) %>% 
+  
+  tm_shape() +
+  tm_dots(col = "DEP_TYPE", size = 0.25,
+          popup.vars = c("CATEGORY", "COMMODITY", "DEP_TYPE", "DEP_NAME") 
+          ) +
+  
+  tm_mouse_coordinates() +
+  tm_basemap(server = c("Esri.WorldImagery", "OpenStreetMap", "Esri.WorldShadedRelief")) 
+
+fig_map %>%   
+  tmap_leaflet %>% 
+  leaflet.extras::addFullscreenControl() 
+
+```
 
 

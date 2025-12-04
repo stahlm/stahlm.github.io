@@ -1,0 +1,1 @@
+"0","forecast_results <- forecast(model_arima, h = 250)"

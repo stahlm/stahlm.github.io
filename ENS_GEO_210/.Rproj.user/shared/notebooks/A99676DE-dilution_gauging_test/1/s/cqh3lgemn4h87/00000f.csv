@@ -1,0 +1,2 @@
+"0","loess_model <- loess(SpCond_uscm ~ time_seconds, data = df_lab, span = 0.15,"
+"0","                     control = loess.control(surface = ""direct"")) "

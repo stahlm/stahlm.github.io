@@ -1,0 +1,65 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(dataRetrieval)
+library(climateR)
+library(AOI)
+library(GSODR)
+```
+
+
+## Daily groundwater levels for Sarah and Andrea
+```{r}
+a <- readNWISuv(siteNumbers = "182549066304300", 
+                parameterCd = "72019",
+                startDate = "2023-01-01", endDate = "2023-12-31",
+               )
+```
+
+```{r}
+write_csv(x = a, file = "./data_sarah.csv")
+```
+
+
+## Climate/weather data for Nora and Jasper
+703810-25309
+
+```{r}
+met_df <- get_GSOD(years = 2023, station = "703810-25309")
+```
+
+```{r}
+write_csv(x = met_df, "./climate_data_nora_jasper.csv")
+```
+
+
+## Climate/weather data for Sarah and Andrea
+```{r}
+aoi2use <- aoi_get(x = c(18.4280860241805, -66.5114494792146, 0.5,0.5))
+```
+
+```{r}
+raster_chirps <- dap( 
+  #URL = "https://coastwatch.pfeg.noaa.gov/erddap/griddap/chirps20GlobalDailyP05",
+  #URL = "https://upwell.pfeg.noaa.gov/erddap/griddap/chirps20GlobalAnnualP05",
+  URL = "https://upwell.pfeg.noaa.gov/erddap/griddap/chirps20GlobalDailyP05",
+  catalog = NULL,
+  AOI = aoi2use,#cambodia_pt,
+  grid = NULL,
+  varname = NULL, 
+  startDate = "2023-01-01",
+  endDate = "2023-12-31", 
+  toptobottom = F,
+  verbose = TRUE
+)
+```
+
+
+```{r}
+#df_climate <- climateR::getCHIRPS(AOI = aoi2use, startDate = "2023-01-01", endDate = "2023-12-31", verbose = T)
+```
+

@@ -1,0 +1,498 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+https://dec.vermont.gov/watershed/lakes-ponds/monitor/lake-champlain-long-term-monitoring-project
+https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/WS001p0041
+https://www.lcbp.org/news-and-media/publications/technical-reports/
+https://www.lcbp.org/about-us/grants-rfps/request-for-proposals-rfps/#rfpp
+https://geodata.vermont.gov/datasets/vt-lake-champlain-bathymetry/about
+
+https://www.cehq.gouv.qc.ca/atlas-hydroclimatique/stations-hydrometriques/index-en.htm
+
+```{r}
+library(tidyverse)
+library(dataRetrieval)
+library(tmap)
+library(concaveman)
+library(terra)
+library(stars)
+library(sf)
+library(zoo)
+library(Rbeast)
+```
+
+```{r}
+date_start <- "1900-01-01"
+date_end <- "2025-12-01"
+```
+
+Lake Champlain at Burlington, VT:04294500
+Lake George at Rogers Rock, NY: 04278000
+
+Flood stage of Lake Champlain is 100.00 ft NGVD 29 (https://pubs.usgs.gov/sir/2014/5163/pdf/sir2014-5163.pdf)
+
+```{r}
+flood_stage_ft_NGVD29 <- 100.00
+```
+
+
+```{r}
+df_lake <- readNWISdv(siteNumbers = "04294500", 
+                parameterCd = "62614",
+                startDate = date_start, 
+                endDate = date_end,
+               ) %>% renameNWISColumns()
+```
+```{r}
+first_date <- min(df_lake$Date, na.rm = T)
+last_date <- max(df_lake$Date, na.rm =  T)
+```
+
+
+```{r}
+df_interp <- tibble(Date = seq(ymd(first_date), ymd(last_date), by = "days" ) )
+```
+
+
+```{r}
+df_interp <- df_interp %>% 
+  left_join(df_lake)
+```
+
+
+
+```{r}
+df_interp <- df_interp %>% 
+  mutate(lake_level_interp__ft = na.approx(X_62614))
+```
+
+
+```{r}
+df_summary <- df_interp %>% 
+  mutate(YEAR = year(Date)) %>% 
+  group_by(YEAR) %>% 
+  summarize(n_obs = sum(!is.na(X_62614)))
+```
+
+##
+```{r}
+df_interp <- df_interp %>% 
+  mutate(YEAR = year(Date), 
+        MONTH = month(Date),
+        DAY = day(Date),
+        YDAY = yday(Date)
+        )
+```
+
+
+## Time-series plot
+```{r}
+df_interp %>% 
+  ggplot(aes(x = Date, y = lake_level_interp__ft)) +
+  geom_line() +
+  
+  theme_classic()
+```
+
+## Annual mean plot
+```{r}
+df_interp %>% 
+  group_by(YEAR) %>% 
+  summarize(lake_level_interp__ft = mean(lake_level_interp__ft, na.rm = T)) %>% 
+  
+  ggplot(aes(x = YEAR, y = lake_level_interp__ft)) +
+  geom_line() +
+  geom_point() +
+  
+  geom_smooth(span = 0.25) +
+  
+  theme_classic()
+```
+
+
+## Annual maximum plot
+```{r}
+df_interp %>% 
+  group_by(YEAR) %>% 
+  summarize(lake_level_interp__ft = max(lake_level_interp__ft, na.rm = T)) %>% 
+  
+  ggplot(aes(x = YEAR, y = lake_level_interp__ft)) +
+  geom_line() +
+  geom_point() +
+  
+  #geom_smooth(span = 0.25, se = F) +
+  
+  geom_hline(yintercept = flood_stage_ft_NGVD29, color = "red", linetype = "dashed", linewidth = 1) +
+  
+  theme_classic()
+```
+
+```{r}
+df_interp %>% 
+  group_by(YEAR) %>% 
+  summarize(lake_max__ft = max(lake_level_interp__ft, na.rm = T)) %>% 
+  arrange(-lake_max__ft)
+  
+```
+
+
+## Annual minimum plot
+```{r}
+df_interp %>% 
+  group_by(YEAR) %>% 
+  summarize(lake_level_interp__ft = min(lake_level_interp__ft, na.rm = T)) %>% 
+  
+  ggplot(aes(x = YEAR, y = lake_level_interp__ft)) +
+  geom_line() +
+  geom_point() +
+  
+  geom_smooth(span = 0.25) +
+  
+  theme_classic()
+```
+
+```{r}
+df_interp %>% 
+  group_by(YEAR) %>% 
+  summarize(lake_min__ft = min(lake_level_interp__ft, na.rm = T)) %>% 
+  arrange(lake_min__ft)
+  
+```
+
+## Flood stage duration
+```{r}
+flood_table <- df_interp %>% 
+  group_by(YEAR) %>% 
+  summarize(n_flood_day = sum(lake_level_interp__ft >= flood_stage_ft_NGVD29)) %>% 
+  arrange(-n_flood_day) 
+
+flood_table
+  
+  
+```
+
+```{r}
+flood_table %>% 
+  ggplot(aes(x = YEAR, y = n_flood_day)) +
+  geom_line() +
+  geom_point() +
+  
+  theme_classic()
+```
+
+## Annual range plot
+```{r}
+df_interp %>% 
+  group_by(YEAR) %>% 
+  summarize(lake_min__ft = min(lake_level_interp__ft, na.rm = T),
+            lake_max__ft = max(lake_level_interp__ft, na.rm = T)
+            ) %>% 
+  
+  mutate(lake_range__ft = lake_max__ft - lake_min__ft) %>% 
+  
+  ggplot(aes(x = YEAR, y = lake_range__ft)) +
+  geom_line() +
+  geom_point() +
+  
+  theme_classic()
+```
+
+```{r}
+df_interp %>% 
+  group_by(YEAR) %>% 
+  summarize(lake_min__ft = min(lake_level_interp__ft, na.rm = T),
+            lake_max__ft = max(lake_level_interp__ft, na.rm = T)
+            ) %>% 
+  
+  ggplot(aes(x = lake_max__ft, y = lake_min__ft)) +
+  geom_point(shape = 21, size = 3, fill = "grey") +
+  theme_classic()
+
+```
+
+## Timing of max
+```{r}
+df_interp %>% 
+  group_by(YEAR) %>% 
+  filter(lake_level_interp__ft == max(lake_level_interp__ft, na.rm = T)) %>% 
+  
+  ggplot(aes(x = YEAR, y = YDAY)) +
+  geom_point() + 
+  
+  theme_classic()
+
+
+df_interp %>% 
+  group_by(YEAR) %>% 
+  filter(lake_level_interp__ft == max(lake_level_interp__ft, na.rm = T)) %>% 
+  
+  ggplot(aes(y = lake_level_interp__ft, x = YDAY)) +
+  geom_point() + 
+  
+  theme_classic()
+  
+```
+
+
+
+## Seasonal cycle plot
+```{r}
+df_interp %>% 
+  ggplot(aes(x = YDAY, y = lake_level_interp__ft, group = YEAR, color = YEAR)) +
+  geom_line() +
+  
+  scale_color_gradient(low = "blue", high = "red") +
+  theme_classic()
+
+```
+
+
+```{r}
+df_interp %>% 
+  group_by(YEAR, MONTH) %>% 
+  summarize(lake_level_interp__ft = mean(lake_level_interp__ft, na.rm = T)) %>% 
+  
+  ggplot(aes(x = YEAR, y = lake_level_interp__ft)) +
+  geom_point(shape = 21, color = "black", aes(fill = YEAR)) +
+  scale_fill_gradient(low = "blue", high = "red") +
+  
+  geom_smooth(se = T, method = "lm") + 
+  facet_wrap(~ MONTH, ncol = 12) +
+  theme_classic() +
+  theme(axis.text.x = element_blank(), legend.position = "none") +
+  labs(x = "",
+       y = "Lake level (ft)"
+       
+       )
+```
+
+
+
+```{r}
+
+midpoint2use <- median(df_interp$lake_level_interp__ft, na.rm = T)
+
+df_interp %>% 
+  ggplot(aes(y = YEAR, x = YDAY, fill = lake_level_interp__ft)) +
+  geom_tile() +
+  scale_fill_gradient2(low = "red", mid = "green", high = "blue", midpoint = midpoint2use) +
+
+  
+  theme_classic()
+```
+
+
+
+## Spectral analysis 
+```{r}
+df2use <- df_interp %>% 
+  filter(year(Date) >= 1913, year(Date) < 2025)
+```
+
+
+```{r}
+list_spectrum <- spectrum(df2use$lake_level_interp__ft)
+```
+
+```{r}
+df_spectrum <- tibble(freq = list_spectrum$freq, 
+                      spec = list_spectrum$spec
+                      )
+
+```
+
+
+```{r}
+df_spectrum <- df_spectrum %>% 
+  mutate(period_val_num_obs = 1/freq) %>% 
+  mutate(period_years = period_val_num_obs/365)
+```
+
+
+```{r}
+fig_spec <- df_spectrum %>% 
+  
+  ggplot(aes(x = period_years, y = spec)) +
+  geom_line() +
+
+  
+  scale_y_log10() +
+  scale_x_continuous() +
+  
+  theme_bw()
+
+fig_spec
+```
+
+
+## Bayesian changepoint detection and time-series decomposition for trend, periodicity, and seasonality
+```{r}
+df_interp_year_month <- df_interp %>% 
+  group_by(YEAR, MONTH) %>% 
+  summarize(lake_level_interp__ft = mean(lake_level_interp__ft, na.rm = T)) 
+```
+
+
+```{r}
+out <- beast(df_interp_year_month$lake_level_interp__ft)
+
+```
+
+
+```{r}
+plot(out) 
+```
+
+
+## Map of Lake Champlain bathymetry
+
+```{r}
+shape_lake_border <- st_read("./data/lake_champlain/polygon/VT_Lake_Champlain_(extracted_from_VHDCARTO).shp")
+```
+
+```{r}
+shape_bathym <- st_read("./data/lake_champlain/bathymetry/VT_Lake_Champlain_Bathymetry.shp")
+```
+
+```{r}
+asdf <- shape_bathym %>% 
+  summarise() %>% 
+  concaveman::concaveman(concavity = 1)
+```
+
+```{r}
+asdf %>% 
+  tm_shape() +
+  tm_polygons() +
+  
+```
+https://r-spatial.org/book/12-Interpolation.html#a-first-dataset
+https://geobgu.xyz/r/spatial-interpolation-of-point-data.html
+```{r}
+library(automap)
+v_mod_ok = autofitVariogram(DEPTH_FT ~ 1, shape_bathym)
+```
+
+```{r}
+plot(v_mod_ok)
+```
+
+
+
+
+```{r}
+st_bbox(shape_lake_border) |>
+  st_as_stars(dx = 250) |>
+  st_crop(shape_lake_border) -> grd
+```
+
+```{r}
+g = gstat(formula = DEPTH_FT ~ 1, model = v_mod_ok$var_model, data = shape_bathym)
+z = predict(g, grd)
+```
+
+
+```{r}
+library(gstat)
+i <- idw(DEPTH_FT~1, shape_bathym, grd)
+# [inverse distance weighted interpolation]
+```
+```{r}
+i_raster <- terra::rast(i)
+```
+
+
+```{r}
+tm_shape(i_raster$var1.pred_lyr.1) +
+  tm_raster(n = 12, palette = "Blues") +
+  tm_layout(legend.outside = T, bg.color = "grey85") 
+```
+
+
+```{r}
+shape_bathym %>% 
+  tm_shape() +
+  tm_dots(col = "DEPTH_FT", size = 0.02, n = 7, palette = "Blues") +
+  tm_layout(legend.outside = T, bg.color = "grey85") +
+  
+  tm_shape(asdf) +
+  tm_borders()
+```
+
+```{r}
+shape_bathym %>% 
+  ggplot(aes(x = DEPTH_FT)) +
+  geom_histogram()
+```
+
+
+
+
+```{r}
+raster_template = rast(ext(asdf), resolution = 100,
+                       crs = crs(shape_bathym))
+```
+
+
+```{r}
+raster_from_points <- rasterize(shape_bathym, raster_template, field = "DEPTH_FT", fun = "mean")
+```
+
+```{r}
+raster_from_points
+
+nrow(raster_from_points)*ncol(raster_from_points)
+```
+
+
+```{r}
+terra::plot(raster_from_points)
+```
+
+
+## Inflowing and outflowing rivers
+
+```{r}
+river_gage_ids <- c("04271500",
+                    "04273500",
+                    "04275500",
+                    "04276500",
+                    "04280450",
+                    "04280000",
+                    "04282500",
+                    "04282780",
+                    "04282795",
+                    "04290500",
+                    "04292500",
+                    "04294000")
+
+
+
+```
+
+```{r}
+df_rivers <- readNWISdv(siteNumbers = river_gage_ids, 
+                parameterCd = "00060",
+                startDate = date_start, 
+                endDate = date_end,
+               ) %>% renameNWISColumns()
+```
+
+
+```{r}
+df_rivers %>% 
+  group_by(site_no) %>% 
+  arrange(site_no, Date) %>% 
+  summarize(n_obs = n(),
+            por_start = first(Date),
+            por_end = last(Date),
+            mean_cfs = mean(Flow, na.rm = T)
+            ) %>% 
+  
+  arrange(por_start)
+  
+```
+
+

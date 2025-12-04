@@ -1,0 +1,28 @@
+{
+    "id": "280D40CB",
+    "path": "~/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_GEO_210/dilution_gauging_test.Rmd",
+    "project_path": "dilution_gauging_test.Rmd",
+    "type": "r_markdown",
+    "hash": "3285572881",
+    "contents": "",
+    "dirty": false,
+    "created": 1757292660063.0,
+    "source_on_save": false,
+    "relative_order": 8,
+    "properties": {
+        "tempName": "Untitled2",
+        "chunk_output_type": "inline",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "41,78",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1757294205,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1757294205335,
+    "read_only": false,
+    "read_only_alternatives": []
+}

@@ -1,0 +1,4 @@
+"0","df_lab %>% "
+"0","  ggplot(aes(x = time_seconds, y = SpCond_uscm)) +"
+"0","  geom_line() +"
+"0","  geom_smooth(span = 0.15)"
