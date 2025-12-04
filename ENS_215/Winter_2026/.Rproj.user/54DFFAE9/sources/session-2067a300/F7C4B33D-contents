@@ -1,0 +1,13 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(stringr)
+```
+
+```{r}
+torah[str_detect(torah$english, "\\balone\\b",), ]
+```
+
