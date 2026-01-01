@@ -1,0 +1,4 @@
+[2,"\n"]
+[1,"pandoc \n  to: html\n  output-file: Syllabus.html\n  standalone: true\n  section-divs: true\n  html-math-method: mathjax\n  wrap: none\n  default-image-extension: png\n  toc: true\n  \nmetadata\n  document-css: false\n  link-citations: true\n  date-format: long\n  lang: en\n  title: Exploring Environmental Data (ENS-215)\n  subtitle: Winter 2026\n  theme: journal\n  page-layout: full\n  toc-float: true\n  favicon: 'https://stahlm.github.io/ENS_215/Winter_2026/Images/favicon_ens215.png'\n  \n"]
+[1,"[WARNING] Note with key '1' defined at C:\\Users\\stahlm\\AppData\\Local\\Temp\\quarto-sessionf0c539ad\\ea95b625\\quarto-input39e390d2.md line 164 column 1 but not used.\r\n"]
+[1,"Output created: Syllabus.html\n\nWatching files for changes\nBrowse at http://localhost:6703/\n"]
