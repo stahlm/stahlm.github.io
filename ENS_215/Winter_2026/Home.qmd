@@ -4,7 +4,9 @@ subtitle: "Winter 2026"
 format:
   html:
     df-print: paged
-    theme: journal
+    theme:
+      light: journal
+      dark: darkly
     page-layout: full
     toc: true
     toc-float: true
