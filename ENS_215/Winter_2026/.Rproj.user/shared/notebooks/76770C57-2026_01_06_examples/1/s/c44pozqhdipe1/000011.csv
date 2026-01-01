@@ -1,0 +1,1 @@
+"0","round(terra::global(x = r_inches, ""max"", na.rm = T),2) %>% as.data.frame()"
