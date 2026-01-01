@@ -1,0 +1,7 @@
+"0","tmap_mode(""plot"")
+"
+"2","tmap mode set to plotting
+"
+"0","sf_borders_0 %>% "
+"0","  tm_shape() +"
+"0","  tm_borders()"

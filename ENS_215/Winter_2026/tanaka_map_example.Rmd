@@ -1,0 +1,129 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r}
+library(tidyverse)
+library(tmap)
+library(sf)
+
+library(elevatr)
+library(terra)
+library(tigris)
+library(rnaturalearth)
+library(tanaka)
+```
+
+## NY Tanaka map
+
+```{r}
+NY_counties <- counties(state = "NY",
+                        cb = TRUE) 
+
+county_schenectady <- NY_counties %>% 
+  filter(NAME == "Schenectady")
+
+```
+
+
+```{r}
+raster_elev <- get_elev_raster(county_schenectady,
+                               z = 12,
+                               clip = "locations")
+```
+
+
+
+```{r}
+terra::plot(raster_elev)
+
+```
+
+```{r}
+a <- rast(raster_elev)
+```
+
+
+```{r}
+iso <- tanaka_contour(x = a, 
+                      breaks = seq(50,450,50))
+```
+
+
+```{r}
+plot(st_geometry(iso))
+```
+
+
+```{r}
+pal <- colorRampPalette(colors = c("#F9D3A1", "#1E315B"))
+# display the map
+tanaka(iso, col = pal(nrow(iso)))
+
+```
+## Tanaka map
+
+```{r}
+sf_borders <- rnaturalearthhires::countries10
+```
+
+```{r}
+borders2use <- sf_borders %>% 
+  filter(SOVEREIGNT == "Israel") 
+```
+
+
+```{r}
+raster_elev <- get_elev_raster(borders2use,
+                               z = 10,
+                               clip = "locations")
+```
+
+```{r}
+raster_elev <- crop(x = raster_elev, y = borders2use, mask = TRUE)
+
+
+```
+
+
+```{r}
+terra::plot(raster_elev)
+```
+
+```{r}
+a <- rast(raster_elev)
+```
+
+```{r}
+a <- terra::mask(x = a, y = borders2use)
+```
+
+
+```{r}
+iso <- tanaka_contour(x = a, 
+                      n = 20
+                      #breaks = seq(50,450,50)
+                      )
+```
+
+
+```{r}
+plot(st_geometry(iso))
+```
+
+
+```{r}
+pal <- colorRampPalette(colors = c("#F9D3A1", "#1E315B"))
+# display the map
+tanaka(iso, col = pal(nrow(iso)))
+
+```
+
+
+```{r}
+
+```
+
+

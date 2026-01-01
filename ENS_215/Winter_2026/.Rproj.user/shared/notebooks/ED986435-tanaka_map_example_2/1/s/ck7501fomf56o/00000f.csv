@@ -1,0 +1,2 @@
+"0","sf_borders <- sf_borders %>% "
+"0","  filter(SOVEREIGNT == ""Israel"")"

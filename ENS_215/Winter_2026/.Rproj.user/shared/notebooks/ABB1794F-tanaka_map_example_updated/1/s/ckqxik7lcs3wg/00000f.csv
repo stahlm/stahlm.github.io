@@ -1,0 +1,4 @@
+"0","p <- terra::crop(a, sf_borders)"
+"0",""
+"0","p <- terra::mask(a, sf_borders)"
+"0",""

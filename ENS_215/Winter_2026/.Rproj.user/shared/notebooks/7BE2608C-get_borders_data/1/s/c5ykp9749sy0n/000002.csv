@@ -1,0 +1,6 @@
+"0","```r
+sf_world %>% 
+  filter(subregion == \"South-Eastern Asia\") %>% 
+  tm_shape() + 
+  tm_borders()
+```"

@@ -15,6 +15,7 @@ library(tmap)
 ### Get borders
 ```{r}
 sf_borders_1 <- gb_adm1("United States of America") # Level 0 (country border)
+sf_borders_0 <- gb_adm0("Argentina") # Level 0 (country border)
 ```
 
 

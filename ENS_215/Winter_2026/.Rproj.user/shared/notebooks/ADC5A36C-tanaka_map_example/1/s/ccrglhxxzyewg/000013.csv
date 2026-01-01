@@ -1,0 +1,4 @@
+"0","iso <- tanaka_contour(x = a, "
+"0","                      n = 20"
+"0","                      #breaks = seq(50,450,50)"
+"0","                      )"

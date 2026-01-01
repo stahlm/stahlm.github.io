@@ -1,0 +1,4 @@
+"0","a <- terra::mask(x = a, y = borders2use)"
+"2","Error in (function (classes, fdef, mtable)  : 
+  unable to find an inherited method for function ‘mask’ for signature ‘""SpatRaster"", ""missing""’
+"

@@ -1,0 +1,4 @@
+"0","pal <- colorRampPalette(colors = c(""#F9D3A1"", ""#1E315B""))"
+"0","# display the map"
+"0","tanaka(iso, col = pal(nrow(iso)))"
+"0",""
