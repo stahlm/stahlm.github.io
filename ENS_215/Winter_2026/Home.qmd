@@ -8,7 +8,7 @@ format:
     page-layout: full
     toc: true
     toc-float: true
-    include-in-header: "https://stahlm.github.io/ENS_215/Winter_2026/icon_ens215.html"
+    favicon: "https://stahlm.github.io/ENS_215/Winter_2026/icon_ens215.html"
 ---
 
 
