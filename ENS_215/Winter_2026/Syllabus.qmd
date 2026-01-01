@@ -8,7 +8,7 @@ format:
     page-layout: full
     toc: true
     toc-float: true
-    include-in-header: "icon_ens215.html"
+    include-in-header: "https://stahlm.github.io/ENS_215/Winter_2026/icon_ens215.html"
 ---
 
 
@@ -181,6 +181,6 @@ Academic accommodations are available for students with disabilities who are reg
 _Mason Stahl (2026)_  
 _Union College_  
 
-![](C:/Users/stahlm/Documents/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2026/Images/logo_ens_215.png){width=100px}
+![](https://stahlm.github.io/ENS_215/Winter_2026/Images/logo_ens_215.png){width=100px}
 
 

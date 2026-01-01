@@ -1,14 +1,13 @@
 ---
 title: "Exploring Environmental Data (ENS-215)"
-subtitle: "Winter 2026"
-format:
-  html:
-    df-print: paged
+date: "Winter 2026"
+output:
+  html_document:
     theme: journal
-    page-layout: full
-    toc: true
-    toc-float: true
-    include-in-header: "https://stahlm.github.io/ENS_215/Winter_2026/icon_ens215.html"
+    toc: yes
+    toc_float: yes
+    includes:
+        in_header: "icon_ens215.html"
 ---
 
 
@@ -73,4 +72,4 @@ format:
 _Mason Stahl (2026)_  
 _Union College_ 
 
-![](https://stahlm.github.io/ENS_215/Winter_2026/Images/logo_ens_215.png){width=100px}
+![](C:/Users/stahlm/Documents/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2026/Images/logo_ens_215.png){width=100px}

@@ -8,7 +8,7 @@ format:
     page-layout: full
     toc: true
     toc-float: true
-    include-in-header: "icon_ens215.html"
+    include-in-header: "https://stahlm.github.io/ENS_215/Winter_2026/icon_ens215.html"
 ---
 
 
@@ -30,13 +30,14 @@ format:
 **1. Download R and RStudio:**
 You will first need to download R and then RStudio.  To download R go to [this link](https://cran.rstudio.com/) and download R.  You will see links for Mac and Windows users (*see screenshot below*).  Make sure to select the appropriate one for your computer.  Download the program and then install it.
 
-![](C:/Users/stahlm/Documents/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2026/Images/RDownload_screenshot.png){width=1000px}
+
+![](https://stahlm.github.io/ENS_215/Winter_2026/Images/RDownload_screenshot.png){width=1000px}
 
 <br/> 
 
 Once you've downloaded and installed R, then you will need to get RStudio.  Go to [this link](https://posit.co/download/rstudio-desktop/) scroll down a bit and then you will see links for Mac and Windows users (*see screenshot below*).  Make sure to select the appropriate one for your computer.  Download and install the software.
 
-![](C:/Users/stahlm/Documents/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2026/Images/RStudioDownload_screenshot.png){width=1000px}
+![](https://stahlm.github.io/ENS_215/Winter_2026/Images/RStudioDownload_screenshot.png){width=1000px}
 
 <br/> 
 
@@ -209,4 +210,4 @@ You should Knit your proposal to an `.html` file and submit it on Nexus.
 _Mason Stahl (2026)_  
 _Union College_ 
 
-![](C:/Users/stahlm/Documents/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2026/Images/logo_ens_215.png){width=100px}
+![](https://stahlm.github.io/ENS_215/Winter_2026/Images/logo_ens_215.png){width=100px}
