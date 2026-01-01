@@ -1,8 +1,8 @@
 {
     "id": "06BA1F7F",
-    "path": "~/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2026/Home.Rmd",
-    "project_path": "Home.Rmd",
-    "type": "r_markdown",
+    "path": "~/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2026/Home.qmd",
+    "project_path": "Home.qmd",
+    "type": "quarto_markdown",
     "hash": "0",
     "contents": "",
     "dirty": false,
@@ -14,15 +14,15 @@
         "chunk_output_type": "inline",
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "0,0",
+        "cursorPosition": "2,22",
         "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1764880260,
+    "lastKnownWriteTime": 1767297916,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1764880260326,
+    "last_content_update": 1767297916879,
     "read_only": false,
     "read_only_alternatives": []
 }

@@ -30,7 +30,9 @@ output:
 |      |     |        |       |
 
 ## Lectures 
-
+### Week 1
++ Mon (6-Jan) -- **Course introduction**   
+[In-class examples](https://stahlm.github.io/ENS_215/Winter_2026/Lectures/2026_01_06_examples.html) [(Qmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2025/Lectures/2026_01_06_examples.qmd), [Slides](https://stahlm.github.io/ENS_215/Winter_2025/Lectures/2025_01_06_Slides.html)  
 
 ```{r eval = F, echo = F}
 ### Week 10: Data modeling  
