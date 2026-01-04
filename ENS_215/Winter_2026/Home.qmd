@@ -36,7 +36,7 @@ include-in-header:
 
 ## Lectures 
 ### Week 1
-+ Mon (6-Jan) -- **Course introduction**   
++ Tues (6-Jan) -- **Course introduction**   
 [In-class examples](https://stahlm.github.io/ENS_215/Winter_2026/Lectures/2026_01_06_examples.html) [(qmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2026/Lectures/2026_01_06_examples.qmd)
 
 ```{r eval = F, echo = F}

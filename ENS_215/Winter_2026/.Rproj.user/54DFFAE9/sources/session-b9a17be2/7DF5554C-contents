@@ -16,6 +16,8 @@ format:
 
 <br/>
 
+
+
 #### We are going to jump right in with some data analysis today! We'll work with some rainfall data from a meteorological station near Boston that has data going back to the 1890's.
 
 #### When you open an **Quarto notebook** (.qmd) file in **RStudio** you will see the text, code and output all in your **Editor pane**. When you click the **Visual** tab you can **preview** the formatted document or your can **Render** the file and it will run all of the code and generate a fully formatted **HTML** file (*other formats such as PDF are also available*).  

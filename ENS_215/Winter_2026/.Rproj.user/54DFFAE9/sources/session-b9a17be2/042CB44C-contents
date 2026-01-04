@@ -88,8 +88,15 @@ The three texts that we will primarily rely on are listed below.  All three are 
  
  
 # Assignments
-## Online tutorials/homework
-These tutorials/homework are required and are a very helpful and important part of teaching you how to code in the short timeframe of one term.  The tutorials help to make learning to code a much more enjoyable and efficient process and also serve as an excellent refresher once you've learned coding.  There will typically be a homework assignment for every class topic.  If you come to class and work diligently you should be able to complete the homework.  As the homework builds off of the in-class material, coming to class is necessary.  I have set up a class group on the site where the tutorials are hosted and I will be able to monitor and track your progress.  Successful completion of the tutorial will result in a 100% grade for that assignment.  If the tutorial is not fully completed then you will receive a score equal to the percent that you completed at the time the assignment was due.  Note that the there is an option to take hints during the tutorials.  Taking hints does affect your final score (however a single hint typically has a minimal effect) so use them sparingly.    
+
+## Code notebooks
+You will spend part of each class meeting working on that day's code notebook.  However, many of the notebooks will require work outside of class time to complete.  It is important to work through these notebooks carefully, taking good notes, answering the prompts/questions I have given, and trying out new and novel analyses.  At the end of each week you will submit that week's code notebooks as final rendered **html files**.  
+
+
+## Online tutorials
+These tutorials are required and are a very helpful and important part of teaching you how to code in the short timeframe of one term.  The tutorials help to make learning to code a much more enjoyable and efficient process and also serve as an excellent refresher once you've learned coding.  There will typically be a tutorial assignment for every class topic.  If you come to class and work diligently you should be able to complete the tutorials  As the tutorials builds off of the in-class material, coming to class is necessary.  I have set up a class group on the site where the tutorials are hosted and I will be able to monitor and track your progress.  Successful completion of the tutorial will result in a 100% grade for that assignment.  If the tutorial is not fully completed then you will receive a score equal to the percent that you completed at the time the assignment was due.  Note that the there is an option to take hints during the tutorials.  Taking hints does affect your final score (however a single hint typically has a minimal effect) so use them sparingly.   
+
+
 
 ## Labs
 In lab you will be given a dataset from the Earth and environmental sciences with the goal of exploring and discovering interesting features and illuminating important scientific concepts.  You will be given background information and the data you will need to successfully complete the lab, though successful completion of the lab will require independent and creative exploratory analysis.  The goal of the lab assignments is to apply the tools and concepts learned in class towards asking and answering interesting scientific questions.  These labs are intended to improve your skills in data analysis, learn about concepts from Earth and environmental sciences, and importantly to develop skills as a creative and independent researcher.  These skills will serve you will in future classes, grad school, and jobs.  
@@ -109,7 +116,7 @@ We will have pop-quizzes 6-8 times throughout the term.  The quizzes will test c
 
 | Assignment  |  Weight 
 |---|------------|
-|Homework and online tutorials| 23%|
+|Code notebooks and online tutorials| 23%|
 |Lab| 25%|
 |Final project| 35%|
 |Class participation| 10%|
