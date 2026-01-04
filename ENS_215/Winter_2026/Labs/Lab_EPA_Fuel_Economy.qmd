@@ -1,7 +1,7 @@
 ---
 title: 'Lab: Getting Started in R and EPA Fuel Efficiency Data'
 author: "_Mason Stahl_ (ENS-215)"
-date: "2025-01-08"
+date: "2026-01-08"
 date-format: "MMMM D, YYYY"
 format:
   html:
@@ -20,7 +20,7 @@ Today's lab will consist of two parts.  First we will make sure that you are pro
 As a reminder I want you to talk to your neighbors and discuss the material and your thoughts.  You'll learn from each other and have much more fun this way too.  
 
 ## Step 0: Lab guidelines and formatting
-I will go over the guidelines for lab report expectations including the content, structure, and formatting of your reports.  Remember that you can find additional details on lab [guidelines](https://stahlm.github.io/ENS_215/Labs/Lab_Guidelines.html) and [goals](https://stahlm.github.io/ENS_215/Winter_2025/Syllabus.html#Labs) on our class website.  
+I will go over the guidelines for lab report expectations including the content, structure, and formatting of your reports.  Remember that you can find additional details on lab [guidelines](https://stahlm.github.io/ENS_215/Labs/Lab_Guidelines.html) and [goals](https://stahlm.github.io/ENS_215/Winter_2026/Syllabus.html#assignments) on our class website.  
 
 
 ## Step 1: Analysis of fuel efficiency in automobiles
