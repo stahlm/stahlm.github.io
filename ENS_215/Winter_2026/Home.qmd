@@ -10,7 +10,9 @@ format:
     page-layout: full
     toc: true
     toc-float: true
-    favicon: "https://stahlm.github.io/ENS_215/Winter_2026/Images/favicon_ens215.png"
+include-in-header:
+  - text: |
+     <link rel = "shortcut icon" href = "https://stahlm.github.io/ENS_215/Winter_2026/Images/favicon_ens215.png" />
 ---
 
 
