@@ -1,0 +1,5 @@
+"0","met_data_2014_2024 <- filter(met_data, year(DATE) >= 2014, year(DATE) <= 2024) # new data frame "
+"0",""
+"0","ggplot(met_data_2014_2024) + "
+"0","  geom_line(aes(x = yday(DATE), y = PRCP), color = ""blue"") +"
+"0","  facet_wrap(~year(DATE)) # plot the data"

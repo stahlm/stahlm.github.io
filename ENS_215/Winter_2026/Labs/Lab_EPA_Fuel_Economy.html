@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Mason Stahl (ENS-215)">
+<meta name="dcterms.date" content="2025-01-08">
+
+<title>Lab: Getting Started in R and EPA Fuel Efficiency Data</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="Lab_EPA_Fuel_Economy_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Lab_EPA_Fuel_Economy_files/libs/quarto-html/quarto.js"></script>
+<script src="Lab_EPA_Fuel_Economy_files/libs/quarto-html/popper.min.js"></script>
+<script src="Lab_EPA_Fuel_Economy_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Lab_EPA_Fuel_Economy_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Lab_EPA_Fuel_Economy_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Lab_EPA_Fuel_Economy_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="Lab_EPA_Fuel_Economy_files/libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="Lab_EPA_Fuel_Economy_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Lab_EPA_Fuel_Economy_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Lab_EPA_Fuel_Economy_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="Lab_EPA_Fuel_Economy_files/libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+
+<link href="Lab_EPA_Fuel_Economy_files/libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="Lab_EPA_Fuel_Economy_files/libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-full">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#step-0-lab-guidelines-and-formatting" id="toc-step-0-lab-guidelines-and-formatting" class="nav-link" data-scroll-target="#step-0-lab-guidelines-and-formatting">Step 0: Lab guidelines and formatting</a></li>
+  <li><a href="#step-1-analysis-of-fuel-efficiency-in-automobiles" id="toc-step-1-analysis-of-fuel-efficiency-in-automobiles" class="nav-link" data-scroll-target="#step-1-analysis-of-fuel-efficiency-in-automobiles">Step 1: Analysis of fuel efficiency in automobiles</a>
+  <ul class="collapse">
+  <li><a href="#background-reading" id="toc-background-reading" class="nav-link" data-scroll-target="#background-reading">Background reading</a></li>
+  <li><a href="#fuel-economy-analysis" id="toc-fuel-economy-analysis" class="nav-link" data-scroll-target="#fuel-economy-analysis">Fuel Economy Analysis</a></li>
+  <li><a href="#additional-analysis-of-your-choosing" id="toc-additional-analysis-of-your-choosing" class="nav-link" data-scroll-target="#additional-analysis-of-your-choosing">Additional analysis of your choosing</a></li>
+  </ul></li>
+  <li><a href="#step-2-optional-work-with-an-expanded-epa-fuel-efficiency-dataset" id="toc-step-2-optional-work-with-an-expanded-epa-fuel-efficiency-dataset" class="nav-link" data-scroll-target="#step-2-optional-work-with-an-expanded-epa-fuel-efficiency-dataset">Step 2 (optional): Work with an expanded EPA fuel efficiency dataset</a></li>
+  <li><a href="#step-3-submit-the-lab" id="toc-step-3-submit-the-lab" class="nav-link" data-scroll-target="#step-3-submit-the-lab">Step 3: Submit the lab</a></li>
+  </ul>
+</nav>
+</div>
+<main class="content column-page-left" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lab: Getting Started in R and EPA Fuel Efficiency Data</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p><em>Mason Stahl</em> (ENS-215) </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 8, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>Today’s lab will consist of two parts. First we will make sure that you are properly set up with all of the software and accounts that you need for this class. Next you will work with some fuel economy data from the Environmental Protection Agency (EPA) to learn more about fuel efficiency in automobiles – which is an important from an environmental/climate perspective given that vehicles are responsible for 51% of CO<sub>2</sub> emissions for a typical U.S. household<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<p>As a reminder I want you to talk to your neighbors and discuss the material and your thoughts. You’ll learn from each other and have much more fun this way too.</p>
+</section>
+<section id="step-0-lab-guidelines-and-formatting" class="level2">
+<h2 class="anchored" data-anchor-id="step-0-lab-guidelines-and-formatting">Step 0: Lab guidelines and formatting</h2>
+<p>I will go over the guidelines for lab report expectations including the content, structure, and formatting of your reports. Remember that you can find additional details on lab <a href="https://stahlm.github.io/ENS_215/Labs/Lab_Guidelines.html">guidelines</a> and <a href="https://stahlm.github.io/ENS_215/Winter_2025/Syllabus.html#Labs">goals</a> on our class website.</p>
+</section>
+<section id="step-1-analysis-of-fuel-efficiency-in-automobiles" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-analysis-of-fuel-efficiency-in-automobiles">Step 1: Analysis of fuel efficiency in automobiles</h2>
+<p>Automobiles are a significant contributor to both CO<sub>2</sub> emissions and air pollution. Understanding fuel efficiency in vehicles and the key factors that affect the efficiency are important from both an environmental and economic perspective. Today you will use EPA vehicle fuel economy data to learn more about this issue and explore some interesting questions.</p>
+<section id="background-reading" class="level3">
+<h3 class="anchored" data-anchor-id="background-reading">Background reading</h3>
+<p>The following resources will provide some helpful background related to today’s lab. This resources will also be helpful as you are writing up your lab report.</p>
+<ul>
+<li><a href="https://www.fueleconomy.gov/feg/climate.shtml">EPA Fuel Economy Page: <em>Reduce Climate Change</em></a></li>
+<li><a href="https://www.fueleconomy.gov/feg/oildep.shtml">EPA Fuel Economy Page: <em>Reduce Oil Dependence Costs</em></a></li>
+<li><a href="https://www.fueleconomy.gov/feg/consres.shtml">EPA Fuel Economy Page: <em>Increase Energy Sustainability</em></a></li>
+<li><a href="https://www.eia.gov/energyexplained/use-of-energy/transportation.php">US Energy Information Administration</a></li>
+<li><a href="https://www.ucsusa.org/clean-vehicles#.XC0AWlxKiUl">Union of Concerned Scientists: <em>Half the Oil</em></a>
+<ul>
+<li><a href="https://www.ucsusa.org/clean-vehicles/oil-is-changing">I also recommend checking out this interactive feature from the UCS</a></li>
+</ul></li>
+</ul>
+</section>
+<section id="fuel-economy-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="fuel-economy-analysis">Fuel Economy Analysis</h3>
+<section id="set-up-for-analysis" class="level4">
+<h4 class="anchored" data-anchor-id="set-up-for-analysis">Set up for analysis</h4>
+<p>We are going to load in the <code>tidyverse</code> package. If you haven’t installed it yet, you will first need to do that (it only needs to be installed once and once installed can be loaded in anytime you want). To install <code>tidyverse</code> go to the <code>Packages</code> tab and click the <code>install</code> button. In the window that pops up, type <code>tidyverse</code> and click <code>Install</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The data is conveniently part of one of the packages included with tidyverse, so we can easily load in the data, which is called <code>mpg</code>.</p>
+<p>We’ll assign the <code>mpg</code> data to a new object that we’ll call <code>fuel_data</code>. However, before you run the code block below, you should first learn a bit more about the <code>mpg</code> dataset.</p>
+<p>To do that type <code>?mpg</code> in your <strong>Console</strong> (we’ll use the console, because we only want to get this info once, and not every single time we run our Notebook).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fuel_data <span class="ot">&lt;-</span> mpg  <span class="co"># assigning mpg to a new object</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+</section>
+<section id="use-the-view-function-to-see-the-dataset-in-a-spreadsheet-style-viewer." class="level4">
+<h4 class="anchored" data-anchor-id="use-the-view-function-to-see-the-dataset-in-a-spreadsheet-style-viewer.">Use the <code>View()</code> function to see the dataset in a spreadsheet-style viewer.</h4>
+<p>This can be really helpful when you are trying to get familiar with a dataset that you’ve loaded in.</p>
+<p>Let’s type <code>View(fuel_data)</code> in the <strong>Console</strong> (not in our Notebook) since we just want to do this once (and not every single time we run our Notebook).</p>
+<p><br></p>
+</section>
+<section id="use-the-str-function-to-examine-the-structure-of-the-fuel_data-dataset" class="level4">
+<h4 class="anchored" data-anchor-id="use-the-str-function-to-examine-the-structure-of-the-fuel_data-dataset">Use the <code>str()</code> function to examine the structure of the <code>fuel_data</code> dataset</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>How many variables are there?</li>
+<li>How many observations?</li>
+<li>What does <code>chr</code>, <code>int</code>, and <code>num</code> mean in the output above?</li>
+</ul>
+<p><br></p>
+</section>
+<section id="look-at-your-base-r-cheatsheet-to-find-a-function-that-allows-you-to-examine-the-first-six-rows-of-the-fuel_data-dataset.-apply-this-function-to-your-fuel_data-object-and-it-will-print-these-results-to-your-notebook." class="level4">
+<h4 class="anchored" data-anchor-id="look-at-your-base-r-cheatsheet-to-find-a-function-that-allows-you-to-examine-the-first-six-rows-of-the-fuel_data-dataset.-apply-this-function-to-your-fuel_data-object-and-it-will-print-these-results-to-your-notebook.">Look at your <strong>Base R Cheatsheet</strong> to find a function that allows you to examine the first six rows of the <code>fuel_data</code> dataset. Apply this function to your <code>fuel_data</code> object and it will print these results to your notebook.</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>What do the <code>disp</code>, <code>cyl</code> and <code>cty</code> columns represent? (Hint: type <code>?mpg</code> into your console to get more info on this dataset)</li>
+<li>What website was the data obtained from?</li>
+</ul>
+<p><br></p>
+</section>
+<section id="how-many-rows-and-columns-are-there-in-the-fuel_data-dataset-there-is-a-function-that-will-give-you-the-dimensions-of-an-object-i.e.-number-of-rows-and-columns.-look-at-your-base-r-cheatsheet-to-find-this-function." class="level4">
+<h4 class="anchored" data-anchor-id="how-many-rows-and-columns-are-there-in-the-fuel_data-dataset-there-is-a-function-that-will-give-you-the-dimensions-of-an-object-i.e.-number-of-rows-and-columns.-look-at-your-base-r-cheatsheet-to-find-this-function.">How many rows and columns are there in the <code>fuel_data</code> dataset? There is a function that will give you the dimensions of an object (<em>i.e.</em> number of rows and columns). Look at your <strong>Base R Cheatsheet</strong> to find this function.</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>Number of rows?</li>
+<li>Number of columns?</li>
+<li>Use the approach that you employed to get the dimensions and assign the value for the number of rows to a variable <code>n_rows</code> and number of columns to <code>n_cols</code> (Hint: you can find functions for just the number of rows and just number of columns respectively on your <strong>Base R Cheatsheet</strong>)</li>
+</ul>
+<p><br></p>
+</section>
+<section id="use-the-summary-function-to-get-summary-statistics-on-the-fuel_data-dataset" class="level4">
+<h4 class="anchored" data-anchor-id="use-the-summary-function-to-get-summary-statistics-on-the-fuel_data-dataset">Use the <code>summary()</code> function to get summary statistics on the <code>fuel_data</code> dataset</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>For highway driving how many miles per gallon does
+<ul>
+<li>The most fuel efficient vehicle get?<br>
+</li>
+<li>The least fuel efficient vehicle get?</li>
+</ul></li>
+<li>What is the average miles per gallon for city driving?</li>
+</ul>
+<p><br></p>
+</section>
+<section id="create-a-new-variable-to-store-the-ratio-of-the-hwy-to-cty-fuel-economy" class="level4">
+<h4 class="anchored" data-anchor-id="create-a-new-variable-to-store-the-ratio-of-the-hwy-to-cty-fuel-economy">Create a new variable to store the ratio of the <code>hwy</code> to <code>cty</code> fuel economy</h4>
+<p>To create a new variable you can use the <code>mutate()</code> function (which is included in the <code>dplyr</code> package that loads in with <code>tidyverse</code>). You can get more info on <code>mutate()</code> by typing <code>?mutate()</code> to your console or by Googling it. FYI, we are going to learn a lot more about <code>dplyr</code> later in the term`</p>
+<p>You can also create a new variable by using the <code>$</code> notation to assign it. The <code>$</code> allows us to access (or create) a new variable in a data frame. For instance <code>fuel_data$new_variable_name &lt;- expression that defines the variable</code></p>
+<p>I’ve shown you how to do it both ways in the code below. You can pick one (they do the same thing) and uncomment it so that it will run.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Use mutate() to create the new variable (hwy2cty) and add it to the fuel_data object</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># fuel_data &lt;- mutate(fuel_data, hwy2cty = hwy/cty)</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Use the $ notation to create the new variable (hwy2cty) and add it to the fuel_data object</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># fuel_data$hwy2cty &lt;- fuel_data$hwy/fuel_data$cty</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>Examine this new variable
+<ul>
+<li>Is there any vehicle that gets better gas milage in the city as compared to the highway?</li>
+<li>Is there any vehicle that has twice as good gas milage on the highway relative to the city?</li>
+<li>What is the largest ratio between highway and city gas milage?</li>
+</ul></li>
+<li>Look at the code above that we used to create the new variable <code>hwy2cty</code> and spend a few minutes discussing with your neighbor(s) what the code is doing.</li>
+</ul>
+<p><br></p>
+</section>
+<section id="examine-factors-influencing-fuel-economy-displacement" class="level4">
+<h4 class="anchored" data-anchor-id="examine-factors-influencing-fuel-economy-displacement">Examine factors influencing fuel economy: Displacement</h4>
+<p>Let’s see how the size of a vehicle’s engine (displacement) influences the fuel economy</p>
+<p>Use <code>ggplot</code> to create a scatter plot of <code>hwy</code> vs <code>displ</code>. Remove the <code>#</code> and replace the <code>...</code> with the appropriate values.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ggplot(data = ...) + geom_point(aes(x = ... , y = ...))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>How does displacement influence the fuel economy?</li>
+<li>Do any points appear to be outliers from the observed relationship? Any thoughts on what might explain these outliers?</li>
+</ul>
+<p><br></p>
+</section>
+<section id="examine-factors-influencing-fuel-economy-displacement-and-vehicle-class" class="level4">
+<h4 class="anchored" data-anchor-id="examine-factors-influencing-fuel-economy-displacement-and-vehicle-class">Examine factors influencing fuel economy: Displacement and vehicle class</h4>
+<p>Let’s add another variable to our analysis to try and further explain what influences fuel economy. We’ll now color the points by their vehicle class.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ggplot(data = ...) + geom_point(aes(x = ... , y = ... , color = ... ))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>What new information did this provide us with?
+<ul>
+<li>Can we say more about factors affecting fuel economy?</li>
+<li>Can we explain some of the outliers?</li>
+</ul></li>
+</ul>
+<p><br></p>
+</section>
+<section id="add-a-new-variable-to-fuel_data" class="level4">
+<h4 class="anchored" data-anchor-id="add-a-new-variable-to-fuel_data">Add a new variable to <code>fuel_data</code></h4>
+<p>Below I’ve added a new variable <code>region</code> to <code>fuel_data</code> using the <code>mutate()</code> function. This step is relatively advanced, so don’t worry if it looks well beyond what we’ve covered so far. However, I want you to take a look at the code and try to decipher what I did here. I tried to use variable names that are logical and if you see a function that you don’t understand, try looking at the help file and/or Googling it.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>us_makes <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"chevrolet"</span>,<span class="st">"dodge"</span>,<span class="st">"ford"</span>,<span class="st">"jeep"</span>,</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>              <span class="st">"lincoln"</span>,<span class="st">"mercury"</span>,<span class="st">"pontiac"</span>) <span class="co"># list of U.S. manufacturers</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>fuel_data <span class="ot">&lt;-</span> <span class="fu">mutate</span>(fuel_data, <span class="at">region =</span> <span class="fu">if_else</span>(manufacturer <span class="sc">%in%</span> us_makes,<span class="st">"US"</span>,<span class="st">"Foreign"</span>) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>What is the variable <code>region</code> telling us?</li>
+<li>Can you briefly explain the logic and steps taken to create the variable <code>region</code>?</li>
+</ul>
+<p>You may find <code>region</code> to be another interesting variable to examine in the next section.</p>
+<p><br></p>
+</section>
+</section>
+<section id="additional-analysis-of-your-choosing" class="level3">
+<h3 class="anchored" data-anchor-id="additional-analysis-of-your-choosing">Additional analysis of your choosing</h3>
+<p>With any remaining time you should perform further exploratory analysis of the <code>fuel_data</code> dataset. You should discuss ideas with your classmates and you can also ask me for guidance (but try to brainstorm some ideas before asking). I will be moving about the classroom and checking in with everyone, providing guidance and suggestions, and hearing what you’ve learned about the dataset being analyzed.</p>
+<p><strong>Note that this section of the lab is important</strong> and should not be given only a cursory work through. An important learning goal for this term is for you to develop your own independent research skill. Thus, all of our labs this term will have a large, independent component where you are expected to apply what you’ve learned to ask novel and interesting questions and furthermore to try and go beyond what you’ve learned in class.</p>
+<p>When trying to get started with something new, remember the <em>copy/paste/tweak</em> approach. This approach can help give you a good starting point for your work.</p>
+<p><br></p>
+</section>
+</section>
+<section id="step-2-optional-work-with-an-expanded-epa-fuel-efficiency-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-optional-work-with-an-expanded-epa-fuel-efficiency-dataset">Step 2 (optional): Work with an expanded EPA fuel efficiency dataset</h2>
+<p>If you are interested in further exploring EPA fuel efficiency data you can <a href="https://www.fueleconomy.gov/feg/epadata/vehicles.csv">download the full EPA dataset here</a>. The description of each of the variables in the dataset is <a href="https://www.fueleconomy.gov/feg/ws/index.shtml#vehicle">available here</a>.</p>
+<p>This dataset has information on thousands of vehicles and their fuel/energy efficiency (along with dozens of other related variables) for models from 1984-2022. Notably this dataset contains information on many electric and hybrid vehicles.</p>
+<p>Unlike the <code>mpg</code> dataset you used in <strong>Part 1</strong>, the full EPA dataset is quite a bit “messier” (e.g.&nbsp;variables have missing data in some rows) and quite a bit more complex (upwards of 80 variables are reported for a given vehicle). However, the larger number of observations (i.e., vehicles) and variables (i.e., vehicle attributes) allows for a much richer dataset.</p>
+<p>If you decide to work on this analysis let me know and I can help guide you on how to load in and get started with the data.</p>
+<div class="cell">
+
+</div>
+</section>
+<section id="step-3-submit-the-lab" class="level2">
+<h2 class="anchored" data-anchor-id="step-3-submit-the-lab">Step 3: Submit the lab</h2>
+<p>Your lab is due prior to the start of next week’s lab. Once you are finished and satisfied with your work you should <code>Render</code> it to an <code>html</code> file and submit both your <code>html</code> and <code>qmd</code> file to Nexus.</p>
+<p>To <code>Render</code> a file you can go to the menu bar at the top of your notebook and click the button that says <code>render</code>. This will <code>render</code> your document, which runs all of your code and generates a nice report in html format (the file is saved in your current working directory).</p>
+<p><strong>Before you leave lab today make sure you know how to render your document</strong></p>
+<p><strong>Make sure your file is properly named BEFORE you submit it</strong> The correct naming structure is <code>LabName_YourLastName</code></p>
+<p><strong>Make sure to replace the <code>author</code> and <code>date</code> in the header with your info.</strong></p>
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>source: <a href="https://www.fueleconomy.gov/feg/climate.shtml" class="uri">https://www.fueleconomy.gov/feg/climate.shtml</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
