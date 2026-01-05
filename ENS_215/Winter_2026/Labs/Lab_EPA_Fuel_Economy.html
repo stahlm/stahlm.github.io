@@ -132,7 +132,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Lab: Getting Started in R and EPA Fuel Efficiency Data</h1>
+<div class="quarto-title-block"><div><h1 class="title">Lab: Getting Started in R and EPA Fuel Efficiency Data</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
 </div>
 
 
@@ -191,13 +191,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h4 class="anchored" data-anchor-id="set-up-for-analysis">Set up for analysis</h4>
 <p>We are going to load in the <code>tidyverse</code> package. If you haven’t installed it yet, you will first need to do that (it only needs to be installed once and once installed can be loaded in anytime you want). To install <code>tidyverse</code> go to the <code>Packages</code> tab and click the <code>install</code> button. In the window that pops up, type <code>tidyverse</code> and click <code>Install</code>.</p>
 <div class="cell">
+<details open="">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>The data is conveniently part of one of the packages included with tidyverse, so we can easily load in the data, which is called <code>mpg</code>.</p>
 <p>We’ll assign the <code>mpg</code> data to a new object that we’ll call <code>fuel_data</code>. However, before you run the code block below, you should first learn a bit more about the <code>mpg</code> dataset.</p>
 <p>To do that type <code>?mpg</code> in your <strong>Console</strong> (we’ll use the console, because we only want to get this info once, and not every single time we run our Notebook).</p>
 <div class="cell">
+<details open="">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fuel_data <span class="ot">&lt;-</span> mpg  <span class="co"># assigning mpg to a new object</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p><br></p>
 </section>
@@ -210,7 +216,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="use-the-str-function-to-examine-the-structure-of-the-fuel_data-dataset" class="level4">
 <h4 class="anchored" data-anchor-id="use-the-str-function-to-examine-the-structure-of-the-fuel_data-dataset">Use the <code>str()</code> function to examine the structure of the <code>fuel_data</code> dataset</h4>
 <div class="cell">
+<details open="">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <ul>
 <li>How many variables are there?</li>
@@ -222,7 +231,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="look-at-your-base-r-cheatsheet-to-find-a-function-that-allows-you-to-examine-the-first-six-rows-of-the-fuel_data-dataset.-apply-this-function-to-your-fuel_data-object-and-it-will-print-these-results-to-your-notebook." class="level4">
 <h4 class="anchored" data-anchor-id="look-at-your-base-r-cheatsheet-to-find-a-function-that-allows-you-to-examine-the-first-six-rows-of-the-fuel_data-dataset.-apply-this-function-to-your-fuel_data-object-and-it-will-print-these-results-to-your-notebook.">Look at your <strong>Base R Cheatsheet</strong> to find a function that allows you to examine the first six rows of the <code>fuel_data</code> dataset. Apply this function to your <code>fuel_data</code> object and it will print these results to your notebook.</h4>
 <div class="cell">
+<details open="">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <ul>
 <li>What do the <code>disp</code>, <code>cyl</code> and <code>cty</code> columns represent? (Hint: type <code>?mpg</code> into your console to get more info on this dataset)</li>
@@ -233,7 +245,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="how-many-rows-and-columns-are-there-in-the-fuel_data-dataset-there-is-a-function-that-will-give-you-the-dimensions-of-an-object-i.e.-number-of-rows-and-columns.-look-at-your-base-r-cheatsheet-to-find-this-function." class="level4">
 <h4 class="anchored" data-anchor-id="how-many-rows-and-columns-are-there-in-the-fuel_data-dataset-there-is-a-function-that-will-give-you-the-dimensions-of-an-object-i.e.-number-of-rows-and-columns.-look-at-your-base-r-cheatsheet-to-find-this-function.">How many rows and columns are there in the <code>fuel_data</code> dataset? There is a function that will give you the dimensions of an object (<em>i.e.</em> number of rows and columns). Look at your <strong>Base R Cheatsheet</strong> to find this function.</h4>
 <div class="cell">
+<details open="">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <ul>
 <li>Number of rows?</li>
@@ -245,7 +260,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="use-the-summary-function-to-get-summary-statistics-on-the-fuel_data-dataset" class="level4">
 <h4 class="anchored" data-anchor-id="use-the-summary-function-to-get-summary-statistics-on-the-fuel_data-dataset">Use the <code>summary()</code> function to get summary statistics on the <code>fuel_data</code> dataset</h4>
 <div class="cell">
+<details open="">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <ul>
 <li>For highway driving how many miles per gallon does
@@ -264,11 +282,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>You can also create a new variable by using the <code>$</code> notation to assign it. The <code>$</code> allows us to access (or create) a new variable in a data frame. For instance <code>fuel_data$new_variable_name &lt;- expression that defines the variable</code></p>
 <p>I’ve shown you how to do it both ways in the code below. You can pick one (they do the same thing) and uncomment it so that it will run.</p>
 <div class="cell">
+<details open="">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Use mutate() to create the new variable (hwy2cty) and add it to the fuel_data object</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># fuel_data &lt;- mutate(fuel_data, hwy2cty = hwy/cty)</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Use the $ notation to create the new variable (hwy2cty) and add it to the fuel_data object</span></span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># fuel_data$hwy2cty &lt;- fuel_data$hwy/fuel_data$cty</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <ul>
 <li>Examine this new variable
@@ -286,7 +307,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Let’s see how the size of a vehicle’s engine (displacement) influences the fuel economy</p>
 <p>Use <code>ggplot</code> to create a scatter plot of <code>hwy</code> vs <code>displ</code>. Remove the <code>#</code> and replace the <code>...</code> with the appropriate values.</p>
 <div class="cell">
+<details open="">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ggplot(data = ...) + geom_point(aes(x = ... , y = ...))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <ul>
 <li>How does displacement influence the fuel economy?</li>
@@ -298,7 +322,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h4 class="anchored" data-anchor-id="examine-factors-influencing-fuel-economy-displacement-and-vehicle-class">Examine factors influencing fuel economy: Displacement and vehicle class</h4>
 <p>Let’s add another variable to our analysis to try and further explain what influences fuel economy. We’ll now color the points by their vehicle class.</p>
 <div class="cell">
+<details open="">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ggplot(data = ...) + geom_point(aes(x = ... , y = ... , color = ... ))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <ul>
 <li>What new information did this provide us with?
@@ -313,10 +340,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h4 class="anchored" data-anchor-id="add-a-new-variable-to-fuel_data">Add a new variable to <code>fuel_data</code></h4>
 <p>Below I’ve added a new variable <code>region</code> to <code>fuel_data</code> using the <code>mutate()</code> function. This step is relatively advanced, so don’t worry if it looks well beyond what we’ve covered so far. However, I want you to take a look at the code and try to decipher what I did here. I tried to use variable names that are logical and if you see a function that you don’t understand, try looking at the help file and/or Googling it.</p>
 <div class="cell">
+<details open="">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>us_makes <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"chevrolet"</span>,<span class="st">"dodge"</span>,<span class="st">"ford"</span>,<span class="st">"jeep"</span>,</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>              <span class="st">"lincoln"</span>,<span class="st">"mercury"</span>,<span class="st">"pontiac"</span>) <span class="co"># list of U.S. manufacturers</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>fuel_data <span class="ot">&lt;-</span> <span class="fu">mutate</span>(fuel_data, <span class="at">region =</span> <span class="fu">if_else</span>(manufacturer <span class="sc">%in%</span> us_makes,<span class="st">"US"</span>,<span class="st">"Foreign"</span>) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <ul>
 <li>What is the variable <code>region</code> telling us?</li>
@@ -348,9 +378,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 class="anchored" data-anchor-id="step-3-submit-the-lab">Step 3: Submit the lab</h2>
 <p>Your lab is due prior to the start of next week’s lab. Once you are finished and satisfied with your work you should <code>Render</code> it to an <code>html</code> file and submit both your <code>html</code> and <code>qmd</code> file to Nexus.</p>
 <p>To <code>Render</code> a file you can go to the menu bar at the top of your notebook and click the button that says <code>render</code>. This will <code>render</code> your document, which runs all of your code and generates a nice report in html format (the file is saved in your current working directory).</p>
-<p><strong>Before you leave lab today make sure you know how to render your document</strong></p>
-<p><strong>Make sure your file is properly named BEFORE you submit it</strong> The correct naming structure is <code>LabName_YourLastName</code></p>
-<p><strong>Make sure to replace the <code>author</code> and <code>date</code> in the header with your info.</strong></p>
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Before you leave lab today make sure you know how to render your document</p>
+</div>
+</div>
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Make sure your file is properly named BEFORE you submit it The correct naming structure is <code>LabName_YourLastName</code></p>
+</div>
+</div>
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Make sure to replace the <code>author</code> and <code>date</code> in the header with your info</p>
+</div>
+</div>
 </section>
 
 
@@ -541,6 +607,57 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
   function tippyHover(el, contentFn) {
     const config = {
       allowHTML: true,

@@ -5,6 +5,9 @@ date: "2025-01-08"
 date-format: "MMMM D, YYYY"
 format:
   html:
+    code-fold: show
+    code-tools: 
+      source: false
     df-print: paged
     theme:
       light: journal

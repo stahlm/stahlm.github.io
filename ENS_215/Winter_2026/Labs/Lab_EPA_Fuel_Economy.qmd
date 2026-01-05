@@ -5,6 +5,9 @@ date: "2026-01-08"
 date-format: "MMMM D, YYYY"
 format:
   html:
+    code-fold: show
+    code-tools: 
+      source: false
     df-print: paged
     theme:
       light: journal
@@ -199,12 +202,23 @@ Your lab is due prior to the start of next week's lab.  Once you are finished an
 
 To `Render` a file you can go to the menu bar at the top of your notebook and click the button that says `render`.  This will `render` your document, which runs all of your code and generates a nice report in html format (the file is saved in your current working directory).  
 
+::: {.callout-important}
+## important
+Before you leave lab today make sure you know how to render your document  
 
-**Before you leave lab today make sure you know how to render your document**
+:::
 
-**Make sure your file is properly named BEFORE you submit it** The correct naming structure is `LabName_YourLastName`  
 
-**Make sure to replace the `author` and `date` in the header with your info.**
+::: {.callout-important}
+## important
+Make sure your file is properly named BEFORE you submit it The correct naming structure is `LabName_YourLastName`  
+
+:::
+
+::: {.callout-important}
+## important
+Make sure to replace the `author` and `date` in the header with your info
+:::
 
 
 [^1]: source: <https://www.fueleconomy.gov/feg/climate.shtml>
