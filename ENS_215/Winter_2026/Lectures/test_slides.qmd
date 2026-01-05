@@ -41,7 +41,7 @@ States <- read_xlsx("../../Data/Class_survey_2026.xlsx", sheet = "Home_state")
 
 <div style="float: right; width: 50%;">
 
-![](C:/Users/stahlm/Documents/Website_Union/Photos_for_website/Vietnam_River_Sampling_2018.jpg){width=450px}
+![](https://lh3.googleusercontent.com/sitesv/AAzXCkdKxBHlzoHmJ-X-zJHcZ7wMiHGuouQIiOYkhZpT4fZUobKjIev71XnywU_IV-d1wMHnUOX1gdFv74vcpRKeV_5F4ahsl58PGbHR32OtJVOlysYjmqmOd2QiaKAMhRSDHB2xy8Brq9DmP7aRYhECSEo9hL1sjykrFUD0eVFcUBSsGo6tEn8Abv4Grtz2C3pumqOdT1H3qqQITdk=w1280){width=450px}
 
 </div>
 
@@ -78,7 +78,7 @@ My research is on hydrogeology and water resources. I work in across the US and 
 
 # Why learn data science?
 
-![Image source: R4DS](https://stahlm.github.io/ENS_215/Winter_2026/Images/data_science_wf.png){width=750px}
+![Image source: R4DS](C:/Users/stahlm/Documents/Teaching_UnionCollege/Environmental_Data_Analysis/Lectures/Images/data_science_wf.png){width=750px}
 ---
 
 
