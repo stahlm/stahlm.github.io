@@ -1,0 +1,14 @@
+"0","```r
+flow <- read_csv(\"https://stahlm.github.io/ENS_215/Data/USGS_streamflow_01351500.csv\") %>% 
+  drop_na() %>% 
+  filter(Year >= 1940 & Year < 2025) %>%  # select years 1940 through 2024
+  mutate(Date = make_date(Year, Month, Day)) # create a Date column that has the dates as an R date object
+```"
+"1","Rows: 31192 Columns: 6── Column specification ──────────────────────────────────────────────────
+Delimiter: \",\"
+chr  (1): site_no
+dbl  (4): Year, Month, Day, flow_cfs
+date (1): Date
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+"

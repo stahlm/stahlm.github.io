@@ -1,0 +1,8 @@
+"0","```r
+gap_data %>% 
+  ggplot(aes(x = factor(year), y = gdpPercap)) + 
+  geom_boxplot() +
+  geom_jitter(width = 0.7, height = 0) +
+  
+  coord_cartesian(ylim= c(0,60000))
+```"

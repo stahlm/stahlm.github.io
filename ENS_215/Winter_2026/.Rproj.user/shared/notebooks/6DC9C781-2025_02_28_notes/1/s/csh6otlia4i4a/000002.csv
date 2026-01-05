@@ -1,0 +1,4 @@
+"0","```r
+state_temps <- state_temps %>% 
+  rename(Avg_Temp_F = Value)
+```"

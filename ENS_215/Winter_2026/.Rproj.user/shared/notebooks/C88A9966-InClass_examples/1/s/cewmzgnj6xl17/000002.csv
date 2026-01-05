@@ -1,0 +1,5 @@
+"0","```r
+table_stats %>%
+  ggplot(aes(x = year, y = n_events)) + 
+  geom_point() + geom_smooth()
+```"

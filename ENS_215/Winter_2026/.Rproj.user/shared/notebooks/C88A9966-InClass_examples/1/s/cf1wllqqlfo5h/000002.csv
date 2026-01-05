@@ -1,0 +1,8 @@
+"0","```r
+df_q6 <- gap_data %>% 
+  mutate(tot_gdp = pop*gdpPercap) %>% 
+  filter(year == 2007) %>% 
+  arrange(desc(tot_gdp))
+
+df_q6
+```"

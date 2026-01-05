@@ -1,0 +1,4 @@
+"0","```r
+precip_data <- precip_data %>% 
+  mutate(Month = as.numeric(Month))
+```"

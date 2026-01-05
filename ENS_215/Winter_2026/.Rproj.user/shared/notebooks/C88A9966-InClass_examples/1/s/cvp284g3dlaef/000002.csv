@@ -1,0 +1,125 @@
+"0","```r
+r_elev_13 <- get_elev_raster(locations = aoi2use, z = 13)
+```"
+"1","
+ Accessing raster elevation [-------------------------]   0%
+ Accessing raster elevation [-------------------------]   1%
+ Accessing raster elevation [-------------------------]   2%
+ Accessing raster elevation [>------------------------]   3%
+ Accessing raster elevation [>------------------------]   4%
+ Accessing raster elevation [>------------------------]   5%
+ Accessing raster elevation [>------------------------]   6%
+ Accessing raster elevation [=>-----------------------]   7%
+ Accessing raster elevation [=>-----------------------]   8%
+ Accessing raster elevation [=>-----------------------]   9%
+ Accessing raster elevation [==>----------------------]  10%
+ Accessing raster elevation [==>----------------------]  11%
+ Accessing raster elevation [==>----------------------]  12%
+ Accessing raster elevation [==>----------------------]  13%
+ Accessing raster elevation [==>----------------------]  14%
+ Accessing raster elevation [===>---------------------]  15%
+ Accessing raster elevation [===>---------------------]  16%
+ Accessing raster elevation [===>---------------------]  17%
+ Accessing raster elevation [===>---------------------]  18%
+ Accessing raster elevation [====>--------------------]  19%
+ Accessing raster elevation [====>--------------------]  20%
+ Accessing raster elevation [====>--------------------]  21%
+ Accessing raster elevation [=====>-------------------]  22%
+ Accessing raster elevation [=====>-------------------]  23%
+ Accessing raster elevation [=====>-------------------]  24%
+ Accessing raster elevation [=====>-------------------]  25%
+ Accessing raster elevation [=====>-------------------]  26%
+ Accessing raster elevation [======>------------------]  26%
+ Accessing raster elevation [======>------------------]  27%
+ Accessing raster elevation [======>------------------]  28%
+ Accessing raster elevation [======>------------------]  29%
+ Accessing raster elevation [======>------------------]  30%
+ Accessing raster elevation [=======>-----------------]  31%
+ Accessing raster elevation [=======>-----------------]  32%
+ Accessing raster elevation [=======>-----------------]  33%
+ Accessing raster elevation [========>----------------]  34%
+ Accessing raster elevation [========>----------------]  35%
+ Accessing raster elevation [========>----------------]  36%
+ Accessing raster elevation [========>----------------]  37%
+ Accessing raster elevation [========>----------------]  38%
+ Accessing raster elevation [=========>---------------]  38%
+ Accessing raster elevation [=========>---------------]  39%
+ Accessing raster elevation [=========>---------------]  40%
+ Accessing raster elevation [=========>---------------]  41%
+ Accessing raster elevation [=========>---------------]  42%
+ Accessing raster elevation [==========>--------------]  43%
+ Accessing raster elevation [==========>--------------]  44%
+ Accessing raster elevation [==========>--------------]  45%
+ Accessing raster elevation [===========>-------------]  46%
+ Accessing raster elevation [===========>-------------]  47%
+ Accessing raster elevation [===========>-------------]  48%
+ Accessing raster elevation [===========>-------------]  49%
+ Accessing raster elevation [===========>-------------]  50%
+ Accessing raster elevation [============>------------]  50%
+ Accessing raster elevation [============>------------]  51%
+ Accessing raster elevation [============>------------]  52%
+ Accessing raster elevation [============>------------]  53%
+ Accessing raster elevation [============>------------]  54%
+ Accessing raster elevation [=============>-----------]  55%
+ Accessing raster elevation [=============>-----------]  56%
+ Accessing raster elevation [=============>-----------]  57%
+ Accessing raster elevation [==============>----------]  58%
+ Accessing raster elevation [==============>----------]  59%
+ Accessing raster elevation [==============>----------]  60%
+ Accessing raster elevation [==============>----------]  61%
+ Accessing raster elevation [==============>----------]  62%
+ Accessing raster elevation [===============>---------]  62%
+ Accessing raster elevation [===============>---------]  63%
+ Accessing raster elevation [===============>---------]  64%
+ Accessing raster elevation [===============>---------]  65%
+ Accessing raster elevation [===============>---------]  66%
+ Accessing raster elevation [================>--------]  67%
+ Accessing raster elevation [================>--------]  68%
+ Accessing raster elevation [================>--------]  69%
+ Accessing raster elevation [=================>-------]  70%
+ Accessing raster elevation [=================>-------]  71%
+ Accessing raster elevation [=================>-------]  72%
+ Accessing raster elevation [=================>-------]  73%
+ Accessing raster elevation [=================>-------]  74%
+ Accessing raster elevation [==================>------]  74%
+ Accessing raster elevation [==================>------]  75%
+ Accessing raster elevation [==================>------]  76%
+ Accessing raster elevation [==================>------]  77%
+ Accessing raster elevation [==================>------]  78%
+ Accessing raster elevation [===================>-----]  79%
+ Accessing raster elevation [===================>-----]  80%
+ Accessing raster elevation [===================>-----]  81%
+ Accessing raster elevation [====================>----]  82%
+ Accessing raster elevation [====================>----]  83%
+ Accessing raster elevation [====================>----]  84%
+ Accessing raster elevation [====================>----]  85%
+ Accessing raster elevation [=====================>---]  86%
+ Accessing raster elevation [=====================>---]  87%
+ Accessing raster elevation [=====================>---]  88%
+ Accessing raster elevation [=====================>---]  89%
+ Accessing raster elevation [=====================>---]  90%
+ Accessing raster elevation [======================>--]  91%
+ Accessing raster elevation [======================>--]  92%
+ Accessing raster elevation [======================>--]  93%
+ Accessing raster elevation [=======================>-]  94%
+ Accessing raster elevation [=======================>-]  95%
+ Accessing raster elevation [=======================>-]  96%
+ Accessing raster elevation [=======================>-]  97%
+ Accessing raster elevation [========================>]  98%
+ Accessing raster elevation [========================>]  99%
+ Accessing raster elevation [=========================] 100%
+"
+"1","Mosaicing & Projecting
+Note: Elevation units are in meters.
+"
+"0","```r
+r_elev_13
+```"
+"1","class      : RasterLayer 
+dimensions : 3665, 7218, 26453970  (nrow, ncol, ncell)
+resolution : 7.914467e-05, 7.914467e-05  (x, y)
+extent     : -74.35547, -73.7842, 42.68244, 42.9725  (xmin, xmax, ymin, ymax)
+crs        : +proj=longlat +datum=WGS84 +no_defs 
+source     : file3e346f3a15a8.tif 
+names      : file3e346f3a15a8 
+"

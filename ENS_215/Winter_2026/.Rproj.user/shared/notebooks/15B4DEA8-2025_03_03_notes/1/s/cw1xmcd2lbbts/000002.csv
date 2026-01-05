@@ -1,0 +1,4 @@
+"0","```r
+sf_seasonality_precip <- sf_seasonality_precip %>% 
+  filter(NAME != \"Alaska\", NAME != \"Hawaii\")
+```"

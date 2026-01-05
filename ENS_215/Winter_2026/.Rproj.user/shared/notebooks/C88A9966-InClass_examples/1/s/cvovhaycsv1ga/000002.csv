@@ -1,0 +1,7 @@
+"0","```r
+state_mean_temps_post <- state_temps %>% 
+  filter(Year > 1960) %>% 
+  group_by(state_cd) %>% 
+  summarize(mean_temp_post = mean(Avg_Temp_F))
+
+```"

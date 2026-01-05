@@ -1,0 +1,12 @@
+"0","```r
+sf_seasonality_precip %>% 
+  filter(SI >= 0.1) %>% 
+  tm_shape() +
+  tm_polygons(col = \"SC\", palette = \"viridis\",
+              style = \"cont\") +
+  
+  tm_shape(sf_states) +
+  tm_borders()
+```"
+"1","Error in dirname(to) : path too long
+"

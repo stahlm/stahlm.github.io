@@ -1,0 +1,11 @@
+"0","```r
+df_stream_monthly_normals <-  df_stream_data %>% 
+  filter(Year >= 2014 & Year <= 2024) %>% 
+  
+  group_by(Month, site_no) %>% 
+  summarize(observation_value = mean(Flow, na.rm = T)) %>% 
+  
+  rename(group_name = site_no)
+```"
+"1","`summarise()` has grouped output by 'Month'. You can override using the `.groups` argument.
+"

@@ -1,0 +1,5 @@
+"0","```r
+precip_temp_untidy_CA <- read_csv(\"https://stahlm.github.io/ENS_215/Data/CA_temp_precip_untidy.csv\")
+
+precip_temp_untidy_CA %>% arrange(Year, Month, state_cd)
+```"

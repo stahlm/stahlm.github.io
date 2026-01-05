@@ -1,0 +1,11 @@
+"0","```r
+df_monthly_normals %>% 
+  filter(group_name %in% c(\"Rhode Island\", \"California\", \"Idaho\")) %>% 
+  
+  ggplot() +
+  geom_col(aes(x = factor(Month), y = observation_value)) +
+  
+  facet_wrap(~group_name) +
+  
+  theme_bw()
+```"

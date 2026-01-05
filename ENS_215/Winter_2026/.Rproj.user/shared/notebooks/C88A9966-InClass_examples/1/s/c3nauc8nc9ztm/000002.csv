@@ -1,0 +1,8 @@
+"0","```r
+precip_temp_tidy_CA <- precip_temp_untidy_CA %>% 
+  pivot_wider(names_from = measurement_type,
+              values_from = measurement
+              )
+
+precip_temp_tidy_CA
+```"

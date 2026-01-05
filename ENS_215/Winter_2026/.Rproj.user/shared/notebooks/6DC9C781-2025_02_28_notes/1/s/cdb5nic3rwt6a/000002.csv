@@ -1,0 +1,16 @@
+"0","```r
+flow_summary %>% 
+  filter(Year >= 1980) %>% 
+  
+  ggplot(aes(x = Year, y = avg_flow)) +
+  geom_point() +
+  
+  geom_smooth(se = F, method = \"lm\") +
+  
+  scale_y_log10() + 
+  
+  facet_wrap(~ Month, ncol = 12) +
+  theme_classic() +
+  
+  theme(axis.text.x = element_blank())
+```"

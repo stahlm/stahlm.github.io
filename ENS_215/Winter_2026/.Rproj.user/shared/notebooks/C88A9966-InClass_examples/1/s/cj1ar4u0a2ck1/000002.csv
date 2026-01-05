@@ -1,0 +1,5 @@
+"0","```r
+state_mean_temps_change <- left_join(state_mean_temps_post, state_mean_temps_pre) %>% 
+  mutate(temp_change = mean_temp_post - mean_temp_pre)
+
+```"

@@ -1,0 +1,10 @@
+"0","```r
+df_gap2 <- gap_data %>% 
+  filter(year == 2007,
+         lifeExp < 60,
+         gdpPercap > 10000
+         ) %>% 
+  select(-continent)
+
+df_gap2
+```"

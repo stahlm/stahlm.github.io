@@ -1,0 +1,5 @@
+"0","```r
+fig_2 <- ggMarginal(fig_1, type = \"density\", fill = \"grey\")
+
+fig_2
+```"

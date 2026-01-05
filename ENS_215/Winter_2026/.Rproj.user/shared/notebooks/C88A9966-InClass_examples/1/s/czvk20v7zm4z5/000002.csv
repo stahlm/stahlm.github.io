@@ -1,0 +1,4 @@
+"0","```r
+gap_dams <- dams_data %>% 
+  left_join(my_gap)
+```"

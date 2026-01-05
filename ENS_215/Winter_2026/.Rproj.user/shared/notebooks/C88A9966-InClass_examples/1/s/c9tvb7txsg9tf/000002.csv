@@ -1,0 +1,7 @@
+"0","```r
+df_q4 <- gap_data %>% 
+  filter(year == 1977) %>% 
+  select(-continent, -pop, -gdpPercap) 
+
+df_q4
+```"

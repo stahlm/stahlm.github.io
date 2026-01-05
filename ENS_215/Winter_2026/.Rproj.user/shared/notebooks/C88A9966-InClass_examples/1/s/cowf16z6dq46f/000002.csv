@@ -1,0 +1,4 @@
+"0","library(gapminder) 
+
+my_gap <- gapminder
+dams_data <- read_csv(\"https://stahlm.github.io/ENS_215/Data/Dams_FAO_SelectCols_LabData.csv\")"

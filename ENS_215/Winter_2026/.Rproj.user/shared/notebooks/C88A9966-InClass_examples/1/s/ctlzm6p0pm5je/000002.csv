@@ -1,0 +1,5 @@
+"0","```r
+table_stats <- tibble(year = year_vec,
+                      n_days = NA,
+                      n_events = NA)
+```"

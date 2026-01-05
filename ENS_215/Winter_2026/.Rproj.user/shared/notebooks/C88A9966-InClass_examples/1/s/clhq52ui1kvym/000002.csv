@@ -1,0 +1,9 @@
+"0","```r
+gap_question1 <- gap_data %>% 
+  arrange(continent, lifeExp) %>% 
+  filter(year > 1980, 
+         continent %in% c(\"Asia\", \"Africa\")) 
+
+gap_question1
+  
+```"

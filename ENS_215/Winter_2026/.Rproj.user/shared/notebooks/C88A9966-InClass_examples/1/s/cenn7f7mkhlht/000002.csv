@@ -1,0 +1,6 @@
+"0","```r
+gap_data %>% 
+  filter(year == 2007) %>% 
+  ggplot(aes(x = continent)) +
+  geom_bar()
+```"

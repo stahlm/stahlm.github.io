@@ -1,0 +1,17 @@
+"0","```r
+earthquake_map <- map_world_data %>% 
+  ggplot() +
+  geom_polygon(aes(long, lat, group = group), fill = \"lightgray\", color = \"black\") +
+  geom_point(data = earthquakes, aes(longitude, latitude,  color = mag),
+             shape = 21, fill = \"NA\", stroke = 1.5) + 
+  scale_color_gradient(low = \"blue\", high = \"red\") +
+  
+  labs(title = \"Earthquakes > 2.5 magnitude since the start of 2025\",
+       subtitle = \"Date window: 1-Jan to 8-Feb-2025\",
+       caption = \"Data source: USGS\") +
+  
+  theme_void() +
+  coord_quickmap()
+
+earthquake_map
+```"

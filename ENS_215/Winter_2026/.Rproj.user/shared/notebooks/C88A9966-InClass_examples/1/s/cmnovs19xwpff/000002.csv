@@ -1,0 +1,18 @@
+"0","```r
+my_table %>% 
+    ggplot(aes(x = gdp_1952, y = gdp_2007, color = continent)) +
+  geom_point() +
+  geom_abline(slope = 1, intercept = 0, color = \"red\") +
+  theme_bw() +
+  scale_x_log10(labels = trans_format('log10', math_format(10^.x)) ) +
+  scale_y_log10(labels = trans_format('log10', math_format(10^.x)), breaks = c(10^3, 10^4, 10^5) ) +
+  coord_equal(ratio = 1) +
+  facet_wrap(~continent) +
+  labs(x = \"GDP per capita 1952 ($)\",
+       y = \"GDP per capita 2007 ($)\",
+       title = \"Per capita GDP over time\",
+       subtitle = \"Change between 1952 and 2007\",
+       caption = \"Data source: gapminder\"
+  ) +
+  theme(legend.position = \"none\")
+```"

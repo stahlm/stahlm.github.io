@@ -1,0 +1,15 @@
+"0","```r
+for (i_year in year_vec) {
+  
+  df_temp <- df_met[df_met$YEAR == i_year, ] # current year's data
+  
+  i_count <- sum(df_temp$TMIN <= threshold_min)
+  #print(i_count)
+  
+  i_days <- nrow(df_temp)
+  #print(i_days)
+  
+  table_stats$n_events[table_stats$year == i_year] <- i_count
+  table_stats$n_days[table_stats$year == i_year] <- i_days
+}
+```"

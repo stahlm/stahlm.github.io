@@ -1,0 +1,12 @@
+"0","```r
+map_data_usa_temps_change %>% 
+  ggplot() + 
+  geom_polygon(aes(long, lat, group = group, fill = temp_change), color = \"black\") +
+  scale_fill_gradient2(low = \"blue\", mid = \"white\", high = \"red\", midpoint = 0) +
+  coord_map(projection = \"bonne\", lat0 = 50) +
+  labs(title = \"Changes in mean temperature\",
+       subtitle = \"Difference between post and pre-1960 means\",
+       caption = \"Data source: NOAA\",
+       fill = \"Temp. increase (deg. F)\") +
+  theme_void() 
+```"

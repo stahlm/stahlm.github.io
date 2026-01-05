@@ -1,0 +1,21 @@
+"0","```r
+my_gap %>% 
+  filter(continent == \"Asia\", year %in% c(1952, 2007)) %>% 
+  ggplot(aes(x = lifeExp,
+             y = reorder(country, lifeExp, FUN = max),
+             group = country,
+             )) +
+  
+  geom_point(aes(color = year)) +
+  geom_line() +
+  
+  scale_color_continuous(low = \"darkgrey\", high = \"black\") +
+  
+  theme_classic() +
+  theme(legend.position = \"none\") + 
+  labs(title = \"Change in life expectancy in Asia \",
+       subtitle = \"1952 to 2007\",
+       x = \"Life expectancy (yrs)\",
+       y = \"\",
+       caption = \"1952 data (grey) and 2007 data (black)\") 
+```"

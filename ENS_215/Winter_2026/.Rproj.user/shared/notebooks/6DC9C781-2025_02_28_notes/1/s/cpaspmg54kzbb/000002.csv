@@ -1,0 +1,6 @@
+"0","```r
+color_ramp <- colorRamp(c(\"blue\", \"yellow\", \"red\"))
+
+plot_ly(df_eq, x = ~longitude, y = ~latitude, z = ~-depth) %>%
+  add_markers(color = ~mag, size = ~mag, colors = color_ramp, text = ~paste(\"Mag =\", mag))
+```"

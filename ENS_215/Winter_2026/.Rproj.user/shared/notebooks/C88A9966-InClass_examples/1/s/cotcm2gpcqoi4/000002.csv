@@ -1,0 +1,4 @@
+"0","```r
+state_name_table = tibble(state_name = tolower(state.name), 
+                          state_cd = state.abb, us_region = state.region)
+```"

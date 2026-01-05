@@ -1,0 +1,8 @@
+"0","```r
+gap_data %>% 
+  filter(year == 2007) %>% 
+  ggplot(aes(x = continent, y = lifeExp)) +
+  
+  geom_boxplot(fill = \"lightblue\") +
+  geom_jitter(alpha = 0.5, width = 0.2, height = 0)
+```"

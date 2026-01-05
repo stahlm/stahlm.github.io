@@ -1,0 +1,7 @@
+"0","```r
+global_mean_gdp <- my_gap %>% 
+  group_by(year) %>% 
+  summarize(mean_gdp_percap = mean(gdpPercap))
+
+global_mean_gdp
+```"

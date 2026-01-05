@@ -1,0 +1,6 @@
+"0","```r
+gap_data %>% 
+  filter(country == \"China\") %>% 
+  ggplot(aes(x = year, y = gdpPercap, linewidth = pop)) +
+  geom_line(color = \"blue\")
+```"

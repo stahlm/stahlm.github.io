@@ -1,0 +1,21 @@
+"0","```r
+r_elev_08 <- get_elev_raster(locations = aoi2use, z = 8)
+```"
+"1","
+ Accessing raster elevation [-------------------------]   0%
+ Accessing raster elevation [=========================] 100%
+"
+"1","Mosaicing & Projecting
+Note: Elevation units are in meters.
+"
+"0","```r
+r_elev_08
+```"
+"1","class      : RasterLayer 
+dimensions : 429, 583, 250107  (nrow, ncol, ncell)
+resolution : 0.002412191, 0.002412191  (x, y)
+extent     : -74.53125, -73.12494, 42.03406, 43.06889  (xmin, xmax, ymin, ymax)
+crs        : +proj=longlat +datum=WGS84 +no_defs 
+source     : file3e3416fb7b45.tif 
+names      : file3e3416fb7b45 
+"

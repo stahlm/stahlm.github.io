@@ -1,0 +1,7 @@
+"0","```r
+gap_data %>% 
+  ggplot(aes(x = year, y = gdpPercap)) + 
+  geom_point() +
+  
+  ylim(0,60000)
+```"

@@ -1,0 +1,11 @@
+"0","```r
+#mean_lifeExp <- mean(gap_data$lifeExp, na.rm = T)
+#mean_lifeExp
+
+df_q3 <- gap_data %>% 
+  filter(lifeExp > mean(lifeExp), 
+         pop > 20*10^6
+         )
+
+
+```"

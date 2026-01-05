@@ -1,0 +1,14 @@
+"0","```r
+precip_data %>% 
+  filter(YEAR >= 1980,
+         STATE == \"California\"
+         ) %>% 
+  
+  mutate(date = ymd(paste(YEAR, MONTH, 15))) %>% 
+  
+  ggplot(aes(x = date, y = Precip_inches)) +
+  geom_line() +
+  geom_point() +
+  
+  theme_classic()
+```"

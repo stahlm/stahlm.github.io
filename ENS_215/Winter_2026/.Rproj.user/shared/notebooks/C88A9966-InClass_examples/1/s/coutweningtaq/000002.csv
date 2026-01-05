@@ -1,0 +1,17 @@
+"0","```r
+my_gap %>% 
+  filter(continent == \"Europe\", year == 2007) %>% 
+  ggplot(aes(x = reorder(country, pop), y = pop/10^6, color = pop/10^6)) +
+  
+  geom_point() +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
+  
+  labs(y = \"Population (millions)\", 
+       x = \"\",
+       title = \"Population of European Countries\",
+       subtitle = \"Year 2007\",
+       caption = \"Data source: Gapminder\",
+       color = \"Population\"
+       )
+```"

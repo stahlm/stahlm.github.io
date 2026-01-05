@@ -1,0 +1,10 @@
+"0","```r
+
+df_seasonality_precip %>% 
+  ggplot(aes(y = reorder(group_name, SI), x = SI)) +
+  geom_point(size = 2) +
+  
+  geom_segment(aes(x = 0, xend = SI, yend = group_name)) +
+  
+  theme_bw(base_size = 12)
+```"

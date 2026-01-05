@@ -1,0 +1,8 @@
+"0","```r
+df_stream_monthly_normals %>% 
+  ggplot(aes(x = Month, y = observation_value)) +
+  geom_col() +
+  
+  scale_x_continuous(breaks = 1:12) +
+  theme_classic()
+```"

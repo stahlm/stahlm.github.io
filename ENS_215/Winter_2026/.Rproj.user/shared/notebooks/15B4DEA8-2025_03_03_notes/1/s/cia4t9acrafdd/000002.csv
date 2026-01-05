@@ -1,0 +1,11 @@
+"0","```r
+df_stream_data <-  read_csv(\"https://stahlm.github.io/ENS_215/Data/USGS_01354500_flow.csv\")
+```"
+"1","Rows: 4956 Columns: 5── Column specification ────────────────────────────────────────────────────────
+Delimiter: \",\"
+chr  (3): agency_cd, site_no, Flow_cd
+dbl  (1): Flow
+date (1): Date
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+"

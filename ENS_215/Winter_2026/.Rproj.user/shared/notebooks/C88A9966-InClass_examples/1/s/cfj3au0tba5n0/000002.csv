@@ -1,0 +1,5 @@
+"0","```r
+gap_data %>% 
+  ggplot(aes(x = gdpPercap, y = lifeExp)) +
+  geom_point()
+```"

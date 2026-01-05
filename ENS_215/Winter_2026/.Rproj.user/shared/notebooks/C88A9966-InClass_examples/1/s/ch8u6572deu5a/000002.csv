@@ -1,0 +1,5 @@
+"0","```r
+gap_data %>% 
+  filter(year == 1977) %>% 
+  filter(lifeExp == min(lifeExp))
+```"

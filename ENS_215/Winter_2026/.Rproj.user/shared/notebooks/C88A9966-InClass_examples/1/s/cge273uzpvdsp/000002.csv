@@ -1,0 +1,8 @@
+"0","```r
+gap_data %>% 
+  filter(country == \"China\") %>% 
+  ggplot(aes(x = year, y = pop)) +
+  geom_line() +
+  geom_point()
+
+```"

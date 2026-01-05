@@ -1,0 +1,5 @@
+"0","```r
+library(gapminder)
+gap_data <- gapminder
+
+```"

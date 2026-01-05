@@ -1,0 +1,13 @@
+"0","```r
+top_2 <- gap_data %>% 
+  filter(year == 2007) %>% 
+  top_n(2, lifeExp)
+
+top_2
+
+bottom_2 <- gap_data %>% 
+  filter(year == 2007) %>% 
+  top_n(-2, lifeExp)
+
+bottom_2
+```"
