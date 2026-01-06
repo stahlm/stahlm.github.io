@@ -52,7 +52,7 @@ AOI = AOI::geocode(loc2use,
 
 ts  = getGridMET(AOI, varname = c("tmmx","tmmn", "pr"),
                  startDate = "2025-01-01", 
-                 endDate = "2025-12-30")
+                 endDate = "2025-12-31")
 ```
 
 ```{r}

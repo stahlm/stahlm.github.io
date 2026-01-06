@@ -1,0 +1,1 @@
+"0","temperature_US <- terra::rast(temperature_US)"

@@ -28,6 +28,7 @@ Outlines below highlight some key topics to cover prior to beginning with the co
 - ESPE Winter Speaker Series dates
 - Present in-class examples to highlight what you can do with R
 - Have students set up a directory (folder) for the class, as well as sub-directories for "Lectures", "Labs", and "Final_project"
+- Install R and RStudio
 
 The theme of the series this year is "The Critical Ocean". 
 

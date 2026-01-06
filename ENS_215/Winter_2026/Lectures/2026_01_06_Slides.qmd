@@ -95,51 +95,6 @@ Summary info about the students in our class
 
 
 
-## Where we are from
-```{r echo = FALSE, message=FALSE, warning=FALSE}
-locs_state <- aoi_get(state = c("NY",
-                                "CA",
-                                "NJ",
-                                "CT",
-                                "MA",
-                                "VT"
-                                
-                                
-                                )
-                      )
-
-locs_country <- aoi_get(country = c("India"
-                                    
-                                    )
-                        )
-```
-
-```{r}
-locs_all <- locs_state %>% 
-  bind_rows(locs_country)
-```
-
-
-```{r echo = FALSE, message=FALSE, warning=FALSE}
-tmap_mode("view")
-
-  tm_shape(locs_all) +
-  tm_polygons(col = "orange", border.col = "black") #+
-  
-  #tm_shape(locs_country) +
-  #tm_polygons(col = "orange", border.col = "black") 
-  
- 
-  
-
-
-#loc_map 
-```
-
-
-
-
-
 ## Class composition by year
 ```{r}
 ggplot(Class_yr) + 
@@ -157,7 +112,8 @@ ggplot(Majors) +
   
   labs(x = "Major") +
   
-  theme_bw()
+  theme_bw() +
+  labs(subtitle = "Note: Many of you are double majors in additional areas not shown above")
 ```
 
 
