@@ -84,5 +84,5 @@ Before we get started let's discuss two important topics that are key to maintai
 
 
 ## Now let's dive right into some programming
-1. Open up your `Lectures` project and create a new `R Notebook`
+1. Open up your `Lectures` project and create a new `Quarto notebook`
 2. Follow along with the html Quarto notebook on our class site and create your own Quarto notebook  We'll go over some quick basics before you try to work through the notebook.  

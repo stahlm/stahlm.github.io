@@ -24,7 +24,7 @@ format:
 The Quarto Notebooks that we work in allow us to incorporate text, code, and output all in one place.  This is a huge benefit when you want to create a report from your work in R.  Quarto Notebooks are excellent for producing computationally reproducible research.  
 
 
-An Quarto Notebooks (.qmd) is a blend of **R** (which is the code portion of your Notebook) and **Markdown** (the text portion).  **Markdown** is simply a system for formatting document features (e.g. text, margins, bullets, table of contents,...).
+A Quarto Notebooks (.qmd) is a blend of **R** (which is the code portion of your Notebook) and **Markdown** (the text portion).  **Markdown** is simply a system for formatting document features (e.g. text, margins, bullets, table of contents,...).
 
 There are ton's of formatting options you can specify when working in Quarto and this allows us to create attractive and easy to read documents.  We'll learn a few basics today that will greatly improve how your R Notebooks look when you output your reports.  
 
@@ -125,14 +125,16 @@ And the list would look like this in my report.
     ii) another sub-item
     
     
-+ **Line breaks** to make a line break show up in your formatted document, you need to put TWO SPACES at the end of the line before and then hit ENTER.  The line break will only show up in your knit/previewed document if you have two spaces `  `  
++ **Line breaks** to make a line break show up in your formatted document, you need to put TWO SPACES at the end of the line before and then hit ENTER.  The line break will only show up in your rendered document if you have two spaces `  `  
 <br/>
 
 ### Exercise
 
 + Spend some time testing out the different Markdown formatting options you learned above
 
-
+```{r}
+countdown(minutes = 0, seconds = 42)
+```
 --- 
 
 ## R Programming basics
