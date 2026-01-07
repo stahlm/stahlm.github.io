@@ -41,7 +41,9 @@ include-in-header:
 [In-class examples](https://stahlm.github.io/ENS_215/Winter_2026/Lectures/2026_01_06_examples.html) [(qmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2026/Lectures/2026_01_06_examples.qmd), [Slides](https://stahlm.github.io/ENS_215/Winter_2026/Lectures/2026_01_06_Slides.html),   [Cheatsheets](https://stahlm.github.io/ENS_215/Resources/cheatsheets_2026/R_cheatsheets_all_2026.pdf) 
 
 * Thurs (8-Jan) -- **Diving into R programming and Markdown/Quarto basics**
-
+  + [Slides](https://stahlm.github.io/ENS_215/Winter_2026/Lectures/2026_01_08_Slides.html)
+  + R programming and Quarto basics [(html)](https://stahlm.github.io/ENS_215/Winter_2026/Lectures/2026_01_08_R_basics.html) [(qmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2026/Lectures/2026_01_08_R_basics.qmd)
+  + Diving into data analysis [(html)](https://stahlm.github.io/ENS_215/Winter_2026/Lectures/2026_01_08_diving_in.html) [(qmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2026/Lectures/2026_01_08_diving_in.qmd)
 
 ```{r eval = F, echo = F}
   + [Slides](https://stahlm.github.io/ENS_215/Winter_2026/Lectures/2026_01_08_Slides.html)
