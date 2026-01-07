@@ -189,7 +189,7 @@ Note
 <p>The <strong>Quarto cheatsheet</strong> and the <strong>R Markdown Cheatsheet</strong> that I handed out have examples similar to below, as well as more advanced topics that we won’t cover today.</p>
 <section id="file-header" class="level3">
 <h3 class="anchored" data-anchor-id="file-header">File Header</h3>
-<p>All of your R Notebooks have a file header (also called a YAML Header). This is required for specifying how your file will look and what format it will be output to when you generate your reports.</p>
+<p>All of your Quarto Notebooks have a file header (also called a YAML Header). This is required for specifying how your file will look and what format it will be output to when you generate your reports.</p>
 <p>The header is at the top of the Notebook and has three dashes <code>---</code> at the top and bottom.</p>
 <p>Here’s the header that I used on this current Notebook. These settings specified how I want my file to look when it is rendered to a report.</p>
 <div class="cell">
@@ -240,7 +240,7 @@ Note
 </section>
 <section id="markdown-syntax" class="level3">
 <h3 class="anchored" data-anchor-id="markdown-syntax">Markdown Syntax</h3>
-<p>Since your R Notebook (R Markdown) file is essentially a plain text file (e.g.&nbsp;You can’t modify how the text looks in your editor like you can in Microsoft Word) you need to use special characters to specify how your text should be formatted in your output report.</p>
+<p>Since your Quarto Notebook (qmd) file is essentially a plain text file (e.g.&nbsp;You can’t modify how the text looks in your editor like you can in Microsoft Word) you need to use special characters to specify how your text should be formatted in your output report.</p>
 <ul>
 <li><p><strong>Section headers/titles</strong> like the ones you see separating the sections of this document are created by putting an <code>#</code> at the start of a line of text. To create smaller section headers add more hashtags to the start of the line. For instance <code>##</code> will create a smaller section header and <code>###</code> would create and even smaller one.</p></li>
 <li><p><strong>Bold font</strong> is created by putting <code>**</code> at the start and end of the section of text you want in bold. For instance you would type <code>** text I want in bold **</code>.</p></li>
@@ -478,7 +478,7 @@ Note
 </section>
 <section id="data-types-and-data-structures" class="level3">
 <h3 class="anchored" data-anchor-id="data-types-and-data-structures">Data types and data structures</h3>
-<p>Everything in R is an object. The data assigned to a given object can be categorized by its <strong>data type</strong>. Data can be organized into different structures and these structures can often accomodate a mix of different data types.</p>
+<p>Everything in R is an object. The data assigned to a given object can be categorized by its <strong>data type</strong>. Data can be organized into different structures and these structures can often accommodate a mix of different data types.</p>
 <p><br></p>
 <section id="data-types" class="level4">
 <h4 class="anchored" data-anchor-id="data-types">Data types</h4>
@@ -872,7 +872,7 @@ Levels: F &lt; D &lt; C &lt; B &lt; A</code></pre>
 <section id="data-frames" class="level5">
 <h5 class="anchored" data-anchor-id="data-frames">Data frames</h5>
 <p>We are going to be using these all the time in this class and in data analysis in general. They are similar in structure to a spreadsheet that you might open in Excel.</p>
-<p>Data frames are made up of rows and columns. Each column is a vector and all columns must be of the same length. Basically anything the you save in as a delimeted text or Excel file <code>.csv</code>, <code>.xls</code>, or <code>.xlsx</code> can be read into R as a data frame.</p>
+<p>Data frames are made up of rows and columns. Each column is a vector and all columns must be of the same length. Basically anything the you save in as a delimited text or Excel file <code>.csv</code>, <code>.xls</code>, or <code>.xlsx</code> can be read into R as a data frame.</p>
 <p>Date frames have a number of important attributes that you’ll interact, in particular <strong>column names</strong>, <strong>row names</strong>, and <strong>dimensions</strong>.</p>
 <p><br></p>
 <p>We can load in data to a data frame or create one from scratch. We’ll create one below using the <code>data.frame()</code> function</p>
