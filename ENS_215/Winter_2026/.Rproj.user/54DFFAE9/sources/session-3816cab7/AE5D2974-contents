@@ -187,7 +187,7 @@ lake_pH[lake_pH < pH_threshold]
 
 We can apply this sampe approach to accessing data in a data frame.  Let's give it a try on the `mpg` dataset that is built-in `tidyverse`.  
 
-You've seen this dataset before, but you should refamiliarize yourself with it.  In your console type `?mpg` to get more info on the dataset.  Next type `View(mpg)` in your console and familiarize yourself with the dataset.  
+You've seen this dataset before, but you should refamiliarize yourself with it.  
 
 Once you understand what you are working with then run the code block below.  In this code block we are going to create a new data frame that just contains the cars that get good highway gas mileage (hwy >= 30).  
 
@@ -406,10 +406,6 @@ Remember to consult your R cheatsheets (in today's lecture, the **Base R cheatsh
 <br/>
 
 ### For loops
-Let's load in the tidyverse package, just in case you want to use some of its functionality
-```{r message = FALSE, warning=F}
-library(tidyverse)
-```
 
 <br/>
 

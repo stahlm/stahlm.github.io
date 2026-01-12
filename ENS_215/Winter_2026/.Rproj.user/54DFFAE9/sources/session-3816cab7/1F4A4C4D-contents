@@ -187,7 +187,7 @@ lake_pH[lake_pH < pH_threshold]
 
 We can apply this sampe approach to accessing data in a data frame.  Let's give it a try on the `mpg` dataset that is built-in `tidyverse`.  
 
-You've seen this dataset before, but you should refamiliarize yourself with it.  In your console type `?mpg` to get more info on the dataset.  Next type `View(mpg)` in your console and familiarize yourself with the dataset.  
+You've seen this dataset before, but you should refamiliarize yourself with it.  
 
 Once you understand what you are working with then run the code block below.  In this code block we are going to create a new data frame that just contains the cars that get good highway gas mileage (hwy >= 30).  
 
@@ -581,7 +581,7 @@ for(i_row in 1:n_row){
 While loops begin by testing a condition.  If the condition is TRUE then the loop is executed.  The loop continues to be executed until the test condition is no longer TRUE.  While loops have many uses, however a note of caution is that these loops will run infinitely if the test condition never changes to FALSE.  
 
 Let's take a look at a simple example of a while loop.  Before you run this code, predict the first and last value that will be printed to your console.
-```{r output = FALSE}
+```{r eval = FALSE}
 x_val <- 30  # initialize x_val
 
 while(x_val > 10){
@@ -620,7 +620,7 @@ Let's loop over each day and determine the freezing risk (imagine you are storin
   + If the daily average temperature is $<$ 32 deg F, then you have a "high risk of freezing".  
   + If the daily average temperature is $\ge$ 32 deg F, then you have a "low risk of freezing".
 
-```{r output = FALSE}
+```{r eval = FALSE}
 num_days <- nrow(Alb_temps) # store the number of rows (days) to the num_days variable
 freeze_temp <- 32 # water freezing temperature in degress F
 
