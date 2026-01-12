@@ -35,12 +35,25 @@ include-in-header:
 |      |     |        |       |
 
 ## Lectures 
+### Week 2
+* Tues (13-Jan) -- **R Programming Basics: Relation and logical operators, if/else, and control flow** [(html)](https://stahlm.github.io/ENS_215/Winter_2026/Lectures/2026_01_13.html) [(qmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2026/Lectures/2026_01_13.qmd)  
+
+*** 
 ### Week 1
 
 * Tues (6-Jan) -- **Course introduction**   
 [In-class examples](https://stahlm.github.io/ENS_215/Winter_2026/Lectures/2026_01_06_examples.html) [(qmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2026/Lectures/2026_01_06_examples.qmd), [Slides](https://stahlm.github.io/ENS_215/Winter_2026/Lectures/2026_01_06_Slides.html),   [Cheatsheets](https://stahlm.github.io/ENS_215/Resources/cheatsheets_2026/R_cheatsheets_all_2026.pdf) 
 
 * Thurs (8-Jan) -- **Diving into R programming and Markdown/Quarto basics**
+  + [Slides](https://stahlm.github.io/ENS_215/Winter_2026/Lectures/2026_01_08_Slides.html)
+  + R programming and Quarto basics [(html)](https://stahlm.github.io/ENS_215/Winter_2026/Lectures/2026_01_08_R_basics.html) [(qmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2026/Lectures/2026_01_08_R_basics.qmd)
+  + Diving into data analysis [(html)](https://stahlm.github.io/ENS_215/Winter_2026/Lectures/2026_01_08_diving_in.html) [(qmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2026/Lectures/2026_01_08_diving_in.qmd) 
+
+* Extra credit events -- ESPE Winter Seminar Series (_The Critical Ocean_)
+  + Jan 28th (6 PM in the Nott)
+  + Feb 4th (6 PM in the Nott)
+  + Feb 18th (6 PM in the Nott) 
+  
 
 
 ```{r eval = F, echo = F}
@@ -83,6 +96,7 @@ include-in-header:
 
 ## Labs
 
+* Lab 1 – **Intro and EPA Fuel Economy Data** [(html)](https://stahlm.github.io/ENS_215/Winter_2026/Labs/Lab_EPA_Fuel_Economy.html) [(qmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2026/Labs/Lab_EPA_Fuel_Economy.qmd)
 
 
 ```{r eval = F, echo = F}
@@ -95,7 +109,10 @@ include-in-header:
 
 ***
 
+
 _Mason Stahl (2026)_  
 _Union College_ 
 
 ![](https://stahlm.github.io/ENS_215/Winter_2026/Images/logo_ens_215.png){width=100px}
+
+[[Timer]{style="font-size: 70%;"}](https://stahlm.github.io/ENS_215/Winter_2026/Class_timer.html)

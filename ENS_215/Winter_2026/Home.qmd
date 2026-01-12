@@ -35,6 +35,10 @@ include-in-header:
 |      |     |        |       |
 
 ## Lectures 
+### Week 2
+* Tues (13-Jan) -- **R Programming Basics: Relation and logical operators, if/else, and control flow** [(html)](https://stahlm.github.io/ENS_215/Winter_2026/Lectures/2026_01_13.html) [(qmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2026/Lectures/2026_01_13.qmd)  
+
+*** 
 ### Week 1
 
 * Tues (6-Jan) -- **Course introduction**   
