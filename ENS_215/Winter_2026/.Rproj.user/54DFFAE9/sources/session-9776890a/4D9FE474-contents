@@ -1,0 +1,108 @@
+---
+title: "2026_01_08_Stahl"
+format: html
+---
+
+This is my first lesson.
+
+```{r}
+
+x <- 10
+
+x + 5
+
+```
+
+# Section 1
+
+Section 1 starts here
+
+## Section 1a
+
+### Sub sections
+
+**This is my bold text**
+
+*This is my italic text*
+
+x^2^
+
+X~i~
+
+
+## R Programming basics
+
+```{r}
+2 + 1
+```
+```{r}
+15 - 4 # testing out subtraction
+```
+```{r}
+9 * 2
+```
+
+```{r}
+3 ^ 4
+```
+  
+```{r}
+120 / 8 
+```
+  
+```{r}
+4 > 2 
+
+2 > 4
+
+5 == 5
+
+8 >= 2
+
+5 != 7
+```
+  
+```{r}
+
+x <- 11
+
+x
+```
+
+```{r}
+x <- "Bob"
+
+x
+```
+```{r}
+student_01 <- "Matia"
+```
+
+```{r}
+ls()
+```
+```{r}
+rm(X)
+```
+
+
+
+```{r}
+majors_vec <- c("Environmental Science","Geoscience","Chemistry")
+num_vec <- c(1, 10, 5034.253, -1.045)
+log_vec <- c(TRUE, FALSE, FALSE, TRUE, TRUE)
+```
+
+
+```{r}
+series_01 <- 1:10
+  
+series_01  
+```
+
+```{r}
+series_test <- seq(0, 10, by = 0.5)
+
+series_test
+```
+  

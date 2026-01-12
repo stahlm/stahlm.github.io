@@ -1,0 +1,512 @@
+table_flows <- df_stream_data %>%
+mutate(Year = year(Date)) %>%
+group_by(Year) %>%
+summarize(mean_flow = mean(Flow, na.rm= T),
+min_flow = min(Flow, na.rm = T),
+max_flow = max(Flow, na.rm = T),
+n_meas = n()) %>%
+filter(n_meas > 350)
+table_flows
+fig_max <- table_flows %>%
+ggplot(aes(x = Year)) +
+geom_line(aes(y = max_flow), size = 1, color = "blue") +
+#geom_line(aes(y = min_flow), size = 1, color = "red") +
+#geom_line(aes(y = mean_flow), size = 1, color = "black") +
+theme_classic()
+fig_min <- table_flows %>%
+ggplot(aes(x = Year)) +
+geom_line(aes(y = min_flow), size = 1, color = "red") +
+#geom_line(aes(y = mean_flow), size = 1, color = "black") +
+theme_classic()
+fig_mean <- table_flows %>%
+ggplot(aes(x = Year)) +
+geom_line(aes(y = mean_flow), size = 1, color = "black") +
+theme_classic()
+fig_mean/fig_max/fig_min
+Sys.setenv(MAPBOX_API_KEY = "pk.eyJ1Ijoic3RhaGxtIiwiYSI6ImNrZnJiMDMxbDA0aGsyenFlajhvMzZ4bXUifQ.I7l7fJBAHCQWRwyYozq4ZQ")
+loc2use <- "New Mexico"
+bb_values <- getbb(loc2use)
+bb_values
+springs_data <- opq(bb_values) %>%
+add_osm_feature(key = 'natural', value = 'spring') %>%
+osmdata_sf()
+loc2use <- "New York"
+bb_values <- getbb(loc2use)
+bb_values
+springs_data <- opq(bb_values) %>%
+add_osm_feature(key = 'natural', value = 'spring') %>%
+osmdata_sf()
+loc_border <- spData::us_states %>%
+filter(NAME == "New York")
+tmap_mode("view")
+map_springs <-
+tm_shape(loc_border) +
+tm_borders(col = "black") +
+tm_shape(springs_data$osm_points) +
+tm_dots(col = "blue")
+map_springs
+map_springs
+loc_border <- spData::us_states %>%
+filter(NAME == "Arizona")
+loc2use <- "Arizona"
+bb_values <- getbb(loc2use)
+bb_values
+springs_data <- opq(bb_values) %>%
+add_osm_feature(key = 'natural', value = 'spring') %>%
+osmdata_sf()
+loc_border <- spData::us_states %>%
+filter(NAME == "Arizona")
+tmap_mode("view")
+map_springs <-
+tm_shape(loc_border) +
+tm_borders(col = "black") +
+tm_shape(springs_data$osm_points) +
+tm_dots(col = "blue")
+map_springs
+loc2use <- "Hungary"
+bb_values <- getbb(loc2use)
+bb_values
+springs_data <- opq(bb_values) %>%
+add_osm_feature(key = 'natural', value = 'spring') %>%
+osmdata_sf()
+tmap_mode("view")
+map_springs <-
+tm_shape(loc_border) +
+tm_borders(col = "black") +
+tm_shape(springs_data$osm_points) +
+tm_dots(col = "blue")
+map_springs
+springs_data <- opq(bb_values) %>%
+add_osm_feature(key = 'natural', value = 'spring') %>%
+osmdata_sf()
+library(tidyverse)
+library(stationaRy)
+library(sf)
+library(tmap)
+library(spData)
+library(AOI)
+library(climateR)
+library(raster)
+library(rasterVis)
+library(patchwork)
+# Get the data
+#loc2use <- 'Death Valley National Park'
+loc2use <- 'Union College'
+AOI = AOI::geocode(loc2use,
+pt = TRUE)
+ts  = getGridMET(AOI, varname = c("tmmx","tmmn", "pr"),
+startDate = "2025-01-01",
+endDate = "2025-12-30")
+# convert units
+ts <- ts %>%
+mutate(tmax = ((tmmx - 273.15)*(9/5) +32),
+tmin = ((tmmn - 273.15)*(9/5) +32),
+prcp = pr/25.4
+)
+# Summary table
+ts %>%
+summarize(pcrp_max = max(prcp),
+temp_max = max(tmax),
+temp_min = min(tmin),
+temp_mean = mean((tmin+tmax)/2),
+temp_max_change = max(tmax - tmin),
+n_days = n()
+)
+# Make the figures
+fig_01 <- ts %>%
+ggplot() +
+geom_line(aes(x = date, y = tmax), color = "red") +
+geom_line(aes(x = date, y = tmin), color = "blue") +
+labs(x = "",
+y = "Temperature (F)"
+) +
+geom_hline(yintercept = 32, linetype = "dashed") +
+theme_bw()
+fig_02 <- ts %>%
+ggplot() +
+geom_col(aes(x = date, y = prcp), color = "black") +
+labs(y = "Precipitation (inches)") +
+theme_bw()
+# Make the figures
+(fig_01 / fig_02) +
+plot_annotation(title = paste(loc2use,": Temperature and precipitation", sep = ""),
+caption = "Data source: GridMET",
+tag_levels = "a"
+)
+hurricane_data = getGridMET(aoi_get(state = c("NC")),
+varname = "pr",
+startDate = "2024-09-23", endDate = "2024-09-28")
+r = terra::rast(hurricane_data)
+r_inches <- r/25.4
+tmap_mode("plot")
+fig_map <- r_inches %>%
+tm_shape() +
+tm_raster(style = "cont") +
+tm_shape(spData::us_states) +
+tm_borders()
+fig_map
+tmap_mode("view")
+fig_map
+tmap_mode("plot")
+round(terra::global(x = r_inches, "max", na.rm = T),2) %>% as.data.frame()
+sf::sf_use_s2(FALSE)
+temperature_US = getGridMET(aoi_get(state = "conus"),
+varname = "tmmn",
+startDate = "2025-12-19", endDate = "2025-12-19")
+#> Spherical geometry (s2) switched off
+#> Spherical geometry (s2) switched on
+#> startDate = "2024-10-31", endDate = "2024-10-31"
+temperature_US <- terra::rast(temperature_US)
+temperature_US <- temperature_US - 273.15
+temperature_US <- (temperature_US*9/5) + 32
+tmap_mode("plot")
+temperature_US %>%
+tm_shape() +
+tm_raster(style = "cont", palette = "-RdBu", midpoint = 32, title = "Min Temp (C)") +
+tm_shape(spData::us_states) +
+tm_borders() +
+tm_layout(legend.outside.position = "right", legend.outside = T)
+library(osmdata)
+library(tigris)
+library(sf)
+#library(osmplotr)
+library(tmaptools)
+library(OpenStreetMap)
+Sys.setenv(MAPBOX_API_KEY = "pk.eyJ1Ijoic3RhaGxtIiwiYSI6ImNrZnJiMDMxbDA0aGsyenFlajhvMzZ4bXUifQ.I7l7fJBAHCQWRwyYozq4ZQ")
+loc2use <- "New Mexico"
+bb_values <- getbb(loc2use)
+bb_values
+springs_data <- opq(bb_values) %>%
+add_osm_feature(key = 'natural', value = 'spring') %>%
+osmdata_sf()
+loc_border <- spData::us_states %>%
+filter(NAME == "New Mexico")
+library(tidyverse)
+library(lubridate)
+## Load in data
+met_data <- read_csv('http://stahlm.github.io/ENS_215/Data/Blue_Hills_MA_Precip_Temp_Data_1893_2024.csv', skip = 3)
+met_data <- met_data[,1:4]
+met_data <- mutate(met_data, DATE = lubridate::as_date(DATE)) # convert date into computable format
+#met_data <- select(met_data, -c(TOBS)) # remove the TOBS column, since we won't use it
+View(met_data)
+head(met_data) # shows us the first few rows and provides info about data types
+tail(met_data) # shows us the last few rows and provides info about data types
+summary(met_data)
+ggplot(met_data) +
+geom_line(aes(x = DATE, y = PRCP),color = "blue")
+met_data_2014_2024 <- filter(met_data, year(DATE) >= 2014, year(DATE) <= 2024) # new data frame
+ggplot(met_data_2014_2024) +
+geom_line(aes(x = yday(DATE), y = PRCP), color = "blue") +
+facet_wrap(~year(DATE)) # plot the data
+met_data <- mutate(met_data,year_val = year(DATE), month_val = month(DATE), day_val = day(DATE)) # add columns for year, month, and day
+annual_precip <- group_by(met_data,year_val) # group the data by year
+annual_precip<- summarise(annual_precip,tot_precip = sum(PRCP,na.rm = TRUE)) # create a new data frame that has the total annual precipitation (inches)
+ggplot(annual_precip) +
+geom_line(aes(x = year_val, y = tot_precip),color = "blue") +
+geom_point(aes(x = year_val, y = tot_precip),color = "black")
+filter(annual_precip, year_val == 1965)
+# Group the data by year and month
+monthly_precip <- group_by(met_data, year_val, month_val) %>%
+summarise(tot_precip = sum(PRCP, na.rm = TRUE))
+# Create a box plot of the monthly precipitation data
+fig_box <- ggplot(monthly_precip, aes(x=factor(month_val), y=tot_precip)) +
+geom_boxplot()
+fig_box
+library(tidyverse)
+library(stationaRy)
+library(sf)
+library(tmap)
+library(spData)
+library(AOI)
+library(climateR)
+library(raster)
+library(rasterVis)
+library(patchwork)
+# Get the data
+#loc2use <- 'Death Valley National Park'
+loc2use <- 'Union College'
+AOI = AOI::geocode(loc2use,
+pt = TRUE)
+ts  = getGridMET(AOI, varname = c("tmmx","tmmn", "pr"),
+startDate = "2025-01-01",
+endDate = "2025-12-30")
+View(ts)
+# convert units
+ts <- ts %>%
+mutate(tmax = ((tmmx - 273.15)*(9/5) +32),
+tmin = ((tmmn - 273.15)*(9/5) +32),
+prcp = pr/25.4
+)
+# Summary table
+ts %>%
+summarize(pcrp_max = max(prcp),
+temp_max = max(tmax),
+temp_min = min(tmin),
+temp_mean = mean((tmin+tmax)/2),
+temp_max_change = max(tmax - tmin),
+n_days = n()
+)
+# Make the figures
+fig_01 <- ts %>%
+ggplot() +
+geom_line(aes(x = date, y = tmax), color = "red") +
+geom_line(aes(x = date, y = tmin), color = "blue") +
+labs(x = "",
+y = "Temperature (F)"
+) +
+geom_hline(yintercept = 32, linetype = "dashed") +
+theme_bw()
+fig_02 <- ts %>%
+ggplot() +
+geom_col(aes(x = date, y = prcp), color = "black") +
+labs(y = "Precipitation (inches)") +
+theme_bw()
+# Make the figures
+(fig_01 / fig_02) +
+plot_annotation(title = paste(loc2use,": Temperature and precipitation", sep = ""),
+caption = "Data source: GridMET",
+tag_levels = "a"
+)
+# Get the data
+#loc2use <- 'Death Valley National Park'
+loc2use <- 'Lynn, MA'
+AOI = AOI::geocode(loc2use,
+pt = TRUE)
+ts  = getGridMET(AOI, varname = c("tmmx","tmmn", "pr"),
+startDate = "2025-01-01",
+endDate = "2025-12-30")
+View(ts)
+# convert units
+ts <- ts %>%
+mutate(tmax = ((tmmx - 273.15)*(9/5) +32),
+tmin = ((tmmn - 273.15)*(9/5) +32),
+prcp = pr/25.4
+)
+# Summary table
+ts %>%
+summarize(pcrp_max = max(prcp),
+temp_max = max(tmax),
+temp_min = min(tmin),
+temp_mean = mean((tmin+tmax)/2),
+temp_max_change = max(tmax - tmin),
+n_days = n()
+)
+# Make the figures
+fig_01 <- ts %>%
+ggplot() +
+geom_line(aes(x = date, y = tmax), color = "red") +
+geom_line(aes(x = date, y = tmin), color = "blue") +
+labs(x = "",
+y = "Temperature (F)"
+) +
+geom_hline(yintercept = 32, linetype = "dashed") +
+theme_bw()
+fig_02 <- ts %>%
+ggplot() +
+geom_col(aes(x = date, y = prcp), color = "black") +
+labs(y = "Precipitation (inches)") +
+theme_bw()
+# Make the figures
+(fig_01 / fig_02) +
+plot_annotation(title = paste(loc2use,": Temperature and precipitation", sep = ""),
+caption = "Data source: GridMET",
+tag_levels = "a"
+)
+hurricane_data = getGridMET(aoi_get(state = c("NC")),
+varname = "pr",
+startDate = "2024-09-23", endDate = "2024-09-28")
+r = terra::rast(hurricane_data)
+r_inches <- r/25.4
+tmap_mode("plot")
+fig_map <- r_inches %>%
+tm_shape() +
+tm_raster(style = "cont") +
+tm_shape(spData::us_states) +
+tm_borders()
+fig_map
+tmap_mode("view")
+fig_map
+fig_map
+tmap_mode("plot")
+round(terra::global(x = r_inches, "max", na.rm = T),2) %>% as.data.frame()
+sf::sf_use_s2(FALSE)
+temperature_US = getGridMET(aoi_get(state = "conus"),
+varname = "tmmn",
+startDate = "2025-12-19", endDate = "2025-12-19")
+#> Spherical geometry (s2) switched off
+#> Spherical geometry (s2) switched on
+#> startDate = "2024-10-31", endDate = "2024-10-31"
+temperature_US <- terra::rast(temperature_US)
+temperature_US <- temperature_US - 273.15
+temperature_US <- (temperature_US*9/5) + 32
+tmap_mode("plot")
+temperature_US %>%
+tm_shape() +
+tm_raster(style = "cont", palette = "-RdBu", midpoint = 32, title = "Min Temp (C)") +
+tm_shape(spData::us_states) +
+tm_borders() +
+tm_layout(legend.outside.position = "right", legend.outside = T)
+library(osmdata)
+library(tigris)
+library(sf)
+#library(osmplotr)
+library(tmaptools)
+library(OpenStreetMap)
+Sys.setenv(MAPBOX_API_KEY = "pk.eyJ1Ijoic3RhaGxtIiwiYSI6ImNrZnJiMDMxbDA0aGsyenFlajhvMzZ4bXUifQ.I7l7fJBAHCQWRwyYozq4ZQ")
+loc2use <- "New Mexico"
+bb_values <- getbb(loc2use)
+bb_values
+springs_data <- opq(bb_values) %>%
+add_osm_feature(key = 'natural', value = 'spring') %>%
+osmdata_sf()
+loc_border <- spData::us_states %>%
+filter(NAME == "New Mexico")
+tmap_mode("view")
+map_springs <-
+tm_shape(loc_border) +
+tm_borders(col = "black") +
+tm_shape(springs_data$osm_points) +
+tm_dots(col = "blue")
+map_springs
+map_springs
+loc_border <- spData::us_states %>%
+filter(NAME == "New York")
+loc2use <- "New York"
+bb_values <- getbb(loc2use)
+bb_values
+springs_data <- opq(bb_values) %>%
+add_osm_feature(key = 'natural', value = 'spring') %>%
+osmdata_sf()
+loc_border <- spData::us_states %>%
+filter(NAME == "New York")
+tmap_mode("view")
+map_springs <-
+tm_shape(loc_border) +
+tm_borders(col = "black") +
+tm_shape(springs_data$osm_points) +
+tm_dots(col = "blue")
+map_springs
+library(dataRetrieval)
+library(lubridate)
+df_stream_data <- readNWISdv(siteNumbers = "09380000",
+parameterCd = c("00060"),
+statCd = "00003") %>%
+renameNWISColumns()
+df_stream_data %>%
+ggplot(aes(x = Date, y = Flow)) +
+geom_line() +
+theme_classic()
+table_flows <- df_stream_data %>%
+mutate(Year = year(Date)) %>%
+group_by(Year) %>%
+summarize(mean_flow = mean(Flow, na.rm= T),
+min_flow = min(Flow, na.rm = T),
+max_flow = max(Flow, na.rm = T),
+n_meas = n()) %>%
+filter(n_meas > 350)
+table_flows
+fig_max <- table_flows %>%
+ggplot(aes(x = Year)) +
+geom_line(aes(y = max_flow), size = 1, color = "blue") +
+#geom_line(aes(y = min_flow), size = 1, color = "red") +
+#geom_line(aes(y = mean_flow), size = 1, color = "black") +
+theme_classic()
+fig_min <- table_flows %>%
+ggplot(aes(x = Year)) +
+geom_line(aes(y = min_flow), size = 1, color = "red") +
+#geom_line(aes(y = mean_flow), size = 1, color = "black") +
+theme_classic()
+fig_mean <- table_flows %>%
+ggplot(aes(x = Year)) +
+geom_line(aes(y = mean_flow), size = 1, color = "black") +
+theme_classic()
+fig_mean/fig_max/fig_min
+remotes::install_github("gadenbuie/countdown", subdir = "r")
+countdown::countdown(minutes = 0, seconds = 42)
+library(countdown)
+install.packages("beepr")
+beep(sound = 1, expr = NULL)
+library(beepr)
+beep(sound = 1, expr = NULL)
+beep(sound = 1, expr = NULL)
+beep(``)
+beep(1)
+beep(2)
+beep("fanfare")
+beep(0)
+beep(0)
+beep(0)
+beep(1)
+beep(1)
+beep(1)
+beep(1)
+beep(2)
+beep(4)
+beep(5)
+beep(6)
+beep(1)
+2+2
+2 +
+x <- 10
+x <- 10
+x <- 10
+x + 5
+2 + 1
+15 - 4 # testing out subtraction
+9 * 2
+3 ^ 4
+120 / 8
+120/8
+120 / 8
+4 > 2
+4 > 2
+2 > 4
+4 > 2
+2 > 4
+5 == 4
+4 > 2
+2 > 4
+5 == 5
+4 > 2
+2 > 4
+5 == 5
+8 >= 2
+4 > 2
+2 > 4
+5 == 5
+8 >= 2
+5 != 7
+x
+x
+x <- 11
+x
+x <- 11
+x
+x <- "Bob"
+x
+X <- "Jim"
+student_01 <- "Matia"
+student_01 <- "10"
+student_01 <- "there are 10 students"
+student_01 <- "Matia"
+ls()
+rm(X)
+majors_vec <- c("Environmental Science","Geoscience","Chemistry")
+majors_vec
+num_vec <- c(1, 10, 5034.253, -1.045)
+num_vec
+log_vec <- c(TRUE, FALSE, FALSE, TRUE, TRUE)
+log_vec
+series_01 <- 1:10
+series_01
+series_test <- seq(0, 10, by = 0.5)
+series_test
+library(tidyverse)
+library(lubridate)
+## Load in data
+met_data <- read_csv('http://stahlm.github.io/ENS_215/Data/Blue_Hills_MA_Precip_Temp_Data_1893_2024.csv', skip = 3)
+met_data <- met_data[,1:4]
+met_data <- mutate(met_data, DATE = lubridate::as_date(DATE)) # convert date into computable format
+#met_data <- select(met_data, -c(TOBS)) # remove the TOBS column, since we won't use it
+View(met_data)
+library(tidyverse)

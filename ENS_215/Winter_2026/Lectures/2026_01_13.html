@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Mason Stahl (ENS-215)">
+<meta name="dcterms.date" content="2026-01-13">
+
+<title>R Programming Basics: Relation and logical operators, if/else, and control flow</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="2026_01_13_files/libs/clipboard/clipboard.min.js"></script>
+<script src="2026_01_13_files/libs/quarto-html/quarto.js"></script>
+<script src="2026_01_13_files/libs/quarto-html/popper.min.js"></script>
+<script src="2026_01_13_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="2026_01_13_files/libs/quarto-html/anchor.min.js"></script>
+<link href="2026_01_13_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="2026_01_13_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="2026_01_13_files/libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="2026_01_13_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="2026_01_13_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="2026_01_13_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="2026_01_13_files/libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+
+<link href="2026_01_13_files/libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="2026_01_13_files/libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-full">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#relational-and-logical-operators" id="toc-relational-and-logical-operators" class="nav-link active" data-scroll-target="#relational-and-logical-operators">Relational and Logical operators</a>
+  <ul class="collapse">
+  <li><a href="#relational-operators" id="toc-relational-operators" class="nav-link" data-scroll-target="#relational-operators">Relational operators</a></li>
+  <li><a href="#logical-operators" id="toc-logical-operators" class="nav-link" data-scroll-target="#logical-operators">Logical operators</a></li>
+  <li><a href="#apply-relational-and-logical-operators-to-vectors" id="toc-apply-relational-and-logical-operators-to-vectors" class="nav-link" data-scroll-target="#apply-relational-and-logical-operators-to-vectors">Apply relational and logical operators to vectors</a></li>
+  </ul></li>
+  <li><a href="#conditional-programming" id="toc-conditional-programming" class="nav-link" data-scroll-target="#conditional-programming">Conditional programming</a>
+  <ul class="collapse">
+  <li><a href="#if-statements" id="toc-if-statements" class="nav-link" data-scroll-target="#if-statements">IF statements</a></li>
+  <li><a href="#ifelse-statements" id="toc-ifelse-statements" class="nav-link" data-scroll-target="#ifelse-statements">IF/ELSE statements</a></li>
+  <li><a href="#ifelse-ifelse-statements" id="toc-ifelse-ifelse-statements" class="nav-link" data-scroll-target="#ifelse-ifelse-statements">IF/ELSE IF/ELSE statements</a></li>
+  </ul></li>
+  <li><a href="#loops" id="toc-loops" class="nav-link" data-scroll-target="#loops">Loops</a>
+  <ul class="collapse">
+  <li><a href="#for-loops" id="toc-for-loops" class="nav-link" data-scroll-target="#for-loops">For loops</a></li>
+  <li><a href="#nested-for-loops" id="toc-nested-for-loops" class="nav-link" data-scroll-target="#nested-for-loops">Nested for loops</a></li>
+  </ul></li>
+  <li><a href="#while-loops" id="toc-while-loops" class="nav-link" data-scroll-target="#while-loops">While loops</a></li>
+  <li><a href="#combining-flow-control-structures" id="toc-combining-flow-control-structures" class="nav-link" data-scroll-target="#combining-flow-control-structures">Combining flow control structures</a></li>
+  <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2">Exercise</a></li>
+  <li><a href="#challenge" id="toc-challenge" class="nav-link" data-scroll-target="#challenge">Challenge</a></li>
+  </ul>
+</nav>
+</div>
+<main class="content column-page-left" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">R Programming Basics: Relation and logical operators, if/else, and control flow</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p><em>Mason Stahl</em> (ENS-215) </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 13, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<p><br></p>
+<p>In this lesson we will continue learning some important foundational concepts in programming. These concepts will help you understand how to develop your own programs and to solve a wide-range of problems that you are likely to encounter as scientists, engineers, or any other role where you are dealing with data.</p>
+<p>It’s worth noting that essentially all of the fundamental concepts you are learning in this class are not specific to R (we are just implementing them in R). This is great, since it means that you can apply these concepts/tools to any of your future work, whether it is in R or some other programming language (Python, Matlab, C,…).</p>
+<p>As always take the time to carefully work through the examples here. Also try out anything related that may pop into your head. If you are wondering if something is possible, just give it a try. Also remember to chat with your classmates about the work – you will learn more and much faster this way (plus it will be more fun).</p>
+<p>Also now that you’ve learned some Markdown syntax, you are able to add some fancier formatting to your Notebooks. You should now start implementing these formatting tools in your work. This will make all of your work much easier to read and also look much prettier.</p>
+<section id="relational-and-logical-operators" class="level2">
+<h2 class="anchored" data-anchor-id="relational-and-logical-operators">Relational and Logical operators</h2>
+<p>When you are writing code you will frequently need to make use of <strong>relational</strong> and <strong>logical</strong> operators. We use relational operators to compare values and logical operators to combine/blend these operations together. These concepts play a very important role in programming and allow us to control the flow of our code. Let’s take a look at <strong>relational operators</strong></p>
+<section id="relational-operators" class="level3">
+<h3 class="anchored" data-anchor-id="relational-operators">Relational operators</h3>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>To test for equality you use TWO EQUALS signs <code>==</code>.</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>a <span class="sc">==</span> b <span class="co"># test if a is equal to b </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>a <span class="sc">==</span> a <span class="co"># test if a is equal to a</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+<p>Notice how R returns a TRUE or FALSE value depending on the truth of the evaluated statement.</p>
+<p><br></p>
+<p>To test if an objects value is <strong>greater than</strong> <span class="math inline">\(&gt;\)</span> or <strong>greater than or equal to</strong> <span class="math inline">\(\ge\)</span> you do the following. Before you run the code, write down what you anticipate the results to be.</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">5</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>a <span class="sc">&gt;</span> b <span class="co"># test if a &gt; b</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>a <span class="sc">&gt;</span> c <span class="co"># test if a &gt; c</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>a <span class="sc">&gt;</span> a <span class="co"># test if a &gt; a</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>a <span class="sc">&gt;=</span> a <span class="co"># test if a &gt;= a</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+<p><br></p>
+<p>Now let’s test if an objects value is <strong>less than</strong> <span class="math inline">\(&lt;\)</span> or <strong>less than or equal to</strong> <span class="math inline">\(\le\)</span>.</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">5</span> </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>a <span class="sc">&lt;</span> b <span class="co"># test if a &lt; b</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>a <span class="sc">&lt;</span> c <span class="co"># test if a &lt; c</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>a <span class="sc">&lt;</span> a <span class="co"># test if a &lt; a</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>a <span class="sc">&lt;=</span> a <span class="co"># test if a &lt;= a</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="logical-operators" class="level3">
+<h3 class="anchored" data-anchor-id="logical-operators">Logical operators</h3>
+<p>Often we want to test for some comination of conditions. That’s where <strong>logical operators</strong> AND, OR, NOT come into play.</p>
+<p>Here’s how we use the <strong>AND</strong> operator, which is implemented in R using <code>&amp;</code>. Before running the code, make a prediction about whether the test is TRUE or FALSE.</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">5</span> </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>a <span class="sc">&gt;</span> b <span class="sc">&amp;</span> a <span class="sc">&lt;</span> c <span class="co"># test if a &gt; b AND a &lt; c.</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>c <span class="sc">&gt;</span> a <span class="sc">&amp;</span> c <span class="sc">&lt;</span> b <span class="co"># test if c &gt; a AND c &lt; b.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Notice that when using AND, a value of TRUE will only be returned if ALL of the conditions tested are TRUE.</p>
+<ul>
+<li>Create your own code block and try out some more tests with the AND operator</li>
+</ul>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><br></p>
+<p>We can use the <strong>OR</strong> operator <code>|</code> to see if any of the evaluated conditions are true. Before running the code, make a prediction about whether the test is TRUE or FALSE.</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">5</span> </span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>a <span class="sc">&gt;</span> b <span class="sc">|</span> a <span class="sc">&lt;</span> c <span class="co"># test if a &gt; b or a &lt; c.</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>c <span class="sc">&gt;</span> a <span class="sc">|</span> c <span class="sc">&lt;</span> b <span class="co"># test if c &gt; a or c &lt; b.</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>b <span class="sc">&gt;</span> a <span class="sc">|</span> b <span class="sc">==</span> c <span class="co"># test if b &gt; a or if b is equal to c</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>If one or more of the tested conditions is TRUE then OR will return a value of TRUE</p>
+<p>You can string together as many tests as you want. For example something like <code>(a &gt; b) &amp; (a &lt; 2*c) | (a &gt; b-2 + c)</code> is completely acceptable.</p>
+<p>I recommend using parentheses to make your code more readable, especially when the set of tests grows and the code becomes more complex.</p>
+<ul>
+<li>Create your own code block and try out some more tests with the OR operator</li>
+</ul>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><br></p>
+<p>The <strong>NOT</strong> operator is implemented in R using <code>!</code>. This changes the truth of an evaluated statement. Try to predict the results of the code below before you run it.</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">5</span> </span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>a <span class="sc">&gt;</span> c <span class="co"># test if a &gt; c</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span>(a <span class="sc">&gt;</span> c) <span class="co"># test if a is NOT greater than c (i.e. tests if a &lt;= c)</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>a <span class="sc">!=</span> b <span class="co"># test if a is NOT equal to b</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><br></p>
+</section>
+<section id="apply-relational-and-logical-operators-to-vectors" class="level3">
+<h3 class="anchored" data-anchor-id="apply-relational-and-logical-operators-to-vectors">Apply relational and logical operators to vectors</h3>
+<p>We can also apply these operations on an element-by-element basis to a vector. A vector of logical values (i.e.&nbsp;TRUE or FALSE) is returned. Predict what the results will be before you run the code. If it helps, use a piece of scratch paper to write out some of the values in each vector.</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>a_vec <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">10</span>, <span class="at">by =</span> <span class="fl">1.0</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>b_vec <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">5</span>,<span class="dv">10</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>a_vec <span class="sc">&lt;=</span> <span class="dv">7</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>a_vec <span class="sc">&gt;</span> b_vec</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>a_vec <span class="sc">==</span> b_vec</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Once you run the code spend some time making sure you really understand what is going on.</p>
+<p>Vector operations are incredibly useful and we will apply these all the time in our work. Often the save us from writing a ton of code, since we can perform many operations in a single line of code.</p>
+<p><br></p>
+<p><strong>You can also use relational and logical operators to access parts of vectors (or data frames)</strong>. For example we might have a vectors of data and we only want to access values that meet some criteria. I’ll give an example below</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>lake_pH <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">7.2</span>, <span class="fl">7.4</span>, <span class="fl">6.1</span>, <span class="fl">8.2</span>, <span class="fl">8.5</span>, <span class="fl">4.3</span>, <span class="fl">7.2</span>, <span class="fl">5.8</span>, <span class="fl">7.8</span>, <span class="fl">3.9</span>) <span class="co"># a vector that has pH measurements from several lakes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Imagine we are just interested in the data from lakes that are acidic. We can use relational operation to identify the indices that meet this criteria and then pass those indices to the <code>lake_pH</code> vector and it will return those values that met our criteria.</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>pH_threshold <span class="ot">&lt;-</span> <span class="fl">7.0</span> <span class="co"># threshold below which we will consider a lake acidic</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>lake_pH[lake_pH <span class="sc">&lt;</span> pH_threshold]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6.1 4.3 5.8 3.9</code></pre>
+</div>
+</div>
+<ul>
+<li>Make sure you understand what is happening in the code above</li>
+<li>Now create your own example similar to the one I gave above</li>
+</ul>
+<p><br></p>
+<p>We can apply this sampe approach to accessing data in a data frame. Let’s give it a try on the <code>mpg</code> dataset that is built-in <code>tidyverse</code>.</p>
+<p>You’ve seen this dataset before, but you should refamiliarize yourself with it. In your console type <code>?mpg</code> to get more info on the dataset. Next type <code>View(mpg)</code> in your console and familiarize yourself with the dataset.</p>
+<p>Once you understand what you are working with then run the code block below. In this code block we are going to create a new data frame that just contains the cars that get good highway gas mileage (hwy &gt;= 30).</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>cars_good_hwy <span class="ot">&lt;-</span> mpg[mpg<span class="sc">$</span>hwy <span class="sc">&gt;=</span> <span class="dv">30</span>, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Remember we can access data in a data frame by specifying the rows and columns we want (see last week’s lecture for notes/examples on this). In the above code, we used a logical vector to specify the rows we wanted to select and we selected all of the columns (as indicated by the blank after the comma in the brackets). When the value in a logical vector is TRUE then that index is selected and the value is FALSE that index is not selected.</p>
+<ul>
+<li><p>Create a new dataframe that contains data for all of the cars that get good highway gas mileage (hwy &gt;= 30) and are model year 2008.</p></li>
+<li><p>Create a new object that just contains the model names for cars whose class is <code>compact</code></p></li>
+<li><p>Test out some other cases where you select only a subset of the <code>mpg</code> dataset based on a set of criteria.</p></li>
+</ul>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+
+</div>
+<p><br></p>
+</section>
+</section>
+<section id="conditional-programming" class="level2">
+<h2 class="anchored" data-anchor-id="conditional-programming">Conditional programming</h2>
+<p>We often want to perform an operation only when certain conditions are met. To do this we rely on <strong>if/else</strong> statements. For example,</p>
+<p><strong>if</strong> you have completed the above work AND you understand it</p>
+<ul>
+<li>Proceed on with the material below</li>
+</ul>
+<p><strong>else if</strong> you have completed the above work AND YOU DO NOT understand it</p>
+<ul>
+<li>Come tell me what you don’t understand and I can help to explain it</li>
+</ul>
+<p><strong>else</strong></p>
+<ul>
+<li>Come tell me why you haven’t been able to complete the work and we’ll figure out a solution.</li>
+</ul>
+<p><br></p>
+<section id="if-statements" class="level3">
+<h3 class="anchored" data-anchor-id="if-statements">IF statements</h3>
+<p>An <strong>If Statement</strong> in R is constructed with the following syntax</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(Logical Test Goes Here){</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Here is the code that you want to run when the above test is TRUE</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Pay very careful attention to the syntax above. In particular note: + The parentheses <code>()</code> around the logical test + The brackets <code>{}</code> wrapped around the code within the IF statement. The first <code>{</code> should be directly after the logical test and on the same line as the <code>if</code></p>
+<p>Ok, now let’s implement these concepts in R. First go to <a href="https://www.weather.gov/">National Weather Service (NWS)</a> and get the current temperature (in deg F) for a city of your choosing.</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>city_temp <span class="ot">&lt;-</span> ... <span class="co"># type the temperature here</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(city_temp <span class="sc">&gt;=</span> <span class="dv">85</span>){</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Wow it's pretty hot out!"</span>)</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>} </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Pay very close attention to the syntax used.</p>
+<ul>
+<li>Try another temperature to get a different response as your original run.</li>
+</ul>
+<p><br></p>
+</section>
+<section id="ifelse-statements" class="level3">
+<h3 class="anchored" data-anchor-id="ifelse-statements">IF/ELSE statements</h3>
+<p>We can add more conditions to our if statement using <code>else</code></p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>city_temp <span class="ot">&lt;-</span> ... <span class="co"># type the temperature here</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(city_temp <span class="sc">&gt;=</span> <span class="dv">85</span>){</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Wow it's pretty hot out!"</span>)</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> { </span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"It's not hot today"</span>)</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Again, pay close attention to the syntax used. Note how the <code>else</code> keyword is on the same line as the closing bracket of the previous part of the control construct.</p>
+<p><br></p>
+<ul>
+<li>Think of a scenario where you would want to use an if/else statement and create one below.</li>
+</ul>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><br></p>
+<p>You can even <strong>nest</strong> if statements within another if statement. For example,</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>city_temp <span class="ot">&lt;-</span> ... <span class="co"># type the temperature here</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(city_temp <span class="sc">&gt;=</span> <span class="dv">85</span>){</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(city_temp <span class="sc">&gt;</span> <span class="dv">100</span>){</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">"It is very hot"</span>)</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span>{</span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">"It is hot"</span>)</span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>  }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><br></p>
+</section>
+<section id="ifelse-ifelse-statements" class="level3">
+<h3 class="anchored" data-anchor-id="ifelse-ifelse-statements">IF/ELSE IF/ELSE statements</h3>
+<p>We can add even more conditions using <code>else if</code>. Not how the <code>else</code> statement comes at the very end and catches anything that was not caught in the above tests.</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>city_temp <span class="ot">&lt;-</span> ... <span class="co"># type the temperature here</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(city_temp <span class="sc">&gt;=</span> <span class="dv">85</span>){</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Wow it's pretty hot out!"</span>)</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span>(city_temp <span class="sc">&gt;=</span> <span class="dv">50</span>){</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"The temperature is nice and comfortable"</span>)</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (city_temp <span class="sc">&gt;=</span> <span class="dv">32</span>){</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"It's pretty cold outside"</span>)</span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"It's freezing out!"</span>)</span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><br></p>
+<p>Notice how in the example above, I “hard-coded” the temperature thresholds into the if/else-if statements. This is not a very good practice. Imagine I decide that <code>85</code> degress is not the best value to use as a cut-off for hot weather. If I want to change that threshold then I have to go into my if/else-if statement and find each place where I’ve got an <code>85</code> and change it. As your code gets longer and more complex this is a difficult/time consuming and error prone task.</p>
+<p>To make your code much more robust and easy to modify, you could assign the temperature thresholds to an object in R and then when you want to modify the threshold you only need to modify one line of code where you’ve made the object assignment.</p>
+<ul>
+<li>Recreate the code block above, but this time assign all of the threshold temperatures to their own R object</li>
+</ul>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><br></p>
+<p>Now you should try putting all of this work together. You’d like to modify the above example to take in both temperature and humidity data and then check both the temperature and humidity status and output a message warning people when it is hot and humid (heatstroke danger) or cold and damp (hypothermia risk).</p>
+<ul>
+<li>Using some combination of if, else, else/if statements create a code block that evaluates health risks associated with weather conditions.
+<ul>
+<li>For cold and humid weather print “hypothermia risk”</li>
+<li>For cold weather print “it is cold”</li>
+<li>For hot and humid weather print “heatstroke risk”</li>
+<li>For hot and dry weather print “it is hot”</li>
+<li>For our purposes, cold is when temperature &lt; 50 and hot &gt;= 50 (degrees F)</li>
+<li>For our purposes, humid is when humidity &gt;= 60 and dry &lt; 60 (relative humidity %)</li>
+</ul></li>
+</ul>
+<p>In the above exercise you should get your temperature and humidity data for today’s conditions in a city of your choosing. You can find this data at <a href="https://www.weather.gov/">National Weather Service (NWS)</a>.</p>
+<p>Note that there are many ways you can implement a solution to the problem above</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>You should test your solution to make sure it is working properly for each of possible cases.</p>
+<p>Once you’ve implemented your solution, talk with your neighbors and see how they did it. Were there more efficient ways of implementing the solution?</p>
+<div class="cell">
+
+</div>
+<ul>
+<li>If you finish this exercise, then you should make your solution even better, by trying to catch any problems with user input of temperature data.
+<ul>
+<li>Nest your above solution in an if/else structure where you test to see if the user input reasonable temperature values. IF they input a temperature &gt; 150 or &lt; -100, you should print a statment “these temperature values seem incorrect”, ELSE run the solution as normal.</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="loops" class="level2">
+<h2 class="anchored" data-anchor-id="loops">Loops</h2>
+<p><br></p>
+<p>We learned about if/else/else if statements in an earlier lecture. Now we are going to learn about loops, which are another type of <strong>control structure</strong>.</p>
+<p>Loops allow us work through items in an object and apply operations to these items, without having to repeat our code. For instance we may have a list of names and we would like to print them one-by-one to our computer screen. We could write out a <code>print()</code> statement for each item in the list. In a case like this we can use a <strong>loop</strong>.</p>
+<p>Remember to consult your R cheatsheets (in today’s lecture, the <strong>Base R cheatsheet</strong> is particularly helpful)</p>
+<p><br></p>
+<section id="for-loops" class="level3">
+<h3 class="anchored" data-anchor-id="for-loops">For loops</h3>
+<p>Let’s load in the tidyverse package, just in case you want to use some of its functionality</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><br></p>
+<p>Ok, now let’s try out a basic example, so that you learn the structure of for loops.</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>){</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(i)</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Make sure you understand what’s going on above. Now modify the loop so that it prints out <span class="math inline">\(i^2\)</span> on each loop iteration.</p>
+<p>Pay very close attention to the syntax of the loop. If the syntax is incorrect you will get an error.</p>
+<p><br></p>
+<p>Ok, now let’s try looping over a list of some majors available at Union. Here’s the list.</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>majors_union <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Environmental Science"</span>,<span class="st">"Geosciences"</span>,<span class="st">"English"</span>,</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"Chemistry"</span>,<span class="st">"Math"</span>,<span class="st">"History"</span>,<span class="st">"Computer Science"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><br></p>
+<p>Now we would like to print this list out.</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i_major <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>){</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(majors_union[i_major])</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>When you run this code you will see that we’ve looped over the list <code>majors_union</code> and we used an <strong>index</strong> variable that started at 1 and increased by one each iteration of the loop. It went up through 7 iterations (which we specified at the start of the loop) and then stops after the 7<sup>th</sup> iteration.</p>
+<ul>
+<li>Create a new code block and modify the above code to also print out the <code>i_major</code> variable. Do you see what is happening to <code>i_major</code> on each iteration of the loop? Note how we use <code>i_major</code> to access the i<sup>th</sup> index of <code>majors_union</code> on each loop iteration.</li>
+</ul>
+<p><br></p>
+<p>You can also loop through a list using the elements of <code>majors_union</code> as the variables over which we loop.</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i_major <span class="cf">in</span> majors_union){</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(i_major)</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>The above loop steps through each element in the <code>i_major</code> vector – moving to the next element on each loop iteration.</p>
+<ul>
+<li><p>Make sure you understand the difference between the two loops above. They produce the same results but the implementation is different.</p></li>
+<li><p>Talk with your neighbor about how the two loops above are different. Can you think of potential reasons why in some cases you might want to use one implementation over the other?</p></li>
+</ul>
+<p><br></p>
+<p>In some situations we’ll want to add a <strong>counter variable</strong> to our loop. This becomes particularly useful when we start to nest if statements inside of our loops (you’ll learn about this later in this lesson). Let’s add a counter variable to the loop we created above. This variable will keep track of how many times the loop is cycled through and thus will tell us how many majors are in our <code>majors_union</code> variable.</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>counter_majors <span class="ot">&lt;-</span> <span class="dv">0</span> <span class="co"># Initialize the variable to zero</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i_major <span class="cf">in</span> majors_union){</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(i_major)</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>  counter_majors <span class="ot">&lt;-</span> counter_majors <span class="sc">+</span> <span class="dv">1</span> <span class="co"># add one to the counter everytime the loop is run</span></span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ul>
+<li>Print out the <code>counters_majors</code> variable. Does the value make sense?</li>
+</ul>
+<p><br></p>
+<section id="exercise" class="level4">
+<h4 class="anchored" data-anchor-id="exercise">Exercise</h4>
+<p>Make two vectors. One vector should have the names of the months (<em>you can type out the vector of names, or you can use a vector that is built into R that already has the names! A quick Google search should reveal how to do this</em>). The other vector should have the number of days in each month. Create a loop that prints out a message like below:</p>
+<p><em>January has 31 days</em><br>
+<em>February has 28 days</em><br>
+<em>March has…</em></p>
+<p><strong>Hint</strong>: use the <code>paste()</code> function to combine text. You will nest the <code>paste()</code> function in your <code>print()</code> statement.</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><br></p>
+<p><strong>Challenge:</strong> Once you’ve completed the exercise above, create a new code block that has the same loop, but this time, for the month of February you should print a statement that says “February has 28 days (29 on leap year)”. You can accomplish this by nesting an <strong>if/else</strong> statement in your loop.</p>
+<ul>
+<li>Talk this over with your neighbors if you get stuck.</li>
+</ul>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><br></p>
+</section>
+</section>
+<section id="nested-for-loops" class="level3">
+<h3 class="anchored" data-anchor-id="nested-for-loops">Nested for loops</h3>
+<p>We can nest loops inside of other loops. This is often very handy when we want to loop over multiple related variables. Let’s take a look at a simple example.</p>
+<p>We have a 5 x 5 matrix with the numbers 1 to 25 in it. First take a look at the <code>x_mat</code> matrix to make sure you understand what you’ve got.</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>x_mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">25</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><br></p>
+<p>Now let’s print each element out row-by-row (i.e.&nbsp;start in row 1 and print each element out one-by-one, then go to row 2 and do the same,…)</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i_row <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>){</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(j_col <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>){</span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(x_mat[i_row, j_col])</span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Look at the structure of the code above and make sure you understand what is going on.</p>
+<p>Do you see how I “hard-coded” the dimensions of the matrix into the loop (i.e.&nbsp;specified that there are 5 rows and 5 columns). This is generally a bad practice as it makes your code very inflexible. Imagine we are loading in a dataset that is stored in a matrix and we don’t know the dimensions beforehand (or we want to load in different datasets that have different dimensions). If we “hard-code” the dimensions into the loop then our code will throw an error (if our dataset has less than 5 rows and 5 columns in the example above) or it will not loop over all of the matrix (if our dataset has &gt; 5 rows and &gt; 5 columns).</p>
+<p><br></p>
+<section id="exercise-1" class="level4">
+<h4 class="anchored" data-anchor-id="exercise-1">Exercise</h4>
+<p>We can fix this issue by getting the dimensions of the data and storing it as a variable that is used in the loop.</p>
+<p>Recreate the loop from the example above, but specify the number of rows and columns in the loop using a variable (Hint: you can use the <code>dim()</code> function to determine the dimensions of an object or the <code>nrow()</code> and <code>ncol()</code> functions)</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><br></p>
+</section>
+</section>
+</section>
+<section id="while-loops" class="level2">
+<h2 class="anchored" data-anchor-id="while-loops">While loops</h2>
+<p>While loops begin by testing a condition. If the condition is TRUE then the loop is executed. The loop continues to be executed until the test condition is no longer TRUE. While loops have many uses, however a note of caution is that these loops will run infinitely if the test condition never changes to FALSE.</p>
+<p>Let’s take a look at a simple example of a while loop. Before you run this code, predict the first and last value that will be printed to your console.</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>x_val <span class="ot">&lt;-</span> <span class="dv">30</span>  <span class="co"># initialize x_val</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span>(x_val <span class="sc">&gt;</span> <span class="dv">10</span>){</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(x_val)</span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>  x_val <span class="ot">&lt;-</span> x_val <span class="sc">-</span> <span class="dv">1</span>  <span class="co"># on each loop iteration, subtract 1 from x_val</span></span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Like you do with all of your code, pay careful attention to the syntax used when creating a <strong>while</strong> loop.</p>
+<p><br></p>
+<p>Create your own while loop and test it out</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><br></p>
+</section>
+<section id="combining-flow-control-structures" class="level2">
+<h2 class="anchored" data-anchor-id="combining-flow-control-structures">Combining flow control structures</h2>
+<p>Control structures can be nested within one another. This allows for even greater control in your programming. For example, you can nest an <strong>if statement</strong> within a <strong>for loop</strong>.</p>
+<p>Let’s take a look at an example. In this example let’s load in air temperature data in Albany for November 2018.</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>Alb_temps <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://stahlm.github.io/ENS_215/Data/Albany_Temperatures_Nov_2018.csv"</span>,</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">skip =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 30 Columns: 4
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+dbl (4): Day, Max, Avg, Min
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+</div>
+<p>Now that you’ve loaded in the data, take a look at it. The data frame has the maximum, average, and minimum temperature (in deg F) for each of the days in November 2018. Make sure you understand each of the variables (columns) before moving ahead.</p>
+<p>Let’s loop over each day and determine the freezing risk (imagine you are storing something outside and want to know if it was at risk of freezing).</p>
+<ul>
+<li>If the daily average temperature is <span class="math inline">\(&lt;\)</span> 32 deg F, then you have a “high risk of freezing”.<br>
+</li>
+<li>If the daily average temperature is <span class="math inline">\(\ge\)</span> 32 deg F, then you have a “low risk of freezing”.</li>
+</ul>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>num_days <span class="ot">&lt;-</span> <span class="fu">nrow</span>(Alb_temps) <span class="co"># store the number of rows (days) to the num_days variable</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>freeze_temp <span class="ot">&lt;-</span> <span class="dv">32</span> <span class="co"># water freezing temperature in degress F</span></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i_day <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>num_days){</span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(Alb_temps<span class="sc">$</span>Avg[i_day] <span class="sc">&gt;</span> freeze_temp){</span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"On November"</span>, Alb_temps<span class="sc">$</span>Day[i_day], <span class="st">": Low risk of freezing"</span>))</span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"On November"</span>, Alb_temps<span class="sc">$</span>Day[i_day], <span class="st">": High risk of freezing"</span>))</span>
+<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb56-12"><a href="#cb56-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb56-13"><a href="#cb56-13" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ul>
+<li>Carefully go through the code block above and make sure you understand exactly what is happening. Discuss with your neighbor. I’ll come around and check-in with you too.</li>
+</ul>
+</section>
+<section id="exercise-2" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-2">Exercise</h2>
+<ul>
+<li>Write a new loop that expands on the loop above. In this new loop add an “Extreme risk of freezing” condition. This condition is met when the <strong>maximum temperature</strong> on a given day never gets above freezing (on those days the temperature never went above freezing at any point). You can use multiple if statements or you can use if -&gt; else if -&gt; else combination to accomplish this task. I highly recommend that you draw out flow diagram to help you think about this problem (see simple example below).</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://stahlm.github.io/ENS_215/Lectures/Images/If-Then-Else-diagram.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">source: Wikipedia</figcaption><p></p>
+</figure>
+</div>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ul>
+<li>Once you’ve got that working, add a <strong>counting variable</strong> that keeps a count of the number of days with an “Extreme risk of freezing”. Add similar counting variables for each of the other risk categories. Then after your loop is complete have your code print a statement reporting the number of days in each category. For example, “<em>Low risk of freezing: X days</em>”.</li>
+</ul>
+<p><br></p>
+</section>
+<section id="challenge" class="level2">
+<h2 class="anchored" data-anchor-id="challenge">Challenge</h2>
+<p>Load in the daily temperature data for Albany International Airport and for each year from 1939 through 2021 determine the number of days where the minimum temperature was less than or equal to 32 degrees F. Your results should be saved to a data frame.</p>
+<p>The data can be loaded in here</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>df_met <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Data/Albany_GHCND_2840632.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Ask me and/or discuss with your neighbors if you have any questions or want to go over the approach. FYI, there are many ways that you might implement this solution.</p>
+<p>Note: The daily temperature data for Albany was obtained through the National Oceanic and Atmospheric Administration’s (NOAA) <a href="https://www.ncei.noaa.gov/products/land-based-station/global-historical-climatology-network-daily">Global Historical Climatology Netword daily (GHCNd) database</a>. This is an excellent resource for daily meteorological records for &gt; 100,000 sites around the world, with many sites having data going back many decades or more.</p>
+<div class="cell">
+
+</div>
+<div class="cell">
+
+</div>
+<div class="cell">
+
+</div>
+<div class="cell">
+
+</div>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

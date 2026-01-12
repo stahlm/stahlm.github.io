@@ -1,0 +1,2 @@
+"0","ggplot(data = fuel_data) +"
+"0","  geom_histogram(aes(x = hwy)) "
