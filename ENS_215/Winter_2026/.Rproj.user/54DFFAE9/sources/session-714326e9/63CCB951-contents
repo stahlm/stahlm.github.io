@@ -54,7 +54,7 @@ February 18th: Sujata Murty (UAlbany) Unlocking Climate Secrets from Corals in a
 - Refresh students on the RStudio/R basics, console in R, R studio panes
 - Remind students to clear their environment and hit Session -> Restart R and clear all output prior to beginning for the day
 - Remind students that code should be run from top to bottom.  
-- Highlight to students how you "knit" documents and point out the difference between an ".Rmd" and ".html" file  
+- Highlight to students how you "knit" documents and point out the difference between an ".qmd" and ".html" file  
 - Go over the basic data types and data structures.  Emphasize the importance of properly structuring/organizing data (highlight that we will cover this topic in much greater detail in coming lectures)  
 
 

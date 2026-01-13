@@ -6,6 +6,25 @@ format: html
 
 ```{r}
 library(tidyverse)
+```
 
+```{r}
+my_seq <- seq(0, 20, by = 2)
+```
+
+
+```{r}
+my_seq[1:2]
+```
+
+
+
+```{r}
+df_mpg <- mpg
+```
+
+
+```{r}
+df_mpg$manufacturer
 ```
 
