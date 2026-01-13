@@ -1,23 +1,23 @@
 {
-    "id": "E35CB4BD",
+    "id": "A76FBF7D",
     "path": "~/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2026/Lectures/2026_01_08_R_basics.qmd",
     "project_path": "Lectures/2026_01_08_R_basics.qmd",
     "type": "quarto_markdown",
     "hash": "0",
     "contents": "",
     "dirty": false,
-    "created": 1767633665939.0,
+    "created": 1767817795526.0,
     "source_on_save": false,
-    "relative_order": 5,
+    "relative_order": 2,
     "properties": {
         "rmdVisualMode": "false",
         "rmdVisualWrapConfigured": "true",
         "tempName": "Untitled1",
         "source_window_id": "",
         "Source": "Source",
-        "docOutlineVisible": "1",
+        "docOutlineVisible": "0",
         "rmdVisualCollapsedChunks": "",
-        "cursorPosition": "0,0",
+        "cursorPosition": "130,12",
         "scrollLine": "0",
         "rmdVisualModeLocation": "2:0"
     },
@@ -26,7 +26,7 @@
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1767817982,
+    "last_content_update": 1767817982258,
     "read_only": false,
     "read_only_alternatives": []
 }
