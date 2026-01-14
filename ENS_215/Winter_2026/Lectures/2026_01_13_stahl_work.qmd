@@ -1,0 +1,125 @@
+---
+title: "Untitled"
+format: 
+  html: 
+    embed-resources: true
+---
+
+## Refreshing our memory 
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+my_seq <- seq(0, 20, by = 2)
+```
+
+```{r}
+my_seq[1:4]
+```
+
+### Let's work with the mpg data real quick
+
+```{r}
+df_mpg <- mpg
+```
+
+
+```{r}
+df_mpg$hwy[1:5]
+```
+```{r}
+df_mpg$hwy > 25
+```
+
+
+```{r}
+df_mpg$hwy[df_mpg$hwy > 25]
+
+df_mpg$model[df_mpg$hwy > 25]
+```
+
+
+
+
+```{r}
+(5 > 10) 
+
+
+
+```
+
+
+```{r}
+(2 < 10)
+```
+
+
+```{r}
+(5 > 10) & (2 < 10)
+
+```
+
+
+```{r}
+(5 > 10) | (2 < 10)
+```
+
+### if first approach
+```{r}
+city_temp <- 54
+
+if(city_temp >= 85){
+  print("Wow it's pretty hot out!")
+  
+} else if(city_temp >= 50){
+  print("The temperature is nice and comfortable")
+  
+} else if (city_temp >= 32){
+  print("It's pretty cold outside")
+  
+} else {
+  print("It's freezing out!")
+  
+}
+
+```
+
+
+
+### if second approach
+
+Hi user, you can edit the threshold values input here
+```{r}
+t_veryhot <- 85
+t_nice <- 50
+t_cold <- 32
+```
+
+
+City temperature input
+```{r}
+city_temp <- 54
+```
+
+
+```{r}
+
+
+if(city_temp >= t_veryhot){
+  print("Wow it's pretty hot out!")
+  
+} else if(city_temp >= t_nice){
+  print("The temperature is nice and comfortable")
+  
+} else if (city_temp >= t_cold){
+  print("It's pretty cold outside")
+  
+} else {
+  print("It's freezing out!")
+  
+}
+
+```
+
