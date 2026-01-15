@@ -1,27 +1,28 @@
 {
-    "id": "36AF1D1A",
-    "path": "~/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2026/Lectures/2026_01_13_stahl_work_test.qmd",
-    "project_path": "Lectures/2026_01_13_stahl_work_test.qmd",
+    "id": "EFD5B254",
+    "path": "~/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2026/Home.qmd",
+    "project_path": "Home.qmd",
     "type": "quarto_markdown",
     "hash": "0",
     "contents": "",
     "dirty": false,
-    "created": 1767894323287.0,
+    "created": 1768494489396.0,
     "source_on_save": false,
     "relative_order": 5,
     "properties": {
         "tempName": "Untitled1",
+        "chunk_output_type": "inline",
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "4,25",
-        "scrollLine": "0"
+        "cursorPosition": "102,252",
+        "scrollLine": "96"
     },
     "folds": "",
-    "lastKnownWriteTime": 1768319788,
+    "lastKnownWriteTime": 1768494645,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1768319788117,
+    "last_content_update": 1768494645033,
     "read_only": false,
     "read_only_alternatives": []
 }

@@ -151,16 +151,8 @@ Make sure you are familiar with the expectations and evaluation criteria present
 <br/>
 
 #### Submitting the lab
-Your lab is due prior to the start of next week’s lab. Once you are finished and satisfied with your work you should Knit it to an `.html` file and submit both your `html` and `Rmd` file to Nexus.
+Your lab is due prior to the start of next week’s lab. Once you are finished and satisfied with your work you should Knit it to an `.html` file and submit both your `html` and `qmd` file to Nexus.
 
-Please make sure that the `.html` file you submit is `.html` and not `nb.html`.
-
-```{r eval = FALSE, echo= FALSE}
-[Take a look at this link](https://en.wikipedia.org/wiki/Violin_plot) for more info on violin plots.  
-
-[Also look at this link](http://www.sthda.com/english/wiki/ggplot2-violin-plot-quick-start-guide-r-software-and-data-visualization) for info on how to make a violin plot (the section on **Basic violin plots** is very helpful).  
-
-```
 
 
 [^1]: Original data source available at: <http://www.fao.org/nr/water/aquastat/dams/index.stm>

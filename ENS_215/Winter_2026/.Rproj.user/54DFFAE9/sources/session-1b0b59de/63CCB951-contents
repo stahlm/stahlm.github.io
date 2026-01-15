@@ -76,7 +76,7 @@ February 18th: Sujata Murty (UAlbany) Unlocking Climate Secrets from Corals in a
 ### Data wrangling (intro)
 - Remind class about the need for discussion in their lab reports  
 - When writing text in Rmd after a figure you should put in two line breaks.  This prevent the text from wrapping around the side of the figure  
-- Remind class that when submitting the HTML files they should submit the *.html* and not the *.nb.html*  
+- Remind class to include `embed-resources: true` in the YAML header
 - Go over `filter()` and piping  
 - Give an example of why `filter(Country == "China", Country == "Spain")` would not return any rows
 

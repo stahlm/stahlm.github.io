@@ -1,13 +1,21 @@
 ---
 title: "Lab 2: Global Dams Data"
-author: "ENS-215"
-date: "Winter 2025"
-output:
-  html_document:
-    df_print: paged
-    theme: journal
-    toc: yes
-    toc_float: yes
+author: "_Mason Stahl_ (ENS-215)"
+date: "2026-01-15"
+date-format: "MMMM D, YYYY"
+format:
+  html:
+    embed-resources: true
+    code-fold: show
+    code-tools: 
+      source: false
+    df-print: paged
+    theme:
+      light: journal
+      dark: darkly
+    page-layout: full
+    toc: true
+    toc-float: true
 ---
 
 <br/>
@@ -136,23 +144,15 @@ It is important to realize that my expectations for each of the graded criteria 
 
 Make sure you are familiar with the expectations and evaluation criteria presented in the links below:
 
-+ [Evaluation rubric](https://stahlm.github.io/ENS_215/Winter_2025/Syllabus.html#evaluation_rubric)
++ [Evaluation rubric](https://stahlm.github.io/ENS_215/Winter_2026/Syllabus.html#evaluation_rubric)
 + Template for lab and homework assignments: [(html)](https://stahlm.github.io/ENS_215/Homework/Template_Assignments.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Homework/Template_Assignments.Rmd)
 + [Lab report guidelines](https://stahlm.github.io/ENS_215/Labs/Lab_Guidelines.html)
 
 <br/>
 
 #### Submitting the lab
-Your lab is due prior to the start of next week’s lab. Once you are finished and satisfied with your work you should Knit it to an `.html` file and submit both your `html` and `Rmd` file to Nexus.
+Your lab is due prior to the start of next week’s lab. Once you are finished and satisfied with your work you should Knit it to an `.html` file and submit both your `html` and `qmd` file to Nexus.
 
-Please make sure that the `.html` file you submit is `.html` and not `nb.html`.
-
-```{r eval = FALSE, echo= FALSE}
-[Take a look at this link](https://en.wikipedia.org/wiki/Violin_plot) for more info on violin plots.  
-
-[Also look at this link](http://www.sthda.com/english/wiki/ggplot2-violin-plot-quick-start-guide-r-software-and-data-visualization) for info on how to make a violin plot (the section on **Basic violin plots** is very helpful).  
-
-```
 
 
 [^1]: Original data source available at: <http://www.fao.org/nr/water/aquastat/dams/index.stm>
