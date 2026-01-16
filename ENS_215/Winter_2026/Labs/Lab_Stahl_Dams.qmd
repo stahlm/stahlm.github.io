@@ -1,0 +1,113 @@
+---
+title: "Dams Labs"
+author: "_Mason Stahl_ (ENS-215)"
+date: "2026-01-15"
+date-format: "MMMM D, YYYY"
+format:
+  html:
+    embed-resources: true
+    code-fold: show
+    code-tools: 
+      source: false
+    df-print: paged
+    theme:
+      light: journal
+      dark: darkly
+    page-layout: full
+    toc: true
+    toc-float: true
+---
+
+```{r}
+library(tidyverse)
+```
+
+
+## Load in our data
+```{r}
+dams_data <- read_csv("https://stahlm.github.io/ENS_215/Data/Dams_FAO_SelectCols_LabData.csv")
+```
+
+```{r warning= F}
+ggplot(data = dams_data) +
+  geom_point(aes(x = Dam_height_m, 
+                 y = Reservoir_capacity_million_m3, 
+                 color = Continent)) +
+  scale_x_log10() +
+  scale_y_log10()
+```
+```{r}
+dams_data %>% 
+  filter(Year_completed >= 1800) %>% 
+ggplot() +
+  geom_point(aes(x = Year_completed, 
+                 y = Dam_height_m, 
+                 color = Continent)) +
+  #scale_y_log10() +
+  
+  facet_wrap(~Continent)
+```
+
+
+
+
+```{r}
+ggplot(data = dams_data) +
+  geom_point(aes(x = Dam_height_m, 
+                 y = Reservoir_capacity_million_m3, 
+                 color = Continent)) +
+  scale_x_log10() +
+  scale_y_log10() +
+  
+  facet_wrap(~Continent)
+```
+
+## Step 3
+```{r}
+countries_SA <- c("Argentina", "Venezuela (Bolivarian Republic of)", "")
+```
+
+
+```{r}
+dams_data %>% 
+  filter(Country != "United States of America") %>% 
+  filter(Country != "Canada") %>% 
+  filter(Country != "Mexico") %>% 
+  group_by(Continent) %>% 
+  summarise(avg_height_m =  mean(Dam_height_m, na.rm = TRUE),
+            avg_area =  mean(Reservoir_area_km2, na.rm = TRUE),
+            avg_storage = mean(Reservoir_capacity_million_m3, na.rm = TRUE),
+            avg_year = mean(Year_completed, na.rm = TRUE)
+            )
+```
+
+```{r}
+table_uses <- dams_data %>% 
+  summarize(n_irrigation = sum(Irrigation, na.rm = T),
+            n_hydro = sum(Hydroelectricity, na.rm = T),
+            n_flood = sum(Flood_control, na.rm = T)
+            )
+```
+
+```{r}
+table_uses %>% 
+  pivot_longer(cols = 1:ncol(table_uses), 
+               names_to = "uses",
+               values_to = "n_dams") %>% 
+  ggplot() +
+  geom_col(aes(x = uses, y = n_dams))
+ 
+```
+
+
+
+```{r}
+dams_data %>% 
+  filter(Year_completed >= 1800) %>% 
+  ggplot(aes(x = Year_completed)) +
+  geom_bar()
+```
+
+
+
+

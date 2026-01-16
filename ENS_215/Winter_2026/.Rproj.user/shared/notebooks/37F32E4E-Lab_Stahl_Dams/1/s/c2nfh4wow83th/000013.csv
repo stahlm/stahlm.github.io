@@ -1,0 +1,5 @@
+"0","table_uses <- dams_data %>% "
+"0","  summarize(n_irrigation = sum(Irrigation, na.rm = T),"
+"0","            n_hydro = sum(Hydroelectricity, na.rm = T),"
+"0","            n_flood = sum(Flood_control, na.rm = T)"
+"0","            )"

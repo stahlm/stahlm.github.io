@@ -1,0 +1,4 @@
+"0","dams_data %>% "
+"0","  filter(Year_completed >= 1800) %>% "
+"0","  ggplot(aes(x = Year_completed)) +"
+"0","  geom_bar()"
