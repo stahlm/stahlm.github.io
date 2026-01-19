@@ -1,0 +1,4 @@
+"0","my_gap <- mutate(my_gap, "
+"0","                 income_status = case_when(gdpPercap > 7500 ~ ""high income"", "
+"0","                                           gdpPercap > 3500 & gdpPercap <= 7500 ~ ""middle income"", "
+"0","                                           gdpPercap <= 3500 ~ ""low income"") )"
