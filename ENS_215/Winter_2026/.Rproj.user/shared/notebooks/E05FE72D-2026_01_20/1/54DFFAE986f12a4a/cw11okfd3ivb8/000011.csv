@@ -1,0 +1,4 @@
+"0","precip_data <- precip_data %>% "
+"0","  select(YEAR, MONTH, STATE, Precip_inches = Value) %>% "
+"0","  filter(YEAR < 2025) %>% "
+"0","  mutate(MONTH = as.numeric(MONTH))"

@@ -1,0 +1,4 @@
+"0",""
+"0","state_data %>% "
+"0","  group_by(YEAR) %>% "
+"0","  summarize(tot_ann_precip = sum(Precip_inches))"

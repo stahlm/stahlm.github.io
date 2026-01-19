@@ -1,0 +1,5 @@
+"0","summarize(my_gap, "
+"0","          min_life = min(life_exp), "
+"0","          mean_life = mean(life_exp), "
+"0","          max_life = max(life_exp))"
+"2","`summarise()` has grouped output by 'continent'. You can override using the `.groups` argument."

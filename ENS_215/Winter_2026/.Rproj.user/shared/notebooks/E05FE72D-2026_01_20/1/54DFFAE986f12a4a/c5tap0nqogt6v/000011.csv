@@ -1,0 +1,5 @@
+"0",""
+"0","state_data %>% group_by(MONTH) %>% "
+"0","  summarize(m_avg = mean(Precip_inches), "
+"0","            m_min = min(Precip_inches), "
+"0","            m_max = max(Precip_inches)) "

@@ -39,7 +39,6 @@ Today we are going to introduce a few more `dplyr` functions that will help you 
 We'll load in `tidyverse` which contains `dplyr` (as well as many other packages).  We will also load in the `gapminder` library so we can continue to work with the `gapminder` data we've been using in the past few lectures.
 ```{r message = FALSE, warning=FALSE}
 library(tidyverse)
-library(readr) # we'll use this package later in the lecture to load in files from our class website
 library(gapminder)
 ```
 
@@ -429,25 +428,33 @@ gap_summary_table <- my_gap %>%
 
 Let's take a look at some precipitation data from the National Oceanic and Atmospheric Agency (NOAA) to gain insight into annual and seasonal variability in precipitation for a US state of your choosing.  
 
-The dataset that we will use has monthly precipitation data from 1895 through 2017 for each US state.  We are going to generate a summary of annual precipitation for each year on record for your state of interest.  For example if you choose NY, you will create a dataframe that has the total annual precipitation for NY for each year from 1895 through 2017.  If you didn't have the tools from the `dplyr` package you would have to do this using a loop and indexing the dataframe with base R (cumbersome, requires more coding, harder to read, more prone to making a coding error).  Thankfully we've learned how to use `dplyr`.  
+The dataset that we will use has monthly precipitation data from 1895 through 2024 for each US state.  We are going to generate a summary of annual precipitation for each year on record for your state of interest.  For example if you choose New York, you will create a dataframe that has the total annual precipitation for New York for each year from 1895 through 2024  If you didn't have the tools from the `dplyr` package you would have to do this using a loop and indexing the dataframe with base R (cumbersome, requires more coding, harder to read, more prone to making a coding error).  Thankfully we've learned how to use `dplyr`.  
 
 
 <br/>
 
 First we'll load in dataset from last week
 ```{r}
-precip_data <- read_csv("https://stahlm.github.io/ENS_215/Data/NOAA_State_Precip_LabData.csv")
+precip_data <- read_csv("https://stahlm.github.io/ENS_215/Data/noaa_cag_state_precipitation.csv")
 ```
 
+```{r}
+precip_data <- precip_data %>% 
+  select(YEAR, MONTH, STATE, Precip_inches = Value) %>% 
+  filter(YEAR < 2025) %>% 
+  mutate(MONTH = as.numeric(MONTH))
+```
+
+NOAA_State_Precip_LabData.csv
 <br/>
 
 Take a few minutes to look at the dataset to familiarize yourself with it (e.g. view it, use the `summary()` function,...).  
 
 Now let's select a state of interest.  Remember that if we weren't using `dplyr` we would have to select the state of interest using code like what is shown directly below.  
 ```{r eval = FALSE}
-state_2_get <- "NY" # Abbreviation code for state I want to select
+state_2_get <- "New York" # State I want to select
 
-state_data <- precip_data[precip_data$state_cd == state_2_get, ] # get the rows with desired state, and get all columns
+state_data <- precip_data[precip_data$STATE == state_2_get, ] # get the rows with desired state, and get all columns
 ```
 
 
@@ -463,9 +470,9 @@ Use `dplyr` to create a `state_data` object that has all of the data for your st
 
 
 ```{r echo = FALSE, eval = FALSE}
-state_2_get <- "CA" # Abbreviation code for state I want to select
+state_2_get <- "California" # State I want to select
 
-state_data <- filter(precip_data, state_cd == state_2_get)
+state_data <- filter(precip_data, STATE == state_2_get)
 ```
 
 <br/>
@@ -491,7 +498,7 @@ Now use the tools from `dplyr` to do the following:
 
 ```{r eval = FALSE, echo=FALSE}
 
-state_data %>% group_by(Month) %>% 
+state_data %>% group_by(MONTH) %>% 
   summarize(m_avg = mean(Precip_inches), 
             m_min = min(Precip_inches), 
             m_max = max(Precip_inches)) 
@@ -512,7 +519,7 @@ state_data %>% group_by(Month) %>%
 ```{r eval = FALSE, echo=FALSE}
 
 state_data %>% 
-  group_by(Year) %>% 
+  group_by(YEAR) %>% 
   summarize(tot_ann_precip = sum(Precip_inches))
 
 ```
@@ -531,7 +538,7 @@ state_data %>%
 ```{r eval = FALSE, echo=FALSE}
 
 t3 <- precip_data %>% 
-  group_by(state_cd, Year) %>%
+  group_by(STATE, YEAR) %>%
   summarize(annual_precip = sum(Precip_inches))
 
 ```
@@ -551,9 +558,9 @@ t3 <- precip_data %>%
 ```{r eval = FALSE, echo=FALSE}
 
 t3 %>% 
-  group_by(Year) %>% 
+  group_by(YEAR) %>% 
   top_n(1, annual_precip) %>% 
-  arrange(Year)
+  arrange(YEAR)
 ```
 
   
@@ -575,9 +582,9 @@ t3 %>%
 ```{r eval = FALSE, echo=FALSE}
 
 t5 <- precip_data %>% 
-  group_by(state_cd, Year) %>% 
+  group_by(STATE, YEAR) %>% 
   summarize(tot_annual_precip = sum(Precip_inches)) %>% 
-  group_by(state_cd) %>%  
+  group_by(STATE) %>%  
   summarize(mean_precip = mean(tot_annual_precip),
             min_precip = min(tot_annual_precip),
             max_precip = max(tot_annual_precip)) %>% 
@@ -602,12 +609,12 @@ This table will allow us to see how the seasonal distribution of precipitation m
 ```{r eval = FALSE, echo=FALSE}
 
 state_data <- mutate(state_data, 
-                     season = if_else(Month %in% c(3,4,5,6,7,8), "season-1", "season-2"))
+                     season = if_else(MONTH %in% c(3,4,5,6,7,8), "season-1", "season-2"))
 
 t6 <-  state_data %>% 
-  group_by(Year, season) %>% 
+  group_by(YEAR, season) %>% 
   summarize(precip_seasonal = sum(Precip_inches)) %>%
-  group_by(Year) %>% 
+  group_by(YEAR) %>% 
   summarize(precip_ratio = first(precip_seasonal)/sum(precip_seasonal) )
 
 ```

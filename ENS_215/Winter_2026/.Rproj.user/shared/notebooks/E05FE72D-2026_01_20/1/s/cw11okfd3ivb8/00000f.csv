@@ -1,0 +1,2 @@
+"0","precip_data <- precip_data %>% "
+"0","  select(YEAR, MONTH, STATE, Precip_inches = Value)"
