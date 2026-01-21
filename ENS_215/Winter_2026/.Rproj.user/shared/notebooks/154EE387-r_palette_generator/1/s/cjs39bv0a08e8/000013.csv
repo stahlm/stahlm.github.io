@@ -1,0 +1,6 @@
+"0","gapminder %>% "
+"0","  ggplot(aes(x = gdpPercap, y = lifeExp, fill = continent)) +"
+"0","  geom_point(shape = 21) +"
+"0","  scale_fill_manual(values = pal2use) +"
+"0","  "
+"0","  theme_classic()"
