@@ -1,0 +1,4 @@
+"0","my_gap <- my_gap %>% "
+"0","  mutate(income_status = if_else(gdpPercap > 7500, ""higher-income"", ""lower-income"")"
+"0","           "
+"0","           )"

@@ -1,0 +1,2 @@
+"0","my_gap <- my_gap %>% "
+"0","  mutate(log10_pop = log10(pop))"
