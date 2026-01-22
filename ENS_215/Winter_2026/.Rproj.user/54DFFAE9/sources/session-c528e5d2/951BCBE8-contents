@@ -148,7 +148,7 @@ Good examples of these types of figures are found in:
 - Many government and NGO websites and publications
 
 
-## Graphics in `R`{.smaller}
+## Graphics in `R` {.smaller .scrollable}
 R has excellent graphic making capabilities that allow you to create figures of the highest quality.  
 
 In fact many figures you see in scientific journals and in the popular press are made in R (many of the graphics in the NY Times are made in R!).  
@@ -173,7 +173,7 @@ The `ggplot2` package implements what is called the _grammar of graphics_.  This
     - Both of our textbooks, [moderndive](https://moderndive.com/v2/index.html) and [R4DS](https://r4ds.hadley.nz/) largely use `ggplot2` to teach data visualizaiton
 
 
-## `ggplot2` package {.smaller}
+## `ggplot2` package {.smaller .scrollable}
 
 _The grammar of graphics_ is based on the concept that[^1]:
 
