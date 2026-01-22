@@ -1,0 +1,91 @@
+---
+title: "Classwork"
+author: "_Mason Stahl_ (ENS-215)"
+date: "2026-01-22"
+date-format: "MMMM D, YYYY"
+format:
+  html:
+    embed-resources: true
+    code-fold: show
+    code-tools: 
+      source: false
+    df-print: paged
+    theme:
+      light: journal
+      dark: darkly
+    page-layout: full
+    toc: true
+    toc-float: true
+---
+
+```{r}
+library(tidyverse)
+library(gapminder)
+```
+
+## Revist class exercises from Jan 20th, 2026
+```{r}
+my_gap <- gapminder
+```
+
+Using only the data for year 2007, create a table that reports the following for each continent in the my_gap dataset
+
+The minimum, maximum and mean per capita GDP
+The minimum, maximum and mean life expectancy
+The number of countries in that continent
+
+```{r}
+gap_2007 <- my_gap %>% 
+  filter(year == 2007) %>% 
+  group_by(continent) %>% 
+  summarise(min_gdp_percap = min(gdpPercap), 
+            max_gdp_percap = max(gdpPercap),
+            mean_gdp_percap = mean(gdpPercap),
+            
+            min_le = min(lifeExp),
+            max_le = max(lifeExp),
+            mean_le = mean(lifeExp),
+            
+            n_countries = n()
+            
+            )
+```
+
+```{r}
+gap_2007
+```
+
+### NOAA precip exercise 
+```{r}
+precip_data <- read_csv("https://stahlm.github.io/ENS_215/Data/noaa_cag_state_precipitation.csv")
+```
+
+
+```{r}
+precip_data <- precip_data %>% 
+  select(YEAR, MONTH, STATE, Precip_inches = Value) %>% 
+  filter(YEAR < 2025) %>% 
+  mutate(MONTH = as.numeric(MONTH))
+```
+
+
+
+For your chosen state create a table that has
+The monthly average precipitation (i.e. for January you would take the average of all the January data, for Feb…)
+
+Minimum observed precipitation for a given month
+Maximum observed precipitation for a given month
+
+```{r}
+t1 <- precip_data %>% 
+  #filter(STATE == "Florida") %>% 
+  group_by(STATE, MONTH) %>% 
+  summarize(avg_precip = mean(Precip_inches, na.rm = T),
+            min_precip = min(Precip_inches, na.rm = T),
+            max_precip = max(Precip_inches, na.rm = T)
+            )
+
+t1
+```
+
+
