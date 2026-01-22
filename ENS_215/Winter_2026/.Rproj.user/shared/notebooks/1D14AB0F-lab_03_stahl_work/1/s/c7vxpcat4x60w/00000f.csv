@@ -1,0 +1,7 @@
+"0","low_As <- 10 # low arsenic threshold (ug/L)"
+"0","med_As <- 50 # low arsenic threshold (ug/L)"
+"0",""
+"0","bangladesh_gw <- bangladesh_gw %>% "
+"0","  mutate(As_cat = case_when(As_ugL <= low_As ~ ""low As"", "
+"0","                            (As_ugL > low_As) & (As_ugL <= med_As) ~ ""med As"","
+"0","                            As_ugL > med_As ~ ""high As""))"

@@ -1,0 +1,204 @@
+---
+title: "Untitled"
+format: html
+---
+
+```{r}
+# ---------------------------------------------------------
+# 1. EXAMINE THE DATA
+# ---------------------------------------------------------
+library(tidyverse)
+
+# Load the dataset
+bangladesh_gw <- read_csv("https://stahlm.github.io/ENS_215/Data/NationalSurveyData_DPHE_BGS_LabData.csv")
+
+# Inspect the data structure
+glimpse(bangladesh_gw)
+
+# ---------------------------------------------------------
+# 2. CREATE ADDITIONAL VARIABLES
+# ---------------------------------------------------------
+
+bangladesh_gw <- bangladesh_gw %>%
+  mutate(
+    # Create categorical variable for Depth
+    depth_cat = case_when(
+      Depth <= 50 ~ "shallow",
+      Depth > 50 & Depth <= 100 ~ "intermed",
+      Depth > 100 ~ "deep"
+    ),
+    # Convert to ordered factor
+    depth_cat = factor(depth_cat, levels = c("shallow", "intermed", "deep"), ordered = TRUE),
+    
+    # Create categorical variable for Arsenic (As)
+    As_cat = case_when(
+      As <= 10 ~ "low As",
+      As > 10 & As <= 50 ~ "med As",
+      As > 50 ~ "high As"
+    ),
+    # Convert to ordered factor
+    As_cat = factor(As_cat, levels = c("low As", "med As", "high As"), ordered = TRUE)
+  )
+
+# Verify the new variables
+summary(bangladesh_gw$depth_cat)
+summary(bangladesh_gw$As_cat)
+
+# ---------------------------------------------------------
+# 3. CREATE SUMMARY TABLES
+# ---------------------------------------------------------
+
+# --- Geochemical Overview ---
+
+# Table 1: Overall Summary Statistics (All Data)
+summary_overall <- bangladesh_gw %>%
+  summarise(
+    mean_Depth = mean(Depth, na.rm = TRUE),
+    median_Depth = median(Depth, na.rm = TRUE),
+    mean_Year = mean(Year, na.rm = TRUE),
+    median_Year = median(Year, na.rm = TRUE),
+    mean_As = mean(As, na.rm = TRUE),
+    median_As = median(As, na.rm = TRUE),
+    mean_Fe = mean(Fe, na.rm = TRUE),
+    median_Fe = median(Fe, na.rm = TRUE),
+    mean_Mn = mean(Mn, na.rm = TRUE),
+    median_Mn = median(Mn, na.rm = TRUE),
+    mean_SO4 = mean(SO4, na.rm = TRUE),
+    median_SO4 = median(SO4, na.rm = TRUE)
+  )
+
+print("Overall Summary Table:")
+print(summary_overall)
+
+# Table 2: Summary Statistics by Division
+summary_division <- bangladesh_gw %>%
+  group_by(DIVISION) %>%
+  summarise(
+    mean_Depth = mean(Depth, na.rm = TRUE),
+    median_Depth = median(Depth, na.rm = TRUE),
+    mean_Year = mean(Year, na.rm = TRUE),
+    median_Year = median(Year, na.rm = TRUE),
+    mean_As = mean(As, na.rm = TRUE),
+    median_As = median(As, na.rm = TRUE),
+    mean_Fe = mean(Fe, na.rm = TRUE),
+    median_Fe = median(Fe, na.rm = TRUE),
+    mean_Mn = mean(Mn, na.rm = TRUE),
+    median_Mn = median(Mn, na.rm = TRUE),
+    mean_SO4 = mean(SO4, na.rm = TRUE),
+    median_SO4 = median(SO4, na.rm = TRUE)
+  ) %>%
+  arrange(desc(mean_As)) # Sort by mean Arsenic descending
+
+print("Summary by Division:")
+print(summary_division)
+
+# --- Risk/Exposure Assessment ---
+
+# Table 3: Risk Distribution by Division
+risk_by_division <- bangladesh_gw %>%
+  group_by(DIVISION) %>%
+  summarise(
+    n_wells = n(),
+    pct_low_As = sum(As_cat == "low As", na.rm = TRUE) / n() * 100,
+    pct_med_As = sum(As_cat == "med As", na.rm = TRUE) / n() * 100,
+    pct_high_As = sum(As_cat == "high As", na.rm = TRUE) / n() * 100
+  ) %>%
+  arrange(desc(pct_high_As))
+
+print("Risk Assessment by Division:")
+print(risk_by_division)
+
+# Table 4: Risk Distribution by Depth Category
+risk_by_depth <- bangladesh_gw %>%
+  group_by(depth_cat) %>%
+  summarise(
+    n_wells = n(),
+    pct_low_As = sum(As_cat == "low As", na.rm = TRUE) / n() * 100,
+    pct_med_As = sum(As_cat == "med As", na.rm = TRUE) / n() * 100,
+    pct_high_As = sum(As_cat == "high As", na.rm = TRUE) / n() * 100
+  )
+
+print("Risk Assessment by Depth:")
+print(risk_by_depth)
+
+# ---------------------------------------------------------
+# 4. EXAMINE PARAMETERS (VISUALIZATIONS)
+# ---------------------------------------------------------
+
+# --- Depth Profiles ---
+
+# 1. Arsenic vs. Depth (Overall)
+ggplot(bangladesh_gw, aes(x = As, y = Depth)) +
+  geom_point(alpha = 0.5, size = 1) +
+  scale_y_reverse() + # Reverse y-axis so shallow is at top
+  labs(title = "Arsenic Concentration vs. Well Depth",
+       x = "Arsenic (ug/L)",
+       y = "Depth (m)") +
+  theme_minimal()
+
+# 1b. Arsenic vs. Depth (Faceted by Division)
+ggplot(bangladesh_gw, aes(x = As, y = Depth)) +
+  geom_point(alpha = 0.4, size = 0.5) +
+  scale_y_reverse() +
+  facet_wrap(~DIVISION) +
+  labs(title = "Arsenic vs. Depth by Division",
+       x = "Arsenic (ug/L)",
+       y = "Depth (m)") +
+  theme_light()
+
+# 2. Other Parameters vs. Depth
+# Iron (Fe) vs Depth
+ggplot(bangladesh_gw, aes(x = Fe, y = Depth)) +
+  geom_point(alpha = 0.5, color = "darkred") +
+  scale_y_reverse() +
+  labs(title = "Iron (Fe) vs. Depth", x = "Iron (mg/L)", y = "Depth (m)") +
+  theme_minimal()
+
+# Manganese (Mn) vs Depth
+ggplot(bangladesh_gw, aes(x = Mn, y = Depth)) +
+  geom_point(alpha = 0.5, color = "purple") +
+  scale_y_reverse() +
+  labs(title = "Manganese (Mn) vs. Depth", x = "Manganese (mg/L)", y = "Depth (m)") +
+  theme_minimal()
+
+# Sulfate (SO4) vs Depth
+ggplot(bangladesh_gw, aes(x = SO4, y = Depth)) +
+  geom_point(alpha = 0.5, color = "blue") +
+  scale_y_reverse() +
+  labs(title = "Sulfate (SO4) vs. Depth", x = "Sulfate (mg/L)", y = "Depth (m)") +
+  theme_minimal()
+
+# --- Relationships Between Parameters ---
+
+# Arsenic vs. Iron
+ggplot(bangladesh_gw, aes(x = Fe, y = As)) +
+  geom_point(alpha = 0.4) +
+  geom_smooth(method = "lm", se = FALSE, color = "red") + # Optional trend line
+  labs(title = "Arsenic vs. Iron", x = "Iron (mg/L)", y = "Arsenic (ug/L)") +
+  theme_bw()
+
+# Arsenic vs. Manganese
+ggplot(bangladesh_gw, aes(x = Mn, y = As)) +
+  geom_point(alpha = 0.4) +
+  labs(title = "Arsenic vs. Manganese", x = "Manganese (mg/L)", y = "Arsenic (ug/L)") +
+  theme_bw()
+
+# Arsenic vs. Sulfate
+ggplot(bangladesh_gw, aes(x = SO4, y = As)) +
+  geom_point(alpha = 0.4) +
+  labs(title = "Arsenic vs. Sulfate", x = "Sulfate (mg/L)", y = "Arsenic (ug/L)") +
+  theme_bw()
+
+# ---------------------------------------------------------
+# ADDITIONAL ANALYSIS (Example Idea)
+# ---------------------------------------------------------
+
+# Boxplot of Arsenic distribution by Division to see regional differences
+ggplot(bangladesh_gw, aes(x = DIVISION, y = As, fill = DIVISION)) +
+  geom_boxplot() +
+  coord_flip() + # Flip coordinates for easier reading of labels
+  labs(title = "Distribution of Arsenic by Division", y = "Arsenic (ug/L)", x = "Division") +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+

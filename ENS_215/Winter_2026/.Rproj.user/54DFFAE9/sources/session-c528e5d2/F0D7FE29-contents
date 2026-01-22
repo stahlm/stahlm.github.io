@@ -122,7 +122,7 @@ bangladesh_gw <- mutate(bangladesh_gw,
 
 
 #### Categorical variable: Arsenic
-Also add a categorical variable `As_cat`.  This variable will take the values _low As_, _med As_, or _high As_ based on the sampled well's depth:
+Also add a categorical variable `As_cat`.  This variable will take the values _low As_, _med As_, or _high As_ based on the sampled well's arsenic concentration:
 
   + low As $\le 10 ug/L$
   + $10 ug/L <$ med As $\le 50 ug/L$ 

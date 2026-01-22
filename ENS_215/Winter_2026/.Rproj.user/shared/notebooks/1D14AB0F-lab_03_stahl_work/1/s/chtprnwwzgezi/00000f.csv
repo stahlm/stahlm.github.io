@@ -1,0 +1,3 @@
+"0","bangladesh_gw <- mutate(bangladesh_gw, "
+"0","                        As_cat = factor(As_cat,ordered = TRUE, "
+"0","                                        levels = c(""low As"",""med As"",""high As"" )) )"
