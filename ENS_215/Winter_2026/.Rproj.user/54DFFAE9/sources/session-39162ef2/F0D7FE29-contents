@@ -80,7 +80,7 @@ Take a look at the data frame and make sure everything looks good and that you u
 
 
 ### 2. Create additional variables
-In this lab are going to examine how arsenic concentrations (as well as other geochemical parameters) vary with depth into the aquifer.  Let's create a categorical variable that classifies each observation based on the depth fo the well the sample was collected from.  This categorial variable will allow use to easily group our data into depth classes.  
+In this lab are going to examine how arsenic concentrations (as well as other geochemical parameters) vary with depth into the aquifer.  Let's create a categorical variable that classifies each observation based on the depth fo the well the sample was collected from.  This categorical variable will allow use to easily group our data into depth classes.  
 
 <br/>
 

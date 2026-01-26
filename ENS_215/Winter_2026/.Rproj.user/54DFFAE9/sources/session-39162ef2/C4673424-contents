@@ -36,11 +36,21 @@ include-in-header:
 
 ## Lectures 
 
+### Week 4
+* Tues (27-Jan) -- **Introduction to Data Visualization (continued)**  [(html)](https://stahlm.github.io/ENS_215/Winter_2026/Lectures/2026_01_27.html) [(qmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2026/Lectures/2026_01_27.qmd)
+
+
+
+*** 
+
 ### Week 3
 * Tues (20-Jan) -- **Data wrangling group_by() and summarize()** [(html)](https://stahlm.github.io/ENS_215/Winter_2026/Lectures/2026_01_20.html) [(qmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2026/Lectures/2026_01_20.qmd)  
 
-* Thurs (22-Jan) -- **Introduction to Data Visualization** [(html)](https://stahlm.github.io/ENS_215/Winter_2026/Lectures/2026_01_22.html) [(qmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2026/Lectures/2026_01_22.qmd), [Slides](https://stahlm.github.io/ENS_215/Winter_2026/Lectures/2026_01_22_slides.html)  
+* Thurs (22-Jan) -- **Introduction to Data Visualization**  [Slides](https://stahlm.github.io/ENS_215/Winter_2026/Lectures/2026_01_22_slides.html)  
 
+```{r eval = F, echo = F}
+[(html)](https://stahlm.github.io/ENS_215/Winter_2026/Lectures/2026_01_22.html) [(qmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2026/Lectures/2026_01_22.qmd),
+```
 
 *** 
 
@@ -111,6 +121,8 @@ include-in-header:
 * Lab 1 – **Intro and EPA Fuel Economy Data** [(html)](https://stahlm.github.io/ENS_215/Winter_2026/Labs/Lab_EPA_Fuel_Economy.html) [(qmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2026/Labs/Lab_EPA_Fuel_Economy.qmd)
 
 * Lab 2 – **Dams and reservoirs: A global analysis** [(html)](https://stahlm.github.io/ENS_215/Winter_2026/Labs/Lab_Global_Dams.html) [(qmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2026/Labs/Lab_Global_Dams.qmd)
+
+* Lab 3 – **Groundwater Arsenic in Bangladesh** [(html)](https://stahlm.github.io/ENS_215/Winter_2026/Labs/Lab_Bangladesh_Arsenic.html) [(qmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2026/Labs/Lab_Bangladesh_Arsenic.qmd)
 
 
 ```{r eval = F, echo = F}

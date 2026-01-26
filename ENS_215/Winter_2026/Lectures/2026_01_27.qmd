@@ -1,7 +1,7 @@
 ---
 title: "Introduction to Data Visualization"
 author: "_Mason Stahl_ (ENS-215)"
-date: "2026-01-22"
+date: "2026-01-27"
 date-format: "MMMM D, YYYY"
 format:
   html:
@@ -28,11 +28,11 @@ knitr::opts_chunk$set(comment=NA, fig.width=6, fig.height=3)
 
 
 ## Intro to data visualization
-As you've already learned in today's lecture one of the best tools you have to interpreting/understanding your data are your own eyes!  A visual representation of your data can reveal patterns and interesting features that would have been difficult or impossible to identify by looking at a data table.  
+As you've already learned in over the past few lectures one of the best tools you have to interpreting/understanding your data are your own eyes!  A visual representation of your data can reveal patterns and interesting features that would have been difficult or impossible to identify by looking at a data table.  
 
 Plots are not only the most effective way for you to understand your data, they are also the most effective way for you to convey your message to an audience.  
 
-For a more in-depth look into the motivations and goals of data visualization, refer back to [this class meeting's lecture slides](https://stahlm.github.io/ENS_215/Winter_2026/Lectures/2026_01_22_slides.html).    
+For a more in-depth look into the motivations and goals of data visualization, refer back to [last class meeting's lecture slides](https://stahlm.github.io/ENS_215/Winter_2026/Lectures/2026_01_22_slides.html).    
 
 Before jumping into the `ggplot2` package, let's become familiar with some of the most common types of graphics that you will make and encounter in you work.  
 

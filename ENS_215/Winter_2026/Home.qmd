@@ -36,6 +36,13 @@ include-in-header:
 
 ## Lectures 
 
+### Week 4
+* Tues (27-Jan) -- **Introduction to Data Visualization (continued)**  [(html)](https://stahlm.github.io/ENS_215/Winter_2026/Lectures/2026_01_27.html) [(qmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2026/Lectures/2026_01_27.qmd)
+
+
+
+*** 
+
 ### Week 3
 * Tues (20-Jan) -- **Data wrangling group_by() and summarize()** [(html)](https://stahlm.github.io/ENS_215/Winter_2026/Lectures/2026_01_20.html) [(qmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2026/Lectures/2026_01_20.qmd)  
 
