@@ -68,7 +68,7 @@ Before jumping into the `ggplot2` package, let's become familiar with some of th
 <br/>
 
 ## `ggplot2` package
-The `ggplot2` package designed around the idea that a graphic can be decomposed into its fundamental parts and thus we can build them much like a sentence, by combining these parts according to _grammatical rules_.  
+The `ggplot2` package is designed around the idea that a graphic can be decomposed into its fundamental parts and thus we can build them much like a sentence, by combining these parts according to _grammatical rules_.  
 
 **IMPORTANT CLARIFICATION:** the package is called `ggplot2` however when you create a figure you use the `ggplot()` (note that there is no `2` in the function call).  Also note that the `ggplot2` library is loaded in when you load in `tidyverse`.   If you want to load in `ggplot2` by itself, you can simply type `library(ggplot2)`.  
 
@@ -129,7 +129,9 @@ my_gap <- gapminder # assign the gapminder data to our own data object called my
 
 We'll create a scatter plot of life expectancy vs. per capita GDP
 ```{r}
-ggplot(data = my_gap, mapping = aes(x = gdpPercap, y = lifeExp)) + geom_point()
+ggplot(data = my_gap, 
+       mapping = aes(x = gdpPercap, y = lifeExp)) + 
+  geom_point()
 ```
 
 I want you to notice a few things in the above code.  First you'll see that we typed `data = my_gap`.  You can actually omit the `data = `, since the `ggplot()` function is smart it assumes that the first input is the dataset.  
@@ -145,14 +147,18 @@ In the above code we only specified two aesthetic mappings (_i.e._ the x and y p
 Let's represent the **continent** through the symbol colors.
 
 ```{r}
-ggplot(data = my_gap, mapping = aes(x = gdpPercap, y = lifeExp, color = continent)) + geom_point()
+ggplot(data = my_gap, 
+       mapping = aes(x = gdpPercap, y = lifeExp, color = continent)) + 
+  geom_point()
 ```
 
 Notice how the `color = continent` is inside of the `aes()` function.  This is because we are **mapping** data from the **continent** variable to the color of whatever `geom` is to be used (which in this case is `geom_point`).  
 
 If we wanted to specify a single color for the points -- i.e. not based on any of the data variables -- then we would make that specification OUTSIDE of the `aes()` function.  This is because, in that case we are NOT mapping data to the color, but instead are simply specifying a single fixed color.  For example
 ```{r}
-ggplot(data = my_gap, mapping = aes(x = gdpPercap, y = lifeExp)) + geom_point(color = "blue")
+ggplot(data = my_gap, 
+       mapping = aes(x = gdpPercap, y = lifeExp)) + 
+  geom_point(color = "blue")
 ```
 
 Make sure you understand the difference between the two graphics above and how/why their code differs.  
@@ -200,10 +206,7 @@ We can summarize the distribution of the values of a variable using a box-plot.
 
 Let's use a box-plot to examine the distribution of life expectancy data within Europe
 ```{r}
-euro_data <- filter(my_gap, 
-                    continent == "Europe")  # get data just for Europe
-
-euro_data %>% 
+my_gap %>% filter(continent == "Europe") %>% 
   ggplot(aes(x = continent, y = lifeExp)) +
   geom_boxplot()
 ```

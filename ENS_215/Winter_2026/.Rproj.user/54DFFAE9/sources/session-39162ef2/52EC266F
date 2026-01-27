@@ -3,7 +3,7 @@
     "path": "~/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2026/Lectures/2026_01_27.qmd",
     "project_path": "Lectures/2026_01_27.qmd",
     "type": "quarto_markdown",
-    "hash": "0",
+    "hash": "351097348",
     "contents": "",
     "dirty": false,
     "created": 1769451926206.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "3,18",
-        "scrollLine": "0"
+        "cursorPosition": "209,43",
+        "scrollLine": "204"
     },
     "folds": "",
-    "lastKnownWriteTime": 1769451973,
+    "lastKnownWriteTime": 1769481436,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1769451973692,
+    "last_content_update": 1769481436553,
     "read_only": false,
     "read_only_alternatives": []
 }
