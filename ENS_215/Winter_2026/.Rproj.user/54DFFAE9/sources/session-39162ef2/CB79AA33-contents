@@ -1,34 +1,90 @@
 ---
 title: "Exploring Environmental Data (ENS-215)"
-subtitle: "Winter 2026"
-format:
-  html:
-    df-print: paged
-    theme:
-      light: journal
-      dark: darkly
-    page-layout: full
-    toc: true
-    toc-float: true
-include-in-header:
-  - text: |
-     <link rel = "shortcut icon" href = "https://stahlm.github.io/ENS_215/Winter_2026/Images/favicon_ens215.png" />
+date: "Winter 2025"
+output:
+  html_document:
+    theme: journal
+    toc: yes
+    toc_float: yes
 ---
 
 
-| [Lectures and Labs](https://stahlm.github.io/ENS_215/Winter_2026/Home.html)  | [Homework](https://stahlm.github.io/ENS_215/Winter_2026/HW.html)  | [Syllabus](https://stahlm.github.io/ENS_215/Winter_2026/Syllabus.html)  |
+
+
+***
+
+| [ENS-215](https://stahlm.github.io/ENS_215/Winter_2025/Home.html)  | [Homework](https://stahlm.github.io/ENS_215/Winter_2025/HW.html)  | [Syllabus](https://stahlm.github.io/ENS_215/Winter_2025/Syllabus.html)  |
 |:-------:|:------:|:--------:|
 |      |     |        |       |
 
+
+*** 
+### Week 10
+* Work on your final projects which are due by the start of lab on Wednesday.  
+
+#### Readings (optional/supplementary)
+* [**ModernDive, Chapter 5**](https://moderndive.com/v2/regression.html)  
+* [**ModernDive, Chapter 6**](https://moderndive.com/v2/multiple-regression.html) 
+
+*** 
+### Week 8 and 9
+Work on your final projects.  
+
+
+*** 
+### Week 7
+#### Readings
+* [**ModernDive, Chapter 5**](https://moderndive.com/v2/regression.html) 
+
+#### Assignments 
+1. DataCamp **_Modeling with Data in the Tidyverse_** chapters **1** ("Introduction to Modeling"), **2** ("Modeling with Basic Regression")
+    + Assigned: 17-Feb
+    + Due: 24-Feb  
+
+*** 
+
+
+*** 
+### Week 6
+#### Readings
+* [**Geocomputation with R, Chapter 9**](https://r.geocompx.org/adv-map)
+
+* [**Tidyverse style guide, Chapters 1, 2, 4, 5**](https://style.tidyverse.org/)
+    + Excellent guide to proper usage of style, formatting, and syntax in R.  Read this with care and where applicable you should begin implementing these style tips in your code.  Note that "style" is more than just cosmetic -- good style makes your code human readable and makes sharing and editing code significantly more efficient and less prone to error.  
+
+
+*** 
+
+### Week 5
+#### Readings
+* [**ModernDive Ch: 3.7**](https://moderndive.com/v2/wrangling.html#joins)
+* [**ModernDive Ch: 4**](https://moderndive.com/v2/tidy.html)
+
+#### Assignments 
+1. DataCamp **_Reshaping Data with tidyr_** chapters **1** ("Tidy data"), **2** ("From wide to long and back")
+    + Assigned: 3-Feb
+    + Due: 10-Feb  
+
+2. DataCamp **_Joining Data with dplyr_** chapters **1** ("Joining Tables"), **2** ("Left and Right Joins")
+    + Assigned: 3-Feb
+    + Due: 10-Feb  
+    
+    
+***
 
 ### Week 4
 #### Readings
 * [**ModernDive Ch: 2**](https://moderndive.com/v2/viz.html)
 * [**R for Data Science (R4DS): "_Visualize_" chapter**](https://r4ds.hadley.nz/visualize) (The **_visualize_** section of this textbook goes into great depth on a range of data visualization topics in R/ggplot.  This reading is optional, though will be useful to refer to throughout the rest of the term.)   
 
+#### Assignments 
+1. DataCamp **_Introduction to Data Visualization with ggplot2_** chapters **1** ("Introduction"), **2** ("Aesthetics"), **3** ("Geometries")
+    + Assigned: 27-Jan
+    + Due: 3-Feb
+    
+  
 
 ***
-
 ### Week 3
 #### Readings
 * [**ModernDive Ch: 3**](https://moderndive.com/v2/wrangling.html)
@@ -46,27 +102,24 @@ include-in-header:
     + Assigned: 20-Jan
     + Due: 27-Jan
 
-
-
 ***
 
-
 ### Week 2
+
 #### Assignments
-**1. Complete the “_Conditionals and Control Flow_” and “_Loops_” lessons in the DataCamp “_Intermediate R course_”**  
+**1. Complete the "_Conditionals and Control Flow_" and "_Loops_" lessons in the DataCamp "_Intermediate R course_" **  
 
   + Assigned: 13-Jan
-  + Due: 20-Jan  
-
-
-**2. Complete the “_Functions_” lesson in the DataCamp “_Intermediate R course_”**
+  + Due: 20-Jan 
+  
+**2. Complete the "_Functions_" lesson in the DataCamp "_Intermediate R course_" **
 
   + Assigned: 13-Jan
   + Due: 20-Jan
 
 
-***
 
+***
 
 
 ### Week 1
@@ -79,14 +132,13 @@ include-in-header:
 **1. Download R and RStudio:**
 You will first need to download R and then RStudio.  To download R go to [this link](https://cran.rstudio.com/) and download R.  You will see links for Mac and Windows users (*see screenshot below*).  Make sure to select the appropriate one for your computer.  Download the program and then install it.
 
-
-![](https://stahlm.github.io/ENS_215/Winter_2026/Images/RDownload_screenshot.png){width=1000px}
+![](C:/Users/stahlm/Documents/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2025/Images/RDownload_screenshot.png){width=1000px}
 
 <br/> 
 
 Once you've downloaded and installed R, then you will need to get RStudio.  Go to [this link](https://posit.co/download/rstudio-desktop/) scroll down a bit and then you will see links for Mac and Windows users (*see screenshot below*).  Make sure to select the appropriate one for your computer.  Download and install the software.
 
-![](https://stahlm.github.io/ENS_215/Winter_2026/Images/RStudioDownload_screenshot.png){width=1000px}
+![](C:/Users/stahlm/Documents/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2025/Images/RStudioDownload_screenshot.png){width=1000px}
 
 <br/> 
 
@@ -95,7 +147,7 @@ Once you've downloaded and installed R, then you will need to get RStudio.  Go t
   + Due: 8-Jan  
 
 **2. Accept the invite to our DataCamp class and complete "_Introduction to R_"**  
-Click the [invite link here](https://www.datacamp.com/groups/shared_links/fbb753d99d62b1fb8cb00adf9a91f785de18912a1ee0ad7c00c4d57d7b3ccc43) and join our class group.  You will need to use you **union.edu** email address when creating your account.  
+Click the [invite link here](https://www.datacamp.com/groups/shared_links/6a909b0c1667d6808a8e1a372ed075d8c3f613d07ed679e7b6360f4c22815200) and join our class group.  You will need to use you **union.edu** email address when creating your account.  
 
   + Assigned: 6-Jan
   + Due: 8-Jan (accept invite); 13-Jan (complete "Introduction to R" assignment)  
@@ -115,7 +167,7 @@ You will receive an email invitation to join our Posit (RStudio) Cloud group. Yo
 
 **5.  Complete course intro survey**  
 
-  + [Survey link here](https://forms.gle/9xZtYcnTchHBJb6o8)  
+  + [Survey link here](https://forms.gle/qaGejyvGmqxQNyn8A)  
   + Assigned: 6-Jan  
   + Due: 8-Jan  
 
@@ -256,7 +308,7 @@ You should Knit your proposal to an `.html` file and submit it on Nexus.
 ```
 
 
-_Mason Stahl (2026)_  
+_Mason Stahl (2025)_  
 _Union College_ 
 
-![](https://stahlm.github.io/ENS_215/Winter_2026/Images/logo_ens_215.png){width=100px}
+![](C:/Users/stahlm/Documents/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2023/Images/logo_ens_215.png){width=100px}
