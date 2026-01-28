@@ -39,6 +39,8 @@ include-in-header:
 ### Week 4
 * Tues (27-Jan) -- **Introduction to Data Visualization (continued)**  [(html)](https://stahlm.github.io/ENS_215/Winter_2026/Lectures/2026_01_27.html) [(qmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2026/Lectures/2026_01_27.qmd)
 
+* Tues (29-Jan) -- **Data visualization (additional topics)**  [(html)](https://stahlm.github.io/ENS_215/Winter_2026/Lectures/2026_01_29_a.html) [(qmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2026/Lectures/2026_01_29_a.qmd) and **Presentation quality graphics** [(html)](https://stahlm.github.io/ENS_215/Winter_2026/Lectures/2026_01_29_b.html) [(qmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2026/Lectures/2026_01_29_b.qmd)
+
 
 
 *** 
