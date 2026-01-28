@@ -39,7 +39,7 @@ include-in-header:
 ### Week 4
 * Tues (27-Jan) -- **Introduction to Data Visualization (continued)**  [(html)](https://stahlm.github.io/ENS_215/Winter_2026/Lectures/2026_01_27.html) [(qmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2026/Lectures/2026_01_27.qmd)
 
-* Tues (29-Jan) -- **Data visualization (additional topics)**  [(html)](https://stahlm.github.io/ENS_215/Winter_2026/Lectures/2026_01_29_a.html) [(qmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2026/Lectures/2026_01_29_a.qmd) and **Presentation quality graphics** [(html)](https://stahlm.github.io/ENS_215/Winter_2026/Lectures/2026_01_29_b.html) [(qmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2026/Lectures/2026_01_29_b.qmd)
+* Tues (29-Jan) -- **Data visualization (additional topics)**  [(html)](https://stahlm.github.io/ENS_215/Winter_2026/Lectures/2026_01_29_a.html) [(qmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2026/Lectures/2026_01_29_a.qmd) and **Presentation quality graphics** [(html)](https://stahlm.github.io/ENS_215/Winter_2026/Lectures/2026_01_29_b.html) [(qmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2026/Lectures/2026_01_29_b.qmd), [Slides](https://stahlm.github.io/ENS_215/Winter_2026/Data_vis_slides_2026.pdf), [Article by Kelleher and Wegener](https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Documents/ems2011%20kelleher%20and%20wagener.pdf) 
 
 
 
@@ -124,7 +124,9 @@ include-in-header:
 
 * Lab 2 – **Dams and reservoirs: A global analysis** [(html)](https://stahlm.github.io/ENS_215/Winter_2026/Labs/Lab_Global_Dams.html) [(qmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2026/Labs/Lab_Global_Dams.qmd)
 
-* Lab 3 – **Groundwater Arsenic in Bangladesh** [(html)](https://stahlm.github.io/ENS_215/Winter_2026/Labs/Lab_Bangladesh_Arsenic.html) [(qmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2026/Labs/Lab_Bangladesh_Arsenic.qmd)
+* Lab 3 – **Groundwater Arsenic in Bangladesh** [(html)](https://stahlm.github.io/ENS_215/Winter_2026/Labs/Lab_Bangladesh_Arsenic.html) [(qmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2026/Labs/Lab_Bangladesh_Arsenic.qmd)  
+
+* Lab 4 – **Final project kick-off ** [(html)](https://stahlm.github.io/ENS_215/Winter_2026/Labs/Lab_Final_Project.html) [(qmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2026/Labs/Lab_Final_Project.qmd)  
 
 
 ```{r eval = F, echo = F}
