@@ -134,7 +134,7 @@ my_gap %>%
 Note the syntax of the reorder function.  We first give it the variable to reorder and then the variable that we would like to order according to.
 
 #### Exercise 
-+ Create a similar figure to the one above, but this time plot the per capita GDP on the y-axis and the countries in Africa on the x-axis.  Make sure to reorder the y-axis so that the graphic is easy to interpret.  
++ Create a similar figure to the one above, but this time plot the per capita GDP on the y-axis and the countries in Africa on the x-axis.  Make sure to reorder the x-axis so that the graphic is easy to interpret.  
 
 + Once you've created that figure, try messing around with some of the other aesthetic mappings (maybe scale the symbol size by population or life expectancy or possibly map a variable to the color)
 

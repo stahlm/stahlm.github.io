@@ -82,7 +82,7 @@ I will introduce the project and you will get started researching your topic and
 <br/>
 
 #### Written proposal
-You will submit on Nexus a written proposal in R Notebook format (due Tuesday, Feb 4^th^ by 5 PM).  This proposal should have the following components:  
+You will submit on Nexus a written proposal in HTML format (due Tuesday, Feb 4^th^ by 5 PM).  This proposal should have the following components:  
 
 1. **Header:** Your name, date, and **project title**.  The title should be informative and specific to your project.
 
