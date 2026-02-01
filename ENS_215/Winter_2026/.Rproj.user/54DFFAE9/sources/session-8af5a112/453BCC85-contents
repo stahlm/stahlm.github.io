@@ -1,0 +1,37 @@
+---
+title: "Reshaping, cleaning and tidying data"
+author: "_Mason Stahl_ (ENS-215)"
+date: "2026-02-03"
+date-format: "MMMM D, YYYY"
+format:
+  html:
+    embed-resources: true
+    code-fold: show
+    code-tools: 
+      source: false
+    df-print: paged
+    theme:
+      light: journal
+      dark: darkly
+    page-layout: full
+    toc: true
+    toc-float: true
+---
+
+
+```{r}
+library(tidyverse)
+library(gapminder)
+
+my_gap <- gapminder # assign the gapminder data to our own data object called my_gap
+```
+
+```{r}
+my_gap %>% 
+  ggplot(aes(x = lifeExp)) +
+  geom_dotplot(binwidth = 0.5)
+```
+
+
+
+

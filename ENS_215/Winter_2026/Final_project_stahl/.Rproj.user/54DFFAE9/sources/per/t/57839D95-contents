@@ -1,0 +1,29 @@
+---
+title: "Final Project Proposal"
+author: "_Mason Stahl_ (ENS-215)"
+date: "2026-01-29"
+date-format: "MMMM D, YYYY"
+format:
+  html:
+    embed-resources: true
+    code-fold: show
+    code-tools: 
+      source: false
+    df-print: paged
+    theme:
+      light: journal
+      dark: darkly
+    page-layout: full
+    toc: true
+    toc-float: true
+---
+
+## Notes for me
+I found some interesting water data here
+https://waterdata.usgs.gov/
+
+
+
+
+
+
