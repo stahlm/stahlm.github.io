@@ -34,6 +34,7 @@ Today and in the upcoming classes, we will start to work with tools from the `dp
 While, you've been working with real, research quality datasets in class/lab, these datasets have been relatively neat and clean (In most cases I've taken the original dataset and done some organizing/cleaning to prepare it for the class).  However in most cases you won't have someone prep the data before you get it.  Thus, the skills you will now learn are critical to your work as they will allow you to deal with data "out in the real-world" where things can get a bit more messy.  
 
 
+We are going to rely on the `tidyr` package today, so let's load in `tidyverse` which includes the `tidyr` package (as well a many other packages that we've been using thus far).  
 ```{r message=FALSE, warning=F}
 library(tidyverse)
 ```
