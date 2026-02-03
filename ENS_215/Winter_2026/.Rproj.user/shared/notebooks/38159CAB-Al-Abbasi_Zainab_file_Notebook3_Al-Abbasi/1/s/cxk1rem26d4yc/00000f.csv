@@ -1,0 +1,2 @@
+"0","my_gap <- my_gap %>% "
+"0","  mutate(tot_gdp = gdpPercap * pop)"
