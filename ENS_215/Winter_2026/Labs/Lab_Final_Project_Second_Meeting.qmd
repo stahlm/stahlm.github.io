@@ -29,8 +29,8 @@ You should have the following ready when I come around:
 
   + Your project folder and any sub-folders.  I need to see that your project is organized and that you've created an R Project.
   + The dataset(s) you will use.  Have these files open and ready to examine.  Be ready to show me where you got the data.
-  + Any R Notebooks that you've put together thus far to begin loading the data in to R and to begin performing your analysis.
-      + In your R Notebooks you should show me that you are using **relative paths** when reading or writing files.
+  + Any R Quarto Notebooks that you've put together thus far to begin loading the data in to R and to begin performing your analysis.
+      + In your R Quarto Notebooks you should show me that you are using **relative paths** when reading or writing files.
   + If you have any questions or need guidance about any aspect of the project generally or your project specifically let me know and we will work through it.
 
 
