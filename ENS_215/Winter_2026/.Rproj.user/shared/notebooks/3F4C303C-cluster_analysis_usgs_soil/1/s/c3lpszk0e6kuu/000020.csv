@@ -1,0 +1,15 @@
+"0","```r
+
+
+usgs_soil %>% 
+  filter(!is.na(cluster_id)) %>% 
+  
+  ggplot(aes(x = cluster_id, y = C_U, fill = cluster_id)) +
+  geom_boxplot() +
+  scale_fill_brewer(type = \"qual\", palette = \"Set2\") +
+  
+  scale_y_log10() +
+  
+  theme_classic() +
+  theme(legend.position = \"none\")
+```"

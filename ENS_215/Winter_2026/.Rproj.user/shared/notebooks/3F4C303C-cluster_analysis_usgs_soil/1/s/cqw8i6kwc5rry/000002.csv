@@ -1,0 +1,5 @@
+"0","```r
+fig_cluster <- fviz_cluster(k_n, data = table_cluster_scaled, ellipse = T, palette = \"Set2\",
+                            geom = \"point\") +
+  theme_classic()
+```"

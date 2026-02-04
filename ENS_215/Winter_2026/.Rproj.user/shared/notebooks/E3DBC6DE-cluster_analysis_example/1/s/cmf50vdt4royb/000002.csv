@@ -1,0 +1,22 @@
+"0","```r
+tmap_mode(\"view\")
+```"
+"1","tmap mode set to interactive viewing
+"
+"0","```r
+sf_bangladesh_gw %>% 
+  filter(!is.na(cluster_id)) %>% 
+  
+  tm_shape() +
+  tm_dots(col = \"cluster_id\", palette = \"Set2\",
+          popup.vars = c(\"cluster_id\", \"WELL_DEPTH_m\", \"As_ugL\")
+          ) +
+
+  tm_mouse_coordinates() +
+  
+  tm_basemap(server = c(\"Esri.WorldImagery\", \"OpenStreetMap\", \"Esri.WorldShadedRelief\")) +
+  
+  tm_scale_bar() 
+```"
+"1","Warning: Currect projection of shape . unknown. Long-lat (WGS84) is assumed.Error in dirname(to) : path too long
+"

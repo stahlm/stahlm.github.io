@@ -3,7 +3,7 @@
     "path": "~/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2026/Home.qmd",
     "project_path": "Home.qmd",
     "type": "quarto_markdown",
-    "hash": "4013706626",
+    "hash": "0",
     "contents": "",
     "dirty": false,
     "created": 1770225800374.0,
@@ -14,15 +14,15 @@
         "chunk_output_type": "inline",
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "172,23",
-        "scrollLine": "166"
+        "cursorPosition": "1,47",
+        "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1770233619,
+    "lastKnownWriteTime": 1770234072,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1770233619214,
+    "last_content_update": 1770234072613,
     "read_only": false,
     "read_only_alternatives": []
 }

@@ -1,0 +1,5 @@
+"0","```r
+df_cluster_info <- tibble(SiteID = row.names(table_cluster_scaled),
+                          cluster_id = k_n$cluster) %>% 
+  mutate(SiteID = as.numeric(SiteID))
+```"

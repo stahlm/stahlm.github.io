@@ -1,0 +1,16 @@
+"0","```r
+table_cluster <- bangladesh_gw %>% 
+  select(SAMPLE_ID,
+         Ba_mgL, 
+         Ca_mgL, 
+         Fe_mgL, 
+         Mn_mgL,
+         K__mgL, 
+         Mg_mgL, 
+         Na_mgL, 
+         Si_mgL, 
+         SO4_mgL, 
+         Sr_mgL) %>% 
+  
+  drop_na() # need to drop any samples with NA values since can't cluster sites with missing data
+```"

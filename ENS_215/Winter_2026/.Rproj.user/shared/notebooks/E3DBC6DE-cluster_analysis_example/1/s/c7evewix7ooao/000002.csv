@@ -1,0 +1,4 @@
+"0","```r
+sf_bangladesh_gw <- bangladesh_gw %>% 
+  st_as_sf(coords = c(\"LONG_DEG\", \"LAT_DEG\"))
+```"

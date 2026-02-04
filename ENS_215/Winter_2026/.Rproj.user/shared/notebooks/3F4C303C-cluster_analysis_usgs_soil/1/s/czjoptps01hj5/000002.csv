@@ -1,0 +1,16 @@
+"0","```r
+sf_usgs_soil %>% 
+  filter(!is.na(cluster_id)) %>% 
+  mutate(C_C_Org = as.numeric(C_C_Org)) %>% 
+  
+  tm_shape() +
+  tm_dots(col = \"C_C_Org\", palette = \"viridis\", style = \"quantile\", n = 8,
+          popup.vars = c(\"cluster_id\", \"C_C_Org\")
+          ) +
+
+  tm_mouse_coordinates() +
+  
+  tm_basemap(server = c(\"Esri.WorldImagery\", \"OpenStreetMap\", \"Esri.WorldShadedRelief\")) +
+  
+  tm_scale_bar() 
+```"

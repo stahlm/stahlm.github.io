@@ -1,0 +1,6 @@
+"0","```r
+usgs_soil <- usgs_soil %>% 
+  left_join(df_cluster_info)
+```"
+"1","Joining with `by = join_by(SiteID)`
+"

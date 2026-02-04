@@ -1,0 +1,16 @@
+"0","```r
+table_cluster <- column_to_rownames(table_cluster, var = \"SiteID\")
+
+table_cluster <- table_cluster %>% mutate_all(as.numeric)
+```"
+"1","Warning: There were 10 warnings in `mutate()`.
+The first warning was:
+ℹ In argument: `C_Al = .Primitive(\"as.double\")(C_Al)`.
+Caused by warning:
+! NAs introduced by coercion
+ℹ Run ]8;;ide:run:dplyr::last_dplyr_warnings()dplyr::last_dplyr_warnings()]8;; to see the 9 remaining warnings.
+"
+"0","```r
+table_cluster <- table_cluster %>% 
+  drop_na()
+```"

@@ -1,0 +1,4 @@
+"0","```r
+sf_usgs_soil <- usgs_soil %>% 
+  st_as_sf(coords = c(\"Longitude\", \"Latitude\"))
+```"

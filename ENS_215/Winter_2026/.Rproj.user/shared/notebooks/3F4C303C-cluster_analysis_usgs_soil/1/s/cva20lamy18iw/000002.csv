@@ -1,0 +1,20 @@
+"0","```r
+tmap_mode(\"view\")
+```"
+"1","tmap mode set to interactive viewing
+"
+"0","```r
+fig_map <- sf_usgs_soil %>% 
+  filter(!is.na(cluster_id)) %>% 
+  
+  tm_shape() +
+  tm_dots(col = \"cluster_id\", palette = \"Set2\",
+          popup.vars = c(\"cluster_id\")
+          ) +
+
+  tm_mouse_coordinates() +
+  
+  tm_basemap(server = c(\"Esri.WorldImagery\", \"OpenStreetMap\", \"Esri.WorldShadedRelief\")) +
+  
+  tm_scale_bar() 
+```"

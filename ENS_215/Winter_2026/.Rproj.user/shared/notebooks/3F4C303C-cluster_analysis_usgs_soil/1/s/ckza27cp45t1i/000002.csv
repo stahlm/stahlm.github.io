@@ -1,0 +1,4 @@
+"0","```r
+usgs_soil <- usgs_soil %>% 
+  mutate(cluster_id = factor(cluster_id))
+```"

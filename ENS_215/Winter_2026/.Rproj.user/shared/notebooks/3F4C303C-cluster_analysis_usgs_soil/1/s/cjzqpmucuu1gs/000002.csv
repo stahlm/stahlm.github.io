@@ -1,0 +1,11 @@
+"0","```r
+usgs_soil <- usgs_soil %>% 
+  mutate(across(starts_with(\"C_\"), as.numeric))
+```"
+"1","Warning: There were 75 warnings in `mutate()`.
+The first warning was:
+ℹ In argument: `across(starts_with(\"C_\"), as.numeric)`.
+Caused by warning:
+! NAs introduced by coercion
+ℹ Run ]8;;ide:run:dplyr::last_dplyr_warnings()dplyr::last_dplyr_warnings()]8;; to see the 74 remaining warnings.
+"

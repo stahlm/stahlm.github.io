@@ -1,0 +1,7 @@
+"0","```r
+table_cluster <- usgs_soil %>% 
+  select(SiteID,
+         C_Al, C_Ba, C_Ca, C_C_Org, C_Fe, C_K, C_Mg, C_Na, C_Ti, C_S
+         ) 
+
+```"

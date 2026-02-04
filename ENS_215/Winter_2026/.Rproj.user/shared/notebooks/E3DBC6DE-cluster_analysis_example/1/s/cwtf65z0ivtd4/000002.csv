@@ -1,0 +1,10 @@
+"0","```r
+bangladesh_gw <- read_csv(\"https://stahlm.github.io/ENS_215/Data/NationalSurveyData_DPHE_BGS_LabData.csv\")
+```"
+"1","Rows: 3534 Columns: 31── Column specification ─────────────────────────────────────────────────────────────────────────────────────────────────────
+Delimiter: \",\"
+chr  (7): SAMPLE_ID, WELL_TYPE, DIVISION, DISTRICT, THANA, UNION, MOUZA
+dbl (24): LAT_DEG, LONG_DEG, YEAR_CONSTRUCTION, WELL_DEPTH_m, As_ugL, Al_mgL, B__mgL, Ba_mgL, Ca_mgL, Co_mgL, Cr_mgL, Cu_...
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+"
