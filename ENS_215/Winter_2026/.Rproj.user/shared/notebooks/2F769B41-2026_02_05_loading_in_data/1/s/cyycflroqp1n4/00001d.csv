@@ -1,0 +1,1 @@
+"0","CO2_data <- read_csv(file = ""../../Data/co2_mm_mlo.csv"", skip = 40)"

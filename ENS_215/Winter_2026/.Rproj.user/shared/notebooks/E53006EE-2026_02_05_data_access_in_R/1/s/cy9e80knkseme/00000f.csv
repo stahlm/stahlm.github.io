@@ -1,0 +1,4 @@
+"0","worldmet_data_hourly <- import_ghcn_hourly(station = ""USW00014735"", "
+"0","                                           year = 2025:2026)"
+"2"," [32m■■■■■■■■■■■■■■■■                [39m  50% |  ETA:  2s"
+"2","                                                   "

@@ -1,0 +1,2 @@
+"0","worldmet_data_daily <- import_ghcn_daily(station = ""SZ000003700"", "
+"0","                                          year = 2025:2026)"

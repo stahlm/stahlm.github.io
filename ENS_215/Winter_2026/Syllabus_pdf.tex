@@ -1,0 +1,694 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  letterpaper,
+  DIV=11,
+  numbers=noendperiod]{scrartcl}
+
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+% Make \paragraph and \subparagraph free-standing
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+<link rel = "shortcut icon" href = "https://stahlm.github.io/ENS_215/Winter_2026/Images/favicon_ens215.png" />
+\KOMAoption{captions}{tableheading}
+\makeatletter
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{tcolorbox}{}{\usepackage[many]{tcolorbox}}
+\makeatother
+\makeatletter
+\@ifundefined{shadecolor}{\definecolor{shadecolor}{rgb}{.97, .97, .97}}
+\makeatother
+\makeatletter
+\makeatother
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Exploring Environmental Data (ENS-215)},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Exploring Environmental Data (ENS-215)}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{Winter 2026}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[borderline west={3pt}{0pt}{shadecolor}, interior hidden, enhanced, breakable, sharp corners, frame hidden, boxrule=0pt]}{\end{tcolorbox}}\fi
+
+\renewcommand*\contentsname{Table of contents}
+{
+\hypersetup{linkcolor=}
+\setcounter{tocdepth}{3}
+\tableofcontents
+}
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2963}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3704}}@{}}
+\toprule()
+\begin{minipage}[b]{\linewidth}\centering
+\href{https://stahlm.github.io/ENS_215/Winter_2026/Home.html}{Lectures
+and Labs}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\href{https://stahlm.github.io/ENS_215/Winter_2026/HW.html}{Homework}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\href{https://stahlm.github.io/ENS_215/Winter_2026/Syllabus.html}{Syllabus}
+\end{minipage} \\
+\midrule()
+\endhead
+& & \\
+\bottomrule()
+\end{longtable}
+
+\hypertarget{course-information}{%
+\section{Course Information}\label{course-information}}
+
+\textbf{Term:} Winter 2026\\
+\textbf{Location:} Olin 307 (\emph{Class}) and Olin 306 (\emph{Lab})\\
+\textbf{Meeting times:}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Class:} T/Th, 9:10-10:45 AM
+\item
+  \textbf{Lab:} Th, 1:55-4:45 PM
+\end{itemize}
+
+\textbf{Professor:}
+\href{https://sites.google.com/union.edu/masonstahl/home}{Mason Stahl}
+(stahlm@union.edu)\\
+\textbf{TA:} Amelia Casassa (casassaa@union.edu)\\
+\textbf{Office hours:} Olin 102A -- Mondays 9:30-11:30 AM and Thursdays
+10:50-11:50 AM
+
+\hypertarget{course-description}{%
+\subsection{Course description}\label{course-description}}
+
+\begin{quote}
+\emph{We are drowning in information, while starving for wisdom. The
+world henceforth will be run by synthesizers, people able to put
+together the right information at the right time, think critically about
+it, and make important choices wisely.}\\
+-- Edward O. Wilson
+\end{quote}
+
+Understanding how the Earth and environment works requires the careful
+analysis and interpretation of scientific data. Increasingly, the
+limitations to our understanding lie not in the availability of data,
+but rather in our ability to analyze and find meaning in it. Deriving
+insight from environmental data, in particular large and complex
+datasets, requires new tools, methods, and ways of thinking. In this
+class we are going to learn how to code in the programming language R
+and use it to analyze environmental data in order to better understand
+the Earth's systems. This course will feature a hands-on classroom with
+programming and data analysis occurring interactively during the class.
+Students will learn how to analyze and visualize large datasets (``big
+data'') and how to write code, while also covering interesting
+components of environmental and Earth sciences. The datasets used
+throughout the term will be research quality (e.g., from peer-reviewed
+publications, government agencies, your thesis data) and will address a
+range of global challenges including climate change, water resources,
+biodiversity loss, ecological and environmental degradation, energy
+resources, and agricultural production. The term will culminate with a
+``research conference'' where each student will deliver a presentation
+on the environmental data analysis project they conducted over the
+course of the term. These projects involve the in-depth analysis of
+research quality datasets (e.g., data from NASA, USGS, EPA, NOAA) to
+address a research question(s) posed by each student and are an
+opportunity for each student to develop and conduct an original research
+project on an environmental topic of their interest.
+
+\hypertarget{learning-objectives}{%
+\subsection{Learning objectives}\label{learning-objectives}}
+
+\hypertarget{in-the-context-of-environmental-science-and-the-geosciences-you-will-learn}{%
+\subsubsection{In the context of environmental science and the
+geosciences you will
+learn:}\label{in-the-context-of-environmental-science-and-the-geosciences-you-will-learn}}
+
+\begin{quote}
+\begin{itemize}
+\tightlist
+\item
+  How to formulate thoughtful, creative, and meaningful scientific
+  questions\\
+\item
+  How to identify the analytical approaches and data required to answer
+  scientific questions\\
+\item
+  How to assess the limitations and applicability of a given dataset\\
+\item
+  How to use logical and algorithm approaches through computer code (R
+  programming language) to gain insights from data and solve scientific
+  problems\\
+\item
+  How to use a wide-range of conceptual, statistical, and graphical ways
+  of analyzing and interpreting data\\
+\item
+  How to create organized, well-documented, and reproducible scientific
+  workflows\\
+\item
+  How to create compelling and informative data visualizations\\
+\item
+  How to find and access a wide-range of research-quality, publically
+  available environmental/geoscience datasets
+\end{itemize}
+\end{quote}
+
+\begin{quote}
+\emph{All of the above learning goals require focused effort, practice,
+and reflection. There are no shortcuts to developing the above skills
+and ways of thinking, however I am confident that by putting in the
+required effort and engagement you will accomplish the above learning
+goals.}
+\end{quote}
+
+\hypertarget{course-premise}{%
+\subsection{Course premise}\label{course-premise}}
+
+This course will be taught as a \textbf{``flipped''} class. This means
+that you will learn some of the basic material outside of class --
+through online assignments/tutorials, readings, and watching videos --
+while you will ``learn by doing'' through hands on programming exercises
+during class.
+
+At the start of each class you will be given a packet with the days
+work. You should keep these handouts as they will serve as part of your
+course notes. During class you will work through the project laid out in
+the packet and at the end of class you will have an R Notebook that has
+all of your code, results, and notes. You will then apply what you
+learned in class to your weekly homework assignments. You can not rush
+through the class work as care and thought are required to learn the
+concepts needed for the assignments and later classes.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{resources}{%
+\section{Resources}\label{resources}}
+
+\hypertarget{textbooks}{%
+\subsection{Textbooks}\label{textbooks}}
+
+The three texts that we will primarily rely on are listed below. All
+three are freely available on the web. Print versions of all three books
+are also available.
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://moderndive.com/v2/}{\textbf{ModernDive}}: Introductory
+  textbook on data science and stats in R, that presents the material in
+  a clear and concise manner. This book is freely available online.\\
+\item
+  \href{https://r4ds.hadley.nz/}{\textbf{R for Data Science}}: Excellent
+  textbook on using R for data science.
+\item
+  \href{https://r.geocompx.org/}{\textbf{Geocomputation with R}}:
+  Excellent textbook on geospatial analysis using R.
+\end{itemize}
+
+\hypertarget{course-sites}{%
+\subsection{Course sites}\label{course-sites}}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://stahlm.github.io/ENS_215/Winter_2026/Home.html}{\textbf{This
+  website}}: The site you are on now will be updated throughout the
+  term. In particular the schedule will have material added on a weekly
+  basis.
+\item
+  \href{https://nexus.union.edu}{\textbf{Nexus:}} You will submit all of
+  your assignments through our Nexus class site
+\item
+  \href{https://app.datacamp.com/groups/exploring-environmental-data-w-2026/dashboard}{\textbf{DataCamp:}}
+  The online assignments/tutorials can be found on our DataCamp class
+  site
+\end{itemize}
+
+\hypertarget{assignment-templates-and-guidelines}{%
+\subsection{Assignment templates and
+guidelines}\label{assignment-templates-and-guidelines}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Template for lab and homework assignments: }
+  \href{https://stahlm.github.io/ENS_215/Homework/Template_Assignments.html}{\textbf{(html)}}
+  \href{https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Homework/Template_Assignments.Rmd}{\textbf{(Rmd)}}
+\item
+  \href{https://stahlm.github.io/ENS_215/Labs/Lab_Guidelines.html}{\textbf{Lab
+  report guidelines}}
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{assignments}{%
+\section{Assignments}\label{assignments}}
+
+\hypertarget{code-notebooks}{%
+\subsection{Code notebooks}\label{code-notebooks}}
+
+You will spend part of each class meeting working on that day's code
+notebook. However, many of the notebooks will require work outside of
+class time to complete. It is important to work through these notebooks
+carefully, taking good notes, answering the prompts/questions I have
+given, and trying out new and novel analyses. At the end of each week
+you will submit that week's code notebooks as final rendered
+\textbf{html files}.
+
+\hypertarget{online-tutorials}{%
+\subsection{Online tutorials}\label{online-tutorials}}
+
+These tutorials are required and are a very helpful and important part
+of teaching you how to code in the short timeframe of one term. The
+tutorials help to make learning to code a much more enjoyable and
+efficient process and also serve as an excellent refresher once you've
+learned coding. There will typically be a tutorial assignment for every
+class topic. If you come to class and work diligently you should be able
+to complete the tutorials As the tutorials builds off of the in-class
+material, coming to class is necessary. I have set up a class group on
+the site where the tutorials are hosted and I will be able to monitor
+and track your progress. Successful completion of the tutorial will
+result in a 100\% grade for that assignment. If the tutorial is not
+fully completed then you will receive a score equal to the percent that
+you completed at the time the assignment was due. Note that the there is
+an option to take hints during the tutorials. Taking hints does affect
+your final score (however a single hint typically has a minimal effect)
+so use them sparingly.
+
+\hypertarget{labs}{%
+\subsection{Labs}\label{labs}}
+
+In lab you will be given a dataset from the Earth and environmental
+sciences with the goal of exploring and discovering interesting features
+and illuminating important scientific concepts. You will be given
+background information and the data you will need to successfully
+complete the lab, though successful completion of the lab will require
+independent and creative exploratory analysis. The goal of the lab
+assignments is to apply the tools and concepts learned in class towards
+asking and answering interesting scientific questions. These labs are
+intended to improve your skills in data analysis, learn about concepts
+from Earth and environmental sciences, and importantly to develop skills
+as a creative and independent researcher. These skills will serve you
+will in future classes, grad school, and jobs.
+
+\hypertarget{final-project}{%
+\subsection{Final project}\label{final-project}}
+
+Each student will produce a report/presentation based on their analysis
+of an environmental/Earth science dataset. You will develop
+questions/hypotheses about your dataset and use the skills we have
+learned throughout the term to tackle these questions. You can analyze a
+dataset that you are interested and find on your own or I can point you
+to an interesting dataset. If you are doing a senior thesis or
+independent research project, this is a great opportunity to start
+analyzing that data. During the last week of class we will have a mini
+conference session where each student will present their work.
+Additional details on the final project will be provided later in the
+term.
+
+\hypertarget{pop-quizzes}{%
+\subsection{Pop-quizzes}\label{pop-quizzes}}
+
+We will have pop-quizzes 6-8 times throughout the term. The quizzes will
+test concepts that you have learned recently and they will help you
+gauge your grasp of the recent course material. \textbf{These quizzes
+will take place in the first 5 minutes of class}, so make sure to be on
+time. \textbf{There are no make-up pop-quizzes.}. Your lowest pop-quiz
+grade will be dropped.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{course-policies}{%
+\section{Course policies}\label{course-policies}}
+
+\hypertarget{grading}{%
+\subsection{Grading}\label{grading}}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule()
+Assignment & Weight \\
+\midrule()
+\endhead
+Code notebooks and online tutorials & 23\% \\
+Lab & 25\% \\
+Final project & 35\% \\
+Class participation & 10\% \\
+Pop-quizzes & 7\% \\
+& \\
+\bottomrule()
+\end{longtable}
+
+As discussed in the \textbf{Honor code} section below, all submitted
+work must be your own. If you use any references you must cite your
+sources.
+
+\hypertarget{evaluation-rubric}{%
+\subsubsection{Evaluation rubric}\label{evaluation-rubric}}
+
+Where applicable a rubric will be applied to graded assignments.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.0741}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.3943}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2767}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2549}}@{}}
+\toprule()
+\begin{minipage}[b]{\linewidth}\raggedright
+Topic
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Excellent: 3
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Good: 2
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Needs work: 1
+\end{minipage} \\
+\midrule()
+\endhead
+Code style and strategy & Above and beyond what was expected/required.
+Code is very organized, well structured, and well commented. & Code runs
+reasonably well but may have a few errors, acceptable level of
+commenting, and reasonably organized and structured. & Many errors in
+style/structure and limited effort to make the code human readable \\
+Presentation of results & Figures and tables are above and beyond what
+is expected. Clear and easy to read. Well chosen graphs that clearly
+illustrate the intended point/concept. & Well made figures and tables
+with some minor issues (e.g.~labels, symbol sizes, design not ideal) &
+Results poorly conveyed. Poor formatting and/or choose of method for
+conveying results. \\
+Achievement, mastery, creativity & Above and beyond what is expected.
+Excellent use of tools/concepts and sophisticated application of
+concepts from this course. Creative approach to problem solving and
+analysis. & Good application of tools/concepts learned in this class.
+Competent approach, though not necessarily very creative. & Student did
+not display mastery of the concepts/tools learned in this class. Worked
+lacked sufficient depth. \\
+Discussion & High quality discussion and interpretation of the results.
+Clear understanding of the scientific concepts under examination in the
+assignment. & Good discussion and demonstrates reasonable understanding
+of the scientific concepts. & Limited discussion that does not
+demonstrate a good understanding of the concepts being examined in the
+assignment. \\
+Ease of access for instructor & Code runs on my computer with no
+problems. Assignment is named according to specified naming convention.
+Proper headers (e.g.~name, date). & Satisfactory & No effort made to
+make code easy to run and assignment easy to interpret. \\
+& & & \\
+\bottomrule()
+\end{longtable}
+
+\hypertarget{grade-mapping}{%
+\paragraph{Grade mapping}\label{grade-mapping}}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule()
+Grade & Percentage \\
+\midrule()
+\endhead
+0 & 0\% \\
+1 & 50\% \\
+2 & 85\% \\
+3 & 100\% \\
+& \\
+\bottomrule()
+\end{longtable}
+
+Intermediate points are allowed, and follow a linear scale in between
+each point.
+
+\hypertarget{my-expectations}{%
+\subsection{My Expectations}\label{my-expectations}}
+
+I want and expect the class to be an engaging and enjoyable environment
+for all students. We should all work together in a positive and
+respectful manner and every student should feel comfortable contributing
+to class discussions and asking questions. All students must comply with
+the Union College honor code. This includes but is not limited to issues
+of cheating and plagiarism. If you have any doubts about whether you are
+in compliance with the honor code you should ask me for guidance prior
+to submitting the material in question.
+
+\hypertarget{computer-use}{%
+\subsection{Computer use}\label{computer-use}}
+
+We will use computers in all of our class and lab meetings. If you have
+a personal laptop you can use it or you can use the computers in the
+classroom. \textbf{Using your computer for anything not related to the
+class is unacceptable and will adversely impact your participation
+grade}. Among other things, this means that you should not check email,
+Instagram, Twitter, news, or any other content not directly related to
+the coursework during class/lab meetings. Your undivided attention and
+focus is important to your success in this class.
+
+\hypertarget{phone-use}{%
+\subsection{Phone use}\label{phone-use}}
+
+Phones should not be used during class. Please do not leave phones on
+the desks/tables as they create a distraction that interferes with you
+and your classmates' ability to focus on the class material.
+
+\hypertarget{policy-on-the-use-of-ai-tools}{%
+\subsection{Policy on the use of AI
+tools}\label{policy-on-the-use-of-ai-tools}}
+
+\textbf{Policy:} The use of generative artificial intelligence (AI)
+tools (e.g., ChatGPT, Gemini,\ldots) to generate material submitted as
+part of a graded assignments in this class is NOT permitted. If you have
+any questions about whether or not a tool/resource is acceptable for use
+in this class, feel free to ask me.
+
+\textbf{Justification:} One of the central goals of this course is for
+students to develop and hone their problem solving abilities (see our
+\protect\hyperlink{learning-objectives}{Learning objectives}). In
+particular, students will learn how to derive understanding from
+datasets - a process that requires careful thought about how the data is
+structured/organized, the types of data within the dataset, the
+potential limitations of the data, and ultimately formulate questions
+that can be asked and answered with the data. This process requires
+bringing together programming skills, creative problem-solving skills,
+mathematics/statistics, and data visualization and melding them with
+your domain knowledge related the scientific question(s) you are
+addressing. While generative AI tools can help you generate computer
+code (and may even assist you in other areas) they will rob you of the
+opportunity to actually develop these skills and problem-solving
+abilities. Reliance on generative AI tools stunts the development of the
+underlying mental/cognitive skills needed to think about and formulate
+interesting questions and thus limits your ability to actively engage
+with scientific discovery. While, there are indeed useful applications
+of generative AI tools, they are in conflict with the goals of this
+class and we will not use them.
+
+\hypertarget{class-attendance-and-participation}{%
+\subsection{Class attendance and
+participation}\label{class-attendance-and-participation}}
+
+\textbf{You are expected to attend every class and to arrive on time}. I
+will have a sign-in sheet that you will need to sign as you enter class.
+Missing class or arriving late will significantly impact your class
+participation grade. This course is very hands-on and you will learn by
+doing, so missing class will make it very difficult to succeed.
+Furthermore, this class is very interactive and you will learn from and
+teach your classmates so attendance is important to supporting the best
+learning environment for all. While some people like to wear headphones
+when coding, this is not allowed during class or lab as it interferes
+with participation/collaboration. If you have to miss class for a
+legitimate reason let me know ahead of time.
+
+\hypertarget{due-dates}{%
+\subsection{Due-dates}\label{due-dates}}
+
+\textbf{All assignments must be turned in on time}. Homework is due
+prior to the start of class on the date it is due. Labs are due prior to
+the start of lab on the day the assignment is due. In the case of online
+tutorials (e.g.~DataCamp assignments) you will receive a grade
+corresponding to the percent of the tutorial successfully completed at
+the time the assignment was due (e.g.~if you successfully completed 85\%
+of the tutorial at the time it was due, then you would receive and
+85\%). For other assignments, I will use the time-stamp on Nexus to
+determine if the assignment was turned in on time. Late assignments
+(\emph{not including online tutorials}) will lose 12.5 pts/day and will
+not be accepted if \textgreater{} 3 days late.
+
+\hypertarget{email-policy}{%
+\subsection{Email policy}\label{email-policy}}
+
+I try to respond to emails in a reasonably timely manner, however do not
+expect rapid replies late at night or on weekends. If you have a
+question about coding you should first try the class notes, checking
+your textbook, Googling the question, R help files, my office hours,
+etc. before emailing. Please state your question as clearly as possible.
+Also, please make sure to reply to confirm that you've received my
+response (a simple `Thanks, got it' is often all that's needed), as this
+is a good habit to develop in your academic and professional careers.
+
+\hypertarget{collaboration}{%
+\subsection{Collaboration}\label{collaboration}}
+
+I encourage collaboration and an interactive environment. Talking
+problems over with classmates is an excellent way to overcome challenges
+and to teach and learn from one another. However, it is critical that
+all work you submit is your own. This means that discussing approaches,
+techniques, and things to look out for are all great but copying
+someone's code is absolutely not allowed and constitutes plagiarism.
+
+\hypertarget{honor-code}{%
+\subsection{Honor code}\label{honor-code}}
+
+Union College recognizes the need to create an environment of mutual
+trust as part of its educational mission. Responsible participation in
+an academic community requires respect for and acknowledgement of the
+thoughts and work of others, whether expressed in the present or in some
+distant time and place. Matriculation at the College is taken to signify
+implicit agreement with the Academic Honor Code, available at:
+honorcode.union.edu. It is each student's responsibility to ensure that
+submitted work is his or her own and does not involve any form of
+academic misconduct. Students are expected to ask their course
+instructors for clarification regarding, but not limited to,
+collaboration, citations, and plagiarism. \textbf{Ignorance is not an
+excuse for breaching academic integrity}.
+
+\hypertarget{disabilities}{%
+\subsection{Disabilities}\label{disabilities}}
+
+Academic accommodations are available for students with disabilities who
+are registered with the Office of Student Support Services (8785).
+Students in need of disability accommodations should schedule an
+appointment with me early in the semester to discuss any accommodations
+for this course that have been approved by the college, as indicated on
+your OSSS ID card.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\emph{Mason Stahl (2026)}\\
+\emph{Union College}
+
+\includegraphics[width=1.04167in,height=\textheight]{https://stahlm.github.io/ENS_215/Winter_2026/Images/logo_ens_215.png}
+
+
+
+\end{document}

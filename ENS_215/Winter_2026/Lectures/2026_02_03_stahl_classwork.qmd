@@ -1,0 +1,80 @@
+---
+title: "Classwork Stahl"
+author: "_Mason Stahl_ (ENS-215)"
+date: "2026-02-03"
+date-format: "MMMM D, YYYY"
+format:
+  html:
+    embed-resources: true
+    code-fold: show
+    code-tools: 
+      source: false
+    df-print: paged
+    theme:
+      light: journal
+      dark: darkly
+    page-layout: full
+    toc: true
+    toc-float: true
+---
+
+## Exercise (challenge) from last Thursday
+
+```{r}
+library(tidyverse)
+library(gapminder)
+```
+
+```{r}
+my_gap <- gapminder
+```
+
+
+```{r}
+mean_gdp <- my_gap %>% 
+  group_by(year) %>% 
+  summarize(gdpPercap = mean(gdpPercap))
+```
+
+
+```{r warning = F}
+my_gap %>% 
+  ggplot(aes(x = year, y = gdpPercap, group = country)) +
+  geom_point(alpha = 0.5) +
+  geom_line(alpha = 0.5) +
+  
+  geom_line(data = mean_gdp, 
+            aes(group = NA),
+            color = "blue", size = 1
+            ) +
+  
+  geom_point(data = mean_gdp, 
+            aes(group = NA),
+            color = "blue", size = 1.2
+            ) +
+  
+  ylim(NA, 50000) +
+  
+  facet_wrap(~continent)
+```
+
+
+## Starting today's lesson
+
+### Reshaping data
+```{r}
+precip_untidy_MA <- read_csv("https://stahlm.github.io/ENS_215/Data/precip_untidy_MA.csv")
+```
+
+
+
+```{r}
+precip_tidy_MA <- precip_untidy_MA %>% 
+  pivot_longer(cols = month.abb,
+               names_to = "Month",
+               values_to = "Precip_inches"
+               )
+```
+
+
+

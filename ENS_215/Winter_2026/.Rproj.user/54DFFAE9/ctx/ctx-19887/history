@@ -1,0 +1,512 @@
+library(imgpalr)
+pal2use <- image_pal(file = "C:/Users/stahlm/Downloads/Jean-Léon_Gérôme_-_Riders_Crossing_The_Desert_(1870)_HQ.jpg", n = 9,
+type = "qual", plot = T, label_color = "grey90")
+pal2use
+pal2use <- image_pal(file = "C:/Users/stahlm/Downloads/Jean-Léon_Gérôme_-_Riders_Crossing_The_Desert_(1870)_HQ.jpg", n = 9,
+type = "qual", plot = T, label_color = "grey90")
+pal2use
+gapminder %>%
+ggplot(aes(x = gdpPercap, y = lifeExp, fill = continent)) +
+geom_point(shape = 21) +
+scale_fill_manual(values = pal2use)
+gapminder %>%
+ggplot(aes(x = gdpPercap, y = lifeExp, fill = continent)) +
+geom_point(shape = 21) +
+scale_fill_manual(values = pal2use) +
+theme_classic()
+pal2use <- image_pal(file = "C:/Users/stahlm/Downloads/Jean-Léon_Gérôme_-_Riders_Crossing_The_Desert_(1870)_HQ.jpg", n = 9,
+type = "seq", plot = T, label_color = "grey90")
+pal2use
+gapminder %>%
+ggplot(aes(x = gdpPercap, y = lifeExp, fill = continent)) +
+geom_point(shape = 21) +
+scale_fill_manual(values = pal2use) +
+theme_classic()
+pal2use <- image_pal(file = "C:/Users/stahlm/Downloads/Jean-Léon_Gérôme_-_Riders_Crossing_The_Desert_(1870)_HQ.jpg", n = 9,
+type = "qual", plot = T, label_color = "grey90")
+pal2use
+image_quantmap(file = "C:/Users/stahlm/Downloads/Johannes_Vermeer_-_The_Geographer_-_Google_Art_Project.jpg",
+pal = pal2use, plot = T)
+library(tidyverse)
+library(gapminder)
+my_gap <- gapminder
+gap_2007 <- my_gap %>%
+filter(year == 2007) %>%
+group_by(continent) %>%
+summarise(min_gdp_percap = min(gdpPercap),
+max_gdp_percap = max(gdpPercap),
+mean_gdp_percap = mean(gdpPercap),
+min_le = min(lifeExp),
+max_le = max(lifeExp),
+mean_le = mean(lifeExp),
+n_countries = n()
+)
+gap_2007
+gap_2007 <- my_gap %>%
+filter(year == 2007) %>%
+group_by(continent) %>%
+summarise(min_gdp_percap = min(gdpPercap),
+max_gdp_percap = max(gdpPercap),
+mean_gdp_percap = mean(gdpPercap),
+min_le = min(lifeExp),
+max_le = max(lifeExp),
+mean_le = mean(lifeExp),
+n_countries = n()
+)
+gap_2007
+View(gap_2007)
+precip_data <- read_csv("https://stahlm.github.io/ENS_215/Data/noaa_cag_state_precipitation.csv")
+precip_data <- precip_data %>%
+select(YEAR, MONTH, STATE, Precip_inches = Value) %>%
+filter(YEAR < 2025) %>%
+mutate(MONTH = as.numeric(MONTH))
+View(precip_data)
+t1 <- precip_data %>%
+filter(STATE == "Connecticut") %>%
+group_by(MONTH) %>%
+summarize(avg_precip = mean(Precip_inches, na.rm = T),
+min_precip = min(Precip_inches, na.rm = T),
+max_precip = max(Precip_inches, na.rm = T)
+)
+t1
+t1 <- precip_data %>%
+filter(STATE == "Kansas") %>%
+group_by(MONTH) %>%
+summarize(avg_precip = mean(Precip_inches, na.rm = T),
+min_precip = min(Precip_inches, na.rm = T),
+max_precip = max(Precip_inches, na.rm = T)
+)
+t1
+t1 <- precip_data %>%
+filter(STATE == "Florida") %>%
+group_by(MONTH) %>%
+summarize(avg_precip = mean(Precip_inches, na.rm = T),
+min_precip = min(Precip_inches, na.rm = T),
+max_precip = max(Precip_inches, na.rm = T)
+)
+t1
+t1 <- precip_data %>%
+#filter(STATE == "Florida") %>%
+group_by(STATE, MONTH) %>%
+summarize(avg_precip = mean(Precip_inches, na.rm = T),
+min_precip = min(Precip_inches, na.rm = T),
+max_precip = max(Precip_inches, na.rm = T)
+)
+t1
+View(t1)
+library(tidyverse)
+bangladesh_gw <- read_csv("https://stahlm.github.io/ENS_215/Data/NationalSurveyData_DPHE_BGS_LabData.csv")
+library(tidyverse)
+bangladesh_gw <- read_csv("https://stahlm.github.io/ENS_215/Data/NationalSurveyData_DPHE_BGS_LabData.csv")
+View(bangladesh_gw)
+# ---------------------------------------------------------
+# 1. EXAMINE THE DATA
+# ---------------------------------------------------------
+library(tidyverse)
+# Load the dataset
+bangladesh_gw <- read_csv("https://stahlm.github.io/ENS_215/Data/NationalSurveyData_DPHE_BGS_LabData.csv")
+# Inspect the data structure
+glimpse(bangladesh_gw)
+# ---------------------------------------------------------
+# 2. CREATE ADDITIONAL VARIABLES
+# ---------------------------------------------------------
+bangladesh_gw <- bangladesh_gw %>%
+mutate(
+# Create categorical variable for Depth
+depth_cat = case_when(
+Depth <= 50 ~ "shallow",
+Depth > 50 & Depth <= 100 ~ "intermed",
+Depth > 100 ~ "deep"
+),
+# Convert to ordered factor
+depth_cat = factor(depth_cat, levels = c("shallow", "intermed", "deep"), ordered = TRUE),
+# Create categorical variable for Arsenic (As)
+As_cat = case_when(
+As <= 10 ~ "low As",
+As > 10 & As <= 50 ~ "med As",
+As > 50 ~ "high As"
+),
+# Convert to ordered factor
+As_cat = factor(As_cat, levels = c("low As", "med As", "high As"), ordered = TRUE)
+)
+View(bangladesh_gw)
+library(tidyverse)
+bangladesh_gw <- read_csv("https://stahlm.github.io/ENS_215/Data/NationalSurveyData_DPHE_BGS_LabData.csv")
+View(bangladesh_gw)
+low_As <- 10 # low arsenic threshold (ug/L)
+med_As <- 50 # low arsenic threshold (ug/L)
+bangladesh_gw <- bangladesh_gw %>%
+mutate(As_cat = case_when(As_ugL <= low_As ~ "low As",
+(As_ugL > low_As) & (As_ugL <= med_As) ~ "med As",
+As_ugL > med_As ~ "high As"))
+bangladesh_gw <- mutate(bangladesh_gw,
+As_cat = factor(As_cat,ordered = TRUE,
+levels = c("low As","med As","high As" )) )
+# add a column with depth categories
+shallow <- 50 # threshold for shallow wells (meters)
+intermed <- 100 # threshold for intermed wells (meters)
+# create categorical variable for well depths
+bangladesh_gw <- bangladesh_gw %>%
+mutate(depth_cat = case_when(WELL_DEPTH_m <= shallow ~"shallow",
+WELL_DEPTH_m > shallow & WELL_DEPTH_m <= intermed ~ "intermed",
+WELL_DEPTH_m > intermed ~ "deep"))
+# reorder factors
+bangladesh_gw <- mutate(bangladesh_gw,
+depth_cat = factor(depth_cat,ordered = TRUE,
+levels = c("shallow","intermed","deep" )) )
+table_exposure <- bangladesh_gw %>%
+group_by(DIVISION) %>%
+summarise(n_wells = n()
+)
+table_exposure
+table_exposure <- bangladesh_gw %>%
+group_by(DIVISION) %>%
+summarise(n_wells = n(),
+percent_low_As = 100 * sum(As_cat == "low As") / n_wells
+)
+table_exposure
+table_exposure <- bangladesh_gw %>%
+group_by(DIVISION) %>%
+summarise(n_wells = n(),
+percent_low_As = 100 * sum(As_cat == "low As") / n_wells,
+percent_med_As = 100 * sum(As_cat == "med As") / n_wells,
+percent_high_As = 100 * sum(As_cat == "high As") / n_wells,
+)
+table_exposure
+library(tidyverse)
+library(gapminder)
+my_gap <- gapminder # assign the gapminder data to our own data object called my_gap
+my_gap %>%
+ggplot()
+my_gap %>%
+ggplot() +
+geom_point()
+my_gap %>%
+ggplot(aes(x = year, y = pop))
+my_gap %>%
+ggplot(aes(x = year, y = pop)) +
+geom_point()
+my_gap %>%
+ggplot(aes(x = year, y = pop)) +
+geom_point()
+my_gap %>%
+ggplot(aes(x = year, y = pop)) +
+geom_boxplot()
+my_gap %>%
+ggplot(aes(x = year, y = pop))
+my_gap %>% filter(continent == "Europe") %>%
+ggplot(aes(x = continent, y = lifeExp)) +
+geom_boxplot()
+my_gap %>%
+ggplot(aes(x = gdpPercap)) +
+geom_dotplot()
+my_gap %>%
+ggplot(aes(x = gdpPercap)) +
+geom_dotplot(binwidth = 1/50)
+my_gap %>%
+ggplot(aes(x = gdpPercap)) +
+geom_dotplot(binwidth = 1/30)
+my_gap %>%
+ggplot(aes(x = gdpPercap)) +
+geom_dotplot(binwidth = 1000)
+my_gap %>%
+ggplot(aes(x = gdpPercap)) +
+geom_dotplot(binwidth = 5000)
+my_gap %>%
+ggplot(aes(x = gdpPercap)) +
+geom_dotplot(binwidth = 2000)
+my_gap %>%
+ggplot(aes(x = gdpPercap)) +
+geom_dotplot(binwidth = 1500)
+my_gap %>%
+ggplot(aes(x = lifeExp)) +
+geom_dotplot(binwidth = 5)
+my_gap %>%
+ggplot(aes(x = lifeExp)) +
+geom_dotplot(binwidth = 2)
+my_gap %>%
+ggplot(aes(x = lifeExp)) +
+geom_dotplot(binwidth = 1)
+my_gap %>%
+ggplot(aes(x = lifeExp)) +
+geom_dotplot(binwidth = 0.5)
+library(tidyverse)
+library(gapminder)
+my_gap <- gapminder # assign the gapminder data to our own data object called my_gap
+my_gap %>%
+ggplot()
+View(my_gap)
+my_gap %>%
+ggplot()
+my_gap %>%
+ggplot(aes(x = year, y = lifeExp))
+my_gap %>%
+ggplot(aes(x = year, y = lifeExp)) +
+geom_point()
+my_gap %>%
+ggplot(aes(x = gdpPercap, y = lifeExp)) +
+geom_point()
+my_gap %>%
+ggplot(aes(x = gdpPercap, y = lifeExp)) +
+geom_point()
+my_gap %>%
+ggplot(aes(x = gdpPercap, y = lifeExp, color = continent)) +
+geom_point()
+my_gap %>%
+ggplot(aes(x = gdpPercap, y = lifeExp)) +
+geom_point(color = "red")
+my_gap %>%
+ggplot(aes(x = gdpPercap, y = lifeExp)) +
+geom_point(color = "firebrick2")
+my_gap %>%
+ggplot(aes(x = gdpPercap, y = lifeExp)) +
+geom_point(color = "firebrick4")
+my_gap %>%
+ggplot(aes(x = continent, y = lifeExp)) +
+geom_boxplot()
+countries2use <- my_gap %>%
+filter(year == 2007) %>%
+slice_max(order_by = lifeExp, n = 2)
+View(countries2use)
+top_2 <- my_gap %>%
+filter(year == 2007) %>%
+slice_max(order_by = lifeExp, n = 2)
+bottom_2 <- my_gap %>%
+filter(year == 2007) %>%
+slice_min(order_by = lifeExp, n = 2)
+View(bottom_2)
+top_2 <- my_gap %>%
+filter(year == 2007) %>%
+slice_max(order_by = lifeExp, n = 2)
+bottom_2 <- my_gap %>%
+filter(year == 2007) %>%
+slice_min(order_by = lifeExp, n = 2)
+countries2use <- top_2 %>%
+bind_rows(bottom_2)
+View(countries2use)
+View(countries2use)
+my_gap %>%
+filter(country %in% countries2use$country)
+library(tidyverse)
+library(gapminder)
+my_gap <- gapminder
+my_gap %>%
+ggplot()
+my_gap %>%
+ggplot(aes(x = year, y = lifeExp, color = continent, size = pop)) +
+geom_jitter()
+my_gap %>%
+ggplot(aes(x = year, y = lifeExp, color = continent, size = pop)) +
+geom_point()
+my_gap %>%
+ggplot(aes(x = year, y = lifeExp, color = continent, size = pop)) +
+geom_jitter()
+my_gap %>%
+ggplot(aes(x = year, y = lifeExp, color = continent, size = pop)) +
+geom_jitter(width = 0.2)
+my_gap %>%
+ggplot(aes(x = year, y = lifeExp, color = continent, size = pop)) +
+geom_jitter(width = 0.5)
+my_gap %>%
+ggplot(aes(x = year, y = lifeExp, color = continent, size = pop)) +
+geom_jitter(width = 0.5, height = 0)
+my_gap %>%
+ggplot(aes(x = year, y = lifeExp, color = continent, size = pop)) +
+geom_jitter(width = 0.5, height = 0, alpha = 0.2)
+my_gap %>%
+ggplot(aes(x = year, y = lifeExp, color = continent, size = pop)) +
+geom_jitter(width = 0.5, height = 0, alpha = 0.5)
+my_gap %>%
+filter(year == 2007) %>%
+ggplot(aes(x = continent, y = lifeExp)) +
+geom_boxplot()
+my_gap %>%
+filter(year == 2007) %>%
+ggplot(aes(x = continent, y = lifeExp)) +
+geom_boxplot(fill = "lightblue")
+my_gap %>%
+filter(year == 2007) %>%
+ggplot(aes(x = continent, y = lifeExp)) +
+geom_boxplot(fill = "lightblue") +
+geom_jitter(alpha = 0.5)
+my_gap %>%
+filter(year == 2007) %>%
+ggplot(aes(x = continent, y = lifeExp)) +
+geom_boxplot(fill = "lightblue") +
+geom_jitter(alpha = 0.5, width = 0.1)
+my_gap %>%
+filter(year == 2007) %>%
+ggplot(aes(x = continent, y = lifeExp)) +
+geom_boxplot(fill = "lightblue") +
+geom_jitter(alpha = 0.5, width = 0.1, height = 0)
+top_2 <- my_gap %>%
+filter(year == 2007) %>%
+top_n(n = 2, lifeExp) %>%
+select(country)
+View(top_2)
+top_2 <- my_gap %>%
+filter(year == 2007) %>%
+top_n(n = 2, lifeExp) %>%
+select(country)
+bottom_2 <- my_gap %>%
+filter(year == 2007) %>%
+top_n(n = -2, lifeExp) %>%
+select(country)
+View(bottom_2)
+my_gap %>%
+filter(country == top_2$country | country == bottom_2$country)
+my_gap %>%
+filter(country == top_2$country | country == bottom_2$country) %>%
+ggplot(aes(x = year, y = lifeExp, color = country)) +
+geom_point()
+my_gap %>%
+filter(country == top_2$country | country == bottom_2$country) %>%
+ggplot(aes(x = year, y = lifeExp, color = country)) +
+geom_point() +
+geom_line()
+library(tidyverse)
+library(gapminder)
+my_gap <- gapminder
+my_gap <- my_gap %>%
+mutate(tot_gdp = gdpPercap * pop)
+my_gap %>%
+filter(year == 1952) %>%
+arrange(-tot_gdp)
+library(tidyverse)
+library(gapminder)
+my_gap <- gapminder
+mean_gdp <- my_gap %>%
+group_by(year) %>%
+summarize(mean_gdpPercap = mean(gdpPercap))
+View(mean_gdp)
+my_gap %>%
+ggplot(aes(x = year, y = gdpPercap, group = country)) +
+geom_point()
+my_gap %>%
+ggplot(aes(x = year, y = gdpPercap, group = country)) +
+geom_point() +
+geom_line()
+my_gap %>%
+ggplot(aes(x = year, y = gdpPercap, group = NA)) +
+geom_point() +
+geom_line()
+my_gap %>%
+ggplot(aes(x = year, y = gdpPercap, group = country)) +
+geom_point() +
+geom_line()
+mean_gdp <- my_gap %>%
+group_by(year) %>%
+summarize(gdpPercap = mean(gdpPercap))
+my_gap %>%
+ggplot(aes(x = year, y = gdpPercap, group = country)) +
+geom_point() +
+geom_line() +
+geom_line(data = mean_gdp,
+aes(group = NA),
+color = "blue"
+)
+my_gap %>%
+ggplot(aes(x = year, y = gdpPercap, group = country)) +
+geom_point() +
+geom_line() +
+geom_line(data = mean_gdp,
+aes(group = NA),
+color = "blue"
+) +
+facet_wrap(~continent)
+my_gap %>%
+ggplot(aes(x = year, y = gdpPercap, group = country)) +
+geom_point(alpha = 0.5) +
+geom_line(alpha = 0.5) +
+geom_line(data = mean_gdp,
+aes(group = NA),
+color = "blue"
+) +
+facet_wrap(~continent)
+my_gap %>%
+ggplot(aes(x = year, y = gdpPercap, group = country)) +
+geom_point(alpha = 0.5) +
+geom_line(alpha = 0.5) +
+geom_line(data = mean_gdp,
+aes(group = NA),
+color = "blue"
+) +
+ylim(NA, 50000) +
+facet_wrap(~continent)
+my_gap %>%
+ggplot(aes(x = year, y = gdpPercap, group = country)) +
+geom_point(alpha = 0.5) +
+geom_line(alpha = 0.5) +
+geom_line(data = mean_gdp,
+aes(group = NA),
+color = "blue", size = 1
+) +
+geom_point(data = mean_gdp,
+aes(group = NA),
+color = "blue", size = 1.2
+) +
+ylim(NA, 50000) +
+facet_wrap(~continent)
+precip_untidy_MA <- read_csv("https://stahlm.github.io/ENS_215/Data/precip_untidy_MA.csv")
+View(precip_untidy_MA)
+month.abb
+precip_tidy_MA <- precip_untidy_MA %>%
+pivot_longer(cols = month.abb,
+names_to = "Month",
+values_to = "Precip_inches"
+)
+View(precip_tidy_MA)
+quarto install tinytex
+'quarto install tinytex'
+library(tidyverse)
+library(lubridate)
+library(leaflet)
+# Let's also load in the `sf` and the `tmap` packages.  You will probably need to install these packages first.  FYI, both of these packages are used for spatial analysis and making maps.  We will learn much more about these topics in upcoming lectures.
+library(sf)
+library(tmap)
+library(GSODR)
+load(system.file("extdata", "isd_history.rda", package = "GSODR"))
+library(leaflet)
+map_gsod <- isd_history  %>% leaflet() %>%
+addProviderTiles(providers$OpenStreetMap) %>%
+addMarkers(~ LON, ~ LAT, popup = ~ STNID, clusterOptions = T)
+map_gsod
+met_df <- get_GSOD(years = 2024:2025, station = "681100-99999")
+met_df %>%
+ggplot() +
+geom_line(aes(x = YEARMODA, y = MIN), color = "blue") +
+geom_line(aes(x = YEARMODA, y = MAX), color = "red") +
+labs(title = met_df$NAME[1],
+x = "Date",
+y = "Temperature (C)",
+caption = paste("Data source GSOD station", met_df$STNID[1])
+) +
+theme_classic()
+View(met_df)
+met_df <- get_GSOD(years = 2023:2024, station = "681100-99999")
+met_df %>%
+ggplot() +
+geom_line(aes(x = YEARMODA, y = MIN), color = "blue") +
+geom_line(aes(x = YEARMODA, y = MAX), color = "red") +
+labs(title = met_df$NAME[1],
+x = "Date",
+y = "Temperature (C)",
+caption = paste("Data source GSOD station", met_df$STNID[1])
+) +
+theme_classic()
+schdy_met_stations <- nearest_stations(LAT = 42.81,
+LON = -73.94,
+distance = 25)
+schdy_met_stations
+library(worldmet)
+worldmet_site_df <- getMeta(plot = F)
+worldmet_data <- importNOAA(code = "725180-14735",
+year = 2024:2025)
+worldmet_data %>%
+ggplot(aes(x = date, y = air_temp)) +
+geom_line() +
+theme_bw()
+worldmet_data <- importNOAA(code = "725180-14735",
+year = 2025:2026)
+View(worldmet_site_df)
+View(worldmet_site_df)
