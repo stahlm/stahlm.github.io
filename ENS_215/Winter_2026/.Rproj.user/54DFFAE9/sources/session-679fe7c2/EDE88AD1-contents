@@ -122,6 +122,42 @@ include-in-header:
 
 
 
+```{r eval = F, echo = F}
+
+### Week 10
+#   -T: 
+#   -Th: 
+#   -Lab: Project presentations
+
+
+### Week 9
+#   -T: "Seasonality indices: Environmental applications"
+#   -Th: "Introduction to data modeling"
+#   -Lab: Projects
+
+
+### Week 8
+#   -T: "Bivariate data and time-series analysis"
+#   -Th: " Time-series wrap-up and interactive graphics"
+#   -Lab: "Writing functions" and projects
+
+
+### Week 7
+#   -T: "Spatial analysis : Introduction to rasters" and "Spatial analysis: Analyzing and obtaining environmental rasters"
+#   -Th: "Descriptive statistics and univariate data"
+#   -Lab: "Visualizing and interpreting data distributions" and projects
+
+
+### Week 6
+#   -T: "Finding and accessing environmental data in R"
+#   -Th: "Making maps in R"
+#   -Lab: "Making maps in R: Additional topics" and projects
+
+
+```
+
+
+
 
 ## Labs
 
@@ -134,7 +170,7 @@ include-in-header:
 * Lab 4 – **Final project kick-off ** [(html)](https://stahlm.github.io/ENS_215/Winter_2026/Labs/Lab_Final_Project.html) [(qmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2026/Labs/Lab_Final_Project.qmd)  
 
 * Lab 5 – **Final project consultations, analysis, and importing data** [(html)](https://stahlm.github.io/ENS_215/Winter_2026/Labs/Lab_Final_Project_Second_Meeting.html) [(qmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2026/Labs/Lab_Final_Project_Second_Meeting.qmd)  
-  + Loading data into R ** [(html)](https://stahlm.github.io/ENS_215/Winter_2026/Labs/2026_02_05_load_data_into_R.html) [(qmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2026/Labs/2026_02_05_load_data_into_R.qmd)  
+  + Loading data into R [(html)](https://stahlm.github.io/ENS_215/Winter_2026/Labs/2026_02_05_load_data_into_R.html) [(qmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2026/Labs/2026_02_05_load_data_into_R.qmd)  
 
 
 ```{r eval = F, echo = F}
