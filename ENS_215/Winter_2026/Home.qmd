@@ -170,7 +170,7 @@ include-in-header:
 * Lab 4 – **Final project kick-off ** [(html)](https://stahlm.github.io/ENS_215/Winter_2026/Labs/Lab_Final_Project.html) [(qmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2026/Labs/Lab_Final_Project.qmd)  
 
 * Lab 5 – **Final project consultations, analysis, and importing data** [(html)](https://stahlm.github.io/ENS_215/Winter_2026/Labs/Lab_Final_Project_Second_Meeting.html) [(qmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2026/Labs/Lab_Final_Project_Second_Meeting.qmd)  
-  + Loading data into R [(html)](https://stahlm.github.io/ENS_215/Winter_2026/Labs/2026_02_05_loading_in_data.html) [(qmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2026/Labs/2026_02_05_loading_in_data.qmd)  
+  + Loading data into R [(html)](https://stahlm.github.io/ENS_215/Winter_2026/Lectures/2026_02_05_loading_in_data.html) [(qmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2026/Lectures/2026_02_05_loading_in_data.qmd)  
 
 
 ```{r eval = F, echo = F}
