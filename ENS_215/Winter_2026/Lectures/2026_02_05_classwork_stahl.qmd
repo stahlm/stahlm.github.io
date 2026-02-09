@@ -1,0 +1,56 @@
+---
+title: "Classwork Stahl"
+author: "_Mason Stahl_ (ENS-215)"
+date: "2026-02-05"
+date-format: "MMMM D, YYYY"
+format:
+  html:
+    embed-resources: true
+    code-fold: show
+    code-tools: 
+      source: false
+    df-print: paged
+    theme:
+      light: journal
+      dark: darkly
+    page-layout: full
+    toc: true
+    toc-float: true
+---
+
+
+## Revisit exercise from last class
+
+```{r}
+library(tidyverse)
+```
+
+
+```{r}
+Bangladesh_gw <- read_csv("https://stahlm.github.io/ENS_215/Data/BGS_DPHE_to_clean.csv")
+```
+
+```{r}
+Bangladesh_gw %>% 
+  ggplot(aes(x = PARAMETER, y = CONC)) +
+  geom_boxplot() +
+  
+  scale_y_log10() 
+```
+
+
+Clean and tidy the data
+
+```{r}
+bgs_clean <- Bangladesh_gw %>% 
+  separate(col = LAT_LONG, into = c("LAT", "LONG"), sep = "/" ) %>% 
+  separate(col = DIVISION_DISTRICT, into = c("DIVISION", "DISTRICT"), sep = "-") %>% 
+  
+  pivot_wider(names_from = "PARAMETER", values_from = "CONC")# %>% 
+  #drop_na()
+```
+
+
+
+
+

@@ -1,0 +1,6 @@
+"0","bgs_clean <- Bangladesh_gw %>% "
+"0","  separate(col = LAT_LONG, into = c(""LAT"", ""LONG""), sep = ""/"" ) %>% "
+"0","  separate(col = DIVISION_DISTRICT, into = c(""DIVISION"", ""DISTRICT""), sep = ""-"") %>% "
+"0","  "
+"0","  pivot_wider(names_from = ""PARAMETER"", values_from = ""CONC"")# %>% "
+"0","  #drop_na()"

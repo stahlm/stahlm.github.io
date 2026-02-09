@@ -1,0 +1,7 @@
+"0","tmap_mode(""view"") # set viewing mode to interactive"
+"2","[38;5;232m[36mℹ[38;5;232m tmap modes [34m""plot""[38;5;232m - [1m[34m""view""[38;5;232m[22m[39m"
+"2","[38;5;232m[36mℹ[38;5;232m toggle with ]8;;ide:run:tmap::ttm()tmap::ttm()]8;;[39m"
+"0","map_world_rivers "
+"0",""
+"0","tmap_mode(""plot"") # set viewing mode to static, so that any maps made later will be in static plot mode"
+"2","[38;5;232m[36mℹ[38;5;232m tmap modes [1m[34m""plot""[38;5;232m[22m - [34m""view""[38;5;232m[39m"

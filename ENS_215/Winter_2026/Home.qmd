@@ -36,6 +36,12 @@ include-in-header:
 
 ## Lectures 
 
+### Week 6
++ Tue (10-Feb) -- **Finding and accessing environmental data in R** [(html)](https://stahlm.github.io/ENS_215/Winter_2026/Lectures/2026_02_10_data_access_in_R.html) [(Rmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2026/Lectures/2026_02_10_data_access_in_R.Rmd)   
+
+
+*** 
+
 ### Week 5
 * Tues (03-Feb) -- **Reshaping, cleaning and tidying data**  [(html)](https://stahlm.github.io/ENS_215/Winter_2026/Lectures/2026_02_03.html)  [(qmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2026/Lectures/2026_02_03.qmd) and **Presentation quality graphics** [(html)](https://stahlm.github.io/ENS_215/Winter_2026/Lectures/2026_01_29_b.html) [(qmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2026/Lectures/2026_01_29_b.qmd), [Slides](https://stahlm.github.io/ENS_215/Winter_2026/Data_vis_slides_2026.pdf), [Article by Kelleher and Wegener](https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Documents/ems2011%20kelleher%20and%20wagener.pdf) 
 

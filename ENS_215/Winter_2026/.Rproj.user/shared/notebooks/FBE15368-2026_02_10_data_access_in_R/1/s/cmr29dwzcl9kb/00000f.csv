@@ -1,0 +1,15 @@
+"0","sites_what_data <- whatNWISdata(siteNumber = sites_schdy$site_no, "
+"0","                            service = ""dv"", "
+"0","                            parameterCd = c(""00060"",""00065""),"
+"0","                            statCd = ""00003"")"
+"2","Warning: NWIS servers are slated for decommission. Please begin to migrate to read_waterdata_ts_meta"
+"2","GET: https://waterservices.usgs.gov/nwis/site/?seriesCatalogOutput=true&sites=01351500,01351450,01354230,01354330,01354500,01356190
+"
+"2","Warning: The `file` argument of `vroom()` must use `I()` for literal data as of vroom 1.5.0.
+
+# Bad:
+vroom(""X,Y\n1.5,2.3\n"")
+
+# Good:
+vroom(I(""X,Y\n1.5,2.3\n""))"
+"0","sites_what_data"

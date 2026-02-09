@@ -1,0 +1,5 @@
+"0","Schenectady_map <- Schenectady_map +"
+"0","  tm_shape(Water_Schenectady) +"
+"0","  tm_polygons(fill = ""blue"", col = ""blue"")"
+"0",""
+"0","Schenectady_map"

@@ -1,0 +1,512 @@
+parameterCd = pCode,
+startDate = "2015-01-01",
+legacy = F
+)
+NY_NO3_recent_data <- readWQPqw(siteNumbers = NY_NO3_sites$MonitoringLocationIdentifier,
+parameterCd = pCode,
+startDate = "2015-01-01",
+legacy = T
+)
+NY_NO3_recent_data <- readWQPqw(siteNumbers = NY_NO3_sites$MonitoringLocationIdentifier,
+parameterCd = pCode,
+startDate = "2015-01-01"
+)
+worldmet_sites_daily_df <- import_ghcn_stations(database = "daily")
+worldmet_data_daily <- import_ghcn_daily(station = "SZ000003700",
+year = 2025:2026)
+worldmet_data_daily %>%
+ggplot() +
+geom_line(aes(x = date, y = tmin), color = "blue") +
+geom_line(aes(x = date, y = tmax), color = "red") +
+labs(title = worldmet_data_daily$station_name[1],
+x = "Date",
+y = "Temperature (C)",
+caption = paste("Data source GHCNd station", worldmet_data_daily$station_id[1])
+) +
+theme_classic()
+library(worldmet)
+worldmet_sites_hourly_df <- import_ghcn_stations(database = "hourly")
+View(worldmet_sites_hourly_df)
+worldmet_sites_hourly_df <- import_ghcn_inventory(database = "hourly")
+View(worldmet_sites_hourly_df)
+worldmet_sites_hourly_df <- import_ghcn_stations(database = "hourly")
+import_ghcn_stations(lat = 42.6, lng = -73.8, return = "map", database = "hourly")
+worldmet_data_hourly <- import_ghcn_hourly(station = "USW00014735",
+year = 2025:2026)
+worldmet_data_daily <- import_ghcn_daily(station = "SZ000003700",
+year = 2025:2026)
+View(worldmet_data_daily)
+worldmet_data_daily %>%
+ggplot() +
+geom_line(aes(x = date, y = tmin), color = "blue") +
+geom_line(aes(x = date, y = tmax), color = "red") +
+labs(title = worldmet_data_daily$station_name[1],
+x = "Date",
+y = "Temperature (C)",
+caption = paste("Data source GHCNd station", worldmet_data_daily$station_id[1])
+) +
+theme_classic()
+a <- read.csv("https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Data/Mauna_Loa_CO2.csv", skip = 1)
+View(a)
+a <- read.csv("https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Data/Mauna_Loa_CO2.csv", skip = 2)
+a <- read.csv(file = "../Data/co2_mm_mlo.csv")
+a <- read.csv(file = "../Data/co2_mm_mlo.csv", skip = 39)
+a <- read.csv(file = "../Data/co2_mm_mlo.csv", skip = 40)
+a <- read.csv(file = "../Data/co2_mm_mlo.csv", skip = 40)
+CO2_data <- read_csv("./Data/Mauna_Loa.csv", skip = 40)
+library(tidyverse)
+CO2_data <- read_csv("./Data/Mauna_Loa.csv", skip = 40)
+CO2_data <- read_csv("./Data/co2_mm_mlo.csv", skip = 40)
+CO2_data <- read_csv("../Data/co2_mm_mlo.csv", skip = 40)
+CO2_data <- read_csv("./Data/co2_mm_mlo.csv", skip = 40)
+CO2_data <- read_csv("../Data/co2_mm_mlo.csv", skip = 40)
+a <- read.csv(file = "../Data/co2_mm_mlo.csv", skip = 40)
+CO2_data <- read_csv("./Data/co2_mm_mlo.csv", skip = 40)
+library(tidyverse)
+CO2_data <- read_csv("./Data/co2_mm_mlo.csv", skip = 40)
+CO2_data <- read_csv("../Data/co2_mm_mlo.csv", skip = 40)
+CO2_data <- read_csv(file = "../Data/co2_mm_mlo.csv", skip = 40)
+CO2_data <- read_csv(file = "./Data/co2_mm_mlo.csv", skip = 40)
+CO2_data <- read_csv(file = "../Data/co2_mm_mlo.csv", skip = 40)
+CO2_data <- read_csv(file = "./Data/co2_mm_mlo.csv", skip = 40)
+CO2_data <- read_csv(file = "./Data/co2_mm_mlo.csv", skip = 40)
+CO2_data <- read_csv(file = "../Data/co2_mm_mlo.csv", skip = 40)
+View(CO2_data)
+getwd()
+getwd(../)
+getwd(..)
+getwd(./)
+getwd()
+getwd()
+CO2_data <- read_csv(file = ".../Data/co2_mm_mlo.csv", skip = 40)
+CO2_data <- read_csv(file = "..../Data/co2_mm_mlo.csv", skip = 40)
+CO2_data <- read_csv(file = "../Data/co2_mm_mlo.csv", skip = 40)
+CO2_data <- read_csv(file = "./Data/co2_mm_mlo.csv", skip = 40)
+CO2_data <- read_csv(file = "/Data/co2_mm_mlo.csv", skip = 40)
+CO2_data <- read_csv(file = "Data/co2_mm_mlo.csv", skip = 40)
+CO2_data <- read_csv(file = "./Data/co2_mm_mlo.csv", skip = 40)
+CO2_data <- read_csv(file = "../../Data/co2_mm_mlo.csv", skip = 40)
+CO2_data <- read_csv(file = "../../Data/co2_mm_mlo.csv", skip = 40)
+library(tidyverse)
+library(tidyverse)
+library(readxl)
+df_LE_01 <- read_excel(path = "./ESPE Alumni Survey.xlsx", sheet = "Table_LE_1")
+View(df_LE_01)
+df_LE_01 <- read_excel(path = "./ESPE Alumni Survey.xlsx", sheet = "Table_LE_1", skip = 1)
+View(df_LE_01)
+df_LE_01 <- df_LE_01 %>%
+pivot_longer(cols = 3:ncol(df_LE_01), names_to = "Outcome", values_to = "Response")
+df_LE_01 %>%
+ggplot(aes(x = Outcome, y = Response))
+df_LE_01 %>%
+ggplot(aes(x = Outcome, fill = Response)) +
+geom_bar()
+response_levels <- c("Strongly disagree", "Disagree", "Neither agree nor disagree", "Agree", "Strongly agree", "N/A")
+df_LE_01 <- df_LE_01 %>%
+mutate(Outcome = factor(Outcome, ordered = T, levels = response_levels)
+df_LE_01 <- df_LE_01 %>%
+mutate(Outcome = factor(Outcome, ordered = T, levels = response_levels))
+df_LE_01 %>%
+ggplot(aes(x = Outcome, fill = Response)) +
+geom_bar()
+library(tidyverse)
+library(readxl)
+df_LE_01 <- read_excel(path = "./ESPE Alumni Survey.xlsx", sheet = "Table_LE_1", skip = 1)
+df_LE_01 <- df_LE_01 %>%
+pivot_longer(cols = 3:ncol(df_LE_01), names_to = "Outcome", values_to = "Response")
+response_levels <- c("Strongly disagree", "Disagree", "Neither agree nor disagree", "Agree", "Strongly agree", "N/A")
+df_LE_01 <- df_LE_01 %>%
+mutate(Response = factor(Response, ordered = T, levels = response_levels))
+df_LE_01 %>%
+ggplot(aes(x = Outcome, fill = Response)) +
+geom_bar()
+df_LE_01 %>%
+ggplot(aes(x = Outcome, fill = Response)) +
+geom_bar() +
+scale_fill_brewer()
+df_LE_01 %>%
+ggplot(aes(x = Outcome, fill = Response)) +
+geom_bar() +
+scale_fill_brewer(palette = "Accent")
+df_LE_01 %>%
+ggplot(aes(x = Outcome, fill = Response)) +
+geom_bar() +
+scale_fill_brewer(palette = "Dark2")
+df_LE_01 %>%
+ggplot(aes(x = Outcome, fill = Response)) +
+geom_bar() +
+scale_fill_brewer(palette = "Paired")
+df_LE_01 %>%
+ggplot(aes(x = Outcome, fill = Response)) +
+geom_bar() +
+scale_fill_brewer(palette = "Set1")
+df_LE_01 %>%
+ggplot(aes(x = Outcome, fill = Response)) +
+geom_bar() +
+scale_fill_brewer(palette = "Set2")
+pal2use <- c("red2", "red3", "green4", "blue2","blue1","grey")
+df_LE_01 %>%
+ggplot(aes(x = Outcome, fill = Response)) +
+geom_bar() +
+scale_fill_manual(values = pal2use)
+#scale_fill_brewer(palette = "Set2")
+pal2use <- c("green4", "blue2","blue1","grey")
+df_LE_01 %>%
+ggplot(aes(x = Outcome, fill = Response)) +
+geom_bar() +
+scale_fill_manual(values = pal2use)
+#scale_fill_brewer(palette = "Set2")
+df_LE_01 %>%
+ggplot(aes(x = Outcome, fill = Response)) +
+geom_bar() +
+#scale_fill_manual(values = pal2use)
+scale_fill_brewer(palette = "Set2")
+df_LE_02 <- read_excel(path = "./ESPE Alumni Survey.xlsx", sheet = "Table_LE_2", skip = 1)
+df_LE_02 <- df_LE_02 %>%
+pivot_longer(cols = 3:ncol(df_LE_02), names_to = "Outcome", values_to = "Response")
+df_LE_02 <- df_LE_02 %>%
+mutate(Response = factor(Response, ordered = T, levels = response_levels))
+df_LE_01 <- df_LE_01 %>%
+mutate(Question = "Q1")
+df_LE_02 <- df_LE_02 %>%
+mutate(Question = "Q2")
+df_all <- df_LE_01 %>%
+bind_rows(df_LE_02)
+View(df_all)
+df_all %>%
+ggplot(aes(x = Outcome, fill = Response)) +
+geom_bar() +
+#scale_fill_manual(values = pal2use)
+scale_fill_brewer(palette = "Set2")
+df_all %>%
+ggplot(aes(x = Outcome, fill = Response)) +
+geom_bar() +
+scale_fill_manual(values = pal2use)
+df_all %>%
+ggplot(aes(x = Outcome, fill = Response)) +
+geom_bar() +
+#scale_fill_manual(values = pal2use)
+scale_fill_brewer(palette = "Set2")
+library(tidyverse)
+library(readxl)
+response_levels <- c("N/A", "Strongly disagree", "Disagree", "Neither agree nor disagree", "Agree", "Strongly agree")
+df_LE_01 <- read_excel(path = "./ESPE Alumni Survey.xlsx", sheet = "Table_LE_1", skip = 1)
+df_LE_01 <- df_LE_01 %>%
+pivot_longer(cols = 3:ncol(df_LE_01), names_to = "Outcome", values_to = "Response")
+df_LE_01 <- df_LE_01 %>%
+mutate(Response = factor(Response, ordered = T, levels = response_levels))
+df_LE_01 <- df_LE_01 %>%
+mutate(Question = "Q1")
+df_LE_02 <- read_excel(path = "./ESPE Alumni Survey.xlsx", sheet = "Table_LE_2", skip = 1)
+df_LE_02 <- df_LE_02 %>%
+pivot_longer(cols = 3:ncol(df_LE_02), names_to = "Outcome", values_to = "Response")
+df_LE_02 <- df_LE_02 %>%
+mutate(Response = factor(Response, ordered = T, levels = response_levels))
+df_LE_02 <- df_LE_02 %>%
+mutate(Question = "Q2")
+df_all <- df_LE_01 %>%
+bind_rows(df_LE_02)
+pal2use <- c("green4", "blue2","blue1","grey")
+df_all %>%
+ggplot(aes(x = Outcome, fill = Response)) +
+geom_bar() +
+#scale_fill_manual(values = pal2use)
+scale_fill_brewer(palette = "Set2")
+df_all %>%
+ggplot(aes(x = Outcome, fill = Response)) +
+geom_bar() +
+#scale_fill_manual(values = pal2use)
+scale_fill_brewer(palette = "Set1")
+df_all %>%
+ggplot(aes(x = Outcome, fill = Response)) +
+geom_bar() +
+#scale_fill_manual(values = pal2use)
+scale_fill_brewer(palette = "YlOrBr")
+df_all %>%
+ggplot(aes(x = Outcome, fill = Response)) +
+geom_bar() +
+#scale_fill_manual(values = pal2use)
+scale_fill_brewer(palette = "RdPu")
+df_all %>%
+ggplot(aes(x = Outcome, fill = Response)) +
+geom_bar() +
+#scale_fill_manual(values = pal2use)
+scale_fill_brewer(palette = "Set3")
+df_all %>%
+ggplot(aes(x = Outcome, fill = Response)) +
+geom_bar() +
+#scale_fill_manual(values = pal2use)
+scale_fill_brewer(palette = "Set3") +
+facet_wrap(~Question)
+library(tidyverse)
+library(readxl)
+response_levels <- c("N/A", "Strongly disagree", "Disagree", "Neither agree nor disagree", "Agree", "Strongly agree")
+df_LE_01 <- read_excel(path = "./ESPE Alumni Survey.xlsx", sheet = "Table_LE_1", skip = 1)
+library(tidyverse)
+library(readxl)
+response_levels <- c("N/A", "Strongly disagree", "Disagree", "Neither agree nor disagree", "Agree", "Strongly agree")
+df_LE_01 <- read_excel(path = "./ESPE Alumni Survey.xlsx", sheet = "Table_LE_1", skip = 1)
+df_LE_01 <- df_LE_01 %>%
+pivot_longer(cols = 3:ncol(df_LE_01), names_to = "Outcome", values_to = "Response")
+library(tidyverse)
+library(readxl)
+response_levels <- c("N/A", "Strongly disagree", "Disagree", "Neither agree nor disagree", "Agree", "Strongly agree")
+df_LE_01 <- read_excel(path = "./ESPE Alumni Survey.xlsx", sheet = "Table_LE_1", skip = 1)
+library(tidyverse)
+library(readxl)
+response_levels <- c("N/A", "Strongly disagree", "Disagree", "Neither agree nor disagree", "Agree", "Strongly agree")
+df_LE_01 <- read_excel(path = "./ESPE Alumni Survey.xlsx", sheet = "Table_LE_1", skip = 1)
+df_LE_01 <- df_LE_01 %>%
+pivot_longer(cols = 3:ncol(df_LE_01), names_to = "Outcome", values_to = "Response")
+df_LE_01 <- df_LE_01 %>%
+mutate(Response = factor(Response, ordered = T, levels = response_levels))
+df_LE_01 <- df_LE_01 %>%
+mutate(Question = "Q1")
+df_LE_02 <- read_excel(path = "./ESPE Alumni Survey.xlsx", sheet = "Table_LE_2", skip = 1)
+df_LE_02 <- df_LE_02 %>%
+pivot_longer(cols = 3:ncol(df_LE_02), names_to = "Outcome", values_to = "Response")
+df_LE_02 <- df_LE_02 %>%
+mutate(Response = factor(Response, ordered = T, levels = response_levels))
+df_LE_02 <- df_LE_02 %>%
+mutate(Question = "Q2")
+df_all <- df_LE_01 %>%
+bind_rows(df_LE_02)
+library(tidyverse)
+library(readxl)
+response_levels <- c("N/A", "Strongly disagree", "Disagree", "Neither agree nor disagree", "Agree", "Strongly agree")
+df_LE_01 <- read_excel(path = "./ESPE Alumni Survey.xlsx", sheet = "Table_LE_1", skip = 1)
+df_LE_01 <- df_LE_01 %>%
+pivot_longer(cols = 3:ncol(df_LE_01), names_to = "Outcome", values_to = "Response")
+df_LE_01 <- df_LE_01 %>%
+mutate(Response = factor(Response, ordered = T, levels = response_levels))
+df_LE_01 <- df_LE_01 %>%
+mutate(Question = "Q1")
+df_LE_02 <- read_excel(path = "./ESPE Alumni Survey.xlsx", sheet = "Table_LE_2", skip = 1)
+df_LE_02 <- df_LE_02 %>%
+pivot_longer(cols = 3:ncol(df_LE_02), names_to = "Outcome", values_to = "Response")
+df_LE_02 <- df_LE_02 %>%
+mutate(Response = factor(Response, ordered = T, levels = response_levels))
+df_LE_02 <- df_LE_02 %>%
+mutate(Question = "Q2")
+df_all <- df_LE_01 %>%
+bind_rows(df_LE_02)
+pal2use <- c("green4", "blue2","blue1","grey")
+df_all %>%
+ggplot(aes(x = Outcome, fill = Response)) +
+geom_bar() +
+#scale_fill_manual(values = pal2use)
+scale_fill_brewer(palette = "Set3") +
+facet_wrap(~Question)
+# pal2use <- c("green4", "blue2","blue1","grey")
+pal2use <- c("grey", "red3","orange2","green4","blue3")
+df_all %>%
+ggplot(aes(x = Outcome, fill = Response)) +
+geom_bar() +
+scale_fill_manual(values = pal2use) +
+#scale_fill_brewer(palette = "Set3") +
+facet_wrap(~Question)
+df_all %>%
+ggplot(aes(x = Outcome, fill = Response)) +
+geom_bar() +
+scale_fill_manual(values = pal2use) +
+#scale_fill_brewer(palette = "Set3") +
+theme_classic() +
+facet_wrap(~Question)
+df_all %>%
+ggplot(aes(x = Outcome, fill = Response)) +
+geom_bar() +
+scale_fill_manual(values = pal2use) +
+#scale_fill_brewer(palette = "Set3") +
+theme_classic() +
+scale_y_continuous(breaks = 2:10) +
+facet_wrap(~Question)
+df_all %>%
+ggplot(aes(x = Outcome, fill = Response)) +
+geom_bar() +
+scale_fill_manual(values = pal2use) +
+#scale_fill_brewer(palette = "Set3") +
+theme_classic() +
+scale_y_continuous(breaks = 2:12) +
+facet_wrap(~Question)
+df_all %>%
+ggplot(aes(x = Outcome, fill = Response)) +
+geom_bar() +
+scale_fill_manual(values = pal2use) +
+#scale_fill_brewer(palette = "Set3") +
+theme_classic() +
+scale_y_continuous(breaks = 1:11) +
+facet_wrap(~Question)
+df_all %>%
+ggplot(aes(x = Outcome, fill = Response)) +
+geom_bar() +
+scale_fill_manual(values = pal2use) +
+#scale_fill_brewer(palette = "Set3") +
+theme_classic() +
+scale_y_continuous(breaks = 1:11) +
+facet_wrap(~Question)
+df_all %>%
+ggplot(aes(x = Outcome, fill = Response)) +
+geom_bar(col = "black") +
+scale_fill_manual(values = pal2use) +
+#scale_fill_brewer(palette = "Set3") +
+theme_classic() +
+scale_y_continuous(breaks = 1:11) +
+facet_wrap(~Question)
+df_all %>%
+ggplot(aes(x = Outcome, fill = Response)) +
+geom_bar(col = "black", linewidth = 0.5) +
+scale_fill_manual(values = pal2use) +
+#scale_fill_brewer(palette = "Set3") +
+theme_classic() +
+scale_y_continuous(breaks = 1:11) +
+facet_wrap(~Question)
+df_all %>%
+ggplot(aes(x = Outcome, fill = Response)) +
+geom_bar(col = "black", linewidth = 0.1) +
+scale_fill_manual(values = pal2use) +
+#scale_fill_brewer(palette = "Set3") +
+theme_classic() +
+scale_y_continuous(breaks = 1:11) +
+facet_wrap(~Question)
+View(df_LE_01)
+df_all %>%
+ggplot(aes(x = Outcome, fill = Response)) +
+geom_bar(col = "black", linewidth = 0.1) +
+scale_fill_manual(values = pal2use) +
+#scale_fill_brewer(palette = "Set3") +
+theme_classic() +
+scale_y_continuous(breaks = 1:11) +
+facet_wrap(~Question)
+df_all %>%
+ggplot(aes(x = Outcome, fill = Response)) +
+geom_bar(col = "black", linewidth = 0.1) +
+scale_fill_manual(values = pal2use) +
+#scale_fill_brewer(palette = "Set3") +
+theme_classic() +
+theme(legend.position = "none")
+scale_y_continuous(breaks = 1:11) +
+facet_wrap(~Question)
+df_all %>%
+ggplot(aes(x = Outcome, fill = Response)) +
+geom_bar(col = "black", linewidth = 0.1) +
+scale_fill_manual(values = pal2use) +
+#scale_fill_brewer(palette = "Set3") +
+theme_classic() +
+theme(legend.position = "none") +
+scale_y_continuous(breaks = 1:11) +
+facet_wrap(~Question)
+package_version(x = "tmap")
+packageVersion("tmap")
+library(tidyverse)
+library(patchwork)
+library(lubridate)
+map_data_usa <- map_data("state") # load in US states map data from the maps package and convert it to a compatible format for plotting in with ggplot()
+head(map_data_usa) # take a look at the first few rows of map_data_usa
+map_us <- map_data_usa %>%
+ggplot() +
+geom_polygon(aes(long, lat, group = group), color = "black", fill = "gray")
+map_us
+map_us + coord_quickmap()
+map_us_bonne <- map_us +
+coord_map(projection = "bonne", lat0 = 50) +
+theme_bw() +
+labs(title = "Bonne projection")
+map_us_conic <- map_us +
+coord_map(projection = "conic", lat0 = 30) +
+theme_bw() +
+labs(title = "Conic projection")
+map_us_bonne + map_us_conic  # making use of the patchwork package to nicely arrange the two maps
+state_cap_locs <- read_csv("https://stahlm.github.io/ENS_215/Data/us_capitals_locs.csv", skip = 2)
+state_cap_locs <- state_cap_locs %>%
+filter(state_cd %in% state.abb) %>% # remove locations that aren't US state list (e.g. Puerto Rico, Guam, ...)
+filter(state_cd != "AK", state_cd != "HI") # remove capitals of Alaska and Hawaii (our basemap only has the lower 48 states)
+map_us +
+geom_point(data = state_cap_locs, aes(x = long_deg, y = lat_deg), color = "blue") +
+coord_map(projection = "bonne", lat0 = 50) +
+theme_minimal()
+map_data_usa <- map_data("state") # get data frame with the spatial data for borders of lower 48 states
+head(map_data_usa)
+map_data_ne <- map_data_usa %>%
+filter(region %in% c("massachusetts", "new york", "connecticut", "rhode island", "maine",
+"vermont","new hampshire"))
+map_data_ne %>%
+ggplot() +
+geom_polygon(aes(long, lat, group = group), color = "black", fill = "gray") +
+coord_map(projection = "bonne", lat0 = 50) +
+theme_minimal()
+state_temps <- read_csv("https://stahlm.github.io/ENS_215/Data/NOAA_State_Temp_Lab_Data.csv")
+state_mean_temps <- state_temps %>%
+group_by(state_cd) %>%
+summarize(mean_temp = mean(Avg_Temp_F))
+state_mean_temps
+state_name_table = tibble(state_name = tolower(state.name),
+state_cd = state.abb, us_region = state.region)
+state_mean_temps <- left_join(state_mean_temps, state_name_table)
+head(state_mean_temps)
+state_mean_temps <- state_mean_temps %>%
+rename(region = state_name)
+map_data_usa_temps <- left_join(map_data_usa, state_mean_temps)
+head(map_data_usa_temps)
+map_data_usa_temps %>%
+ggplot() +
+geom_polygon(aes(long, lat, group = group, fill = mean_temp), color = "black") +
+scale_fill_gradient(low = "blue", high = "red") +
+coord_map(projection = "bonne", lat0 = 50) +
+theme_void()
+map_data_usa_temps %>%
+drop_na(us_region) %>% # there are some NA rows that we will drop
+ggplot() +
+geom_polygon(aes(long, lat, group = group, fill = mean_temp), color = "black") +
+scale_fill_gradient(low = "blue", high = "red") +
+coord_quickmap() +
+theme_void() +
+facet_wrap(~ us_region, scales = "free")
+earthquakes <- read_csv("https://earthquake.usgs.gov/fdsnws/event/1/query.csv?starttime=2026-01-01%0000:00:00&endtime=2026-02-08%2023:59:59&minmagnitude=2.5&orderby=time")
+head(earthquakes)
+earthquakes <- read_csv("https://earthquake.usgs.gov/fdsnws/event/1/query.csv?starttime=2026-01-01%0000:00:00&endtime=2026-02-08%2023:59:59&minmagnitude=2.0&orderby=time")
+head(earthquakes)
+earthquakes <- read_csv("https://earthquake.usgs.gov/fdsnws/event/1/query.csv?starttime=2026-01-01%0000:00:00&endtime=2026-02-08%2023:59:59&minmagnitude=2.5&orderby=time")
+head(earthquakes)
+map_world_data <- map_data("world")
+earthquake_map <- map_world_data %>%
+ggplot() +
+geom_polygon(aes(long, lat, group = group), fill = "lightgray", color = "black") +
+geom_point(data = earthquakes, aes(longitude, latitude,  color = mag),
+shape = 21, fill = "NA", stroke = 1.5) +
+scale_color_gradient(low = "blue", high = "red") +
+labs(title = "Earthquakes > 2.5 magnitude since the start of 2025",
+subtitle = "Date window: 1-Jan to 8-Feb-2025",
+caption = "Data source: USGS") +
+theme_void() +
+coord_quickmap()
+earthquake_map
+earthquakes <- read_csv("https://earthquake.usgs.gov/fdsnws/event/1/query.csv?starttime=2026-01-01%0000:00:00&endtime=2026-02-10%2023:59:59&minmagnitude=2.5&orderby=time")
+head(earthquakes)
+earthquakes <- read_csv("https://earthquake.usgs.gov/fdsnws/event/1/query.csv?starttime=2026-01-01%0000:00:00&endtime=2026-02-12%2023:59:59&minmagnitude=2.5&orderby=time")
+head(earthquakes)
+earthquake_map <- map_world_data %>%
+ggplot() +
+geom_polygon(aes(long, lat, group = group), fill = "lightgray", color = "black") +
+geom_point(data = earthquakes, aes(longitude, latitude,  color = mag),
+shape = 21, fill = "NA", stroke = 1.5) +
+scale_color_gradient(low = "blue", high = "red") +
+labs(title = "Earthquakes > 2.5 magnitude since the start of 2026",
+subtitle = "Date window: 1-Jan to 12-Feb-2025",
+caption = "Data source: USGS") +
+theme_void() +
+coord_quickmap()
+earthquake_map
+earthquake_map <- map_world_data %>%
+ggplot() +
+geom_polygon(aes(long, lat, group = group), fill = "lightgray", color = "black") +
+geom_point(data = earthquakes, aes(longitude, latitude,  color = mag),
+shape = 21, fill = "NA", stroke = 1.5) +
+scale_color_gradient(low = "blue", high = "red") +
+labs(title = "Earthquakes > 2.5 magnitude since the start of 2026",
+subtitle = "Date window: 1-Jan to 12-Feb-2026",
+caption = "Data source: USGS") +
+theme_void() +
+coord_quickmap()
+earthquake_map
+library(tmap)
+detach("package:tmap", unload = TRUE)

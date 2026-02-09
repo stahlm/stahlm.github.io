@@ -1,0 +1,5 @@
+"0",""
+"0","b <- ebirdgeo(lat = 42.8, lng = -73.9, back = 30,"
+"0","              key = ebird_key)"
+"2","Error in get_key(key) : object 'ebird_key' not found
+"

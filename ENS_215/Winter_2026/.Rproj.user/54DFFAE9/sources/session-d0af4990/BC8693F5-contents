@@ -1,0 +1,438 @@
+---
+title: "Making maps in R: Introduction"
+author: "_Mason Stahl_ (ENS-215)"
+date: "2026-02-12"
+date-format: "MMMM D, YYYY"
+format:
+  html:
+    embed-resources: true
+    code-fold: show
+    code-tools: 
+      source: false
+    df-print: paged
+    theme:
+      light: journal
+      dark: darkly
+    page-layout: full
+    toc: true
+    toc-float: true
+---
+
+
+
+
+<br/>
+
+
+In the environmental sciences (and in many other fields) data often has a spatial component.  Thus, you will commonly need to generate maps to explore, analyze, and present your data.  
+
+R has a wide-range of packages/functionality for performing spatial analysis and making maps.  In today's lesson we will learn some of the basics of map making in R.  Using R you can create high-quality maps, just like those you might create in other geographic information systems (GIS) software (_e.g._ ArcGIS, QGIS, Google Earth).  Creating maps in R, also provides a huge advantage over many other map making tools -- all of your operations are clearly documented in your code and a map can be perfectly reproduced by simply re-running the code.  In many other map making software, many of the operations you perform are "point-and-click", thus there is often no easy way to reproduce your exact map from scratch and there is little record of how you did what you did. 
+
+Note that spatial analysis and map making are fields unto their own and whole courses could easily be dedicated to this topic in R alone.  Nonetheless, using some of the basic map making functionality in R, you can learn how to make presentation-quality maps quickly and (relatively) easily.  For those interested in pursuing this topic beyond what we will cover this week, there are many excellent resources freely available.  The book [Geocomputation with R](https://r.geocompx.org/) is a great place to learn about this topic in greater detail.
+
+
+Today we will learn how to make maps using the `ggplot2` package and how to perform some basic spatial analysis.  In upcoming lectures we will learn how to use some additional packages for making maps and performing spatial analysis in R.  
+
+<br/>
+
+
+## Spatial data in ggplot2
+
+Let's first load in the `tidyverse` package, since we will use some of the data wrangling packages to handle our data and we will create our maps using the `ggplot2` package.  
+
+::: {.callout-important} 
+You will also need to install the `maps`, `mapproj`, and `patchwork` packages.  You should go ahead and install these packages before proceeding.  
+:::
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+library(patchwork)
+library(maps)
+library(mapproj)
+
+```
+
+
+
+<br/>
+
+Before we go ahead and make our first map, let's quickly go over some of the most common types of spatial data that you will encounter in your work:
+
++ **Point**: individual points such as groundwater well locations
++ **Line**: essentially a collection of points that are connected in order (e.g. might represent a river or fault)
++ **Polygon**: A two-dimensional shape that has defined boundaries (e.g. a country or state border)
++ **Raster**: gridded data where each grid cell has a value (e.g. ocean temperature where a value is reported on a grid with cell of size one square kilometer).
+
+<br/>
+
+The `map_data()` function takes data from the R `ggplot2` package and converts it into a data frame object that is suitable for plotting with the `ggplot2` functions. 
+```{r}
+map_data_usa <- map_data("state") # load in US states map data from the maps package and convert it to a compatible format for plotting in with ggplot()
+
+head(map_data_usa) # take a look at the first few rows of map_data_usa
+```
+
+
+You can see that we have a data frame containing the spatial data for the boundaries of the US states.  We can `lat` and `long` columns contain the spatial coordinates.  The `group` column specifies how the points should be grouped when drawing polygon boundaries (e.g. all of the Alabama data should be connected to one another) and the `order` column specifies the order in which the points should be connected.  The `region` column has identifying information about each `group`, which in this case provides the name of state represented by each group.  
+
+<br/>
+
+We can now generate a map of the US states using `ggplot()`.  We need to use the `geom_polygon()` geometry as this will plot polygons (which is how we would like to represent the state boundaries).  
+
+```{r}
+map_us <- map_data_usa %>% 
+  ggplot() + 
+  geom_polygon(aes(long, lat, group = group), color = "black", fill = "gray") 
+  
+map_us
+```
+
+Look at that, you've created a map of the US!  
+
+In addition to `"state"` data, the `maps` package has additional spatial data including: 
+
++ US county map
++ US map
++ France
++ Italy
++ New Zealand
++ World map (two versions)
+
+<br/>
+
+Furthermore, you can specify all of the same features and aesthetics that you are used to when using `ggplot()` and the `geom_` functions.  For instance, you can map variables to the fill, or you can specify the fill to be a specific color for all polygons.  You can change themes, you can add addition `geoms` (we'll do this later today).  Also since the map data is in data frame format you can do all of the data wrangling operations you are used to (e.g. filter the data) before passing it to `ggplot()`.  
+
+<br/>
+
+#### Exercises
+1. Generate a map of US states, though this time adjust some of the aesthetics and/or other features (e.g. theme, titles,...).  
+
+2. Using the approach above, create a map of another region.  To see what other map data is available in the `maps` package, type `help(package='maps')` in your console. 
+
+```{r echo=FALSE, eval=FALSE, message=FALSE}
+map_data_exer <- map_data("france")
+
+map_exer <- map_data_exer %>% 
+  ggplot() + 
+  geom_polygon(aes(long, lat, group = group, fill = factor(group)), color = "black") + 
+  scale_color_discrete() +
+  theme(legend.position = "none") +
+  coord_quickmap()
+  
+map_exer
+```
+
+<br/>
+
+
+
+
+### Projections 
+The earth is a curved surface and thus whenever we present a map on a flat surface a projection must be applied to the data to map it onto the flat surface.  
+
+The function `coord_quickmap()` sets an appropriate aspect ratio for the axes (latitude and longitude) of a map.  This function generates a projection that approximates the mercator projection in a computationally efficient (_i.e._ faster) way.  While the projection is not 100% accurate, it generates a reasonably good projection much faster than the `coord_map()` function.  For basic maps `coord_map()` may be fast enough, though as maps get more complex, generating the exact projection with `coord_map()` can take some time.  
+
+
+Let's apply the `coord_quickmap()` projection to our `map_us` graphic.  
+```{r}
+map_us + coord_quickmap()
+```
+
+<br/> 
+
+There are many different projections that are commonly used in cartography.  The choice of a given projection depends in part on the mapmakers goals/applications of the map.  For instance if the mapmaker wants to preserve areas they may choose a particular projection which meets this requirement (however that projection will likely compromise another feature such as the shape of the areas).  While there are a host of considerations to factor in when choosing a projection, in many cases choosing a common projection will yield a map that meets your basic goals.  
+
+To specify a particular projection, you can use the `coord_map()` function from the `ggplot2` package.  
+
+Below are two examples, demonstrating two common projections -- the Bonne and conic projections.  
+```{r}
+map_us_bonne <- map_us + 
+  coord_map(projection = "bonne", lat0 = 50) +
+  theme_bw() +
+  labs(title = "Bonne projection")
+
+map_us_conic <- map_us + 
+  coord_map(projection = "conic", lat0 = 30) +
+  theme_bw() +
+  labs(title = "Conic projection")
+
+
+map_us_bonne + map_us_conic  # making use of the patchwork package to nicely arrange the two maps
+```
+
+
+<br/>
+
+### Adding maps layers (additional `geoms`)
+Thus far we've learned how to generate a basemap that displays a region/area of interest.  Typically we want to add additional layers to a map that present a spatial dataset on top of the basemap.  For instance we might want to add a layer with line data representing rivers of interest, or maybe we would like to add points that represent sampling sites. 
+
+Adding additional layers simply requires us to plot an additional `geom` on top of our basemap -- since we are working with `ggplot()` this is essentially identical to how we have added `geom`s to plots in the past.  
+
+Let's work through an example, where we add points to represent the US state capitals.  First we'll load in a csv file that has the coordinates of each US state's capital (the file also has a locations that we'll filter out).  
+
+```{r message=FALSE}
+state_cap_locs <- read_csv("https://stahlm.github.io/ENS_215/Data/us_capitals_locs.csv", skip = 2)
+
+state_cap_locs <- state_cap_locs %>% 
+  filter(state_cd %in% state.abb) %>% # remove locations that aren't US state list (e.g. Puerto Rico, Guam, ...)
+  filter(state_cd != "AK", state_cd != "HI") # remove capitals of Alaska and Hawaii (our basemap only has the lower 48 states)
+```
+
+
+Take a look at the `state_cap_locs` data.  You'll see that it is simply a three column data frame with the state abbreviation and lat/long for each capital.    
+
+Now, let's add a `geom_point()` layer with the state capitals to the `map_us` map that we created earlier.  You see that we are simply specifying the x and y coordinates (longitude and latitude respectively) and the points will plot nicely onto our map.  
+
+```{r}
+map_us + 
+  geom_point(data = state_cap_locs, aes(x = long_deg, y = lat_deg), color = "blue") +
+  coord_map(projection = "bonne", lat0 = 50) +
+  theme_minimal()
+```
+
+Now we have a map of the lower 48 states and their capitals.  You could have easily loaded in a dataset with your point data of interest and using the approach above you could map those points.  
+
+<br/>
+
+### Plotting sub-regions of interest  
+Since the `map_data()` function converted the basemap data we are using into a data frame, we can take advantage of all of the data manipulation/wrangling techniques that work on data frames (e.g. filtering).  
+
+Let's highlight some of the possiblities with an example.  We will create a map of the US, however we will only map the states in the Northeast.  
+
+First let's load in the map data for the lower 48 states.  
+
+```{r}
+map_data_usa <- map_data("state") # get data frame with the spatial data for borders of lower 48 states
+
+head(map_data_usa)
+```
+
+<br/>
+
+Now let's filter the data frame with the data for the borders of the lower 48 states.  We will keep only the states in the Northeast.  
+```{r}
+map_data_ne <- map_data_usa %>% 
+  filter(region %in% c("massachusetts", "new york", "connecticut", "rhode island", "maine",
+                       "vermont","new hampshire"))
+```
+
+<br/>
+
+We can now use the same approach we've been using to generate our map, which in this case will only have the Northeast states.  
+```{r}
+map_data_ne %>% 
+  ggplot() + 
+  geom_polygon(aes(long, lat, group = group), color = "black", fill = "gray") +
+  coord_map(projection = "bonne", lat0 = 50) +
+  theme_minimal()
+```
+
+<br/>
+
+### Creating choropleth maps
+A **choropleth** map is one in which regions are shaded in proportion to a variable's value for that region.  For instance, you might shade a region by the average amount of precipitation it recieves.  Choropleth maps are a great way to display the spatial distribution of a variable and these types of maps are commonly featured in scientific and general interest publications.  
+
+Let's create a choropleth map of the US, where we shade the states according to their average temperature.  
+
+First we will load in the NOAA monthly temperature data for the each US state from 1895 to 2017.  
+```{r message = FALSE}
+state_temps <- read_csv("https://stahlm.github.io/ENS_215/Data/NOAA_State_Temp_Lab_Data.csv")
+```
+
+Take a quick look at this dataset to familiarize yourself with it.  You'll see that we will need to generate a summary of this data frame to get the average temperature for each US state.  
+
+Let's go ahead and generate this summary table.
+```{r}
+state_mean_temps <- state_temps %>% 
+  group_by(state_cd) %>% 
+  summarize(mean_temp = mean(Avg_Temp_F))
+
+state_mean_temps
+```
+
+Ok, now that we have the summary data, we need to merge the average temperature for each state with the spatial dataset containing the polygon boundaries of each state.  This will allow us to specify the fill of each state polygon based on the temperature data.  Thus, we are ultimately going to need to join the `state_mean_temp` dataset with the `map_data_usa` dataset.  If you look at the `map_data_usa` data frame you will see that the `region` column has the state name, while in our `state_mean_temp` data frame we have state abbreviations.  Before we can merge the two data frames we are going to need to add a column with the state names to our `state_mean_temp` data frame.  
+
+<br/>
+
+Let's create a data frame that has both the state names and state abbreviations as well at the region of the US that the state is located in.
+```{r}
+state_name_table = tibble(state_name = tolower(state.name), 
+                          state_cd = state.abb, us_region = state.region)
+```
+
+
+Now, lets join the `state_name_table` to the `state_mean_temps` data frame.  
+```{r}
+state_mean_temps <- left_join(state_mean_temps, state_name_table) 
+
+head(state_mean_temps)
+```
+You can see that `state_mean_temps` now have the state name information in one of its columns.  This will allow us to join `state_mean_temps` to `map_data_usa` which also has the state name information in one of its columns.  
+
+Before we carry out the join we need to rename the column with the state name information so that `state_mean_temps` and `map_data_usa` both have the same column name for this information.  
+```{r}
+state_mean_temps <- state_mean_temps %>% 
+  rename(region = state_name)
+```
+
+
+<br/>
+
+We'll `left_join()` the two data frames to add the temperature data to our `map_data_usa` data frame.  
+```{r}
+map_data_usa_temps <- left_join(map_data_usa, state_mean_temps)
+
+head(map_data_usa_temps)
+```
+
+<br/>
+
+Now let's map the data.  Note that we are mapping the `mean_temp` variable to the fill aesthetic -- this sets the fill to be proportional to the state's mean temperature.
+```{r}
+map_data_usa_temps %>% 
+  ggplot() + 
+  geom_polygon(aes(long, lat, group = group, fill = mean_temp), color = "black") +
+  scale_fill_gradient(low = "blue", high = "red") +
+  coord_map(projection = "bonne", lat0 = 50) +
+  theme_void() 
+```
+
+<br/>
+
+Since we are plotting the map using `ggplot()` we can take advantage of the functionality afforded by the `ggplot2` package.  Of particular use when making maps is the faceting feature.  This allows us to make a set of maps with the addition of a single line of code.  If you look at the `map_data_usa_temps` data frame, you can see that there is a `us_region` column that has a factor variable specifying the region of the US the state is located in.  Let's create our same choropleth temperature map, this time faceting by `us_region`
+
+
+```{r}
+map_data_usa_temps %>% 
+  drop_na(us_region) %>% # there are some NA rows that we will drop
+  
+  ggplot() + 
+  geom_polygon(aes(long, lat, group = group, fill = mean_temp), color = "black") +
+  
+  scale_fill_gradient(low = "blue", high = "red") +
+  
+  coord_quickmap() +
+  theme_void() +
+  
+  facet_wrap(~ us_region, scales = "free")
+```
+
+<br/>
+
+
+
+
+### Exercise: map of recent earthquakes
+For the following exercise you will apply the tools/techniques you learned today to create a world map showing all of the earthquakes above magnitude 2.5 that have occurred since 1-Jan-2026.  
+
+Let's first load in this earthquake data.  We'll do this by directly querying the [USGS Earthquake Hazards Program website](https://earthquake.usgs.gov/).  You'll see that we can query the USGS database using a URL formatted to our search criteria.    
+
+
+```{r warning=FALSE, message=FALSE}
+earthquakes <- read_csv("https://earthquake.usgs.gov/fdsnws/event/1/query.csv?starttime=2026-01-01%0000:00:00&endtime=2026-02-12%2023:59:59&minmagnitude=2.5&orderby=time")
+
+head(earthquakes)
+```
+
+
+Ok, now you have the earthquake data you need.  You should now go ahead a plot a world base map and then add a layer showing the locations of these earthquakes.  A nice map would have the symbols scaled and/or color-coded according to the magnitude `mag`.  Once you make your map, take a look to see if you observe any interesting spatial patterns/features in the data.  Discuss your observations with your neighbors.  
+
+<br/>
+
+Here's what my map looks like
+```{r echo=FALSE, warning= FALSE}
+map_world_data <- map_data("world")
+```
+
+
+
+
+```{r echo=FALSE}
+earthquake_map <- map_world_data %>% 
+  ggplot() +
+  geom_polygon(aes(long, lat, group = group), fill = "lightgray", color = "black") +
+  geom_point(data = earthquakes, aes(longitude, latitude,  color = mag),
+             shape = 21, fill = "NA", stroke = 1.5) + 
+  scale_color_gradient(low = "blue", high = "red") +
+  
+  labs(title = "Earthquakes > 2.5 magnitude since the start of 2026",
+       subtitle = "Date window: 1-Jan to 12-Feb-2026",
+       caption = "Data source: USGS") +
+  
+  theme_void() +
+  coord_quickmap()
+
+earthquake_map
+```
+
+<br/>
+
+
+
+
+### Exercise: choropleth map of temperature changes in the US
+Create a choropleth map that shows the change in temperature for each US state.  You should use the NOAA data and the change in temperature for each state should be computed as the difference between the state's mean temperature pre-1960  and post-1960.  
+
+
+```{r echo=FALSE, message=FALSE}
+state_mean_temps_pre <- state_temps %>% 
+  filter(Year <= 1960) %>% 
+  group_by(state_cd) %>% 
+  summarize(mean_temp_pre = mean(Avg_Temp_F))
+
+```
+
+
+```{r echo=FALSE, message=FALSE}
+state_mean_temps_post <- state_temps %>% 
+  filter(Year > 1960) %>% 
+  group_by(state_cd) %>% 
+  summarize(mean_temp_post = mean(Avg_Temp_F))
+
+```
+
+
+
+```{r echo=FALSE, message=FALSE}
+state_mean_temps_change <- left_join(state_mean_temps_post, state_mean_temps_pre) %>% 
+  mutate(temp_change = mean_temp_post - mean_temp_pre)
+
+```
+
+```{r echo=FALSE, message=FALSE}
+state_mean_temps_change <- left_join(state_mean_temps_change, state_name_table) 
+```
+
+```{r echo=FALSE, message=FALSE}
+state_mean_temps_change <- state_mean_temps_change %>% 
+  rename(region = state_name)
+```
+
+
+```{r echo=FALSE, message=FALSE}
+map_data_usa_temps_change <- left_join(map_data_usa, state_mean_temps_change)
+```
+
+
+Below is what my map looks like
+```{r echo=FALSE}
+map_data_usa_temps_change %>% 
+  ggplot() + 
+  geom_polygon(aes(long, lat, group = group, fill = temp_change), color = "black") +
+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0) +
+  coord_map(projection = "bonne", lat0 = 50) +
+  labs(title = "Changes in mean temperature",
+       subtitle = "Difference between post and pre-1960 means",
+       caption = "Data source: NOAA",
+       fill = "Temp. increase (deg. F)") +
+  theme_void() 
+```
+
+
+
+### Additional exercises
+
++ Perform some additional analysis with the data introduced in today's class and create map(s) that display your results.  
+
+
+

@@ -1,0 +1,8 @@
+"0","library(dataRetrieval)"
+"2","dataRetrieval 2.7.22
+Extended Documentation: https://doi-usgs.github.io/dataRetrieval
+Learn about the new functions that are replacing NWIS functions here:
+https://doi-usgs.github.io/dataRetrieval/articles/read_waterdata_functions.html
+Consider adding an API_USGS_PAT for new USGS functions.
+See: https://api.waterdata.usgs.gov/signup
+"

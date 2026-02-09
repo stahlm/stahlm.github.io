@@ -1,0 +1,3 @@
+"0","tm_shape(world_map_data) +"
+"0","  tm_polygons(""lifeExp"")"
+"2","[38;5;232m[32m[tip][38;5;232m Consider a suitable map projection, e.g. by adding `+ tm_crs(""auto"")`.[39m"

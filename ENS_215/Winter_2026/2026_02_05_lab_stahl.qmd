@@ -1,0 +1,22 @@
+---
+title: "Labwork Stahl"
+author: "_Mason Stahl_ (ENS-215)"
+date: "2026-02-05"
+date-format: "MMMM D, YYYY"
+format:
+  html:
+    embed-resources: true
+    code-fold: show
+    code-tools: 
+      source: false
+    df-print: paged
+    theme:
+      light: journal
+      dark: darkly
+    page-layout: full
+    toc: true
+    toc-float: true
+---
+
+
+
