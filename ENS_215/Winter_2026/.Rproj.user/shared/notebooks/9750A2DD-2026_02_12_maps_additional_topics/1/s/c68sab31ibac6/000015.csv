@@ -1,10 +1,9 @@
-"0","  "
+"0","world_map_data %>% "
+"0","  filter(gdpPercap > 10000) %>% "
+"0","  tm_shape(crs = ""+proj=moll"") +"
+"0","  tm_borders() +"
+"0","  tm_graticules(labels.size = 0.5, n.x = 20, alpha = 0.5) +"
 "0",""
-"0","  "
-"2","Warning in gzfile(file, ""wb"") :"
-"2","
- "
-"2"," cannot open compressed file 'C:/Users/stahlm/Documents/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2026/.Rproj.user/shared/notebooks/9750A2DD-2026_02_12_maps_additional_topics/1/54DFFAE9d0af4990/c68sab31ibac6_t/da8122a825224aeca89c83b8c089351e.snapshot', probable reason 'No such file or directory'
-"
-"2","Error in gzfile(file, ""wb"") : cannot open the connection
-"
+"0","  tm_fill(col = ""lightblue"") +"
+"0","  tm_shape(world_map_data) +"
+"0","  tm_borders() "

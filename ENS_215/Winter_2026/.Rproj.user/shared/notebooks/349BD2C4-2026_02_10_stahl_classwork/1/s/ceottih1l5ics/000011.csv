@@ -1,0 +1,4 @@
+"0","import_ghcn_countries("
+"0","  table = c(""countries""),"
+"0","  database = c(""monthly"")"
+"0",")"

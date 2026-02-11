@@ -1,0 +1,8 @@
+"0","map_world_rivers <- tm_shape(world, crs = ""+proj=wintri"") +"
+"0","  tm_fill() +"
+"0","  tm_borders() +"
+"0","  tm_style(""natural"") +"
+"0","  tm_shape(shape_river) +"
+"0","  tm_lines(col = ""blue"") "
+"0","  "
+"0","map_world_rivers  "

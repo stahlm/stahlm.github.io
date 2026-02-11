@@ -1,0 +1,2 @@
+"0","climate_data <- left_join(precip_combined, temperature_data)"
+"2","Joining with `by = join_by(Year, Month, state_cd)`"

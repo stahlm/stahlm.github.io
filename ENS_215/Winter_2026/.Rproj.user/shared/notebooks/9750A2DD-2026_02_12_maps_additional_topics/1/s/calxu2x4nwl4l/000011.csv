@@ -1,8 +1,3 @@
-"0","  "
-"2","Warning in gzfile(file, ""wb"") :"
-"2","
- "
-"2"," cannot open compressed file 'C:/Users/stahlm/Documents/Teaching_UnionCollege/Environmental_Data_Analysis/stahlm.github.io/ENS_215/Winter_2026/.Rproj.user/shared/notebooks/9750A2DD-2026_02_12_maps_additional_topics/1/54DFFAE9d0af4990/calxu2x4nwl4l_t/46ad9401ffc74cfd8d16e07d51a8bc60.snapshot', probable reason 'No such file or directory'
-"
-"2","Error in gzfile(file, ""wb"") : cannot open the connection
-"
+"0","tm_shape(world_map_data) +"
+"0","  tm_polygons(""lifeExp"")"
+"2","[38;5;232m[32m[tip][38;5;232m Consider a suitable map projection, e.g. by adding `+ tm_crs(""auto"")`.[39m"

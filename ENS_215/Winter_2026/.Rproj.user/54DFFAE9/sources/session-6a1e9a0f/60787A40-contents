@@ -1,0 +1,41 @@
+---
+title: "Classwork Stahl"
+author: "_Mason Stahl_ (ENS-215)"
+date: "2026-02-10"
+date-format: "MMMM D, YYYY"
+format:
+  html:
+    embed-resources: true
+    code-fold: show
+    code-tools: 
+      source: false
+    df-print: paged
+    theme:
+      light: journal
+      dark: darkly
+    page-layout: full
+    toc: true
+    toc-float: true
+---
+
+```{r}
+library(tidyverse)
+library(worldmet)
+```
+
+
+```{r}
+worldmet_data_hourly <- import_ghcn_hourly(station = "USW00014735", 
+                                           year = 2025:2026)
+```
+```{r}
+worldmet_sites_hourly_df <- import_ghcn_stations(database = "hourly")
+```
+
+```{r}
+import_ghcn_countries(
+  table = c("countries"),
+  database = c("monthly")
+)
+```
+
