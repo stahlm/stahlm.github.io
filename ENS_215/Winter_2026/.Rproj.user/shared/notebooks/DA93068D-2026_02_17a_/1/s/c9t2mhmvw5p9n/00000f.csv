@@ -1,0 +1,4 @@
+"0","raster_high_elev <- raster_world_elev"
+"0",""
+"0","raster_high_elev[raster_high_elev < 1500] <- NA"
+"0","raster_high_elev[raster_high_elev >= 1500] <- 1"

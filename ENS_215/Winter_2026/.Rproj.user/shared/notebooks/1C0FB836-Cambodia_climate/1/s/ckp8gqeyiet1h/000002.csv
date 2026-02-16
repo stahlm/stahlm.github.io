@@ -1,0 +1,12 @@
+"0","```r
+ndvi_data <- getMODIS(
+  AOI = AOI::aoi_get(\"Schenectady, NY\"),
+  #AOI = cambodia_pt,
+  asset = \"MOD13A3.061\",
+  varname = \"_1_km_monthly_NDVI\",
+  startDate = \"2021-05-01\",
+  endDate = \"2021-10-01\",
+  verbose = FALSE,
+  dryrun = F
+)
+```"

@@ -1,0 +1,4 @@
+"0","```r
+df_raster <- df_raster %>% 
+  dplyr::filter(`NLCD Land Cover Class` %in% c(\"Woody Wetlands\", \"Emergent Herbaceous Wetlands\"))
+```"

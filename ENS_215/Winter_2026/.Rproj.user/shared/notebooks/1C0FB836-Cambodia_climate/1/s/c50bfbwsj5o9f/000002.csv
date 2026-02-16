@@ -1,0 +1,4 @@
+"0","```r
+cambodia_pt <-  cambodia_pt %>% 
+  st_as_sf(coords = c(\"long\", \"lat\"), crs = 4326)
+```"

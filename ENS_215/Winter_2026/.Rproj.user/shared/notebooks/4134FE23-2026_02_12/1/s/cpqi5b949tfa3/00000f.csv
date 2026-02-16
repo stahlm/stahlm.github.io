@@ -1,3 +1,0 @@
-"0","map_data_usa <- map_data(""state"") # get data frame with the spatial data for borders of lower 48 states"
-"0",""
-"0","head(map_data_usa)"

@@ -1,0 +1,6 @@
+"0","climate_raster %>% "
+"0","  tm_shape() +"
+"0","  tm_raster(col.scale = tm_scale_continuous(values = ""brewer.rd_bu""), col.free = F) +"
+"0","  "
+"0","  tm_shape(borders_hires) +"
+"0","  tm_borders()"

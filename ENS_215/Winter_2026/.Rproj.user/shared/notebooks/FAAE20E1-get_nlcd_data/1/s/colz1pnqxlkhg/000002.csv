@@ -1,0 +1,5 @@
+"0","```r
+r_wetlands %>% 
+  tm_shape() +
+  tm_raster()
+```"

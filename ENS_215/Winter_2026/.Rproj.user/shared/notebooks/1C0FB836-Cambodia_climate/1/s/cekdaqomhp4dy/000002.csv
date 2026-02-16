@@ -1,0 +1,13 @@
+"0","```r
+d <- climateR::vrt_crop_get(
+  URL = \"/vsicurl/https://storage.googleapis.com/feddata-r/nlcd/2016_Tree_Canopy_L48.tif\",
+  catalog = NULL,
+  AOI = AOI::aoi_get(x = \"Big Indian, NY\"),
+  grid = NULL,
+  varname = NULL,
+  start = NULL,
+  end = NULL,
+  toptobottom = FALSE,
+  verbose = TRUE
+)
+```"

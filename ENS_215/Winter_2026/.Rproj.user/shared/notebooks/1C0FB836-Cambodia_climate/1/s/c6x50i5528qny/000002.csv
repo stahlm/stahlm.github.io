@@ -1,0 +1,4 @@
+"0","```r
+cambodia_pt <- data.frame(long = 104.7740461,
+                          lat = 11.6890934)
+```"

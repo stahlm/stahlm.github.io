@@ -1,0 +1,89 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r}
+library(tidyverse)
+library(tmap)
+library(sf)
+library(maps)
+
+library(climateR) 
+library(terra)
+library(AOI)
+```
+
+```{r}
+my_aoi <- AOI::aoi_get(state = "New York", county = "Schenectady")
+```
+
+
+```{r}
+a <- catalog
+
+```
+
+
+```{r}
+raster_nlcd <- vrt_crop_get(
+  URL = "/vsicurl/https://storage.googleapis.com/feddata-r/nlcd/2019_Land_Cover_L48.tif",
+  catalog = NULL,
+  AOI = my_aoi,
+  grid = NULL,
+  varname = NULL,
+  start = NULL,
+  end = NULL,
+  toptobottom = FALSE,
+  verbose = TRUE
+)
+```
+
+```{r}
+r_nlcd <- raster_nlcd$`NLCD Land Cover Class`
+```
+
+```{r}
+terra::plot(r_nlcd)
+
+```
+Get a table of the categories represented within the raster
+```{r}
+df_cats <- terra::cats(r_nlcd)[[1]] 
+```
+
+```{r}
+r_nlcd %>% 
+  tm_shape() +
+  tm_raster() +
+  tm_facets(by = "NLCD Land Cover Class")
+```
+
+```{r}
+df_raster <- terra::as.data.frame(x = r_nlcd, xy = T)
+```
+
+```{r}
+df_raster <- df_raster %>% 
+  dplyr::filter(`NLCD Land Cover Class` %in% c("Woody Wetlands", "Emergent Herbaceous Wetlands"))
+```
+
+```{r}
+r_wetlands <-	rast(x = df_raster , type="xyz")
+```
+
+```{r}
+a <- sf::st_crs(r_nlcd)
+a <- a$wkt
+
+crs(r_wetlands) <- a
+```
+
+
+```{r}
+r_wetlands %>% 
+  tm_shape() +
+  tm_raster()
+```
+

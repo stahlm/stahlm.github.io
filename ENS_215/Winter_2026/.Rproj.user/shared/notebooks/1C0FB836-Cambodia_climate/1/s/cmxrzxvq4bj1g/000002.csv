@@ -1,0 +1,12 @@
+"0","```r
+tmap_mode(\"plot\")
+
+raster_SI %>% 
+  tm_shape() +
+  tm_raster(palette = \"viridis\", style = \"cont\") + 
+  
+  tm_shape(borders_hires) +
+  tm_borders() +
+  
+  tm_layout(legend.outside = T)
+```"

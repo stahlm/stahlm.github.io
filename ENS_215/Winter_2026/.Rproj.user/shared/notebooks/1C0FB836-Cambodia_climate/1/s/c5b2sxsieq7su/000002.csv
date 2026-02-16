@@ -1,0 +1,9 @@
+"0","```r
+tmap_mode(\"view\")
+
+e %>% 
+  tm_shape() +
+  tm_raster()
+
+tmap_mode(\"plot\")
+```"

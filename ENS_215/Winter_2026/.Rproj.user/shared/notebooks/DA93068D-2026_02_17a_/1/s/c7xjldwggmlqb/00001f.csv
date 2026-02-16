@@ -1,0 +1,2 @@
+"0",""
+"0","global(raster_world_elev_with_ocean, fun = ""mean"", na.rm = T)"

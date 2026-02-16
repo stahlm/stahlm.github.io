@@ -1,0 +1,519 @@
+---
+title: "Spatial analysis continued: Introduction to rasters"
+author: "_Mason Stahl_ (ENS-215)"
+date: "2026-02-17"
+date-format: "MMMM D, YYYY"
+format:
+  html:
+    embed-resources: true
+    code-fold: show
+    code-tools: 
+      source: false
+    df-print: paged
+    theme:
+      light: journal
+      dark: darkly
+    page-layout: full
+    toc: true
+    toc-float: true
+---
+
+
+<br/>
+
+Let's load in the packages that we will use today.  You will need to install the `terra` package.    
+
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+library(tmap)
+library(sf)
+library(maps)
+
+library(terra) 
+```
+
+<br/>
+
+
+## Raster basics 
+
+In the past few lectures you've learned some basics of spatial analysis in R.  In particular you've learned how to perform basic mathematical operations and data wrangling operations on geospatial data object, make basic maps, and access spatial data directly from calls to the USGS, NOAA, as well as the US Census geographic database (using `tigris`).    
+
+You've already dealt with several types of spatial data:  
+
+> Point data (e.g. location of state capitals)  
+Line data  (e.g. geologic faults, streams, roads,..)  
+Polygon data (e.g. country borders)
+
+
+Today you'll be introduced to raster data.  The rasters we will deal with today are geographic raster.  A geographic raster is simply gridded data and typically consisted of a matrix of equally spaced cells with each cell containing the value(s) of a measurement(s).  
+
+A great example of raster data would be global elevation data.  In this case you the world would be divided into grid cells (e.g. 1 degree latitude by 1 degree longitude) and for each grid cell an elevation value would be reported.  Below I'm showing a raster of elevation data for Schenectady.   
+
+We will be using the `terra` package to perform our analysis with rasters.  You can find additional info on the [terra package here](https://rspatial.github.io/terra/index.html).  
+
+
+
+```{r message=FALSE, warning=FALSE, echo = F}
+library(AOI)
+library(elevatr)
+```
+
+
+```{r message=FALSE, warning=FALSE, echo = F}
+loc2use <- geocode(geo = "Schenectady, NY", bbox = T)
+```
+
+
+```{r message=FALSE, warning=FALSE, echo = F, }
+#elevation <- get_elev_raster(loc2use, z = 12, clip = "bbox")
+
+#elevation <- rast(elevation)
+
+#writeRaster(elevation, "./elevation_schdy.tiff")
+
+elevation <- rast("https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Winter_2022/Lectures/Data/elevation_schdy.tif")
+```
+
+
+
+
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+elevation %>% 
+  tm_shape() +
+  tm_raster(col.scale = tm_scale_continuous(values = terrain.colors(n = 10)),
+            col.legend = tm_legend(title = "Elevation (m)")
+            ) +
+  tm_layout(legend.outside = T,
+            main.title = "Schenectady elevation map") 
+```
+
+<br/>
+
+
+We often encounter geographic raster data in the environmental sciences -- in particular, the availability of satellite data (remote sensing) makes rasters widespread in this field of study.  You'll find raster data available from a range of organization and research groups (e.g. NASA, USGS, NOAA, climate modeling researchers,...)
+
+
+Let's load in a raster of the world's topography (elevation).  FYI, this raster reports elevation in units of meters. 
+
+To load in a raster, we can use the `rast()` function from the `terra` package.  
+```{r}
+raster_world_elev <- rast("https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Data/World_elev.TIFF")
+
+raster_world_elev <- raster_world_elev$World_elev
+# Data was obtained from: https://neo.sci.gsfc.nasa.gov/view.php?datasetId=SRTM_RAMP2_TOPO
+```
+
+<br/>
+
+We can examine the details of the raster by simply typing the object name
+```{r}
+raster_world_elev
+```
+
+<br/>
+
+This gives you a summary of the raster's attributes.  We see the dimensions (number of rows, columns, cells).  In this case we can see that the raster has 1,036,800 cells.  Thus there are 1,036,800 grid cells with elevation data.  We see that the resolution (i.e. the dimensions of each grid cell) is 0.25 degree lat and 0.25 degree long.  We also see the spatial extent of th raster and coordinate reference system info.  The summary above also reports the min and max values.  It is good to check that these values make sense -- in this case they do not look amiss.  
+
+We can take a quick look at the data by using the `plot()` function from the `terra` package 
+```{r}
+terra::plot(raster_world_elev)
+```
+
+<br/>
+
+You can see that this doesn't look quiet right.  The issue here is that missing data is stored as a numeric value (in this case a very large one) and it is messing up the mapping of the values to a color scale.  Let's diagnose what exactly what is going on, that way we can identify a potential solution to the issue.
+
+Statistics on the raster values should allow us to determine the value that is being used as a placeholder for missing data.  We can get stats using the `global()` function.  Note that the function takes the dataset as the first argument and the statistic of interest as the second argument.  In this case we will look at the maximum value across all of the cells in the raster.  
+
+```{r}
+global(raster_world_elev, fun = "max", na.rm = T)
+```
+
+
+
+Ok, so we see that missing data is stored as 99999.  This is a fairly common practice, but it could introduce errors in our analysis.  Since the raster is topographic data, the creator of the data (NASA) decided to assign the value of 99999 for any pixel in the ocean.  
+
+<br/>
+
+Let's replace the 99999 with NA so that we don't end up introducing any errors in our upcoming analysis.  To do this we simply need to think back to the base R from the first weeks of class.  Below we'll perform this reassignment
+
+```{r}
+raster_world_elev[raster_world_elev == 99999] <- NA
+```
+
+Discuss with your neighbor what this code is doing.  Make sure you understand what is going on.
+
+
+Now let's plot the data again.  
+```{r}
+terra::plot(raster_world_elev)
+```
+
+You can see that we have fixed the issue.
+
+<br/>
+
+### Exercise
++ Load in the world topographic data and save it to a new object.  
+    + Reassign the missing data (which represents ocean grid-cells) with the value of 0 (thus setting mean sea level to 0).  
+    + Plot the data.  
+    + Then compute the mean and maximum elevations of the Earth's topographic data.  
+    
+```{r echo=FALSE ,eval=FALSE}
+raster_world_elev_with_ocean <- rast("https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Data/World_elev.TIFF")
+
+raster_world_elev_with_ocean[raster_world_elev_with_ocean == 99999] <- 0
+
+terra::plot(raster_world_elev_with_ocean)
+```
+
+```{r echo=FALSE ,eval=FALSE}
+global(raster_world_elev_with_ocean, fun = "max", na.rm = T)
+
+global(raster_world_elev_with_ocean, fun = "mean", na.rm = T)
+```
+
+
+<br/>
+
+
+## Introduction to raster operations
+We will often need to perform mathematical operations on rasters.  For instance you may want to convert the units from meters to feet (multiplication) or you might want to perform some other mathematical operation (e.g. take the log of the values).  Any valid mathematical operation(s) can be performed on the raster.  
+
+Let's convert our elevation data from units of meters into feet (1 m = 3.28084 ft).  We will simply multiply each value in the raster by factor that represents the conversion from meters to feet.    
+```{r}
+raster_world_elev__ft <- raster_world_elev * 3.28084
+```
+
++ Before proceeding, check that this operation worked as you intended (note: it should in fact have done what you expected)  
+
+```{r echo=FALSE, eval=FALSE}
+
+global(raster_world_elev__ft, fun = "mean", na.rm = T)
+terra::plot(raster_world_elev__ft)
+```
+
+<br/>
+
+
+As you might know, the pressure in the Earth's atmosphere decreases with elevation.  So at sea-level we might experience 1 atmosphere of pressure, while on the top of Mt. Everest we would experience a much lower pressure of ~0.34 atmospheres.  
+
+Since atmospheric pressure is a function of elevation, using our elevation raster we could generate a map of the likely atmospheric pressure experienced at each point on Earth.  
+
+The elevation-pressure relationship can be approximated by the following equation
+
+> $p_{0}*exp(- \displaystyle \frac{g*h*M}{T_{0}*R_{0}})$
+
+In the equation above, $h$ is the elevation in meters.  The parameters are described (and defined) in the code block below:  
+```{r}
+coeff_p0 <- 1 # Sea level standard atmospheric pressure (Atmospheres)
+coeff_T0 <- 288.16 # Sea level standard temperature(K)
+coeff_g <- 9.80665 # 	Earth-surface gravitational acceleration (m/s^2)
+coeff_M <- 0.02896968 # Molar mass of dry air (kg/mol)
+coeff_R0 <- 8.314462618 #	Universal gas constant (J/(mol*K))
+```
+
+
+<br/>
+
+Let's calculate the atmospheric pressure using our elevation raster.  
+```{r}
+raster_atmos_pressure <- coeff_p0 * exp( -(coeff_g * raster_world_elev * coeff_M)/(coeff_T0 * coeff_R0) )
+```
+
+ 
+Now let's plot the raster we have created.   
+```{r}
+terra::plot(raster_atmos_pressure)
+```
+
+
+Plotting the raster, we can see that it works!  Pretty cool, we were able to calculate the atmospheric pressure everywhere on the Earth's surface using our elevation raster!  This is just one example, but as you can see any mathematical operations that you might need to perform can be done on a raster.
+
+
+<br/>
+
+We also often need to compute values based on several rasters.  For instance we may have rasters of average monthly precipitation across the US.  In this case we would have 12 rasters (one for each month) and we might want to determine that average annual precipitation for each grid cell (i.e. the sum of each cell's monthly values).  In this case we would simply need to sum the twelve rasters, which would simply be done as
+
+> `raster_1 + raster_2 + ... + raster_12`
+
+Let's work with an example involving just two rasters.  Here we will load in a raster of the average daytime temperatures for March and a raster of the average nighttime temperatures for March (units are degrees C).  
+```{r}
+raster_day_temps <- rast("https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Data/Day_temp_2001_march.tif")
+raster_day_temps[raster_day_temps == 99999] <- NA
+
+
+# Data from: https://neo.sci.gsfc.nasa.gov/view.php?datasetId=MOD_LSTD_CLIM_M
+```
+
+
+```{r}
+raster_night_temps <- rast("https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Data/Night_temp_2001_march.TIFF")
+
+raster_night_temps[raster_night_temps == 99999] <- NA
+
+# Data from: https://neo.sci.gsfc.nasa.gov/view.php?datasetId=MOD_LSTN_CLIM_M
+```
+
+
+<br/>
+
+As an environmental scientist you might be interested in knowing the daily temperature range in March experienced at all locations on Earth as this would have many implications including: ecological/habitat suitability implications; energy requirements (e.g. heating and cooling demand); provide an indication of soil moisture (wetter areas would experience less fluctuation between day and night,...).  
+
+Go ahead and calculate the difference between day and night temperature and save this to a new raster called `raster_temps_diff`  
+
+```{r}
+raster_temps_diff <- raster_day_temps - raster_night_temps
+```
+
+<br/>
+
+Here's what your results should look like
+```{r echo=FALSE}
+terra::plot(raster_temps_diff)
+```
+
+If you want to see how the data are distributed you can use the `hist()` function from the `raster` package.  Here's how the data distribution should look
+```{r fig.height= 3, echo=FALSE}
+terra::hist(raster_temps_diff)
+```
+
+
+Take a few minutes to think about what you are observing.  Discuss what you see with your neighbors.  I'll come around and check-in with you too.  In particular think about
+
++ Which areas experience large intra-daily fluctuations?  Why do you think this is?
++ Which areas experience small intra-daily fluctuations?  Why do you think this is?
++ Do you notice any areas that are surprising (e.g. seem to go against which you might expect)?
+
+
+<br/>
+
+Now let's learn how to re-classify raster data.  This is where we reassign values to new values based on some criteria.  In the case of our temperature range data, we might want to reclassify the data based on the intra-daily temperature fluctuations as follows:  
+
++ Very minimal fluctutuation (negative 100 - 3 deg C) = 1
++ Minimal fluctuation (3-6 deg C) = 2
++ Intermediate fluctuation (6-15 deg C) = 3
++ Large fluctuations (15 - 100 deg C) = 4  
+
+<br/>
+
+To reclassify the raster we will need to define a vector that has the upper and lower bounds of each class and the value that we will like to assign cells that fall into that class.  Let's define our reclassification raster below.  
+
+
+</br>
+
+```{r}
+reclass_vec <- c(-100,3,6,15,100)
+```
+
+
+Now, we will use the `classify()` function to reclassify the raster.  
+```{r}
+
+raster_temps_diff_reclass <- classify(raster_temps_diff, reclass_vec)
+```
+
+
+
+Plotting the raster, you can see that our reclassification works -- we now have four values (classes) in our raster.  
+```{r}
+terra::plot(raster_temps_diff_reclass)
+```
+
+<br/>
+
+
+### Extract values from a raster
+
+In many cases we will want to obtain the values of a raster at specified locations/points.  To do this we can use the `extract()` function from the `terra` package.  Let's test this out by extracting the land surface elevation values from our global elevation raster at the location of every capital city.
+
+For we will need to load in a dataset that has world cities and their coordinates.  This information is found in the `world.cities` dataset from the `maps` package.  
+```{r}
+cities_world <- world.cities
+```
+
+<br/>  
+
+The world.cities dataset has many cities in addition to the world capitals, so let's use the code below to filter the dataset to just include the world capitals.  
+```{r}
+cities_world <- cities_world %>% 
+  filter(capital == 1)
+```
+
+<br/>  
+
+If you hover your mouse over the `cities_world` object in your Environment pane you will see that it is a data.frame object.  In order to use it to extract values from a raster we will need to convert it to a simple features data frame.  We can do this by using the `st_as_sf()` function from the `sf` package.  This function is easy to use - all we need to do is give it the object to convert and then tell the function where name of the columns that have the longitude and latitude data.  Run the code below and then confirm that your `cities_world_sf` is in fact an sf data frame.  
+
+```{r}
+cities_world_sf <- cities_world %>% 
+  st_as_sf(coords = c("long", "lat"))
+```
+
+<br/>  
+
+Now that we have an sf object with the world capitals, let's use the `extract()` function to extract the elevations at each of those locations.  
+
+The `extract()` function takes the raster to use as the first argument and it takes the spatial object that has the locations of interest as the second argument.  Note that in the code below, we are going to add these extracted elevations as a new column called `elev__m` to our `cities_world_sf` object.  
+```{r}
+elev_data <- extract(raster_world_elev, cities_world_sf)
+
+```
+
+```{r}
+cities_world_sf$elev__m <- elev_data$World_elev
+```
+
+
+<br/>  
+
+Now that you've run the code, take a look at the `cities_world_sf` object to confirm that you extracted the elevations you wanted.  Note that some of the cities will have `NA` values (this is because the resolution of our elevation raster is fairly low and thus some cities near the coast fell on pixels that have `NA` values in the land elevation raster).  
+
++ What capital has the highest elevation?
++ Make a histogram of the elevations of the world capitals.  Do you notice any interesting features?  
+
+```{r echo = F, eval = F}
+
+cities_world_sf %>% 
+  ggplot(aes(x = elev__m)) +
+  geom_histogram()
+
+```
+
+<br/>  
+
+Note that there are a number of other features/functionality that you can implement when extracting raster data.  For example, you can extract all the values within a buffer (radius) of each point, you can extract values along a lines feature, etc.  We won't cover those approaches today, but you can always ask me how to do this if you are interested and/or you can find great examples in the book [Geocomputation with R](https://r.geocompx.org/) or elsewhere online.  
+
+<br/>  
+
+### Mask and crop rasters
+You will often want to clip (crop) a raster to a specified area.  For instance you might want to take the global elevation raster that we've been using and clip it to just the United States.  To clip (crop) a raster you will need to specify bounds to clip to.  
+
+We generally do this by first masking the raster (using `mask()`).  This keeping values for only the raster cells that fall within the polygon defined by the shape we would like to ultimately crop to -- all cells that fall outside the polygon are set to NA.  Then we `crop()` the raster so that is extent is within the bounding box of the desired region (_i.e._ rectangle that bounds the polygon we are cropping to).  
+
+Let's go ahead and use the `mask()` function from the raster package.  However, we will first load in a spatial object that has the borders of the South Africa as we will use this to set our mask and crop bounds.  
+
+```{r}
+borders_data <-  spData::world # borders of all countries
+
+# Get just South Africa's borders
+borders_data_southaf <- borders_data %>% 
+  filter(name_long == "South Africa")
+```
+
+<br/>
+
+Think back to what you learned earlier this week and use the `tmap` package to make a quick map of `borders_us` in order to confirm that you have the borders you want.  You should get something that looks like this.  
+```{r echo=FALSE, fig.height= 3}
+
+borders_data_southaf %>% 
+  tm_shape() +
+  tm_borders()
+
+```
+
+
+Now we will go ahead and mask our elevation data to this region.  
+```{r}
+raster_elev_southaf <- mask(raster_world_elev,
+                            borders_data_southaf)
+```
+
+
+Let's plot the masked raster
+```{r fig.height= 5}
+terra::plot(raster_elev_southaf)
+```
+
+You can see that we now only have raster data that falls within South Africa.  However, the extent of the raster is still the extent of the original global raster.  We now need to `crop()` the raster to the bounds of South Africa.  
+
+```{r}
+raster_elev_southaf <- crop(raster_elev_southaf,
+                            borders_data_southaf)
+```
+
+```{r}
+terra::plot(raster_elev_southaf)
+```
+
+Now we have our masked and clipped raster.  Note that the hole in the SW of the country is note an error, it is where the country of Lesotho is (this little detail makes South Africa a nice example to demonstrate masking and cropping).  
+
+<br/>
+
+### Plotting rasters with `tmap`
+So far we've just been mapping the rasters using the very basic (but easy and quick) `plot()` function.  Now let's learn how to use `tmap`, which you learned earlier this week to map rasters.  
+
+As you already know the basics of `tmap`, adding a raster is very easy.  We simply use the `tm_raster()` function.  
+
+Let's make a map with the borders of every country and the global elevation raster
+
+
+
+```{r}
+tm_shape(raster_world_elev) +
+  tm_raster() +
+
+tm_shape(borders_data) +
+  tm_borders() +
+  tm_layout(legend.position = c("LEFT", "center"))
+```
+
+If you want to change how the breaks in the color scheme are defined you can change use the `style` argument in `tm_raster()` to specify from a number of built in options for automatically setting breaks.  You can also manually define the breaks.  Let's try using the `col.scale = tm_scale_continuous()` option to use a continuous color scale (as opposed to the discrete one used above). 
+
+```{r message = F}
+tm_shape(raster_world_elev) +
+  tm_raster(col.scale = tm_scale_continuous()) +
+
+tm_shape(borders_data) +
+  tm_borders() +
+  tm_pos_out()
+```
+
+Check out the help file for `tm_raster` to see additional options.  
+
+<br/>
+
+We've just scratched the surface with what you can do with the analysis of raster data, though this should give you the tools to many important analysis and to learn additional techniques outside of class.  
+
+
+### Exercise: World elevations 
+You are interested in studying high elevation habitats and you would like to identify the areas of the world that would be ideal for your research.  Make a world map where that shows the borders of every country with the the countries filled in with a solid color.  Overlain on this map show areas of the world that have an elevation > 1500 m.  
+
+For help with creating high-quality maps using `tmap`, check out the textbook [Spatial Data Visualization with tmap](https://tmap.geocompx.org/).
+
+If you have time, use the skills you learned earlier this week to make your map look nice.  Also try making some additional maps with the world elevation data if you have time.  
+
+```{r echo=FALSE}
+raster_high_elev <- raster_world_elev
+
+raster_high_elev[raster_high_elev < 1500] <- NA
+raster_high_elev[raster_high_elev >= 1500] <- 1
+```
+
+
+Here's what my map looks like  
+
+```{r echo=FALSE}
+tm_shape(raster_high_elev) +
+  tm_raster(col.scale = tm_scale_discrete(values = c("darkgreen")),
+            col.legend = tm_legend(title = "High Elevation")
+            ) +
+  
+
+tm_shape(borders_data) +
+  tm_borders() +
+  tm_layout(legend.position = c("LEFT", "center")) +
+  
+  tm_title("High elevation (>1500 m) regions of the world")
+            
+```
+
+
+<br/>
+
+### Additional rasters
+
+If you are interested in exploring some additonal raster related to geosciences and environmental sciences, you can check out this [NASA Earth Observatory site](https://neo.gsfc.nasa.gov/dataset_index.php) which has a ton of easy to access raster datasets.  You can even try downloading some, make sure to select "GeoTIFF (raster)" when you do.  Once you've downloaded the raster you can load it in and work with it in R.  
+

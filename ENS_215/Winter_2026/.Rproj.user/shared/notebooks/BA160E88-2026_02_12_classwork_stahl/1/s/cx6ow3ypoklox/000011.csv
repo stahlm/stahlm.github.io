@@ -1,0 +1,7 @@
+"0","map_us_bonne <- map_us +"
+"0","  coord_map(projection = ""bonne"", lat0 = 50) +"
+"0","  "
+"0","  theme_bw() +"
+"0","  labs(title = ""Bonne"")"
+"0",""
+"0","map_us_bonne"

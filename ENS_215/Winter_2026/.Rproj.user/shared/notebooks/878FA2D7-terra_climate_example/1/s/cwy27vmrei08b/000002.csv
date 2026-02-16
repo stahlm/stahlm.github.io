@@ -1,0 +1,10 @@
+"0","```r
+raster_TC_normals_ppt <- getTerraClimNormals(
+  AOI = shape_fields,
+  varname = \"ppt\",
+  scenario = \"19812010\",
+  month = 1:12,
+  verbose = FALSE,
+  dryrun = FALSE
+)
+```"

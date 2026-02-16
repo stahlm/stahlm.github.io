@@ -1,0 +1,5 @@
+"0","```r
+d_df %>% 
+  ggplot(aes(y = fct_infreq(`NLCD Land Cover Class`))) +
+  geom_bar()
+```"

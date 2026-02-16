@@ -1,0 +1,10 @@
+"0","```r
+tmap_mode(\"view\")
+```"
+"1","tmap mode set to interactive viewing
+"
+"0","```r
+cambodia_tot_prcp %>% 
+  tm_shape() +
+  tm_raster(style = \"cont\", palette = \"viridis\") 
+```"

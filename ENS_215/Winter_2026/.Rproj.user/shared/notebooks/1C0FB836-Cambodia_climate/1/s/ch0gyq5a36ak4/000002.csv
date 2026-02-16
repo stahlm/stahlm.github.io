@@ -1,0 +1,14 @@
+"0","```r
+e1 <- dap(
+  URL = \"https://coastwatch.pfeg.noaa.gov/erddap/griddap/chirps20GlobalDailyP05\",
+  #URL = \"https://upwell.pfeg.noaa.gov/erddap/griddap/chirps20GlobalAnnualP05\",
+  catalog = NULL,
+  AOI = cambodia_pt,
+  grid = NULL,
+  varname = NULL,
+  startDate = \"2022-01-01\",
+  endDate = \"2022-12-31\",
+  toptobottom = F,
+  verbose = TRUE
+)
+```"

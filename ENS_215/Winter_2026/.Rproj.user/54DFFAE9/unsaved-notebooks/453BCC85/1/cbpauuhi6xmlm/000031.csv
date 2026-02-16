@@ -1,3 +1,0 @@
-"0","my_gap %>% "
-"0","  ggplot(aes(x = lifeExp)) +"
-"0","  geom_dotplot(binwidth = 0.5)"

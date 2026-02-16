@@ -1,0 +1,5 @@
+"0","map_2 <- tm_shape(world_map_data) +"
+"0","  tm_fill(""lifeExp"") +"
+"0","  tm_borders(col = ""black"")"
+"0",""
+"0","map_2"

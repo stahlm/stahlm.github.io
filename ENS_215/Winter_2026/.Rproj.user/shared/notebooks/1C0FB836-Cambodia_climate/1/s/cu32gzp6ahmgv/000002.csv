@@ -1,0 +1,5 @@
+"0","```r
+raster_SC <- raster::rasterFromXYZ(df_SC, crs = st_crs(raster_TC_normals_ppt))
+
+raster_SI <- raster::rasterFromXYZ(df_SI, crs = st_crs(raster_TC_normals_ppt))
+```"

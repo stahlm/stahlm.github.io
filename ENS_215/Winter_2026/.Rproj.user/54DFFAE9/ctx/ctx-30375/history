@@ -1,0 +1,512 @@
+geom_polygon(aes(x = long, y = lat, group = group),
+color = "black", fill = "thistle"
+)
+map_us
+map_us
+map_us + coord_quickmap()
+map_us_bonne <- map_us +
+coord_map(projection = "bonne", lat0 = 50) +
+theme_bw() +
+labs(title = "Bonne")
+map_us_bonne
+map_us_bonne <- map_us +
+coord_map(projection = "bonne", lat0 = 50) +
+theme_bw() +
+labs(title = "Bonne")
+map_us_bonne
+map_us_conic <- map_us +
+coord_map(projection = "conic", lat0 = 30) +
+theme_bw() +
+labs(title = "Conic")
+map_us_conic
+map_us_bonne + map_us_conic
+map_us_bonne / map_us_conic
+library(tidyverse)
+library(tmap)
+library(spData)
+library(sf)
+world_map_data <- world
+View(world_map_data)
+tm_shape(world_map_data) +
+tm_polygons(fill = "lifeExp")
+tm_shape(world_map_data) +
+tm_polygons(fill = "lifeExp") +
+tm_crs("auto")
+map_1 <- tm_shape(world_map_data) +
+tm_fill()
+map_1
+map_2 <- tm_shape(world_map_data) +
+tm_fill("lifeExp")
+map_2
+map_2 <- tm_shape(world_map_data) +
+tm_fill("lifeExp") +
+tm_borders(col = "black")
+map_2
+world_map_data %>%
+tm_shape() +
+tm_fill("continent") +
+tm_borders()
+world_map_data %>%
+tm_shape() +
+tm_fill("continent") +
+tm_borders() +
+tm_facets(by = "continent")
+world_map_data %>%
+filter(gdpPercap >= 10000) %>%
+tm_shape() +
+tm_polygons(fill = "forestgreen")
+world_map_data %>%
+filter(gdpPercap >= 10000) %>%
+tm_shape() +
+tm_polygons(fill = "forestgreen") +
+tm_shape(world_map_data) +
+tm_borders()
+world_map_data %>%
+filter(gdpPercap >= 10000) %>%
+tm_shape(crs = "+proj=moll") +
+tm_polygons(fill = "forestgreen") +
+tm_shape(world_map_data) +
+tm_borders()
+sf_no_gdp <- world_map_data %>%
+filter(is.na(gdpPercap))
+View(sf_no_gdp)
+world_map_data %>%
+filter(gdpPercap >= 10000) %>%
+tm_shape(crs = "+proj=moll") +
+tm_polygons(fill = "forestgreen") +
+tm_shape(sf_no_gdp) +
+tm_polygons(fill = "coral2") +
+tm_shape(world_map_data) +
+tm_borders()
+world_map_data %>%
+filter(gdpPercap >= 10000) %>%
+tm_shape(crs = "+proj=moll") +
+tm_polygons(fill = "forestgreen") +
+tm_shape(sf_no_gdp) +
+tm_polygons(fill = "coral2") +
+tm_shape(world_map_data) +
+tm_borders() +
+tm_graticules()
+world_map_data %>%
+filter(gdpPercap >= 10000) %>%
+tm_shape(crs = "+proj=moll") +
+tm_polygons(fill = "forestgreen") +
+tm_shape(sf_no_gdp) +
+tm_polygons(fill = "coral2") +
+tm_shape(world_map_data) +
+tm_borders() +
+tm_graticules(n.x = 20)
+my_world_map <- world_map_data %>%
+filter(gdpPercap >= 10000) %>%
+tm_shape(crs = "+proj=moll") +
+tm_polygons(fill = "forestgreen") +
+tm_shape(sf_no_gdp) +
+tm_polygons(fill = "coral2") +
+tm_shape(world_map_data) +
+tm_borders() +
+tm_graticules(n.x = 20)
+my_world_map
+tmap_mode("view")
+my_world_map
+library(tigris)
+NY_countries <- counties(state = "NY", cb = TRUE)
+View(NY_countries)
+NY_map <- NY_countries %>%
+tm_shape() +
+tm_polygons(fill = "darkseagreen", col = "black")
+NY_map <- NY_countries %>%
+tm_shape() +
+tm_polygons(fill = "darkseagreen", col = "black")
+NY_map
+tmap_mode("plot")
+NY_map <- NY_countries %>%
+tm_shape() +
+tm_polygons(fill = "darkseagreen", col = "black")
+NY_map
+sch_map <- NY_countries %>%
+filter(NAME == "Schenectady") %>%
+tm_shape() +
+tm_polygons(fill = "thistle", col = "black") +
+tm_scale_bar(breaks = c(0,5,10))
+sch_map <- NY_countries %>%
+filter(NAME == "Schenectady") %>%
+tm_shape() +
+tm_polygons(fill = "thistle", col = "black") +
+tm_scalebar(breaks = c(0,5,10))
+sch_map
+water_sch <- area_water(state = "NY", county = "Schenectady")
+sch_map +
+tm_shape(water_sch) +
+tm_polygons(fill = "lawngreen")
+sch_map <- sch_map +
+tm_shape(water_sch) +
+tm_polygons(fill = "lawngreen")
+sch_map
+tmap_mode("view")
+my_world_map
+tmap_mode("plot")
+spData::us_states
+sf_us_states <- us_states
+state_cap_locs <- read_csv("https://stahlm.github.io/ENS_215/Data/us_capitals_locs.csv", skip = 2)
+View(state_cap_locs)
+View(state_cap_locs)
+sf_state_caps <- st_as_sf(x = state_cap_locs,
+coords = c("long_deg", "lat_deg"))
+View(sf_state_caps)
+sf_us_states <- us_states
+View(sf_us_states)
+state_cap_locs <- read_csv("https://stahlm.github.io/ENS_215/Data/us_capitals_locs.csv", skip = 2)
+View(state_cap_locs)
+sf_state_caps <- st_as_sf(x = state_cap_locs,
+coords = c("long_deg", "lat_deg"))
+View(sf_state_caps)
+library(tidyverse)
+library(tmap)
+library(sf)
+library(maps)
+library(terra)
+library(AOI)
+library(elevatr)
+loc2use <- geocode(geo = "Schenectady, NY", bbox = T)
+#elevation <- get_elev_raster(loc2use, z = 14, clip = "bbox")
+#writeRaster(elevation, "./elevation_schdy.tiff")
+elevation <- rast("https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Winter_2022/Lectures/Data/elevation_schdy.tif")
+terra::plot(elevation)
+elevation
+elevation %>%
+tm_shape() +
+tm_raster(col.scale = tm_scale_continuous(values = terrain.colors(n = 10)),
+title = "Elev (m)") +
+tm_layout(legend.outside = T,
+main.title = "Schenectady elevation map")
+raster_world_elev <- rast("https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Data/World_elev.TIFF")
+raster_world_elev <- raster_world_elev$World_elev
+# Data was obtained from: https://neo.sci.gsfc.nasa.gov/view.php?datasetId=SRTM_RAMP2_TOPO
+raster_world_elev
+terra::plot(raster_world_elev)
+global(raster_world_elev,
+fun = "max")
+raster_world_elev[raster_world_elev == 99999] <- NA
+terra::plot(raster_world_elev)
+raster_world_elev_with_ocean <- rast("https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Data/World_elev.TIFF")
+raster_world_elev_with_ocean[raster_world_elev_with_ocean == 99999] <- 0
+terra::plot(raster_world_elev_with_ocean)
+global(raster_world_elev_with_ocean, fun = "max")
+global(raster_world_elev_with_ocean, fun = "mean")
+raster_world_elev__ft <- raster_world_elev * 3.28084
+global(raster_world_elev__ft, fun = "mean")
+terra::plot(raster_world_elev__ft)
+raster_world_elev
+global(raster_world_elev__ft, fun = "mean", na.rm = T)
+terra::plot(raster_world_elev__ft)
+global(raster_world_elev_with_ocean, fun = "max", na.rm = T)
+global(raster_world_elev_with_ocean, fun = "mean", na.rm = T)
+global(raster_world_elev_with_ocean, fun = "max", na.rm = T)
+global(raster_world_elev_with_ocean, fun = "min", na.rm = T)
+global(raster_world_elev_with_ocean, fun = "mean", na.rm = T)
+raster_day_temps <- rast("https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Data/Day_temp_2001_march.tif")
+raster_day_temps[raster_day_temps == 99999] <- NA
+raster_night_temps <- rast("https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Data/Night_temp_2001_march.TIFF")
+raster_night_temps[raster_night_temps == 99999] <- NA
+# Data from: https://neo.sci.gsfc.nasa.gov/view.php?datasetId=MOD_LSTD_CLIM_M
+# Data from: https://neo.sci.gsfc.nasa.gov/view.php?datasetId=MOD_LSTN_CLIM_M
+raster_temps_diff <- raster_day_temps - raster_night_temps
+terra::plot(raster_temps_diff)
+terra::hist(raster_temps_diff)
+reclass_vec <- c(-100,3,6,15,100)
+raster_temps_diff_reclass <- classify(raster_temps_diff, reclass_vec)
+terra::plot(raster_temps_diff_reclass,
+col = terrain.colors(4))
+terra::plot(raster_temps_diff_reclass,
+col = "brewer.rd_bu")
+terra::plot(raster_temps_diff_reclass)
+cities_world <- world.cities
+cities_world <- cities_world %>%
+filter(capital == 1)
+cities_world_sf <- cities_world %>%
+st_as_sf(coords = c("long", "lat"))
+elev_data <- extract(raster_world_elev, cities_world_sf)
+cities_world_sf$elev__m <- elev_data$World_elev
+cities_world_sf %>%
+ggplot(aes(x = elev__m)) +
+geom_histogram()
+View(cities_world_sf)
+borders_data <-  spData::world # borders of all countries
+# Get just South Africa's borders
+borders_data_southaf <- borders_data %>%
+filter(name_long == "South Africa")
+borders_data_southaf %>%
+tm_shape() +
+tm_borders()
+raster_elev_southaf <- mask(raster_world_elev,
+borders_data_southaf)
+terra::plot(raster_elev_southaf)
+raster_elev_southaf <- crop(raster_elev_southaf,
+borders_data_southaf)
+terra::plot(raster_elev_southaf)
+tm_shape(raster_world_elev) +
+tm_raster() +
+tm_shape(borders_data) +
+tm_borders() +
+tm_layout(legend.position = c("LEFT", "center"))
+tm_shape(raster_world_elev) +
+tm_raster(style = "cont") +
+tm_shape(borders_data) +
+tm_borders() +
+tm_layout(legend.position = c("LEFT", "center"))
+tm_shape(raster_world_elev) +
+tm_raster(col.scale = tm_scale_continuous()) +
+tm_shape(borders_data) +
+tm_borders() +
+tm_layout(legend.position = c("LEFT", "center"))
+tm_shape(raster_world_elev) +
+tm_raster(col.scale = tm_scale_continuous()) +
+tm_shape(borders_data) +
+tm_borders() +
+tm_layout(legend.position = c("LEFT", "center"))
+tm_shape(raster_world_elev) +
+tm_raster(col.scale = tm_scale_continuous()) +
+tm_shape(borders_data) +
+tm_borders() +
+tm_pos_out()
+tm_shape(raster_world_elev) +
+tm_raster(col.scale = tm_scale_continuous()) +
+tm_shape(borders_data) +
+tm_borders() +
+tm_pos_out()
+raster_high_elev <- raster_world_elev
+raster_high_elev[raster_high_elev < 1500] <- NA
+raster_high_elev[raster_high_elev >= 1500] <- 1
+tm_shape(raster_high_elev) +
+tm_raster(palette = "darkgreen", title = "Elev. > 1500 m") +
+tm_shape(borders_data) +
+tm_borders() +
+tm_layout(legend.position = c("LEFT", "center"),
+main.title = "High elevation (>1500 m) regions of the world")
+tm_shape(raster_high_elev) +
+tm_raster(title = "Elev. > 1500 m") +
+tm_shape(borders_data) +
+tm_borders() +
+tm_layout(legend.position = c("LEFT", "center"),
+main.title = "High elevation (>1500 m) regions of the world")
+tm_shape(raster_high_elev) +
+tm_raster(title = "Elev. > 1500 m") +
+tm_scale_discrete(values = "darkgreen") +
+tm_shape(borders_data) +
+tm_borders() +
+tm_layout(legend.position = c("LEFT", "center"),
+main.title = "High elevation (>1500 m) regions of the world")
+tm_shape(raster_high_elev) +
+tm_raster(title = "Elev. > 1500 m") +
+tm_scale_discrete(values = c("darkgreen")) +
+tm_shape(borders_data) +
+tm_borders() +
+tm_layout(legend.position = c("LEFT", "center"),
+main.title = "High elevation (>1500 m) regions of the world")
+tm_shape(raster_high_elev) +
+tm_raster(title = "Elev. > 1500 m",
+col.scale = tm_scale_discrete(values = c("darkgreen"))) +
+tm_shape(borders_data) +
+tm_borders() +
+tm_layout(legend.position = c("LEFT", "center"),
+main.title = "High elevation (>1500 m) regions of the world")
+tm_shape(raster_high_elev) +
+tm_raster(col.scale = tm_scale_discrete(values = c("darkgreen"))) +
+tm_shape(borders_data) +
+tm_borders() +
+tm_layout(legend.position = c("LEFT", "center"),
+main.title = "High elevation (>1500 m) regions of the world")
+tm_shape(raster_high_elev) +
+tm_raster(col.scale = tm_scale_discrete(values = c("darkgreen"))) +
+tm_shape(borders_data) +
+tm_borders() +
+tm_layout(legend.position = c("LEFT", "center"),
+main.title = "High elevation (>1500 m) regions of the world",
+title = "High Elevation")
+tm_shape(raster_high_elev) +
+tm_raster(col.scale = tm_scale_discrete(values = c("darkgreen"))) +
+tm_shape(borders_data) +
+tm_borders() +
+tm_layout(legend.position = c("LEFT", "center"),
+main.title = "High elevation (>1500 m) regions of the world",
+col.legend = "High Elevation")
+tm_shape(raster_high_elev) +
+tm_raster(col.scale = tm_scale_discrete(values = c("darkgreen"))) +
+tm_shape(borders_data) +
+tm_borders() +
+tm_layout(legend.position = c("LEFT", "center"))
+tm_shape(raster_high_elev) +
+tm_raster(col.scale = tm_scale_discrete(values = c("darkgreen"))) +
+tm_shape(borders_data) +
+tm_borders() +
+tm_layout(legend.position = c("LEFT", "center")) +
+tm_title(main.title = "High elevation (>1500 m) regions of the world",
+col.legend = "High Elevation")
+tm_shape(raster_high_elev) +
+tm_raster(col.scale = tm_scale_discrete(values = c("darkgreen"))) +
+tm_shape(borders_data) +
+tm_borders() +
+tm_layout(legend.position = c("LEFT", "center")) +
+tm_title("High elevation (>1500 m) regions of the world")
+tm_shape(raster_high_elev) +
+tm_raster(col.scale = tm_scale_discrete(values = c("darkgreen")),
+title = "High Elevation"
+) +
+tm_shape(borders_data) +
+tm_borders() +
+tm_layout(legend.position = c("LEFT", "center")) +
+tm_title("High elevation (>1500 m) regions of the world")
+tm_shape(raster_high_elev) +
+tm_raster(col.scale = tm_scale_discrete(values = c("darkgreen"))
+) +
+tm_shape(borders_data) +
+tm_borders() +
+tm_layout(legend.position = c("LEFT", "center")) +
+tm_title("High elevation (>1500 m) regions of the world", col.legend = tm_legend("test"))
+tm_shape(raster_high_elev) +
+tm_raster(col.scale = tm_scale_discrete(values = c("darkgreen")),
+col.legend = tm_legend(title = "High Elevation")
+) +
+tm_shape(borders_data) +
+tm_borders() +
+tm_layout(legend.position = c("LEFT", "center")) +
+tm_title("High elevation (>1500 m) regions of the world", col.legend = tm_legend("test"))
+tm_shape(raster_high_elev) +
+tm_raster(col.scale = tm_scale_discrete(values = c("darkgreen")),
+col.legend = tm_legend(title = "High Elevation")
+) +
+tm_shape(borders_data) +
+tm_borders() +
+tm_layout(legend.position = c("LEFT", "center")) +
+tm_title("High elevation (>1500 m) regions of the world")
+elevation %>%
+tm_shape() +
+tm_raster(col.scale = tm_scale_continuous(values = terrain.colors(n = 10)),
+title = "Elev (m)") +
+tm_layout(legend.outside = T,
+main.title = "Schenectady elevation map")
+elevation <- get_elev_raster(loc2use, z = 10, clip = "bbox")
+#writeRaster(elevation, "./elevation_schdy.tiff")
+#elevation <- rast("https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Winter_2022/Lectures/Data/elevation_schdy.tif")
+elevation %>%
+tm_shape() +
+tm_raster(col.scale = tm_scale_continuous(values = terrain.colors(n = 10)),
+title = "Elev (m)") +
+tm_layout(legend.outside = T,
+main.title = "Schenectady elevation map")
+elevation %>%
+tm_shape() +
+tm_raster(col.scale = tm_scale_continuous(values = terrain.colors(n = 10)),
+title = "Elev (m)") +
+tm_layout(legend.outside = T,
+main.title = "Schenectady elevation map")
+elevation
+elevation <- rast(elevation)
+elevation %>%
+tm_shape() +
+tm_raster(col.scale = tm_scale_continuous(values = terrain.colors(n = 10)),
+title = "Elev (m)") +
+tm_layout(legend.outside = T,
+main.title = "Schenectady elevation map")
+elevation %>%
+tm_shape() +
+tm_raster(col.scale = tm_scale_continuous(values = terrain.colors(n = 10)),
+title = "Elev (m)") +
+tm_layout(legend.outside = T,
+main.title = "Schenectady elevation map")
+terra::plot(elevation)
+elevation %>%
+tm_shape() +
+tm_raster(col.scale = tm_scale_continuous(values = terrain.colors(n = 10)),
+) +
+tm_layout(legend.outside = T,
+main.title = "Schenectady elevation map")
+elevation %>%
+tm_shape() +
+tm_raster(col.scale = tm_scale_continuous(values = terrain.colors(n = 10)),
+) +
+tm_layout(legend.outside = T,
+main.title = "Schenectady elevation map")
+elevation %>%
+tm_shape() +
+tm_raster(col.scale = tm_scale_continuous(values = terrain.colors(n = 10))
+) +
+tm_layout(legend.outside = T,
+main.title = "Schenectady elevation map")
+elevation %>%
+tm_shape() +
+tm_raster(col.scale = tm_scale_continuous(values = terrain.colors(n = 10)),
+col.legend = tm_legend(title = "Elevation (m)")
+) +
+tm_layout(legend.outside = T,
+main.title = "Schenectady elevation map")
+elevation <- get_elev_raster(loc2use, z = 11, clip = "bbox")
+#elevation <- rast(elevation)
+#writeRaster(elevation, "./elevation_schdy.tiff")
+#elevation <- rast("https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Winter_2022/Lectures/Data/elevation_schdy.tif")
+elevation %>%
+tm_shape() +
+tm_raster(col.scale = tm_scale_continuous(values = terrain.colors(n = 10)),
+col.legend = tm_legend(title = "Elevation (m)")
+) +
+tm_layout(legend.outside = T,
+main.title = "Schenectady elevation map")
+elevation <- get_elev_raster(loc2use, z = 12, clip = "bbox")
+#elevation <- rast(elevation)
+#writeRaster(elevation, "./elevation_schdy.tiff")
+#elevation <- rast("https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Winter_2022/Lectures/Data/elevation_schdy.tif")
+elevation %>%
+tm_shape() +
+tm_raster(col.scale = tm_scale_continuous(values = terrain.colors(n = 10)),
+col.legend = tm_legend(title = "Elevation (m)")
+) +
+tm_layout(legend.outside = T,
+main.title = "Schenectady elevation map")
+#elevation <- get_elev_raster(loc2use, z = 12, clip = "bbox")
+#elevation <- rast(elevation)
+#writeRaster(elevation, "./elevation_schdy.tiff")
+elevation <- rast("https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Winter_2022/Lectures/Data/elevation_schdy.tif")
+elevation %>%
+tm_shape() +
+tm_raster(col.scale = tm_scale_continuous(values = terrain.colors(n = 10)),
+col.legend = tm_legend(title = "Elevation (m)")
+) +
+tm_layout(legend.outside = T,
+main.title = "Schenectady elevation map")
+my_aoi <- AOI::aoi_get(state = "New York", county = "Schenectady")
+raster_nlcd <- vrt_crop_get(
+URL = "/vsicurl/https://storage.googleapis.com/feddata-r/nlcd/2019_Land_Cover_L48.tif",
+catalog = NULL,
+AOI = my_aoi,
+grid = NULL,
+varname = NULL,
+start = NULL,
+end = NULL,
+toptobottom = FALSE,
+verbose = TRUE
+)
+library(tidyverse)
+library(tmap)
+library(sf)
+library(maps)
+library(climateR)
+library(terra)
+library(AOI)
+raster_nlcd <- vrt_crop_get(
+URL = "/vsicurl/https://storage.googleapis.com/feddata-r/nlcd/2019_Land_Cover_L48.tif",
+catalog = NULL,
+AOI = my_aoi,
+grid = NULL,
+varname = NULL,
+start = NULL,
+end = NULL,
+toptobottom = FALSE,
+verbose = TRUE
+)
+terra::plot(r_nlcd)
+r_nlcd <- raster_nlcd$`NLCD Land Cover Class`
+terra::plot(r_nlcd)
+library(tidyverse)
+library(tmap)
+library(sf)
+library(elevatr)

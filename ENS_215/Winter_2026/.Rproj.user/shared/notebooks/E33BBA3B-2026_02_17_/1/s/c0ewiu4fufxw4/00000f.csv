@@ -1,0 +1,4 @@
+"0","# Let's run this code to change a setting that will allow us to properly query data when using the `climateR` package.  "
+"0","sf::sf_use_s2(FALSE)"
+"2","Spherical geometry (s2) switched off
+"

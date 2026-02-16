@@ -1,0 +1,4 @@
+"0","```r
+a_long <- a_long %>% 
+  mutate(group_name = paste(x,y, sep = \"-\"))
+```"

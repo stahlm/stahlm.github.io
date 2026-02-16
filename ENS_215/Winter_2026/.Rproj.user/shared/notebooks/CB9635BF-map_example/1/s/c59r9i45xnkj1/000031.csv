@@ -1,0 +1,7 @@
+"0","tm_shape(hill) +"
+"0","  tm_raster(col.scale = tm_scale_continuous(values = ""gray""), col.legend = tm_legend_hide()) +"
+"0","  tm_shape(r_elev_cropped) +"
+"0","  tm_raster(col_alpha = 0.2, col.scale = tm_scale_continuous(values = pal2use),"
+"0","            col.legend = tm_legend_hide()) +"
+"0","  tm_layout(frame = FALSE)"
+"0",""

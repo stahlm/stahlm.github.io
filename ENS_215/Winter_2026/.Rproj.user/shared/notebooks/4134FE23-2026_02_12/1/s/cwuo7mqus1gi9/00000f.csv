@@ -1,5 +1,0 @@
-"0","map_data_ne %>% "
-"0","  ggplot() + "
-"0","  geom_polygon(aes(long, lat, group = group), color = ""black"", fill = ""gray"") +"
-"0","  coord_map(projection = ""bonne"", lat0 = 50) +"
-"0","  theme_minimal()"

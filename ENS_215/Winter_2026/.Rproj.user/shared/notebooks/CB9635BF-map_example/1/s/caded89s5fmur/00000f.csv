@@ -1,0 +1,4 @@
+"0","# 2. Create hillshade"
+"0","slope <- terrain(r_elev_cropped, ""slope"", unit = ""radians"")"
+"0","aspect <- terrain(r_elev_cropped, ""aspect"", unit = ""radians"")"
+"0","hill <- shade(slope, aspect, angle = 45, direction = 315)"

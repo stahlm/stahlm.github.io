@@ -1,0 +1,14 @@
+"0","```r
+noaa_met_data %>% 
+  group_by(STNID, NAME, YEAR) %>% 
+  summarize(n = n(), tot_ppt__mm = sum(PRCP, na.rm = T), 
+            n_PRCP = sum(!is.na(PRCP)),
+            n_temp = sum(!is.na(TEMP))
+            
+            
+            ) %>% 
+  
+  filter(n > 100) 
+```"
+"1","`summarise()` has grouped output by 'STNID', 'NAME'. You can override using the `.groups` argument.
+"

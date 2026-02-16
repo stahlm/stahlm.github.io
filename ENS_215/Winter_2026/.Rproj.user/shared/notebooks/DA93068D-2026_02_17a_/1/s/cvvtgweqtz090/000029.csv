@@ -1,0 +1,7 @@
+"0","elevation %>% "
+"0","  tm_shape() +"
+"0","  tm_raster(col.scale = tm_scale_continuous(values = terrain.colors(n = 10)),"
+"0","            col.legend = tm_legend(title = ""Elevation (m)"")"
+"0","            ) +"
+"0","  tm_layout(legend.outside = T,"
+"0","            main.title = ""Schenectady elevation map"") "

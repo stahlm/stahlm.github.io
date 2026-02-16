@@ -1,0 +1,9 @@
+"0","```r
+tmap_mode(\"view\")
+
+cambodia_pt %>% 
+  tm_shape() +
+  tm_dots()
+
+tmap_mode(\"plot\")
+```"

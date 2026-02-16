@@ -1,3 +1,0 @@
-"0","map_data_usa <- map_data(""state"") # load in US states map data from the maps package and convert it to a compatible format for plotting in with ggplot()"
-"0",""
-"0","head(map_data_usa) # take a look at the first few rows of map_data_usa"

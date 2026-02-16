@@ -1,0 +1,2 @@
+"0","sf_no_gdp <- world_map_data %>% "
+"0","  filter(is.na(gdpPercap))"

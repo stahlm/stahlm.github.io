@@ -1,0 +1,1 @@
+"0","df_raster <- terra::as.data.frame(x = r_nlcd, xy = T)"

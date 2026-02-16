@@ -1,0 +1,6 @@
+"0","```r
+e1 %>% 
+  ggplot(aes(x = date, y = precip)) +
+  geom_line() +
+  geom_smooth()
+```"

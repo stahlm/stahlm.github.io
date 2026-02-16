@@ -1,0 +1,13 @@
+"0","```r
+raster_soil_clay <- vrt_crop_get(
+  URL = \"/vsicurl/https://files.isric.org/soilgrids/latest/data/clay/clay_0-5cm_mean.vrt\",
+  catalog = NULL,
+  AOI = shape_fields,
+  grid = NULL,
+  varname = NULL,
+  start = NULL,
+  end = NULL,
+  toptobottom = FALSE,
+  verbose = TRUE
+)
+```"

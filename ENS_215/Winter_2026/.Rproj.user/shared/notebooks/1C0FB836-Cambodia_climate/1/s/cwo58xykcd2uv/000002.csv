@@ -1,0 +1,11 @@
+"0","```r
+ndvi_data <- dap_crop(
+  URL = \"https://opendap.cr.usgs.gov/opendap/hyrax/MOD13A1.006\",
+  catalog = NULL,
+  AOI = cambodia_pt,
+  startDate = \"2021-05-01\",
+  endDate = \"2021-10-01\",
+  varname = \"_500m_16_days_NDVI\",
+  verbose = TRUE
+)
+```"

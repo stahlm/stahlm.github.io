@@ -1,0 +1,4 @@
+"0","```r
+d_df <- d %>% 
+  raster::as.data.frame()
+```"

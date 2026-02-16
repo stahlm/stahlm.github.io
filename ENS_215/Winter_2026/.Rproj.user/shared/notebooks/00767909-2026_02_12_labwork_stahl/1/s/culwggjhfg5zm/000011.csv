@@ -1,0 +1,4 @@
+"0","tm_shape(world_map_data) +"
+"0","  tm_polygons(fill = ""lifeExp"") +"
+"0","  "
+"0","  tm_crs(""auto"")"

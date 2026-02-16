@@ -1,0 +1,116 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+## Load in libraries
+```{r}
+library(tidyverse)
+library(tmap)
+library(sf)
+
+library(climateR)
+library(AOI)
+
+library(GSODR)
+```
+
+```{r}
+sf::sf_use_s2(FALSE)
+
+```
+
+
+## Load in field borders
+
+Field borders are from the data recorded in our FieldMargin account. 
+
+```{r}
+shape_fields <- st_read("../Data/Fields/sites_fields_locations/Cambodia Jan 2023 Field Sites.kml")  #st_read("./spatial_data/fields.shp")
+```
+
+
+## Cambodia TerraClimate normals 1981-2010 (Precipitation)
+
+```{r}
+raster_TC_normals_ppt <- getTerraClimNormals(
+  AOI = shape_fields,
+  varname = "ppt",
+  scenario = "19812010",
+  month = 1:12,
+  verbose = FALSE,
+  dryrun = FALSE
+)
+```
+
+```{r}
+raster_TC_normals_ppt <- raster_TC_normals_ppt$ppt
+```
+
+
+### Plot monthly data
+
+```{r}
+terra::plot(raster_TC_normals_ppt)
+```
+## Create a data frame from the raster
+```{r}
+df_ppt_normals <- terra::as.data.frame(x = raster_TC_normals_ppt, row.names = T)
+```
+
+```{r}
+df_ppt_normals <- df_ppt_normals %>% rownames_to_column(var = "cell_ID")
+  
+```
+
+
+```{r}
+df_ppt_normals <- df_ppt_normals %>% 
+  pivot_longer(names_to = "MONTH_NAME", values_to = "ppt__mm", cols = starts_with("ppt"))
+```
+
+```{r}
+df_ppt_normals <- df_ppt_normals %>% 
+  mutate(month_number = rep(x = 1:12, times = nrow(df_ppt_normals)/12))
+```
+
+
+## Examine monthly normals
+```{r}
+table_ppt_normals <- df_ppt_normals %>% 
+  group_by(month_number) %>% 
+  summarise(ppt_mean__mm = mean(ppt__mm))
+
+table_ppt_normals
+```
+
+```{r}
+sum(table_ppt_normals$ppt_mean__mm)
+```
+
+```{r}
+table_ppt_normals %>% 
+  ggplot(aes(x = month_number, y = ppt_mean__mm)) +
+  geom_col()
+```
+
+
+### Plot mean annual precipitation
+```{r}
+cambodia_tot_prcp <- sum(raster_TC_normals_ppt)
+```
+
+
+```{r}
+terra::plot(cambodia_tot_prcp)
+```
+
+```{r}
+tmap_mode("view")
+
+cambodia_tot_prcp %>% 
+  tm_shape() +
+  tm_raster(style = "cont", palette = "viridis") 
+```
+
+

@@ -1,0 +1,8 @@
+"0","```r
+raster_TC_normals_ppt %>% 
+  tm_shape() +
+  tm_raster(palette = \"RdBu\", n = 10) +
+  
+  tm_shape(borders_hires) +
+  tm_borders()
+```"

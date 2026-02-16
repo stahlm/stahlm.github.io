@@ -1,0 +1,22 @@
+"0","```r
+tmap_mode(\"view\")
+```"
+"1","tmap mode set to interactive viewing
+"
+"0","```r
+sum(raster_chirps_cropped) %>% 
+  tm_shape() +
+  tm_raster(style = \"cont\") +
+  
+  tm_shape(shape_fields) +
+  tm_borders(col = \"purple\") +
+  tm_polygons(col = \"purple\") +
+
+  tm_mouse_coordinates() +
+  
+  tm_basemap(server = c(\"Esri.WorldImagery\", \"OpenStreetMap\")) +
+  
+  tm_scale_bar()
+```"
+"1","Warning: One tm layer group has duplicated layer types, which are omitted. To draw multiple layers of the same type, use multiple layer groups (i.e. specify tm_shape prior to each of them).
+"

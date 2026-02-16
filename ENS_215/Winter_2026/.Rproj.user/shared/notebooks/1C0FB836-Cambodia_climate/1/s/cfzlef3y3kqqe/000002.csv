@@ -1,0 +1,5 @@
+"0","```r
+raster_chirps_cropped <- raster::crop(raster_chirps$precip, shape_fields)
+
+raster_chirps_cropped <- raster::mask(raster_chirps_cropped, shape_fields)
+```"

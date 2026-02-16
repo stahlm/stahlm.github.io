@@ -1,0 +1,4 @@
+"0","climate_raster <- terra::crop(climate_raster, borders_hires)"
+"0",""
+"0","climate_raster <- terra::mask(climate_raster, borders_hires)"
+"2","Warning: [mask] CRS do not match"

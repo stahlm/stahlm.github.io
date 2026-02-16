@@ -1,3 +1,0 @@
-"0","earthquakes <- read_csv(""https://earthquake.usgs.gov/fdsnws/event/1/query.csv?starttime=2026-01-01%0000:00:00&endtime=2026-02-12%2023:59:59&minmagnitude=2.5&orderby=time"")"
-"0",""
-"0","head(earthquakes)"

@@ -1,0 +1,16 @@
+"0","```r
+tmap_mode(\"view\") 
+```"
+"1","tmap mode set to interactive viewing
+"
+"0","```r
+noaa_stations %>% 
+  filter(STNID %in% noaa_nearest) %>% 
+  
+  
+  tm_shape() +
+  tm_dots(clustering = T) +
+  tm_mouse_coordinates()
+```"
+"1","Warning: Currect projection of shape . unknown. Long-lat (WGS84) is assumed.
+"

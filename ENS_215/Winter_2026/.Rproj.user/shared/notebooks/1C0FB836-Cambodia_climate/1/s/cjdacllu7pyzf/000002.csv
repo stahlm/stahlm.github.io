@@ -1,0 +1,4 @@
+"0","```r
+raster::extract(e2, cambodia_pt, df = T) %>% 
+  pivot_longer(cols = 2:32, names_to = \"DATE\", values_to = \"ppt__mm\")
+```"

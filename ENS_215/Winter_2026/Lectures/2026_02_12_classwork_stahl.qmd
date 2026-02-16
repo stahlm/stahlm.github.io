@@ -1,0 +1,118 @@
+---
+title: "Classwork (Stahl)"
+author: "_Mason Stahl_ (ENS-215)"
+date: "2026-02-12"
+date-format: "MMMM D, YYYY"
+format:
+  html:
+    embed-resources: true
+    code-fold: show
+    code-tools: 
+      source: false
+    df-print: paged
+    theme:
+      light: journal
+      dark: darkly
+    page-layout: full
+    toc: true
+    toc-float: true
+---
+
+```{r}
+library(tidyverse)
+library(patchwork)
+
+library(maps)
+library(mapproj)
+```
+
+
+## Let's map our first maps
+
+Load in the data
+```{r}
+map_data_usa <- map_data("state")
+```
+
+Make the map
+```{r}
+map_us <- map_data_usa %>% 
+  ggplot() +
+  geom_polygon(aes(x = long, y = lat, group = group), 
+               color = "black", fill = "thistle"
+               )
+
+
+map_us
+```
+
+
+```{r}
+map_us <- map_data_usa %>% 
+  ggplot() +
+  geom_polygon(aes(x = long, y = lat, group = group, fill = region), 
+               color = "black"
+               ) +
+  
+  theme_minimal() +
+  theme(legend.position = "none")
+
+
+map_us
+```
+
+
+
+```{r}
+map_data_it <- map_data("italy")
+```
+
+
+## Let's work with projections
+
+```{r}
+map_us <- map_data_usa %>% 
+  ggplot() +
+  geom_polygon(aes(x = long, y = lat, group = group), 
+               color = "black", fill = "thistle"
+               )
+
+
+map_us
+```
+
+
+```{r}
+map_us + coord_quickmap()
+```
+
+
+```{r}
+map_us_bonne <- map_us +
+  coord_map(projection = "bonne", lat0 = 50) +
+  
+  theme_bw() +
+  labs(title = "Bonne")
+
+map_us_bonne
+
+
+
+map_us_conic <- map_us +
+  coord_map(projection = "conic", lat0 = 30) +
+  
+  theme_bw() +
+  labs(title = "Conic")
+
+map_us_conic
+```
+
+
+
+```{r}
+map_us_bonne / map_us_conic
+```
+
+
+
+

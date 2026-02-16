@@ -1,0 +1,703 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+1. Compare BET-04 weather station precip to CHIRPS precip data
+2. Examine BET-04 weather station data
+3. Identify weather stations nearby our study sites from GSODR 
+  - Look at total annual precip
+  - Monthly precip (means)
+  - Timing of max precip events
+  - Monthly mean, min, max temperatures
+  - Frequency and timing of "heat spike" type events
+
+
+http://www.cambodiameteo.com/obsmap?menu=134&lang=en
+https://www.undp.org/cambodia/press-releases/undp-supported-project-hands-over-53-automatic-hydrological-and-meteorological-stations-cambodia-revolutionizing-climate-and
+
+## Load in libraries
+```{r}
+library(tidyverse)
+library(tmap)
+library(sf)
+
+library(climateR)
+library(AOI)
+
+library(GSODR)
+```
+
+```{r}
+sf::sf_use_s2(FALSE)
+
+```
+
+
+## Load in field borders
+
+Field borders are from the data recorded in our FieldMargin account. 
+
+```{r}
+shape_fields <- st_read("../Data/Fields/sites_fields_locations/Cambodia Jan 2023 Field Sites.kml")  #st_read("./spatial_data/fields.shp")
+```
+
+
+```{r}
+shape_fields <- shape_fields %>% 
+  select(Name)
+```
+
+
+```{r}
+shape_fields <- st_make_valid(shape_fields)
+```
+
+```{r}
+climate_params <- params
+```
+
+
+## Load in Cambodia border
+```{r}
+borders_hires <- rnaturalearth::ne_countries(country = "Cambodia", 
+                                             scale = "large", 
+                                             returnclass = "sf")
+```
+
+
+```{r}
+# chirps_data <- getCHIRPS(borders_hires, startDate = "2022-02-01", endDate = "2022-02-10", verbose = T)
+```
+
+
+```{r}
+# chirps_data$precip %>% 
+#   tm_shape() +
+#   tm_raster()
+```
+
+
+# Download NOAA weather station data
+```{r}
+load(system.file("extdata", "isd_history.rda", package = "GSODR"))
+```
+
+```{r}
+view(noaa_stations)
+```
+
+
+```{r}
+noaa_stations <- isd_history %>% 
+  st_as_sf(coords = c("LON","LAT"))
+```
+
+```{r}
+noaa_nearest <- nearest_stations(11.55, 104.87, distance = 100)
+```
+
+
+```{r}
+tmap_mode("view") 
+
+noaa_stations %>% 
+  filter(STNID %in% noaa_nearest) %>% 
+  
+  
+  tm_shape() +
+  tm_dots(clustering = T) +
+  tm_mouse_coordinates()
+```
+
+
+```{r}
+noaa_met_data <- get_GSOD(station = noaa_nearest, years = 2015:2023)
+```
+```{r}
+noaa_met_data %>% 
+  group_by(STNID, NAME, YEAR) %>% 
+  summarize(n = n(), tot_ppt__mm = sum(PRCP, na.rm = T), 
+            n_PRCP = sum(!is.na(PRCP)),
+            n_temp = sum(!is.na(TEMP))
+            
+            
+            ) %>% 
+  
+  filter(n > 100) 
+```
+
+
+
+# Analyze our weather station data
+
+## Location of BET-04 weather station
+```{r}
+cambodia_pt <- data.frame(long = 104.7740461,
+                          lat = 11.6890934)
+```
+
+```{r}
+cambodia_pt <-  cambodia_pt %>% 
+  st_as_sf(coords = c("long", "lat"), crs = 4326)
+```
+
+
+## Get daily CHIRPS data for Cambodia
+```{r}
+raster_chirps <- dap( 
+  URL = "https://coastwatch.pfeg.noaa.gov/erddap/griddap/chirps20GlobalDailyP05",
+  #URL = "https://upwell.pfeg.noaa.gov/erddap/griddap/chirps20GlobalAnnualP05",
+  catalog = NULL,
+  AOI = borders_hires,#cambodia_pt,
+  grid = NULL,
+  varname = NULL, 
+  startDate = "2023-01-01",
+  endDate = "2023-06-30", 
+  toptobottom = F,
+  verbose = TRUE
+)
+```
+
+```{r}
+raster_chirps_cropped <- raster::crop(raster_chirps$precip, shape_fields)
+
+raster_chirps_cropped <- raster::mask(raster_chirps_cropped, shape_fields)
+```
+
+
+```{r}
+tmap_mode("view")
+
+sum(raster_chirps_cropped) %>% 
+  tm_shape() +
+  tm_raster(style = "cont") +
+  
+  tm_shape(shape_fields) +
+  tm_borders(col = "purple") +
+  tm_polygons(col = "purple") +
+
+  tm_mouse_coordinates() +
+  
+  tm_basemap(server = c("Esri.WorldImagery", "OpenStreetMap")) +
+  
+  tm_scale_bar()
+```
+
+
+
+
+
+## Soil clay content
+```{r}
+raster_soil_clay <- vrt_crop_get(
+  URL = "/vsicurl/https://files.isric.org/soilgrids/latest/data/clay/clay_0-5cm_mean.vrt",
+  catalog = NULL,
+  AOI = shape_fields,
+  grid = NULL,
+  varname = NULL,
+  start = NULL,
+  end = NULL,
+  toptobottom = FALSE,
+  verbose = TRUE
+)
+```
+
+
+
+```{r}
+tmap_mode("view")
+
+sum(raster_soil_clay$`clay_0-5cm_mean`/10) %>% 
+  tm_shape() +
+  tm_raster(style = "cont") +
+  
+  tm_shape(shape_fields) +
+  tm_borders(col = "purple") +
+  tm_polygons(col = "purple") +
+
+  tm_mouse_coordinates() +
+  
+  tm_basemap(server = c("Esri.WorldImagery", "OpenStreetMap")) +
+  
+  tm_scale_bar()
+```
+
+
+
+## Extra
+
+```{r}
+#chirps_data <- getCHIRPS(borders_hires, startDate = "2023-01-01", endDate = "2023-01-02")
+```
+
+
+```{r}
+b <- vrt_crop_get(
+  #URL = "/vsicurl/https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/13/TIFF/USGS_Seamless_DEM_13.vrt",
+  URL = "/vsicurl/https://opentopography.s3.sdsc.edu/raster/NASADEM/NASADEM_be.vrt",
+  catalog = NULL,
+  AOI = AOI::aoi_get(x = "Phnom Penh, Cambodia", 0.25, 0.25),
+  grid = NULL,
+  varname = NULL,
+  start = NULL,
+  end = NULL,
+  toptobottom = FALSE,
+  verbose = TRUE
+)
+```
+
+
+```{r}
+raster::plot(b)
+```
+
+
+
+```{r}
+c <- vrt_crop_get(
+  URL = "/vsicurl/http://hydrology.cee.duke.edu/POLARIS/PROPERTIES/v1.0/vrt/ph_p50_0_5.vrt",
+  catalog = NULL,
+  AOI = AOI::aoi_get(x = "Big Indian, NY"),
+  grid = NULL,
+  varname = NULL,
+  start = NULL,
+  end = NULL,
+  toptobottom = FALSE,
+  verbose = TRUE
+)
+```
+
+
+```{r}
+raster::plot(c)
+```
+
+
+
+
+
+
+/vsicurl/https://storage.googleapis.com/feddata-r/nlcd/2016_Tree_Canopy_L48.tif
+
+
+
+```{r}
+d <- climateR::vrt_crop_get(
+  URL = "/vsicurl/https://storage.googleapis.com/feddata-r/nlcd/2016_Tree_Canopy_L48.tif",
+  catalog = NULL,
+  AOI = AOI::aoi_get(x = "Big Indian, NY"),
+  grid = NULL,
+  varname = NULL,
+  start = NULL,
+  end = NULL,
+  toptobottom = FALSE,
+  verbose = TRUE
+)
+```
+
+
+```{r}
+raster::plot(d)
+```
+
+
+```{r}
+d <- vrt_crop_get(
+  URL = "/vsicurl/https://storage.googleapis.com/feddata-r/nlcd/2019_Land_Cover_L48.tif",
+  catalog = NULL,
+  AOI = AOI::aoi_get(x = "Big Indian, NY"),
+  grid = NULL,
+  varname = NULL,
+  start = NULL,
+  end = NULL,
+  toptobottom = FALSE,
+  verbose = TRUE
+)
+```
+
+```{r}
+d_df <- d %>% 
+  raster::as.data.frame()
+```
+
+
+```{r}
+d_df %>% 
+  ggplot(aes(y = fct_infreq(`NLCD Land Cover Class`))) +
+  geom_bar()
+```
+
+
+```{r}
+raster::plot(d)
+```
+
+
+```{r}
+ndvi_data <- dap_crop(
+  URL = "https://opendap.cr.usgs.gov/opendap/hyrax/MOD13A1.006",
+  catalog = NULL,
+  AOI = cambodia_pt,
+  startDate = "2021-05-01",
+  endDate = "2021-10-01",
+  varname = "_500m_16_days_NDVI",
+  verbose = TRUE
+)
+```
+
+
+```{r}
+ndvi_data <- getMODIS(
+  AOI = AOI::aoi_get("Schenectady, NY"),
+  #AOI = cambodia_pt,
+  asset = "MOD13A3.061",
+  varname = "_1_km_monthly_NDVI",
+  startDate = "2021-05-01",
+  endDate = "2021-10-01",
+  verbose = FALSE,
+  dryrun = F
+)
+```
+
+
+
+
+```{r}
+e1 <- dap(
+  #URL = "https://basin.ceoe.udel.edu//erddap/griddap/pathfinder_30day_sst",
+  URL = "https://basin.ceoe.udel.edu//erddap/griddap/pathfinder_daily_sst",
+  #URL = "https://upwell.pfeg.noaa.gov/erddap/griddap/chirps20GlobalAnnualP05",
+  catalog = NULL,
+  AOI = AOI::aoi_get("stellwagen bank"),
+  grid = NULL,
+  varname = NULL,
+  startDate = "2020-05-01",
+  endDate = "2020-05-09",
+  toptobottom = F,
+  verbose = TRUE
+)
+```
+```{r}
+raster::plot(e1$sst)
+```
+
+
+
+```{r}
+e1 <- dap(
+  URL = "https://coastwatch.pfeg.noaa.gov/erddap/griddap/chirps20GlobalDailyP05",
+  #URL = "https://upwell.pfeg.noaa.gov/erddap/griddap/chirps20GlobalAnnualP05",
+  catalog = NULL,
+  AOI = AOI::aoi_get("Cambodia"),
+  grid = NULL,
+  varname = NULL,
+  startDate = "2023-01-01",
+  endDate = "2023-02-01",
+  toptobottom = F,
+  verbose = TRUE
+)
+```
+
+```{r}
+e2 <- e1$precip
+```
+
+104.7740461
+11.6890934
+```{r}
+cambodia_pt <- data.frame(long = 104.7740461,
+                          lat = 11.6890934)
+```
+
+```{r}
+cambodia_pt <-  cambodia_pt %>% 
+  st_as_sf(coords = c("long", "lat"), crs = 4326)
+```
+
+
+```{r}
+raster::extract(e2, cambodia_pt, df = T) %>% 
+  pivot_longer(cols = 2:32, names_to = "DATE", values_to = "ppt__mm")
+```
+
+
+```{r}
+e1 <- dap(
+  URL = "https://coastwatch.pfeg.noaa.gov/erddap/griddap/chirps20GlobalDailyP05",
+  #URL = "https://upwell.pfeg.noaa.gov/erddap/griddap/chirps20GlobalAnnualP05",
+  catalog = NULL,
+  AOI = cambodia_pt,
+  grid = NULL,
+  varname = NULL,
+  startDate = "2022-01-01",
+  endDate = "2022-12-31",
+  toptobottom = F,
+  verbose = TRUE
+)
+```
+
+```{r}
+e1 %>% 
+  ggplot(aes(x = date, y = precip)) +
+  geom_line() +
+  geom_smooth()
+```
+
+```{r}
+e1 <- dap(
+  URL = "https://coastwatch.pfeg.noaa.gov/erddap/griddap/chirps20GlobalDailyP05",
+  #URL = "https://upwell.pfeg.noaa.gov/erddap/griddap/chirps20GlobalAnnualP05",
+  catalog = NULL,
+  AOI = geocode("Union College", pt = TRUE),
+  grid = NULL,
+  varname = NULL,
+  startDate = "2022-01-01",
+  endDate = "2022-12-31",
+  toptobottom = F,
+  verbose = TRUE
+)
+```
+```{r}
+sum(e1$precip)
+```
+
+
+```{r}
+e1 %>% 
+  ggplot(aes(x = date, y = precip)) +
+  geom_line() +
+  geom_smooth()
+```
+
+```{r}
+tmap_mode("view")
+
+cambodia_pt %>% 
+  tm_shape() +
+  tm_dots()
+
+tmap_mode("plot")
+```
+
+
+```{r}
+raster::plot(e1$precip)
+```
+
+
+https://coastwatch.pfeg.noaa.gov/erddap/griddap/chirps20GlobalDailyP05
+
+```{r}
+e <- vrt_crop_get(
+  URL = "/vsicurl/https://files.isric.org/soilgrids/latest/data/clay/clay_0-5cm_mean.vrt",
+  catalog = NULL,
+  AOI = AOI::aoi_get(x = "Phnom Penh, Cambodia"),
+  grid = NULL,
+  varname = NULL,
+  start = NULL,
+  end = NULL,
+  toptobottom = FALSE,
+  verbose = TRUE
+)
+```
+
+
+```{r}
+raster::plot(e/10)
+```
+104.7740461
+11.6890934
+```{r}
+tmap_mode("view")
+
+e %>% 
+  tm_shape() +
+  tm_raster()
+
+tmap_mode("plot")
+```
+
+
+
+```{r}
+chirps_data$precip %>% 
+  tm_shape() +
+  tm_raster() +
+  
+  tm_shape(borders_hires) +
+  tm_borders()
+```
+
+## Cambodia TerraClimate 
+
+```{r}
+raster_TC_normals_ppt <- getTerraClimNormals(
+  AOI = borders_hires,
+  varname = "ppt",
+  scenario = "19812010",
+  month = 1:12,
+  verbose = FALSE,
+  dryrun = FALSE
+)
+```
+
+
+```{r}
+raster_TC_normals_ppt <- raster_TC_normals_ppt$ppt_19812010
+
+```
+
+
+
+```{r}
+raster_TC_normals_ppt <- raster::crop(raster_TC_normals_ppt, borders_hires)
+
+raster_TC_normals_ppt <- raster::mask(raster_TC_normals_ppt, borders_hires)
+```
+
+
+
+```{r}
+raster_TC_normals_ppt %>% 
+  tm_shape() +
+  tm_raster(palette = "RdBu", n = 10) +
+  
+  tm_shape(borders_hires) +
+  tm_borders()
+```
+
+```{r}
+cambodia_tot_prcp <- sum(raster_TC_normals_ppt)
+```
+
+```{r}
+tmap_mode("plot")
+
+cambodia_tot_prcp$sum %>% 
+  tm_shape() +
+  tm_raster(palette = "RdBu", style = "cont") + 
+  
+  tm_shape(borders_hires) +
+  tm_borders() +
+  
+  tm_layout(legend.outside = T)
+```
+
+```{r}
+source("https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2022/Lectures/compute_seasonality_indices.R")
+```
+
+
+
+```{r}
+a <- raster::as.data.frame(raster_TC_normals_ppt, xy = T)
+```
+
+```{r}
+a <- a %>% 
+  rename("month_1" = `ppt_1961-01-01 00:00:00_19812010`,
+         "month_2" = `ppt_1961-01-31 08:43:38_19812010`,
+         "month_3" = `ppt_1961-03-02 17:27:16_19812010`,
+         "month_4" = `ppt_1961-04-02 02:10:54_19812010`,
+         "month_5" = `ppt_1961-05-02 10:54:32_19812010`,
+         "month_6" = `ppt_1961-06-01 19:38:10_19812010`,
+         "month_7" = `ppt_1961-07-02 04:21:49_19812010`,
+         "month_8" = `ppt_1961-08-01 13:05:27_19812010`,
+         "month_9" = `ppt_1961-08-31 21:49:05_19812010`,
+         "month_10" = `ppt_1961-10-01 06:32:43_19812010`,
+         "month_11" = `ppt_1961-10-31 15:16:21_19812010`,
+         "month_12" = `ppt_1961-12-01 00:00:00_19812010`
+         
+         )
+```
+
+
+```{r}
+a_long <- a %>% 
+  pivot_longer(cols = starts_with("month"), names_to = "Month", values_to = "observation_value")
+```
+
+```{r}
+a_long <- a_long %>% 
+  mutate(Month = str_remove(Month, "month_"))
+```
+
+```{r}
+a_long <- a_long %>% 
+  mutate(Month = as.numeric(Month))
+```
+
+
+```{r}
+a_long <- a_long %>% 
+  mutate(group_name = paste(x,y, sep = "-"))
+```
+
+
+```{r}
+season_out <- compute_seasonality_indices(a_long)
+```
+
+```{r}
+season_out <- season_out[[2]]
+```
+
+```{r}
+a_long_coords <- a_long %>% 
+  select(x, y, group_name) %>% 
+  
+  group_by(group_name) %>% 
+  summarize(x = first(x),
+            y = first(y)
+            )
+```
+
+
+```{r}
+season_out <- season_out %>% 
+  left_join(a_long_coords)
+```
+```{r}
+df_SC <- season_out %>% 
+  select(x, y, SC)
+
+df_SI <- season_out %>% 
+  select(x, y, SI)
+```
+
+
+```{r}
+raster_SC <- raster::rasterFromXYZ(df_SC, crs = st_crs(raster_TC_normals_ppt))
+
+raster_SI <- raster::rasterFromXYZ(df_SI, crs = st_crs(raster_TC_normals_ppt))
+```
+
+
+
+```{r}
+tmap_mode("plot")
+
+raster_SI %>% 
+  tm_shape() +
+  tm_raster(palette = "viridis", style = "cont") + 
+  
+  tm_shape(borders_hires) +
+  tm_borders() +
+  
+  tm_layout(legend.outside = T)
+```
+
+```{r}
+raster_SC %>% 
+  tm_shape() +
+  tm_raster(palette = "viridis", style = "cont") + 
+  
+  tm_shape(borders_hires) +
+  tm_borders() +
+  
+  tm_layout(legend.outside = T)
+```
+
+
+

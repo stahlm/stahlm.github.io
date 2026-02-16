@@ -1,0 +1,15 @@
+"0","```r
+noaa_met_data <- get_GSOD(station = noaa_nearest, years = 2015:2023)
+```"
+"1","
+This station, 489900-99999, only provides data for years 2022 to 2023.
+
+
+This station, 489930-99999, only provides data for years 2021 to 2023.
+
+
+This station, 489950-99999, only provides data for years 1949 to 2021.
+
+
+This station, 489670-99999, only provides data for years 2022 to 2023.
+"

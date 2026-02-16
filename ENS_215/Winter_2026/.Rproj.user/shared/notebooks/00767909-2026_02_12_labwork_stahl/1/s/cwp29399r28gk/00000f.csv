@@ -1,0 +1,4 @@
+"0","map_1 <- tm_shape(world_map_data) +"
+"0","  tm_fill()"
+"0",""
+"0","map_1"

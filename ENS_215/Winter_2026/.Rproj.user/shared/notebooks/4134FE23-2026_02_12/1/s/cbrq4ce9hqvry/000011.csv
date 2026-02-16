@@ -1,5 +1,0 @@
-"0","map_us <- map_data_usa %>% "
-"0","  ggplot() + "
-"0","  geom_polygon(aes(long, lat, group = group), color = ""black"", fill = ""gray"") "
-"0","  "
-"0","map_us"

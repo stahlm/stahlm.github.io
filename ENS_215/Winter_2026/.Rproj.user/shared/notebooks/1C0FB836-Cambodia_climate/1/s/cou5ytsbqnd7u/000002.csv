@@ -1,0 +1,15 @@
+"0","```r
+e1 <- dap(
+  #URL = \"https://basin.ceoe.udel.edu//erddap/griddap/pathfinder_30day_sst\",
+  URL = \"https://basin.ceoe.udel.edu//erddap/griddap/pathfinder_daily_sst\",
+  #URL = \"https://upwell.pfeg.noaa.gov/erddap/griddap/chirps20GlobalAnnualP05\",
+  catalog = NULL,
+  AOI = AOI::aoi_get(\"stellwagen bank\"),
+  grid = NULL,
+  varname = NULL,
+  startDate = \"2020-05-01\",
+  endDate = \"2020-05-09\",
+  toptobottom = F,
+  verbose = TRUE
+)
+```"

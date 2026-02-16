@@ -1,0 +1,14 @@
+"0","```r
+b <- vrt_crop_get(
+  #URL = \"/vsicurl/https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/13/TIFF/USGS_Seamless_DEM_13.vrt\",
+  URL = \"/vsicurl/https://opentopography.s3.sdsc.edu/raster/NASADEM/NASADEM_be.vrt\",
+  catalog = NULL,
+  AOI = AOI::aoi_get(x = \"Phnom Penh, Cambodia\", 0.25, 0.25),
+  grid = NULL,
+  varname = NULL,
+  start = NULL,
+  end = NULL,
+  toptobottom = FALSE,
+  verbose = TRUE
+)
+```"

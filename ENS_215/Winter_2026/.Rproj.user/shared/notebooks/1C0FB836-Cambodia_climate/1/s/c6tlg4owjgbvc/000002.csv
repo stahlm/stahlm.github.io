@@ -1,0 +1,13 @@
+"0","```r
+c <- vrt_crop_get(
+  URL = \"/vsicurl/http://hydrology.cee.duke.edu/POLARIS/PROPERTIES/v1.0/vrt/ph_p50_0_5.vrt\",
+  catalog = NULL,
+  AOI = AOI::aoi_get(x = \"Big Indian, NY\"),
+  grid = NULL,
+  varname = NULL,
+  start = NULL,
+  end = NULL,
+  toptobottom = FALSE,
+  verbose = TRUE
+)
+```"

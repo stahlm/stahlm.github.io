@@ -1,0 +1,8 @@
+"0","```r
+chirps_data$precip %>% 
+  tm_shape() +
+  tm_raster() +
+  
+  tm_shape(borders_hires) +
+  tm_borders()
+```"

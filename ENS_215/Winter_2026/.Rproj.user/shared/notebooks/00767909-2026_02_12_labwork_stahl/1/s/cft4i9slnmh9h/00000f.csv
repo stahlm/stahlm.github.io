@@ -1,0 +1,2 @@
+"0","sf_state_caps <- st_as_sf(x = state_cap_locs, "
+"0","                          coords = c(""long_deg"", ""lat_deg""))"

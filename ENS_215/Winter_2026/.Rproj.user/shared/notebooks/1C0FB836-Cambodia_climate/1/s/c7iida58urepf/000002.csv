@@ -1,0 +1,4 @@
+"0","```r
+noaa_stations <- isd_history %>% 
+  st_as_sf(coords = c(\"LON\",\"LAT\"))
+```"

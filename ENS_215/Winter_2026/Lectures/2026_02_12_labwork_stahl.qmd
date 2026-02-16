@@ -1,0 +1,162 @@
+---
+title: "Lab work Stahl"
+author: "_Mason Stahl_ (ENS-215)"
+date: "2026-02-12"
+date-format: "MMMM D, YYYY"
+format:
+  html:
+    embed-resources: true
+    code-fold: show
+    code-tools: 
+      source: false
+    df-print: paged
+    theme:
+      light: journal
+      dark: darkly
+    page-layout: full
+    toc: true
+    toc-float: true
+---
+
+tmap spData sf 
+```{r}
+library(tidyverse)
+
+library(tmap)
+library(spData)
+library(sf)
+```
+
+
+## Let's make a map with tmap
+```{r}
+world_map_data <- world
+```
+
+
+```{r}
+tm_shape(world_map_data) +
+  tm_polygons(fill = "lifeExp") +
+  
+  tm_crs("auto")
+```
+
+
+```{r}
+map_1 <- tm_shape(world_map_data) +
+  tm_fill()
+
+map_1
+```
+
+```{r}
+map_2 <- tm_shape(world_map_data) +
+  tm_fill("lifeExp") +
+  tm_borders(col = "black")
+
+map_2
+```
+
+```{r}
+world_map_data %>% 
+  tm_shape() +
+  tm_fill("continent") +
+  tm_borders() + 
+  
+  tm_facets(by = "continent")
+```
+
+```{r}
+sf_no_gdp <- world_map_data %>% 
+  filter(is.na(gdpPercap))
+```
+
+```{r}
+my_world_map <- world_map_data %>% 
+  filter(gdpPercap >= 10000) %>% 
+  
+  tm_shape(crs = "+proj=moll") +
+  tm_polygons(fill = "forestgreen") +
+  
+  tm_shape(sf_no_gdp) +
+  tm_polygons(fill = "coral2") +
+  
+  tm_shape(world_map_data) +
+  tm_borders() +
+  
+  tm_graticules(n.x = 20)
+
+my_world_map
+```
+
+
+```{r}
+tmap_mode("view")
+
+my_world_map
+
+tmap_mode("plot")
+```
+
+
+## Get spatial data
+tigris
+```{r}
+library(tigris)
+```
+
+```{r}
+NY_countries <- counties(state = "NY", cb = TRUE)
+```
+
+```{r}
+tmap_mode("plot")
+
+NY_map <- NY_countries %>% 
+  tm_shape() +
+  tm_polygons(fill = "darkseagreen", col = "black")
+
+
+NY_map
+```
+
+```{r}
+sch_map <- NY_countries %>% 
+  filter(NAME == "Schenectady") %>% 
+  
+  tm_shape() +
+  tm_polygons(fill = "thistle", col = "black") +
+  
+  tm_scalebar(breaks = c(0,5,10))
+
+
+sch_map
+```
+```{r}
+water_sch <- area_water(state = "NY", county = "Schenectady")
+```
+```{r}
+sch_map <- sch_map +
+  tm_shape(water_sch) +
+  tm_polygons(fill = "lawngreen")
+
+sch_map
+```
+
+## Make a map of the US with capitals
+```{r}
+sf_us_states <- us_states
+```
+
+```{r}
+state_cap_locs <- read_csv("https://stahlm.github.io/ENS_215/Data/us_capitals_locs.csv", skip = 2)
+
+```
+
+```{r}
+sf_state_caps <- st_as_sf(x = state_cap_locs, 
+                          coords = c("long_deg", "lat_deg"))
+```
+
+
+

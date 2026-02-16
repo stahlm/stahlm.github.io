@@ -1,3 +1,0 @@
-"0","map_data_usa_temps <- left_join(map_data_usa, state_mean_temps)"
-"2","Joining with `by = join_by(region)`"
-"0","head(map_data_usa_temps)"
