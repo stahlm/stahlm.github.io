@@ -37,7 +37,7 @@ include-in-header:
 ## Lectures 
 
 ### Week 7 
-+ Tue (17-Feb) -- **Spatial analysis continued: Introduction to rasters** [(html)](https://stahlm.github.io/ENS_215/Winter_2026/Lectures/2026_02_17a.html) [(qmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2026/Lectures/2026_02_17a.qmd)   
++ Tue (17-Feb) -- **Spatial analysis continued: Introduction to rasters** [(html)](https://stahlm.github.io/ENS_215/Winter_2026/Lectures/2026_02_17a_.html) [(qmd)](https://raw.githubusercontent.com/stahlm/stahlm.github.io/master/ENS_215/Winter_2026/Lectures/2026_02_17a_.qmd)   
 
 ***
 
