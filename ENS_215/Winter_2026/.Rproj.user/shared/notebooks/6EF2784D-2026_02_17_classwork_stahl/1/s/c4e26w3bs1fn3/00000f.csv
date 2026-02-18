@@ -1,0 +1,1 @@
+"0","elev_data <- extract(raster_world_elev, cities_world_sf)"

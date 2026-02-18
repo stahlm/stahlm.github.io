@@ -1,0 +1,5 @@
+"0","raster_night_temps <- rast(""https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Data/Night_temp_2001_march.TIFF"")"
+"0",""
+"0","raster_night_temps[raster_night_temps == 99999] <- NA"
+"0",""
+"0","# Data from: https://neo.sci.gsfc.nasa.gov/view.php?datasetId=MOD_LSTN_CLIM_M"

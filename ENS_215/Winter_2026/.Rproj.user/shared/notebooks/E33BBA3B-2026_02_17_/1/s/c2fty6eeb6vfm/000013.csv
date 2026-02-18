@@ -1,0 +1,3 @@
+"0","climate_raster <- climate_raster$ppt"
+"2","Error in climate_raster$ppt : $ operator is invalid for atomic vectors
+"

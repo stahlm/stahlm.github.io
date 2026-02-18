@@ -1,0 +1,5 @@
+"0","raster_day_temps <- rast(""https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Data/Day_temp_2001_march.tif"")"
+"0","raster_day_temps[raster_day_temps == 99999] <- NA"
+"0",""
+"0",""
+"0","# Data from: https://neo.sci.gsfc.nasa.gov/view.php?datasetId=MOD_LSTD_CLIM_M"
