@@ -230,7 +230,7 @@ to get gridMET data we use the aptly named `getGridMET()` function.  The first a
 ```{r}
 p <- getGridMET(AOI = border_NY,
              varname = c("tmmn"), 
-             startDate = "2025-02-04", verbose = T
+             startDate = "2023-02-04", verbose = T
              )
 ```
 

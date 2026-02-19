@@ -1,0 +1,14 @@
+"0","p <- getGridMET(AOI = border_NY,"
+"0","             varname = c(""tmmn""), "
+"0","             startDate = ""2023-02-04"", verbose = T"
+"0","             )"
+"2","N"
+"2","ote:Caching=1
+"
+"2","E"
+"2","rror:curl error: Timeout was reached
+curl error details: 
+Warning:oc_open: Could not read url
+"
+"2","Error in open.nc(glue(""{url}?{T_name}"")) : NetCDF: I/O failure
+"
