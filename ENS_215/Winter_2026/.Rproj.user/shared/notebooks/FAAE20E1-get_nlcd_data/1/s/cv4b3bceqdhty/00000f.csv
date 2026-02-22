@@ -1,6 +1,0 @@
-"0","r_nlcd %>% "
-"0","  tm_shape() +"
-"0","  tm_raster() +"
-"0","  tm_facets(by = ""NLCD Land Cover Class"")"
-"2","SpatRaster object downsampled to 720 by 927 cells.
-"

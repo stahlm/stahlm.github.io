@@ -1,6 +1,0 @@
-"0","```r
-a <- sf::st_crs(r_nlcd)
-a <- a$wkt
-
-crs(r_wetlands) <- a
-```"

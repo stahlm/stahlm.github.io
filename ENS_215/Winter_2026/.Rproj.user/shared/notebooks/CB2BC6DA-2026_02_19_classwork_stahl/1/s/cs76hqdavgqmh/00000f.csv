@@ -1,0 +1,2 @@
+"0","precip_data <- precip_data %>% "
+"0","  mutate(time_period = if_else(Year >= 1950,""Post-1950"",""Pre-1950"")) "

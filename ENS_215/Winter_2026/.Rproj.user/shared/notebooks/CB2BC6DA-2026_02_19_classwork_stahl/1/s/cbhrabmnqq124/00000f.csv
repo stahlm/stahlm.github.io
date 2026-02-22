@@ -1,0 +1,8 @@
+"0","raster_high_elev %>% "
+"0","  tm_shape() +"
+"0","  tm_raster(col.scale = tm_scale_discrete(values = c(""darkgreen"")),"
+"0","            col.legend = tm_legend(title = ""High Elevation"")"
+"0","            ) +"
+"0","  "
+"0","  tm_shape(borders_data) +"
+"0","  tm_borders()"

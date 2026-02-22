@@ -1,0 +1,223 @@
+---
+title: "Classwork (Stahl)"
+author: "_Mason Stahl_ (ENS-215)"
+date: "2026-02-19"
+date-format: "MMMM D, YYYY"
+format:
+  html:
+    embed-resources: true
+    code-fold: show
+    code-tools: 
+      source: false
+    df-print: paged
+    theme:
+      light: journal
+      dark: darkly
+    page-layout: full
+    toc: true
+    toc-float: true
+---
+
+
+## Load in the packages we need
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+library(tmap)
+library(sf)
+library(maps)
+
+library(terra) 
+```
+
+
+## Revisit last class (high elev exercise)
+```{r}
+raster_world_elev <- rast("https://github.com/stahlm/stahlm.github.io/raw/master/ENS_215/Data/World_elev.TIFF")
+
+raster_world_elev <- raster_world_elev$World_elev
+# Data was obtained from: https://neo.sci.gsfc.nasa.gov/view.php?datasetId=SRTM_RAMP2_TOPO
+```
+
+```{r}
+terra::plot(raster_world_elev)
+```
+
+
+```{r}
+raster_world_elev[raster_world_elev == 99999] <- 0 
+```
+
+
+```{r}
+terra::plot(raster_world_elev)
+```
+
+Let's get our world borders 
+```{r}
+borders_data <- spData::world
+```
+
+Let's make an elevation map with the world borders shown in red
+
+
+```{r}
+raster_world_elev %>% 
+  tm_shape() +
+  tm_raster(col.scale = tm_scale_continuous()) +
+  
+  tm_shape(borders_data) +
+  tm_borders(col = "black") #+
+  
+  #tm_layout(legend.position = c("LEFT", "CENTER"))
+  
+  
+  
+  
+```
+
+
+```{r}
+raster_high_elev <- raster_world_elev
+```
+
+
+```{r}
+raster_high_elev[raster_high_elev < 1500] <- NA
+```
+
+```{r}
+raster_high_elev[raster_high_elev >= 1500] <- 1
+```
+
+```{r}
+raster_high_elev %>% 
+  tm_shape() +
+  tm_raster(col.scale = tm_scale_discrete(values = c("darkgreen")),
+            col.legend = tm_legend(title = "High Elevation")
+            ) +
+  
+  tm_shape(borders_data) +
+  tm_borders()
+```
+
+
+## Starting Thursday's material
+```{r}
+precip_data <- read_csv("https://stahlm.github.io/ENS_215/Data/NOAA_State_Precip_LabData.csv")
+```
+```{r}
+ny_precip <- precip_data %>% 
+  filter(state_cd == "NY")
+```
+
+
+Mean for all years
+Mean for years before 1950
+Mean for years >= 1950
+
+```{r}
+mean(ny_precip$Precip_inches)
+```
+```{r}
+ny_precip <- ny_precip %>% 
+  mutate(period = if_else(Year >= 1950, "Post-1950", "Pre-1950"))
+```
+
+
+
+```{r}
+ny_precip %>% 
+  group_by(period) %>% 
+  summarise(mean_precip = mean(Precip_inches))
+```
+
+```{r}
+our_data <- c(1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,3,30000000)
+```
+
+```{r}
+median(our_data)
+mean(our_data)
+```
+
+```{r}
+quantile(ny_precip$Precip_inches, 
+         probs = c(0.05,0.25,0.50,0.75,0.95,0.995))
+```
+```{r}
+ny_precip %>% 
+  group_by(period) %>% 
+  summarize(mean_ppt = mean(Precip_inches),
+            sd_ppt = sd(Precip_inches)
+            )
+```
+
+## Visualizing univariate distributions
+```{r}
+precip_data <- read_csv("https://stahlm.github.io/ENS_215/Data/noaa_cag_state_precipitation.csv") 
+```
+```{r}
+library(ggridges)
+```
+
+```{r}
+df_names <- tibble(STATE = state.name, state_cd = state.abb)
+
+precip_data <- precip_data %>% 
+  left_join(df_names) %>% 
+  rename(Year = YEAR,
+         Month = MONTH,
+         Precip_inches = Value
+         )
+```
+```{r}
+precip_data <- precip_data %>% 
+  mutate(time_period = if_else(Year >= 1950,"Post-1950","Pre-1950")) 
+```
+
+```{r}
+ny_precip <- precip_data %>% 
+  filter(state_cd == "NY")
+```
+
+
+```{r}
+ny_precip %>% 
+  ggplot(aes(x = Precip_inches)) +
+  geom_histogram(bins = 30) +
+  
+  theme_classic()
+```
+
+```{r}
+ny_precip %>% 
+  ggplot(aes(x = Precip_inches)) +
+  geom_density(fill = "grey") +
+  theme_classic()
+```
+
+
+```{r}
+ny_precip %>% 
+  ggplot(aes(x = Precip_inches, fill = time_period)) +
+  geom_density(alpha = 0.5) +
+  
+  scale_fill_manual(values = c("grey", "blue")) +
+  theme_classic()
+  
+```
+
+
+```{r}
+precip_data %>% 
+  filter(state_cd %in% c("NY", "FL", "CA", "AZ", "NE")) %>% 
+  ggplot(aes(x = Precip_inches, fill = state_cd)) +
+  geom_density(alpha = 0.3) +
+  
+  theme_classic()
+```
+
+
+
+
+

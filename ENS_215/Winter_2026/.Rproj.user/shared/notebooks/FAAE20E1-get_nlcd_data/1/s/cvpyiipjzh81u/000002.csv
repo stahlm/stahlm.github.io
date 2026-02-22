@@ -1,3 +1,0 @@
-"0","```r
-r_wetlands <-	rast(x = df_raster , type=\"xyz\")
-```"

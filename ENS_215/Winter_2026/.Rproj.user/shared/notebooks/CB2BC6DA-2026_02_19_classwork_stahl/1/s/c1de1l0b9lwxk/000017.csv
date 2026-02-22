@@ -1,0 +1,5 @@
+"0","ny_precip %>% "
+"0","  ggplot(aes(x = Precip_inches)) +"
+"0","  geom_histogram(bins = 30) +"
+"0","  "
+"0","  theme_classic()"

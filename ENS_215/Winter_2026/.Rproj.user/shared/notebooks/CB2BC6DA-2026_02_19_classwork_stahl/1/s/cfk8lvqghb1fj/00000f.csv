@@ -1,0 +1,5 @@
+"0","ny_precip %>% "
+"0","  group_by(period) %>% "
+"0","  summarize(mean_ppt = mean(Precip_inches),"
+"0","            sd_ppt = sd(Precip_inches)"
+"0","            )"

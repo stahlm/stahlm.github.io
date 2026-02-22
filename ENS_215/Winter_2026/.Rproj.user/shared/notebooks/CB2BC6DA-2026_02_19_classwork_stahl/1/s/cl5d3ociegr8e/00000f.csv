@@ -1,0 +1,6 @@
+"0","raster_world_elev %>% "
+"0","  tm_shape() +"
+"0","  tm_raster(col.scale = tm_scale_continuous()) +"
+"0","  "
+"0","  tm_shape(borders_data) +"
+"0","  tm_borders(col = ""black"") #+"
