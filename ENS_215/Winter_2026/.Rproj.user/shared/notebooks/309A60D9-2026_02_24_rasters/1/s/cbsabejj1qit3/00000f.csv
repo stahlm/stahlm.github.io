@@ -1,0 +1,4 @@
+"0","border_NY <- ne_states(country = ""United States of America"", returnclass = ""sf"")"
+"0",""
+"0","border_NY <- border_NY %>% "
+"0","  filter(name == ""New York"")"
