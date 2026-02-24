@@ -1,3 +1,0 @@
-"0","borders_hires <- rnaturalearth::ne_countries(country = ""Switzerland"", "
-"0","                                             scale = ""large"", "
-"0","                                             returnclass = ""sf"")"

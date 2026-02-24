@@ -1,3 +1,0 @@
-"0","catalog %>% "
-"0","  filter(id == ""terraclim"") %>% "
-"0","  select(varname, units, description)"
