@@ -1,0 +1,6 @@
+"0","raster_elev_lesotho %>% "
+"0","  tm_shape() +"
+"0","  tm_raster(col.scale = tm_scale_continuous(values = terrain.colors(n = 10))) +"
+"0","  "
+"0","  tm_shape(borders_hires) +"
+"0","  tm_borders(col = ""red"")"

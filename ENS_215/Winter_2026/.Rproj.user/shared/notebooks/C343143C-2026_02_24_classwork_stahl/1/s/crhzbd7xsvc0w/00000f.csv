@@ -1,0 +1,2 @@
+"0","r_ny_temp <- terra::mask(r_ny_temp, border_NY)"
+"2","Warning: [mask] CRS do not match"

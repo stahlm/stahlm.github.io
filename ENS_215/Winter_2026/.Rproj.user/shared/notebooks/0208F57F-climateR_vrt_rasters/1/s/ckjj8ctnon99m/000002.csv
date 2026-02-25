@@ -1,0 +1,15 @@
+"0","```r
+```r
+raster_soil_class <- vrt_crop_get(
+  URL = \/vsicurl/https://files.isric.org/soilgrids/latest/data/wrb/MostProbable.vrt\,
+  catalog = NULL,
+  AOI = my_aoi,
+  grid = NULL,
+  varname = NULL,
+  start = NULL,
+  end = NULL,
+  toptobottom = FALSE,
+  verbose = TRUE
+)
+```
+```"

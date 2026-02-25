@@ -1,0 +1,13 @@
+"0","r_swiss_tot_precip$sum %>% "
+"0","  tm_shape() +"
+"0","  tm_raster(palette = ""RdBu"", n = 10)"
+"2","
+"
+"2","[36m──[39m [1mtmap v3 code detected[22m [36m─────────────────────────────────────────────[39m
+"
+"2","[38;5;232m[32m[v3->v4][38;5;232m `tm_tm_raster()`: migrate the argument(s) related to the
+scale of the visual variable `col` namely 'n', 'palette' (rename to
+'values') to col.scale = tm_scale(<HERE>).[39m"
+"2","[38;5;232m[32m[cols4all][38;5;232m color palettes: use palettes from the R package cols4all.
+Run ]8;;ide:run:cols4all::c4a_gui()cols4all::c4a_gui()]8;; to explore them. The old palette name ""RdBu""
+is named [34m""brewer.rd_bu""[38;5;232m[39m"

@@ -1,0 +1,17 @@
+"0","```r
+```r
+tmap_mode(\view\)
+```
+```"
+"1","source:	 http://thredds.northwestknowledge.net:8080/thredds/dodsC/agg... 
+varname(s):
+   > ppt [mm] (precipitation_amount)
+==================================================
+diminsions:  22, 16, 8 (names: lon,lat,time)
+resolution:  0.042, 0.042, 1 months
+extent:      -74.79, -73.88, 41.54, 42.21 (xmin, xmax, ymin, ymax)
+crs:         +proj=longlat +a=6378137 +f=0.00335281066474748 +p...
+time:        2023-05-01 to 2023-12-01
+==================================================
+values: 2,816 (vars*X*Y*T)
+"

@@ -1,0 +1,213 @@
+---
+title: "Classwork"
+author: "_Mason Stahl_ (ENS-215)"
+date: "2026-02-24"
+date-format: "MMMM D, YYYY"
+format:
+  html:
+    embed-resources: true
+    code-fold: show
+    code-tools: 
+      source: false
+    df-print: paged
+    theme:
+      light: journal
+      dark: darkly
+    page-layout: full
+    toc: true
+    toc-float: true
+---
+
+
+```{r}
+library(tidyverse)
+library(tmap)
+library(sf)
+```
+
+```{r}
+library(tigris)
+library(elevatr)
+```
+
+
+Let's get elevation raster for Schenectady
+
+
+```{r}
+NY_counties <- counties(state = "NY", cb = T)
+```
+
+```{r}
+county_schenectady <- NY_counties %>% 
+  filter(NAME == "Schenectady")
+```
+
+
+```{r}
+raster_elev <- get_elev_raster(locations = county_schenectady,
+                               z = 12,
+                               clip = "locations"
+                               )
+```
+```{r}
+terra::plot(raster_elev)
+```
+
+
+Let's download country border
+
+```{r}
+library(rnaturalearth)
+```
+
+
+```{r}
+borders_hires <- ne_countries(country = "Lesotho", 
+                              scale = "large",
+                              returnclass = "sf"
+                              )
+```
+
+
+```{r}
+raster_elev_lesotho <- get_elev_raster(locations = borders_hires,
+                                       z = 9,
+                                       clip = "locations"
+                                       )
+```
+
+```{r}
+raster_elev_lesotho %>% 
+  tm_shape() +
+  tm_raster(col.scale = tm_scale_continuous(values = terrain.colors(n = 10))) +
+  
+  tm_shape(borders_hires) +
+  tm_borders(col = "red")
+```
+
+
+## Get climate rasters
+
+```{r}
+library(climateR)
+```
+
+
+```{r}
+df_catalog <- catalog
+```
+
+```{r}
+df_catalog %>% 
+  filter(id == "gridmet") %>% 
+  select(varname, units, description)
+```
+
+```{r}
+border_NY <- ne_states(country = "United States of America", 
+                       returnclass = "sf")
+```
+
+```{r}
+border_NY <- border_NY %>% 
+  filter(name == "New York")
+```
+
+```{r}
+r_ny_temp <- getGridMET(AOI = border_NY,
+                        varname = "tmmn",
+                        startDate = "2023-02-04",
+                        verbose = T
+                        )
+```
+
+```{r}
+r_ny_temp <- r_ny_temp$daily_minimum_temperature
+```
+
+```{r}
+terra::plot(r_ny_temp)
+```
+
+
+```{r}
+r_ny_temp <- terra::crop(r_ny_temp, border_NY)
+```
+
+```{r}
+terra::plot(r_ny_temp)
+```
+
+
+```{r}
+r_ny_temp <- terra::mask(r_ny_temp, border_NY)
+```
+```{r}
+terra::plot(r_ny_temp)
+```
+
+
+```{r}
+r_ny_temp <- r_ny_temp - 273.15
+```
+
+
+```{r}
+terra::plot(r_ny_temp)
+```
+
+
+## Get TerraClim data
+
+```{r}
+borders_swiss <- ne_countries(country = "Switzerland", scale = "large",
+                              returnclass = "sf"
+                              )
+```
+
+
+```{r}
+r_swiss <- getTerraClim(AOI = borders_swiss,
+                        varname = "ppt",
+                        startDate = "2021-01-01",
+                        endDate = "2021-12-01",
+                        verbose = T,
+                        dryrun = F
+                        )
+```
+```{r}
+r_swiss <- r_swiss$ppt
+```
+
+
+```{r}
+r_swiss <- terra::crop(r_swiss, borders_swiss)
+r_swiss <- terra::mask(r_swiss, borders_swiss)
+```
+
+```{r}
+r_swiss %>% 
+  tm_shape() +
+  tm_raster(col.scale = tm_scale_continuous(values = "brewer.rd_bu"),
+            col.free = F)
+```
+
+
+Let's get the total annual precip
+```{r}
+r_swiss_tot_precip <- sum(r_swiss)
+```
+
+```{r}
+r_swiss_tot_precip
+```
+
+```{r}
+r_swiss_tot_precip$sum %>% 
+  tm_shape() +
+  tm_raster(palette = "RdBu", n = 10)
+```
+
+
+

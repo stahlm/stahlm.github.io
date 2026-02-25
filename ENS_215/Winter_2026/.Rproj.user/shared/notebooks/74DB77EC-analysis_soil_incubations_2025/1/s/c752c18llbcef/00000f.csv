@@ -1,0 +1,2 @@
+"0","df_incubation <- df_incubation %>% "
+"0","  mutate(EXP_CONTROL = if_else(str_detect(Sample_ID, ""CONTROL""), ""CONTROL"", ""EXPERIMENT""))"

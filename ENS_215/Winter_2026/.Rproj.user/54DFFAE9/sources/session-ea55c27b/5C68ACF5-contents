@@ -1,0 +1,423 @@
+---
+title: "Soil incubation analysis (Summer 2025 incubations)"
+author: "Union/Columbia/SDSU/International University"
+date: "2026-02-23"
+date-format: "MMMM D, YYYY"
+fig-dpi: 600
+format:
+  html:
+    embed-resources: true
+    code-fold: show
+    code-tools: 
+      source: false
+    df-print: paged
+    theme:
+      light: journal
+      dark: darkly
+    page-layout: full
+    toc: true
+    toc-float: true
+---
+
+```{r}
+library(tidyverse)
+library(readxl)
+library(scales)
+```
+
+```{r}
+df_incubation <- read_xlsx(path = "../Data/Incubations_2025/Summer2025incubations_insolution_ppb.xlsx", sheet = "ppb_transposed")
+```
+
+
+## Clean/tidy up the data
+
+Make a column with the name of the paddy the soil was sampled from
+```{r}
+df_incubation <- df_incubation %>% 
+  mutate(Sample_ID = toupper(Sample_ID)) %>% 
+  mutate(Location_ID = str_sub(Sample_ID, start = 1, end = 6))
+```
+
+
+Add a column with a flag indicating if the bottle is an experimental or control bottle
+```{r}
+df_incubation <- df_incubation %>% 
+  mutate(EXP_CONTROL = if_else(str_detect(Sample_ID, "CONTROL"), "CONTROL", "EXPERIMENT"))
+```
+
+
+Add a column to indicate the incubation bottle number (e.g., 1,2,3) since each location has replicate bottles.
+```{r}
+df_incubation <- df_incubation %>% 
+  mutate(Bottle_ID = case_when(EXP_CONTROL == "EXPERIMENT" & str_detect(Sample_ID, "VITAL", negate = T) ~ str_sub(Sample_ID, 8,8),
+                               str_detect(Sample_ID, "CONTROL_") ~ "1",
+                               str_detect(Sample_ID, "CONTROL1_") ~ "1",
+                               str_detect(Sample_ID, "CONTROL2_") ~ "2",
+                               str_detect(Sample_ID, "VITAL") ~ str_sub(Sample_ID, -1,-1)
+    
+  )
+         )
+```
+
+
+```{r}
+df_incubation <- df_incubation %>% 
+  mutate(LOC_BOTTLE = paste(Location_ID, Bottle_ID, sep = "_")) 
+```
+
+
+## As vs. time
+
+```{r message = F}
+df_incubation %>% 
+  filter(EXP_CONTROL == "EXPERIMENT") %>% 
+  ggplot(aes(x = Week, y = As, group = LOC_BOTTLE, fill = Location_ID)) +
+  
+  scale_fill_brewer(palette = "Set3") +
+  
+  geom_line() +
+  geom_point(shape = 21) +
+  
+  theme_bw() +
+  theme(legend.position = "none") +
+  
+  facet_wrap(~Location_ID) 
+```
+
+```{r message = F, fig.dpi= 600}
+df_incubation %>% 
+  filter(EXP_CONTROL == "EXPERIMENT") %>% 
+  ggplot(aes(x = Week, y = As, group = LOC_BOTTLE, fill = Location_ID)) +
+  
+  scale_fill_brewer(palette = "Set3") +
+  
+  geom_line() +
+  geom_point(shape = 21) +
+  
+  scale_y_log10(labels = trans_format('log10', math_format(10^.x))) +
+  scale_x_log10() +
+  
+  theme_bw() +
+  theme(legend.position = "none") +
+  
+  facet_wrap(~Location_ID) 
+```
+
+
+## Mn vs time
+
+```{r warning = F, message = F}
+df_incubation %>% 
+  filter(EXP_CONTROL == "EXPERIMENT") %>% 
+  ggplot(aes(x = Week, y = Mn, group = LOC_BOTTLE, fill = Location_ID)) +
+  
+  scale_fill_brewer(palette = "Set3") +
+  
+  geom_line() +
+  geom_point(shape = 21) +
+  
+  scale_y_log10(labels = trans_format('log10', math_format(10^.x))) +
+  
+  theme_bw() +
+  theme(legend.position = "none") +
+  
+  facet_wrap(~Location_ID) 
+```
+
+## Fe vs time
+
+```{r warning = F, message = F}
+df_incubation %>% 
+  filter(EXP_CONTROL == "EXPERIMENT") %>% 
+  ggplot(aes(x = Week, y = Fe, group = LOC_BOTTLE, fill = Location_ID)) +
+  
+  scale_fill_brewer(palette = "Set3") +
+  
+  geom_line() +
+  geom_point(shape = 21) +
+  
+  scale_y_log10(labels = trans_format('log10', math_format(10^.x))) +
+  
+  theme_bw() +
+  theme(legend.position = "none") +
+  
+  facet_wrap(~Location_ID) 
+```
+
+
+## Sr vs time
+
+```{r}
+df_incubation %>% 
+  filter(EXP_CONTROL == "EXPERIMENT") %>% 
+  ggplot(aes(x = Week, y = Sr, group = LOC_BOTTLE, fill = Location_ID)) +
+  
+  scale_fill_brewer(palette = "Set3") +
+  
+  geom_line() +
+  geom_point(shape = 21) +
+  
+  scale_y_log10(labels = trans_format('log10', math_format(10^.x))) +
+  
+  theme_bw() +
+  theme(legend.position = "none") +
+  
+  facet_wrap(~Location_ID) 
+```
+
+
+## Ca vs time
+
+```{r}
+df_incubation %>% 
+  filter(EXP_CONTROL == "EXPERIMENT") %>% 
+  ggplot(aes(x = Week, y = Ca, group = LOC_BOTTLE, fill = Location_ID)) +
+  
+  scale_fill_brewer(palette = "Set3") +
+  
+  geom_line() +
+  geom_point(shape = 21) +
+  
+  scale_y_log10(labels = trans_format('log10', math_format(10^.x))) +
+  
+  theme_bw() +
+  theme(legend.position = "none") +
+  
+  facet_wrap(~Location_ID) 
+```
+
+
+## S vs time
+
+```{r message= F}
+df_incubation %>% 
+  filter(EXP_CONTROL == "EXPERIMENT") %>% 
+  ggplot(aes(x = Week, y = S, group = LOC_BOTTLE, fill = Location_ID)) +
+  
+  scale_fill_brewer(palette = "Set3") +
+  
+  geom_line() +
+  geom_point(shape = 21) +
+  
+  scale_y_log10() +
+  
+  theme_bw() +
+  theme(legend.position = "none") +
+  
+  facet_wrap(~Location_ID) 
+```
+
+```{r}
+df_incubation %>% 
+  filter(EXP_CONTROL == "EXPERIMENT", Location_ID == "AEM_32") %>% 
+    ggplot(aes(x = S, y = As, group = LOC_BOTTLE, fill = factor(Week))) +
+  
+  scale_fill_brewer(palette = "YlOrRd") +
+  
+  geom_point(shape = 21, size = 3) +
+  
+  #   scale_y_log10(labels = trans_format('log10', math_format(10^.x))) +
+  # scale_x_log10(labels = trans_format('log10', math_format(10^.x))) +
+  
+  theme_bw() +
+  
+  facet_wrap(~LOC_BOTTLE)
+```
+
+
+
+
+
+
+## P vs time
+
+```{r message= F}
+df_incubation %>% 
+  filter(EXP_CONTROL == "EXPERIMENT") %>% 
+  ggplot(aes(x = Week, y = P, group = LOC_BOTTLE, fill = Location_ID)) +
+  
+  scale_fill_brewer(palette = "Set3") +
+  
+  geom_line() +
+  geom_point(shape = 21) +
+  
+  scale_y_log10(labels = trans_format('log10', math_format(10^.x))) +
+  
+  theme_bw() +
+  theme(legend.position = "none") +
+  
+  facet_wrap(~Location_ID) 
+```
+
+## Al vs. time
+
+```{r message = F}
+df_incubation %>% 
+  filter(EXP_CONTROL == "EXPERIMENT") %>% 
+  ggplot(aes(x = Week, y = Al, group = LOC_BOTTLE, fill = Location_ID)) +
+  
+  scale_fill_brewer(palette = "Set3") +
+  
+  geom_line() +
+  geom_point(shape = 21) +
+  
+  scale_y_log10(labels = trans_format('log10', math_format(10^.x))) +
+  
+  theme_bw() +
+  theme(legend.position = "none") +
+  
+  facet_wrap(~Location_ID) 
+```
+
+## As vs. Mn
+```{r message= F}
+df_incubation %>% 
+  filter(EXP_CONTROL == "EXPERIMENT") %>% 
+  ggplot(aes(x = Mn, y = As, group = LOC_BOTTLE, fill = factor(Week))) +
+  
+  scale_fill_brewer(palette = "YlOrRd") +
+  
+  geom_point(shape = 21) +
+  
+  scale_y_log10(labels = trans_format('log10', math_format(10^.x))) +
+  scale_x_log10(labels = trans_format('log10', math_format(10^.x))) +
+  
+  theme_bw() +
+  
+  facet_wrap(~Location_ID) 
+```
+
+
+
+
+## As vs. Fe
+```{r}
+df_incubation %>% 
+  filter(EXP_CONTROL == "EXPERIMENT") %>% 
+  ggplot(aes(x = Fe, y = As, group = LOC_BOTTLE, fill = factor(Week))) +
+  
+  scale_fill_brewer(palette = "YlOrRd") +
+  
+  geom_point(shape = 21) +
+  
+  scale_y_log10(labels = trans_format('log10', math_format(10^.x))) +
+  scale_x_log10(labels = trans_format('log10', math_format(10^.x))) +
+  
+  theme_bw() +
+  
+  facet_wrap(~Location_ID) 
+```
+
+
+## As vs. Sr
+```{r}
+df_incubation %>% 
+  filter(EXP_CONTROL == "EXPERIMENT") %>% 
+  ggplot(aes(x = Sr, y = As, group = LOC_BOTTLE, fill = factor(Week))) +
+  
+  scale_fill_brewer(palette = "YlOrRd") +
+  
+  geom_point(shape = 21) +
+  
+  scale_y_log10(labels = trans_format('log10', math_format(10^.x))) +
+  scale_x_log10(labels = trans_format('log10', math_format(10^.x))) +
+  
+  theme_bw() +
+  
+  facet_wrap(~Location_ID) 
+```
+
+
+## As vs. S
+
+```{r}
+df_incubation %>% 
+  filter(EXP_CONTROL == "EXPERIMENT") %>% 
+  ggplot(aes(x = S, y = As, group = LOC_BOTTLE, fill = factor(Week))) +
+  
+  scale_fill_brewer(palette = "YlOrRd") +
+  
+  geom_point(shape = 21) +
+  
+  scale_y_log10(labels = trans_format('log10', math_format(10^.x))) +
+  scale_x_log10() +
+  
+  theme_bw() +
+  facet_wrap(~Location_ID)
+```
+
+
+```{r}
+df_incubation %>% 
+  filter(EXP_CONTROL == "EXPERIMENT", Location_ID == "AEM_33" | Location_ID == "AEM_32") %>% 
+  ggplot(aes(x = S, y = As, group = LOC_BOTTLE, fill = factor(Week))) +
+  
+  scale_fill_brewer(palette = "YlOrRd") +
+  
+  geom_point(shape = 21, size = 3) +
+  geom_path() +
+  
+  scale_y_log10(labels = trans_format('log10', math_format(10^.x))) +
+  scale_x_log10(breaks = c(250,500,1000,2500,5000)) +
+  
+  theme_bw() +
+  facet_grid(Location_ID ~ Bottle_ID)
+```
+
+
+```{r}
+df_incubation %>% 
+  filter(EXP_CONTROL == "EXPERIMENT") %>% 
+  ggplot(aes(x = S, y = As, group = LOC_BOTTLE, fill = factor(Week))) +
+  
+  scale_fill_brewer(palette = "YlOrRd") +
+  
+  geom_point(shape = 21, size = 2) +
+  
+  #scale_y_log10(labels = trans_format('log10', math_format(10^.x))) +
+  #scale_x_log10(labels = trans_format('log10', math_format(10^.x))) +
+  
+  theme_bw() 
+```
+
+## As vs. Zn
+
+
+```{r}
+df_incubation %>% 
+  filter(EXP_CONTROL == "EXPERIMENT") %>% 
+  ggplot(aes(x = Zn, y = As, group = LOC_BOTTLE, fill = factor(Week))) +
+  
+  scale_fill_brewer(palette = "YlOrRd") +
+  
+  geom_point(shape = 21) +
+  
+  scale_y_log10(labels = trans_format('log10', math_format(10^.x))) +
+  scale_x_log10() +
+  
+  theme_bw() +
+  facet_wrap(~Location_ID)
+```
+
+
+
+## As vs. P
+
+
+```{r}
+df_incubation %>% 
+  filter(EXP_CONTROL == "EXPERIMENT") %>% 
+  ggplot(aes(x = P, y = As, group = LOC_BOTTLE, fill = factor(Week))) +
+  
+  scale_fill_brewer(palette = "YlOrRd") +
+  
+  geom_point(shape = 21) +
+  
+  scale_y_log10(labels = trans_format('log10', math_format(10^.x))) +
+  scale_x_log10() +
+  
+  theme_bw() +
+  facet_wrap(~Location_ID)
+```
+
