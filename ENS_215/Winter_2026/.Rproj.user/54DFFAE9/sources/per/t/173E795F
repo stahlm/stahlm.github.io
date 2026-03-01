@@ -1,0 +1,28 @@
+{
+    "id": "173E795F",
+    "path": "C:/Users/stahlm/Documents/Thesis_Students/Cassasa_2026/get_precip_data.Rmd",
+    "project_path": null,
+    "type": "r_markdown",
+    "hash": "356630095",
+    "contents": "",
+    "dirty": false,
+    "created": 1772215808749.0,
+    "source_on_save": false,
+    "relative_order": 9,
+    "properties": {
+        "tempName": "Untitled1",
+        "chunk_output_type": "inline",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "73,35",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1772219937,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1772219937880,
+    "read_only": false,
+    "read_only_alternatives": []
+}

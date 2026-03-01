@@ -1,0 +1,1 @@
+"0","r_landuse_2020 <- terra::rast(x = ""./data/20N_100E_yr_2020.tif"")"

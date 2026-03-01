@@ -1,0 +1,10 @@
+"0","bangladesh_gw <- read_csv(""https://stahlm.github.io/ENS_215/Data/NationalSurveyData_DPHE_BGS_LabData.csv"") %>% "
+"0","  drop_na()"
+"2","[1mRows: [22m[34m3534[39m [1mColumns: [22m[34m31[39m"
+"2","[36m──[39m [1mColumn specification[22m [36m─────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m  (7): SAMPLE_ID, WELL_TYPE, DIVISION, DISTRICT, THANA, UN...
+[32mdbl[39m (24): LAT_DEG, LONG_DEG, YEAR_CONSTRUCTION, WELL_DEPTH_m,..."
+"2","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message."

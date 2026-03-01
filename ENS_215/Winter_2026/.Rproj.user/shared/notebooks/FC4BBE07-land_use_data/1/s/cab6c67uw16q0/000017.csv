@@ -1,0 +1,1 @@
+"0","a <- terra::as.data.frame(r_landuse_pp2020, xy = T)"

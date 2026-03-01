@@ -1,0 +1,7 @@
+"0","pow_it <- function(base_val, exp_val){"
+"0","  # Raises an input value to a specified power"
+"0","  # inputs: base_val is the value to be raised to a power; exp_val is the exponent value"
+"0","  # output: base_val raised to the exp_val"
+"0","  "
+"0","  base_val^exp_val"
+"0","}"

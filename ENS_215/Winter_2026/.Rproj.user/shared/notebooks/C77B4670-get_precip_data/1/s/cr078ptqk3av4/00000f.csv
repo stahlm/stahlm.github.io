@@ -1,0 +1,2 @@
+"0","df_precip_long <- df_precip_long %>% "
+"0","  mutate(DATE = as.Date(DATE))"

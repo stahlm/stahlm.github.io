@@ -1,0 +1,4 @@
+"0","df_precip_monthly %>% "
+"0","  filter(MONTH %in% c(6,7,8,9,10,11,12)) %>% "
+"0","  group_by(YEAR) %>% "
+"0","  summarize(tot_ppt = sum(ppt__mm))"

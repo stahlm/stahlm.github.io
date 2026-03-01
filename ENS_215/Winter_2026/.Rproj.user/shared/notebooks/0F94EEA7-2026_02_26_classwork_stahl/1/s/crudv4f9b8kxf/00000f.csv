@@ -1,0 +1,2 @@
+"0","precip_data <- precip_data %>% "
+"0","  rename(Precip_inches = Value)"

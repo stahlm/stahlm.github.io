@@ -1,0 +1,4 @@
+"0","df_precip_long <- df_precip_long %>% "
+"0","  mutate(YEAR = year(DATE),"
+"0","         MONTH = month(DATE)"
+"0","         )"

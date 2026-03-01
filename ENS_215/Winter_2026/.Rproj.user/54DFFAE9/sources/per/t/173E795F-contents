@@ -1,0 +1,76 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+library(tmap)
+library(sf)
+library(terra)
+library(climateR)
+```
+
+```{r}
+sf_borders_cambodia <- rnaturalearthhires::states10 %>%
+  filter(geonunit == "Cambodia")
+```
+
+
+```{r}
+ppt_precip_gs_total <- climateR::dap(
+  URL= "http://thredds.northwestknowledge.net:8080/thredds/dodsC/agg_terraclimate_ppt_1958_CurrentYear_GLOBE.nc",
+    catalog = NULL,
+  AOI = sf_borders_cambodia,  ## UPDATE
+  grid = NULL,
+  varname = NULL,
+  endDate = "2025-01-01",
+  startDate =  "2020-01-01",  ## UPDATE
+  toptobottom = FALSE,
+  verbose = TRUE
+
+)
+```
+
+```{r}
+df_precip <- terra::as.data.frame(ppt_precip_gs_total$ppt, xy = T)
+```
+
+```{r}
+df_precip_long <- df_precip %>% 
+  pivot_longer(cols = 3:ncol(df_precip),
+               names_to = "DATE",
+               values_to = "precip__mm")
+```
+
+```{r}
+df_precip_long <- df_precip_long %>% 
+  mutate(DATE = str_remove_all(DATE, "_"))
+```
+
+```{r}
+df_precip_long <- df_precip_long %>% 
+  mutate(DATE = as.Date(DATE))
+```
+
+```{r}
+df_precip_long <- df_precip_long %>% 
+  mutate(YEAR = year(DATE),
+         MONTH = month(DATE)
+         )
+```
+
+
+```{r}
+df_precip_monthly <- df_precip_long %>% 
+  group_by(YEAR, MONTH) %>% 
+  summarize(ppt__mm = mean(precip__mm, na.rm = T))
+```
+
+```{r}
+df_precip_monthly %>% 
+  filter(MONTH %in% c(6,7,8,9,10,11,12)) %>% 
+  group_by(YEAR) %>% 
+  summarize(tot_ppt = sum(ppt__mm))
+```
+

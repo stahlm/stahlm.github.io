@@ -1,0 +1,1 @@
+"0","df_precip <- terra::as.data.frame(ppt_precip_gs_total$ppt, xy = T)"

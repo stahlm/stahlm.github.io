@@ -1,0 +1,4 @@
+"0","df_precip_monthly <- df_precip_long %>% "
+"0","  group_by(YEAR, MONTH) %>% "
+"0","  summarize(ppt__mm = mean(precip__mm, na.rm = T))"
+"2","`summarise()` has regrouped the output."

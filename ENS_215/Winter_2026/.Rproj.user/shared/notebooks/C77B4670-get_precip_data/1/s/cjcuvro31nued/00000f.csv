@@ -1,0 +1,4 @@
+"0","df_precip_long <- df_precip %>% "
+"0","  pivot_longer(cols = 3:ncol(df_precip),"
+"0","               names_to = ""DATE"","
+"0","               values_to = ""precip__mm"")"

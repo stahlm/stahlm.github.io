@@ -1,0 +1,6 @@
+"0",""
+"0","worldmet_data_samwawah <- import_ghcn_hourly(station = ""IZM00040674"", "
+"0","                                             year = 2015)"
+"0",""
+"0","worldmet_data_samwawah <- worldmet_data_samwawah %>% "
+"0","  filter(!is.na(rh), !is.na(air_temp))   # remove observations that are missing RH and/or air temp data"
