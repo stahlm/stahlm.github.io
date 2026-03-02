@@ -368,7 +368,7 @@ In order to write an R function to automate this process, we first need to under
 
 5) Paste this link in your notebook.  You should get something that have the same structure/formatting as below
 
-> https://earthquake.usgs.gov/fdsnws/event/1/query.csv?starttime=2025-02-18%2000:00:00&endtime=2025-02-25%2023:59:59&minmagnitude=2.5&orderby=time  
+> https://earthquake.usgs.gov/fdsnws/event/1/query.csv?starttime=2026-02-18%2000:00:00&endtime=2026-02-25%2023:59:59&minmagnitude=2.5&orderby=time  
 
 
 When we inspect this URL we can see that it has a logical structure when the query parameters are part of the URL.  Given the formulaic approach to building the URL from the users' query parameters, we can see that this is amenable to being turned into an R function.  Let's go ahead and write a function, where the user can specify the start date, end date, and minimum earthquake magnitude and then the function will download that data directly into R as a data frame that you can immediately start to work with and analyze.  
