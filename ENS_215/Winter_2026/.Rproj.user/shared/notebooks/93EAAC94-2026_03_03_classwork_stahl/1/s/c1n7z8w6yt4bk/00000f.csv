@@ -1,0 +1,5 @@
+"0","celsius_converter <- function(fahrenheit_val){"
+"0","  "
+"0","  (fahrenheit_val-32)*(5/9)"
+"0","  "
+"0","}"

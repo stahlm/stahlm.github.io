@@ -1,0 +1,167 @@
+---
+title: "Classwork: Writing functions in R"
+author: "_Mason Stahl_ (ENS-215)"
+date: "2026-03-03"
+date-format: "MMMM D, YYYY"
+format:
+  html:
+    embed-resources: true
+    code-fold: show
+    code-tools: 
+      source: false
+    df-print: paged
+    theme:
+      light: journal
+      dark: darkly
+    page-layout: full
+    toc: true
+    toc-float: true
+---
+
+
+```{r}
+library(tidyverse)
+library(patchwork)
+```
+
+
+Let's write our first function!
+```{r}
+cube_it <- function(cube_me){
+  # Function computes the cube of the input
+  # Inputs: cube_me is the value to cube
+  # Output: the cube of cube_me
+  
+  cube_me^3
+  
+}
+```
+
+
+Let's test our function out
+```{r}
+cube_it(5)
+```
+```{r}
+cube_it(cube_me = 5)
+```
+
+Let's create a bit more complex of a function
+```{r}
+pow_it <- function(base_val, exp_val){
+  # Function raises an input value to a specified power
+  ### inputs
+  # base_val: value to be raised to a power
+  # exp_val: is the power to raise base_val with
+  
+  ### outputs
+  # base_val raised to exp_val
+  
+  base_val^exp_val
+  
+}
+```
+
+
+```{r}
+pow_it(2, 3)
+```
+
+```{r}
+pow_it(3,2)
+```
+```{r}
+pow_it(base_val = 2, exp_val = 3)
+```
+```{r}
+pow_it(3,2)
+pow_it(exp_val = 3, base_val = 2)
+```
+
+
+```{r}
+celsius_converter <- function(fahrenheit_val){
+  
+  (fahrenheit_val-32)*(5/9)
+  
+}
+```
+
+```{r}
+celsius_converter(fahrenheit_val = 32)
+```
+
+## Variables and scoping
+Argument defaults
+
+```{r}
+pow_it(base_val = 3, exp_val = 4)
+```
+
+```{r}
+pow_it(base_val = 3)
+```
+
+```{r}
+pow_it_new <- function(base_val, exp_val = 1){
+  
+  my_output <- base_val^exp_val
+  
+  my_output
+}
+```
+
+```{r}
+pow_it_new(base_val = 3, exp_val = 4)
+```
+```{r}
+pow_it_new(base_val = 3)
+```
+```{r}
+my_variable <- 5
+```
+
+
+## Return multiple outputs
+
+Let's create a bad function
+```{r}
+get_stats_bad <- function(input_data){
+  
+  min(input_data)
+  max(input_data)
+  mean(input_data)
+}
+```
+
+```{r}
+x <- runif(1000, min = 0, max = 50)
+```
+
+```{r}
+x
+```
+
+
+```{r}
+get_stats_bad(input_data = x)
+```
+
+```{r}
+get_stats_great <- function(input_data){
+  
+  stat_min <- min(input_data)
+  stat_max <- max(input_data)
+  stat_mean <- mean(input_data)
+  
+  #c(stat_min, stat_max, stat_mean)
+  list(stat_min, stat_max, stat_mean)
+}
+```
+
+```{r}
+get_stats_great(input_data = x)
+```
+
+
+
