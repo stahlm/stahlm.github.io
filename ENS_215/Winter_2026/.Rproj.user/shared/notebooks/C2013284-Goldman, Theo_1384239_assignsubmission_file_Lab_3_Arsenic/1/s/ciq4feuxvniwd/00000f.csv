@@ -1,0 +1,4 @@
+"0","bangladesh_gw %>% "
+"0","  filter(As_ugL < 500) %>% "
+"0","  ggplot()+"
+"0","  geom_point(aes(x= As_ugL , y = -WELL_DEPTH_m ))"

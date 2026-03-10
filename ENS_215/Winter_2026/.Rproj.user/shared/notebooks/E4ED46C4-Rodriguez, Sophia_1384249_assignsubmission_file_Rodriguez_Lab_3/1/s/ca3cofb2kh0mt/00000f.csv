@@ -1,0 +1,3 @@
+"0","bangladesh_gw %>%"
+"0","  ggplot(aes(x = WELL_TYPE, color = DIVISION)) + "
+"0","  geom_bar()"

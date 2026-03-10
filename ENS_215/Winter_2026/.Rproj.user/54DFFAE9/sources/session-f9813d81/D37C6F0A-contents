@@ -1,0 +1,75 @@
+---
+title: "Untitled"
+format: html
+---
+
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+library(tmap)
+library(sf)
+library(climateR)
+```
+
+```{r}
+borders_hires <- rnaturalearth::ne_countries(country = "Switzerland", 
+                                             scale = "large", 
+                                             returnclass = "sf")
+```
+
+<br/>
+
+The variables available from the TerraClim normals are the following:
+```{r}
+catalog %>% 
+  filter(id == "terraclim") %>% 
+  select(varname, units, description)
+```
+
+
+<br/> 
+
+Now we will use the `getTerraClim()` from `climateR` to get the TerraClim monthly precipitation data.  The `AOI` specifies  the spatial object that describes the area of interest.  The `varname` argument specifies the variable download.  The `startDate` argument specifies the start date for the time period of interest and the `endDate` specifies the end date for our period of interest
+
+
+::: {.callout-important}
+The server that provides TerraClim data was out of service on 18-Feb-2026 (though seemed to be working again on 22-Feb-2026).  It is not clear if this is a short-term issue and will be resolved shortly or if this may be a longer-term issue.  We can try this code in class on 24-Feb-2026, however if it doesn't work then we will skip it and get monthly precipitation data from the CHIRPS dataset.  
+
+:::
+
+```{r eval = F}
+climate_raster <- getTerraClim(
+  AOI = borders_hires,
+  varname = "ppt",
+  startDate = "2021-01-01",
+  endDate = "2021-12-01",
+  verbose = T,
+  dryrun = FALSE
+)
+```
+
+```{r}
+climate_raster <- climate_raster$ppt
+```
+
+Now let's crop and mask the raster.
+```{r}
+climate_raster <- terra::crop(climate_raster, borders_hires)
+
+climate_raster <- terra::mask(climate_raster, borders_hires)
+```
+```{r}
+switzerland_tot_prcp <- sum(climate_raster)
+```
+
+
+```{r}
+terra::plot(switzerland_tot_prcp)
+```
+
+```{r}
+switzerland_mean_prcp <- mean(climate_raster)
+```
+
+
+

@@ -1,0 +1,7 @@
+"0","table_14 <- bangladesh_gw %>% "
+"0","  filter(YEAR_CONSTRUCTION >= 1971, YEAR_CONSTRUCTION <= 2000) %>% "
+"0","  group_by(YEAR_CONSTRUCTION) %>% "
+"0","  summarise(avg_well_depth = mean(WELL_DEPTH_m),"
+"0","            avg_As = mean(As_ugL))"
+"0",""
+"0",""

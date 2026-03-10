@@ -1,0 +1,23 @@
+"0",""
+"0","summarize(bangladesh_gw, "
+"0","        well_depth_mean = mean(WELL_DEPTH_m),  "
+"0","        well_depth_med = median(WELL_DEPTH_m), "
+"0","        const_year_mean = mean(YEAR_CONSTRUCTION), "
+"0","        const_year_med =  median(YEAR_CONSTRUCTION), "
+"0","        arsenic_mean = mean(As_ugL), "
+"0","        arsenic_med = median(As_ugL), "
+"0","        iron_med = (Fe_mgL), "
+"0","        iron_mean = (Fe_mgL), "
+"0","        mang_med = (Mn_mgL), "
+"0","        mang_mean = (Mn_mgL), "
+"0","        sulfate_med = (SO4_mgL), "
+"0","        sulfate_mean = (SO4_mgL)"
+"0","        "
+"0","        )"
+"1","[1m[33mError[39m in `summarize()`:[22m
+[38;5;232m[36mℹ[38;5;232m In argument: `iron_med = (Fe_mgL)`.[39m
+[1mCaused by error:[22m
+[38;5;232m[33m![38;5;232m `iron_med` must be size 1, not 3534.
+[36mℹ[38;5;232m To return more or less than 1 row per group, use `reframe()`.[39m
+[90mRun `]8;;x-r-run:rlang::last_trace()rlang::last_trace()]8;;` to see where the error occurred.[39m
+"

@@ -1,0 +1,3 @@
+"0",""
+"0","table_14 %>% "
+"0","mutate(avg_As_table15 = mean(avg_As))"

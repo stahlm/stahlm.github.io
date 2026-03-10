@@ -1,0 +1,5 @@
+"0","well_type_avg_As <- bangladesh_gw %>% "
+"0","  group_by(WELL_TYPE) %>% "
+"0","  summarise(avg_As = mean(As_ugL))"
+"0",""
+"0",""

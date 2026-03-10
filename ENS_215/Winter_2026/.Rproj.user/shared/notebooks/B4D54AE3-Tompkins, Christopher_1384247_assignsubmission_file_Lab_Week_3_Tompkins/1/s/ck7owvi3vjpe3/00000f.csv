@@ -1,0 +1,5 @@
+"0","bangladesh_gw <- bangladesh_gw %>% "
+"0","  mutate( "
+"0","    depth_cat = case_when( WELL_DEPTH_m <= 50 ~ ""shallow"","
+"0","                           WELL_DEPTH_m > 50 & WELL_DEPTH_m <= 100 ~ ""intermed"","
+"0","                           WELL_DEPTH_m > 100 ~ ""deep""))"

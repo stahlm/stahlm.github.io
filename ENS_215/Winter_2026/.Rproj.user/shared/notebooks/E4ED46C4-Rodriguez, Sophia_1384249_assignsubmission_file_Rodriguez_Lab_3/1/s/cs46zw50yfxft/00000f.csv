@@ -1,0 +1,6 @@
+"0","bangladesh_gw %>%"
+"0","  ggplot(aes(x = Mn_mgL, y= As_ugL, color = DIVISION)) + "
+"0","  geom_point()+ "
+"0","  ylim(0, 75) +"
+"0","  xlim(0,6)"
+"0",""

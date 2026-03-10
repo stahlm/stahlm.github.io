@@ -1,0 +1,3 @@
+"0","ratio_well_As <- well_avg_as_arrange %>% "
+"0","  summarise(last(avg_As)/first(avg_As)) "
+"0","  "

@@ -1,0 +1,3 @@
+"0","STW_Well <- bangladesh_gw %>% "
+"0","  filter(WELL_TYPE == ""STW"")"
+"0",""

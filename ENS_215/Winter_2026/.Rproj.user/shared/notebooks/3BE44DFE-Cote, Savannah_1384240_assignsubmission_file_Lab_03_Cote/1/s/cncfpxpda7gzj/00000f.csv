@@ -1,0 +1,8 @@
+"0","exposure_assesment_depth <- bangladesh_gw %>% "
+"0","  group_by(depth_cat) %>% "
+"0","  summarise(n_well = n(),"
+"0","            percent_low_As = 100 * sum(As_cat == ""low As"")/n_well, "
+"0","            percent_med_As = 100 * sum(As_cat == ""med As"")/n_well, "
+"0","            percent_high_As = 100 * sum(As_cat == ""high As"")/n_well, "
+"0","  )"
+"0",""

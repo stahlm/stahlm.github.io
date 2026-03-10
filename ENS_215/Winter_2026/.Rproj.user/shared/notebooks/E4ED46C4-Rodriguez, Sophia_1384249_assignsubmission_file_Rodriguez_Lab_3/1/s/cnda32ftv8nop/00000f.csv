@@ -1,0 +1,1 @@
+"0","bangladesh_gw <- mutate(bangladesh_gw, depth_cat = factor(depth_cat, ordered = TRUE, levels = c(""shallow"", ""intermed"", ""deep"")))"

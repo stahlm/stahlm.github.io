@@ -1,0 +1,14 @@
+"0","rm(list = ls())"
+"0","library(tidyverse)"
+"0",""
+"0","bangladesh_gw <- read_csv(""https://stahlm.github.io/ENS_215/Data/NationalSurveyData_DPHE_BGS_LabData.csv"")"
+"2","Error: no more error handlers available (recursive errors?); invoking 'abort' restart
+"
+"2","Warning in .Internal(open(con, open, blocking)) :"
+"2","
+ "
+"2"," type 29 is unimplemented in 'type2char'
+"
+"2","Error in .Internal(open(con, open, blocking)) : 
+  INTEGER() can only be applied to a 'integer', not a 'unknown type #29'
+"

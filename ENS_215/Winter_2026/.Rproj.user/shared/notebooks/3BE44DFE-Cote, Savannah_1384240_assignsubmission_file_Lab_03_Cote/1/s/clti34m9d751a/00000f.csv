@@ -1,0 +1,3 @@
+"0","STW_Well %>% "
+"0","  ggplot(aes(x = WELL_DEPTH_m, y = As_ugL, color = YEAR_CONSTRUCTION)) + "
+"0","  geom_point(alpha = 0.3)"

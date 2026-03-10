@@ -1,0 +1,7 @@
+"0","table_depth <- bangladesh_gw %>%"
+"0","  group_by(DIVISION) %>%"
+"0","  summarise(n_wells = n(), "
+"0","percent_shallow_well = 100 * sum(depth_cat == ""shallow"")/ n_wells, "
+"0","percent_intermed_well = 100 * sum(depth_cat == ""intermed"")/ n_wells, "
+"0","percent_deep_well = 100 * sum(depth_cat == ""deep"")/ n_wells,) %>%"
+"0","arrange(desc(""deep""))"

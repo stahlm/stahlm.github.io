@@ -1,0 +1,2 @@
+"0","switzerland_mean_prcp <- mean(climate_raster)"
+"2","Warning: argument is not numeric or logical: returning NA"

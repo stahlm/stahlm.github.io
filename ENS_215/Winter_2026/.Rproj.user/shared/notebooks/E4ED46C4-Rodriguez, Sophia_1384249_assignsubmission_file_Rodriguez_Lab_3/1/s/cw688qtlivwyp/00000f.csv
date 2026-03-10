@@ -1,0 +1,7 @@
+"0","AS_summary <- bangladesh_gw %>%"
+"0","  group_by(DIVISION) %>%"
+"0","  summarise("
+"0","    min_As = min(As_ugL, na.rm = TRUE), "
+"0","    mean_As = mean(As_ugL, na.rm = TRUE), "
+"0","    max_As = max(As_ugL, na.rm = TRUE)"
+"0","  )"

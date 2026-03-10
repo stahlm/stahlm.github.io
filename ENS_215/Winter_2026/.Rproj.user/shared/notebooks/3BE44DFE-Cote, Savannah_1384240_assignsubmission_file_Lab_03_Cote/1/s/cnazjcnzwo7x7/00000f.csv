@@ -1,0 +1,3 @@
+"0","well_avg_as_arrange <- well_type_avg_As %>% "
+"0","  arrange(avg_As)"
+"0",""

@@ -1,0 +1,4 @@
+"0","arsenic_who <- bangladesh_gw %>%"
+"0","  mutate(above_WHO = As_ugL > 10) %>%"
+"0","  group_by(DIVISION) %>%"
+"0","  summarise(percent_above = mean(above_WHO, na.rm = TRUE) * 100)"

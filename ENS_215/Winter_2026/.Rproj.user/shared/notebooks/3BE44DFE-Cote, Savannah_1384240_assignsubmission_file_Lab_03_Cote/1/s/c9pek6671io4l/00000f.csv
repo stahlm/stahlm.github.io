@@ -1,0 +1,7 @@
+"0","bangladesh_gw <- bangladesh_gw %>% "
+"0","  mutate(As_cat = case_when(As_ugL <= 10 ~ ""low As"","
+"0","                            As_ugL > 10 & As_ugL <= 50 ~ ""med As"","
+"0","                            As_ugL > 50 ~ ""high As"")) %>% "
+"0","  mutate(As_cat = factor(As_cat,"
+"0","                            ordered = TRUE, "
+"0","                            levels = c(""low As"", ""med As"", ""high As"")))"

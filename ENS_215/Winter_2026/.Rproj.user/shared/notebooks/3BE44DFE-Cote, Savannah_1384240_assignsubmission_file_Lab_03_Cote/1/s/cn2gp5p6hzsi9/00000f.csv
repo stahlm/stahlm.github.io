@@ -1,0 +1,2 @@
+"0","well_type_avg_As %>% "
+"0","  arrange(desc(avg_As))"
