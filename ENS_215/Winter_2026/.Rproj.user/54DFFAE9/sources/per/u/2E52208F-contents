@@ -1,0 +1,47 @@
+---
+title: "Untitled"
+format: html
+---
+
+```{r}
+library(tmap)
+library(tidyverse)
+library(sf)
+library(spData)
+```
+
+
+
+```{r}
+sf_world <- spData::world
+```
+
+```{r}
+sf_world %>% 
+  tm_shape(crs = 3573) +
+  tm_polygons()
+```
+
+
+
+```{r}
+my_data <- my_data %>% 
+  mutate(amount_unit = if_else(damage_amt, "K", "K", "M")) %>% 
+  mutate(damage_amt = str_replace(damage_amt, "K","")) %>% 
+  mutate(damage_amt = str_replace(damage_amt, "M",""))
+```
+
+
+```{r}
+my_data <- my_data %>% 
+  mutate(damage_amt = as.numeric(damage_amt)) %>% 
+  mutate(damage_amt = if_else(amount_unit == "K", damage_amt *1000, damage_amount*10^6))
+```
+
+
+
+
+
+
+
+

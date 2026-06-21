@@ -1,0 +1,6 @@
+"0","mekong_tidy <- mekong_tidy %>% "
+"0","  group_by(GEMS_station_no, date, parameter) %>% "
+"0","  summarize(value = first(value)) %>% "
+"0","  select(GEMS_station_no, date, parameter, value) %>% "
+"0","  pivot_wider(names_from = parameter, values_from = value)"
+"2","`summarise()` has regrouped the output."

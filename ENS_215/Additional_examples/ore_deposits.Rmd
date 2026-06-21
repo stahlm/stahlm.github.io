@@ -1,6 +1,6 @@
 ---
 title: "R Notebook"
-output: html_notebook
+output: html_document
 ---
 
 
@@ -28,7 +28,7 @@ fig_map <- shape_deps %>%
   #filter(str_detect(tolower(COMMODITY), "gold")) %>% 
   
   tm_shape() +
-  tm_dots(col = "DEP_TYPE", size = 0.25,
+  tm_dots(fill = "DEP_TYPE", size = 1,
           popup.vars = c("CATEGORY", "COMMODITY", "DEP_TYPE", "DEP_NAME") 
           ) +
   
@@ -54,7 +54,7 @@ fig_map <- shape_deps %>%
   filter(tolower(CATEGORY) == "copper") %>% 
   
   tm_shape() +
-  tm_dots(col = "DEP_TYPE", size = 0.25,
+  tm_dots(fill = "DEP_TYPE", size = 1,
           popup.vars = c("CATEGORY", "COMMODITY", "DEP_TYPE", "DEP_NAME") 
           ) +
   
@@ -78,7 +78,7 @@ fig_map <- shape_deps %>%
   filter(str_detect(tolower(COMMODITY), "lithium")) %>% 
   
   tm_shape() +
-  tm_dots(col = "DEP_TYPE", size = 0.25,
+  tm_dots(fill = "DEP_TYPE", size = 1,
           popup.vars = c("CATEGORY", "COMMODITY", "DEP_TYPE", "DEP_NAME") 
           ) +
   
